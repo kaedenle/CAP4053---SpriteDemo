@@ -10,10 +10,9 @@ public class Player_Movement : MonoBehaviour
     public float speed = 5f;
     private Vector2 movement;
     public Animator animator;
+    GameObject[] objs;
 
-    public bool up;
-    public bool down;
-    public bool side;
+    public bool flipped;
 
     void Start(){
         body = GetComponent<Rigidbody2D>(); 
@@ -24,12 +23,13 @@ public class Player_Movement : MonoBehaviour
     {
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");     
+        objs = GameObject.FindGameObjectsWithTag("Player");
 
-        if(movement.x > 0){
-            sr.flipX = false;
-        }
-        else if(movement.x < 0){
-            sr.flipX = true;
+        if(movement.x != 0){
+            flipped = movement.x < 0 ? true : false;
+            foreach(GameObject part in objs) {
+                part.GetComponent<SpriteRenderer>().flipX=flipped;   
+            }
         }
 
         animator.SetFloat("movement", movement.sqrMagnitude);
