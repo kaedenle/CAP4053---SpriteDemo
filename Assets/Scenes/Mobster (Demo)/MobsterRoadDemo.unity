@@ -618,6 +618,7 @@ GameObject:
   - component: {fileID: 1582488923}
   - component: {fileID: 1582488922}
   - component: {fileID: 1582488925}
+  - component: {fileID: 1582488926}
   m_Layer: 0
   m_Name: Street
   m_TagString: Untagged
@@ -725,6 +726,28 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
+--- !u!68 &1582488926
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582488921}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.6}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.5, y: 0}
+  - {x: 0.5, y: 0}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &1715845634
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,8 +950,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2048429503}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.569771, y: -1.5610347, z: -0.5}
-  m_LocalScale: {x: 3.722159, y: 4.8064985, z: 5}
+  m_LocalPosition: {x: -5.5309, y: -1.1853, z: -0.5}
+  m_LocalScale: {x: 2.2969103, y: 4.055033, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2085807231}
