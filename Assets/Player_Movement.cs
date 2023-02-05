@@ -8,6 +8,7 @@ public class Player_Movement : MonoBehaviour
     public SpriteRenderer sr;
 
     public float speed = 5f;
+    public float moveX, moveY;
     private Vector2 movement;
     public Animator animator;
     GameObject[] objs;
@@ -17,22 +18,28 @@ public class Player_Movement : MonoBehaviour
     void Start(){
         body = GetComponent<Rigidbody2D>(); 
         sr = GetComponent<SpriteRenderer>();
+        objs = GameObject.FindGameObjectsWithTag("Player");
     }
     // Update is called once per frame
     void Update()
     {
-        movement.x = Input.GetAxis("Horizontal");
-        movement.y = Input.GetAxis("Vertical");     
-        objs = GameObject.FindGameObjectsWithTag("Player");
+        moveX = Input.GetAxis("Horizontal");
+        moveY = Input.GetAxis("Vertical");
+        bool fire = Input.GetButtonDown("Fire1");
 
-        if(movement.x != 0){
-            flipped = movement.x < 0 ? true : false;
+        if(moveX != 0){
+            flipped = moveX< 0 ? true : false;
             foreach(GameObject part in objs) {
                 part.GetComponent<SpriteRenderer>().flipX=flipped;   
             }
         }
 
+        movement = new Vector2(moveX, moveY).normalized;
         animator.SetFloat("movement", movement.sqrMagnitude);
+        if(fire){
+            animator.SetBool("equiped", !animator.GetBool("equiped"));
+        }
+            
     }
 
     void FixedUpdate()
