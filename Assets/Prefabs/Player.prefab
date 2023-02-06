@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingOrder: 2
   m_Sprite: {fileID: -2081198915, guid: c8fddd0993d72044bb9d3631098ce906, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 3.2, y: 3.2}
@@ -197,8 +197,6 @@ MonoBehaviour:
   body: {fileID: 6197798176421269813}
   sr: {fileID: 0}
   speed: 10
-  moveX: 0
-  moveY: 0
   animator: {fileID: 6197798176421269819}
   flipped: 0
 --- !u!70 &6197798176421269822
@@ -355,7 +353,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 2008318612, guid: 7dee6320399d01c4389e05549caf5576, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 3.2, y: 3.2}
@@ -439,7 +437,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -1929321322, guid: fff1cd99225fe3c4890c43433c931056, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 3.2, y: 3.2}
@@ -458,6 +456,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6917116794792476195}
   - component: {fileID: 8340756177781156867}
+  - component: {fileID: 8801315706942811326}
   m_Layer: 0
   m_Name: On-Hand
   m_TagString: Player
@@ -523,12 +522,32 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 7.45, y: 3.2}
+  m_Size: {x: 9.6, y: 3.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!114 &8801315706942811326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9056604147769991447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9df0a375d650574f837748d1abc24db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteList:
+  - {fileID: 0}
+  - {fileID: 1113668004, guid: f5fc1fe8bc349d74d84152148774c8e2, type: 3}
+  - {fileID: -1209616074, guid: f5fc1fe8bc349d74d84152148774c8e2, type: 3}
+  - {fileID: -52877192, guid: f5fc1fe8bc349d74d84152148774c8e2, type: 3}
+  weaponID: 0
+  sr: {fileID: 0}
+  animator: {fileID: 6197798176421269819}

@@ -8,7 +8,7 @@ public class Player_Movement : MonoBehaviour
     public SpriteRenderer sr;
 
     public float speed = 5f;
-    public float moveX, moveY;
+    private float moveX, moveY;
     private Vector2 movement;
     public Animator animator;
     GameObject[] objs;
@@ -26,7 +26,6 @@ public class Player_Movement : MonoBehaviour
     {
         moveX = Input.GetAxis("Horizontal");
         moveY = Input.GetAxis("Vertical");
-        bool fire = Input.GetButtonDown("Fire1");
         if(moveX != 0){
             flipped = moveX < 0 ? true : false;
             foreach(GameObject part in objs) {
@@ -37,9 +36,6 @@ public class Player_Movement : MonoBehaviour
         
         movement = new Vector2(moveX, moveY).normalized;
         animator.SetFloat("movement", movement.sqrMagnitude);
-        if(fire){
-            animator.SetBool("equiped", !animator.GetBool("equiped"));
-        }
             
     }
 
