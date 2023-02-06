@@ -19,6 +19,7 @@ public class Player_Movement : MonoBehaviour
         body = GetComponent<Rigidbody2D>(); 
         sr = GetComponent<SpriteRenderer>();
         objs = GameObject.FindGameObjectsWithTag("Player");
+        flipped = false;
     }
     // Update is called once per frame
     void Update()
@@ -26,14 +27,14 @@ public class Player_Movement : MonoBehaviour
         moveX = Input.GetAxis("Horizontal");
         moveY = Input.GetAxis("Vertical");
         bool fire = Input.GetButtonDown("Fire1");
-
         if(moveX != 0){
-            flipped = moveX< 0 ? true : false;
+            flipped = moveX < 0 ? true : false;
             foreach(GameObject part in objs) {
-                part.GetComponent<SpriteRenderer>().flipX=flipped;   
+                part.GetComponent<SpriteRenderer>().flipX=flipped;
             }
         }
-
+        animator.SetBool("flipped", flipped);
+        
         movement = new Vector2(moveX, moveY).normalized;
         animator.SetFloat("movement", movement.sqrMagnitude);
         if(fire){
