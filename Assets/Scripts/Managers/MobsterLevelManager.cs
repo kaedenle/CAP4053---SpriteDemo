@@ -28,6 +28,7 @@ public class MobsterLevelManager : MonoBehaviour
         return false;
     }
 
+    // check if the key has been picked up or used
     public static bool usedKey(InventoryManager.AllItems key)
     {
         if (key == InventoryManager.AllItems.MobsterKeyDemo && _alleyGateOpen)
