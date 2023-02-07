@@ -5,21 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneSwitch : MonoBehaviour
 {
-    public bool useSceneID;
-    public int sceneID;
-
-    public bool useSceneName;
-    public string sceneName;
+    [SerializeField] ScenesManager.AllScenes _nextScene;
 
     void OnTriggerEnter2D(Collider2D other)
     {
         // should probably throw an exception here if the scene info is not valid
-
-        if(useSceneID)
-            SceneManager.LoadScene(sceneID);
-
-        else
-            SceneManager.LoadScene(sceneName);
+        Debug.Log("switching to scene " + _nextScene.ToString());
+        ScenesManager.LoadScene(_nextScene);
     }
 
 }
