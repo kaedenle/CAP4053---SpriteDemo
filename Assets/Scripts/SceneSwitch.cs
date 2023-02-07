@@ -10,7 +10,6 @@ public class SceneSwitch : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         // should probably throw an exception here if the scene info is not valid
-        Debug.Log("switching to scene " + _nextScene.ToString());
         ScenesManager.LoadScene(_nextScene);
     }
 
