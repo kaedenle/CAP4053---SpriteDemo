@@ -20,9 +20,18 @@ public class MobsterLevelManager : MonoBehaviour
         if(InventoryManager.HasItem(key))
         {
             Debug.Log("Alley Gate Has Been Opened");
+            InventoryManager.RemoveItem(key);
             _alleyGateOpen = true;
             return true;
         }
+
+        return false;
+    }
+
+    public static bool usedKey(InventoryManager.AllItems key)
+    {
+        if (key == InventoryManager.AllItems.MobsterKeyDemo && _alleyGateOpen)
+            return true;
 
         return false;
     }
