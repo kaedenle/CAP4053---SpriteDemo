@@ -16,7 +16,8 @@ public class ScenesManager : MonoBehaviour
         SampleScene = 0,
         MobsterRoadDemo,
         MobsterRestaurantDemo,
-        MobsterAlleyDemo
+        MobsterAlleyDemo,
+        CentralHub
     }
 
     // loads a scene
@@ -32,7 +33,7 @@ public class ScenesManager : MonoBehaviour
     {
         // load the first scene here
         // TEMP FIRST SCENE
-        LoadScene(AllScenes.MobsterRoadDemo);
+        LoadScene(AllScenes.CentralHub);
     }
 
     public static AllScenes GetPreviousScene()
