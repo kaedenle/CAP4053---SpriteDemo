@@ -8,6 +8,7 @@ public class WeaponSwitch : MonoBehaviour
     public int weaponID;
     public SpriteRenderer sr;
     public Animator animator;
+    
     public bool equiped;
     // Start is called before the first frame update
     void Start()
@@ -20,14 +21,21 @@ public class WeaponSwitch : MonoBehaviour
     void Update()
     {
         bool swap = Input.GetButtonDown("Fire1");
-        bool equip = Input.GetButtonDown("Fire3");
+        bool equip_press = Input.GetButtonDown("Fire3");
         equiped = animator.GetBool("equiped");
         //toggle between not equiped and equiped
-        if(equip)
+        if(equip_press){
+            if(!equiped)
+                animator.Play("Idle_Engage");
+            else
+                animator.Play("Idle");
+                
             animator.SetBool("equiped", !equiped);
-        
-        if(!equiped)
+        }
+
+        if(!equiped){
             sr.sprite = null;
+        }
         else if(equiped){
             if(swap){
                 weaponID += 1;
