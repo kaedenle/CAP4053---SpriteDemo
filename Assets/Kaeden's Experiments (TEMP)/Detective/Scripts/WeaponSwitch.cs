@@ -78,6 +78,7 @@ public class WeaponSwitch : MonoBehaviour
                 //animator.Play("Sword_One");
                 scriptHandler(false);
                 animator.SetFloat("attack", 1);
+                gameObject.GetComponent<HealthTracker>().healthSystem.Damage(5);
             }
             
                 
