@@ -4,46 +4,27 @@ using UnityEngine;
 
 public class WeaponSwitch : MonoBehaviour
 {
+
     public Sprite[] spriteList;
     public int weaponID;
     public SpriteRenderer sr;
     public Animator animator;
     public bool equiped;
-    private bool move_flag;
-
-    //for transitioning to idle and idle engage
-    void idle(){
-        animator.Play("Idle");
-    }
-    void idleEngage(){
-        scriptHandler(true);
-        animator.Play("Idle_Engage");
-        animator.SetFloat("attack", 0);
-        move_flag = false;
-    }
-
-    //scripts to be disabled/enabled when attacking
-    void scriptHandler(bool flag){
-        gameObject.GetComponent<Player_Movement>().enabled = flag;
-        //stop player movement
-        animator.SetFloat("movement", 0);
-    }
-    
-    void moveToggle(){
-        move_flag = true;
-        gameObject.GetComponent<Player_Movement>().enabled = true;
-    }
+    AnimatorClipInfo[] m_CurrentClipInfo;
 
     // Start is called before the first frame update
     void Start()
     {
         weaponID = 0;
-        move_flag = false;
     }
-
+    
     // Update is called once per frame
     void Update()
     {
+        //m_CurrentClipInfo = animator.GetCurrentAnimatorClipInfo(0);
+        //Access the Animation clip name
+        //Debug.Log(m_CurrentClipInfo[0].clip.name);
+
         bool swap = Input.GetButtonDown("Fire1");
         bool equip_press = Input.GetButtonDown("Fire3");
         equiped = animator.GetBool("equiped");
@@ -52,10 +33,9 @@ public class WeaponSwitch : MonoBehaviour
         //Only when you aren't attacking
         if(equip_press && animator.GetFloat("attack") == 0){
             if(!equiped)
-                idleEngage();
+                animator.Play("Idle_Engage");
             else
-                idle();
-
+                animator.Play("Idle");
             animator.SetBool("equiped", !equiped);
         }
 
@@ -66,22 +46,8 @@ public class WeaponSwitch : MonoBehaviour
             if(swap){
                 weaponID += 1;
                 weaponID %= spriteList.Length;
-            } 
-            if(move_flag && animator.GetFloat("movement") > 0 && animator.GetFloat("attack") > 0){
-                idleEngage();
-                move_flag = false;
-            }
+            }   
             sr.sprite = spriteList[weaponID];
-            //Swing when press left click
-            if(Input.GetKeyDown(KeyCode.Mouse0) && animator.GetFloat("attack") == 0){
-                //disable scripts
-                //animator.Play("Sword_One");
-                scriptHandler(false);
-                animator.SetFloat("attack", 1);
-                gameObject.GetComponent<HealthTracker>().healthSystem.Damage(5);
-            }
-            
-                
         }
         
         

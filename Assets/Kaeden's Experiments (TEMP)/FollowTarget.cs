@@ -12,7 +12,6 @@ public class FollowTarget : MonoBehaviour
     {
         myRectTransform = GetComponent<RectTransform>();
     }
-
     // Update is called once per frame
     void Update()
     {

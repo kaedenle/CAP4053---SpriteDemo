@@ -21,12 +21,13 @@ public class HealthTracker : MonoBehaviour
     // Starts whether or not this script is enabled
     void Awake()
     {
-        HPBar = bar.transform.Find("Foreground").GetComponent<Image>();
-        damagedBarImage = bar.transform.Find("Damaged").GetComponent<Image>();
+        
 
     }
 
     void Start(){
+        HPBar = bar.transform.Find("Foreground").GetComponent<Image>();
+        damagedBarImage = bar.transform.Find("Damaged").GetComponent<Image>();
         healthSystem = new HealthSystem(health);
         SetHealth(healthSystem.GetHealthNormalized());
         healthSystem.OnDamaged += HealthSystem_OnDamaged;

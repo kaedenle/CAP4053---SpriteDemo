@@ -175,25 +175,6 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1107 &-4124590216061459527
-AnimatorStateMachine:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sword_One
-  m_ChildStates: []
-  m_ChildStateMachines: []
-  m_AnyStateTransitions: []
-  m_EntryTransitions: []
-  m_StateMachineTransitions: {}
-  m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 50, y: 20, z: 0}
-  m_EntryPosition: {x: 50, y: 120, z: 0}
-  m_ExitPosition: {x: 800, y: 120, z: 0}
-  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 0}
 --- !u!1107 &-3889665934182750928
 AnimatorStateMachine:
   serializedVersion: 6
@@ -210,15 +191,12 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_StateMachine: {fileID: -2459582479762877612}
     m_Position: {x: 190, y: -170, z: 0}
-  - serializedVersion: 1
-    m_StateMachine: {fileID: -4124590216061459527}
-    m_Position: {x: 540, y: -130, z: 0}
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: -2459582479762877612}
-    second: []
   - first: {fileID: -2518684424995718673}
+    second: []
+  - first: {fileID: -2459582479762877612}
     second: []
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: -100, y: -410, z: 0}
@@ -237,6 +215,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 3
     m_ConditionEvent: attack
     m_EventTreshold: 0.001
+  - m_ConditionMode: 1
+    m_ConditionEvent: Attack
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: flipped
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4496700087125175244}
   m_Solo: 0
@@ -579,6 +563,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
+  - m_Name: Attack
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -853,6 +843,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 3
     m_ConditionEvent: attack
     m_EventTreshold: 0.001
+  - m_ConditionMode: 1
+    m_ConditionEvent: Attack
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: flipped
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4693691330356957354}
   m_Solo: 0

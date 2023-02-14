@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class HealthSystem : MonoBehaviour
+public class HealthSystem
 {
     private int healthAmount;
     private int healthAmountMax;
