@@ -10,6 +10,7 @@ public class StartBoxController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // move the player to the location of the attached object iff the previous scene was _prevScene
         if(ScenesManager.GetPreviousScene() == _prevScene)
         {
             player.transform.position = gameObject.transform.position;
