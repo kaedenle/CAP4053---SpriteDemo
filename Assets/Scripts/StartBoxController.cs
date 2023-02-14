@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class StartBoxController : MonoBehaviour
 {
-    [SerializeField] ScenesManager.AllScenes _outsideBuilding;
+    [SerializeField] ScenesManager.AllScenes _prevScene;
     public GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
-        if(ScenesManager.GetPreviousScene() == _outsideBuilding)
+        if(ScenesManager.GetPreviousScene() == _prevScene)
         {
             player.transform.position = gameObject.transform.position;
         }
