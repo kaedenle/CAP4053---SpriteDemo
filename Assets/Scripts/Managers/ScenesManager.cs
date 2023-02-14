@@ -13,11 +13,14 @@ public class ScenesManager : MonoBehaviour
     // you want to change these (adding more is fine, as long as you add to the end)
     public enum AllScenes
     {
-        SampleScene = 0,
+        CentralHub = 0,
         MobsterRoadDemo,
         MobsterRestaurantDemo,
         MobsterAlleyDemo,
-        CentralHub
+        ChildLivingRoom,
+        ChildKitchen,
+        ChildPlayroom,
+        SampleScene
     }
 
     // loads a scene
