@@ -20,6 +20,7 @@ public class ScenesManager : MonoBehaviour
         ChildLivingRoom,
         ChildKitchen,
         ChildPlayroom,
+        ChildForest,
         SampleScene
     }
 
