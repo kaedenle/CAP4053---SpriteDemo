@@ -692,7 +692,7 @@ PrefabInstance:
     - target: {fileID: 2837659088848603098, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: bar
       value: 
-      objectReference: {fileID: 1363121744}
+      objectReference: {fileID: 0}
     - target: {fileID: 2837659088848603098, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: health
       value: 100
@@ -764,6 +764,18 @@ PrefabInstance:
     - target: {fileID: 6197798176022084569, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.006
+      objectReference: {fileID: 0}
+    - target: {fileID: 6197798176022084569, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6197798176022084569, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6197798176022084569, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6197798176022084575, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_FlipX
@@ -847,19 +859,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6917116794792476195, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.69846183
       objectReference: {fileID: 0}
     - target: {fileID: 6917116794792476195, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.11023191
       objectReference: {fileID: 0}
     - target: {fileID: 6917116794792476195, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.69846183
       objectReference: {fileID: 0}
     - target: {fileID: 6917116794792476195, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.11023191
       objectReference: {fileID: 0}
     - target: {fileID: 6917116794792476195, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -867,7 +879,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6917116794792476195, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 6917116794792476195, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -924,6 +936,10 @@ PrefabInstance:
     - target: {fileID: 8972469491241416421, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056604147769991447, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
@@ -1148,11 +1164,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2646515, y: 0.35732484}
   m_EdgeRadius: 0
---- !u!1 &1363121744 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6674768557876616940, guid: 927e3f03c2cd5224cb7334cdb14627e0, type: 3}
-  m_PrefabInstance: {fileID: 526745667}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1365065572
 GameObject:
   m_ObjectHideFlags: 0
@@ -1259,18 +1270,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1365065572}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5bced5c9136fef4695d97b62350e4d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  bar: {fileID: 1581950457}
---- !u!1 &1581950457 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6674768559125777897, guid: 927e3f03c2cd5224cb7334cdb14627e0, type: 3}
-  m_PrefabInstance: {fileID: 526745667}
-  m_PrefabAsset: {fileID: 0}
+  health: 10
+  bar: {fileID: 5894459449886815197, guid: fb1b7fc730420314d876a7daece293d1, type: 3}
+  prefabUICanvas: {fileID: 6674768559125777897, guid: 927e3f03c2cd5224cb7334cdb14627e0, type: 3}
+  barOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &1643217469
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,8 @@ public class HealthTracker : MonoBehaviour
     public int health;
 
     public GameObject bar;
+    public GameObject prefabUICanvas;
+    public Vector3 barOffset;
     private Image damagedBarImage;
     private Image HPBar;
 
@@ -21,7 +23,15 @@ public class HealthTracker : MonoBehaviour
     // Starts whether or not this script is enabled
     void Awake()
     {
-        
+        GameObject Parent = GameObject.Find("UI Canvas");
+        //Add personal Healthbar to UI Canvas if it doesn't exist and update follow target
+        if(bar.transform.parent != Parent){
+            GameObject newBar = Instantiate(bar) as GameObject;
+            newBar.transform.SetParent(Parent.transform);
+            newBar.GetComponent<FollowTarget>().target = gameObject;
+            newBar.GetComponent<FollowTarget>().offset = barOffset; 
+            bar = newBar;
+        }
 
     }
 
@@ -38,18 +48,22 @@ public class HealthTracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //health bar effect
         damagedHealthShrinkTimer -= Time.deltaTime;
         if(damagedHealthShrinkTimer < 0){
             if(HPBar.fillAmount < damagedBarImage.fillAmount){
                 float shrinkSpeed = 3f;
                 damagedBarImage.fillAmount -= shrinkSpeed * Time.deltaTime;
+                //once grey bar decreases kill
+                if(damagedBarImage.fillAmount == 0){
+                    gameObject.GetComponent<HealthTracker>().enabled = false;
+                }
             }
         }
 
         //check for death
         if(healthSystem.getHealth() == 0){
             Debug.Log(gameObject.name + " is dead");
-            gameObject.GetComponent<HealthTracker>().enabled = false;
         }
     }
     void SetHealth(float health){

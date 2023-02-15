@@ -18,7 +18,7 @@ public class Hitbox : MonoBehaviour
     void Start()
     {
         _state = ColliderState.Closed;
-        atk = transform.parent.parent.GetComponent<HitboxController>().atk;
+        atk = transform.parent.parent.parent.GetComponent<HitboxController>().atk;
     }
 
     //draw hitbox
@@ -54,7 +54,7 @@ public class Hitbox : MonoBehaviour
     private void Update() {
         if (_state == ColliderState.Closed) { return; }
         bool hitFlag = false;
-        atk = transform.parent.parent.GetComponent<HitboxController>().atk;
+        atk = transform.parent.parent.parent.GetComponent<HitboxController>().atk;
         Collider[] colliders = Physics.OverlapBox(gameObject.transform.position, transform.localScale/2, Quaternion.identity, m_LayerMask);
 
         for (int i = 0; i < colliders.Length; i++) {
