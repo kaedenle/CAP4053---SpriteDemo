@@ -28,7 +28,7 @@ public class Player_Movement : MonoBehaviour
     {
         moveX = Input.GetAxis("Horizontal");
         moveY = Input.GetAxis("Vertical");
-        animator.SetBool("flipped", flipped);
+        
         if(moveX != 0){
             bool temp = flipped;
             flipped = moveX < 0 ? true : false;
@@ -40,7 +40,7 @@ public class Player_Movement : MonoBehaviour
                 part.GetComponent<SpriteRenderer>().flipX=flipped;
             }
         }
-        
+        animator.SetBool("flipped", flipped);
         movement = new Vector2(moveX, moveY).normalized;
         animator.SetFloat("movement", movement.sqrMagnitude);
             
@@ -52,18 +52,16 @@ public class Player_Movement : MonoBehaviour
     }
     //late update to bypass animation to flip
     void LateUpdate(){
-        //only rotate On-Hand
-        int temp = flipped ? 180 : 0;
-        GameObject weapon = gameObject.transform.Find("Right Arm").gameObject.transform.Find("On-Hand").gameObject;
+        //GameObject wpn = gameObject.transform.Find("Right Arm").transform.Find("On-Hand").gameObject;
+        //AnimatorClipInfo[] m_CurrentClipInfo = animator.GetCurrentAnimatorClipInfo(0);
+        //int currentFrame = (int) (m_CurrentClipInfo[0].weight * (m_CurrentClipInfo [0].clip.length * m_CurrentClipInfo[0].clip.frameRate));
+        //Debug.Log(flipped + " " + wpn.transform.rotation.eulerAngles.y + " " + wpn.name + " frame " + currentFrame + " " + m_CurrentClipInfo[0].clip.name);
+        //GameObject weapon = gameObject.transform.Find("Right Arm").gameObject.transform.Find("On-Hand").gameObject;
         /*weapon.transform.eulerAngles = new Vector3(
             weapon.transform.eulerAngles.x,
             temp,
             weapon.transform.eulerAngles.z
         );*/
-        GameObject parent = weapon.transform.parent.gameObject;
-        weapon.transform.RotateAround(parent.transform.position, Vector3.up, temp);
-        rotateFlag = false;
         
-
     }
 }

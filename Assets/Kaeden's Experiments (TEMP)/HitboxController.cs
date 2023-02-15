@@ -16,6 +16,7 @@ public class HitboxController : MonoBehaviour
 
     void cleanUp(){
         //reactivate scripts
+        Debug.Log("Cleaning...");
         animator.ResetTrigger("Attack");
         scriptHandler(true);
         //deactivate all hitboxes (might have a script to fully destroy all hitbox instances here)
@@ -103,5 +104,23 @@ public class HitboxController : MonoBehaviour
             }
         }
         //Debug.Log(Sword1.var);
+    }
+    void LateUpdate(){
+        bool flipped = animator.GetBool("flipped");
+        int temp = flipped ? 180 : 0;
+        
+        GameObject[] wpnObjs = GameObject.FindGameObjectsWithTag("Weapon");
+        foreach(GameObject wpn in wpnObjs) {
+            GameObject parent = wpn.transform.parent.gameObject;
+            if(wpn.transform.rotation.eulerAngles.y < 180 && flipped){
+                
+                wpn.transform.RotateAround(parent.transform.position, Vector3.up, 180);
+            }
+            else if(wpn.transform.rotation.eulerAngles.y >= 180 && !flipped){
+                wpn.transform.RotateAround(parent.transform.position, Vector3.up, 0);
+            }
+            
+            
+        }
     }
 }

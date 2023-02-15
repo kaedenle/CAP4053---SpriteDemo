@@ -21,7 +21,7 @@ public class WeaponSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //m_CurrentClipInfo = animator.GetCurrentAnimatorClipInfo(0);
+        //AnimatorClipInfo[] m_CurrentClipInfo = animator.GetCurrentAnimatorClipInfo(0);
         //Access the Animation clip name
         //Debug.Log(m_CurrentClipInfo[0].clip.name);
 
