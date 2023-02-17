@@ -16,6 +16,7 @@ public class ScenesManager : MonoBehaviour
         CentralHub = 0,
         MobsterRoadDemo,
         MobsterRestaurantDemo,
+        MobsterKitchenDemo,
         MobsterAlleyDemo,
         ChildLivingRoom,
         ChildKitchen,
