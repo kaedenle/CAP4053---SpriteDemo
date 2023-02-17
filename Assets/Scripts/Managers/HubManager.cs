@@ -11,7 +11,7 @@ public class HubManager : MonoBehaviour
         ScenesManager.AllScenes.ChildLivingRoom
     };
 
-    //// array of starting demo mind scenes
+    // array of starting demo mind scenes
     private static ScenesManager.AllScenes[] demoSceneStarts =
     {
         ScenesManager.AllScenes.MobsterRoadDemo
@@ -23,13 +23,12 @@ public class HubManager : MonoBehaviour
     void Awake()
     {
         Debug.Log("called Awake() in HubManager");
-        currentPhase++;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("called Start() in HubManager");
+        Debug.Log("called Start() in HubManager, current phase is " + currentPhase);
     }
 
     // Update is called once per frame
@@ -38,7 +37,7 @@ public class HubManager : MonoBehaviour
         
     }
 
-    void LoadNextMind()
+    public static void LoadNextMind()
     {
         currentPhase++;
         ScenesManager.LoadScene(mindSceneStarts[currentPhase - 1]);
