@@ -419,7 +419,7 @@ GameObject:
   - component: {fileID: 322480534}
   - component: {fileID: 322480536}
   - component: {fileID: 322480538}
-  - component: {fileID: 322480537}
+  - component: {fileID: 322480539}
   m_Layer: 0
   m_Name: Mobster Token
   m_TagString: Untagged
@@ -514,32 +514,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!61 &322480537
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322480533}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.011234522, y: -0.34026027}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
-    newSize: {x: 0.64, y: 0.64}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.0061846, y: 1.380822}
-  m_EdgeRadius: 0
 --- !u!114 &322480538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,6 +527,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingType: 2
+--- !u!58 &322480539
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322480533}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.009008646, y: -0.000000042574747}
+  serializedVersion: 2
+  m_Radius: 1
 --- !u!1 &1100953241
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,7 +707,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 5.268054
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
