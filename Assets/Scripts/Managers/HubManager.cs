@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class HubManager : MonoBehaviour
 {
+    public enum PhaseTag
+    {
+        Mobster,
+        Child
+    }
+
     // array of the starting mind scenes
     private static ScenesManager.AllScenes[] mindSceneStarts =
     {
@@ -19,10 +25,22 @@ public class HubManager : MonoBehaviour
 
     private static int currentPhase = 0;
 
+    public static void LoadNextMind()
+    {
+        currentPhase++;
+        ScenesManager.LoadScene(mindSceneStarts[currentPhase - 1]);
+    }
+    
+    // doesn't distinguish between Demo and Full
+    public static bool TagIsCurrent(PhaseTag tag)
+    {
+        return (int)tag == currentPhase;
+    }
+
     // awake is called before start
     void Awake()
     {
-        Debug.Log("called Awake() in HubManager");
+
     }
 
     // Start is called before the first frame update
@@ -35,11 +53,5 @@ public class HubManager : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public static void LoadNextMind()
-    {
-        currentPhase++;
-        ScenesManager.LoadScene(mindSceneStarts[currentPhase - 1]);
     }
 }

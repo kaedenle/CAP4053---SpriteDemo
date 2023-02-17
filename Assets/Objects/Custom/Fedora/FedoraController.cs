@@ -5,12 +5,22 @@ using UnityEngine;
 public class FedoraController : MonoBehaviour
 {
     [Range(1, 3)] public int startingType = 3;
+    [SerializeField] public HubManager.PhaseTag phase;
+
     private Animator animator;
     private string animatorBool = "playerNear";
 
     // Start is called before the first frame update
     void Start()
     {
+        // destroy the object if it's not it's phase
+        if(!HubManager.TagIsCurrent(phase))
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        // set the animator info
         animator = gameObject.GetComponent<Animator>();
         animator.SetBool(animatorBool, false);
         animator.SetInteger("id", startingType);
