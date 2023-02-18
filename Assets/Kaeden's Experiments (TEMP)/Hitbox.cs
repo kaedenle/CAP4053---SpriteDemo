@@ -66,9 +66,9 @@ public class Hitbox : MonoBehaviour
         foreach(Collider c in colliders){
             //thing you're hitting
             GameObject hitting = c.gameObject;
+            //if they don't have an IDamagable who cares
             if (hitting.GetComponent<IDamagable>() != null)
                 hitting.GetComponent<IDamagable>().damage(Atk.knockBack.magnitude, Atk.damage);
-            
         }
     }
 
