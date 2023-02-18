@@ -28,9 +28,9 @@ public class ScenesManager : MonoBehaviour
     // loads a scene
     public static void LoadScene(AllScenes scene)
     {
-        SceneManager.LoadScene( (int) scene);
         _prevScene = _currentScene;
         _currentScene = scene;
+        SceneManager.LoadScene( (int) scene);
     }
     
     // loads the first scene (that's not the menu)
