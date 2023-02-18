@@ -22,7 +22,7 @@ public class Hitbox : MonoBehaviour
     private Attack Atk;
 
     //colliding information
-    public Collider[] colliders;
+    public Collider2D[] colliders;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +30,9 @@ public class Hitbox : MonoBehaviour
         _state = ColliderState.Closed;
         atkID = transform.parent.parent.parent.GetComponent<AttackManager>().atk;
         //dummy stats, will need AttackManager to provision Attack object for hitbox
-        Atk = new Attack(10, 5, new Vector2(0, 1));
+        //need to find a way to make knockback relative (since this is on player get player's position then configure pre-set knockback?)
+        //pre-set knockback will assume you're facing right
+        Atk = new Attack(10, 5, new Vector2(0, 500));
     }
 
     //draw hitbox
@@ -63,12 +65,13 @@ public class Hitbox : MonoBehaviour
     }
 
     public void hitSomething(){
-        foreach(Collider c in colliders){
+        foreach(Collider2D c in colliders){
             //thing you're hitting
             GameObject hitting = c.gameObject;
             //if they don't have an IDamagable who cares
-            if (hitting.GetComponent<IDamagable>() != null)
-                hitting.GetComponent<IDamagable>().damage(Atk.knockBack.magnitude, Atk.damage);
+            foreach(IDamagable script in hitting.GetComponents<IDamagable>())
+                script.damage(Atk.knockBack, Atk.damage);
+            
         }
     }
 
@@ -76,7 +79,7 @@ public class Hitbox : MonoBehaviour
         if (_state == ColliderState.Closed) { return; }
         //bool hitFlag = false;
         //atkID = transform.parent.parent.parent.GetComponent<AttackManager>().atk;
-        colliders = Physics.OverlapBox(gameObject.transform.position, transform.localScale/2, Quaternion.identity, m_LayerMask);
+        colliders = Physics2D.OverlapBoxAll(new Vector2(transform.position.x, transform.position.y), new Vector2(transform.localScale.x, transform.localScale.y), 0, m_LayerMask);
         _state = colliders.Length > 0 ? ColliderState.Colliding : ColliderState.Open;
     }
     

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IDamagable
 {
-    void damage(float knockback, int damage);
+    void damage(Vector2 knockback, int damage);
 }
