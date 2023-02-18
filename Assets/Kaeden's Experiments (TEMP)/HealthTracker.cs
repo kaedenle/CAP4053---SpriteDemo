@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class HealthTracker : MonoBehaviour
+public class HealthTracker : MonoBehaviour, IDamagable
 {
     public int health;
 
@@ -13,6 +13,7 @@ public class HealthTracker : MonoBehaviour
     public Vector3 barOffset;
     private Image damagedBarImage;
     private Image HPBar;
+    private bool deathFlag = false;
 
     private const float DAMAGED_TIMER_SHRINK_MAX = 0.5f;
     private float damagedHealthShrinkTimer;
@@ -40,6 +41,8 @@ public class HealthTracker : MonoBehaviour
         damagedBarImage = bar.transform.Find("Damaged").GetComponent<Image>();
         healthSystem = new HealthSystem(health);
         SetHealth(healthSystem.GetHealthNormalized());
+
+        //subscribe to event system
         healthSystem.OnDamaged += HealthSystem_OnDamaged;
         healthSystem.OnHealed += HealthSystem_OnHealed;
         damagedBarImage.fillAmount = HPBar.fillAmount;
@@ -54,21 +57,30 @@ public class HealthTracker : MonoBehaviour
             if(HPBar.fillAmount < damagedBarImage.fillAmount){
                 float shrinkSpeed = 1f;
                 damagedBarImage.fillAmount -= shrinkSpeed * Time.deltaTime;
-                //once grey bar decreases kill
+                //once grey bar decreases
                 if(damagedBarImage.fillAmount == 0){
-                    gameObject.GetComponent<HealthTracker>().enabled = false;
+                    //gameObject.GetComponent<HealthTracker>().enabled = false;
                 }
             }
         }
-
         //check for death
-        if(healthSystem.getHealth() == 0){
+        if(healthSystem.getHealth() == 0 && !deathFlag){
             Debug.Log(gameObject.name + " is dead");
+            deathFlag = true;
         }
     }
     void SetHealth(float health){
         HPBar.fillAmount = health;
     }
+
+    //implement IDamagable interface
+    public void damage(float knockback, int damage){
+        if(!deathFlag){
+            Debug.Log(gameObject.name + " took " + damage + " damage and " + knockback + " knockback");
+            healthSystem.Damage(damage);
+        }
+    }
+
     //events to happen when healed
     private void HealthSystem_OnHealed(object sender, System.EventArgs e){
         SetHealth(healthSystem.GetHealthNormalized());
@@ -76,7 +88,8 @@ public class HealthTracker : MonoBehaviour
     }
     //events to happen when damage is taken
     private void HealthSystem_OnDamaged(object sender, System.EventArgs e){
-        damagedHealthShrinkTimer = DAMAGED_TIMER_SHRINK_MAX;
+        if(!deathFlag)
+            damagedHealthShrinkTimer = DAMAGED_TIMER_SHRINK_MAX;
         SetHealth(healthSystem.GetHealthNormalized());
     }
 }
