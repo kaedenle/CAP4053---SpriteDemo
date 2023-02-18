@@ -116,7 +116,7 @@ public class AttackManager : MonoBehaviour
                 animator.SetTrigger("Attack");
                 animator.SetFloat("attack", 1);
                 //damage self by 5 points
-                //gameObject.GetComponent<HealthTracker>().healthSystem.Damage(5);
+                gameObject.GetComponent<HealthTracker>().healthSystem.Damage(5);
             }
         }
         //Debug.Log(Sword1.var);

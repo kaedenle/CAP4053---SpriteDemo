@@ -9,7 +9,6 @@ public class HealthTracker : MonoBehaviour, IDamagable
     public int health;
 
     public GameObject bar;
-    public GameObject prefabUICanvas;
     public Vector3 barOffset;
     private Image damagedBarImage;
     private Image HPBar;
@@ -25,6 +24,11 @@ public class HealthTracker : MonoBehaviour, IDamagable
     void Awake()
     {
         GameObject Parent = GameObject.Find("UI Canvas");
+        if(Parent == null){
+            GameObject UIBar = Resources.Load("Prefabs/UI Canvas") as GameObject;
+            Parent = Instantiate(UIBar);
+            Parent.name = "UI Canvas";
+        }
         //Add personal Healthbar to UI Canvas if it doesn't exist and update follow target
         if(bar.transform.parent != Parent){
             GameObject newBar = Instantiate(bar) as GameObject;
