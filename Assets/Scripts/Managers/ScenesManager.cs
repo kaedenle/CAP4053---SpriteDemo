@@ -41,6 +41,12 @@ public class ScenesManager : MonoBehaviour
         LoadScene(AllScenes.CentralHub);
     }
 
+    public static void StartDemo()
+    {
+        _demo = true;
+        LoadScene(AllScenes.MobsterRoadDemo);
+    }
+
     public static AllScenes GetPreviousScene()
     {
         return _prevScene;

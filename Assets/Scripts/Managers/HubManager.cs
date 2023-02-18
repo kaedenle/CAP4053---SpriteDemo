@@ -24,7 +24,7 @@ public class HubManager : MonoBehaviour
     };
 
     private static int currentPhase = 0;
-
+    
     public static void LoadNextMind()
     {
         currentPhase++;
@@ -47,11 +47,5 @@ public class HubManager : MonoBehaviour
     void Start()
     {
         Debug.Log("called Start() in HubManager, current phase is " + currentPhase);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
