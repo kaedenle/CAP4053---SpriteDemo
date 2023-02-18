@@ -9,16 +9,30 @@ public class Hitbox : MonoBehaviour
         Open,
         Colliding
     }
+
+    //box information
     public LayerMask m_LayerMask;
     public Vector3 boxSize;
     public ColliderState _state;
-    public HitboxController.Attack atk;
+    public int ID;
+
+    //attack information
+    public AttackManager.Attack atkID;
+    private IDamagable _responder = null;
+    private Attack Atk;
+
+    //colliding information
+    public Collider2D[] colliders;
 
     // Start is called before the first frame update
     void Start()
     {
         _state = ColliderState.Closed;
-        atk = transform.parent.parent.parent.GetComponent<HitboxController>().atk;
+        atkID = transform.parent.parent.parent.GetComponent<AttackManager>().atk;
+        //dummy stats, will need AttackManager to provision Attack object for hitbox
+        //need to find a way to make knockback relative (since this is on player get player's position then configure pre-set knockback?)
+        //pre-set knockback will assume you're facing right
+        Atk = new Attack(10, 5, new Vector2(0, 500));
     }
 
     //draw hitbox
@@ -32,42 +46,41 @@ public class Hitbox : MonoBehaviour
     }
     public void Deactivate(){
         _state = ColliderState.Closed;
+        colliders = null;
     }
 
     //change hitbox color depending on state
     private void checkGizmoColor() {
         switch(_state) {
-
-        case ColliderState.Closed:
-            Gizmos.color = new Color(1, 0, 0, 0.5f);
-            break;
-        case ColliderState.Open:
-            Gizmos.color = new Color(0, 1, 0, 0.5f);
-            break;
-        case ColliderState.Colliding:
-            Gizmos.color = new Color(0, 0, 1, 0.5f);
-            break;
+            case ColliderState.Closed:
+                Gizmos.color = new Color(1, 0, 0, 0.5f);
+                break;
+            case ColliderState.Open:
+                Gizmos.color = new Color(0, 1, 0, 0.5f);
+                break;
+            case ColliderState.Colliding:
+                Gizmos.color = new Color(0, 0, 1, 0.5f);
+                break;
         }
-
     }
-    // Update is called once per frame
-    private void Update() {
-        if (_state == ColliderState.Closed) { return; }
-        bool hitFlag = false;
-        atk = transform.parent.parent.parent.GetComponent<HitboxController>().atk;
-        Collider[] colliders = Physics.OverlapBox(gameObject.transform.position, transform.localScale/2, Quaternion.identity, m_LayerMask);
 
-        for (int i = 0; i < colliders.Length; i++) {
-            Collider aCollider = colliders[i];
-           // _responder?.collisionedWith(aCollider);
-           Debug.Log("Hit " + aCollider.gameObject.name + " with " + atk);
-           hitFlag = true;
+    public void hitSomething(){
+        foreach(Collider2D c in colliders){
+            //thing you're hitting
+            GameObject hitting = c.gameObject;
+            //if they don't have an IDamagable who cares
+            foreach(IDamagable script in hitting.GetComponents<IDamagable>())
+                script.damage(Atk.knockBack, Atk.damage);
+            
         }
-        if(hitFlag)
-            _state = ColliderState.Closed;
-        else
-            _state = colliders.Length > 0 ? ColliderState.Colliding : ColliderState.Open;
+    }
 
+    public void updateHitboxes() {
+        if (_state == ColliderState.Closed) { return; }
+        //bool hitFlag = false;
+        //atkID = transform.parent.parent.parent.GetComponent<AttackManager>().atk;
+        colliders = Physics2D.OverlapBoxAll(new Vector2(transform.position.x, transform.position.y), new Vector2(transform.localScale.x, transform.localScale.y), 0, m_LayerMask);
+        _state = colliders.Length > 0 ? ColliderState.Colliding : ColliderState.Open;
     }
     
     

@@ -9,7 +9,6 @@ public class Player_Movement : MonoBehaviour
 
     public float speed = 5f;
     private float moveX, moveY;
-    private bool rotateFlag;
     private Vector2 movement;
     public Animator animator;
     GameObject[] objs;
@@ -21,7 +20,6 @@ public class Player_Movement : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         objs = GameObject.FindGameObjectsWithTag("Player");
         flipped = false;
-        rotateFlag = false;
     }
     // Update is called once per frame
     void Update()
@@ -32,9 +30,6 @@ public class Player_Movement : MonoBehaviour
         if(moveX != 0){
             bool temp = flipped;
             flipped = moveX < 0 ? true : false;
-            //flipped changed
-            if(temp != flipped)
-                rotateFlag = true;
             
             foreach(GameObject part in objs) {
                 part.GetComponent<SpriteRenderer>().flipX=flipped;
