@@ -6,14 +6,15 @@ using UnityEngine.SceneManagement;
 public class ScenesManager : MonoBehaviour
 {
     public static ScenesManager Instance;
-    private static ScenesManager.AllScenes _currentScene = AllScenes.SampleScene, _prevScene = AllScenes.SampleScene; // need to update these defaults after setting up central room
+    private static ScenesManager.AllScenes _currentScene = AllScenes.Menu, _prevScene = AllScenes.Menu; // need to update these defaults after setting up central room
     private static bool _demo = false;
     // update this enum whenever you add (or remove) a Scene (must be in same order as in building settings)
     // edit these names at your own risk; so many things use these, so you'll have to track them all down if
     // you want to change these (adding more is fine, as long as you add to the end)
     public enum AllScenes
     {
-        CentralHub = 0,
+        Menu = 0,
+        CentralHub,
         MobsterRoadDemo,
         MobsterRestaurantDemo,
         MobsterKitchenDemo,
@@ -21,8 +22,7 @@ public class ScenesManager : MonoBehaviour
         ChildLivingRoom,
         ChildKitchen,
         ChildPlayroom,
-        ChildForest,
-        SampleScene
+        ChildForest
     }
 
     // loads a scene
