@@ -52,7 +52,7 @@ public class HealthTracker : MonoBehaviour
         damagedHealthShrinkTimer -= Time.deltaTime;
         if(damagedHealthShrinkTimer < 0){
             if(HPBar.fillAmount < damagedBarImage.fillAmount){
-                float shrinkSpeed = 3f;
+                float shrinkSpeed = 1f;
                 damagedBarImage.fillAmount -= shrinkSpeed * Time.deltaTime;
                 //once grey bar decreases kill
                 if(damagedBarImage.fillAmount == 0){
