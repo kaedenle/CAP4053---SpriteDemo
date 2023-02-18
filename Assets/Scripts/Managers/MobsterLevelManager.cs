@@ -36,4 +36,9 @@ public class MobsterLevelManager : MonoBehaviour
 
         return false;
     }
+
+    public static bool HasObtainedAlleyKey()
+    {
+        return AlleyGateUnlocked() || InventoryManager.HasItem(InventoryManager.AllItems.MobsterKeyDemo);
+    }
 }

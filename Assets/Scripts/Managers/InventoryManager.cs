@@ -16,9 +16,6 @@ public class InventoryManager : MonoBehaviour
     public void Awake()
     {
         Instance = this;
-
-        // this should log at every scene switch
-        Debug.Log("current inventory size: " + _inventoryItems.Count);
     }
        
     // add item to current inventory
