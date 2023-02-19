@@ -47,6 +47,7 @@ public class ScenesManager : MonoBehaviour
     public static void LoadNewGame()
     {
         // load the first scene here
+        _demo = false;
         LoadScene(AllScenes.CentralHub);
     }
 
