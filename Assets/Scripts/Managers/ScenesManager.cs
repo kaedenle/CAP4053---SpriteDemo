@@ -32,12 +32,21 @@ public class ScenesManager : MonoBehaviour
         _currentScene = scene;
         SceneManager.LoadScene( (int) scene);
     }
-    
+
+    // loads a scene based on demo boolean
+    public static void LoadSceneChoice(AllScenes full, AllScenes demo)
+    {
+        if (_demo) 
+            LoadScene(demo);
+
+        else
+            LoadScene(full);
+    }
+
     // loads the first scene (that's not the menu)
     public static void LoadNewGame()
     {
         // load the first scene here
-        // TEMP FIRST SCENE
         LoadScene(AllScenes.CentralHub);
     }
 
