@@ -8,8 +8,10 @@ public class KnockBackable : MonoBehaviour, IDamagable
     void Start(){
         body = gameObject.GetComponent<Rigidbody2D>();
     }
-    
-    public void damage(Vector2 knockback, int damage){
+
+    public void damage(Vector3 knockback, int damage){
+        if(body == null)
+            return;
         body.AddForce(knockback);
         Debug.Log("Took Knockback!");
     }

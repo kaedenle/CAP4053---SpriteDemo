@@ -2,15 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Attack
 {
+    //data values
     public int damage;
-    public int hitstop;
-    public Vector2 knockBack;
+    public int knockback;
+    public int frame;
 
-    public Attack(int damage, int hitstop, Vector2 knockBack){
+    //positional values
+    public float x_pos;
+    public float y_pos;
+    public float x_scale;
+    public float y_scale;
+
+    public Attack(int damage, int knockback){
         this.damage = damage;
-        this.hitstop = hitstop;
-        this.knockBack = knockBack;
+        this.knockback = knockback;
     }
 }

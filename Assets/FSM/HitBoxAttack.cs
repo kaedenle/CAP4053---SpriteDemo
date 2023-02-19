@@ -22,7 +22,7 @@ public class HitBoxAttack : MonoBehaviour
             var hit = other.GetComponent<HealthTracker>();
             if(hit != null && can_attack)
             {
-                hit.damage(new Vector2(10,10), _attackPower);
+                hit.damage(new Vector3(0, 0, 0), _attackPower);
                 can_attack = false;
                 tempTime = Time.time;
             }

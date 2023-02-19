@@ -11,14 +11,13 @@ public class Hitbox : MonoBehaviour
     }
 
     //box information
-    public LayerMask m_LayerMask;
+    private LayerMask m_LayerMask;
     public Vector3 boxSize;
     public ColliderState _state;
     public int ID;
 
     //attack information
-    public AttackManager.Attack atkID;
-    private IDamagable _responder = null;
+    public AttackManager.AttackID atkID;
     private Attack Atk;
 
     //colliding information
@@ -27,12 +26,13 @@ public class Hitbox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_LayerMask = LayerMask.GetMask("Entity");
         _state = ColliderState.Closed;
         atkID = transform.parent.parent.parent.GetComponent<AttackManager>().atk;
         //dummy stats, will need AttackManager to provision Attack object for hitbox
         //need to find a way to make knockback relative (since this is on player get player's position then configure pre-set knockback?)
         //pre-set knockback will assume you're facing right
-        Atk = new Attack(10, 5, new Vector2(0, 500));
+        Atk = new Attack(10, 500);
     }
 
     //draw hitbox
@@ -69,9 +69,11 @@ public class Hitbox : MonoBehaviour
             //thing you're hitting
             GameObject hitting = c.gameObject;
             //if they don't have an IDamagable who cares
-            foreach(IDamagable script in hitting.GetComponents<IDamagable>())
-                script.damage(Atk.knockBack, Atk.damage);
-            
+            foreach(IDamagable script in hitting.GetComponents<IDamagable>()){
+//-------------------------CHANGE THIS LATER ONCE HAVE FULL ATTACK OBJ-------------------------
+                if(hitting.tag == "Enemy")
+                    script.damage(Atk.knockback * (hitting.transform.position - gameObject.transform.root.position), Atk.damage);
+            }
         }
     }
 
