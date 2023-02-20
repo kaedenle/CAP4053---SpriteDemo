@@ -50,6 +50,7 @@ public class Hitbox : MonoBehaviour
     }
     public void Deactivate(){
         _state = ColliderState.Closed;
+        Debug.Log("HERE");
         colliders = null;
     }
 

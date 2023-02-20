@@ -106,16 +106,18 @@ public class AttackManager : MonoBehaviour
         //don't destroy existing hitboxes if there's no data on it on the current frame
         if(counter == 0)
             return;
-
         //update length of HBList
         HBListLength = HBList != null ? HBList.Count : 0;
         //destroy extra hitboxes
         for(int i = counter; i < HBListLength; i++){
+            Debug.Log("INSIDE");
             Hitbox hb = HBList[i];
             HBList.RemoveAt(i);
             Destroy(hb.gameObject);
         }
-        //HBList = GetComponentsInChildren<Hitbox>();
+
+        foreach (Hitbox box in HBList)
+            box.Activate();
         //Debug.Log("CURRENT: " + currentFrame);
     }
 //-----------------------------PLAY ATTACK FUNCTIONS----------------------------------------------------------
@@ -126,6 +128,7 @@ public class AttackManager : MonoBehaviour
         framedata = JsonUtility.FromJson<FrameData>(moveContainer.text);
         //tell hitboxes to update
         active = true;
+        ProvisionHitboxes();
     }
 
     public void StopPlay(){
@@ -158,7 +161,7 @@ public class AttackManager : MonoBehaviour
     private int GetAnimationFrame(){
         AnimatorClipInfo[] m_CurrentClipInfo = animator.GetCurrentAnimatorClipInfo(0);
         AnimatorStateInfo animationInfo = animator.GetCurrentAnimatorStateInfo(0);
-        return ((int)(animationInfo.normalizedTime % 1 * (m_CurrentClipInfo[0].clip.length * m_CurrentClipInfo[0].clip.frameRate)));
+        return ((int)(m_CurrentClipInfo[0].weight % 1 * (m_CurrentClipInfo[0].clip.length * m_CurrentClipInfo[0].clip.frameRate)));
     }
 
     // Update is called once per frame

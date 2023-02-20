@@ -12,7 +12,7 @@ public class KnockBackable : MonoBehaviour, IDamagable
     public void damage(Vector3 knockback, int damage){
         if(body == null)
             return;
-        body.AddForce(knockback);
+        body.AddForce(knockback, ForceMode2D.Impulse);
         Debug.Log(gameObject.name + " Took Knockback!");
     }
 }
