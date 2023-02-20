@@ -9,7 +9,7 @@ public class Player_Movement : MonoBehaviour, IScriptable
 
     public float speed = 5f;
     private float moveX, moveY;
-    private Vector2 movement;
+    private Vector3 movement;
     public Animator animator;
     GameObject[] objs;
 
@@ -38,7 +38,7 @@ public class Player_Movement : MonoBehaviour, IScriptable
             }
         }
         animator.SetBool("flipped", flipped);
-        movement = new Vector2(moveX, moveY).normalized;
+        movement = new Vector3(moveX, moveY, 0).normalized;
         animator.SetFloat("movement", movement.sqrMagnitude);
             
     }
@@ -68,6 +68,7 @@ public class Player_Movement : MonoBehaviour, IScriptable
 
     void FixedUpdate()
     {
-        body.MovePosition(body.position + movement * speed * Time.fixedDeltaTime);
+        gameObject.transform.position += movement * speed * Time.fixedDeltaTime;
+        //body.MovePosition(body.position + movement * speed * Time.fixedDeltaTime);
     }
 }

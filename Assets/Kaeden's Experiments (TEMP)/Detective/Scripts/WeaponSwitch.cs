@@ -11,11 +11,13 @@ public class WeaponSwitch : MonoBehaviour
     public Animator animator;
     public bool equiped;
     AnimatorClipInfo[] m_CurrentClipInfo;
+    private Rigidbody2D body;
 
     // Start is called before the first frame update
     void Start()
     {
         weaponID = 0;
+        body = gameObject.GetComponent<Rigidbody2D>();
     }
     
     //scripts to be disabled/enabled when attacking

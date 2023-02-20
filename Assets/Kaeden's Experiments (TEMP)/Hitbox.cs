@@ -70,24 +70,26 @@ public class Hitbox : MonoBehaviour
 
     public void hitSomething(){
         foreach(Collider2D c in colliders){
+            
             //thing you're hitting
             GameObject hitting = c.gameObject;
+            string tempTag = hitsTag == null ? "" : hitsTag;
+            string actualTag = hitting.tag;
+            if (!hitting.tag.Equals(tempTag))
+                continue;
             //if they don't have an IDamagable who cares
 //------------------------CAN OPTIMIZE HERE BY HAVING A PRE-DEFINED IDamagable LIST ON HIT OBJECT (SINCE IT'S STATIC)------------------------
             IDamagable[] scripts = hitting?.GetComponent<Hurtbox>()?.damagableScripts;
             if(scripts == null)
                 continue;
             foreach(IDamagable script in scripts){
-                string tempTag = hitsTag == null ? "" : hitsTag;
-                if(hitting.tag == tempTag){
-                    Vector3 tempKnockBack = (hitting.transform.position - gameObject.transform.root.position).normalized;
-                    if(!relativeKnockback){
-                        //if relativeKnockback is true x_knockback and y_knockback don't matter
-                        tempKnockBack = new Vector3(Atk.x_knockback, Atk.y_knockback, 0);
-                        tempKnockBack = checkKnockback(hitting, tempKnockBack);
-                    }
-                    script.damage(Atk.knockback * tempKnockBack, Atk.damage);
-                }    
+                Vector3 tempKnockBack = (hitting.transform.position - gameObject.transform.root.position).normalized;
+                if(!relativeKnockback){
+                    //if relativeKnockback is true x_knockback and y_knockback don't matter
+                    tempKnockBack = new Vector3(Atk.x_knockback, Atk.y_knockback, 0);
+                    tempKnockBack = checkKnockback(hitting, tempKnockBack);
+                }
+                script.damage(Atk.knockback * tempKnockBack, Atk.damage);
             }
         }
     }
