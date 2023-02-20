@@ -110,7 +110,6 @@ public class AttackManager : MonoBehaviour
         HBListLength = HBList != null ? HBList.Count : 0;
         //destroy extra hitboxes
         for(int i = counter; i < HBListLength; i++){
-            Debug.Log("INSIDE");
             Hitbox hb = HBList[i];
             HBList.RemoveAt(i);
             Destroy(hb.gameObject);

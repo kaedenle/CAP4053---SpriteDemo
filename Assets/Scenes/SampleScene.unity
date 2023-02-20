@@ -254,6 +254,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6197798176421269814, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
   m_PrefabInstance: {fileID: 501857205}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &153283122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153283094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4abf5276bc24cc44b687f04ee394caf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &229565997
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,7 +756,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8924973879413201798, guid: 70ea20923cc635b44b3d8fe5c2be3193, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70ea20923cc635b44b3d8fe5c2be3193, type: 3}
@@ -847,6 +859,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.18
       objectReference: {fileID: 0}
+    - target: {fileID: 4459850622582732022, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4882800724603097693, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_LocalScale.x
       value: 5
@@ -945,6 +961,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6197798176421269813, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6197798176421269813, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
+      propertyPath: m_CollisionDetection
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6197798176421269814, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
@@ -1263,6 +1283,7 @@ GameObject:
   - component: {fileID: 1365065579}
   - component: {fileID: 1365065577}
   - component: {fileID: 1365065578}
+  - component: {fileID: 1365065580}
   m_Layer: 6
   m_Name: Sandbag
   m_TagString: Enemy
@@ -1409,6 +1430,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6624f43337f61094fbeebdbeeee788cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1365065580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365065572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4abf5276bc24cc44b687f04ee394caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1524920423 stripped
@@ -1672,6 +1705,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1865415181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865415169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4abf5276bc24cc44b687f04ee394caf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2003510042
 GameObject:
   m_ObjectHideFlags: 0

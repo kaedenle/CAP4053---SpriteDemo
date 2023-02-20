@@ -50,7 +50,6 @@ public class Hitbox : MonoBehaviour
     }
     public void Deactivate(){
         _state = ColliderState.Closed;
-        Debug.Log("HERE");
         colliders = null;
     }
 
@@ -75,10 +74,13 @@ public class Hitbox : MonoBehaviour
             GameObject hitting = c.gameObject;
             //if they don't have an IDamagable who cares
 //------------------------CAN OPTIMIZE HERE BY HAVING A PRE-DEFINED IDamagable LIST ON HIT OBJECT (SINCE IT'S STATIC)------------------------
-            foreach(IDamagable script in hitting.GetComponents<IDamagable>()){
+            IDamagable[] scripts = hitting?.GetComponent<Hurtbox>()?.damagableScripts;
+            if(scripts == null)
+                continue;
+            foreach(IDamagable script in scripts){
                 string tempTag = hitsTag == null ? "" : hitsTag;
                 if(hitting.tag == tempTag){
-                    Vector3 tempKnockBack = (hitting.transform.position - gameObject.transform.root.position);
+                    Vector3 tempKnockBack = (hitting.transform.position - gameObject.transform.root.position).normalized;
                     if(!relativeKnockback){
                         //if relativeKnockback is true x_knockback and y_knockback don't matter
                         tempKnockBack = new Vector3(Atk.x_knockback, Atk.y_knockback, 0);
