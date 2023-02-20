@@ -4,38 +4,42 @@ using UnityEngine;
 
 public class AttackManager : MonoBehaviour
 {
-    public enum AttackID{
-        Sword1,
-        Sword2,
-        Crowbar
-    }
-
-    public AttackID atk;
+    //Components
     public Animator animator;
-    public bool active;
-    //public Hitbox[] HBList;
-    public List<Hitbox> HBList = new List<Hitbox>();
-    private int startFrame;
     public GameObject hitboxParent;
+
+    //Component Lists/Arrays
+    private IScriptable[] scripts;
+    public List<Hitbox> HBList = new List<Hitbox>();
+
+    //technical information
+    public bool active;
+    private int startFrame;
 
     //framedata
     public TextAsset moveContainer;
+    public enum ScriptTypes{
+        Movement
+    }
 
     [System.Serializable]
     public class FrameData
     {
-        //employees is case sensitive and must match the string "employees" in the JSON.
+        //numeral data
         public Attack[] framedata;
         public int damage;
         public int knockback;
         public int hitstop;
+        public float x_knockback;
+        public float y_knockback;
+
         //move info
         public string hitsTag;      //can make this into an array
         public string[] cancelBy;
+
         //on hit, deactivate move or hitbox?
         public bool deactivateMove;
-        public float x_knockback;
-        public float y_knockback;
+        public bool relativeKnockback;
     }
     public FrameData framedata = new FrameData();
 
@@ -44,9 +48,10 @@ public class AttackManager : MonoBehaviour
     {
         active = false;
         HBList.Clear();
+        scripts = gameObject.GetComponentsInChildren<IScriptable>();
         //atk = AttackID.Sword1;
     }
-
+//-----------------------------HITBOX FUNCTIONS----------------------------------------------------------
     private void CreateHitbox(Attack a){
         GameObject HitboxPrefab = Resources.Load("Prefabs/Hitboxes") as GameObject;
         GameObject parent = hitboxParent;
@@ -61,7 +66,7 @@ public class AttackManager : MonoBehaviour
         HBList.Add(HBObj);
     }
 
-    public void DestroyAllHitboxes(){
+    private void DestroyAllHitboxes(){
         int HBListLength = HBList != null ? HBList.Count : 0;
         for(int i = 0; i < HBListLength; i++){
             Hitbox hb = HBList[i];
@@ -71,16 +76,12 @@ public class AttackManager : MonoBehaviour
     }
 
     private void UpdateHitboxInfo(Hitbox hb, Attack atk){
-        hb.SetAuxillaryValues(framedata.hitstop, framedata.hitsTag, framedata.cancelBy);
+        hb.SetAuxillaryValues(framedata.hitstop, framedata.hitsTag, framedata.cancelBy, framedata.relativeKnockback);
         //set default value (when frame's damage/knockback is 0)
-        if(atk.damage == 0)
-            atk.damage = framedata.damage;
-        if(atk.knockback == 0)
-            atk.knockback = framedata.knockback;
-        if(atk.x_knockback == 0)
-            atk.x_knockback = framedata.x_knockback;
-        if(atk.y_knockback == 0)
-            atk.y_knockback = framedata.y_knockback;
+        atk.damage = atk.damage == 0 ? framedata.damage : atk.damage;
+        atk.knockback = atk.knockback == 0 ? framedata.knockback : atk.knockback;
+        atk.x_knockback = atk.x_knockback == 0 ? framedata.x_knockback : atk.x_knockback;
+        atk.y_knockback = atk.y_knockback == 0 ? framedata.y_knockback : atk.y_knockback;
         hb.Atk = atk;
         //set position and scale, then fix rotation
         hb.gameObject.transform.localPosition = new Vector3(hb.Atk.x_pos, hb.Atk.y_pos, 0);
@@ -117,24 +118,10 @@ public class AttackManager : MonoBehaviour
         //HBList = GetComponentsInChildren<Hitbox>();
         //Debug.Log("CURRENT: " + currentFrame);
     }
-
-    private int GetAnimationFrame(){
-        AnimatorClipInfo[] m_CurrentClipInfo = animator.GetCurrentAnimatorClipInfo(0);
-        AnimatorStateInfo animationInfo = animator.GetCurrentAnimatorStateInfo(0);
-        return ((int)(animationInfo.normalizedTime % 1 * (m_CurrentClipInfo[0].clip.length * m_CurrentClipInfo[0].clip.frameRate)));
-    }
-
-    public void StartPlay(AttackID atk){
-        //based on static set
-        this.atk = atk;
-        //based on holding (need to edit, maybe make implicit to atk object?)
-        if(gameObject.GetComponent<WeaponSwitch>().weaponID == 2)
-            this.atk = AttackID.Crowbar;
-
+//-----------------------------PLAY ATTACK FUNCTIONS----------------------------------------------------------
+    public void StartPlay(int moveIndex){
         //get current animation to keep track of current animation frame (attach hitboxes to animation)
         startFrame = GetAnimationFrame();
-        Debug.Log("START: " + startFrame);
-
         //get framedata
         framedata = JsonUtility.FromJson<FrameData>(moveContainer.text);
         //tell hitboxes to update
@@ -147,6 +134,31 @@ public class AttackManager : MonoBehaviour
         //temporary, turn off hitboxes or delete hitboxes here
         foreach (Hitbox box in HBList)
             box.Deactivate();
+    }
+
+    public void DestroyPlay(){
+        active = false;
+        DestroyAllHitboxes();
+        ScriptToggle(1);
+    }
+//-----------------------------SCRIPT INTERFACE FUNCTIONS----------------------------------------------------------
+    public void ScriptToggle(int flag){
+        bool ret = flag > 0 ? true : false;
+        foreach(IScriptable s in scripts){
+            s.ScriptHandler(ret);
+        }
+    }
+
+    public void ScriptActivate(ScriptTypes ID){
+        foreach(IScriptable s in scripts){
+            s.EnableByID((int)ID);
+        }
+    }
+//-----------------------------HELPER FUNCTIONS----------------------------------------------------------
+    private int GetAnimationFrame(){
+        AnimatorClipInfo[] m_CurrentClipInfo = animator.GetCurrentAnimatorClipInfo(0);
+        AnimatorStateInfo animationInfo = animator.GetCurrentAnimatorStateInfo(0);
+        return ((int)(animationInfo.normalizedTime % 1 * (m_CurrentClipInfo[0].clip.length * m_CurrentClipInfo[0].clip.frameRate)));
     }
 
     // Update is called once per frame
@@ -174,8 +186,5 @@ public class AttackManager : MonoBehaviour
                 //Debug.Log("Hitbox " + current.ID + " hit");
             }
         }
-        
     }
-
-    
 }

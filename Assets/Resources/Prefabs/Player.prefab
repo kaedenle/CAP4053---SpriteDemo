@@ -98,11 +98,13 @@ GameObject:
   - component: {fileID: 6197798176421269819}
   - component: {fileID: 6197798176421269822}
   - component: {fileID: 6197798176421269823}
+  - component: {fileID: 1241161941432775412}
   - component: {fileID: -2732423542642596936}
   - component: {fileID: 6791762901960898518}
   - component: {fileID: 6197798176421269817}
   - component: {fileID: 3022009316415555036}
   - component: {fileID: 3923120615845457395}
+  - component: {fileID: 4459850622582732022}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -237,6 +239,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1241161941432775412
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6197798176421269809}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.11069775}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.88633573, y: 2.7214847}
+  m_EdgeRadius: 0
 --- !u!210 &-2732423542642596936
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -284,6 +312,7 @@ MonoBehaviour:
   sr: {fileID: 0}
   speed: 12
   animator: {fileID: 6197798176421269819}
+  move_flag: 0
   flipped: 0
 --- !u!114 &3022009316415555036
 MonoBehaviour:
@@ -312,18 +341,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34658e90b6b667342a950a514752cbc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atk: 0
   animator: {fileID: 6197798176421269819}
+  hitboxParent: {fileID: 9056604147769991447}
   HBList: []
-  hitboxParent: {fileID: 0}
-  moveContainer: {fileID: 0}
+  active: 0
+  moveContainer: {fileID: 4900000, guid: 9f22fe06e368a73498f2450e9bed788f, type: 3}
   framedata:
     framedata: []
     damage: 0
     knockback: 0
     hitstop: 0
+    x_knockback: 0
+    y_knockback: 0
     hitsTag: 
     cancelBy: []
+    deactivateMove: 0
+    relativeKnockback: 0
+--- !u!114 &4459850622582732022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6197798176421269809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6624f43337f61094fbeebdbeeee788cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6197798177006665903
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,7 +549,7 @@ GameObject:
   - component: {fileID: 8802820891676576214}
   m_Layer: 0
   m_Name: Effects
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -588,7 +633,7 @@ GameObject:
   - component: {fileID: 8340756177781156867}
   m_Layer: 0
   m_Name: On-Hand
-  m_TagString: Player
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

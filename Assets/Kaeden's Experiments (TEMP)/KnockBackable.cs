@@ -13,6 +13,6 @@ public class KnockBackable : MonoBehaviour, IDamagable
         if(body == null)
             return;
         body.AddForce(knockback);
-        Debug.Log("Took Knockback!");
+        Debug.Log(gameObject.name + " Took Knockback!");
     }
 }

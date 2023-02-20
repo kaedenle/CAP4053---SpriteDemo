@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Movement : MonoBehaviour
+public class Player_Movement : MonoBehaviour, IScriptable
 {
     public Rigidbody2D body;
     public SpriteRenderer sr;
@@ -13,6 +13,7 @@ public class Player_Movement : MonoBehaviour
     public Animator animator;
     GameObject[] objs;
 
+    public bool move_flag;
     public bool flipped;
 
     void Start(){
@@ -20,6 +21,7 @@ public class Player_Movement : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         objs = GameObject.FindGameObjectsWithTag("Player");
         flipped = false;
+        move_flag = false;
     }
     // Update is called once per frame
     void Update()
@@ -40,23 +42,32 @@ public class Player_Movement : MonoBehaviour
         animator.SetFloat("movement", movement.sqrMagnitude);
             
     }
+    //what happens when toggle
+    public void ScriptHandler(bool flag){
+        if(!flag)
+            animator.SetFloat("movement", 0);
+        else
+            cleanUp();
+        this.enabled = flag;
+    }
+
+    //what happens when disable
+    public void EnableByID(int ID){
+        move_flag = true;
+        if(ID == 0)
+            this.enabled = true;
+    }
+
+    void cleanUp(){
+        //reset trigger for attack animation (can now instantly warp to state whenever again)
+        animator.ResetTrigger("Attack");
+        //tell animator you're no longer attacking (for blend tree)
+        animator.SetFloat("attack", 0);
+        animator.Play("Idle_Engage");
+    }
 
     void FixedUpdate()
     {
         body.MovePosition(body.position + movement * speed * Time.fixedDeltaTime);
-    }
-    //late update to bypass animation to flip
-    void LateUpdate(){
-        //GameObject wpn = gameObject.transform.Find("Right Arm").transform.Find("On-Hand").gameObject;
-        //AnimatorClipInfo[] m_CurrentClipInfo = animator.GetCurrentAnimatorClipInfo(0);
-        //int currentFrame = (int) (m_CurrentClipInfo[0].weight * (m_CurrentClipInfo [0].clip.length * m_CurrentClipInfo[0].clip.frameRate));
-        //Debug.Log(flipped + " " + wpn.transform.rotation.eulerAngles.y + " " + wpn.name + " frame " + currentFrame + " " + m_CurrentClipInfo[0].clip.name);
-        //GameObject weapon = gameObject.transform.Find("Right Arm").gameObject.transform.Find("On-Hand").gameObject;
-        /*weapon.transform.eulerAngles = new Vector3(
-            weapon.transform.eulerAngles.x,
-            temp,
-            weapon.transform.eulerAngles.z
-        );*/
-        
     }
 }

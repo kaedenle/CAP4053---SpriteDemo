@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowEnemy : MonoBehaviour
+public class FollowEnemy : MonoBehaviour, IScriptable
 {
     public float speed;
     public Transform target;
@@ -11,6 +11,10 @@ public class FollowEnemy : MonoBehaviour
     public HealthTracker healthTracker; 
     public Animator animator;
     public SpriteRenderer sr;
+
+    private const float ATTACK_TIMER_MAX = 0.5f;
+    private float attackTimer;
+
     // Update is called once per frame
     void Start()
     {
@@ -18,6 +22,21 @@ public class FollowEnemy : MonoBehaviour
         animator = GetComponent<Animator>();
         healthTracker = GetComponent<HealthTracker>();
     }
+
+    //enable and disable script
+    public void ScriptHandler(bool flag){
+        if(flag){
+            attackTimer = ATTACK_TIMER_MAX;
+        }
+        this.enabled = flag;
+    }
+
+    //what happens when disable
+    public void EnableByID(int ID){
+        if(ID == 0)
+            this.enabled = true;
+    }
+
     void Update()
     {
 
@@ -44,9 +63,13 @@ public class FollowEnemy : MonoBehaviour
                 transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
             }
             else
-            {
-
-                animator.Play("SlimeAttack");
+            {   
+                //attack here
+                attackTimer -= Time.deltaTime;
+                if(attackTimer < 0){
+                    animator.Play("SlimeAttack");
+                    gameObject.GetComponent<AttackManager>().ScriptToggle(0);
+                }
             }
         }
 /*

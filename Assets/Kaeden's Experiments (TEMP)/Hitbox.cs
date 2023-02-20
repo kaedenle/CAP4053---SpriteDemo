@@ -15,13 +15,12 @@ public class Hitbox : MonoBehaviour
     public ColliderState _state;
 
     //attack information
-    public AttackManager.AttackID atkID;
     public Attack Atk;
 
     private int hitstop;
     private string hitsTag;
     private string[] cancelBy;
-    
+    private bool relativeKnockback;
 
     //colliding information
     public Collider2D[] colliders;
@@ -31,17 +30,13 @@ public class Hitbox : MonoBehaviour
     {
         m_LayerMask = LayerMask.GetMask("Entity");
         _state = ColliderState.Closed;
-        atkID = transform.root.GetComponent<AttackManager>().atk;
-        //dummy stats, will need AttackManager to provision Attack object for hitbox
-        //need to find a way to make knockback relative (since this is on player get player's position then configure pre-set knockback?)
-        //pre-set knockback will assume you're facing right
-        //Atk = new Attack(10, 500);
     }
 
-    public void SetAuxillaryValues(int hitstop, string hitsTag, string[] cancelBy){
+    public void SetAuxillaryValues(int hitstop, string hitsTag, string[] cancelBy, bool relativeKnockback){
         this.hitstop = hitstop;
         this.hitsTag = hitsTag;
         this.cancelBy = cancelBy;
+        this.relativeKnockback = relativeKnockback;
     }
 
     //draw hitbox
@@ -78,13 +73,16 @@ public class Hitbox : MonoBehaviour
             //thing you're hitting
             GameObject hitting = c.gameObject;
             //if they don't have an IDamagable who cares
+//------------------------CAN OPTIMIZE HERE BY HAVING A PRE-DEFINED IDamagable LIST ON HIT OBJECT (SINCE IT'S STATIC)------------------------
             foreach(IDamagable script in hitting.GetComponents<IDamagable>()){
-//-------------------------CHANGE THIS LATER ONCE HAVE FULL ATTACK OBJ-------------------------
                 string tempTag = hitsTag == null ? "" : hitsTag;
                 if(hitting.tag == tempTag){
-                    //set to knockback param of player
-                    Vector3 tempKnockBack = new Vector3(Atk.x_knockback, Atk.y_knockback, 0);
-                    tempKnockBack = checkKnockback(hitting, tempKnockBack);
+                    Vector3 tempKnockBack = (hitting.transform.position - gameObject.transform.root.position);
+                    if(!relativeKnockback){
+                        //if relativeKnockback is true x_knockback and y_knockback don't matter
+                        tempKnockBack = new Vector3(Atk.x_knockback, Atk.y_knockback, 0);
+                        tempKnockBack = checkKnockback(hitting, tempKnockBack);
+                    }
                     script.damage(Atk.knockback * tempKnockBack, Atk.damage);
                 }    
             }
@@ -103,7 +101,6 @@ public class Hitbox : MonoBehaviour
     public void updateHitboxes() {
         if (_state == ColliderState.Closed) { return; }
         //bool hitFlag = false;
-        //atkID = transform.parent.parent.parent.GetComponent<AttackManager>().atk;
         colliders = Physics2D.OverlapBoxAll(new Vector2(transform.position.x, transform.position.y), new Vector2(transform.localScale.x, transform.localScale.y), 0, m_LayerMask);
         _state = colliders.Length > 0 ? ColliderState.Colliding : ColliderState.Open;
     }

@@ -11,32 +11,13 @@ public class WeaponSwitch : MonoBehaviour
     public Animator animator;
     public bool equiped;
     AnimatorClipInfo[] m_CurrentClipInfo;
-    private bool move_flag;
 
     // Start is called before the first frame update
     void Start()
     {
         weaponID = 0;
     }
-    void cleanUp(){
-        //reactivate scripts
-        Debug.Log("Cleaning...");
-        //reset trigger for attack animation (can now instantly warp to state whenever again)
-        animator.ResetTrigger("Attack");
-
-        //enable all disabled scripts
-        scriptHandler(true);
-
-        //deactivate all hitboxes (might have a script to fully destroy all hitbox instances here)
-        AttackManager AM = gameObject.GetComponent<AttackManager>();
-        AM.StopPlay();
-        AM.active = false;
-        
-
-        //tell animator you're no longer attacking (for blend tree)
-        animator.SetFloat("attack", 0);
-        animator.Play("Idle_Engage");
-    }
+    
     //scripts to be disabled/enabled when attacking
     void scriptHandler(bool flag){
         gameObject.GetComponent<Player_Movement>().enabled = flag;
@@ -44,10 +25,6 @@ public class WeaponSwitch : MonoBehaviour
         animator.SetFloat("movement", 0);
     }
 
-    void moveToggle(){
-        move_flag = true;
-        gameObject.GetComponent<Player_Movement>().enabled = true;
-    }
     // Update is called once per frame
     void Update()
     {
@@ -82,16 +59,23 @@ public class WeaponSwitch : MonoBehaviour
 
         //input for the player
         if(equiped){
-            if(move_flag && animator.GetFloat("movement") > 0 && animator.GetFloat("attack") > 0){
-                cleanUp();
-                move_flag = false;
+            //make it move cancellable
+            if(gameObject.GetComponent<Player_Movement>().move_flag && animator.GetFloat("movement") > 0 && animator.GetFloat("attack") > 0){
+                gameObject.GetComponent<AttackManager>().DestroyPlay();
+                gameObject.GetComponent<Player_Movement>().move_flag = false;
             }
+
             //Swing when press left click
             if(Input.GetKeyDown(KeyCode.Mouse0) && animator.GetFloat("attack") == 0){
-                //disable scripts
-                scriptHandler(false);
+                //disable scripts 
+                //(should be in animator but there's a weird bug with putting functions in an animator event on the first frame)
+                //Animator should call ScriptToggle(0) in AttackManager on the first frame of the attack
+                gameObject.GetComponent<AttackManager>().ScriptToggle(0);
+
+                //set you're attacking and the ID of the attack
                 animator.SetTrigger("Attack");
                 animator.SetFloat("attack", 1);
+
                 //damage self by 5 points
                 //gameObject.GetComponent<HealthTracker>().healthSystem.Damage(5);
             }
