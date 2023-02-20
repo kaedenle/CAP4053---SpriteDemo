@@ -115,7 +115,6 @@ public class AttackManager : MonoBehaviour
             HBList.RemoveAt(i);
             Destroy(hb.gameObject);
         }
-
         foreach (Hitbox box in HBList)
             box.Activate();
         //Debug.Log("CURRENT: " + currentFrame);
@@ -161,7 +160,7 @@ public class AttackManager : MonoBehaviour
     private int GetAnimationFrame(){
         AnimatorClipInfo[] m_CurrentClipInfo = animator.GetCurrentAnimatorClipInfo(0);
         AnimatorStateInfo animationInfo = animator.GetCurrentAnimatorStateInfo(0);
-        return ((int)(m_CurrentClipInfo[0].weight % 1 * (m_CurrentClipInfo[0].clip.length * m_CurrentClipInfo[0].clip.frameRate)));
+        return ((int)(animationInfo.normalizedTime % 1 * (m_CurrentClipInfo[0].clip.length * m_CurrentClipInfo[0].clip.frameRate)));
     }
 
     // Update is called once per frame
