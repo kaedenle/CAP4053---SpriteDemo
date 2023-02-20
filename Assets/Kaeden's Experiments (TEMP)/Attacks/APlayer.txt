@@ -2,18 +2,47 @@
     "framedata":[
         {
             "frame": 0,
-            "damage": 1,
-            "knockback": 1,
-            "x_pos": 1,
-            "x_scale": 1,
-            "y_pos": 1,
-            "y_scale": 1
+            "damage": 10,
+            "knockback": 500,
+            "x_knockback": 1,
+            "x_pos": 3.28,
+            "x_scale": 0.5,
+            "y_knockback": 1,
+            "y_pos": -0.16,
+            "y_scale": 1.15,
+            "ID": 0
+        },
+        {
+            "frame": 0,
+            "damage": 5,
+            "knockback": 300,
+            "x_knockback": 1,
+            "x_pos": 2.15,
+            "x_scale": 1.15,
+            "y_knockback": 1,
+            "y_pos": 0.18,
+            "y_scale": 0.5,
+            "ID": 1
+        },
+        {
+            "frame": 1,
+            "damage": 5,
+            "knockback": 300,
+            "x_knockback": 1,
+            "x_pos": 2.15,
+            "x_scale": 1.15,
+            "y_knockback": 1,
+            "y_pos": 0.18,
+            "y_scale": 0.5,
+            "ID": 1
         }
     ],
-    "damage": 1,
-    "knockback": 1,
-    "hitstop": 1,
+    "damage": 0,
+    "knockback": 0,
+    "x_knockback": 1,
+    "y_knockback": 1,
+    "hitstop": 10,
     "cancelBy": [],
-    "hitsTag": "Enemy"
-
+    "hitsTag": "Enemy",
+    "deactivateMove": true
 }

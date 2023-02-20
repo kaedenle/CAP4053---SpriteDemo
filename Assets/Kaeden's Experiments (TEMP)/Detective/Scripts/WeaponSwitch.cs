@@ -28,9 +28,10 @@ public class WeaponSwitch : MonoBehaviour
         scriptHandler(true);
 
         //deactivate all hitboxes (might have a script to fully destroy all hitbox instances here)
-        Hitbox[] HBList = gameObject.GetComponent<AttackManager>().HBList;
-        foreach (Hitbox box in HBList)
-            box.Deactivate();
+        AttackManager AM = gameObject.GetComponent<AttackManager>();
+        AM.StopPlay();
+        AM.active = false;
+        
 
         //tell animator you're no longer attacking (for blend tree)
         animator.SetFloat("attack", 0);

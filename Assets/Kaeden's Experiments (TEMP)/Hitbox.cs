@@ -12,13 +12,16 @@ public class Hitbox : MonoBehaviour
 
     //box information
     private LayerMask m_LayerMask;
-    public Vector3 boxSize;
     public ColliderState _state;
-    public int ID;
 
     //attack information
     public AttackManager.AttackID atkID;
-    private Attack Atk;
+    public Attack Atk;
+
+    private int hitstop;
+    private string hitsTag;
+    private string[] cancelBy;
+    
 
     //colliding information
     public Collider2D[] colliders;
@@ -28,11 +31,17 @@ public class Hitbox : MonoBehaviour
     {
         m_LayerMask = LayerMask.GetMask("Entity");
         _state = ColliderState.Closed;
-        atkID = transform.parent.parent.parent.GetComponent<AttackManager>().atk;
+        atkID = transform.root.GetComponent<AttackManager>().atk;
         //dummy stats, will need AttackManager to provision Attack object for hitbox
         //need to find a way to make knockback relative (since this is on player get player's position then configure pre-set knockback?)
         //pre-set knockback will assume you're facing right
-        Atk = new Attack(10, 500);
+        //Atk = new Attack(10, 500);
+    }
+
+    public void SetAuxillaryValues(int hitstop, string hitsTag, string[] cancelBy){
+        this.hitstop = hitstop;
+        this.hitsTag = hitsTag;
+        this.cancelBy = cancelBy;
     }
 
     //draw hitbox
@@ -71,10 +80,24 @@ public class Hitbox : MonoBehaviour
             //if they don't have an IDamagable who cares
             foreach(IDamagable script in hitting.GetComponents<IDamagable>()){
 //-------------------------CHANGE THIS LATER ONCE HAVE FULL ATTACK OBJ-------------------------
-                if(hitting.tag == "Enemy")
-                    script.damage(Atk.knockback * (hitting.transform.position - gameObject.transform.root.position), Atk.damage);
+                string tempTag = hitsTag == null ? "" : hitsTag;
+                if(hitting.tag == tempTag){
+                    //set to knockback param of player
+                    Vector3 tempKnockBack = new Vector3(Atk.x_knockback, Atk.y_knockback, 0);
+                    tempKnockBack = checkKnockback(hitting, tempKnockBack);
+                    script.damage(Atk.knockback * tempKnockBack, Atk.damage);
+                }    
             }
         }
+    }
+
+    private Vector3 checkKnockback(GameObject hitting, Vector3 angle){
+        Vector3 comp = hitting.transform.position - gameObject.transform.root.position;
+        if(comp.x < 0)
+            angle.x *= -1;
+        if(comp.y < 0)
+            angle.y *= -1;
+        return angle;
     }
 
     public void updateHitboxes() {

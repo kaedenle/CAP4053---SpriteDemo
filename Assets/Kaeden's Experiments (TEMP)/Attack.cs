@@ -11,10 +11,14 @@ public class Attack
     public int frame;
 
     //positional values
+    public float x_knockback;
+    public float y_knockback;
     public float x_pos;
     public float y_pos;
     public float x_scale;
     public float y_scale;
+
+    public int ID;
 
     public Attack(int damage, int knockback){
         this.damage = damage;
