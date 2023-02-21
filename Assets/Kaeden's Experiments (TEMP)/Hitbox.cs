@@ -11,7 +11,6 @@ public class Hitbox : MonoBehaviour
     }
 
     //box information
-    private LayerMask m_LayerMask;
     public ColliderState _state;
 
     //attack information
@@ -23,13 +22,12 @@ public class Hitbox : MonoBehaviour
     private bool relativeKnockback;
 
     //colliding information
-    public Collider2D[] colliders;
+    public List<Collider2D> collidersList;
 
     // Start is called before the first frame update
     void Start()
     {
-        m_LayerMask = LayerMask.GetMask("Entity");
-        _state = ColliderState.Closed;
+        collidersList = new List<Collider2D>();
     }
 
     public void SetAuxillaryValues(int hitstop, string hitsTag, string[] cancelBy, bool relativeKnockback){
@@ -42,15 +40,16 @@ public class Hitbox : MonoBehaviour
     //draw hitbox
     private void OnDrawGizmos() {
         checkGizmoColor();
-        Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.localScale);
-        Gizmos.DrawCube(Vector3.zero, transform.localScale);
+        //Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.localScale);
+        //Gizmos.DrawCube(Vector3.zero, transform.localScale);
+        Gizmos.DrawWireCube(transform.position, transform.localScale);
     }
     public void Activate(){
         _state = ColliderState.Open;
     }
     public void Deactivate(){
         _state = ColliderState.Closed;
-        colliders = null;
+        collidersList.Clear();
     }
 
     //change hitbox color depending on state
@@ -69,7 +68,7 @@ public class Hitbox : MonoBehaviour
     }
 
     public void hitSomething(){
-        foreach(Collider2D c in colliders){
+        foreach(Collider2D c in collidersList){
             
             //thing you're hitting
             GameObject hitting = c.gameObject;
@@ -105,9 +104,14 @@ public class Hitbox : MonoBehaviour
 
     public void updateHitboxes() {
         if (_state == ColliderState.Closed) { return; }
-        //bool hitFlag = false;
-        colliders = Physics2D.OverlapBoxAll(new Vector2(transform.position.x, transform.position.y), new Vector2(transform.localScale.x, transform.localScale.y), 0, m_LayerMask);
-        _state = colliders.Length > 0 ? ColliderState.Colliding : ColliderState.Open;
+        //bool hitFlag = false; 
+        var contactFilter = new ContactFilter2D();
+        contactFilter.layerMask = LayerMask.GetMask("Entity");
+        contactFilter.useLayerMask = true;
+        //contactFilter.NoFilter();
+        Physics2D.OverlapBox(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), 
+                new Vector2(gameObject.transform.localScale.x, gameObject.transform.localScale.y), 0, contactFilter, collidersList);
+        _state = collidersList.Count > 0 ? ColliderState.Colliding : ColliderState.Open;
     }
     
     

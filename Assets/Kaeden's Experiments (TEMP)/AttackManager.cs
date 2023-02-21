@@ -11,6 +11,7 @@ public class AttackManager : MonoBehaviour
     //Component Lists/Arrays
     private IScriptable[] scripts;
     public List<Hitbox> HBList = new List<Hitbox>();
+    private IDictionary<int, List<Attack>> frames = new Dictionary<int, List<Attack>>();
 
     //technical information
     public bool active;
@@ -87,25 +88,23 @@ public class AttackManager : MonoBehaviour
         hb.gameObject.transform.localPosition = new Vector3(hb.Atk.x_pos, hb.Atk.y_pos, 0);
         hb.gameObject.transform.localScale = new Vector3(hb.Atk.x_scale, hb.Atk.y_scale, 0);
         hb.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
-        hb.Activate(); 
+        hb.Activate();
     }
 
-    private void ProvisionHitboxes(){
-        int currentFrame = GetAnimationFrame() - startFrame;
-        int HBListLength = HBList != null ? HBList.Count : 0;
-        int counter = 0;
-        foreach(Attack a in framedata.framedata){
-            if(a.frame == currentFrame){     
-                //create hitboxes if need more
-                if(counter >= HBListLength)
-                    CreateHitbox(a);
-                UpdateHitboxInfo(HBList[counter], a);
-                counter += 1;
-            }
-        }
-        //don't destroy existing hitboxes if there's no data on it on the current frame
-        if(counter == 0)
+    private void ProvisionHitboxes(int frameCount){
+        if (!frames.ContainsKey(frameCount))
             return;
+        int counter = 0;
+        int HBListLength = HBList != null ? HBList.Count : 0;
+        foreach(Attack a in frames[frameCount])
+        {
+            //create hitboxes if need more
+            if (counter >= HBListLength)
+                CreateHitbox(a);
+            UpdateHitboxInfo(HBList[counter], a);
+            counter += 1;
+        }
+
         //update length of HBList
         HBListLength = HBList != null ? HBList.Count : 0;
         //destroy extra hitboxes
@@ -114,31 +113,66 @@ public class AttackManager : MonoBehaviour
             HBList.RemoveAt(i);
             Destroy(hb.gameObject);
         }
-        foreach (Hitbox box in HBList)
-            box.Activate();
         //Debug.Log("CURRENT: " + currentFrame);
+        CallHitboxes();
     }
-//-----------------------------PLAY ATTACK FUNCTIONS----------------------------------------------------------
+
+    private void CallHitboxes()
+    {
+        //update each hitbox
+        if (active)
+        {
+            //object that hit something
+            Hitbox current = null;
+            foreach (Hitbox box in HBList)
+            {
+                box.updateHitboxes();
+                if (box._state == Hitbox.ColliderState.Colliding)
+                {
+                    //if new box has smaller ID or current is not set
+                    //if(current == null || current.ID > box.ID)
+                    current = box;
+                }
+            }
+            //if something hit deactivate all hitboxes
+            if (current != null)
+            {
+                current.hitSomething();
+                StopPlay();
+                //Debug.Log("Hitbox " + current.ID + " hit");
+            }
+        }
+    }
+    //-----------------------------PLAY ATTACK FUNCTIONS----------------------------------------------------------
     public void StartPlay(int moveIndex){
         //get current animation to keep track of current animation frame (attach hitboxes to animation)
         startFrame = GetAnimationFrame();
         //get framedata
         framedata = JsonUtility.FromJson<FrameData>(moveContainer.text);
+
+        //quickly load framedata into frames (hashmap that loads into hitbox)
+        foreach(Attack a in framedata.framedata)
+        {
+            if (!frames.ContainsKey(a.frame))
+                frames[a.frame] = new List<Attack>();
+            frames[a.frame].Add(a);
+        }
         //tell hitboxes to update
         active = true;
-        ProvisionHitboxes();
+        ProvisionHitboxes(0);
     }
 
     public void StopPlay(){
         if(framedata.deactivateMove)
             active = false;
         //temporary, turn off hitboxes or delete hitboxes here
-        foreach (Hitbox box in HBList)
-            box.Deactivate();
+        //foreach (Hitbox box in HBList)
+            //box.Deactivate();
     }
 
     public void DestroyPlay(){
         active = false;
+        frames.Clear();
         DestroyAllHitboxes();
         ScriptToggle(1);
     }
@@ -158,34 +192,18 @@ public class AttackManager : MonoBehaviour
 //-----------------------------HELPER FUNCTIONS----------------------------------------------------------
     private int GetAnimationFrame(){
         AnimatorClipInfo[] m_CurrentClipInfo = animator.GetCurrentAnimatorClipInfo(0);
+        //(m_CurrentClipInfo[0].clip.name)
         AnimatorStateInfo animationInfo = animator.GetCurrentAnimatorStateInfo(0);
-        return ((int)(animationInfo.normalizedTime % 1 * (m_CurrentClipInfo[0].clip.length * m_CurrentClipInfo[0].clip.frameRate)));
+        float timeOfAnimation = GetComponent<Animator>().runtimeAnimatorController.animationClips[0].length;
+        int ret = ((int)(animationInfo.normalizedTime % 1 * (m_CurrentClipInfo[0].clip.length * m_CurrentClipInfo[0].clip.frameRate)));
+        return ret;
     }
-
+    
     // Update is called once per frame
     void Update()
     {
         //Debug.Log(Sword1.var);
-        //update each hitbox
-        if(active){
-            //Read framedata to change hitboxes
-            ProvisionHitboxes();
-            //object that hit something
-            Hitbox current = null;
-            foreach (Hitbox box in HBList){
-                box.updateHitboxes();
-                if(box._state == Hitbox.ColliderState.Colliding){
-                    //if new box has smaller ID or current is not set
-                    //if(current == null || current.ID > box.ID)
-                    current = box;
-                }
-            }
-            //if something hit deactivate all hitboxes
-            if(current != null){
-                current.hitSomething();
-                StopPlay();
-                //Debug.Log("Hitbox " + current.ID + " hit");
-            }
-        }
+        CallHitboxes();
+        
     }
 }
