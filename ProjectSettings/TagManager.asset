@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Weapon
+  - Hitbox
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -11,7 +14,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Entity
   - 
   - 
   - 
@@ -38,6 +41,21 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3969696721
+    locked: 0
+  - name: Building Background
+    uniqueID: 3046559503
+    locked: 0
+  - name: Building Foreground
+    uniqueID: 3287338261
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 359116491
+    locked: 0
+  - name: UI HealthBar
+    uniqueID: 1772200755
     locked: 0
