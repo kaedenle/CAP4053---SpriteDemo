@@ -30,7 +30,11 @@ public class ScenesManager : MonoBehaviour
     {
         _prevScene = _currentScene;
         _currentScene = scene;
+        //StartCoroutine( LevelLoader.Fade() );
         SceneManager.LoadScene( (int) scene);
+        //Debug.Log("LoadScene(" + (int)scene + ")");
+        //Debug.Log(LevelLoader.Test());
+        //LevelLoader.Fade((int)scene);
     }
 
     // loads a scene based on demo boolean
