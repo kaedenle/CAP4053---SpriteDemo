@@ -58,6 +58,7 @@ public class ScenesManager : MonoBehaviour
     public static void StartDemo()
     {
         _demo = true;
+        // set default level manager
         LoadScene(AllScenes.MobsterRoadDemo);
     }
 
