@@ -5,6 +5,7 @@ using UnityEngine;
 public class MobsterLevelManager : MonoBehaviour
 {
     static bool _alleyGateOpen = false;
+    static bool _levelEnding = false;
 
     void Start()
     {
@@ -18,6 +19,7 @@ public class MobsterLevelManager : MonoBehaviour
     {
         _alleyGateOpen = false;
         InventoryManager.RemoveItem(InventoryManager.AllItems.MobsterKeyDemo);
+        _levelEnding = false;
     }
 
     // Start is called before the first frame update
@@ -54,5 +56,15 @@ public class MobsterLevelManager : MonoBehaviour
     public static bool HasObtainedAlleyKey()
     {
         return AlleyGateUnlocked() || InventoryManager.HasItem(InventoryManager.AllItems.MobsterKeyDemo);
+    }
+
+    public static void TriggerEnd()
+    {
+        _levelEnding = true;
+    }
+
+    public static bool IsEndOfLevel()
+    {
+        return _levelEnding;
     }
 }
