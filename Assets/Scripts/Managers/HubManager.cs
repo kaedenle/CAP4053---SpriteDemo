@@ -48,4 +48,9 @@ public class HubManager : MonoBehaviour
     {
         Debug.Log("called Start() in HubManager, current phase is " + currentPhase);
     }
+
+    public static void ResetVariables()
+    {
+        currentPhase = 0;
+    }
 }

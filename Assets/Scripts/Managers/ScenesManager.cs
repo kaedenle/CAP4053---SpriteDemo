@@ -47,9 +47,16 @@ public class ScenesManager : MonoBehaviour
             LoadScene(full);
     }
 
+    static void Reset()
+    {
+        HubManager.ResetVariables();
+        MobsterLevelManager.ResetVariables();
+    }
+
     // loads the first scene (that's not the menu)
     public static void LoadNewGame()
     {
+        Reset();
         // load the first scene here
         _demo = false;
         LoadScene(AllScenes.CentralHub);
@@ -57,6 +64,7 @@ public class ScenesManager : MonoBehaviour
 
     public static void StartDemo()
     {
+        Reset();
         _demo = true;
         // set default level manager
         LoadScene(AllScenes.MobsterRoadDemo);

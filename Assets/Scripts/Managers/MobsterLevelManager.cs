@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MobsterLevelManager : LevelManager
+public class MobsterLevelManager : MonoBehaviour
 {
     static bool _alleyGateOpen = false;
 
     void Start()
     {
-        Instance = this;
-        Debug.Log("set Instance to this");
-        _startScene = ScenesManager.AllScenes.MobsterRoadDemo;
+        // stuff for the LevelManager
+        //Instance = this;
+        //Debug.Log("set Instance to this");
+        //_startScene = ScenesManager.AllScenes.MobsterRoadDemo;
     }
 
-    public override void ResetVariables()
+    public static void ResetVariables()
     {
         _alleyGateOpen = false;
         InventoryManager.RemoveItem(InventoryManager.AllItems.MobsterKeyDemo);

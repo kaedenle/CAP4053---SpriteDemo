@@ -9,11 +9,11 @@ public abstract class LevelManager : MonoBehaviour
 
     public abstract void ResetVariables();
 
-    public static void RestartLevel()
-    {
-        Instance.ResetVariables();
-        ScenesManager.LoadScene(_startScene);
-    }
+    //public static void RestartLevel()
+    //{
+    //    Instance.ResetVariables();
+    //    ScenesManager.LoadScene(_startScene);
+    //}
 
     public static void PresetInstance(LevelManager manager)
     {
