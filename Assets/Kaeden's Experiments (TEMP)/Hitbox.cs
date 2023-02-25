@@ -110,12 +110,19 @@ public class Hitbox : MonoBehaviour
         if (_state == ColliderState.Closed) { return; }
         //bool hitFlag = false; 
         var contactFilter = new ContactFilter2D();
+
+        //can only hit on entity layer (may change)
         contactFilter.layerMask = LayerMask.GetMask("Entity");
         contactFilter.useLayerMask = true;
-        //contactFilter.NoFilter();
+
         Physics2D.OverlapBox(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), 
                 new Vector2(gameObject.transform.localScale.x, gameObject.transform.localScale.y), 0, contactFilter, collidersList);
         _state = collidersList.Count > 0 ? ColliderState.Colliding : ColliderState.Open;
+        //if there's one element and that element is self, set state to open
+        if (collidersList.Count == 1 && collidersList[0].transform.root.gameObject == transform.root.gameObject)
+            _state = ColliderState.Open;
+
+
     }
     
     
