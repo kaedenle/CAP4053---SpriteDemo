@@ -67,11 +67,13 @@ public class Hitbox : MonoBehaviour
         }
     }
 
-    public void hitSomething(){
+    public bool hitSomething(){
+        //have you applied your hit?
+        bool flag = false;
         foreach(Collider2D c in collidersList){
             
             //thing you're hitting
-            GameObject hitting = c.gameObject;
+            GameObject hitting = c.transform.root.gameObject;
             string tempTag = hitsTag == null ? "" : hitsTag;
             string actualTag = hitting.tag;
             if (!hitting.tag.Equals(tempTag))
@@ -81,6 +83,7 @@ public class Hitbox : MonoBehaviour
             IDamagable[] scripts = hitting?.GetComponent<Hurtbox>()?.damagableScripts;
             if(scripts == null)
                 continue;
+            flag = true;
             foreach(IDamagable script in scripts){
                 Vector3 tempKnockBack = (hitting.transform.position - gameObject.transform.root.position).normalized;
                 if(!relativeKnockback){
@@ -91,6 +94,7 @@ public class Hitbox : MonoBehaviour
                 script.damage(Atk.knockback * tempKnockBack, Atk.damage);
             }
         }
+        return flag;
     }
 
     private Vector3 checkKnockback(GameObject hitting, Vector3 angle){

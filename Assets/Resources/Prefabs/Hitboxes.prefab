@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4490496299480165260}
   - component: {fileID: 1719078583260548847}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Hitboxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,11 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f908f0459f87b27478e0cf87c9b6350b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  boxSize: {x: 0, y: 0, z: 0}
   _state: 0
-  ID: 0
-  atkID: 0
-  colliders: []
+  Atk:
+    damage: 0
+    knockback: 0
+    frame: 0
+    x_knockback: 0
+    y_knockback: 0
+    x_pos: 0
+    y_pos: 0
+    x_scale: 0
+    y_scale: 0
+    ID: 0
+  collidersList: []

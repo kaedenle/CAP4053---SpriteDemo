@@ -130,15 +130,15 @@ public class AttackManager : MonoBehaviour
                 if (box._state == Hitbox.ColliderState.Colliding)
                 {
                     //if new box has smaller ID or current is not set
-                    //if(current == null || current.ID > box.ID)
-                    current = box;
+                    if(current == null || current.Atk.ID > box.Atk.ID)
+                        current = box;
                 }
             }
             //if something hit deactivate all hitboxes
             if (current != null)
             {
-                current.hitSomething();
-                StopPlay();
+                if(current.hitSomething())
+                    StopPlay();
                 //Debug.Log("Hitbox " + current.ID + " hit");
             }
         }
@@ -166,8 +166,8 @@ public class AttackManager : MonoBehaviour
         if(framedata.deactivateMove)
             active = false;
         //temporary, turn off hitboxes or delete hitboxes here
-        //foreach (Hitbox box in HBList)
-            //box.Deactivate();
+        foreach (Hitbox box in HBList)
+            box.Deactivate();
     }
 
     public void DestroyPlay(){
