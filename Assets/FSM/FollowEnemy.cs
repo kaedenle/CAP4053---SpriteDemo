@@ -101,7 +101,7 @@ public class FollowEnemy : MonoBehaviour, IScriptable
         if(healthTracker.healthSystem.getHealth() <= 0)
         {
             Debug.Log("Dead Ooze boy");
-            
+            GameObject.Destroy(healthTracker.bar.gameObject);
             GameObject.Destroy(gameObject);
             
         }
