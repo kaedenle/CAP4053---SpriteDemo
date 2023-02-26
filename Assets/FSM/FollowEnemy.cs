@@ -11,6 +11,7 @@ public class FollowEnemy : MonoBehaviour, IScriptable
     public HealthTracker healthTracker; 
     public Animator animator;
     public SpriteRenderer sr;
+    //gameObject enemy;
 
     private const float ATTACK_TIMER_MAX = 0.5f;
     private float attackTimer;
@@ -31,6 +32,10 @@ public class FollowEnemy : MonoBehaviour, IScriptable
         this.enabled = flag;
     }
 
+    void destroyEnemy()
+    {
+        //Destroy(enemy);
+    }
     //what happens when disable
     public void EnableByID(int ID){
         if(ID == 0)
@@ -40,7 +45,7 @@ public class FollowEnemy : MonoBehaviour, IScriptable
     void Update()
     {
 
-
+        //Debug.Log(healthTracker.healthSystem.getHealth());
         if(Vector2.Distance(transform.position, target.position) > lineOfSightDistance)
         {
             transform.position = transform.position;
@@ -51,14 +56,14 @@ public class FollowEnemy : MonoBehaviour, IScriptable
             {
                 if(transform.position.x < target.position.x)
                 {
-                    sr.flipX = true;
-                    //transform.localScale = new Vector3(-1f, 1f, 1f);
+                    //sr.flipX = true;
+                    transform.localScale = new Vector3(-0.6f, 0.6f, 0.6f);
                     //Debug.Log("Flipping should happen");
                 }
                 else
                 {
-                    //transform.localScale = new Vector3(1f, 1f, 1f);
-                    sr.flipX = false;
+                    transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+                    //sr.flipX = false;
                 }
                 transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
             }
@@ -93,9 +98,10 @@ public class FollowEnemy : MonoBehaviour, IScriptable
             
         }
 */
-        if(healthTracker.health <= 0)
+        if(healthTracker.healthSystem.getHealth() <= 0)
         {
             Debug.Log("Dead Ooze boy");
+            
             GameObject.Destroy(gameObject);
             
         }
