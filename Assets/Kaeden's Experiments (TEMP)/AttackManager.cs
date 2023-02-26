@@ -12,6 +12,8 @@ public class AttackManager : MonoBehaviour
     private IScriptable[] scripts;
     public List<Hitbox> HBList = new List<Hitbox>();
     private IDictionary<int, List<Attack>> frames = new Dictionary<int, List<Attack>>();
+    private IDictionary<Collider2D, Hitbox> hasHit = new Dictionary<Collider2D, Hitbox>();
+    private HashSet<Collider2D> alreadyDamaged = new HashSet<Collider2D>();
 
     //technical information
     public bool active;
@@ -123,24 +125,55 @@ public class AttackManager : MonoBehaviour
         if (active)
         {
             //object that hit something
-            Hitbox current = null;
+            //Hitbox current = null;
+            hasHit.Clear();
+            //have you hit something?
+            bool flag = false;
             foreach (Hitbox box in HBList)
             {
                 box.updateHitboxes();
                 if (box._state == Hitbox.ColliderState.Colliding)
                 {
-                    //if new box has smaller ID or current is not set
-                    if(current == null || current.Atk.ID > box.Atk.ID)
-                        current = box;
+                    foreach(Collider2D entity in box.collidersList)
+                    {
+                        //if hitbox can't hit tag ignore
+                        if (!entity.gameObject.tag.Equals(box.hitsTag))
+                            continue;
+                        //if already hit within swing ignore
+                        if (alreadyDamaged.Contains(entity))
+                            continue;
+
+                        //add to hasHit dictionary for quick entity access
+                        if(!hasHit.ContainsKey(entity))
+                            hasHit.Add(entity, box);
+                        //replace hitbox hitting entity if ID overrides exising box ID
+                        if (hasHit[entity].Atk.ID > box.Atk.ID)
+                            hasHit[entity] = box;
+                        //Debug.Log(gameObject.name + " says " + box.Atk.ID + " has hit " + entity.gameObject.transform.root.gameObject.name);
+                    }
                 }
             }
+            //apply hit to all entities in hasHit
+            foreach(var entity in hasHit.Keys)
+            {
+
+                if (hasHit[entity].hitEntity(entity.gameObject.transform.root.gameObject))
+                {
+                    flag = true;
+                    Debug.Log(hasHit[entity].Atk.ID + " has hit " + entity.gameObject.transform.root.gameObject.name);
+                    alreadyDamaged.Add(entity);
+                }
+                    
+            }
             //if something hit deactivate all hitboxes
-            if (current != null)
+            //if (flag)
+                //StopPlay();
+            /*if (current != null)
             {
                 if(current.hitSomething())
                     StopPlay();
                 //Debug.Log("Hitbox " + current.ID + " hit");
-            }
+            }*/
         }
     }
     //-----------------------------PLAY ATTACK FUNCTIONS----------------------------------------------------------
@@ -175,6 +208,8 @@ public class AttackManager : MonoBehaviour
         frames.Clear();
         DestroyAllHitboxes();
         ScriptToggle(1);
+        //clear history of what you've hit
+        alreadyDamaged.Clear();
     }
 //-----------------------------SCRIPT INTERFACE FUNCTIONS----------------------------------------------------------
     public void ScriptToggle(int flag){
@@ -204,6 +239,5 @@ public class AttackManager : MonoBehaviour
     {
         //Debug.Log(Sword1.var);
         CallHitboxes();
-        
     }
 }

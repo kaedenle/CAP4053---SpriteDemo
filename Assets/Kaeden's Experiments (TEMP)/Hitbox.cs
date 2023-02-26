@@ -17,7 +17,7 @@ public class Hitbox : MonoBehaviour
     public Attack Atk;
 
     private int hitstop;
-    private string hitsTag;
+    public string hitsTag;
     private string[] cancelBy;
     private bool relativeKnockback;
 
@@ -67,7 +67,7 @@ public class Hitbox : MonoBehaviour
         }
     }
 
-    public bool hitSomething(){
+    /*public bool hitSomething(){
         //have you applied your hit?
         bool flag = false;
         foreach(Collider2D c in collidersList){
@@ -79,7 +79,6 @@ public class Hitbox : MonoBehaviour
             if (!hitting.tag.Equals(tempTag))
                 continue;
             //if they don't have an IDamagable who cares
-//------------------------CAN OPTIMIZE HERE BY HAVING A PRE-DEFINED IDamagable LIST ON HIT OBJECT (SINCE IT'S STATIC)------------------------
             IDamagable[] scripts = hitting?.GetComponent<Hurtbox>()?.damagableScripts;
             if(scripts == null)
                 continue;
@@ -95,6 +94,33 @@ public class Hitbox : MonoBehaviour
             }
         }
         return flag;
+    }*/
+
+    //return true if you've applied effect
+    public bool hitEntity(GameObject hit)
+    {
+        //get tag
+        string tempTag = hitsTag == null ? "" : hitsTag;
+        if (!hit.tag.Equals(tempTag))
+            return false;
+        //get all idamagable scripts
+        IDamagable[] scripts = hit?.GetComponent<Hurtbox>()?.damagableScripts;
+        if (scripts == null)
+            return false;
+
+        //apply damage
+        foreach (IDamagable script in scripts)
+        {
+            Vector3 tempKnockBack = (hit.transform.position - gameObject.transform.root.position).normalized;
+            if (!relativeKnockback)
+            {
+                //if relativeKnockback is true x_knockback and y_knockback don't matter
+                tempKnockBack = new Vector3(Atk.x_knockback, Atk.y_knockback, 0);
+                tempKnockBack = checkKnockback(hit, tempKnockBack);
+            }
+            script.damage(Atk.knockback * tempKnockBack, Atk.damage);
+        }
+        return true;
     }
 
     private Vector3 checkKnockback(GameObject hitting, Vector3 angle){
