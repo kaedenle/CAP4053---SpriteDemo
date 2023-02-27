@@ -29,7 +29,7 @@ public class MindTrigger : MonoBehaviour
     {
         // currently the interact is hardcoded as the "e" key
         // TO DO: make a config file to abstract this
-        animator.SetInteger("type", startingType);
+        animator.SetInteger("testType", startingType);
         if (Input.GetKeyDown(KeyCode.E) && animator.GetBool(animatorBool))
         {
             HubManager.LoadNextMind();
