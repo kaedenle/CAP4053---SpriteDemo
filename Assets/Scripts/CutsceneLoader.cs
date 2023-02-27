@@ -11,12 +11,14 @@ public class CutsceneLoader : MonoBehaviour
     private string trigger = "start";
     private bool on = false;
 
+    public TextAsset cutSceneTextFile;
     [SerializeField] public ScenesManager.AllScenes nextScene;
     public bool demoForks = false;
     [SerializeField] public ScenesManager.AllScenes nextDemoScene;
+    public TextAsset demoCutSceneTextFile;
 
-    private string cutSceneText = "[placeholder text: I looked out across the vast scape of death before me.  Only a little girl remained, crying beside her mother and father, pleading for them to wake up.]";
-    private string demoCutSceneText = "Thank you for playing our demo!";
+    private string cutSceneText; // = "[placeholder text: I looked out across the vast scape of death before me.  Only a little girl remained, crying beside her mother and father, pleading for them to wake up.]";
+    private string demoCutSceneText; // = "Thank you for playing our demo!";
 
     public TMP_Text wordsTextField;
 
@@ -24,6 +26,8 @@ public class CutsceneLoader : MonoBehaviour
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();
+        cutSceneText = getText(cutSceneTextFile);
+        if(demoForks) demoCutSceneText = getText(demoCutSceneTextFile);
     }
 
     // Update is called once per frame
@@ -43,6 +47,11 @@ public class CutsceneLoader : MonoBehaviour
             else ScenesManager.LoadScene(nextScene);
         }
     }
+
+    string getText(TextAsset input)
+    {
+        return input.text;
+    }
 }
 
 
@@ -53,20 +62,20 @@ public class MyScriptEditor2 : Editor
     #region
     SerializedProperty wordsTextField;
     SerializedProperty nextScene;
-    //SerializedProperty cutSceneText;
+    SerializedProperty cutSceneTextFile;
     SerializedProperty demoForks;
     SerializedProperty nextDemoScene;
-    //SerializedProperty demoCutSceneText;
+    SerializedProperty demoCutSceneTextFile;
     # endregion
 
     private void OnEnable()
     {
         wordsTextField = serializedObject.FindProperty("wordsTextField");
         nextScene = serializedObject.FindProperty("nextScene");
-        //cutSceneText = serializedObject.FindProperty("cutSceneText");
+        cutSceneTextFile = serializedObject.FindProperty("cutSceneTextFile");
         demoForks = serializedObject.FindProperty("demoForks");
         nextDemoScene = serializedObject.FindProperty("nextDemoScene");
-        //demoCutSceneText = serializedObject.FindProperty("demoCutSceneText");
+        demoCutSceneTextFile = serializedObject.FindProperty("demoCutSceneTextFile");
     }
 
     public override void OnInspectorGUI()
@@ -75,13 +84,13 @@ public class MyScriptEditor2 : Editor
 
         EditorGUILayout.PropertyField(wordsTextField);
         EditorGUILayout.PropertyField(nextScene);
-        //EditorGUILayout.PropertyField(cutSceneText);
+        EditorGUILayout.PropertyField(cutSceneTextFile);
         EditorGUILayout.PropertyField(demoForks);
 
         if (demoForks.boolValue)
         {
             EditorGUILayout.PropertyField(nextDemoScene);
-            //EditorGUILayout.PropertyField(demoCutSceneText);
+            EditorGUILayout.PropertyField(demoCutSceneTextFile);
         }
 
         serializedObject.ApplyModifiedProperties();
