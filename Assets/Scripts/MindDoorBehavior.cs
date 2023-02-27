@@ -6,6 +6,6 @@ public class MindDoorBehavior : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D other)
     {
-        MobsterLevelManager.TriggerEnd();
+        LevelManager.TriggerEnd();
     }
 }

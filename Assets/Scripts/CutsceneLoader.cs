@@ -33,7 +33,7 @@ public class CutsceneLoader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!on && MobsterLevelManager.IsEndOfLevel())
+        if(!on && LevelManager.IsEndOfLevel())
         {
             wordsTextField.text = ((demoForks && ScenesManager.isDemo()) ? demoCutSceneText : cutSceneText);
             Debug.Log("set wordsTextField.text to " + wordsTextField.text);

@@ -2,12 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class LevelManager : MonoBehaviour
+public class LevelManager : MonoBehaviour
 {
-    public static LevelManager Instance;
-    public static ScenesManager.AllScenes _startScene;
+    private static bool _levelEnding = false;
 
-    public abstract void ResetVariables();
+    void Start()
+    {
+        _levelEnding = false; // reset
+    }
+
+    public static void TriggerEnd()
+    {
+        _levelEnding = true;
+    }
+
+    public static bool IsEndOfLevel()
+    {
+        return _levelEnding;
+    }
+
+    //public static LevelManager Instance;
+    //public static ScenesManager.AllScenes _startScene;
+
+    //public abstract void ResetVariables();
 
     //public static void RestartLevel()
     //{
@@ -15,9 +32,9 @@ public abstract class LevelManager : MonoBehaviour
     //    ScenesManager.LoadScene(_startScene);
     //}
 
-    public static void PresetInstance(LevelManager manager)
-    {
-        Instance = manager;
-    }
-    
+    //public static void PresetInstance(LevelManager manager)
+    //{
+    //    Instance = manager;
+    //}
+
 }
