@@ -20,7 +20,7 @@ public class ScenesManager : MonoBehaviour
         MobsterKitchenDemo,
         MobsterAlleyDemo,
         ChildLivingRoom,
-        ChildKitchen,
+        ChildParentBedroom,
         ChildPlayroom,
         ChildForest
     }
