@@ -15,8 +15,8 @@ public class CutsceneLoader : MonoBehaviour
     public bool demoForks = false;
     [SerializeField] public ScenesManager.AllScenes nextDemoScene;
 
-    private string cutSceneText = "[placeholder text: I looked out across the vast scape of death before me.  Only a little girl remained, crying beside her mother and father, pleading for them to wake up.]\n\n< press any key to continue >";
-    private string demoCutSceneText = "Thank you for playing our demo!\n\n< press any key to continue >";
+    private string cutSceneText = "[placeholder text: I looked out across the vast scape of death before me.  Only a little girl remained, crying beside her mother and father, pleading for them to wake up.]";
+    private string demoCutSceneText = "Thank you for playing our demo!";
 
     public TMP_Text wordsTextField;
 
