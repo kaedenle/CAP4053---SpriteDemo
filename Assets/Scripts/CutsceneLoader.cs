@@ -7,18 +7,24 @@ using UnityEditor;
 
 public class CutsceneLoader : MonoBehaviour
 {
+    // animator variables for the cut scene
     private Animator animator;
     private string trigger = "start";
     private bool on = false;
 
+    // text file of the cut scene
     public TextAsset cutSceneTextFile;
+    // the next scene
     [SerializeField] public ScenesManager.AllScenes nextScene;
+
+    // demo versions of above (marked if the demo versions are different)
     public bool demoForks = false;
     [SerializeField] public ScenesManager.AllScenes nextDemoScene;
     public TextAsset demoCutSceneTextFile;
 
-    private string cutSceneText; // = "[placeholder text: I looked out across the vast scape of death before me.  Only a little girl remained, crying beside her mother and father, pleading for them to wake up.]";
-    private string demoCutSceneText; // = "Thank you for playing our demo!";
+    // keep track of the text of the cut scene
+    private string cutSceneText;
+    private string demoCutSceneText;
 
     public TMP_Text wordsTextField;
 
@@ -36,7 +42,7 @@ public class CutsceneLoader : MonoBehaviour
         if(!on && LevelManager.IsEndOfLevel())
         {
             wordsTextField.text = ((demoForks && ScenesManager.isDemo()) ? demoCutSceneText : cutSceneText);
-            Debug.Log("set wordsTextField.text to " + wordsTextField.text);
+            // Debug.Log("set wordsTextField.text to " + wordsTextField.text);
             animator.SetTrigger(trigger);
             on = true;
         }
@@ -48,6 +54,7 @@ public class CutsceneLoader : MonoBehaviour
         }
     }
 
+    // returns the text of the input file asset
     string getText(TextAsset input)
     {
         return input.text;
@@ -55,7 +62,7 @@ public class CutsceneLoader : MonoBehaviour
 }
 
 
-// custom editor
+// custom editor for only showing stuff if the demoForks bool is true
 [CustomEditor(typeof(CutsceneLoader))]
 public class MyScriptEditor2 : Editor
 {
