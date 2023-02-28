@@ -47,7 +47,8 @@ public class LevelManager : MonoBehaviour
 
     public static void TriggerPlayerDeath()
     {
-        RestartLevel();
+        _playerDied = true;
+        EntityManager.DisableMovement();
     }
 
     public static bool PlayerDead()
@@ -58,6 +59,7 @@ public class LevelManager : MonoBehaviour
     public static void RestartLevel()
     {   
         ResetAllVariables();
+        EntityManager.EnableMovement(); // reset from player death
         if (Instance != null)
             ScenesManager.LoadScene(_startScene);
     }
