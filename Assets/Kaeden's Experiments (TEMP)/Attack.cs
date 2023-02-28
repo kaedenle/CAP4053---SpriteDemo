@@ -9,6 +9,7 @@ public class Attack
     public int damage;
     public int knockback;
     public int frame;
+    public float hitstun;
 
     //positional values
     public float x_knockback;

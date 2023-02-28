@@ -51,11 +51,17 @@ public class Player_Movement : MonoBehaviour, IScriptable
         this.enabled = flag;
     }
 
-    //what happens when disable
     public void EnableByID(int ID){
         move_flag = true;
         if(ID == 0)
             this.enabled = true;
+    }
+
+    public void DisableByID(int ID)
+    {
+        move_flag = false;
+        if (ID == 0)
+            this.enabled = false;
     }
 
     void cleanUp(){

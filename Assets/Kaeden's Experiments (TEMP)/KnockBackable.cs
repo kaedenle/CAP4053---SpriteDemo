@@ -9,7 +9,7 @@ public class KnockBackable : MonoBehaviour, IDamagable
         body = gameObject.GetComponent<Rigidbody2D>();
     }
 
-    public void damage(Vector3 knockback, int damage){
+    public void damage(Vector3 knockback, int damage, float hitstun){
         if(body == null)
             return;
 

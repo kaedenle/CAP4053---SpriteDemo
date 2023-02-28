@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackManager : MonoBehaviour
+public class AttackManager : MonoBehaviour, IScriptable
 {
     //Components
-    public Animator animator;
+    private Animator animator;
+    [HideInInspector]
     public GameObject hitboxParent;
 
     //Component Lists/Arrays
+    [HideInInspector]
     public List<Hitbox> HBList = new List<Hitbox>();
     private IDictionary<int, List<Attack>> frames = new Dictionary<int, List<Attack>>();
     private IDictionary<Collider2D, Hitbox> hasHit = new Dictionary<Collider2D, Hitbox>();
@@ -16,12 +18,13 @@ public class AttackManager : MonoBehaviour
 
     //technical information
     public bool active;
-    private int startFrame;
+    private IUnique uniqueScript;
 
     //framedata
     public TextAsset moveContainer;
     public enum ScriptTypes{
-        Movement
+        Movement,
+        Attacking
     }
 
     [System.Serializable]
@@ -32,6 +35,7 @@ public class AttackManager : MonoBehaviour
         public int damage;
         public int knockback;
         public int hitstop;
+        public float hitstun;
         public float x_knockback;
         public float y_knockback;
 
@@ -42,6 +46,9 @@ public class AttackManager : MonoBehaviour
         //on hit, deactivate move or hitbox?
         public bool deactivateMove;
         public bool relativeKnockback;
+
+        public string functCall;
+        
     }
     public FrameData framedata = new FrameData();
 
@@ -50,6 +57,8 @@ public class AttackManager : MonoBehaviour
     {
         active = false;
         HBList.Clear();
+        uniqueScript = GetComponent<IUnique>();
+        animator = GetComponent<Animator>();
         //atk = AttackID.Sword1;
     }
 //-----------------------------HITBOX FUNCTIONS----------------------------------------------------------
@@ -77,10 +86,11 @@ public class AttackManager : MonoBehaviour
     }
 
     private void UpdateHitboxInfo(Hitbox hb, Attack atk){
-        hb.SetAuxillaryValues(framedata.hitstop, framedata.hitsTag, framedata.cancelBy, framedata.relativeKnockback);
+        hb.SetAuxillaryValues(framedata.hitstop, framedata.hitsTag, framedata.cancelBy, framedata.relativeKnockback, framedata.functCall);
         //set default value (when frame's damage/knockback is 0)
         atk.damage = atk.damage == 0 ? framedata.damage : atk.damage;
         atk.knockback = atk.knockback == 0 ? framedata.knockback : atk.knockback;
+        atk.hitstun = atk.hitstun == 0 ? framedata.hitstun : atk.hitstun;
         atk.x_knockback = atk.x_knockback == 0 ? framedata.x_knockback : atk.x_knockback;
         atk.y_knockback = atk.y_knockback == 0 ? framedata.y_knockback : atk.y_knockback;
         hb.Atk = atk;
@@ -146,7 +156,6 @@ public class AttackManager : MonoBehaviour
                         //replace hitbox hitting entity if ID overrides exising box ID
                         if (hasHit[entity].Atk.ID > box.Atk.ID)
                             hasHit[entity] = box;
-                        //Debug.Log(gameObject.name + " says " + box.Atk.ID + " has hit " + entity.gameObject.transform.root.gameObject.name);
                     }
                 }
             }
@@ -161,15 +170,6 @@ public class AttackManager : MonoBehaviour
                 }
                     
             }
-            //if something hit deactivate all hitboxes
-            //if (flag)
-                //StopPlay();
-            /*if (current != null)
-            {
-                if(current.hitSomething())
-                    StopPlay();
-                //Debug.Log("Hitbox " + current.ID + " hit");
-            }*/
         }
     }
     public GameObject HurtBoxSearch(GameObject part){
@@ -186,7 +186,6 @@ public class AttackManager : MonoBehaviour
     //-----------------------------PLAY ATTACK FUNCTIONS----------------------------------------------------------
     public void StartPlay(int moveIndex){
         //get current animation to keep track of current animation frame (attach hitboxes to animation)
-        startFrame = GetAnimationFrame();
         //get framedata
         framedata = JsonUtility.FromJson<FrameData>(moveContainer.text);
 
@@ -200,6 +199,9 @@ public class AttackManager : MonoBehaviour
         //tell hitboxes to update
         active = true;
         ProvisionHitboxes(0);
+        //apply function effect (on first frame of attack)
+        if(framedata.functCall != null || framedata.functCall == "")
+            uniqueScript.EffectManager(framedata.functCall);
     }
 
     public void StopPlay(){
@@ -212,13 +214,37 @@ public class AttackManager : MonoBehaviour
 
     public void DestroyPlay(){
         active = false;
+        ScriptToggle(1);
         frames.Clear();
         DestroyAllHitboxes();
-        ScriptToggle(1);
+        
         //clear history of what you've hit
         alreadyDamaged.Clear();
     }
-//-----------------------------SCRIPT INTERFACE FUNCTIONS----------------------------------------------------------
+    //-----------------------------ISCRIPTABLE FUNCTIONS----------------------------------------------------------
+    public void ScriptHandler(bool flag)
+    {
+        //DANGEROUS, could recurse and crash game without && active
+        if (!flag && active)
+        {
+            DestroyPlay();
+        }
+    }
+    public void EnableByID(int ID)
+    {
+        if(ID == 2)
+        {
+
+        }
+    }
+    public void DisableByID(int ID)
+    {
+        if(ID == 2)
+        {
+            DestroyPlay();
+        }
+    }
+    //-----------------------------SCRIPT INTERFACE FUNCTIONS----------------------------------------------------------
     public void ScriptToggle(int flag){
         bool ret = flag > 0 ? true : false;
         IScriptable[] scripts = gameObject?.GetComponent<Hurtbox>().scriptableScripts;
@@ -237,7 +263,18 @@ public class AttackManager : MonoBehaviour
             s.EnableByID((int)ID);
         }
     }
-//-----------------------------HELPER FUNCTIONS----------------------------------------------------------
+
+    public void ScriptDeactivate(ScriptTypes ID)
+    {
+        IScriptable[] scripts = gameObject?.GetComponent<Hurtbox>().scriptableScripts;
+        if (scripts == null) scripts = gameObject.GetComponentsInChildren<IScriptable>();
+
+        foreach (IScriptable s in scripts)
+        {
+            s.DisableByID((int)ID);
+        }
+    }
+    //-----------------------------HELPER FUNCTIONS----------------------------------------------------------
     private int GetAnimationFrame(){
         AnimatorClipInfo[] m_CurrentClipInfo = animator.GetCurrentAnimatorClipInfo(0);
         //(m_CurrentClipInfo[0].clip.name)

@@ -13,7 +13,7 @@ public class FollowEnemy : MonoBehaviour, IScriptable
     public SpriteRenderer sr;
     //gameObject enemy;
 
-    private const float ATTACK_TIMER_MAX = 0.2f;
+    private const float ATTACK_TIMER_MAX = 0.0f;
     private float attackTimer;
 
     // Update is called once per frame
@@ -40,6 +40,11 @@ public class FollowEnemy : MonoBehaviour, IScriptable
     public void EnableByID(int ID){
         if(ID == 0)
             this.enabled = true;
+    }
+    public void DisableByID(int ID)
+    {
+        if (ID == 0)
+            this.enabled = false;
     }
 
     void Update()

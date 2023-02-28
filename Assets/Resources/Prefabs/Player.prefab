@@ -317,7 +317,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34658e90b6b667342a950a514752cbc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 6197798176421269819}
   hitboxParent: {fileID: 9056604147769991447}
   HBList: []
   active: 0
@@ -327,12 +326,14 @@ MonoBehaviour:
     damage: 0
     knockback: 0
     hitstop: 0
+    hitstun: 0
     x_knockback: 0
     y_knockback: 0
     hitsTag: 
     cancelBy: []
     deactivateMove: 0
     relativeKnockback: 0
+    functCall: 
 --- !u!114 &4459850622582732022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,6 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4abf5276bc24cc44b687f04ee394caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  default_ani: Idle
 --- !u!114 &3393781334134885235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,7 +371,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4be3dd96b49c2342ac6cb9d03b049ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 6197798176421269819}
 --- !u!1 &6197798177006665903
 GameObject:
   m_ObjectHideFlags: 0

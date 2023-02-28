@@ -184,7 +184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34658e90b6b667342a950a514752cbc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 6105205938035449264}
   hitboxParent: {fileID: 6105205938035449267}
   HBList: []
   active: 0
@@ -194,12 +193,14 @@ MonoBehaviour:
     damage: 0
     knockback: 0
     hitstop: 0
+    hitstun: 0
     x_knockback: 0
     y_knockback: 0
     hitsTag: 
     cancelBy: []
     deactivateMove: 0
     relativeKnockback: 0
+    functCall: 
 --- !u!50 &1865415177
 Rigidbody2D:
   serializedVersion: 4
@@ -259,9 +260,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c561c47ce7341b4498c558c6d07b466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 5
   target: {fileID: 0}
-  minimumDistance: 7
+  minimumDistance: 4
   lineOfSightDistance: 10
   healthTracker: {fileID: 1865415172}
   animator: {fileID: 0}
@@ -305,6 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4abf5276bc24cc44b687f04ee394caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  default_ani: SlimeIdle
 --- !u!1001 &2024928596
 PrefabInstance:
   m_ObjectHideFlags: 0

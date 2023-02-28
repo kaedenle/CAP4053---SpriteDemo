@@ -6,4 +6,5 @@ public interface IScriptable
 {
     void ScriptHandler(bool flag);
     void EnableByID(int ID);
+    void DisableByID(int ID);
 }

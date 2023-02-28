@@ -31,6 +31,11 @@ public class WeaponSwitch : MonoBehaviour, IScriptable
         if (ID == 1)
             this.enabled = true;
     }
+    public void DisableByID(int ID)
+    {
+        if (ID == 1)
+            this.enabled = false;
+    }
 
     // Update is called once per frame
     void Update()
@@ -51,6 +56,11 @@ public class WeaponSwitch : MonoBehaviour, IScriptable
             else
                 animator.Play("Idle");
             animator.SetBool("equiped", !equiped);
+        }
+
+        if (!equiped && animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Idle_Engage")
+        {
+            animator.Play("Idle");
         }
 
         if(!equiped){

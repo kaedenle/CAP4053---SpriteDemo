@@ -20,6 +20,7 @@ public class Hitbox : MonoBehaviour
     public string hitsTag;
     private string[] cancelBy;
     private bool relativeKnockback;
+    private string functCall;
 
     //colliding information
     public List<Collider2D> collidersList;
@@ -30,11 +31,12 @@ public class Hitbox : MonoBehaviour
         collidersList = new List<Collider2D>();
     }
 
-    public void SetAuxillaryValues(int hitstop, string hitsTag, string[] cancelBy, bool relativeKnockback){
+    public void SetAuxillaryValues(int hitstop, string hitsTag, string[] cancelBy, bool relativeKnockback, string funct){
         this.hitstop = hitstop;
         this.hitsTag = hitsTag;
         this.cancelBy = cancelBy;
         this.relativeKnockback = relativeKnockback;
+        this.functCall = funct;
     }
 
     //draw hitbox
@@ -67,34 +69,6 @@ public class Hitbox : MonoBehaviour
         }
     }
 
-    /*public bool hitSomething(){
-        //have you applied your hit?
-        bool flag = false;
-        foreach(Collider2D c in collidersList){
-            
-            //thing you're hitting
-            GameObject hitting = c.transform.root.gameObject;
-            string tempTag = hitsTag == null ? "" : hitsTag;
-            string actualTag = hitting.tag;
-            if (!hitting.tag.Equals(tempTag))
-                continue;
-            //if they don't have an IDamagable who cares
-            IDamagable[] scripts = hitting?.GetComponent<Hurtbox>()?.damagableScripts;
-            if(scripts == null)
-                continue;
-            flag = true;
-            foreach(IDamagable script in scripts){
-                Vector3 tempKnockBack = (hitting.transform.position - gameObject.transform.root.position).normalized;
-                if(!relativeKnockback){
-                    //if relativeKnockback is true x_knockback and y_knockback don't matter
-                    tempKnockBack = new Vector3(Atk.x_knockback, Atk.y_knockback, 0);
-                    tempKnockBack = checkKnockback(hitting, tempKnockBack);
-                }
-                script.damage(Atk.knockback * tempKnockBack, Atk.damage);
-            }
-        }
-        return flag;
-    }*/
     //find furthest root where tag is == enemy
     private GameObject SearchAttackManger(GameObject part){
         while(part.transform?.parent != null && part.transform.gameObject?.GetComponent<AttackManager>() == null){
@@ -117,7 +91,7 @@ public class Hitbox : MonoBehaviour
 
         //apply damage
         //object with attack manager
-        GameObject myGameObject = SearchAttackManger(this.gameObject);
+        GameObject myGameObject = SearchAttackManger(gameObject);
         foreach (IDamagable script in scripts)
         {
             Vector3 tempKnockBack = (hit.transform.position - myGameObject.transform.position).normalized;
@@ -127,7 +101,7 @@ public class Hitbox : MonoBehaviour
                 tempKnockBack = new Vector3(Atk.x_knockback, Atk.y_knockback, 0);
                 tempKnockBack = checkKnockback(hit, myGameObject, tempKnockBack);
             }
-            script.damage(Atk.knockback * tempKnockBack, Atk.damage);
+            script.damage(Atk.knockback * tempKnockBack, Atk.damage, Atk.hitstun);
         }
         return true;
     }
