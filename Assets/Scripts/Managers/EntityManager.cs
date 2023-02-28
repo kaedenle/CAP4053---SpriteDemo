@@ -21,7 +21,7 @@ public class EntityManager : MonoBehaviour
         _movementEnabled = false;
     }
 
-    void PlayerDied()
+    public static void PlayerDied()
     {
         LevelManager.TriggerPlayerDeath();
     }
