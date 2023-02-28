@@ -126,7 +126,6 @@ public class AttackManager : MonoBehaviour
             //Hitbox current = null;
             hasHit.Clear();
             //have you hit something?
-            bool flag = false;
             foreach (Hitbox box in HBList)
             {
                 box.updateHitboxes();
@@ -154,11 +153,10 @@ public class AttackManager : MonoBehaviour
             //apply hit to all entities in hasHit
             foreach(var entity in hasHit.Keys)
             {
-
-                if (hasHit[entity].hitEntity(entity.gameObject.transform.root.gameObject))
+                GameObject effect = HurtBoxSearch(entity.gameObject);
+                if (hasHit[entity].hitEntity(effect))
                 {
-                    flag = true;
-                    Debug.Log(hasHit[entity].Atk.ID + " has hit " + entity.gameObject.transform.root.gameObject.name);
+                    Debug.Log(hasHit[entity].Atk.ID + " has hit " + effect.name);
                     alreadyDamaged.Add(entity);
                 }
                     
@@ -174,6 +172,17 @@ public class AttackManager : MonoBehaviour
             }*/
         }
     }
+    public GameObject HurtBoxSearch(GameObject part){
+        Hurtbox check = null;
+        while(check == null){
+            check = part?.GetComponent<Hurtbox>();
+            if(part.transform?.parent == null)
+                return part;
+            if(check == null)
+                part = part.transform.parent.gameObject;
+        } 
+        return part;
+    } 
     //-----------------------------PLAY ATTACK FUNCTIONS----------------------------------------------------------
     public void StartPlay(int moveIndex){
         //get current animation to keep track of current animation frame (attach hitboxes to animation)

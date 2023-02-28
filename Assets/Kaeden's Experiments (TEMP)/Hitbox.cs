@@ -95,6 +95,13 @@ public class Hitbox : MonoBehaviour
         }
         return flag;
     }*/
+    //find furthest root where tag is == enemy
+    private GameObject SearchAttackManger(GameObject part){
+        while(part.transform?.parent != null && part.transform.gameObject?.GetComponent<AttackManager>() == null){
+            part = part.transform.parent.gameObject;
+        }
+        return part;
+    } 
 
     //return true if you've applied effect
     public bool hitEntity(GameObject hit)
@@ -109,22 +116,24 @@ public class Hitbox : MonoBehaviour
             return false;
 
         //apply damage
+        //object with attack manager
+        GameObject myGameObject = SearchAttackManger(this.gameObject);
         foreach (IDamagable script in scripts)
         {
-            Vector3 tempKnockBack = (hit.transform.position - gameObject.transform.root.position).normalized;
+            Vector3 tempKnockBack = (hit.transform.position - myGameObject.transform.position).normalized;
             if (!relativeKnockback)
             {
                 //if relativeKnockback is true x_knockback and y_knockback don't matter
                 tempKnockBack = new Vector3(Atk.x_knockback, Atk.y_knockback, 0);
-                tempKnockBack = checkKnockback(hit, tempKnockBack);
+                tempKnockBack = checkKnockback(hit, myGameObject, tempKnockBack);
             }
             script.damage(Atk.knockback * tempKnockBack, Atk.damage);
         }
         return true;
     }
 
-    private Vector3 checkKnockback(GameObject hitting, Vector3 angle){
-        Vector3 comp = hitting.transform.position - gameObject.transform.root.position;
+    private Vector3 checkKnockback(GameObject hitting, GameObject current, Vector3 angle){
+        Vector3 comp = hitting.transform.position - current.transform.root.position;
         if(comp.x < 0)
             angle.x *= -1;
         if(comp.y < 0)
@@ -147,8 +156,6 @@ public class Hitbox : MonoBehaviour
         //if there's one element and that element is self, set state to open
         if (collidersList.Count == 1 && collidersList[0].transform.root.gameObject == transform.root.gameObject)
             _state = ColliderState.Open;
-
-
     }
     
     

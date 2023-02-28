@@ -13,7 +13,7 @@ public class FollowEnemy : MonoBehaviour, IScriptable
     public SpriteRenderer sr;
     //gameObject enemy;
 
-    private const float ATTACK_TIMER_MAX = 0.5f;
+    private const float ATTACK_TIMER_MAX = 0.2f;
     private float attackTimer;
 
     // Update is called once per frame
@@ -46,6 +46,19 @@ public class FollowEnemy : MonoBehaviour, IScriptable
     {
 
         //Debug.Log(healthTracker.healthSystem.getHealth());
+        if(transform.position.x < target.position.x)
+        {
+            //sr.flipX = true;
+            float newX = Mathf.Abs(transform.localScale.x);
+            transform.localScale = new Vector3(-newX, transform.localScale.y, transform.localScale.z);
+            //Debug.Log("Flipping should happen");
+        }
+        else
+        {
+            float newX = Mathf.Abs(transform.localScale.x);
+            transform.localScale = new Vector3(newX, transform.localScale.y, transform.localScale.z);
+            //sr.flipX = false;
+        }
         if(Vector2.Distance(transform.position, target.position) > lineOfSightDistance)
         {
             transform.position = transform.position;
@@ -54,19 +67,7 @@ public class FollowEnemy : MonoBehaviour, IScriptable
         {
             if(Vector2.Distance(transform.position, target.position) > minimumDistance)
             {
-                if(transform.position.x < target.position.x)
-                {
-                    //sr.flipX = true;
-                    float newX = Mathf.Abs(transform.localScale.x);
-                    transform.localScale = new Vector3(-newX, transform.localScale.y, transform.localScale.z);
-                    //Debug.Log("Flipping should happen");
-                }
-                else
-                {
-                    float newX = Mathf.Abs(transform.localScale.x);
-                    transform.localScale = new Vector3(newX, transform.localScale.y, transform.localScale.z);
-                    //sr.flipX = false;
-                }
+                
                 transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
             }
             else
