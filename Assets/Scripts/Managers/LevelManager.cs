@@ -5,14 +5,38 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     private static bool _levelEnding = false;
+    private static LevelManager Instance;
+    private static ScenesManager.AllScenes _startScene;
+    private static bool _playerDied = false;
 
     void Start()
     {
-        _levelEnding = false; // reset
+        ResetVariables();
+    }
+
+    protected void setInstance(LevelManager obj, ScenesManager.AllScenes start)
+    {
+        Instance = obj;
+        _startScene = start;
+    }
+
+    static void ResetVariables()
+    {
+        _playerDied = false;
+        _levelEnding = false;
+    }
+
+    static void ResetAllVariables()
+    {
+        ResetVariables();
+
+        if (Instance != null)
+            Instance.TriggerReset();
     }
 
     public static void TriggerEnd()
     {
+        ResetAllVariables();
         _levelEnding = true;
     }
 
@@ -21,20 +45,23 @@ public class LevelManager : MonoBehaviour
         return _levelEnding;
     }
 
-    //public static LevelManager Instance;
-    //public static ScenesManager.AllScenes _startScene;
+    public static void TriggerPlayerDeath()
+    {
+        RestartLevel();
+    }
 
-    //public abstract void ResetVariables();
+    public static bool PlayerDead()
+    {
+        return _playerDied;
+    }
 
-    //public static void RestartLevel()
-    //{
-    //    Instance.ResetVariables();
-    //    ScenesManager.LoadScene(_startScene);
-    //}
+    public static void RestartLevel()
+    {   
+        ResetAllVariables();
+        if (Instance != null)
+            ScenesManager.LoadScene(_startScene);
+    }
 
-    //public static void PresetInstance(LevelManager manager)
-    //{
-    //    Instance = manager;
-    //}
+    public void TriggerReset() { } // used abstractly; kinda sketchy
 
 }

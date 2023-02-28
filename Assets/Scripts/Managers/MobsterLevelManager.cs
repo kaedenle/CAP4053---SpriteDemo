@@ -2,24 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MobsterLevelManager : MonoBehaviour
+public class MobsterLevelManager : LevelManager
 {
     static bool _alleyGateOpen = false;
-    static bool _levelEnding = false;
 
     void Start()
     {
         // stuff for the LevelManager
-        //Instance = this;
-        //Debug.Log("set Instance to this");
-        //_startScene = ScenesManager.AllScenes.MobsterRoadDemo;
+        setInstance(this, ScenesManager.AllScenes.MobsterRoadDemo);
     }
 
     public static void ResetVariables()
     {
         _alleyGateOpen = false;
         InventoryManager.RemoveItem(InventoryManager.AllItems.MobsterKeyDemo);
-        _levelEnding = false;
+    }
+
+    public void TriggerReset()
+    {
+        ResetVariables();
     }
 
     // Start is called before the first frame update
@@ -35,7 +36,7 @@ public class MobsterLevelManager : MonoBehaviour
 
         if(InventoryManager.HasItem(key))
         {
-            Debug.Log("Alley Gate Has Been Opened");
+            // Debug.Log("Alley Gate Has Been Opened");
             InventoryManager.RemoveItem(key);
             _alleyGateOpen = true;
             return true;
@@ -56,15 +57,5 @@ public class MobsterLevelManager : MonoBehaviour
     public static bool HasObtainedAlleyKey()
     {
         return AlleyGateUnlocked() || InventoryManager.HasItem(InventoryManager.AllItems.MobsterKeyDemo);
-    }
-
-    public static void TriggerEnd()
-    {
-        _levelEnding = true;
-    }
-
-    public static bool IsEndOfLevel()
-    {
-        return _levelEnding;
     }
 }
