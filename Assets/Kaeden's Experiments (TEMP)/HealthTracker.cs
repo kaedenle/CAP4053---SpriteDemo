@@ -71,6 +71,8 @@ public class HealthTracker : MonoBehaviour, IDamagable
         if(healthSystem.getHealth() == 0 && !deathFlag){
             Debug.Log(gameObject.name + " is dead");
             deathFlag = true;
+            IUnique unique = this?.GetComponent<IUnique>();
+            if (unique != null) unique.onDeath();
         }
     }
     void SetHealth(float health){
@@ -82,6 +84,7 @@ public class HealthTracker : MonoBehaviour, IDamagable
         if(!deathFlag){
             Debug.Log(gameObject.name + " took " + damage + " damage and " + knockback + " knockback");
             healthSystem.Damage(damage);
+            
         }
     }
 

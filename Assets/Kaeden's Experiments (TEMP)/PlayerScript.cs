@@ -25,6 +25,7 @@ public class PlayerScript : MonoBehaviour, IUnique
     public void onDeath()
     {
         Debug.Log("You've died!");
+        EntityManager.PlayerDied();
     }
 
     public void HitStunAni()
