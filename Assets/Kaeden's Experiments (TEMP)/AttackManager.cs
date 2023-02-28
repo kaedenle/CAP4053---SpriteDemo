@@ -9,7 +9,6 @@ public class AttackManager : MonoBehaviour
     public GameObject hitboxParent;
 
     //Component Lists/Arrays
-    private IScriptable[] scripts;
     public List<Hitbox> HBList = new List<Hitbox>();
     private IDictionary<int, List<Attack>> frames = new Dictionary<int, List<Attack>>();
     private IDictionary<Collider2D, Hitbox> hasHit = new Dictionary<Collider2D, Hitbox>();
@@ -51,7 +50,6 @@ public class AttackManager : MonoBehaviour
     {
         active = false;
         HBList.Clear();
-        scripts = gameObject.GetComponentsInChildren<IScriptable>();
         //atk = AttackID.Sword1;
     }
 //-----------------------------HITBOX FUNCTIONS----------------------------------------------------------
@@ -214,13 +212,19 @@ public class AttackManager : MonoBehaviour
 //-----------------------------SCRIPT INTERFACE FUNCTIONS----------------------------------------------------------
     public void ScriptToggle(int flag){
         bool ret = flag > 0 ? true : false;
-        foreach(IScriptable s in scripts){
+        IScriptable[] scripts = gameObject?.GetComponent<Hurtbox>().scriptableScripts;
+        if (scripts == null) scripts = gameObject.GetComponentsInChildren<IScriptable>();
+
+        foreach (IScriptable s in scripts){
             s.ScriptHandler(ret);
         }
     }
 
     public void ScriptActivate(ScriptTypes ID){
-        foreach(IScriptable s in scripts){
+        IScriptable[] scripts = gameObject?.GetComponent<Hurtbox>().scriptableScripts;
+        if (scripts == null) scripts = gameObject.GetComponentsInChildren<IScriptable>();
+
+        foreach (IScriptable s in scripts){
             s.EnableByID((int)ID);
         }
     }

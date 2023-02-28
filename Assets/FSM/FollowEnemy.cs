@@ -57,12 +57,14 @@ public class FollowEnemy : MonoBehaviour, IScriptable
                 if(transform.position.x < target.position.x)
                 {
                     //sr.flipX = true;
-                    transform.localScale = new Vector3(-0.6f, 0.6f, 0.6f);
+                    float newX = Mathf.Abs(transform.localScale.x);
+                    transform.localScale = new Vector3(-newX, transform.localScale.y, transform.localScale.z);
                     //Debug.Log("Flipping should happen");
                 }
                 else
                 {
-                    transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+                    float newX = Mathf.Abs(transform.localScale.x);
+                    transform.localScale = new Vector3(newX, transform.localScale.y, transform.localScale.z);
                     //sr.flipX = false;
                 }
                 transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);

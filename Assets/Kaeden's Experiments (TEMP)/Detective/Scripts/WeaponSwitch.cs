@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponSwitch : MonoBehaviour
+public class WeaponSwitch : MonoBehaviour, IScriptable
 {
 
     public Sprite[] spriteList;
@@ -21,10 +21,15 @@ public class WeaponSwitch : MonoBehaviour
     }
     
     //scripts to be disabled/enabled when attacking
-    void scriptHandler(bool flag){
-        gameObject.GetComponent<Player_Movement>().enabled = flag;
-        //stop player movement
-        animator.SetFloat("movement", 0);
+    public void ScriptHandler(bool flag)
+    {
+        this.enabled = flag;
+    }
+    //what happens when disable
+    public void EnableByID(int ID)
+    {
+        if (ID == 1)
+            this.enabled = true;
     }
 
     // Update is called once per frame
@@ -37,7 +42,7 @@ public class WeaponSwitch : MonoBehaviour
         bool swap = Input.GetButtonDown("Fire1");
         bool equip_press = Input.GetButtonDown("Fire3");
         equiped = animator.GetBool("equiped");
-        
+
         //toggle between not equiped and equiped
         //Only when you aren't attacking
         if(equip_press && animator.GetFloat("attack") == 0){
@@ -55,6 +60,7 @@ public class WeaponSwitch : MonoBehaviour
             if(swap){
                 weaponID += 1;
                 weaponID %= spriteList.Length;
+                
             }   
             sr.sprite = spriteList[weaponID];
         }
@@ -84,19 +90,5 @@ public class WeaponSwitch : MonoBehaviour
         }
     }
 
-    void LateUpdate(){
-        bool flipped = animator.GetBool("flipped");
-        int temp = flipped ? 180 : 0;
-        
-        //update the Weapon tag to rotate correctly (all will be animated the same)
-        GameObject[] wpnObjs = GameObject.FindGameObjectsWithTag("Weapon");
-        foreach(GameObject wpn in wpnObjs) {
-            GameObject parent = wpn.transform.parent.gameObject;
-            //flip and flip to default
-            if(wpn.transform.rotation.eulerAngles.y < 180 && flipped)
-                wpn.transform.RotateAround(parent.transform.position, Vector3.up, 180);
-            else if(wpn.transform.rotation.eulerAngles.y >= 180 && !flipped)
-                wpn.transform.RotateAround(parent.transform.position, Vector3.up, 0);
-        }
-    }
+    
 }
