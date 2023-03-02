@@ -16,9 +16,9 @@ public class SceneSwitch : MonoBehaviour
     {
         // make sure the collider is the player
         if (other.gameObject.tag != playerTag) return;
-        // should probably throw an exception here if the scene info is not valid
+        
         // sends the next scene or scenes to ScenesManager to load the next appropriate scene
         if (demoForks) ScenesManager.LoadSceneChoice(nextScene, nextDemoScene);
         else ScenesManager.LoadScene(nextScene);
-    }
+    } // should probably throw an exception here if the scene info is not valid
 }

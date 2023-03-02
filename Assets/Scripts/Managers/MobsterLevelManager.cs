@@ -12,13 +12,14 @@ public class MobsterLevelManager : LevelManager
         setInstance(this, ScenesManager.AllScenes.MobsterRoadDemo);
     }
 
+    // reset the manager variables
     public static void ResetVariables()
     {
         _alleyGateOpen = false;
         InventoryManager.RemoveItem(InventoryManager.AllItems.MobsterKeyDemo);
     }
 
-    public void TriggerReset()
+    public override void TriggerReset()
     {
         ResetVariables();
     }
