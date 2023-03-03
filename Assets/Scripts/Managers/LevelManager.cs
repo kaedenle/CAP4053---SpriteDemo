@@ -64,6 +64,6 @@ public class LevelManager : MonoBehaviour
             ScenesManager.LoadScene(_startScene);
     }
 
-    public void TriggerReset() { } // used abstractly; kinda sketchy
+    public virtual void TriggerReset() { } // used abstractly; kinda sketchy
 
 }
