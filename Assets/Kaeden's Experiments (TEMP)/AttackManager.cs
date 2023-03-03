@@ -2,12 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//THIS SCRIPT IS A UNIVERSAL SCRIPT THAT GENERATES HITBOXES ACCORDING TO DATA GIVEN IT
+//THIS SCRIPT WILL NOT DETERMINE WHICH ATTACK CAN BE DONE. THAT HAS TO BE GIVEN TO IT VIA StartPlay(int moveIndex) AND moveContainer
+//THIS SCRIPT SIMPLY PLAYS HITBOX ANIMATIONS. IT IS NOT A DECIDER
 public class AttackManager : MonoBehaviour, IScriptable
 {
+    //Weapon interfacing (not used in this file but offered for others to interface with)
+    public TextAsset weaponList;
+    [System.Serializable]
+    public class WeaponList
+    {
+        public Weapon[] weaponlist;
+        public int index;
+    }
+    public WeaponList wpnList = new WeaponList();
+
     //Components
     private Animator animator;
     [HideInInspector]
     public GameObject hitboxParent;
+    
 
     //Component Lists/Arrays
     [HideInInspector]
@@ -21,7 +35,7 @@ public class AttackManager : MonoBehaviour, IScriptable
     private IUnique uniqueScript;
 
     //framedata
-    public TextAsset moveContainer;
+    public TextAsset[] moveContainer;
     public enum ScriptTypes{
         Movement,
         Attacking
@@ -59,6 +73,9 @@ public class AttackManager : MonoBehaviour, IScriptable
         HBList.Clear();
         uniqueScript = GetComponent<IUnique>();
         animator = GetComponent<Animator>();
+        //variable for others to grab
+        if(weaponList != null)
+            wpnList = JsonUtility.FromJson<WeaponList>(weaponList.text);
         //atk = AttackID.Sword1;
     }
 //-----------------------------HITBOX FUNCTIONS----------------------------------------------------------
@@ -187,7 +204,13 @@ public class AttackManager : MonoBehaviour, IScriptable
     public void StartPlay(int moveIndex){
         //get current animation to keep track of current animation frame (attach hitboxes to animation)
         //get framedata
-        framedata = JsonUtility.FromJson<FrameData>(moveContainer.text);
+        if (moveContainer.Length == 0)
+        {
+            Debug.Log("ERROR: Empty moveContiner look at AttackManager in inspector for " + gameObject.name);
+            return;
+        }
+        
+        framedata = JsonUtility.FromJson<FrameData>(moveContainer[moveIndex & moveContainer.Length].text);
 
         //quickly load framedata into frames (hashmap that loads into hitbox)
         foreach(Attack a in framedata.framedata)

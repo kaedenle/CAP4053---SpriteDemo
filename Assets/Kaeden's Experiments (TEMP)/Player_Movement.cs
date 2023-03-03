@@ -70,7 +70,7 @@ public class Player_Movement : MonoBehaviour, IScriptable
         animator.ResetTrigger("Attack");
         //tell animator you're no longer attacking (for blend tree)
         animator.SetFloat("attack", 0);
-        animator.Play(gameObject.GetComponent<WeaponSwitch>().BlendTree);
+        animator.Play(gameObject.GetComponent<WeaponManager>().BlendTree);
     }
 
     void FixedUpdate()

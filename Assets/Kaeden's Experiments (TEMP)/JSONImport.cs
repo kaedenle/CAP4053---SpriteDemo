@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class JSONImport : MonoBehaviour
 {
-    /*public TextAsset moveContainer;
+    public TextAsset moveContainer;
     [System.Serializable]
-    public class WeaponList
+    public class Employee
     {
-        public Weapon[] weapons;
+        //these variables are case sensitive and must match the strings "firstName" and "lastName" in the JSON.
+        public string firstName;
+        public string lastName;
     }
-
-    public WeaponList weapons = new WeaponList();
-    // Start is called before the first frame update
+    [System.Serializable]
+    public class Employees
+    {
+        //employees is case sensitive and must match the string "employees" in the JSON.
+        public Employee[] employees;
+    }
+    public Employees empl = new Employees();
 
     void Start()
     {
-        weapons = JsonUtility.FromJson<WeaponList>(moveContainer.text);
-    }*/
+        empl = JsonUtility.FromJson<Employees>(moveContainer.text);
+    }
 }

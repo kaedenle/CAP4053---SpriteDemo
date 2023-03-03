@@ -7,7 +7,7 @@ public class PlayerScript : MonoBehaviour, IUnique
     // Start is called before the first frame update
     private Animator animator;
     private Rigidbody2D body;
-
+    
     public void EffectManager(string funct)
     {
         //call function via string reference
