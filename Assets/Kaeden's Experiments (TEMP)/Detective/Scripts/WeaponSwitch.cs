@@ -97,8 +97,6 @@ public class WeaponSwitch : MonoBehaviour, IScriptable
             //Swing when press left click
             if(Input.GetKeyDown(KeyCode.Mouse0) && animator.GetFloat("attack") == 0){
                 //disable scripts 
-                //(should be in animator but there's a weird bug with putting functions in an animator event on the first frame)
-                //Animator should call ScriptToggle(0) in AttackManager on the first frame of the attack
                 gameObject.GetComponent<AttackManager>().ScriptToggle(0);
 
                 //set you're attacking and the ID of the attack
