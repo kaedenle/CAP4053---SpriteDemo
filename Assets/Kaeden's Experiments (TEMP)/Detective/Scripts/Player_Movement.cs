@@ -7,7 +7,8 @@ public class Player_Movement : MonoBehaviour, IScriptable
     public Rigidbody2D body;
     public SpriteRenderer sr;
 
-    public float speed = 5f;
+    public float MAX_SPEED = 12f;
+    public float speed;
     private float moveX, moveY;
     private Vector3 movement;
     public Animator animator;
@@ -69,7 +70,7 @@ public class Player_Movement : MonoBehaviour, IScriptable
         animator.ResetTrigger("Attack");
         //tell animator you're no longer attacking (for blend tree)
         animator.SetFloat("attack", 0);
-        animator.Play("Idle_Engage");
+        animator.Play(gameObject.GetComponent<WeaponSwitch>().BlendTree);
     }
 
     void FixedUpdate()

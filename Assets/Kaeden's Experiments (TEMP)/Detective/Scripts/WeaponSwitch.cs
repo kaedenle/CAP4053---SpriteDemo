@@ -1,23 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class WeaponSwitch : MonoBehaviour, IScriptable
 {
 
+    public string BlendTree = "Idle_E";
     public Sprite[] spriteList;
     public int weaponID;
+
     public SpriteRenderer sr;
-    public Animator animator;
+    private Animator animator;
     public bool equiped;
     AnimatorClipInfo[] m_CurrentClipInfo;
     private Rigidbody2D body;
-
-    // Start is called before the first frame update
-    void Start()
+        // Start is called before the first frame update
+        void Start()
     {
         weaponID = 0;
         body = gameObject.GetComponent<Rigidbody2D>();
+        animator = gameObject.GetComponent<Animator>();
     }
     
     //scripts to be disabled/enabled when attacking
@@ -52,13 +55,13 @@ public class WeaponSwitch : MonoBehaviour, IScriptable
         //Only when you aren't attacking
         if(equip_press && animator.GetFloat("attack") == 0){
             if(!equiped)
-                animator.Play("Idle_Engage");
+                animator.Play(BlendTree);
             else
                 animator.Play("Idle");
             animator.SetBool("equiped", !equiped);
         }
 
-        if (!equiped && animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Idle_Engage")
+        if (!equiped && animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == BlendTree)
         {
             animator.Play("Idle");
         }
@@ -66,12 +69,20 @@ public class WeaponSwitch : MonoBehaviour, IScriptable
         if(!equiped){
             sr.sprite = null;
         }
+
         else if(equiped){
             if(swap){
                 weaponID += 1;
                 weaponID %= spriteList.Length;
-                
-            }   
+                //set animation to follow weapon's ID
+                animator.SetFloat("weapon", weaponID);
+                Player_Movement movementScript = gameObject.GetComponent<Player_Movement>();
+                if (weaponID == 1)
+                    gameObject.GetComponent<Player_Movement>().speed = 10;
+                else
+                    gameObject.GetComponent<Player_Movement>().speed = movementScript.MAX_SPEED;
+            }
+            //set the visual of the weapon
             sr.sprite = spriteList[weaponID];
         }
 
@@ -92,7 +103,7 @@ public class WeaponSwitch : MonoBehaviour, IScriptable
 
                 //set you're attacking and the ID of the attack
                 animator.SetTrigger("Attack");
-                animator.SetFloat("attack", 1);
+                animator.SetFloat("attack", weaponID + 1);
 
                 //damage self by 5 points
                 //gameObject.GetComponent<HealthTracker>().healthSystem.Damage(5);
