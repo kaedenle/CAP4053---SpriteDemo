@@ -203,13 +203,8 @@ public class AttackManager : MonoBehaviour, IScriptable
     //-----------------------------PLAY ATTACK FUNCTIONS----------------------------------------------------------
     public void StartPlay(int moveIndex){
         //get current animation to keep track of current animation frame (attach hitboxes to animation)
+
         //get framedata
-        if (moveContainer.Length == 0)
-        {
-            Debug.Log("ERROR: Empty moveContiner look at AttackManager in inspector for " + gameObject.name);
-            return;
-        }
-        
         framedata = JsonUtility.FromJson<FrameData>(moveContainer[moveIndex & moveContainer.Length].text);
 
         //quickly load framedata into frames (hashmap that loads into hitbox)

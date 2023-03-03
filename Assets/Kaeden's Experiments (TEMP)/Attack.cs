@@ -21,6 +21,12 @@ public class Attack
 
     public int ID;
 
+    //add two strings SelfInflict and EnemyInflict
+    //these two will be called in IUnique as methods
+    //Both will be called in attack manager
+    //SelfInflict: Function to be called on player
+    //EnemyInflict: Funciton to be called on enemy, it will pass in the colliders found in attack manager. If it has a IUnique then it'll run, if not then just ignore these
+
     public Attack(int damage, int knockback){
         this.damage = damage;
         this.knockback = knockback;
