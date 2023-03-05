@@ -22,7 +22,9 @@ public class Hurtbox : MonoBehaviour, IDamagable
         }
         else
         {
-            
+            AttackManager am = this?.GetComponent<AttackManager>();
+            if (am != null) am.DestroyPlay();
+            uniqueScript.HitStunAni();
         }
             
         foreach (IScriptable s in scriptableScripts)

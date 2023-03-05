@@ -271,6 +271,9 @@ MonoBehaviour:
   weaponID: 0
   sr: {fileID: 8340756177781156867}
   equiped: 0
+  wpnList:
+    weaponlist: []
+    index: 0
 --- !u!114 &6197798176421269817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,10 +320,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34658e90b6b667342a950a514752cbc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponList: {fileID: 4900000, guid: 89aa6f64318e75241ae68b9f158262df, type: 3}
+  wpnList:
+    weaponlist: []
+    index: 0
   hitboxParent: {fileID: 9056604147769991447}
   HBList: []
   active: 0
-  moveContainer: {fileID: 4900000, guid: 4ccd3bdf65ab2f24d8ef550b6652a892, type: 3}
+  moveContainer:
+  - {fileID: 4900000, guid: 4ccd3bdf65ab2f24d8ef550b6652a892, type: 3}
+  - {fileID: 4900000, guid: 7c785d1dfc5c7a74aa6b84c64c8e4bae, type: 3}
   framedata:
     framedata: []
     damage: 0
@@ -676,7 +685,7 @@ Transform:
   m_GameObject: {fileID: 7898660640811106746}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.16, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 4.8525996, y: 4.8525996, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6917116794792476195}
@@ -722,13 +731,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 359116491
   m_SortingLayer: 1
-  m_SortingOrder: 3
+  m_SortingOrder: -2
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.2, y: 3.2}
+  m_Size: {x: 4.8, y: 4.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -808,7 +817,7 @@ SpriteRenderer:
   m_SortingLayerID: 359116491
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -1209616074, guid: f5fc1fe8bc349d74d84152148774c8e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -816,6 +825,6 @@ SpriteRenderer:
   m_Size: {x: 9.6, y: 3.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1

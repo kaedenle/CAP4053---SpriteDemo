@@ -29,6 +29,8 @@ public class PlayerScript : MonoBehaviour, IUnique
         EntityManager.PlayerDied();
     }
 
+    
+
     public void HitStunAni()
     {
         //TEMPORARY

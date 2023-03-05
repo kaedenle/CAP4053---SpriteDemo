@@ -21,18 +21,20 @@ public class AttackManager : MonoBehaviour, IScriptable
     private Animator animator;
     [HideInInspector]
     public GameObject hitboxParent;
-    
 
     //Component Lists/Arrays
     [HideInInspector]
     public List<Hitbox> HBList = new List<Hitbox>();
     private IDictionary<int, List<Attack>> frames = new Dictionary<int, List<Attack>>();
     private IDictionary<Collider2D, Hitbox> hasHit = new Dictionary<Collider2D, Hitbox>();
+    private HashSet<int> cancellableSet = new HashSet<int>();
     private HashSet<Collider2D> alreadyDamaged = new HashSet<Collider2D>();
 
     //technical information
     public bool active;
     private IUnique uniqueScript;
+    [HideInInspector]
+    public int bufferCancel = -1;
 
     //framedata
     public TextAsset[] moveContainer;
@@ -55,7 +57,7 @@ public class AttackManager : MonoBehaviour, IScriptable
 
         //move info
         public string hitsTag;      //can make this into an array
-        public string[] cancelBy;
+        public int[] cancelBy;
 
         //on hit, deactivate move or hitbox?
         public bool deactivateMove;
@@ -103,7 +105,7 @@ public class AttackManager : MonoBehaviour, IScriptable
     }
 
     private void UpdateHitboxInfo(Hitbox hb, Attack atk){
-        hb.SetAuxillaryValues(framedata.hitstop, framedata.hitsTag, framedata.cancelBy, framedata.relativeKnockback, framedata.functCall);
+        hb.SetAuxillaryValues(framedata.hitstop, framedata.hitsTag, framedata.relativeKnockback, framedata.functCall);
         //set default value (when frame's damage/knockback is 0)
         atk.damage = atk.damage == 0 ? framedata.damage : atk.damage;
         atk.knockback = atk.knockback == 0 ? framedata.knockback : atk.knockback;
@@ -123,6 +125,7 @@ public class AttackManager : MonoBehaviour, IScriptable
             return;
         int counter = 0;
         int HBListLength = HBList != null ? HBList.Count : 0;
+        //update (and create) hitboxes
         foreach(Attack a in frames[frameCount])
         {
             //create hitboxes if need more
@@ -189,6 +192,26 @@ public class AttackManager : MonoBehaviour, IScriptable
             }
         }
     }
+    private void Cancellable()
+    {
+        //if hit something cancel (only for player)
+        //apply cancellable logic here using hasHit
+        //1. DestroyPlay
+        //2. InvokeAttack
+        if (tag != "Player") return;
+        if (cancellableSet.Contains(bufferCancel))
+        {
+            if (hasHit.Keys.Count == 0)
+            {
+                return;
+            }
+            int tmp = bufferCancel;
+            DestroyPlay();
+            InvokeAttack(tmp);
+            
+            
+        }
+    }
     public GameObject HurtBoxSearch(GameObject part){
         Hurtbox check = null;
         while(check == null){
@@ -199,16 +222,37 @@ public class AttackManager : MonoBehaviour, IScriptable
                 part = part.transform.parent.gameObject;
         } 
         return part;
-    } 
+    }
     //-----------------------------PLAY ATTACK FUNCTIONS----------------------------------------------------------
+    //call in code
+    public void InvokeAttack(string move)
+    {
+        ScriptToggle(0);
+        animator.Play(move);
+    }
+
+    public void InvokeAttack(int move)
+    {
+        animator.SetTrigger("Attack");
+        ScriptToggle(0);
+        animator.SetFloat("attack", move);
+    }
+    //For animator's use
     public void StartPlay(int moveIndex){
         //get current animation to keep track of current animation frame (attach hitboxes to animation)
 
         //get framedata
-        framedata = JsonUtility.FromJson<FrameData>(moveContainer[moveIndex & moveContainer.Length].text);
+        framedata = JsonUtility.FromJson<FrameData>(moveContainer[moveIndex % moveContainer.Length].text);
+
+        //load cancellable moves for O(1) entry
+        cancellableSet.Clear();
+        foreach(int moveID in framedata.cancelBy)
+        {
+            cancellableSet.Add(moveID);
+        }
 
         //quickly load framedata into frames (hashmap that loads into hitbox)
-        foreach(Attack a in framedata.framedata)
+        foreach (Attack a in framedata.framedata)
         {
             if (!frames.ContainsKey(a.frame))
                 frames[a.frame] = new List<Attack>();
@@ -235,14 +279,15 @@ public class AttackManager : MonoBehaviour, IScriptable
         ScriptToggle(1);
         frames.Clear();
         DestroyAllHitboxes();
-        
+        bufferCancel = -1;
         //clear history of what you've hit
         alreadyDamaged.Clear();
+        if(tag == "Player") animator.ResetTrigger("Attack");
     }
     //-----------------------------ISCRIPTABLE FUNCTIONS----------------------------------------------------------
     public void ScriptHandler(bool flag)
     {
-        //DANGEROUS, could recurse and crash game without && active
+        //DANGEROUS without active
         if (!flag && active)
         {
             DestroyPlay();
@@ -250,10 +295,6 @@ public class AttackManager : MonoBehaviour, IScriptable
     }
     public void EnableByID(int ID)
     {
-        if(ID == 2)
-        {
-
-        }
     }
     public void DisableByID(int ID)
     {
@@ -307,5 +348,7 @@ public class AttackManager : MonoBehaviour, IScriptable
     {
         //Debug.Log(Sword1.var);
         CallHitboxes();
+        //cancel out of move if it can be cancelled out of
+        Cancellable();
     }
 }

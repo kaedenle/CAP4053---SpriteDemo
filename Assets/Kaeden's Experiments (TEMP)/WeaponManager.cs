@@ -28,7 +28,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
     //scripts to be disabled/enabled when attacking
     public void ScriptHandler(bool flag)
     {
-        this.enabled = flag;
+        //this.enabled = flag;
     }
     //what happens when disable
     public void EnableByID(int ID)
@@ -102,17 +102,25 @@ public class WeaponManager : MonoBehaviour, IScriptable
             }
 
             //Swing when press left click
-            if(Input.GetKeyDown(KeyCode.Mouse0) && animator.GetFloat("attack") == 0 && wpnList.weaponlist[wpnList.index].attack1 != 0)
+            if(Input.GetKeyDown(KeyCode.Mouse0) && wpnList.weaponlist[wpnList.index].attack1 != 0)
             {
-                //disable scripts 
-                gameObject.GetComponent<AttackManager>().ScriptToggle(0);
-
-                //set you're attacking and the ID of the attack
-                animator.SetTrigger("Attack");
-                animator.SetFloat("attack", 1);
+                //call attack from integer (defined by Attack blend tree in animator)
+                if (animator.GetFloat("attack") != 0)
+                    GetComponent<AttackManager>().bufferCancel = wpnList.weaponlist[wpnList.index].attack1;
+                else
+                    GetComponent<AttackManager>().InvokeAttack(wpnList.weaponlist[wpnList.index].attack1);
 
                 //damage self by 5 points
                 //gameObject.GetComponent<HealthTracker>().healthSystem.Damage(5);
+            }
+            //Swing when press right click
+            else if (Input.GetKeyDown(KeyCode.Mouse1) && wpnList.weaponlist[wpnList.index].attack2 != 0)
+            {
+                //call attack from integer (defined by Attack blend tree in animator)
+                if(animator.GetFloat("attack") != 0)
+                    GetComponent<AttackManager>().bufferCancel = wpnList.weaponlist[wpnList.index].attack2;
+                else
+                    GetComponent<AttackManager>().InvokeAttack(wpnList.weaponlist[wpnList.index].attack2);
             }
         }
     }

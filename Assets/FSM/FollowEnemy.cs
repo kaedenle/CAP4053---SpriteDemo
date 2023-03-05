@@ -80,8 +80,7 @@ public class FollowEnemy : MonoBehaviour, IScriptable
                 //attack here
                 attackTimer -= Time.deltaTime;
                 if(attackTimer < 0){
-                    animator.Play("SlimeAttack");
-                    gameObject.GetComponent<AttackManager>().ScriptToggle(0);
+                    GetComponent<AttackManager>().InvokeAttack("SlimeAttack");
                 }
             }
         }

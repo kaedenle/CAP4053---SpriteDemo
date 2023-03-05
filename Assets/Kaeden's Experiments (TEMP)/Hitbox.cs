@@ -18,7 +18,6 @@ public class Hitbox : MonoBehaviour
 
     private int hitstop;
     public string hitsTag;
-    private string[] cancelBy;
     private bool relativeKnockback;
     private string functCall;
 
@@ -31,10 +30,9 @@ public class Hitbox : MonoBehaviour
         collidersList = new List<Collider2D>();
     }
 
-    public void SetAuxillaryValues(int hitstop, string hitsTag, string[] cancelBy, bool relativeKnockback, string funct){
+    public void SetAuxillaryValues(int hitstop, string hitsTag, bool relativeKnockback, string funct){
         this.hitstop = hitstop;
         this.hitsTag = hitsTag;
-        this.cancelBy = cancelBy;
         this.relativeKnockback = relativeKnockback;
         this.functCall = funct;
     }
