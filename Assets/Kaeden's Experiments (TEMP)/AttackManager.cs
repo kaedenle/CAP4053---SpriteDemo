@@ -27,7 +27,7 @@ public class AttackManager : MonoBehaviour, IScriptable
     public List<Hitbox> HBList = new List<Hitbox>();
     private IDictionary<int, List<Attack>> frames = new Dictionary<int, List<Attack>>();
     private IDictionary<Collider2D, Hitbox> hasHit = new Dictionary<Collider2D, Hitbox>();
-    private HashSet<int> cancellableSet = new HashSet<int>();
+    private IDictionary<int, int> cancellableSet = new Dictionary<int, int>();
     private HashSet<Collider2D> alreadyDamaged = new HashSet<Collider2D>();
 
     //technical information
@@ -57,7 +57,8 @@ public class AttackManager : MonoBehaviour, IScriptable
 
         //move info
         public string hitsTag;      //can make this into an array
-        public int[] cancelBy;
+        public int[] cancelBy;      //2D array with 2 elements
+        public int[] cancelStart;   //must coincide with each other in terms of length
 
         //on hit, deactivate move or hitbox?
         public bool deactivateMove;
@@ -199,7 +200,7 @@ public class AttackManager : MonoBehaviour, IScriptable
         //1. DestroyPlay
         //2. InvokeAttack
         if (tag != "Player") return;
-        if (cancellableSet.Contains(bufferCancel))
+        if (cancellableSet.ContainsKey(bufferCancel))
         {
             if (hasHit.Keys.Count == 0)
             {
@@ -208,8 +209,8 @@ public class AttackManager : MonoBehaviour, IScriptable
             int tmp = bufferCancel;
             DestroyPlay();
             InvokeAttack(tmp);
-            
-            
+            float animationTime = cancellableSet[tmp] / (animator.GetCurrentAnimatorClipInfo(0)[0].clip.frameRate * animator.GetCurrentAnimatorClipInfo(0)[0].clip.length);
+            animator.Play(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name, 0, animationTime);
         }
     }
     public GameObject HurtBoxSearch(GameObject part){
@@ -240,15 +241,18 @@ public class AttackManager : MonoBehaviour, IScriptable
     //For animator's use
     public void StartPlay(int moveIndex){
         //get current animation to keep track of current animation frame (attach hitboxes to animation)
-
+        Debug.Log(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+        
         //get framedata
         framedata = JsonUtility.FromJson<FrameData>(moveContainer[moveIndex % moveContainer.Length].text);
 
         //load cancellable moves for O(1) entry
         cancellableSet.Clear();
-        foreach(int moveID in framedata.cancelBy)
+        for(int i = 0; i < framedata.cancelBy.Length; i++)
         {
-            cancellableSet.Add(moveID);
+            int startingFrame = 0;
+            if (framedata.cancelStart.Length > i) startingFrame = framedata.cancelStart[i];
+            cancellableSet.Add(framedata.cancelBy[0], startingFrame);
         }
 
         //quickly load framedata into frames (hashmap that loads into hitbox)
@@ -282,6 +286,7 @@ public class AttackManager : MonoBehaviour, IScriptable
         bufferCancel = -1;
         //clear history of what you've hit
         alreadyDamaged.Clear();
+
         if(tag == "Player") animator.ResetTrigger("Attack");
     }
     //-----------------------------ISCRIPTABLE FUNCTIONS----------------------------------------------------------

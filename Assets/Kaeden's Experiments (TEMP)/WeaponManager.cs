@@ -65,7 +65,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
             animator.SetFloat("weapon", wpnList.weaponlist[wpnList.index].ID);
         }
 
-        if (!equiped && animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == BlendTree)
+        if (!equiped && (animator.GetCurrentAnimatorClipInfo(0).Length > 0 && animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == BlendTree))
         {
             animator.Play("Idle");
         }
