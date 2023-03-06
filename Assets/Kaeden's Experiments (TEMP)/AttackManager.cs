@@ -353,6 +353,9 @@ public class AttackManager : MonoBehaviour, IScriptable
     // Update is called once per frame
     void Update()
     {
+        //if not in attack destroy (fix lingering hitbox glitch)
+        if (animator.GetFloat("attack") == 0 && active)
+            DestroyPlay();
         //Debug.Log(Sword1.var);
         CallHitboxes();
         //cancel out of move if it can be cancelled out of

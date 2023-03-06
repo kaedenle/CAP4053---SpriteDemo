@@ -34,6 +34,7 @@ public class PlayerScript : MonoBehaviour, IUnique
 
     public void HitStunAni()
     {
+        //GetComponent<AttackManager>().DestroyPlay();
         //TEMPORARY
         bool equiped = animator.GetBool("equiped");
         if (equiped)

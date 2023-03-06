@@ -15,12 +15,12 @@ public class Hurtbox : MonoBehaviour, IDamagable
 
     //hitstop variables
     public string default_ani;
-    private bool ResumeTime = false;
-    private bool waiting = false;
 
     //misc variables
     private Animator animator;
-    private EntityManager EM; //used for hitstop
+    //CHANGE THIS TO ARRAY (for children detection)
+    private SpriteRenderer sr;
+    private HitStopManager HSM; //used for hitstop
     public void damage(Vector3 knockback, int damage, float hitstun, float hitstop)
     {
         hitstunTimer = hitstun;
@@ -32,16 +32,25 @@ public class Hurtbox : MonoBehaviour, IDamagable
         }
         else
         {
-            AttackManager am = this?.GetComponent<AttackManager>();
-            if (am != null) am.DestroyPlay();
             uniqueScript.HitStunAni();
         }
+        AttackManager am = this?.GetComponent<AttackManager>();
+        if (am != null)
+        {
+            am.DestroyPlay();
+            Debug.Log(name + " here");
+        }
             
+
         foreach (IScriptable s in scriptableScripts)
             s.ScriptHandler(false);
 
         //apply hitstop
-        if(EM != null) EM.StopTime(hitstop/100);
+        if (HSM != null)
+        {
+            //apply sr here piece by piece
+            HSM.StopTime(hitstop / 100);
+        }
     }
 
     
@@ -54,8 +63,9 @@ public class Hurtbox : MonoBehaviour, IDamagable
         uniqueScript = this?.GetComponent<IUnique>();
         hitstunTimer = -1;
         animator = this?.GetComponent<Animator>();
+        sr = this?.GetComponent<SpriteRenderer>();
         inHitStun = false;
-        EM = GameObject.Find("EntityManager")?.GetComponent<EntityManager>();
+        HSM = GameObject.Find("HitStopManager")?.GetComponent<HitStopManager>();
     }
 
     // Update is called once per frame
@@ -69,6 +79,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
                 s.ScriptHandler(true);
             inHitStun = false;
         }
+
     }
     
 }
