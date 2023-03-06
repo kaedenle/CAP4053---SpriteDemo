@@ -239,6 +239,7 @@ MonoBehaviour:
   hitboxParent: {fileID: 6105205938035449267}
   HBList: []
   active: 0
+  bufferCancel: -1
   moveContainer:
   - {fileID: 4900000, guid: ee6df8931df8c534585c8505aa6814c5, type: 3}
   framedata:
@@ -250,7 +251,7 @@ MonoBehaviour:
     x_knockback: 0
     y_knockback: 0
     hitsTag: 
-    cancelBy: []
+    cancelBy: 
     deactivateMove: 0
     relativeKnockback: 0
     functCall: 
@@ -268,7 +269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   target: {fileID: 0}
-  minimumDistance: 4
+  minimumDistance: 2
   lineOfSightDistance: 10
   healthTracker: {fileID: 1865415172}
   animator: {fileID: 0}

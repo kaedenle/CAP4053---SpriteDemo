@@ -37,7 +37,7 @@ public class PlayerScript : MonoBehaviour, IUnique
         //TEMPORARY
         bool equiped = animator.GetBool("equiped");
         if (equiped)
-            animator.Play("Idle_Engaged");
+            animator.Play("Idle_E");
         else
             animator.Play("Idle");
     }

@@ -20,6 +20,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
 
     //misc variables
     private Animator animator;
+    private EntityManager EM; //used for hitstop
     public void damage(Vector3 knockback, int damage, float hitstun, float hitstop)
     {
         hitstunTimer = hitstun;
@@ -40,26 +41,11 @@ public class Hurtbox : MonoBehaviour, IDamagable
             s.ScriptHandler(false);
 
         //apply hitstop
-        StopTime(hitstop/100);
+        EM.StopTime(hitstop/100);
     }
 
-    public void StopTime(float duration)
-    {
-        if (waiting || Time.timeScale != 1)
-            return;
-        //change this if want to go slower rather than stop
-        Time.timeScale = 0;
-        StopCoroutine(Wait(duration));
-        StartCoroutine(Wait(duration));
-    }
-    IEnumerator Wait(float amt)
-    {
-        waiting = true;
-        yield return new WaitForSecondsRealtime(amt);
-        //ResumeTime = true;
-        Time.timeScale = 1f;
-        waiting = false;
-    }
+    
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -69,6 +55,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
         hitstunTimer = -1;
         animator = this?.GetComponent<Animator>();
         inHitStun = false;
+        EM = GameObject.Find("EntityManager").GetComponent<EntityManager>();
     }
 
     // Update is called once per frame
@@ -82,21 +69,6 @@ public class Hurtbox : MonoBehaviour, IDamagable
                 s.ScriptHandler(true);
             inHitStun = false;
         }
-
-        if (ResumeTime)
-        {
-            if(Time.timeScale < 1f)
-            {
-                float time = Time.deltaTime == 0 ? 0.1f : Time.deltaTime * 10;
-                Time.timeScale += time;
-            }
-            else
-            {
-                Time.timeScale = 1f;
-                ResumeTime = false;
-            }
-        }
-
     }
     
 }
