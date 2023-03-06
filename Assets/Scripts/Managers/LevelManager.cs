@@ -65,5 +65,4 @@ public class LevelManager : MonoBehaviour
     }
 
     public virtual void TriggerReset() { } // used abstractly; kinda sketchy
-
 }
