@@ -11,7 +11,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
 
     //hitstun variables
     private float hitstunTimer;
-    private bool inHitStun;
+    public bool inHitStun;
 
     //hitstop variables
     public string default_ani;
@@ -48,8 +48,11 @@ public class Hurtbox : MonoBehaviour, IDamagable
 
         //deactivate scripts when in hitstun
         foreach (IScriptable s in scriptableScripts)
+        {
             s.ScriptHandler(false);
-
+        }
+            
+        
         //apply hitstop
         if (HSM != null)
         {
@@ -63,8 +66,8 @@ public class Hurtbox : MonoBehaviour, IDamagable
             {
                 piece.material.shader = HitShader;
                 piece.material.color = Color.white;
-                StopCoroutine(Wait(0.1f));
-                StartCoroutine(Wait(0.1f));
+                StopCoroutine(Wait(0.03f * damage));
+                StartCoroutine(Wait(0.03f * damage));
                 FlashFlag = true;
             }
         }

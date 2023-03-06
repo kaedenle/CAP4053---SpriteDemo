@@ -16,6 +16,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
     AnimatorClipInfo[] m_CurrentClipInfo;
     private Rigidbody2D body;
     public AttackManager.WeaponList wpnList = new AttackManager.WeaponList();
+    public Hurtbox hrtbx;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
         body = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
         wpnList = gameObject.GetComponent<AttackManager>().wpnList;
+        hrtbx = gameObject?.GetComponent<Hurtbox>();
     }
     
     //scripts to be disabled/enabled when attacking
@@ -101,31 +103,37 @@ public class WeaponManager : MonoBehaviour, IScriptable
                 gameObject.GetComponent<Player_Movement>().move_flag = false;
             }
 
-            //Swing when press left click
-            if(Input.GetKeyDown(KeyCode.Mouse0) && wpnList.weaponlist[wpnList.index].attack1 != 0)
-            {
-                //call attack from integer (defined by Attack blend tree in animator)
-                if (animator.GetFloat("attack") != 0)
-                    GetComponent<AttackManager>().bufferCancel = wpnList.weaponlist[wpnList.index].attack1;
-                else
-                    GetComponent<AttackManager>().InvokeAttack(wpnList.weaponlist[wpnList.index].attack1);
 
-                //damage self by 5 points
-                //gameObject.GetComponent<HealthTracker>().healthSystem.Damage(5);
-            }
-            //Swing when press right click
-            else if (Input.GetKeyDown(KeyCode.Mouse1) && wpnList.weaponlist[wpnList.index].attack2 != 0)
+            bool hitStunVar = hrtbx != null ? hrtbx.inHitStun : false;
+            //if in hitstun, don't read input (put pausing mechanics in here)
+            if (!hitStunVar)
             {
-                //call attack from integer (defined by Attack blend tree in animator)
-                if(animator.GetFloat("attack") != 0)
-                    GetComponent<AttackManager>().bufferCancel = wpnList.weaponlist[wpnList.index].attack2;
-                else
-                    GetComponent<AttackManager>().InvokeAttack(wpnList.weaponlist[wpnList.index].attack2);
-            }
-            if (animator.GetFloat("attack") != 0 && animator.GetBool("Attack") == false)
-            {
-                animator.SetTrigger("Attack");
-            }
+                //Swing when press left click
+                if (Input.GetKeyDown(KeyCode.Mouse0) && wpnList.weaponlist[wpnList.index].attack1 != 0)
+                {
+                    //call attack from integer (defined by Attack blend tree in animator)
+                    if (animator.GetFloat("attack") != 0)
+                        GetComponent<AttackManager>().bufferCancel = wpnList.weaponlist[wpnList.index].attack1;
+                    else
+                        GetComponent<AttackManager>().InvokeAttack(wpnList.weaponlist[wpnList.index].attack1);
+
+                    //damage self by 5 points
+                    //gameObject.GetComponent<HealthTracker>().healthSystem.Damage(5);
+                }
+                //Swing when press right click
+                else if (Input.GetKeyDown(KeyCode.Mouse1) && wpnList.weaponlist[wpnList.index].attack2 != 0)
+                {
+                    //call attack from integer (defined by Attack blend tree in animator)
+                    if (animator.GetFloat("attack") != 0)
+                        GetComponent<AttackManager>().bufferCancel = wpnList.weaponlist[wpnList.index].attack2;
+                    else
+                        GetComponent<AttackManager>().InvokeAttack(wpnList.weaponlist[wpnList.index].attack2);
+                }
+                if (animator.GetFloat("attack") != 0 && animator.GetBool("Attack") == false)
+                {
+                    animator.SetTrigger("Attack");
+                }
+            }   
         }
 
         if (animator.GetFloat("attack") == 0 && animator.GetBool("Attack") == true)
