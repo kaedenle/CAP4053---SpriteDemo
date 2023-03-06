@@ -16,7 +16,7 @@ public class Hitbox : MonoBehaviour
     //attack information
     public Attack Atk;
 
-    private int hitstop;
+    private float hitstop;
     public string hitsTag;
     private bool relativeKnockback;
     private string functCall;
@@ -30,7 +30,7 @@ public class Hitbox : MonoBehaviour
         collidersList = new List<Collider2D>();
     }
 
-    public void SetAuxillaryValues(int hitstop, string hitsTag, bool relativeKnockback, string funct){
+    public void SetAuxillaryValues(float hitstop, string hitsTag, bool relativeKnockback, string funct){
         this.hitstop = hitstop;
         this.hitsTag = hitsTag;
         this.relativeKnockback = relativeKnockback;
@@ -99,7 +99,7 @@ public class Hitbox : MonoBehaviour
                 tempKnockBack = new Vector3(Atk.x_knockback, Atk.y_knockback, 0);
                 tempKnockBack = checkKnockback(hit, myGameObject, tempKnockBack);
             }
-            script.damage(Atk.knockback * tempKnockBack, Atk.damage, Atk.hitstun);
+            script.damage(Atk.knockback * tempKnockBack, Atk.damage, Atk.hitstun, hitstop);
         }
         return true;
     }

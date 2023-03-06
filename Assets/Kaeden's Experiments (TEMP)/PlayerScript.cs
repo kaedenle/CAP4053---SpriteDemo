@@ -7,6 +7,7 @@ public class PlayerScript : MonoBehaviour, IUnique
     // Start is called before the first frame update
     private Animator animator;
     private Rigidbody2D body;
+    private bool HitStopFlag = false;
     
     public void EffectManager(string funct)
     {
@@ -50,7 +51,6 @@ public class PlayerScript : MonoBehaviour, IUnique
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     void LateUpdate()

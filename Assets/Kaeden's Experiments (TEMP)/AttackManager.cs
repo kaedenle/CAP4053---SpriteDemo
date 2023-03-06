@@ -27,7 +27,7 @@ public class AttackManager : MonoBehaviour, IScriptable
     public List<Hitbox> HBList = new List<Hitbox>();
     private IDictionary<int, List<Attack>> frames = new Dictionary<int, List<Attack>>();
     private IDictionary<Collider2D, Hitbox> hasHit = new Dictionary<Collider2D, Hitbox>();
-    private IDictionary<int, int> cancellableSet = new Dictionary<int, int>();
+    private HashSet<int> cancellableSet = new HashSet<int>();
     private HashSet<Collider2D> alreadyDamaged = new HashSet<Collider2D>();
 
     //technical information
@@ -58,7 +58,6 @@ public class AttackManager : MonoBehaviour, IScriptable
         //move info
         public string hitsTag;      //can make this into an array
         public int[] cancelBy;      //2D array with 2 elements
-        public int[] cancelStart;   //must coincide with each other in terms of length
 
         //on hit, deactivate move or hitbox?
         public bool deactivateMove;
@@ -200,17 +199,18 @@ public class AttackManager : MonoBehaviour, IScriptable
         //1. DestroyPlay
         //2. InvokeAttack
         if (tag != "Player") return;
-        if (cancellableSet.ContainsKey(bufferCancel))
+        if (cancellableSet.Contains(bufferCancel))
         {
-            if (hasHit.Keys.Count == 0)
+            if (alreadyDamaged.Count == 0)
             {
                 return;
             }
             int tmp = bufferCancel;
             DestroyPlay();
             InvokeAttack(tmp);
-            float animationTime = cancellableSet[tmp] / (animator.GetCurrentAnimatorClipInfo(0)[0].clip.frameRate * animator.GetCurrentAnimatorClipInfo(0)[0].clip.length);
-            animator.Play(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name, 0, animationTime);
+            //float animationTime = cancellableSet[tmp] / (animator.GetCurrentAnimatorClipInfo(0)[0].clip.frameRate * animator.GetCurrentAnimatorClipInfo(0)[0].clip.length);
+            //Debug.Log(animator.GetCurrentAnimatorClipInfo(0)[0].clip.length + " " + animationTime);
+            animator.Play(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
         }
     }
     public GameObject HurtBoxSearch(GameObject part){
@@ -234,7 +234,6 @@ public class AttackManager : MonoBehaviour, IScriptable
 
     public void InvokeAttack(int move)
     {
-        animator.SetTrigger("Attack");
         ScriptToggle(0);
         animator.SetFloat("attack", move);
     }
@@ -250,9 +249,7 @@ public class AttackManager : MonoBehaviour, IScriptable
         cancellableSet.Clear();
         for(int i = 0; i < framedata.cancelBy.Length; i++)
         {
-            int startingFrame = 0;
-            if (framedata.cancelStart.Length > i) startingFrame = framedata.cancelStart[i];
-            cancellableSet.Add(framedata.cancelBy[0], startingFrame);
+            cancellableSet.Add(framedata.cancelBy[0]);
         }
 
         //quickly load framedata into frames (hashmap that loads into hitbox)
@@ -282,12 +279,17 @@ public class AttackManager : MonoBehaviour, IScriptable
         active = false;
         ScriptToggle(1);
         frames.Clear();
+        hasHit.Clear();
         DestroyAllHitboxes();
         bufferCancel = -1;
         //clear history of what you've hit
         alreadyDamaged.Clear();
 
-        if(tag == "Player") animator.ResetTrigger("Attack");
+        if (tag == "Player")
+        {
+            animator.SetFloat("attack", 0);
+            animator.ResetTrigger("Attack");
+        }
     }
     //-----------------------------ISCRIPTABLE FUNCTIONS----------------------------------------------------------
     public void ScriptHandler(bool flag)
@@ -354,6 +356,7 @@ public class AttackManager : MonoBehaviour, IScriptable
         //Debug.Log(Sword1.var);
         CallHitboxes();
         //cancel out of move if it can be cancelled out of
-        Cancellable();
+        if(Time.timeScale == 1f)
+            Cancellable();
     }
 }

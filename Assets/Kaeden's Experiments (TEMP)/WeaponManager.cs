@@ -122,7 +122,15 @@ public class WeaponManager : MonoBehaviour, IScriptable
                 else
                     GetComponent<AttackManager>().InvokeAttack(wpnList.weaponlist[wpnList.index].attack2);
             }
+            if (animator.GetFloat("attack") != 0 && animator.GetBool("Attack") == false)
+            {
+                animator.SetTrigger("Attack");
+            }
         }
+
+        if (animator.GetFloat("attack") == 0 && animator.GetBool("Attack") == true)
+            animator.ResetTrigger("Attack");
+        
     }
 
     
