@@ -41,7 +41,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
             s.ScriptHandler(false);
 
         //apply hitstop
-        EM.StopTime(hitstop/100);
+        if(EM != null) EM.StopTime(hitstop/100);
     }
 
     
@@ -55,7 +55,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
         hitstunTimer = -1;
         animator = this?.GetComponent<Animator>();
         inHitStun = false;
-        EM = GameObject.Find("EntityManager").GetComponent<EntityManager>();
+        EM = GameObject.Find("EntityManager")?.GetComponent<EntityManager>();
     }
 
     // Update is called once per frame
