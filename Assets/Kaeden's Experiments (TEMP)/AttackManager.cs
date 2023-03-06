@@ -32,6 +32,7 @@ public class AttackManager : MonoBehaviour, IScriptable
 
     //technical information
     public bool active;
+    private bool cancellableFlag = false;
     private IUnique uniqueScript;
     [HideInInspector]
     public int bufferCancel = -1;
@@ -192,13 +193,17 @@ public class AttackManager : MonoBehaviour, IScriptable
             }
         }
     }
+    public void SetCancellable()
+    {
+        cancellableFlag = true;
+    }
     private void Cancellable()
     {
         //if hit something cancel (only for player)
         //apply cancellable logic here using hasHit
         //1. DestroyPlay
         //2. InvokeAttack
-        if (tag != "Player") return;
+        if (!cancellableFlag || tag != "Player") return;
         if (cancellableSet.Contains(bufferCancel))
         {
             if (alreadyDamaged.Count == 0)
@@ -211,6 +216,7 @@ public class AttackManager : MonoBehaviour, IScriptable
             //float animationTime = cancellableSet[tmp] / (animator.GetCurrentAnimatorClipInfo(0)[0].clip.frameRate * animator.GetCurrentAnimatorClipInfo(0)[0].clip.length);
             //Debug.Log(animator.GetCurrentAnimatorClipInfo(0)[0].clip.length + " " + animationTime);
             animator.Play(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+            cancellableFlag = false;
         }
     }
     public GameObject HurtBoxSearch(GameObject part){
@@ -353,8 +359,8 @@ public class AttackManager : MonoBehaviour, IScriptable
     // Update is called once per frame
     void Update()
     {
-        //if not in attack destroy (fix lingering hitbox glitch)
-        if (animator.GetFloat("attack") == 0 && active)
+        //if not in attack destroy (fix lingering hitbox glitch for player)
+        if (tag == "Player" && animator.GetFloat("attack") == 0 && active)
             DestroyPlay();
         //Debug.Log(Sword1.var);
         CallHitboxes();

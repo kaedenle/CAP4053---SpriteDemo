@@ -29,7 +29,7 @@ public class HitStopManager : MonoBehaviour
     {
         if (ResumeTime)
         {
-            if (Time.timeScale < 1f)
+            /*if (Time.timeScale < 1f)
             {
                 float time = Time.deltaTime == 0 ? 0.1f : Time.deltaTime * 3;
                 Time.timeScale += time;
@@ -38,7 +38,9 @@ public class HitStopManager : MonoBehaviour
             {
                 Time.timeScale = 1f;
                 ResumeTime = false;
-            }
+            }*/
+            Time.timeScale = 1f;
+            ResumeTime = false;
         }
     }
     // Start is called before the first frame update
