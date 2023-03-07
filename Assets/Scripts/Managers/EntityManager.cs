@@ -19,6 +19,7 @@ public class EntityManager : MonoBehaviour
         DisableAttack();
         DisableEnvironmentInteractable();
         DisableUIInteractable();
+        Time.timeScale = 0;
     }
 
     public static void Unpause()
@@ -28,6 +29,7 @@ public class EntityManager : MonoBehaviour
         EnableAttack();
         EnableEnvironmentInteractable();
         EnableUIInteractable();
+        Time.timeScale = 1;
     }
 
     public static bool MovementEnabled()
