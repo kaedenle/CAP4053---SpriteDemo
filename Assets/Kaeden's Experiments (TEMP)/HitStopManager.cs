@@ -19,9 +19,10 @@ public class HitStopManager : MonoBehaviour
     IEnumerator Wait(float amt)
     {
         waiting = true;
+
         yield return new WaitForSecondsRealtime(amt);
         //ResumeTime = true;
-        Time.timeScale = 1f;
+        if(!EntityManager.IsPaused()) Time.timeScale = 1f;
         waiting = false;
     }
 

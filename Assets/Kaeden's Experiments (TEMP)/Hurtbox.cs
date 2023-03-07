@@ -19,6 +19,8 @@ public class Hurtbox : MonoBehaviour, IDamagable
     //misc variables
     private Animator animator;
     private bool FlashFlag = false;
+    private bool PauseFlashCheck = false;
+    private float FlashTimer;
 
     //CHANGE THIS TO ARRAY (for children detection)
     private SpriteRenderer[] sr;
@@ -59,19 +61,15 @@ public class Hurtbox : MonoBehaviour, IDamagable
             HSM.StopTime(hitstop / 100);
         }
 
-        if (!FlashFlag)
+        //flash white
+        foreach (SpriteRenderer piece in sr)
         {
-            //flash white
-            foreach (SpriteRenderer piece in sr)
-            {
-                piece.material.shader = HitShader;
-                piece.material.color = Color.white;
-                StopCoroutine(Wait(0.03f * damage));
-                StartCoroutine(Wait(0.03f * damage));
-                FlashFlag = true;
-            }
+            piece.material.shader = HitShader;
+            piece.material.color = Color.white;
+             
         }
-       
+        FlashTimer = hitstop * 0.005f;
+        FlashFlag = true;
     }
     IEnumerator Wait(float amt)
     {
@@ -82,6 +80,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
         {
             piece.material.shader = OriginalShader;
         }
+        PauseFlashCheck = false;
     }
 
     // Start is called before the first frame update
@@ -112,6 +111,16 @@ public class Hurtbox : MonoBehaviour, IDamagable
             foreach (IScriptable s in scriptableScripts)
                 s.ScriptHandler(true);
             inHitStun = false;
+        }
+
+        if (FlashFlag)
+            FlashTimer -= Time.deltaTime;
+        //unflash white after unpause
+        if (FlashTimer <= 0 && FlashFlag)
+        {
+            foreach (SpriteRenderer piece in sr)
+                piece.material.shader = OriginalShader;
+            FlashFlag = false;
         }
 
     }
