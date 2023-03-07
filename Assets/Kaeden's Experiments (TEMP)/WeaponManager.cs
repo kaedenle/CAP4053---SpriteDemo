@@ -109,7 +109,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
             if (!hitStunVar)
             {
                 //Swing when press left click
-                if (Input.GetKeyDown(KeyCode.Mouse0) && wpnList.weaponlist[wpnList.index].attack1 != 0)
+                if (InputManager.Hit1KeyDown() && wpnList.weaponlist[wpnList.index].attack1 != 0)
                 {
                     //call attack from integer (defined by Attack blend tree in animator)
                     if (animator.GetFloat("attack") != 0)
@@ -121,7 +121,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
                     //gameObject.GetComponent<HealthTracker>().healthSystem.Damage(5);
                 }
                 //Swing when press right click
-                else if (Input.GetKeyDown(KeyCode.Mouse1) && wpnList.weaponlist[wpnList.index].attack2 != 0)
+                else if (InputManager.Hit2KeyDown() && wpnList.weaponlist[wpnList.index].attack2 != 0)
                 {
                     //call attack from integer (defined by Attack blend tree in animator)
                     if (animator.GetFloat("attack") != 0)
