@@ -27,8 +27,8 @@ public class Player_Movement : MonoBehaviour, IScriptable
     // Update is called once per frame
     void Update()
     {
-        moveX = Input.GetAxis("Horizontal");
-        moveY = Input.GetAxis("Vertical");
+        moveX = InputManager.GetAxis("Horizontal");
+        moveY = InputManager.GetAxis("Vertical");
         
         if(moveX != 0){
             bool temp = flipped;
