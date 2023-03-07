@@ -9,14 +9,14 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Unpause();
     }
 
     // Update is called once per frame
     void Update()
     {
         // toggle between paused and unpaused
-        if(InputManager.PauseKeyDown())
+        if(InputManager.PauseKeyDown() && LevelManager.PauseEnabled())
         {
             if(paused)
             {
@@ -45,5 +45,5 @@ public class UIManager : MonoBehaviour
     public static bool IsPaused()
     {
         return paused;
-    }
+    }   
 }
