@@ -30,7 +30,7 @@ public class FedoraController : MonoBehaviour
     {
         // currently the interact is hardcoded as the "e" key
         // TO DO: make a config file to abstract this
-        if(Input.GetKeyDown(KeyCode.E) && animator.GetBool(animatorBool))
+        if(InputManager.InteractKeyDown() && animator.GetBool(animatorBool))
         {
             HubManager.LoadNextMind();
         }
