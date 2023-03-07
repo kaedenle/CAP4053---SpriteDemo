@@ -5,7 +5,7 @@ using UnityEngine;
 //THIS SCRIPT IS A UNIVERSAL SCRIPT THAT GENERATES HITBOXES ACCORDING TO DATA GIVEN IT
 //THIS SCRIPT WILL NOT DETERMINE WHICH ATTACK CAN BE DONE. THAT HAS TO BE GIVEN TO IT VIA StartPlay(int moveIndex) AND moveContainer
 //THIS SCRIPT SIMPLY PLAYS HITBOX ANIMATIONS. IT IS NOT A DECIDER
-public class AttackManager : MonoBehaviour, IScriptable
+public class AttackManager : MonoBehaviour
 {
     //Weapon interfacing (not used in this file but offered for others to interface with)
     public TextAsset weaponList;
@@ -234,13 +234,14 @@ public class AttackManager : MonoBehaviour, IScriptable
     //call in code
     public void InvokeAttack(string move)
     {
-        ScriptToggle(0);
+        //turn off scripts for attacking here
+        ScriptDeactivate(ScriptTypes.Movement);
         animator.Play(move);
     }
 
     public void InvokeAttack(int move)
     {
-        ScriptToggle(0);
+        ScriptDeactivate(ScriptTypes.Movement);
         animator.SetFloat("attack", move);
     }
     //For animator's use
@@ -298,7 +299,7 @@ public class AttackManager : MonoBehaviour, IScriptable
         }
     }
     //-----------------------------ISCRIPTABLE FUNCTIONS----------------------------------------------------------
-    public void ScriptHandler(bool flag)
+    /*public void ScriptHandler(bool flag)
     {
         //DANGEROUS without active
         if (!flag && active)
@@ -315,7 +316,7 @@ public class AttackManager : MonoBehaviour, IScriptable
         {
             DestroyPlay();
         }
-    }
+    }*/
     //-----------------------------SCRIPT INTERFACE FUNCTIONS----------------------------------------------------------
     public void ScriptToggle(int flag){
         bool ret = flag > 0 ? true : false;

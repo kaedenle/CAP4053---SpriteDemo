@@ -53,14 +53,16 @@ public class Player_Movement : MonoBehaviour, IScriptable
     }
 
     public void EnableByID(int ID){
-        move_flag = true;
+        cleanUp();
+        //move_flag = true;
         if(ID == 0)
             this.enabled = true;
     }
 
     public void DisableByID(int ID)
     {
-        move_flag = false;
+        animator.SetFloat("movement", 0);
+        //move_flag = false;
         if (ID == 0)
             this.enabled = false;
     }
