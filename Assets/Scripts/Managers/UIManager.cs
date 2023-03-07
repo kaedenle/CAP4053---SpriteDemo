@@ -16,9 +16,8 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         // toggle between paused and unpaused
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(InputManager.PauseKeyDown())
         {
-            Debug.Log("pressed esc");
             if(paused)
             {
                 Unpause();
@@ -34,13 +33,13 @@ public class UIManager : MonoBehaviour
     void Pause()
     {
         paused = true;
-        EntityManager.DisableMovement();
+        EntityManager.Pause();
     }
 
     void Unpause()
     {
         paused = false;
-        EntityManager.EnableMovement();
+        EntityManager.Unpause();
     }
 
     public static bool IsPaused()
