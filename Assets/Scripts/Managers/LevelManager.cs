@@ -45,10 +45,16 @@ public class LevelManager : MonoBehaviour
         return _levelEnding;
     }
 
+    public static bool PauseEnabled()
+    {
+        // current behavior: can't pause during cutscene or during player death
+        return !IsEndOfLevel() && !PlayerDead(); 
+    }
+
     public static void TriggerPlayerDeath()
     {
         _playerDied = true;
-        EntityManager.DisableMovement();
+        EntityManager.Pause();
     }
 
     public static bool PlayerDead()
@@ -59,7 +65,7 @@ public class LevelManager : MonoBehaviour
     public static void RestartLevel()
     {   
         ResetAllVariables();
-        EntityManager.EnableMovement(); // reset from player death
+        EntityManager.Unpause(); // reset from player death
         if (Instance != null)
             ScenesManager.LoadScene(_startScene);
     }
