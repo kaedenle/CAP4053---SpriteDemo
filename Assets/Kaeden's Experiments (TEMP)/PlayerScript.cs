@@ -7,7 +7,9 @@ public class PlayerScript : MonoBehaviour, IUnique
     // Start is called before the first frame update
     private Animator animator;
     private Rigidbody2D body;
-    private bool HitStopFlag = false;
+    private bool killPlayer = false;
+    private float DeathDelayTimer;
+    private float MAX_DEATH_TIMER = 1.5f;
     
     public void EffectManager(string funct)
     {
@@ -27,15 +29,31 @@ public class PlayerScript : MonoBehaviour, IUnique
     public void onDeath()
     {
         Debug.Log("You've died!");
-        EntityManager.PlayerDied();
+
+        //disable all scripts
+        Hurtbox hrt = gameObject?.GetComponent<Hurtbox>();
+        IScriptable[] list = hrt != null ? hrt.scriptableScripts : GetComponents<IScriptable>();
+        foreach (IScriptable script in list)
+            script.ScriptHandler(false);
+
+        //play death animation
+        animator.Play("Death");
     }
 
-    
+    //AnimatorOnly Function called when death animation finishes
+    public void AnimatorPlayerDeath()
+    {
+        //set flag to freeze game and pull up Death UI
+        killPlayer = true;
+        DeathDelayTimer = MAX_DEATH_TIMER;
+    }
 
     public void HitStunAni()
     {
+        //if current clip is death don't play below
         //GetComponent<AttackManager>().DestroyPlay();
         //TEMPORARY
+
         bool equiped = animator.GetBool("equiped");
         if (equiped)
             animator.Play("Idle_E");
@@ -52,6 +70,23 @@ public class PlayerScript : MonoBehaviour, IUnique
     // Update is called once per frame
     void Update()
     {
+        //play death animation when dead if haven't already (fixes bug that plays idle_engage before death can start playing)
+        if (animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "Death" && GetComponent<HealthTracker>().healthSystem.getHealth() <= 0)
+            onDeath();
+
+        //if flag is true and HP bar is all the way down
+        if (killPlayer && GetComponent<HealthTracker>().GetTrueFillAmount() <= 0)
+        {
+            if(DeathDelayTimer > 0)
+                DeathDelayTimer -= Time.deltaTime;
+            if(DeathDelayTimer <= 0)
+            {
+                EntityManager.PlayerDied();
+                killPlayer = false;
+            }
+                
+        }
+            
     }
 
     void LateUpdate()

@@ -63,7 +63,7 @@ public class HealthTracker : MonoBehaviour, IDamagable
                 damagedBarImage.fillAmount -= shrinkSpeed * Time.deltaTime;
                 //once grey bar decreases
                 if(damagedBarImage.fillAmount == 0){
-                    //gameObject.GetComponent<HealthTracker>().enabled = false;
+                    
                 }
             }
         }
@@ -77,6 +77,10 @@ public class HealthTracker : MonoBehaviour, IDamagable
     }
     void SetHealth(float health){
         HPBar.fillAmount = health;
+    }
+    public float GetTrueFillAmount()
+    {
+        return damagedBarImage.fillAmount;
     }
 
     //implement IDamagable interface
