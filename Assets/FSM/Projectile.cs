@@ -13,6 +13,8 @@ public class Projectile : MonoBehaviour
     private void Start()
     {
         targetPosition = GameObject.FindWithTag("Player").transform;
+
+        // normal shoot at player the player
         Vector2 playerPosition = new Vector2(targetPosition.position.x, targetPosition.position.y);
         //transform.rotation = Quaternion.LookRotation(playerPosition);
         previousPosition = targetPosition.position;
@@ -23,14 +25,13 @@ public class Projectile : MonoBehaviour
         // Randomize angle variation between bullets
         float spreadAngle = Random.Range(-20, 20);
 
-        // Take the random angle variation and add it to the initial
-        // desiredDirection (which we convert into another angle), which in this case is the players aiming direction
+       
+       // spread shots at the player
         var x = transform.position.x - targetPosition.transform.position.x;
         var y = transform.position.y - targetPosition.transform.position.y;
         float rotateAngle = spreadAngle + (Mathf.Atan2(y, x) * Mathf.Rad2Deg);
                 
-// Calculate the new direction we will move in which takes into account 
-// the random angle generated
+
         shootDirection = new Vector2(Mathf.Cos(rotateAngle * Mathf.Deg2Rad), Mathf.Sin(rotateAngle * Mathf.Deg2Rad)).normalized;
         shootDirection *= -1;
 
