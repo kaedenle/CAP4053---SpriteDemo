@@ -19,7 +19,6 @@ public class Hurtbox : MonoBehaviour, IDamagable
     //misc variables
     private Animator animator;
     private bool FlashFlag = false;
-    private bool PauseFlashCheck = false;
     private float FlashTimer;
 
     //CHANGE THIS TO ARRAY (for children detection)
@@ -29,16 +28,21 @@ public class Hurtbox : MonoBehaviour, IDamagable
     private Shader OriginalShader;
     public void damage(Vector3 knockback, int damage, float hitstun, float hitstop)
     {
-        hitstunTimer = hitstun;
-        inHitStun = true;
-        //CHANGE LOGIC HERE TO ROUTE TO HITSTUN ANIMATION
-        if (uniqueScript == null)
+        
+        //if not dead play hitstun animation
+        if(GetComponent<HealthTracker>().healthSystem.getHealth() > 0)
         {
-            if (animator != null) animator.Play(default_ani);
-        }
-        else
-        {
-            uniqueScript.HitStunAni();
+            hitstunTimer = hitstun;
+            inHitStun = true;
+            //CHANGE LOGIC HERE TO ROUTE TO HITSTUN ANIMATION
+            if (uniqueScript == null)
+            {
+                if (animator != null) animator.Play(default_ani);
+            }
+            else
+            {
+                uniqueScript.HitStunAni();
+            }
         }
 
         //get rid of hitboxes if you've just been hit (circumvent bug)
@@ -80,7 +84,6 @@ public class Hurtbox : MonoBehaviour, IDamagable
         {
             piece.material.shader = OriginalShader;
         }
-        PauseFlashCheck = false;
     }
 
     // Start is called before the first frame update
