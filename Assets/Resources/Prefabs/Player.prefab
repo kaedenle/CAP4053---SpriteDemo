@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 4459850622582732022}
   - component: {fileID: 153283122}
   - component: {fileID: 3393781334134885235}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ Transform:
   m_GameObject: {fileID: 6197798176421269809}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.9447, y: 6.0153, z: 0}
-  m_LocalScale: {x: 0.9158, y: 0.9158, z: 0}
+  m_LocalScale: {x: 0.8186611, y: 0.8186611, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6197798177016697438}
@@ -227,8 +227,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 359116491
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -267,13 +267,14 @@ MonoBehaviour:
   BlendTree: Idle_E
   spriteList:
   - {fileID: -1209616074, guid: f5fc1fe8bc349d74d84152148774c8e2, type: 3}
-  - {fileID: 21300000, guid: 8e978cfcffa18cf4282451a55cb5b215, type: 3}
+  - {fileID: 21300000, guid: dc770ace5941049438a3e32fdea8e103, type: 3}
   weaponID: 0
   sr: {fileID: 8340756177781156867}
   equiped: 0
   wpnList:
     weaponlist: []
     index: 0
+  hrtbx: {fileID: 0}
 --- !u!114 &6197798176421269817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,6 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4abf5276bc24cc44b687f04ee394caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inHitStun: 0
   default_ani: Idle
 --- !u!114 &3393781334134885235
 MonoBehaviour:
@@ -502,7 +504,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6197798177016697438}
   - component: {fileID: 6197798177016697439}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Left Arm
   m_TagString: Player
   m_Icon: {fileID: 0}
