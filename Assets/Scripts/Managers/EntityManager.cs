@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EntityManager : MonoBehaviour
 {
-    private static bool _movementEnabled = true, _uiInteractable = true, _envInteractable = true, _attackEnabled = true;
+    private static bool _movementEnabled = true, _uiInteractable = true, _envInteractable = true, _attackEnabled = true, _swapEnabled = true, _equipEnabled;
     private static bool _pause = false;
 
     public static bool IsPaused()
@@ -19,6 +19,8 @@ public class EntityManager : MonoBehaviour
         DisableAttack();
         DisableEnvironmentInteractable();
         DisableUIInteractable();
+        DisableSwap();
+        DisableEquip();
         Time.timeScale = 0;
     }
 
@@ -29,9 +31,35 @@ public class EntityManager : MonoBehaviour
         EnableAttack();
         EnableEnvironmentInteractable();
         EnableUIInteractable();
+        EnableEquip();
+        EnableSwap();
         Time.timeScale = 1;
     }
-
+    public static void EnableSwap()
+    {
+        _swapEnabled = true;
+    }
+    public static void DisableSwap()
+    {
+        _swapEnabled = false;
+    }
+    public static bool SwapEnabled()
+    {
+        return _swapEnabled;
+    }
+    public static void EnableEquip()
+    {
+        _equipEnabled = true;
+    }
+    
+    public static void DisableEquip()
+    {
+        _swapEnabled = false;
+    }
+    public static bool EquipEnabled()
+    {
+        return _swapEnabled;
+    }
     public static bool MovementEnabled()
     {
         return _movementEnabled;
@@ -101,4 +129,6 @@ public class EntityManager : MonoBehaviour
     {
         return _envInteractable;
     }
+
+    
 }

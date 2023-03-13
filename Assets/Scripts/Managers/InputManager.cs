@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    private static bool _interact, _attack, _move, _ui;
+    private static bool _interact, _attack, _move, _ui, _equip, _swap;
 
     public enum Keys
     {
@@ -12,7 +12,8 @@ public class InputManager : MonoBehaviour
         Hit1 = KeyCode.Mouse0,
         Hit2 = KeyCode.Mouse1,
         Pause = KeyCode.Escape,
-
+        Equip = KeyCode.LeftShift,
+        Swap = KeyCode.LeftControl
     }
 
     public static float GetAxis(string axisName)
@@ -46,6 +47,14 @@ public class InputManager : MonoBehaviour
             case Keys.Pause:
                 real_key = KeyCode.Escape;
                 break;
+            case Keys.Equip:
+                if(_equip)
+                    real_key = KeyCode.LeftShift;
+                break;
+            case Keys.Swap:
+                if(_swap)
+                    real_key = KeyCode.LeftControl;
+                break;
         }
 
         return Input.GetKeyDown(real_key);
@@ -72,6 +81,15 @@ public class InputManager : MonoBehaviour
         return _attack && KeyPressed(Keys.Hit2);
     }
 
+    public static bool SwapKeyDown()
+    {
+        return _swap && KeyPressed(Keys.Swap);
+    }
+
+    public static bool EquipKeyDown()
+    {
+        return _equip && KeyPressed(Keys.Equip);
+    }
     // get the booleans here if necessary (they will also be in EntityManager)
     public static bool CanAttack()
     {
@@ -93,6 +111,15 @@ public class InputManager : MonoBehaviour
         return _interact;
     }
 
+    public static bool CanSwap()
+    {
+        return _swap;
+    }
+
+    public static bool CanEquip()
+    {
+        return _equip;
+    }
 
     void Update()
     {
@@ -100,5 +127,7 @@ public class InputManager : MonoBehaviour
         _attack = EntityManager.AttacktEnabled();
         _move = EntityManager.MovementEnabled();
         _ui = EntityManager.IsUIInteractable();
+        _equip = EntityManager.EquipEnabled();
+        _swap = EntityManager.SwapEnabled();
     }
 }

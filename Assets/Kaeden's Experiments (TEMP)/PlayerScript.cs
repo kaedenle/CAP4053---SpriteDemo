@@ -26,8 +26,8 @@ public class PlayerScript : MonoBehaviour, IUnique
         am.ScriptActivate(AttackManager.ScriptTypes.Movement);
         if (Ammo > 0 && animator.GetFloat("shooting") == 0)
         {
-            wm.equipInput = false;
-            wm.swapInput = false;
+            EntityManager.DisableEquip();
+            EntityManager.DisableSwap();
             animator.SetFloat("shooting", 1);
             Ammo -= 1;
             EntityManager.DisableAttack();
@@ -39,17 +39,17 @@ public class PlayerScript : MonoBehaviour, IUnique
     {
         if(Ammo > 0)
         {
-            wm.equipInput = true;
-            wm.swapInput = true;
+            EntityManager.EnableSwap();
+            EntityManager.EnableEquip();
             animator.SetFloat("shooting", 0);
             EntityManager.EnableAttack();
         }
         else
         {
             //disable movement and set to reload
+            am.ScriptDeactivate(AttackManager.ScriptTypes.Movement);
             animator.SetFloat("shooting", 2);
             animator.Play("Buffer", 1);
-            am.ScriptDeactivate(AttackManager.ScriptTypes.Movement);
         }
         
     }
@@ -57,8 +57,8 @@ public class PlayerScript : MonoBehaviour, IUnique
     public void CleanShoot()
     {
         am.ScriptActivate(AttackManager.ScriptTypes.Movement);
-        wm.equipInput = true;
-        wm.swapInput = true;
+        EntityManager.EnableSwap();
+        EntityManager.EnableEquip();
         animator.SetFloat("shooting", 0);
         animator.Play("Idle", 1);
         Ammo = MaxAmmo;
@@ -80,6 +80,17 @@ public class PlayerScript : MonoBehaviour, IUnique
         //disable all scripts
         Hurtbox hrt = gameObject?.GetComponent<Hurtbox>();
         IScriptable[] list = hrt != null ? hrt.scriptableScripts : GetComponents<IScriptable>();
+        //reset projectile variables
+        animator.SetLayerWeight(1, 0);
+        animator.SetFloat("shooting", 0);
+        //disable all your inputs
+        EntityManager.DisableSwap();
+        EntityManager.DisableEquip();
+        EntityManager.DisableAttack();
+
+        //disable own collider on Body
+        transform.Find("Body").GetComponent<BoxCollider2D>().enabled = false;
+
         foreach (IScriptable script in list)
             script.ScriptHandler(false);
 
@@ -106,6 +117,9 @@ public class PlayerScript : MonoBehaviour, IUnique
             animator.Play("Idle_E");
         else
             animator.Play("Idle");
+
+        //getting hit while reloading (reload for you then transition)
+        if(animator.GetFloat("shooting") == 2) CleanShoot();
     }
 
     void Awake()
@@ -140,7 +154,10 @@ public class PlayerScript : MonoBehaviour, IUnique
             }
                 
         }
-            
+        //kill yourself
+        if (Input.GetKeyDown(KeyCode.Space))
+            GetComponent<HealthTracker>().healthSystem.Damage(10000);
+
     }
 
     void LateUpdate()

@@ -75,7 +75,7 @@ public class HealthTracker : MonoBehaviour, IDamagable
             if (unique != null) unique.onDeath();
         }
     }
-    void SetHealth(float health){
+    public void SetHealth(float health){
         HPBar.fillAmount = health;
     }
     public float GetTrueFillAmount()

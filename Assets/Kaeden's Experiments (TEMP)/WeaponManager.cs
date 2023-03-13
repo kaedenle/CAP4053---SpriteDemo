@@ -8,9 +8,6 @@ public class WeaponManager : MonoBehaviour, IScriptable
 
     public Sprite[] spriteList;
     public int weaponID;
-    public bool swapInput = true;
-    public bool equipInput = true;
-
     public SpriteRenderer sr;
     private Animator animator;
     public bool equiped;
@@ -54,13 +51,13 @@ public class WeaponManager : MonoBehaviour, IScriptable
         //Access the Animation clip name
         //Debug.Log(m_CurrentClipInfo[0].clip.name);
 
-        bool swap = Input.GetButtonDown("Fire1");
-        bool equip_press = Input.GetButtonDown("Fire3");
+        //bool swap = Input.GetButtonDown("Fire1");
+        //bool equip_press = Input.GetButtonDown("Fire3");
         equiped = animator.GetBool("equiped");
 
         //toggle between not equiped and equiped
         //Only when you aren't attacking
-        if(equip_press && animator.GetFloat("attack") == 0 && equipInput){
+        if(InputManager.EquipKeyDown() && animator.GetFloat("attack") == 0){
             //disable weapon from rendering if it's not out
             if (!equiped)
                 onhand.enabled = true;
@@ -77,7 +74,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
         }
 
         else if(equiped){
-            if(swap && animator.GetFloat("attack") == 0 && swapInput){
+            if(InputManager.SwapKeyDown() && animator.GetFloat("attack") == 0){
                 wpnList.index += 1;
                 wpnList.index %= wpnList.weaponlist.Length;
                 //set animation to follow weapon's ID
