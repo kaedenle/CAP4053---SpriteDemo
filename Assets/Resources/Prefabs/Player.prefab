@@ -264,11 +264,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9df0a375d650574f837748d1abc24db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlendTree: Idle_E
   spriteList:
   - {fileID: -1209616074, guid: f5fc1fe8bc349d74d84152148774c8e2, type: 3}
   - {fileID: 21300000, guid: dc770ace5941049438a3e32fdea8e103, type: 3}
+  - {fileID: 21300000, guid: c1be47631819d024988780c53f9ce44f, type: 3}
   weaponID: 0
+  swapInput: 1
+  equipInput: 1
   sr: {fileID: 8340756177781156867}
   equiped: 0
   wpnList:
@@ -332,6 +334,7 @@ MonoBehaviour:
   moveContainer:
   - {fileID: 4900000, guid: 4ccd3bdf65ab2f24d8ef550b6652a892, type: 3}
   - {fileID: 4900000, guid: 7c785d1dfc5c7a74aa6b84c64c8e4bae, type: 3}
+  - {fileID: 4900000, guid: 2ab194538fe82f447b7746a732f002ac, type: 3}
   framedata:
     framedata: []
     damage: 0
@@ -383,6 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4be3dd96b49c2342ac6cb9d03b049ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxAmmo: 5
 --- !u!1 &6197798177006665903
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,7 +744,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.8, y: 4.8}
+  m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -771,7 +775,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9056604147769991447}
   m_LocalRotation: {x: 0, y: 0, z: -0.15589146, w: 0.9877742}
-  m_LocalPosition: {x: 0.039, y: -0.716, z: 0}
+  m_LocalPosition: {x: 0.128, y: -0.441, z: 0}
   m_LocalScale: {x: 0.18455341, y: 0.1645294, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -820,12 +824,12 @@ SpriteRenderer:
   m_SortingLayerID: 359116491
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: -1209616074, guid: f5fc1fe8bc349d74d84152148774c8e2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c1be47631819d024988780c53f9ce44f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 9.6, y: 3.2}
+  m_Size: {x: 4.86, y: 4.86}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

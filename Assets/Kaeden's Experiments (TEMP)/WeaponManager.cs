@@ -6,9 +6,10 @@ using System;
 public class WeaponManager : MonoBehaviour, IScriptable
 {
 
-    public string BlendTree = "Idle_E";
     public Sprite[] spriteList;
     public int weaponID;
+    public bool swapInput = true;
+    public bool equipInput = true;
 
     public SpriteRenderer sr;
     private Animator animator;
@@ -17,6 +18,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
     private Rigidbody2D body;
     public AttackManager.WeaponList wpnList = new AttackManager.WeaponList();
     public Hurtbox hrtbx;
+    private SpriteRenderer onhand;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
         animator = gameObject.GetComponent<Animator>();
         wpnList = gameObject.GetComponent<AttackManager>().wpnList;
         hrtbx = gameObject?.GetComponent<Hurtbox>();
+        onhand = gameObject.transform.Find("Right Arm").Find("On-Hand").GetComponent<SpriteRenderer>();
     }
     
     //scripts to be disabled/enabled when attacking
@@ -57,27 +60,24 @@ public class WeaponManager : MonoBehaviour, IScriptable
 
         //toggle between not equiped and equiped
         //Only when you aren't attacking
-        if(equip_press && animator.GetFloat("attack") == 0){
-            if(!equiped)
-                animator.Play(BlendTree);
+        if(equip_press && animator.GetFloat("attack") == 0 && equipInput){
+            //disable weapon from rendering if it's not out
+            if (!equiped)
+                onhand.enabled = true;
             else
-                animator.Play("Idle");
+                onhand.enabled = false;
             animator.SetBool("equiped", !equiped);
             //set animation to follow weapon's ID
             animator.SetFloat("weapon", wpnList.weaponlist[wpnList.index].ID);
         }
 
-        if (!equiped && (animator.GetCurrentAnimatorClipInfo(0).Length > 0 && animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == BlendTree))
-        {
-            animator.Play("Idle");
-        }
 
         if(!equiped){
             sr.sprite = null;
         }
 
         else if(equiped){
-            if(swap){
+            if(swap && animator.GetFloat("attack") == 0 && swapInput){
                 wpnList.index += 1;
                 wpnList.index %= wpnList.weaponlist.Length;
                 //set animation to follow weapon's ID

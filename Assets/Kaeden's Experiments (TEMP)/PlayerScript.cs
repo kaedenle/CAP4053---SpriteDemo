@@ -10,6 +10,10 @@ public class PlayerScript : MonoBehaviour, IUnique
     private bool killPlayer = false;
     private float DeathDelayTimer;
     private float MAX_DEATH_TIMER = 1.5f;
+    public int MaxAmmo;
+    private int Ammo;
+    private AttackManager am;
+    private WeaponManager wm;
     
     public void EffectManager(string funct)
     {
@@ -17,12 +21,55 @@ public class PlayerScript : MonoBehaviour, IUnique
         Invoke(funct, 0f);
     }
 
+    public void Shoot()
+    {
+        am.ScriptActivate(AttackManager.ScriptTypes.Movement);
+        if (Ammo > 0 && animator.GetFloat("shooting") == 0)
+        {
+            wm.equipInput = false;
+            wm.swapInput = false;
+            animator.SetFloat("shooting", 1);
+            Ammo -= 1;
+            EntityManager.DisableAttack();
+        }
+        //animator.SetFloat("attack", 0);
+    }
+
+    public void UnShoot()
+    {
+        if(Ammo > 0)
+        {
+            wm.equipInput = true;
+            wm.swapInput = true;
+            animator.SetFloat("shooting", 0);
+            EntityManager.EnableAttack();
+        }
+        else
+        {
+            //disable movement and set to reload
+            animator.SetFloat("shooting", 2);
+            animator.Play("Buffer", 1);
+            am.ScriptDeactivate(AttackManager.ScriptTypes.Movement);
+        }
+        
+    }
+    //set variables associated with reload animation
+    public void CleanShoot()
+    {
+        am.ScriptActivate(AttackManager.ScriptTypes.Movement);
+        wm.equipInput = true;
+        wm.swapInput = true;
+        animator.SetFloat("shooting", 0);
+        animator.Play("Idle", 1);
+        Ammo = MaxAmmo;
+        EntityManager.EnableAttack();
+    }
+
     private void Sword1()
     {
         bool flipped = animator.GetBool("flipped");
         Vector3 move = new Vector3(30, 0, 0);
         if (flipped) move *= -1;
-
         body.AddForce(move, ForceMode2D.Impulse);
     }
 
@@ -61,17 +108,24 @@ public class PlayerScript : MonoBehaviour, IUnique
             animator.Play("Idle");
     }
 
+    void Awake()
+    {
+        //DontDestroyOnLoad(this.gameObject);
+    }
     void Start()
     {
         body = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
+        wm = gameObject.GetComponent<WeaponManager>();
+        am = gameObject.GetComponent<AttackManager>();
+        Ammo = MaxAmmo;
     }
 
     // Update is called once per frame
     void Update()
     {
         //play death animation when dead if haven't already (fixes bug that plays idle_engage before death can start playing)
-        if (animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "Death" && GetComponent<HealthTracker>().healthSystem.getHealth() <= 0)
+        if ((animator.GetCurrentAnimatorClipInfo(0).Length > 0 && animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "Death") && GetComponent<HealthTracker>().healthSystem.getHealth() <= 0)
             onDeath();
 
         //if flag is true and HP bar is all the way down

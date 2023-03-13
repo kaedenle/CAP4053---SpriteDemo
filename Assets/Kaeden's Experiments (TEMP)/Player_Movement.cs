@@ -45,9 +45,12 @@ public class Player_Movement : MonoBehaviour, IScriptable
     }
     //what happens when toggle
     public void ScriptHandler(bool flag){
-        if(!flag)
+        //stop moving so you can transition to idle in animator
+        /*if(!flag && animator.GetFloat("weapon") != 2)
             animator.SetFloat("movement", 0);
         else
+            cleanUp();*/
+        if (flag)
             cleanUp();
         this.enabled = flag;
     }
@@ -61,7 +64,7 @@ public class Player_Movement : MonoBehaviour, IScriptable
 
     public void DisableByID(int ID)
     {
-        animator.SetFloat("movement", 0);
+        //if(animator.GetFloat("weapon") != 2) animator.SetFloat("movement", 0);
         //move_flag = false;
         if (ID == 0)
             this.enabled = false;
@@ -72,7 +75,7 @@ public class Player_Movement : MonoBehaviour, IScriptable
         animator.ResetTrigger("Attack");
         //tell animator you're no longer attacking (for blend tree)
         animator.SetFloat("attack", 0);
-        animator.Play(gameObject.GetComponent<WeaponManager>().BlendTree);
+        animator.Play("Idle_E");
     }
 
     void FixedUpdate()
