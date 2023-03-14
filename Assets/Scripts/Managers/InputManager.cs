@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
+    // _interact specifies whether the player can interact with the enviornment
+    // _attack holds whether the player can attack
+    // _move holds whether the player can move
+    // _ui holds whether the user can interact w/ any UI components
     private static bool _interact, _attack, _move, _ui, _equip, _swap;
 
     public enum Keys
@@ -47,16 +51,19 @@ public class InputManager : MonoBehaviour
             case Keys.Pause:
                 real_key = KeyCode.Escape;
                 break;
+
             case Keys.Equip:
                 if(_equip)
                     real_key = KeyCode.LeftShift;
                 break;
+
             case Keys.Swap:
                 if(_swap)
                     real_key = KeyCode.LeftControl;
                 break;
         }
 
+        // default case (just return default)
         return Input.GetKeyDown(real_key);
     }
 
