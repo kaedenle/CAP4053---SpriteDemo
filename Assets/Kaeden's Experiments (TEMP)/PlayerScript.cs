@@ -21,7 +21,9 @@ public class PlayerScript : MonoBehaviour, IUnique
     private int Ammo;
     //cancel: "did player press?"
     //ShootAgain: "is my window open?"
+    [HideInInspector]
     public bool cancel = false;
+    [HideInInspector]
     public bool ShootAgain = false;
 
     //Variables to handle bug that sees you locked in place (very scuffed)

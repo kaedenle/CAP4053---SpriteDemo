@@ -330,7 +330,17 @@ public class AttackManager : MonoBehaviour
         }
     }
     //-----------------------------HELPER FUNCTIONS----------------------------------------------------------
-    
+    public bool HasHitSomething()
+    {
+        if (alreadyDamaged.Count > 0)
+            return true;
+        return false;
+    }
+
+    public int NumberHitSomething()
+    {
+        return alreadyDamaged.Count;
+    }
     // Update is called once per frame
     void Update()
     {

@@ -8,11 +8,18 @@ public class Bullet : MonoBehaviour
     private Vector3 shootDirection;
     public float speed;
     private GameObject ShotFrom;
+    private AttackManager am;
+    //0 means infinite piercing
+    public int piercing;
 
+    void Awake()
+    {
+        am = gameObject?.GetComponent<AttackManager>();
+    }
     public void InitBullet(GameObject ShotFrom)
     {
         
-        AttackManager am = gameObject?.GetComponent<AttackManager>();
+        
         this.ShotFrom = ShotFrom;
 
         //permenatly set hitbox on bullet
@@ -31,5 +38,8 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         transform.position += (shootDirection * speed * Time.deltaTime);
+        //single hit
+        if (am.NumberHitSomething() >= piercing && piercing > 0)
+            Destroy(gameObject);
     }
 }
