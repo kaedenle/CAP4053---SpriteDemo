@@ -4,24 +4,38 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour, IUnique
 {
-    // Start is called before the first frame update
+    //Object References
     private Animator animator;
     private Rigidbody2D body;
+    private AttackManager am;
+    private WeaponManager wm;
+
+    //Death Handling
     private bool killPlayer = false;
     private float DeathDelayTimer;
     private float MAX_DEATH_TIMER = 1.5f;
+
+    //Projectile Variables
     public int MaxAmmo;
+    public GameObject bullet;
     private int Ammo;
-    private AttackManager am;
-    private WeaponManager wm;
-    
+    //cancel: "did player press?"
+    //ShootAgain: "is my window open?"
+    public bool cancel = false;
+    public bool ShootAgain = false;
+
+    //Variables to handle bug that sees you locked in place (very scuffed)
+    private bool ShootEnd = true;
+    private float ShootEndTimer;
+    private float MAX_SHOOT_TIMER = 10f;
+
     public void EffectManager(string funct)
     {
         //call function via string reference
         Invoke(funct, 0f);
     }
 
-    public void Shoot()
+    public void StartShoot()
     {
         am.ScriptActivate(AttackManager.ScriptTypes.Movement);
         if (Ammo > 0 && animator.GetFloat("shooting") == 0)
@@ -29,20 +43,28 @@ public class PlayerScript : MonoBehaviour, IUnique
             EntityManager.DisableEquip();
             EntityManager.DisableSwap();
             animator.SetFloat("shooting", 1);
-            Ammo -= 1;
-            EntityManager.DisableAttack();
+            ShootAgain = false;
+            cancel = false;
         }
         //animator.SetFloat("attack", 0);
     }
-
+    public void Shoot()
+    {
+        if (Ammo > 0)
+        {
+            Ammo -= 1;
+            GameObject proj = Instantiate(bullet, transform.Find("Right Arm").Find("On-Hand").transform.position, Quaternion.identity);
+            Bullet bulScript = proj?.GetComponent<Bullet>();
+            if (bulScript != null) bulScript.InitBullet(gameObject);
+        }
+    }
     public void UnShoot()
     {
-        if(Ammo > 0)
+        if (Ammo > 0)
         {
             EntityManager.EnableSwap();
             EntityManager.EnableEquip();
             animator.SetFloat("shooting", 0);
-            EntityManager.EnableAttack();
         }
         else
         {
@@ -50,6 +72,10 @@ public class PlayerScript : MonoBehaviour, IUnique
             am.ScriptDeactivate(AttackManager.ScriptTypes.Movement);
             animator.SetFloat("shooting", 2);
             animator.Play("Buffer", 1);
+
+            //just in case rare bug happens
+            ShootEnd = false;
+            ShootEndTimer = MAX_SHOOT_TIMER;
         }
         
     }
@@ -62,7 +88,13 @@ public class PlayerScript : MonoBehaviour, IUnique
         animator.SetFloat("shooting", 0);
         animator.Play("Idle", 1);
         Ammo = MaxAmmo;
-        EntityManager.EnableAttack();
+        ShootEnd = true;
+        cancel = false;
+    }
+
+    public void CancelShoot()
+    {
+        ShootAgain = true;
     }
 
     private void Sword1()
@@ -158,8 +190,23 @@ public class PlayerScript : MonoBehaviour, IUnique
         if (Input.GetKeyDown(KeyCode.Space))
             GetComponent<HealthTracker>().healthSystem.Damage(10000);
 
-    }
+        //This code fixes a rare bug that locks player in place after shooting
+        if (!ShootEnd && ShootEndTimer > 0) ShootEndTimer -= Time.deltaTime;
+        if(!ShootEnd && ShootEndTimer <= 0)
+        {
+            CleanShoot();
+        }
 
+        //if detect cancel
+        if(cancel && ShootAgain)
+        {
+            cancel = false;
+            ShootAgain = false;
+            UnShoot();
+            am.InvokeAttack(3);
+        }
+
+    }
     void LateUpdate()
     {
         bool flipped = animator.GetBool("flipped");

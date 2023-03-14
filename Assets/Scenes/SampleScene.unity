@@ -789,7 +789,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 1}
   m_FlipX: 0
@@ -823,6 +823,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3393781334134885235, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 662058475778597127, guid: c0f36b8081129474fb1f0ada3edff123, type: 3}
+    - target: {fileID: 3393781334134885235, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
+      propertyPath: BulletJsonData
+      value: 
+      objectReference: {fileID: 4900000, guid: a7b9be4854fdbb441a4dc1f0179ac6e8, type: 3}
+    - target: {fileID: 4882800724603097693, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882800724603097693, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882800724603097693, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882800724603097693, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882800724603097693, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882800724603097693, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882800724603097693, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6197798176421269809, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_Name
       value: Player
@@ -869,6 +905,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6197798176421269814, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802820891676576214, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
+      propertyPath: m_WasSpriteAssigned
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

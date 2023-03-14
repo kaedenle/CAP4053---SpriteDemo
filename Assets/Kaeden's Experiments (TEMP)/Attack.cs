@@ -31,4 +31,17 @@ public class Attack
         this.damage = damage;
         this.knockback = knockback;
     }
+    public Attack()
+    {
+        this.damage = 0;
+        this.knockback = 0;
+        this.frame = 0;
+        this.hitstun = 0;
+        this.x_knockback = 0;
+        this.y_knockback = 0;
+        this.x_pos = 0;
+        this.y_pos = 0;
+        this.x_scale = 0;
+        this.y_scale = 0;
+    }
 }

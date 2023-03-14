@@ -31,7 +31,7 @@ public class AttackManager : MonoBehaviour
     private HashSet<Collider2D> alreadyDamaged = new HashSet<Collider2D>();
 
     //technical information
-    public bool active;
+    public bool active = false;
     private bool cancellableFlag = false;
     private IUnique uniqueScript;
     [HideInInspector]
@@ -70,12 +70,11 @@ public class AttackManager : MonoBehaviour
     public FrameData framedata = new FrameData();
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        active = false;
         HBList.Clear();
-        uniqueScript = GetComponent<IUnique>();
-        animator = GetComponent<Animator>();
+        uniqueScript = this?.GetComponent<IUnique>();
+        animator = this?.GetComponent<Animator>();
         //variable for others to grab
         if(weaponList != null)
             wpnList = JsonUtility.FromJson<WeaponList>(weaponList.text);
@@ -105,22 +104,6 @@ public class AttackManager : MonoBehaviour
         HBList.Clear();
     }
 
-    private void UpdateHitboxInfo(Hitbox hb, Attack atk){
-        hb.SetAuxillaryValues(framedata.hitstop, framedata.hitsTag, framedata.relativeKnockback, framedata.functCall);
-        //set default value (when frame's damage/knockback is 0)
-        atk.damage = atk.damage == 0 ? framedata.damage : atk.damage;
-        atk.knockback = atk.knockback == 0 ? framedata.knockback : atk.knockback;
-        atk.hitstun = atk.hitstun == 0 ? framedata.hitstun : atk.hitstun;
-        atk.x_knockback = atk.x_knockback == 0 ? framedata.x_knockback : atk.x_knockback;
-        atk.y_knockback = atk.y_knockback == 0 ? framedata.y_knockback : atk.y_knockback;
-        hb.Atk = atk;
-        //set position and scale, then fix rotation
-        hb.gameObject.transform.localPosition = new Vector3(hb.Atk.x_pos, hb.Atk.y_pos, 0);
-        hb.gameObject.transform.localScale = new Vector3(hb.Atk.x_scale, hb.Atk.y_scale, 0);
-        hb.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
-        hb.Activate();
-    }
-
     private void ProvisionHitboxes(int frameCount){
         if (!frames.ContainsKey(frameCount))
             return;
@@ -132,7 +115,7 @@ public class AttackManager : MonoBehaviour
             //create hitboxes if need more
             if (counter >= HBListLength)
                 CreateHitbox(a);
-            UpdateHitboxInfo(HBList[counter], a);
+            HBList[counter].UpdateHitboxInfo(framedata, a);
             counter += 1;
         }
 
@@ -213,9 +196,6 @@ public class AttackManager : MonoBehaviour
             int tmp = bufferCancel;
             DestroyPlay();
             InvokeAttack(tmp);
-            //float animationTime = cancellableSet[tmp] / (animator.GetCurrentAnimatorClipInfo(0)[0].clip.frameRate * animator.GetCurrentAnimatorClipInfo(0)[0].clip.length);
-            //Debug.Log(animator.GetCurrentAnimatorClipInfo(0)[0].clip.length + " " + animationTime);
-            animator.Play(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
             cancellableFlag = false;
         }
     }
@@ -247,13 +227,15 @@ public class AttackManager : MonoBehaviour
     //For animator's use
     public void StartPlay(int moveIndex){
         //get current animation to keep track of current animation frame (attach hitboxes to animation)
-        Debug.Log(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+        if(animator != null) Debug.Log(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
         
         //get framedata
         framedata = JsonUtility.FromJson<FrameData>(moveContainer[moveIndex % moveContainer.Length].text);
-
         //load cancellable moves for O(1) entry
         cancellableSet.Clear();
+        if (framedata.cancelBy == null)
+            framedata.cancelBy = new int[0];
+
         for(int i = 0; i < framedata.cancelBy.Length; i++)
         {
             cancellableSet.Add(framedata.cancelBy[0]);
@@ -270,7 +252,7 @@ public class AttackManager : MonoBehaviour
         active = true;
         ProvisionHitboxes(0);
         //apply function effect (on first frame of attack)
-        if(framedata.functCall != null || framedata.functCall == "")
+        if((framedata.functCall != null || framedata.functCall == "") && uniqueScript != null)
             uniqueScript.EffectManager(framedata.functCall);
     }
 
@@ -348,14 +330,6 @@ public class AttackManager : MonoBehaviour
         }
     }
     //-----------------------------HELPER FUNCTIONS----------------------------------------------------------
-    private int GetAnimationFrame(){
-        AnimatorClipInfo[] m_CurrentClipInfo = animator.GetCurrentAnimatorClipInfo(0);
-        //(m_CurrentClipInfo[0].clip.name)
-        AnimatorStateInfo animationInfo = animator.GetCurrentAnimatorStateInfo(0);
-        float timeOfAnimation = GetComponent<Animator>().runtimeAnimatorController.animationClips[0].length;
-        int ret = ((int)(animationInfo.normalizedTime % 1 * (m_CurrentClipInfo[0].clip.length * m_CurrentClipInfo[0].clip.frameRate)));
-        return ret;
-    }
     
     // Update is called once per frame
     void Update()

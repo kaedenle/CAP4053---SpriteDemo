@@ -108,8 +108,15 @@ public class WeaponManager : MonoBehaviour, IScriptable
                 //Swing when press left click
                 if (InputManager.Hit1KeyDown() && wpnList.weaponlist[wpnList.index].attack1 != 0)
                 {
+                    //special case for shooting
+                    if(animator.GetFloat("shooting") > 0)
+                    {
+                        PlayerScript ps = GetComponent<PlayerScript>();
+                        if (ps.ShootAgain)
+                            ps.cancel = true;
+                    }
                     //call attack from integer (defined by Attack blend tree in animator)
-                    if (animator.GetFloat("attack") != 0)
+                    else if (animator.GetFloat("attack") != 0)
                         GetComponent<AttackManager>().bufferCancel = wpnList.weaponlist[wpnList.index].attack1;
                     else
                         GetComponent<AttackManager>().InvokeAttack(wpnList.weaponlist[wpnList.index].attack1);
@@ -118,7 +125,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
                     //gameObject.GetComponent<HealthTracker>().healthSystem.Damage(5);
                 }
                 //Swing when press right click
-                else if (InputManager.Hit2KeyDown() && wpnList.weaponlist[wpnList.index].attack2 != 0)
+                else if (InputManager.Hit2KeyDown() && wpnList.weaponlist[wpnList.index].attack2 != 0 && animator.GetFloat("shooting") == 0)
                 {
                     //call attack from integer (defined by Attack blend tree in animator)
                     if (animator.GetFloat("attack") != 0)

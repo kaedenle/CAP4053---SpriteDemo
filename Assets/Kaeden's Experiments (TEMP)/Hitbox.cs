@@ -36,6 +36,25 @@ public class Hitbox : MonoBehaviour
         this.relativeKnockback = relativeKnockback;
         this.functCall = funct;
     }
+    public void UpdateHitboxInfo(AttackManager.FrameData framedata, Attack atk)
+    {
+        SetAuxillaryValues(framedata.hitstop, framedata.hitsTag, framedata.relativeKnockback, framedata.functCall);
+        //set default value (when frame's damage/knockback is 0)
+        if (atk == null)
+            atk = new Attack();
+        atk.damage = atk.damage == 0 ? framedata.damage : atk.damage;
+        atk.knockback = atk.knockback == 0 ? framedata.knockback : atk.knockback;
+        atk.hitstun = atk.hitstun == 0 ? framedata.hitstun : atk.hitstun;
+        atk.x_knockback = atk.x_knockback == 0 ? framedata.x_knockback : atk.x_knockback;
+        atk.y_knockback = atk.y_knockback == 0 ? framedata.y_knockback : atk.y_knockback;
+        Atk = atk;
+
+        //set position and scale, then fix rotation
+        gameObject.transform.localPosition = new Vector3(Atk.x_pos, Atk.y_pos, 0);
+        gameObject.transform.localScale = new Vector3(Atk.x_scale, Atk.y_scale, 0);
+        gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        Activate();
+    }
 
     //draw hitbox
     private void OnDrawGizmos() {
@@ -110,7 +129,7 @@ public class Hitbox : MonoBehaviour
             angle.x *= -1;
         if(comp.y < 0)
             angle.y *= -1;
-        return angle;
+        return angle.normalized;
     }
 
     public void updateHitboxes() {

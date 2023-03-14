@@ -50,6 +50,8 @@ public class Player_Movement : MonoBehaviour, IScriptable
             animator.SetFloat("movement", 0);
         else
             cleanUp();*/
+        if(!flag)
+            animator.SetFloat("movement", 0);
         if (flag)
             cleanUp();
         this.enabled = flag;
@@ -65,6 +67,7 @@ public class Player_Movement : MonoBehaviour, IScriptable
     public void DisableByID(int ID)
     {
         //if(animator.GetFloat("weapon") != 2) animator.SetFloat("movement", 0);
+        animator.SetFloat("movement", 0);
         //move_flag = false;
         if (ID == 0)
             this.enabled = false;
