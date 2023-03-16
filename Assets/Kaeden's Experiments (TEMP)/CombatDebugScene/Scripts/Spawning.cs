@@ -57,15 +57,14 @@ public class Spawning : MonoBehaviour
             }
         }
     }
+    private static bool IsNull(GameObject go)
+    {
+        return go == null || go.name == "null";
+    }
+
     private void AutoUpdateList()
     {
-        foreach(GameObject go in AliveList)
-        {
-            if (go == null || go.name == "null")
-            {
-                AliveList.Remove(go);
-            }  
-        }
+        AliveList.RemoveAll(IsNull);
         UpdateGUI();
     }
     // Start is called before the first frame update
