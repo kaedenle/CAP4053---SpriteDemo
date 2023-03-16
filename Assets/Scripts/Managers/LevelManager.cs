@@ -20,7 +20,7 @@ public class LevelManager : MonoBehaviour
         _startScene = start;
     }
 
-    static void ResetVariables()
+    public static void ResetVariables()
     {
         _playerDied = false;
         _levelEnding = false;

@@ -11,6 +11,7 @@ public class FollowTarget : MonoBehaviour
     void Awake()
     {
         myRectTransform = GetComponent<RectTransform>();
+        myRectTransform.localScale = new Vector3(1, 1, 1);
     }
     // Update is called once per frame
     void Update()

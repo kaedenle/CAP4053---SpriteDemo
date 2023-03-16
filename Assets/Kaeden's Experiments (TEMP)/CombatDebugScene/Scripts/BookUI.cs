@@ -10,13 +10,14 @@ public class BookUI : MonoBehaviour
     public void ToggleBook()
     {
         IsOut = EntityManager.IsPaused();
-        gameObject.SetActive(IsOut);
-        if (IsOut) anim.SetTrigger("In");
-        else
+        if (!IsOut)
         {
             anim.ResetTrigger("In");
             anim.Play("Buffer");
         }
+        gameObject.SetActive(IsOut);
+        //gameObject.transform.GetChild(0).gameObject.SetActive(IsOut);
+        if (IsOut) anim.SetTrigger("In");
     }
 
     public void msg()

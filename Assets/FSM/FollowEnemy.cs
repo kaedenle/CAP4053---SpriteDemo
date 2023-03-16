@@ -22,6 +22,7 @@ public class FollowEnemy : MonoBehaviour, IScriptable
         sr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         healthTracker = GetComponent<HealthTracker>();
+        target = GameObject.Find("Player").transform;
     }
 
     //enable and disable script
@@ -67,6 +68,7 @@ public class FollowEnemy : MonoBehaviour, IScriptable
         if(Vector2.Distance(transform.position, target.position) > lineOfSightDistance)
         {
             transform.position = transform.position;
+            Debug.Log(Vector2.Distance(transform.position, target.position));
         }
         else
         {
