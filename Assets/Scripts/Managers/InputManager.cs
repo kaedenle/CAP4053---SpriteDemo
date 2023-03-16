@@ -17,7 +17,8 @@ public class InputManager : MonoBehaviour
         Hit2 = KeyCode.Mouse1,
         Pause = KeyCode.Escape,
         Equip = KeyCode.LeftShift,
-        Swap = KeyCode.LeftControl
+        Swap = KeyCode.LeftControl,
+        Continue = KeyCode.Space
     }
 
     public static float GetAxis(string axisName)
@@ -61,10 +62,20 @@ public class InputManager : MonoBehaviour
                 if(_swap)
                     real_key = KeyCode.LeftControl;
                 break;
+            
+            case Keys.Continue:
+                if(_ui)
+                    real_key = KeyCode.Space;
+                break;
         }
 
         // default case (just return default)
         return Input.GetKeyDown(real_key);
+    }
+
+    public static bool ContinueKeyPressed()
+    {
+        return _ui && KeyPressed(Keys.Continue);
     }
 
     // tells you whether a specific key was pressed
