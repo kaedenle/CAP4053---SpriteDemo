@@ -5,10 +5,12 @@ using TMPro;
 
 public class InteractiveUIController : MonoBehaviour
 {
-    private Queue<string> sentences;
-    private bool on;
     public TMP_Text textField;
-    UnityEngine.EventSystems.UIBehaviour[] allUI;
+    private Queue<string> sentences;
+    private UnityEngine.EventSystems.UIBehaviour[] allUI;
+    private bool on_using;
+    private bool on;
+    private float delay = 0.5F;
 
     // Start is called before the first frame update
     void Start()
@@ -17,12 +19,13 @@ public class InteractiveUIController : MonoBehaviour
         TurnUIOff();
         sentences = new Queue<string>();
         on = false;
+        on_using = false;
     }
 
     // check if the interactive needs to be triggered
     void Update()
     {
-        if(on && InputManager.ContinueKeyPressed())
+        if(on_using && InputManager.ContinueKeyPressed())
         {
             DisplayNextSentence();
         }
@@ -32,6 +35,7 @@ public class InteractiveUIController : MonoBehaviour
     public void StartInteractive(Interactive interactive)
     {
         on = true;
+        on_using = true;
         sentences.Clear();
         foreach (string sentence in interactive.GetSentences())
         {
@@ -59,15 +63,21 @@ public class InteractiveUIController : MonoBehaviour
     // returns if this UI is being used
     public bool IsActive()
     {
-        return on;
+        return on || on_using;
     }
 
     // end this interactive
     void EndInteractive()
     {
         Debug.Log("Ending Interactive...");
+        on_using = false;
         TurnUIOff();
-        // wait some # of seconds
+        StartCoroutine(WaitAndTurnOff());
+    }
+    IEnumerator WaitAndTurnOff()
+    {
+        //Wait for 4 seconds
+        yield return new WaitForSeconds(delay);
         on = false;
     }
 
