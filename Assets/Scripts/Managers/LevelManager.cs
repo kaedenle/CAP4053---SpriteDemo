@@ -9,15 +9,19 @@ public class LevelManager : MonoBehaviour
     private static ScenesManager.AllScenes _startScene;
     private static bool _playerDied = false;
 
-    void Start()
+    public void Start()
     {
+        Debug.Log("in Start of LevelManager()");
+        EntityManager.Pause();
         ResetVariables();
+        EntityManager.WaitThenUnpause(1.0F);
     }
 
-    protected void setInstance(LevelManager obj, ScenesManager.AllScenes start)
+    protected LevelManager setInstance(LevelManager obj, ScenesManager.AllScenes start)
     {
         Instance = obj;
         _startScene = start;
+        return this;
     }
 
     public static void ResetVariables()
@@ -36,6 +40,7 @@ public class LevelManager : MonoBehaviour
 
     public static void TriggerEnd()
     {
+        // EntityManager.Pause();
         ResetAllVariables();
         _levelEnding = true;
     }
@@ -65,7 +70,7 @@ public class LevelManager : MonoBehaviour
     public static void RestartLevel()
     {   
         ResetAllVariables();
-        EntityManager.Unpause(); // reset from player death
+        EntityManager.Pause(); // reset from player death
         if (Instance != null)
             ScenesManager.LoadScene(_startScene);
     }

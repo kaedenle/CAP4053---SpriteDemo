@@ -5,10 +5,10 @@ using UnityEngine;
 public class MobsterLevelManager : LevelManager
 {
     static bool _alleyGateOpen = false;
+    private static LevelManager parent;
 
     void Start()
     {
-        // stuff for the LevelManager
         setInstance(this, ScenesManager.AllScenes.MobsterRoadDemo);
     }
 

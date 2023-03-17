@@ -37,18 +37,6 @@ public class HubManager : MonoBehaviour
         return (int)tag == currentPhase;
     }
 
-    // awake is called before start
-    void Awake()
-    {
-
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //Debug.Log("called Start() in HubManager, current phase is " + currentPhase);
-    }
-
     public static void ResetVariables()
     {
         currentPhase = 0;

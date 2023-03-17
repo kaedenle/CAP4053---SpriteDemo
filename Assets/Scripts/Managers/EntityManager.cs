@@ -6,6 +6,12 @@ public class EntityManager : MonoBehaviour
 {
     private static bool _movementEnabled = true, _uiInteractable = true, _envInteractable = true, _attackEnabled = true, _swapEnabled = true, _equipEnabled;
     private static bool _pause = false;
+    private static EntityManager Instance;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     public static bool IsPaused()
     {
@@ -35,6 +41,18 @@ public class EntityManager : MonoBehaviour
         EnableSwap();
         Time.timeScale = 1;
     }
+
+    public static void WaitThenUnpause(float delay)
+    {
+        Instance.StartCoroutine(Instance.DoDelayedUnpause(delay));
+    }
+
+    IEnumerator DoDelayedUnpause(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        Unpause();
+    }
+
     public static void EnableSwap()
     {
         _swapEnabled = true;
