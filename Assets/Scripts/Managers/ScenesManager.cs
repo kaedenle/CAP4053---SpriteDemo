@@ -8,6 +8,7 @@ public class ScenesManager : MonoBehaviour
     public static ScenesManager Instance;
     private static ScenesManager.AllScenes _currentScene = AllScenes.Menu, _prevScene = AllScenes.Menu; // need to update these defaults after setting up central room
     private static bool _demo = false;
+    private static float nextSceneDelay = 1.0F;
     // update this enum whenever you add (or remove) a Scene (must be in same order as in building settings)
     // edit these names at your own risk; so many things use these, so you'll have to track them all down if
     // you want to change these (adding more is fine, as long as you add to the end)
@@ -30,7 +31,14 @@ public class ScenesManager : MonoBehaviour
     {
         _prevScene = _currentScene;
         _currentScene = scene;
-        SceneManager.LoadScene( (int) scene);
+        UIManager.EndScene();
+        Instance.StartCoroutine(LoadSceneAfterDelay((int)scene));
+    }
+
+    static IEnumerator LoadSceneAfterDelay(int build_idx)
+    {
+        yield return new WaitForSecondsRealtime(nextSceneDelay);
+        SceneManager.LoadScene( build_idx );
     }
 
     // loads a scene based on demo boolean

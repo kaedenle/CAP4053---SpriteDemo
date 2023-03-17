@@ -1,40 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
+// Assumption: There is only 1 animator child component attached to this game object
 public class LevelLoader : MonoBehaviour
 {
     private Animator animator;
     private string trigger = "play";
     private float transitionTime = 1f;
-
-
+    private bool triggered = false;
 
     void Start()
-    {
-        animator = gameObject.GetComponent<Animator>();
-        Debug.Log("grabbed animator");
+    {   
+        animator = gameObject.GetComponentsInChildren<Animator>()[0];
     }
 
-    public static string Test()
+    void Update()
     {
-        return "reached here";
+        if(!triggered && UIManager.SceneSwitching())
+        {
+            triggered = true;
+            Fade();
+        }
     }
 
-    public IEnumerator Fade(int idx)
+    public void Fade()
     {
-        // Play animation
-        Debug.Log("triggering animator...");
         animator.SetTrigger(trigger);
-        Debug.Log("about to wait");
-
-        // wait
-        yield return new WaitForSeconds(transitionTime);
-
-        SceneManager.LoadScene(idx);
-
-        //load scene
-        Debug.Log("waited for 1 s");
     }
 }

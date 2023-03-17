@@ -6,6 +6,12 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     private static bool paused = false;
+    private static bool isSwitching = false;
+
+    void Awake()
+    {
+        isSwitching = false;
+    }
 
     // Update is called once per frame
     void Update()
@@ -20,14 +26,19 @@ public class UIManager : MonoBehaviour
 
             else
             {
-                Pause();
+                UIPause();
             }
         }
     }
 
-    void Pause()
+    static void UIPause()
     {
         paused = true;
+        Pause();
+    }
+
+    static void Pause()
+    {
         EntityManager.Pause();
     }
 
@@ -40,5 +51,16 @@ public class UIManager : MonoBehaviour
     public static bool IsPaused()
     {
         return paused;
-    }   
+    }
+
+    public static void EndScene()
+    {
+        isSwitching = true;
+        EntityManager.Pause();
+    }
+
+    public static bool SceneSwitching()
+    {
+        return isSwitching;
+    }
 }

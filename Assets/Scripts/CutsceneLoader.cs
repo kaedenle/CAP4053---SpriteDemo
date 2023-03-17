@@ -11,6 +11,7 @@ public class CutsceneLoader : MonoBehaviour
     private Animator animator;
     private string trigger = "start";
     private bool on = false;
+    private bool fin = false;
 
     // text file of the cut scene
     public TextAsset cutSceneTextFile;
@@ -25,7 +26,6 @@ public class CutsceneLoader : MonoBehaviour
     // keep track of the text of the cut scene
     private string cutSceneText;
     private string demoCutSceneText;
-
     public TMP_Text wordsTextField;
 
     // Start is called before the first frame update
@@ -39,7 +39,7 @@ public class CutsceneLoader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!on && LevelManager.IsEndOfLevel())
+        if(!fin && !on && LevelManager.IsEndOfLevel())
         {
             wordsTextField.text = ((demoForks && ScenesManager.isDemo()) ? demoCutSceneText : cutSceneText);
             // Debug.Log("set wordsTextField.text to " + wordsTextField.text);
@@ -47,10 +47,12 @@ public class CutsceneLoader : MonoBehaviour
             on = true;
         }
 
-        if(on && Input.anyKeyDown)
+        if(!fin && on && Input.anyKeyDown)
         {
             if (demoForks && ScenesManager.isDemo()) ScenesManager.LoadScene(nextDemoScene);
             else ScenesManager.LoadScene(nextScene);
+
+            fin = true;
         }
     }
 
