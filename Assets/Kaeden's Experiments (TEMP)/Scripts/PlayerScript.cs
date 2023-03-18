@@ -172,6 +172,12 @@ public class PlayerScript : MonoBehaviour, IUnique
     // Update is called once per frame
     void Update()
     {
+
+        //fix bug where shoot value is active but weapon is not gun
+        if (animator.GetFloat("shooting") > 0 && wm.wpnList.index != 2)
+        {
+            UnShoot();
+        }
         //play death animation when dead if haven't already (fixes bug that plays idle_engage before death can start playing)
         if ((animator.GetCurrentAnimatorClipInfo(0).Length > 0 && animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "Death") && GetComponent<HealthTracker>().healthSystem.getHealth() <= 0)
             onDeath();
