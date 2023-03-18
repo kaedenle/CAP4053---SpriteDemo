@@ -8,13 +8,14 @@ public class LevelManager : MonoBehaviour
     private static LevelManager Instance;
     private static ScenesManager.AllScenes _startScene;
     private static bool _playerDied = false;
+    private static float default_delay = 0.7F;
 
     public void Start()
     {
         Debug.Log("in Start of LevelManager()");
         EntityManager.Pause();
         ResetVariables();
-        EntityManager.WaitThenUnpause(1.0F);
+        EntityManager.WaitThenUnpause(default_delay);
     }
 
     protected LevelManager setInstance(LevelManager obj, ScenesManager.AllScenes start)
