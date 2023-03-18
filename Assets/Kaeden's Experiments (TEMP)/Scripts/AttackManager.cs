@@ -189,11 +189,14 @@ public class AttackManager : MonoBehaviour
         if (!cancellableFlag || tag != "Player") return;
         if (cancellableSet.Contains(bufferCancel))
         {
+            //prevent bug that swaps you out of cancel
+            if (GetComponent<WeaponManager>().BufferWeaponID != GetComponent<WeaponManager>().wpnList.index) return;
             if (alreadyDamaged.Count == 0)
             {
                 return;
             }
             int tmp = bufferCancel;
+            if (tag == "Player") GetComponent<WeaponManager>().SetSprite();
             DestroyPlay();
             InvokeAttack(tmp);
             cancellableFlag = false;
@@ -227,10 +230,10 @@ public class AttackManager : MonoBehaviour
     //For animator's use
     public void StartPlay(int moveIndex){
         //get current animation to keep track of current animation frame (attach hitboxes to animation)
-        if(animator != null) Debug.Log(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+       if(animator != null) Debug.Log(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
         
         //get framedata
-        framedata = JsonUtility.FromJson<FrameData>(moveContainer[moveIndex % moveContainer.Length].text);
+        framedata = JsonUtility.FromJson<FrameData>(moveContainer[(moveIndex - 1) % moveContainer.Length].text);
         //load cancellable moves for O(1) entry
         cancellableSet.Clear();
         if (framedata.cancelBy == null)

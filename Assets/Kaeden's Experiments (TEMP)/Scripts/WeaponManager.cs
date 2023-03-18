@@ -11,16 +11,15 @@ public class WeaponManager : MonoBehaviour, IScriptable
     public SpriteRenderer sr;
     private Animator animator;
     public bool equiped;
-    AnimatorClipInfo[] m_CurrentClipInfo;
-    private Rigidbody2D body;
     public AttackManager.WeaponList wpnList = new AttackManager.WeaponList();
     public Hurtbox hrtbx;
     private SpriteRenderer onhand;
+    public int BufferWeaponID = 0;
     // Start is called before the first frame update
+
     void Start()
     {
         weaponID = 0;
-        body = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
         wpnList = gameObject.GetComponent<AttackManager>().wpnList;
         hrtbx = gameObject?.GetComponent<Hurtbox>();
@@ -44,19 +43,18 @@ public class WeaponManager : MonoBehaviour, IScriptable
             this.enabled = false;
     }
 
+    public void SetSprite()
+    {
+        //set the visual of the weapon from sprite list
+        sr.sprite = spriteList[wpnList.index % spriteList.Length];
+    }
+
     // Update is called once per frame
     void Update()
     {
-        //AnimatorClipInfo[] m_CurrentClipInfo = animator.GetCurrentAnimatorClipInfo(0);
-        //Access the Animation clip name
-        //Debug.Log(m_CurrentClipInfo[0].clip.name);
-
-        //bool swap = Input.GetButtonDown("Fire1");
-        //bool equip_press = Input.GetButtonDown("Fire3");
         equiped = animator.GetBool("equiped");
 
         //toggle between not equiped and equiped
-        //Only when you aren't attacking
         if(InputManager.EquipKeyDown() && animator.GetFloat("attack") == 0){
             //disable weapon from rendering if it's not out
             if (!equiped)
@@ -74,12 +72,10 @@ public class WeaponManager : MonoBehaviour, IScriptable
         }
 
         else if(equiped){
-            if(InputManager.SwapKeyDown() && animator.GetFloat("attack") == 0){
+            if(InputManager.SwapKeyDown())
+            {
                 wpnList.index += 1;
                 wpnList.index %= wpnList.weaponlist.Length;
-                //set animation to follow weapon's ID
-                animator.SetFloat("weapon", wpnList.weaponlist[wpnList.index].ID);
-
                 //change speed if heavy weapon
                 Player_Movement movementScript = gameObject.GetComponent<Player_Movement>();
                 if (weaponID == 1)
@@ -87,8 +83,15 @@ public class WeaponManager : MonoBehaviour, IScriptable
                 else
                     gameObject.GetComponent<Player_Movement>().speed = movementScript.MAX_SPEED;
             }
-            //set the visual of the weapon from sprite list
-            sr.sprite = spriteList[wpnList.index % spriteList.Length];
+
+            //only swap if not attackingawd
+            if (animator.GetFloat("attack") == 0)
+            {
+                SetSprite();
+                //set animation to follow weapon's ID
+                if (animator.GetFloat("weapon") != wpnList.weaponlist[wpnList.index].ID)
+                    animator.SetFloat("weapon", wpnList.weaponlist[wpnList.index].ID);
+            }
 
         }
 
@@ -117,7 +120,10 @@ public class WeaponManager : MonoBehaviour, IScriptable
                     }
                     //call attack from integer (defined by Attack blend tree in animator)
                     else if (animator.GetFloat("attack") != 0)
+                    {
+                        BufferWeaponID = wpnList.index;
                         GetComponent<AttackManager>().bufferCancel = wpnList.weaponlist[wpnList.index].attack1;
+                    }   
                     else
                         GetComponent<AttackManager>().InvokeAttack(wpnList.weaponlist[wpnList.index].attack1);
 
@@ -129,7 +135,10 @@ public class WeaponManager : MonoBehaviour, IScriptable
                 {
                     //call attack from integer (defined by Attack blend tree in animator)
                     if (animator.GetFloat("attack") != 0)
+                    {
+                        BufferWeaponID = wpnList.index;
                         GetComponent<AttackManager>().bufferCancel = wpnList.weaponlist[wpnList.index].attack2;
+                    }
                     else
                         GetComponent<AttackManager>().InvokeAttack(wpnList.weaponlist[wpnList.index].attack2);
                 }
