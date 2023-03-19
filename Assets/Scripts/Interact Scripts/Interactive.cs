@@ -44,8 +44,6 @@ public class Interactive : MonoBehaviour
     {
         if(IsPlayerNear() && InputManager.InteractKeyDown())
         {
-            if(pause_on_interact) EntityManager.DialoguePause();
-
             TriggerDialogue();
         }
     }
@@ -59,12 +57,13 @@ public class Interactive : MonoBehaviour
         // set default vars
         near = false;
         interactive_index = 0;
+        if(interactivesText == null)
+            interactivesText = new InteractiveInfo[0];
     }
 
     public void Start()
     {
         UI = FindObjectOfType<InteractiveUIController>();
-        Debug.Log("found ui obj");
     }
 
     public bool IsPlayerNear()
@@ -93,6 +92,9 @@ public class Interactive : MonoBehaviour
 
         // don't trigger dialogue if you've already triggered the last one
         if(interactive_index >= interactivesText.Length) return;
+
+        // pause now if I've made it this far
+        if(pause_on_interact) EntityManager.DialoguePause();
 
         // do the dialogue
         UI.StartInteractive(interactivesText[interactive_index], pause_on_interact);

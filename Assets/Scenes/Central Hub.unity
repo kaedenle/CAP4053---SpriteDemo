@@ -761,7 +761,6 @@ GameObject:
   - component: {fileID: 92485178}
   - component: {fileID: 92485180}
   - component: {fileID: 92485182}
-  - component: {fileID: 92485183}
   m_Layer: 0
   m_Name: Child Trigger
   m_TagString: Untagged
@@ -848,7 +847,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 512e797cb14145246b3dd171664802e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingType: 2
+  pause_on_interact: 1
+  loop_last: 0
+  interactivesText: []
   phase: 1
 --- !u!58 &92485182
 CircleCollider2D:
@@ -866,21 +867,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.000000007450581}
   serializedVersion: 2
   m_Radius: 0.8
---- !u!114 &92485183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 92485177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49724c29999d01a459234abca7ad45ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pause_on_interact: 1
-  loop_last: 0
-  interactivesText: []
 --- !u!1 &124034420
 GameObject:
   m_ObjectHideFlags: 0
@@ -2389,8 +2375,6 @@ GameObject:
   m_Component:
   - component: {fileID: 322480535}
   - component: {fileID: 322480534}
-  - component: {fileID: 322480536}
-  - component: {fileID: 322480538}
   - component: {fileID: 322480539}
   - component: {fileID: 322480540}
   m_Layer: 0
@@ -2467,40 +2451,6 @@ Transform:
   m_Father: {fileID: 148052834}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &322480536
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322480533}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b46162591de23414cbb1e6c04b61e705, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
---- !u!114 &322480538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322480533}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba3aaee255b3b4c4bb938d8786a0aaab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingType: 3
-  phase: 0
 --- !u!58 &322480539
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2526,12 +2476,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 322480533}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49724c29999d01a459234abca7ad45ba, type: 3}
+  m_Script: {fileID: 11500000, guid: 512e797cb14145246b3dd171664802e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pause_on_interact: 1
   loop_last: 0
   interactivesText: []
+  phase: 0
 --- !u!1 &352097187
 GameObject:
   m_ObjectHideFlags: 0
