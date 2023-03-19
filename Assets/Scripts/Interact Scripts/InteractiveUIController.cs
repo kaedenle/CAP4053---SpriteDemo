@@ -14,6 +14,7 @@ public class InteractiveUIController : MonoBehaviour
     private bool on_using;
     private bool on;
     private float delay = 0.5F;
+    private bool pause = true;
 
     // Start is called before the first frame update
     void Start()
@@ -35,8 +36,11 @@ public class InteractiveUIController : MonoBehaviour
     }
 
     // start the interactive
-    public void StartInteractive(InteractiveInfo interactive)
+    public void StartInteractive(InteractiveInfo interactive, bool pause)
     {
+        if(this.pause = pause)
+            EntityManager.DialoguePause();
+
         on = true;
         on_using = true;
         sentences.Clear();
@@ -80,8 +84,10 @@ public class InteractiveUIController : MonoBehaviour
     IEnumerator WaitAndTurnOff()
     {
         //Wait for 4 seconds
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSecondsRealtime(delay);
         on = false;
+        if(pause)
+            EntityManager.Unpause();
     }
 
     void TurnUIOff()

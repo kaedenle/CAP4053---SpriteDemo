@@ -5,6 +5,7 @@ using UnityEngine;
 public class Interactive : MonoBehaviour
 {
     // public variables
+    public bool pause_on_interact = true;
     public bool loop_last;
     public InteractiveInfo[] interactives;
 
@@ -12,7 +13,7 @@ public class Interactive : MonoBehaviour
     // outline vars
     private Material defaultMaterial;
     private Material outline;
-    private SpriteRenderer renderer;
+    private SpriteRenderer sprite_renderer;
 
     // player tracker
     private bool near;
@@ -43,6 +44,8 @@ public class Interactive : MonoBehaviour
     {
         if(IsPlayerNear() && InputManager.InteractKeyDown())
         {
+            if(pause_on_interact) EntityManager.DialoguePause();
+
             TriggerDialogue();
         }
     }
@@ -50,12 +53,16 @@ public class Interactive : MonoBehaviour
     void Awake()
     {
         // get the objects for the outlines
-        renderer = gameObject.GetComponent<SpriteRenderer>();
-        defaultMaterial = renderer.material;
+        sprite_renderer = gameObject.GetComponent<SpriteRenderer>();
+        defaultMaterial = sprite_renderer.material;
 
         // set default vars
         near = false;
         interactive_index = 0;
+    }
+
+    public void Start()
+    {
         UI = FindObjectOfType<InteractiveUIController>();
     }
 
@@ -71,23 +78,23 @@ public class Interactive : MonoBehaviour
 
     void EnableOutline()
     {
-        renderer.material = outline;
+        sprite_renderer.material = outline;
     }
 
     void DisableOutline()
     {
-        renderer.material = defaultMaterial;
+        sprite_renderer.material = defaultMaterial;
     }
     void TriggerDialogue()
     {
         // don't trigger if dialogue is currently active
-        if(!UI.IsActive()) return;
+        if(UI.IsActive()) return;
 
         // don't trigger dialogue if you've already triggered the last one
-        if(interactive_index <= interactives.Length) return;
+        if(interactive_index >= interactives.Length) return;
 
         // do the dialogue
-        UI.StartInteractive((interactives[interactive_index]));
+        UI.StartInteractive(interactives[interactive_index], pause_on_interact);
         if(!loop_last || interactive_index + 1 < interactives.Length) interactive_index++;
 
     }

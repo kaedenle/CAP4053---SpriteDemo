@@ -5,8 +5,9 @@ using UnityEngine;
 public class ChildLevelManager : LevelManager
 {
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
         setInstance(this, ScenesManager.AllScenes.ChildLivingRoom);
+        base.Start();
     }
 }

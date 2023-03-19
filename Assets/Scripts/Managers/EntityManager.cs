@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EntityManager : MonoBehaviour
 {
-    private static bool _movementEnabled = true, _uiInteractable = true, _envInteractable = true, _attackEnabled = true, _swapEnabled = true, _equipEnabled;
+    private static bool _movementEnabled = true, _uiInteractable = true, _envInteractable = true, _attackEnabled = true, _swapEnabled = true, _equipEnabled = true;
     private static bool _pause = false;
     private static EntityManager Instance;
 
@@ -40,6 +40,17 @@ public class EntityManager : MonoBehaviour
         EnableEquip();
         EnableSwap();
         Time.timeScale = 1;
+    }
+
+    public static void DialoguePause()
+    {
+        _pause = true;
+        DisableMovement();
+        DisableAttack();
+        DisableEnvironmentInteractable();
+        DisableSwap();
+        DisableEquip();
+        Time.timeScale = 0;
     }
 
     public static void WaitThenUnpause(float delay)

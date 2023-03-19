@@ -7,9 +7,10 @@ public class MobsterLevelManager : LevelManager
     static bool _alleyGateOpen = false;
     private static LevelManager parent;
 
-    void Start()
+    new void Start()
     {
         setInstance(this, ScenesManager.AllScenes.MobsterRoadDemo);
+        base.Start();
     }
 
     // reset the manager variables

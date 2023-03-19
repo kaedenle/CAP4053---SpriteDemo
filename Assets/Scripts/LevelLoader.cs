@@ -7,7 +7,7 @@ public class LevelLoader : MonoBehaviour
 {
     private Animator animator;
     private string trigger = "play";
-    private float transitionTime = 1f;
+    // private float transitionTime = 1f;
     private bool triggered = false;
 
     void Start()

@@ -6,8 +6,10 @@ public class Item : Interactive
 {
     [SerializeField] InventoryManager.AllItems _itemType;
 
-    void Start()
+    new void Start()
     {
+        base.Start();
+
         if (InventoryManager.PickedUp(_itemType))
         {
             Destroy(gameObject);
@@ -19,9 +21,14 @@ public class Item : Interactive
         if(IsPlayerNear() && InputManager.InteractKeyDown())
         {
             InventoryManager.AddItem(_itemType);
+            base.Update();
             Destroy(gameObject);
         }
 
-        base.Update();
+        else
+        {
+            base.Update();
+        }
+
     }
 }

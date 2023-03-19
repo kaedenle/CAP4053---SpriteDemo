@@ -23,7 +23,7 @@ public class InteractiveTrigger : MonoBehaviour
 
     void TriggerInteractive(InteractiveInfo current)
     {
-        UI.StartInteractive(current);
+        UI.StartInteractive(current, false);
     }
 
     // Update is called once per frame
