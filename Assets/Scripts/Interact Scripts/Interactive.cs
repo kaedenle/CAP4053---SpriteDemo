@@ -7,7 +7,7 @@ public class Interactive : MonoBehaviour
     // public variables
     public bool pause_on_interact = true;
     public bool loop_last;
-    public InteractiveInfo[] interactives;
+    public InteractiveInfo[] interactivesText;
 
     // private trackers
     // outline vars
@@ -64,6 +64,7 @@ public class Interactive : MonoBehaviour
     public void Start()
     {
         UI = FindObjectOfType<InteractiveUIController>();
+        Debug.Log("found ui obj");
     }
 
     public bool IsPlayerNear()
@@ -91,11 +92,11 @@ public class Interactive : MonoBehaviour
         if(UI.IsActive()) return;
 
         // don't trigger dialogue if you've already triggered the last one
-        if(interactive_index >= interactives.Length) return;
+        if(interactive_index >= interactivesText.Length) return;
 
         // do the dialogue
-        UI.StartInteractive(interactives[interactive_index], pause_on_interact);
-        if(!loop_last || interactive_index + 1 < interactives.Length) interactive_index++;
+        UI.StartInteractive(interactivesText[interactive_index], pause_on_interact);
+        if(!loop_last || interactive_index + 1 < interactivesText.Length) interactive_index++;
 
     }
 }
