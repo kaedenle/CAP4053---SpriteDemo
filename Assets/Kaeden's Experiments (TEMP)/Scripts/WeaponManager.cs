@@ -56,6 +56,10 @@ public class WeaponManager : MonoBehaviour, IScriptable
 
         //toggle between not equiped and equiped
         if(InputManager.EquipKeyDown() && animator.GetFloat("attack") == 0){
+            if (animator.GetBool("equiped"))
+                onhand.enabled = false;
+            else
+                onhand.enabled = true;
             animator.SetBool("equiped", !equiped);
             //set animation to follow weapon's ID
             animator.SetFloat("weapon", wpnList.weaponlist[wpnList.index].ID);
@@ -64,11 +68,9 @@ public class WeaponManager : MonoBehaviour, IScriptable
         //disable weapon from rendering if it's not out  
         if (!equiped)
         {
-            onhand.enabled = false;
             sr.sprite = null;
         }
         else if(equiped){
-            onhand.enabled = true;
             if (InputManager.SwapKeyDown())
             {
                 wpnList.index += 1;

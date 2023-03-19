@@ -488,7 +488,6 @@ MonoBehaviour:
   bullet: {fileID: 662058475778597127, guid: c0f36b8081129474fb1f0ada3edff123, type: 3}
   cancel: 0
   ShootAgain: 0
-  AttackAudio: []
 --- !u!114 &8521604005571251972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -501,6 +500,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42fa883e4a0598849899fd9e99c1487e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AttackAudio:
+  - {fileID: 8300000, guid: 69356b59e1ac8ce4284b15e86cfb5233, type: 3}
+  - {fileID: 8300000, guid: 5a108d54eaba77e4bb601fe5574af7b0, type: 3}
+  - {fileID: 8300000, guid: 0ee6fec19cd26e44dbb12d388b95b0aa, type: 3}
+  - {fileID: 8300000, guid: d07a15e929620a047bb4cae468ec6cad, type: 3}
+  - {fileID: 8300000, guid: 7db1e7623c0734f4289486cfa299b20d, type: 3}
+  - {fileID: 8300000, guid: f4deb82d40a07164fa5e44649c9dc8ce, type: 3}
 --- !u!1 &6197798177006665903
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,7 +864,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.12, y: 5.12}
+  m_Size: {x: 4.8, y: 4.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
