@@ -65,6 +65,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
         if (!equiped)
         {
             onhand.enabled = false;
+            sr.sprite = null;
         }
         else if(equiped){
             onhand.enabled = true;
