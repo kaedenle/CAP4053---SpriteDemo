@@ -2,11 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitStopManager : MonoBehaviour
+public class EffectsManager : MonoBehaviour
 {
     //hitstop variables
     private bool waiting = false;
     private bool ResumeTime = false;
+    //Camera variables
+    public Camera MainCam;
+    public void ShakeCam(float duration, float magnitude)
+    {
+        CameraShake cs = MainCam.GetComponent<CameraShake>();
+        StopCoroutine(cs.Shake(duration, magnitude));
+        StartCoroutine(cs.Shake(duration, magnitude));
+    }
     public void StopTime(float duration)
     {
         if (waiting || Time.timeScale != 1)

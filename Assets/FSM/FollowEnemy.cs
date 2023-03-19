@@ -68,7 +68,6 @@ public class FollowEnemy : MonoBehaviour, IScriptable
         if(Vector2.Distance(transform.position, target.position) > lineOfSightDistance)
         {
             transform.position = transform.position;
-            Debug.Log(Vector2.Distance(transform.position, target.position));
         }
         else
         {

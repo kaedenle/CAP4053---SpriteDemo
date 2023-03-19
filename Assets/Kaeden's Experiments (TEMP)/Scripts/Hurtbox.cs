@@ -16,7 +16,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
     //hitstop variables
     public string default_ani;
     private GameObject HitEffect;
-    private HitStopManager HSM; //used for hitstop
+    private EffectsManager FXM; //used for hitstop
     private Shader HitShader;
     private Shader OriginalShader;
 
@@ -31,9 +31,10 @@ public class Hurtbox : MonoBehaviour, IDamagable
         if (HitEffect != null)
         {
             GameObject instance = Instantiate(HitEffect, transform.position, Quaternion.identity);
+            instance.transform.SetParent(gameObject.transform);
             //set correct scale
             float XScale = instance.transform.localScale.x * gameObject.transform.localScale.x + (0.05f*hitstop);
-            float YScale = instance.transform.localScale.y * gameObject.transform.localScale.y + (0.05f* hitstop);
+            float YScale = instance.transform.localScale.y * gameObject.transform.localScale.y + (0.05f*hitstop);
             instance.transform.localScale = new Vector3(XScale, YScale, instance.transform.localScale.z);
 
             //play slower if hitstop is greater
@@ -41,8 +42,6 @@ public class Hurtbox : MonoBehaviour, IDamagable
             var main = ps.main;
             float Speed = main.simulationSpeed - hitstop * 0.02f > 0 ? main.simulationSpeed - hitstop * 0.02f: 0.001f;
             main.simulationSpeed = Speed;
-
-            instance.transform.SetParent(gameObject.transform);
         }
 
         //if not dead play hitstun animation
@@ -76,9 +75,9 @@ public class Hurtbox : MonoBehaviour, IDamagable
             
         
         //apply hitstop
-        if (HSM != null)
+        if (FXM != null)
         {
-            HSM.StopTime(hitstop / 100);
+            FXM.StopTime(hitstop / 100);
         }
 
         //flash white
@@ -115,7 +114,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
         uniqueScript = this?.GetComponent<IUnique>();
         animator = this?.GetComponent<Animator>();
         sr = GetComponentsInChildren<SpriteRenderer>();
-        HSM = GameObject.Find("HitStopManager")?.GetComponent<HitStopManager>();
+        FXM = GameObject.Find("EffectsManager")?.GetComponent<EffectsManager>();
 
         hitstunTimer = -1;
         inHitStun = false;

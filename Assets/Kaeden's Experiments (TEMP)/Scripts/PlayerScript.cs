@@ -9,6 +9,7 @@ public class PlayerScript : MonoBehaviour, IUnique
     private Rigidbody2D body;
     private AttackManager am;
     private WeaponManager wm;
+    private EffectsManager fxm;
 
     //Death Handling
     private bool killPlayer = false;
@@ -34,8 +35,8 @@ public class PlayerScript : MonoBehaviour, IUnique
     public void EffectManager(string funct)
     {
         //call function via string reference
+        if (funct == "") return;
         Invoke(funct, 0f);
-        Debug.Log(funct);
     }
     public void StartShoot()
     {
@@ -108,13 +109,11 @@ public class PlayerScript : MonoBehaviour, IUnique
     }
     private void GunShake()
     {
-        DebugSceneManager dsm = FindObjectOfType<DebugSceneManager>();
-        if (dsm != null) dsm.ShakeCam(0.1f, 0.5f);
+        if (fxm != null) fxm.ShakeCam(0.1f, 0.5f);
     }
     private void QuakeShake()
     {
-        DebugSceneManager dsm = FindObjectOfType<DebugSceneManager>();
-        if (dsm != null) dsm.ShakeCam(0.1f, 0.5f);
+        if (fxm != null) fxm.ShakeCam(0.1f, 0.5f);
     }
     public void onDeath()
     {
@@ -176,6 +175,7 @@ public class PlayerScript : MonoBehaviour, IUnique
         wm = gameObject.GetComponent<WeaponManager>();
         am = gameObject.GetComponent<AttackManager>();
         Ammo = MaxAmmo;
+        fxm = FindObjectOfType<EffectsManager>();
     }
 
     // Update is called once per frame

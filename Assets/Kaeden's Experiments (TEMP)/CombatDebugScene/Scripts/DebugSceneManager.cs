@@ -8,17 +8,10 @@ public class DebugSceneManager : MonoBehaviour
     private GameObject player;
     private GameObject BlackFade;
     public GameObject book;
-    public Camera MainCam;
-    public void ShakeCam(float duration, float magnitude)
-    {
-        CameraShake cs = MainCam.GetComponent<CameraShake>();
-        StopCoroutine(cs.Shake(duration, magnitude));
-        StartCoroutine(cs.Shake(duration, magnitude));
-    }
     private void SceneInputs()
     {
         //fade in then reset level
-        if ((!EntityManager.IsPaused() || player.GetComponent<HealthTracker>().healthSystem.getHealth() == 0) && Input.GetKeyDown(KeyCode.Alpha1))
+        if ((!EntityManager.IsPaused() || player.GetComponent<HealthTracker>().healthSystem.getHealth() == 0) && Input.GetKeyDown(KeyCode.RightShift))
         {
             BlackFade.GetComponent<DontDestroy>().FadeIn();
         }    
