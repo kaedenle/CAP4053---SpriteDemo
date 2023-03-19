@@ -58,5 +58,11 @@ public class InventoryManager : MonoBehaviour
     {
         return _usedItems.Contains(item);
     }
+
+    public static void ResetVariables()
+    {
+        _inventoryItems.Clear();
+        _usedItems.Clear();
+    }
     
 }

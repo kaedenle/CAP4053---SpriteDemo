@@ -12,7 +12,6 @@ public class LevelManager : MonoBehaviour
 
     public void Start()
     {
-        Debug.Log("in Start of LevelManager()");
         EntityManager.Pause();
         ResetVariables();
         EntityManager.WaitThenUnpause(default_delay);
@@ -34,6 +33,7 @@ public class LevelManager : MonoBehaviour
     static void ResetAllVariables()
     {
         ResetVariables();
+        InventoryManager.ResetVariables();
 
         if (Instance != null)
             Instance.TriggerReset();
