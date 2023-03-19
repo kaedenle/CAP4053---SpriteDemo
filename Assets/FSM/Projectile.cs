@@ -9,16 +9,20 @@ public class Projectile : MonoBehaviour
     public float speed;
     private Vector2 previousPosition;
     private Vector3 shootDirection;
+    private AttackManager am;
     
     private void Start()
     {
         targetPosition = GameObject.FindWithTag("Player").transform;
+        am = gameObject?.GetComponent<AttackManager>();
 
         // normal shoot at player the player
         Vector2 playerPosition = new Vector2(targetPosition.position.x, targetPosition.position.y);
         //transform.rotation = Quaternion.LookRotation(playerPosition);
         previousPosition = targetPosition.position;
         shootDirection = (targetPosition.position - transform.position).normalized;
+        //permenatly set hitbox on bullet
+        if (am != null) am.StartPlay(0);
         Destroy(gameObject, 5);
         
 

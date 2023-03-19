@@ -15,10 +15,12 @@ public class AttackManager : MonoBehaviour
         public Weapon[] weaponlist;
         public int index;
     }
+    [HideInInspector]
     public WeaponList wpnList = new WeaponList();
 
     //Components
     private Animator animator;
+    //easy reference to gameobject that's parent of hitbox (not constant)
     [HideInInspector]
     public GameObject hitboxParent;
 
@@ -31,7 +33,7 @@ public class AttackManager : MonoBehaviour
     private HashSet<Collider2D> alreadyDamaged = new HashSet<Collider2D>();
 
     //technical information
-    public bool active = false;
+    private bool active = false;
     private bool cancellableFlag = false;
     private IUnique uniqueScript;
     [HideInInspector]
@@ -67,14 +69,15 @@ public class AttackManager : MonoBehaviour
         public string functCall;
         
     }
+    [HideInInspector]
     public FrameData framedata = new FrameData();
 
     // Start is called before the first frame update
     void Awake()
     {
         HBList.Clear();
-        uniqueScript = this?.GetComponent<IUnique>();
-        animator = this?.GetComponent<Animator>();
+        uniqueScript = gameObject?.GetComponent<IUnique>();
+        animator = gameObject?.GetComponent<Animator>();
         //variable for others to grab
         if(weaponList != null)
             wpnList = JsonUtility.FromJson<WeaponList>(weaponList.text);
@@ -230,7 +233,7 @@ public class AttackManager : MonoBehaviour
     //For animator's use
     public void StartPlay(int moveIndex){
         //get current animation to keep track of current animation frame (attach hitboxes to animation)
-       if(animator != null) Debug.Log(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+       //if(animator != null) Debug.Log(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
         
         //get framedata
         framedata = JsonUtility.FromJson<FrameData>(moveContainer[(moveIndex - 1) % moveContainer.Length].text);

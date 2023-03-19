@@ -14,7 +14,7 @@ public class RangedEnemy : MonoBehaviour, IScriptable
     public GameObject bulletPrefab;
     //gameObject enemy;
 
-    private const float ATTACK_TIMER_MAX = 0.0f;
+    private const float ATTACK_TIMER_MAX = 1.5f;
     private float attackTimer;
     // Start is called before the first frame update
     void Start()
@@ -61,7 +61,8 @@ public class RangedEnemy : MonoBehaviour, IScriptable
                 //attack here
                 attackTimer -= Time.deltaTime;
                 if(attackTimer < 0){
-                    Debug.Log("pew pew");
+                    //Debug.Log("pew pew");
+   
                     Instantiate(bulletPrefab, transform.position, Quaternion.identity);
                     Vector2 directionToTarget = target.transform.position - transform.position;
                     float angle = Vector3.Angle(Vector3.right, directionToTarget);
@@ -72,9 +73,9 @@ public class RangedEnemy : MonoBehaviour, IScriptable
                     }
                     Quaternion bulletRotation = Quaternion.AngleAxis(angle, Vector3.forward);
                     //GameObject go = Instantiate(bulletPrefab, transform.position, Quaternion.identity) as GameObject; 
-
+                    attackTimer = ATTACK_TIMER_MAX;
                     //go.transform.parent = GameObject.Find("Slime Monster_0 (4)").transform;
-                    GetComponent<AttackManager>().InvokeAttack("SlimeAttack");
+                    //GetComponent<AttackManager>().InvokeAttack("SlimeAttack");
                     //animator.Play("SlimeAttack");
                 }
             }

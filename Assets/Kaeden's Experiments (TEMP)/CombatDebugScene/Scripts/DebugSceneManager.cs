@@ -6,8 +6,15 @@ using UnityEngine;
 public class DebugSceneManager : MonoBehaviour
 {
     private GameObject player;
-    public GameObject book;
     private GameObject BlackFade;
+    public GameObject book;
+    public Camera MainCam;
+    public void ShakeCam(float duration, float magnitude)
+    {
+        CameraShake cs = MainCam.GetComponent<CameraShake>();
+        StopCoroutine(cs.Shake(duration, magnitude));
+        StartCoroutine(cs.Shake(duration, magnitude));
+    }
     private void SceneInputs()
     {
         //fade in then reset level

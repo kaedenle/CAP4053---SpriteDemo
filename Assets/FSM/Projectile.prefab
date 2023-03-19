@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -4085111821128355766}
   - component: {fileID: 7787437712447934364}
   - component: {fileID: 6412734456593120152}
+  - component: {fileID: 3446941014941607564}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Enemy
@@ -174,3 +175,38 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &3446941014941607564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2939056562520899370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34658e90b6b667342a950a514752cbc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponList: {fileID: 0}
+  wpnList:
+    weaponlist: []
+    index: 0
+  hitboxParent: {fileID: 0}
+  HBList: []
+  active: 0
+  bufferCancel: -1
+  moveContainer:
+  - {fileID: 4900000, guid: 4c7451bc8342b3a4db6c8efacb3241f8, type: 3}
+  framedata:
+    framedata: []
+    damage: 0
+    knockback: 0
+    hitstop: 0
+    hitstun: 0
+    x_knockback: 0
+    y_knockback: 0
+    hitsTag: 
+    cancelBy: 
+    deactivateMove: 0
+    relativeKnockback: 0
+    functCall: 

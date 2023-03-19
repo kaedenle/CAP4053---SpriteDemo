@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 6197798176421269822}
   - component: {fileID: 6197798176421269823}
   - component: {fileID: -2732423542642596936}
+  - component: {fileID: 153283108}
   - component: {fileID: 6791762901960898518}
   - component: {fileID: 6197798176421269817}
   - component: {fileID: 3022009316415555036}
@@ -106,6 +107,7 @@ GameObject:
   - component: {fileID: 4459850622582732022}
   - component: {fileID: 153283122}
   - component: {fileID: 3393781334134885235}
+  - component: {fileID: 8521604005571251972}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -209,7 +211,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: bf9762649bc8c1844aef2b0a0684cb59, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -252,6 +254,102 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 100
+--- !u!82 &153283108
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6197798176421269809}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &6791762901960898518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,6 +373,7 @@ MonoBehaviour:
     weaponlist: []
     index: 0
   hrtbx: {fileID: 0}
+  BufferWeaponID: 0
 --- !u!114 &6197798176421269817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,12 +426,13 @@ MonoBehaviour:
     index: 0
   hitboxParent: {fileID: 9056604147769991447}
   HBList: []
-  active: 0
   bufferCancel: -1
   moveContainer:
   - {fileID: 4900000, guid: 4ccd3bdf65ab2f24d8ef550b6652a892, type: 3}
   - {fileID: 4900000, guid: 7c785d1dfc5c7a74aa6b84c64c8e4bae, type: 3}
-  - {fileID: 4900000, guid: 2ab194538fe82f447b7746a732f002ac, type: 3}
+  - {fileID: 4900000, guid: a7b9be4854fdbb441a4dc1f0179ac6e8, type: 3}
+  - {fileID: 4900000, guid: 1f134f51ffa16e34880d10fcaceb3e02, type: 3}
+  - {fileID: 4900000, guid: d0afab7d34af1344ba1e39eb4012f559, type: 3}
   framedata:
     framedata: []
     damage: 0
@@ -388,6 +488,19 @@ MonoBehaviour:
   bullet: {fileID: 662058475778597127, guid: c0f36b8081129474fb1f0ada3edff123, type: 3}
   cancel: 0
   ShootAgain: 0
+  AttackAudio: []
+--- !u!114 &8521604005571251972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6197798176421269809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42fa883e4a0598849899fd9e99c1487e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6197798177006665903
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,7 +858,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.28, y: 0.32}
+  m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -830,7 +943,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.86, y: 4.86}
+  m_Size: {x: 20.598381, y: 5.2200003}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

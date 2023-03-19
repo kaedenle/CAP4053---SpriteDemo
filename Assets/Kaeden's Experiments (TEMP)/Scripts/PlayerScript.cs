@@ -35,8 +35,8 @@ public class PlayerScript : MonoBehaviour, IUnique
     {
         //call function via string reference
         Invoke(funct, 0f);
+        Debug.Log(funct);
     }
-
     public void StartShoot()
     {
         am.ScriptActivate(AttackManager.ScriptTypes.Movement);
@@ -106,7 +106,11 @@ public class PlayerScript : MonoBehaviour, IUnique
         if (flipped) move *= -1;
         body.AddForce(move, ForceMode2D.Impulse);
     }
-
+    private void GunShake()
+    {
+        DebugSceneManager dsm = FindObjectOfType<DebugSceneManager>();
+        if (dsm != null) dsm.ShakeCam(0.1f, 0.5f);
+    }
     public void onDeath()
     {
         Debug.Log("You've died!");
