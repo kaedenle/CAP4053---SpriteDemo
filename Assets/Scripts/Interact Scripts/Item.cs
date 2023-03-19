@@ -14,12 +14,14 @@ public class Item : Interactive
         }
     }
 
-    void Update()
+    new void Update()
     {
         if(IsPlayerNear() && InputManager.InteractKeyDown())
         {
             InventoryManager.AddItem(_itemType);
             Destroy(gameObject);
         }
+
+        base.Update();
     }
 }
