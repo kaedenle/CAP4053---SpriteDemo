@@ -7,32 +7,36 @@ public class Interactive : MonoBehaviour
     private Material defaultMaterial;
     private Material outline;
     private SpriteRenderer renderer;
+    private bool near;
 
-    public void OnTriggerEnter2D()
+    public void OnTriggerEnter2D(Collider2D collider)
     {
-        EnableOutline();
+        if(collider.tag == "Player")
+        {
+            near = true;
+            EnableOutline();
+        }
     }
 
-    public void OnTriggerExit2D()
+    public void OnTriggerExit2D(Collider2D collider)
     {
-        DisableOutline();
+        if(collider.tag == "Player")
+        {
+            near = false;
+            DisableOutline();
+        }
     }
 
     void Awake()
     {
         renderer = gameObject.GetComponent<SpriteRenderer>();
         defaultMaterial = renderer.material;
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        near = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    public bool IsPlayerNear()
     {
-        
+        return near;
     }
 
     public void SetOutline(Material outline)

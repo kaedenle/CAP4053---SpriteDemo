@@ -12,6 +12,7 @@ public class InventoryManager : MonoBehaviour
     }
 
     public static List<AllItems> _inventoryItems = new List<AllItems>();  // our inventory items
+    public static List<AllItems> _usedItems = new List<AllItems>();  // our inventory items
 
     public void Awake()
     {
@@ -25,6 +26,9 @@ public class InventoryManager : MonoBehaviour
         if(!_inventoryItems.Contains(item))
         {
             _inventoryItems.Add(item);
+
+            if(!_usedItems.Contains(item)) 
+                _usedItems.Add(item);
 
             // debug statement for figuring out any issues
             Debug.Log("added " + item.ToString() + " to inventory, current inventory size is now " + _inventoryItems.Count);
@@ -48,6 +52,11 @@ public class InventoryManager : MonoBehaviour
     public static bool HasItem(AllItems item)
     {
         return _inventoryItems.Contains(item);
+    }
+
+    public static bool PickedUp(AllItems item)
+    {
+        return _usedItems.Contains(item);
     }
     
 }
