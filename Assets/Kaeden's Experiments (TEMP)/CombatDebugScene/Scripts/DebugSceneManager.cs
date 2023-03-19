@@ -11,7 +11,7 @@ public class DebugSceneManager : MonoBehaviour
     private void SceneInputs()
     {
         //fade in then reset level
-        if ((!EntityManager.IsPaused() || player.GetComponent<HealthTracker>().healthSystem.getHealth() == 0) && Input.GetKeyDown(KeyCode.Tab))
+        if ((!EntityManager.IsPaused() || player.GetComponent<HealthTracker>().healthSystem.getHealth() == 0) && Input.GetKeyDown(KeyCode.Alpha1))
         {
             BlackFade.GetComponent<DontDestroy>().FadeIn();
         }    

@@ -15,22 +15,38 @@ public class Hurtbox : MonoBehaviour, IDamagable
 
     //hitstop variables
     public string default_ani;
+    private GameObject HitEffect;
+    private HitStopManager HSM; //used for hitstop
+    private Shader HitShader;
+    private Shader OriginalShader;
 
     //misc variables
     private Animator animator;
     private bool FlashFlag = false;
     private float FlashTimer;
-
-    //CHANGE THIS TO ARRAY (for children detection)
     private SpriteRenderer[] sr;
-    private HitStopManager HSM; //used for hitstop
-    private Shader HitShader;
-    private Shader OriginalShader;
     public void damage(Vector3 knockback, int damage, float hitstun, float hitstop)
     {
-        
+        //Hit particle effect
+        if (HitEffect != null)
+        {
+            GameObject instance = Instantiate(HitEffect, transform.position, Quaternion.identity);
+            //set correct scale
+            float XScale = instance.transform.localScale.x * gameObject.transform.localScale.x + (0.05f*hitstop);
+            float YScale = instance.transform.localScale.y * gameObject.transform.localScale.y + (0.05f* hitstop);
+            instance.transform.localScale = new Vector3(XScale, YScale, instance.transform.localScale.z);
+
+            //play slower if hitstop is greater
+            ParticleSystem ps = instance.GetComponent<ParticleSystem>();
+            var main = ps.main;
+            float Speed = main.simulationSpeed - hitstop * 0.02f > 0 ? main.simulationSpeed - hitstop * 0.02f: 0.001f;
+            main.simulationSpeed = Speed;
+
+            instance.transform.SetParent(gameObject.transform);
+        }
+
         //if not dead play hitstun animation
-        if(GetComponent<HealthTracker>().healthSystem.getHealth() > 0)
+        if (GetComponent<HealthTracker>().healthSystem.getHealth() > 0)
         {
             hitstunTimer = hitstun;
             inHitStun = true;
@@ -84,6 +100,11 @@ public class Hurtbox : MonoBehaviour, IDamagable
         {
             piece.material.shader = OriginalShader;
         }
+    }
+
+    void Awake()
+    {
+        HitEffect = Resources.Load("Prefabs/HitEffect Particle") as GameObject;
     }
 
     // Start is called before the first frame update

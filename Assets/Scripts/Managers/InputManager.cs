@@ -16,8 +16,8 @@ public class InputManager : MonoBehaviour
         Hit1 = KeyCode.Mouse0,
         Hit2 = KeyCode.Mouse1,
         Pause = KeyCode.Escape,
-        Equip = KeyCode.LeftShift,
-        Swap = KeyCode.LeftControl,
+        Equip = KeyCode.LeftControl,
+        Swap = KeyCode.LeftShift,
         Continue = KeyCode.Space
     }
 
@@ -55,12 +55,12 @@ public class InputManager : MonoBehaviour
 
             case Keys.Equip:
                 if(_equip)
-                    real_key = KeyCode.LeftShift;
+                    real_key = KeyCode.LeftControl;
                 break;
 
             case Keys.Swap:
                 if(_swap)
-                    real_key = KeyCode.LeftControl;
+                    real_key = KeyCode.LeftShift;
                 break;
             
             case Keys.Continue:
