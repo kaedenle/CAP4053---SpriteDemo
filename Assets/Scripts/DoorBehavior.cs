@@ -6,11 +6,24 @@ public class DoorBehavior : MonoBehaviour
 {
     [SerializeField] InventoryManager.AllItems _requiredKey;
     [SerializeField] ScenesManager.AllScenes _nextScene;
+    bool near = true;
 
-    public void OnTriggerEnter2D()
+    public void OnTriggerEnter2D(Collider2D collider)
+    {
+        if(collider.tag == "Player")
+            near = true;
+    }
+
+    public void OnTriggerExit2D(Collider2D collider)
+    {
+        if(collider.tag == "Player")
+            near = false;
+    }
+
+    public void Update()
     {
         // opens the gate and loads the alley scene if the player has the key
-        if(MobsterLevelManager.UnlockAlleyGate(_requiredKey))
+        if(InputManager.InteractKeyDown() && MobsterLevelManager.UnlockAlleyGate(_requiredKey))
         {
             ScenesManager.LoadScene(_nextScene);
         }
