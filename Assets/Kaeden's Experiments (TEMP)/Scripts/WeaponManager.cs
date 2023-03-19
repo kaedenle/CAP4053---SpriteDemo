@@ -56,23 +56,19 @@ public class WeaponManager : MonoBehaviour, IScriptable
 
         //toggle between not equiped and equiped
         if(InputManager.EquipKeyDown() && animator.GetFloat("attack") == 0){
-            //disable weapon from rendering if it's not out
-            if (!equiped)
-                onhand.enabled = true;
-            else
-                onhand.enabled = false;
             animator.SetBool("equiped", !equiped);
             //set animation to follow weapon's ID
             animator.SetFloat("weapon", wpnList.weaponlist[wpnList.index].ID);
         }
-
-
-        if(!equiped){
-            sr.sprite = null;
+            
+        //disable weapon from rendering if it's not out  
+        if (!equiped)
+        {
+            onhand.enabled = false;
         }
-
         else if(equiped){
-            if(InputManager.SwapKeyDown())
+            onhand.enabled = true;
+            if (InputManager.SwapKeyDown())
             {
                 wpnList.index += 1;
                 wpnList.index %= wpnList.weaponlist.Length;
@@ -84,7 +80,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
                     gameObject.GetComponent<Player_Movement>().speed = movementScript.MAX_SPEED;
             }
 
-            //only swap if not attackingawd
+            //only swap if not attacking
             if (animator.GetFloat("attack") == 0)
             {
                 SetSprite();

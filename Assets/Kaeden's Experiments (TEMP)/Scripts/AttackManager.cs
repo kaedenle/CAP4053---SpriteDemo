@@ -241,7 +241,7 @@ public class AttackManager : MonoBehaviour
 
         for(int i = 0; i < framedata.cancelBy.Length; i++)
         {
-            cancellableSet.Add(framedata.cancelBy[0]);
+            cancellableSet.Add(framedata.cancelBy[i]);
         }
 
         //quickly load framedata into frames (hashmap that loads into hitbox)
@@ -269,6 +269,7 @@ public class AttackManager : MonoBehaviour
 
     public void DestroyPlay(){
         active = false;
+        cancellableFlag = false;
         ScriptToggle(1);
         frames.Clear();
         hasHit.Clear();
