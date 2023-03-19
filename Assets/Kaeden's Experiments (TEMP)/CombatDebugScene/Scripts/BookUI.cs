@@ -7,6 +7,7 @@ public class BookUI : MonoBehaviour
     public bool IsOut;
     private Animator anim;
     private SpriteRenderer sr;
+    private AudioSource audiosrc;
     public void ToggleBook()
     {
         IsOut = EntityManager.IsPaused();
@@ -27,6 +28,7 @@ public class BookUI : MonoBehaviour
     public void SkipAnim()
     {
         AnimatorClipInfo[] clipinfo = anim.GetCurrentAnimatorClipInfo(0);
+        audiosrc.Stop();
         string animName = "Buffer";
         if(clipinfo.Length > 0) animName = clipinfo[0].clip.name;
 
@@ -40,6 +42,7 @@ public class BookUI : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        audiosrc = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

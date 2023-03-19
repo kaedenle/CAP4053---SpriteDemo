@@ -4,22 +4,13 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public enum AudioNames
-    {
-        GunShot,
-        Baseball,
-        Unload,
-        Reload,
-        StopSign,
-        Heavy1Impact
-    }
     //Audio
     public AudioClip[] AttackAudio;
     private AudioSource audiosrc;
-    public void PlayAudio(AudioNames index)
+    public void PlayAudio(int index)
     {
-        if ((int)index >= AttackAudio.Length) return;
-        if (audiosrc != null) audiosrc.PlayOneShot(AttackAudio[(int)index], 0.75f);
+        if (index >= AttackAudio.Length) return;
+        if (audiosrc != null) audiosrc.PlayOneShot(AttackAudio[index], 0.75f);
     }
     // Start is called before the first frame update
     void Start()
