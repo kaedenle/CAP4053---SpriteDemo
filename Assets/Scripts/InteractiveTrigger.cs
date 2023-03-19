@@ -7,7 +7,7 @@ public class InteractiveTrigger : MonoBehaviour
     // public bool triggerPause;
     // public bool repeatable;
     public bool loop_last;
-    public Interactive[] interactives;
+    public InteractiveInfo[] interactives;
 
     private int interactive_index;
     private InteractiveUIController UI;
@@ -21,7 +21,7 @@ public class InteractiveTrigger : MonoBehaviour
         UI = FindObjectOfType<InteractiveUIController>();
     }
 
-    void TriggerInteractive(Interactive current)
+    void TriggerInteractive(InteractiveInfo current)
     {
         UI.StartInteractive(current);
     }

@@ -1,26 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
-[System.Serializable]
-public class Interactive
+public class Interactive : MonoBehaviour
 {
-    public TextAsset[] sentence_files;
-    private string[] sentences;
+    private Material defaultMaterial;
+    private Material outline;
+    private SpriteRenderer renderer;
 
-    public string[] GetSentences()
+    public void OnTriggerEnter2D()
     {
-        if(sentences == null)
-        {        
-            sentences = new string[sentence_files.Length];
+        EnableOutline();
+    }
 
-            for(int i = 0; i < sentence_files.Length; i++)
-            {
-                sentences[i] = sentence_files[i].text;
-            }
-        }
+    public void OnTriggerExit2D()
+    {
+        DisableOutline();
+    }
 
-        return sentences;
+    void Awake()
+    {
+        renderer = gameObject.GetComponent<SpriteRenderer>();
+        defaultMaterial = renderer.material;
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public void SetOutline(Material outline)
+    {
+        this.outline = outline;
+    }
+
+    void EnableOutline()
+    {
+        renderer.material = outline;
+    }
+
+    void DisableOutline()
+    {
+        renderer.material = defaultMaterial;
     }
 }

@@ -5,7 +5,10 @@ using TMPro;
 
 public class InteractiveUIController : MonoBehaviour
 {
+    // public variables
     public TMP_Text textField;
+
+    // internal variables
     private Queue<string> sentences;
     private UnityEngine.EventSystems.UIBehaviour[] allUI;
     private bool on_using;
@@ -32,7 +35,7 @@ public class InteractiveUIController : MonoBehaviour
     }
 
     // start the interactive
-    public void StartInteractive(Interactive interactive)
+    public void StartInteractive(InteractiveInfo interactive)
     {
         on = true;
         on_using = true;
