@@ -111,6 +111,11 @@ public class PlayerScript : MonoBehaviour, IUnique
         DebugSceneManager dsm = FindObjectOfType<DebugSceneManager>();
         if (dsm != null) dsm.ShakeCam(0.1f, 0.5f);
     }
+    private void QuakeShake()
+    {
+        DebugSceneManager dsm = FindObjectOfType<DebugSceneManager>();
+        if (dsm != null) dsm.ShakeCam(0.1f, 0.5f);
+    }
     public void onDeath()
     {
         Debug.Log("You've died!");
