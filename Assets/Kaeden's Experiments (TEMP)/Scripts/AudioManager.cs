@@ -9,7 +9,9 @@ public class AudioManager : MonoBehaviour
         GunShot,
         Baseball,
         Unload,
-        Reload
+        Reload,
+        StopSign,
+        Heavy1Impact
     }
     //Audio
     public AudioClip[] AttackAudio;
