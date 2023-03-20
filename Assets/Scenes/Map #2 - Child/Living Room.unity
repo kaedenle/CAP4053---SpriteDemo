@@ -488,6 +488,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &253505091
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 253505092}
+  m_Layer: 0
+  m_Name: -- Data --
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &253505092
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253505091}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.7466478, y: 0.23309565, z: 4.2846875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1048867123}
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &392371113
 GameObject:
   m_ObjectHideFlags: 0
@@ -1190,11 +1222,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outline_thickness: 0.5
-  pause_on_interact: 1
-  loop_last: 0
-  endHighlightAfterDialogue: 0
-  interactivesText: []
+  outlineThickness: 0.5
+  pauseOnInteract: 1
+  loopLast: 0
+  highlightEnds: 0
+  textId: 
   _nextScene: 8
 --- !u!1 &1032946257
 GameObject:
@@ -1230,6 +1262,51 @@ Transform:
   m_Father: {fileID: 1826998836}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1048867122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1048867123}
+  - component: {fileID: 1048867124}
+  m_Layer: 0
+  m_Name: InteractiveTextDatabase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1048867123
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048867122}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 253505092}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1048867124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048867122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3196ea413d8f68f4196cfe0bad45688e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactiveTextJSON: {fileID: 4900000, guid: 727db37f601995d4593cb8cb25de5b67, type: 3}
 --- !u!1 &1056737771
 GameObject:
   m_ObjectHideFlags: 0
@@ -1740,11 +1817,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outline_thickness: 0.5
-  pause_on_interact: 1
-  loop_last: 0
-  endHighlightAfterDialogue: 0
-  interactivesText: []
+  outlineThickness: 0.5
+  pauseOnInteract: 1
+  loopLast: 0
+  highlightEnds: 0
+  textId: 
   _nextScene: 9
 --- !u!1001 &1259720909
 PrefabInstance:
@@ -1986,14 +2063,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outline_thickness: 0.45
-  pause_on_interact: 1
-  loop_last: 1
-  endHighlightAfterDialogue: 0
-  interactivesText:
-  - sentence_files:
-    - {fileID: 4900000, guid: 8358b5f9724690c4386d3a83875b99a5, type: 3}
-    - {fileID: 4900000, guid: 76a1793366c97fb479f78c8f681c2a2b, type: 3}
+  outlineThickness: 0.5
+  pauseOnInteract: 1
+  loopLast: 0
+  highlightEnds: 0
+  textId: childKeyItem
   _itemType: 2
 --- !u!212 &1292937147
 SpriteRenderer:
@@ -2528,6 +2602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9938144d8d689248a803d85b4818e7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MenuUI: {fileID: 0}
 --- !u!1 &1666218697
 GameObject:
   m_ObjectHideFlags: 0
@@ -3141,11 +3216,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outline_thickness: 0.5
-  pause_on_interact: 1
-  loop_last: 0
-  endHighlightAfterDialogue: 0
-  interactivesText: []
+  outlineThickness: 0.5
+  pauseOnInteract: 1
+  loopLast: 0
+  highlightEnds: 0
+  textId: 
   _nextScene: 7
 --- !u!1 &1791858962
 GameObject:
