@@ -159,5 +159,8 @@ public class EntityManager : MonoBehaviour
         return _envInteractable;
     }
 
-    
+    public static bool EquipEnabled()
+    {
+        return _equipEnabled;
+    }
 }
