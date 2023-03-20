@@ -8,7 +8,8 @@ public class InventoryManager : MonoBehaviour
 
     public enum AllItems    // all available inventory items
     {
-        MobsterKeyDemo
+        MobsterKeyDemo,
+        Child_Grabber
     }
 
     public static List<AllItems> _inventoryItems = new List<AllItems>();  // our inventory items
@@ -31,7 +32,8 @@ public class InventoryManager : MonoBehaviour
                 _usedItems.Add(item);
 
             // debug statement for figuring out any issues
-            Debug.Log("added " + item.ToString() + " to inventory, current inventory size is now " + _inventoryItems.Count);
+            Debug.Log("added " + item.ToString() + " to inventory");
+            // Debug.Log("added " + item.ToString() + " to inventory, current inventory size is now " + _inventoryItems.Count);
         }
     }
 
