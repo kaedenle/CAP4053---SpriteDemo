@@ -9,7 +9,8 @@ public class InventoryManager : MonoBehaviour
     public enum AllItems    // all available inventory items
     {
         MobsterKeyDemo,
-        Child_Grabber
+        Child_Grabber,
+        Child_Bedroom_Key,
     }
 
     public static List<AllItems> _inventoryItems = new List<AllItems>();  // our inventory items

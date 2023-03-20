@@ -8,6 +8,7 @@ public class Interactive : MonoBehaviour
     public float outline_thickness = 0.5F;
     public bool pause_on_interact = true;
     public bool loop_last;
+    public bool endHighlightAfterDialogue = false;
     public InteractiveInfo[] interactivesText;
 
     // private trackers
@@ -25,7 +26,7 @@ public class Interactive : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.tag == "Player")
+        if(collider.tag == "Player" && OutlineEnabled())
         {
             near = true;
             EnableOutline();
@@ -110,5 +111,13 @@ public class Interactive : MonoBehaviour
         // do the dialogue
         UI.StartInteractive(interactivesText[interactive_index], pause_on_interact);
         if(!loop_last || interactive_index + 1 < interactivesText.Length) interactive_index++;
+
+        if(!OutlineEnabled())
+            DisableOutline();
+    }
+
+    bool OutlineEnabled()
+    {
+        return !endHighlightAfterDialogue || interactive_index < interactivesText.Length;
     }
 }
