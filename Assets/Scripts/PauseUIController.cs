@@ -7,6 +7,8 @@ public class PauseUIController : MonoBehaviour
     private Animator animator;
     private string trigger = "pause";
     private bool triggered = false;
+    private bool delayComplete = false;
+    private float delay = 1.2F;
 
     // Start is called before the first frame update
     void Start()
@@ -20,12 +22,20 @@ public class PauseUIController : MonoBehaviour
         {
             animator.SetBool(trigger, true);
             triggered = true;
+            StartCoroutine(StartDelay());
         }
 
-        else if(triggered && !UIManager.IsPaused())
+        else if(triggered && delayComplete && !UIManager.IsPaused())
         {
+            delayComplete = false;
             animator.SetBool(trigger, false);
             triggered = false;
         }
+    }
+
+    IEnumerator StartDelay()
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        delayComplete = true;
     }
 }
