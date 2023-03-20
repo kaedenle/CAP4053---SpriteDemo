@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     private static bool paused = false;
     private static bool isSwitching = false;
+    public GameObject MenuUI;
 
     void Awake()
     {
@@ -27,6 +28,11 @@ public class UIManager : MonoBehaviour
             else
             {
                 UIPause();
+            }
+            if (MenuUI != null)
+            {
+                MenuUI.SetActive(true);
+                MenuUI.GetComponent<BookUI>().ToggleBook();
             }
         }
     }

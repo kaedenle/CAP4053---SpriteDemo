@@ -24,9 +24,7 @@ public class DebugSceneManager : MonoBehaviour
             book.SetActive(true);
             book.GetComponent<BookUI>().ToggleBook();
         }
-        //skip book animation
-        if (book.activeSelf && Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<HealthTracker>().healthSystem.getHealth() != 0)
-            book.GetComponent<BookUI>().SkipAnim();
+        
     }
 
     void Start()
