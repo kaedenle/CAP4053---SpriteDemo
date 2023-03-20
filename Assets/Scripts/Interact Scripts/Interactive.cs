@@ -7,9 +7,9 @@ public class Interactive : MonoBehaviour
     // public variables
     public float outlineThickness = 0.5F;
     public bool pauseOnInteract = true;
+    public string textId;
     public bool loopLast;
     public bool highlightEnds = false;
-    public string textId;
 
     // private trackers
     // outline vars
