@@ -12,10 +12,4 @@ public class GateAnimatorController : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
         animator.SetBool("foundKey", MobsterLevelManager.HasObtainedAlleyKey());
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
