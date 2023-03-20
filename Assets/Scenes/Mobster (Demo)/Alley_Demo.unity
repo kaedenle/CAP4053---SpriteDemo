@@ -2972,6 +2972,7 @@ MonoBehaviour:
   outline_thickness: 11
   pause_on_interact: 1
   loop_last: 0
+  endHighlightAfterDialogue: 0
   interactivesText: []
   _nextScene: 2
 --- !u!58 &555826900
@@ -6078,6 +6079,7 @@ GameObject:
   - component: {fileID: 1316715541}
   - component: {fileID: 1316715543}
   - component: {fileID: 1316715542}
+  - component: {fileID: 1316715544}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -6145,6 +6147,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1316715540}
   m_CullTransparentMesh: 1
+--- !u!114 &1316715544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316715540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 3
+  m_AspectRatio: 1.7777778
 --- !u!1 &1341435346
 GameObject:
   m_ObjectHideFlags: 0
@@ -8687,6 +8703,7 @@ MonoBehaviour:
   outline_thickness: 0.5
   pause_on_interact: 1
   loop_last: 0
+  endHighlightAfterDialogue: 0
   interactivesText: []
 --- !u!61 &1955604437
 BoxCollider2D:
