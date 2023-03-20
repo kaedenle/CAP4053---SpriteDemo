@@ -64,6 +64,11 @@ public class Interactive : MonoBehaviour
     public void Start()
     {
         UI = FindObjectOfType<InteractiveUIController>();
+        // float k = 7.0F;
+        // float scale = (gameObject.transform.localScale.x + gameObject.transform.localScale.y) / 2F;
+        
+        // Debug.Log("set thickness to " + (k / scale) + " where scale is " + scale + " and k is " + k);
+        // outline.SetFloat("_Outline_Thickness", k / scale); 
     }
 
     public bool IsPlayerNear()
@@ -73,7 +78,12 @@ public class Interactive : MonoBehaviour
 
     public void SetOutline(Material outline)
     {
-        this.outline = outline;
+        this.outline = new Material(outline);
+    }
+
+    public Material GetOutline()
+    {
+        return outline;
     }
 
     void EnableOutline()
@@ -99,6 +109,5 @@ public class Interactive : MonoBehaviour
         // do the dialogue
         UI.StartInteractive(interactivesText[interactive_index], pause_on_interact);
         if(!loop_last || interactive_index + 1 < interactivesText.Length) interactive_index++;
-
     }
 }

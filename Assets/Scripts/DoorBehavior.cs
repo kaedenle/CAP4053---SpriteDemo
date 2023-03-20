@@ -6,7 +6,7 @@ public class DoorBehavior : MonoBehaviour
 {
     [SerializeField] InventoryManager.AllItems _requiredKey;
     [SerializeField] ScenesManager.AllScenes _nextScene;
-    bool near = true;
+    private bool near = true;
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
@@ -23,7 +23,7 @@ public class DoorBehavior : MonoBehaviour
     public void Update()
     {
         // opens the gate and loads the alley scene if the player has the key
-        if(InputManager.InteractKeyDown() && MobsterLevelManager.UnlockAlleyGate(_requiredKey))
+        if(near && InputManager.InteractKeyDown() && MobsterLevelManager.UnlockAlleyGate(_requiredKey))
         {
             ScenesManager.LoadScene(_nextScene);
         }
