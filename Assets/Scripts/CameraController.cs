@@ -10,7 +10,8 @@ public class CameraController : MonoBehaviour
 
     public bool forceAspectRatio = true;
 
-    private Color defaultBackgroundColor = Color.black;
+    [SerializeField]
+    public Color defaultBackgroundColor = Color.black;
     private float targetAspect = 16.0f / 9.0f;
     private float xSize, ySize;
     private Camera cam;
