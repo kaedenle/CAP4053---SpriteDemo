@@ -109,11 +109,11 @@ public class PlayerScript : MonoBehaviour, IUnique
     }
     private void GunShake()
     {
-        if (fxm != null) fxm.ShakeCam(0.1f, 0.5f);
+        if (fxm != null) fxm.ShakeCam(0.1f, 0.75f);
     }
     private void QuakeShake()
     {
-        if (fxm != null) fxm.ShakeCam(0.1f, 0.5f);
+        if (fxm != null) fxm.ShakeCam(0.1f, 0.75f);
     }
     public void onDeath()
     {
