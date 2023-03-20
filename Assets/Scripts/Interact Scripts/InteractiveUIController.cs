@@ -10,7 +10,7 @@ public class InteractiveUIController : MonoBehaviour
 
     // internal variables
     private Queue<string> sentences;
-    private UnityEngine.EventSystems.UIBehaviour[] allUI;
+    private Canvas canvas_renderer;
     private bool on_using;
     private bool on;
     private float delay = 0.5F;
@@ -19,7 +19,7 @@ public class InteractiveUIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        allUI = gameObject.GetComponentsInChildren<UnityEngine.EventSystems.UIBehaviour>(); 
+        canvas_renderer = gameObject.GetComponent<Canvas>(); 
         TurnUIOff();
         sentences = new Queue<string>();
         on = false;
@@ -92,17 +92,12 @@ public class InteractiveUIController : MonoBehaviour
 
     void TurnUIOff()
     {
-        foreach(UnityEngine.EventSystems.UIBehaviour ui in allUI) 
-        { 
-            ui.enabled = false; //turn them off. 
-        } 
+        canvas_renderer.enabled = false; //turn them off. 
+        
     }
 
     void TurnUIOn()
     {
-        foreach(UnityEngine.EventSystems.UIBehaviour ui in allUI) 
-        { 
-            ui.enabled = true; //turn them off. 
-        } 
+        canvas_renderer.enabled = true; //turn them off. 
     }
 }
