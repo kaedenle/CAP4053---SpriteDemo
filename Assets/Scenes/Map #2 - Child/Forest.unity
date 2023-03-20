@@ -331,6 +331,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf92784ed5d3bf4a836824b47e4efcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pause_on_interact: 1
+  loop_last: 0
+  interactivesText: []
 --- !u!1 &64214909
 GameObject:
   m_ObjectHideFlags: 0
@@ -7895,6 +7898,7 @@ MonoBehaviour:
   player: {fileID: 983814510}
   followPlayerX: 1
   followPlayerY: 1
+  generateBoundary: 0
 --- !u!114 &1191988413
 MonoBehaviour:
   m_ObjectHideFlags: 0
