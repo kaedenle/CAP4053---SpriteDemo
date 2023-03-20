@@ -82,6 +82,7 @@ public class ScenesManager : MonoBehaviour
     public void Awake()
     {
         Instance = this;
+        _currentScene = (AllScenes) SceneManager.GetActiveScene().buildIndex;
     }
 
     public static void setDemo()
