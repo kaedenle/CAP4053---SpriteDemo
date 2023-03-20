@@ -83,11 +83,11 @@ public class EntityManager : MonoBehaviour
     
     public static void DisableEquip()
     {
-        _swapEnabled = false;
+        _equipEnabled = false;
     }
     public static bool EquipEnabled()
     {
-        return _swapEnabled;
+        return _equipEnabled;
     }
     public static bool MovementEnabled()
     {
@@ -157,10 +157,5 @@ public class EntityManager : MonoBehaviour
     public static bool IsEnvironmentInteractable()
     {
         return _envInteractable;
-    }
-
-    public static bool EquipEnabled()
-    {
-        return _equipEnabled;
     }
 }
