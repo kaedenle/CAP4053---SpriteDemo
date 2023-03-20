@@ -8,18 +8,57 @@ public class CameraController : MonoBehaviour
     public bool followPlayerX, followPlayerY;
     public bool generateBoundary = true;
 
+    private Color defaultBackgroundColor = Color.black;
+    private float targetAspect = 16.0f / 9.0f;
     private float xSize, ySize;
-    private Camera cam;
+    private Camera camera;
 
     // Start is called before the first frame update
     void Awake()
     {
+        // grabs the Main camera. could potentially grab the camera attached to this object
+        camera = UnityEngine.Camera.main;
+        camera.clearFlags = CameraClearFlags.SolidColor;
+        camera.backgroundColor = defaultBackgroundColor;
+        
+        // force the camera into our desired aspect ratio
+        // determine the game window's current aspect ratio
+        float windowaspect = (float)Screen.width / (float)Screen.height;
+
+        // current viewport height should be scaled by this amount
+        float scaleheight = windowaspect / targetAspect;
+
+        // if scaled height is less than current height, add letterbox
+        if (scaleheight < 1.0f)
+        {  
+            Rect rect = camera.rect;
+
+            rect.width = 1.0f;
+            rect.height = scaleheight;
+            rect.x = 0;
+            rect.y = (1.0f - scaleheight) / 2.0f;
+            
+            camera.rect = rect;
+        }
+        else // add pillarbox
+        {
+            float scalewidth = 1.0f / scaleheight;
+
+            Rect rect = camera.rect;
+
+            rect.width = scalewidth;
+            rect.height = 1.0f;
+            rect.x = (1.0f - scalewidth) / 2.0f;
+            rect.y = 0;
+
+            camera.rect = rect;
+        }
+
         // generate bounding boxes if its checked
         if(generateBoundary)
         {
-            cam = UnityEngine.Camera.main;
-            ySize = cam.orthographicSize;
-            xSize = ySize * cam.aspect;         
+            ySize = camera.orthographicSize;
+            xSize = ySize * camera.aspect;         
 
             int[] dy = {0, 0, 1, -1};
             int[] dx = {1, -1, 0, 0};
