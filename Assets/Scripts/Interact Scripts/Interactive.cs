@@ -5,6 +5,7 @@ using UnityEngine;
 public class Interactive : MonoBehaviour
 {
     // public variables
+    public float outline_thickness = 0.5F;
     public bool pause_on_interact = true;
     public bool loop_last;
     public InteractiveInfo[] interactivesText;
@@ -68,7 +69,7 @@ public class Interactive : MonoBehaviour
         // float scale = (gameObject.transform.localScale.x + gameObject.transform.localScale.y) / 2F;
         
         // Debug.Log("set thickness to " + (k / scale) + " where scale is " + scale + " and k is " + k);
-        // outline.SetFloat("_Outline_Thickness", k / scale); 
+        outline.SetFloat("_Outline_Thickness", outline_thickness); 
     }
 
     public bool IsPlayerNear()
