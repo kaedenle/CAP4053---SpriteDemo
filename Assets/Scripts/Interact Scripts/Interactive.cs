@@ -96,7 +96,7 @@ public class Interactive : MonoBehaviour
     {
         sprite_renderer.material = defaultMaterial;
     }
-    void TriggerDialogue()
+    public void TriggerDialogue()
     {
         // don't trigger dialogue if you've already triggered the last one
         if(interactive_index >= interactivesText.Length) return;
@@ -111,7 +111,7 @@ public class Interactive : MonoBehaviour
             DisableOutline();
     }
 
-    bool TriggerDialogue(InteractiveInfo script)
+    public bool TriggerDialogue(InteractiveInfo script)
     {
         // don't trigger if dialogue is currently active
         if(UI.IsActive()) return false;

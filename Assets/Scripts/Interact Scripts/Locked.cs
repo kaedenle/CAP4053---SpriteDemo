@@ -39,7 +39,7 @@ public class Locked : Interactive
         TriggerDialogue(lockedText[locked_index]);
         
         // default behavior: loop last
-        if(interactive_index + 1 < interactivesText.Length) interactive_index++;
+        if(locked_index + 1 < lockedText.Length) locked_index++;
     }
 
 }
