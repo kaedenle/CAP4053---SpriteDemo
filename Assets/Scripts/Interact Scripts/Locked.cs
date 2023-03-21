@@ -32,14 +32,7 @@ public class Locked : Interactive
 
     void TriggerLockedDialogue()
     {
-        // don't trigger dialogue if you've already triggered the last one
-        if(locked_index >= lockedText.Length) return;
-
-        // do the dialogue
-        TriggerDialogue(lockedText[locked_index]);
-        
-        // default behavior: loop last
-        if(locked_index + 1 < lockedText.Length) locked_index++;
+        TriggerDialogue(lockedTextId, lockedText, true);
     }
 
     public bool IsUnlocked()
