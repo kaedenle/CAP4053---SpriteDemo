@@ -45,13 +45,13 @@ public class Interactive : MonoBehaviour
 
     public void Update()
     {
-        if(IsPlayerNear() && InputManager.InteractKeyDown())
+        if(IsTriggered())
         {
             TriggerDialogue();
         }
     }
 
-    void Awake()
+    public void Awake()
     {
         // get the objects for the outlines
         sprite_renderer = gameObject.GetComponent<SpriteRenderer>();
@@ -127,5 +127,10 @@ public class Interactive : MonoBehaviour
     bool OutlineEnabled()
     {
         return !highlightEnds || interactive_index < interactivesText.Length;
+    }
+
+    public bool IsTriggered()
+    {
+        return IsPlayerNear() && InputManager.InteractKeyDown();
     }
 }

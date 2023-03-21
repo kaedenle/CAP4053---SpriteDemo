@@ -19,9 +19,9 @@ public class Locked : Interactive
 
     new void Update()
     {
-        if(IsPlayerNear() &&  InputManager.InteractKeyDown())
+        if(IsTriggered())
         {
-            bool unlocked = InventoryManager.PickedUp(requiredItem);
+            bool unlocked = IsUnlocked();
 
             if(unlocked)
                 TriggerDialogue();
@@ -40,6 +40,11 @@ public class Locked : Interactive
         
         // default behavior: loop last
         if(locked_index + 1 < lockedText.Length) locked_index++;
+    }
+
+    public bool IsUnlocked()
+    {
+        return InventoryManager.PickedUp(requiredItem);
     }
 
 }
