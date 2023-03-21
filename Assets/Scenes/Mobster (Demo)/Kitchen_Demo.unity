@@ -508,6 +508,83 @@ Transform:
   m_Father: {fileID: 1762773821}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &150255348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 150255349}
+  m_Layer: 0
+  m_Name: -- Data --
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &150255349
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150255348}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.7466478, y: 0.23309565, z: 4.2846875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 174523852}
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &174523851
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 174523852}
+  - component: {fileID: 174523853}
+  m_Layer: 0
+  m_Name: InteractiveTextDatabase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &174523852
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174523851}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 150255349}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &174523853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174523851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3196ea413d8f68f4196cfe0bad45688e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactiveTextJSON: {fileID: 4900000, guid: 727db37f601995d4593cb8cb25de5b67, type: 3}
 --- !u!1 &177655857
 GameObject:
   m_ObjectHideFlags: 0
@@ -1555,6 +1632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9938144d8d689248a803d85b4818e7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MenuUI: {fileID: 0}
 --- !u!1001 &540370124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1711,11 +1789,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outline_thickness: 11
-  pause_on_interact: 1
-  loop_last: 0
-  endHighlightAfterDialogue: 0
-  interactivesText: []
+  outlineThickness: 0.5
+  pauseOnInteract: 1
+  loopLast: 0
+  highlightEnds: 0
+  textId: 
   _nextScene: 3
 --- !u!58 &555459316
 CircleCollider2D:
@@ -2831,14 +2909,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outline_thickness: 0.5
-  pause_on_interact: 1
-  loop_last: 1
-  endHighlightAfterDialogue: 0
-  interactivesText:
-  - sentence_files:
-    - {fileID: 4900000, guid: a8947b5b2e9aca14ab66b27fbcba9f8b, type: 3}
-    - {fileID: 4900000, guid: b880e2e63b992af429ebf109ba3413b4, type: 3}
+  outlineThickness: 0.5
+  pauseOnInteract: 1
+  loopLast: 0
+  highlightEnds: 0
+  textId: mobsterDemoKeyItem
   _itemType: 0
 --- !u!58 &1020108984
 CircleCollider2D:

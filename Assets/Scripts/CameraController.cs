@@ -8,7 +8,10 @@ public class CameraController : MonoBehaviour
     public bool followPlayerX, followPlayerY;
     public bool generateBoundary = true;
 
-    private Color defaultBackgroundColor = Color.black;
+    public bool forceAspectRatio = true;
+
+    [SerializeField]
+    public Color defaultBackgroundColor = Color.black;
     private float targetAspect = 16.0f / 9.0f;
     private float xSize, ySize;
     private Camera cam;
@@ -20,38 +23,41 @@ public class CameraController : MonoBehaviour
         cam = UnityEngine.Camera.main;
         cam.clearFlags = CameraClearFlags.SolidColor;
         cam.backgroundColor = defaultBackgroundColor;
-        
-        // force the camera into our desired aspect ratio
-        // determine the game window's current aspect ratio
-        float windowaspect = (float)Screen.width / (float)Screen.height;
 
-        // current viewport height should be scaled by this amount
-        float scaleheight = windowaspect / targetAspect;
-
-        // if scaled height is less than current height, add letterbox
-        if (scaleheight < 1.0f)
-        {  
-            Rect rect = cam.rect;
-
-            rect.width = 1.0f;
-            rect.height = scaleheight;
-            rect.x = 0;
-            rect.y = (1.0f - scaleheight) / 2.0f;
-            
-            cam.rect = rect;
-        }
-        else // add pillarbox
+        if(forceAspectRatio)
         {
-            float scalewidth = 1.0f / scaleheight;
+            // force the camera into our desired aspect ratio
+            // determine the game window's current aspect ratio
+            float windowaspect = (float)Screen.width / (float)Screen.height;
 
-            Rect rect = cam.rect;
+            // current viewport height should be scaled by this amount
+            float scaleheight = windowaspect / targetAspect;
 
-            rect.width = scalewidth;
-            rect.height = 1.0f;
-            rect.x = (1.0f - scalewidth) / 2.0f;
-            rect.y = 0;
+            // if scaled height is less than current height, add letterbox
+            if (scaleheight < 1.0f)
+            {  
+                Rect rect = cam.rect;
 
-            cam.rect = rect;
+                rect.width = 1.0f;
+                rect.height = scaleheight;
+                rect.x = 0;
+                rect.y = (1.0f - scaleheight) / 2.0f;
+                
+                cam.rect = rect;
+            }
+            else // add pillarbox
+            {
+                float scalewidth = 1.0f / scaleheight;
+
+                Rect rect = cam.rect;
+
+                rect.width = scalewidth;
+                rect.height = 1.0f;
+                rect.x = (1.0f - scalewidth) / 2.0f;
+                rect.y = 0;
+
+                cam.rect = rect;
+            }
         }
 
         // generate bounding boxes if its checked

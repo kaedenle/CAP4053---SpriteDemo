@@ -5,11 +5,11 @@ using UnityEngine;
 public class Interactive : MonoBehaviour
 {
     // public variables
-    public float outline_thickness = 0.5F;
-    public bool pause_on_interact = true;
-    public bool loop_last;
-    public bool endHighlightAfterDialogue = false;
-    public InteractiveInfo[] interactivesText;
+    public float outlineThickness = 0.5F;
+    public bool pauseOnInteract = true;
+    public string textId;
+    public bool loopLast;
+    public bool highlightEnds = false;
 
     // private trackers
     // outline vars
@@ -21,6 +21,7 @@ public class Interactive : MonoBehaviour
     private bool near;
 
     // dialogue vars
+    private InteractiveInfo[] interactivesText;
     private int interactive_index;
     private InteractiveUIController UI;
 
@@ -59,18 +60,16 @@ public class Interactive : MonoBehaviour
         // set default vars
         near = false;
         interactive_index = 0;
-        if(interactivesText == null)
-            interactivesText = new InteractiveInfo[0];
     }
 
     public void Start()
     {
         UI = FindObjectOfType<InteractiveUIController>();
-        // float k = 7.0F;
-        // float scale = (gameObject.transform.localScale.x + gameObject.transform.localScale.y) / 2F;
-        
-        // Debug.Log("set thickness to " + (k / scale) + " where scale is " + scale + " and k is " + k);
-        outline.SetFloat("_Outline_Thickness", outline_thickness); 
+        outline.SetFloat("_Outline_Thickness", outlineThickness); 
+
+        interactivesText = InteractiveInfo.ParseData(InteractiveTextDatabase.GetText(textId));
+        if(interactivesText == null)
+            interactivesText = new InteractiveInfo[0];
     }
 
     public bool IsPlayerNear()
@@ -106,11 +105,11 @@ public class Interactive : MonoBehaviour
         if(interactive_index >= interactivesText.Length) return;
 
         // pause now if I've made it this far
-        if(pause_on_interact) EntityManager.DialoguePause();
+        if(pauseOnInteract) EntityManager.DialoguePause();
 
         // do the dialogue
-        UI.StartInteractive(interactivesText[interactive_index], pause_on_interact);
-        if(!loop_last || interactive_index + 1 < interactivesText.Length) interactive_index++;
+        UI.StartInteractive(interactivesText[interactive_index], pauseOnInteract);
+        if(!loopLast || interactive_index + 1 < interactivesText.Length) interactive_index++;
 
         if(!OutlineEnabled())
             DisableOutline();
@@ -118,6 +117,6 @@ public class Interactive : MonoBehaviour
 
     bool OutlineEnabled()
     {
-        return !endHighlightAfterDialogue || interactive_index < interactivesText.Length;
+        return !highlightEnds || interactive_index < interactivesText.Length;
     }
 }
