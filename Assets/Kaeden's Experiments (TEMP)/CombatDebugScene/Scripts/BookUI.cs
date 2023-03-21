@@ -75,8 +75,10 @@ public class BookUI : MonoBehaviour
 
         if(RightPage != null) RightPage.SetActive(false);
         RightPage = null;
-
-        anim.Play("Flip Page");
+        if (jump > 0)
+            anim.Play("Flip Page 1");
+        else
+            anim.Play("Flip Page 2");
         PageIndex += jump;
     }
     public void LoadPages()

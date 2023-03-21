@@ -14,6 +14,7 @@ public class HealthTracker : MonoBehaviour, IDamagable
     private Image HPBar;
     private bool deathFlag = false;
 
+    private float hitstunaddTimer = 0;
     private const float DAMAGED_TIMER_SHRINK_MAX = 0.5f;
     private float damagedHealthShrinkTimer;
 
@@ -88,9 +89,9 @@ public class HealthTracker : MonoBehaviour, IDamagable
     //implement IDamagable interface
     public void damage(Vector3 knockback, int damage, float hitstun, float hitstop){
         if(!deathFlag){
+            hitstunaddTimer = hitstun;
             Debug.Log(gameObject.name + " took " + damage + " damage and " + knockback + " knockback");
             healthSystem.Damage(damage);
-            
         }
     }
 
@@ -102,7 +103,7 @@ public class HealthTracker : MonoBehaviour, IDamagable
     //events to happen when damage is taken
     private void HealthSystem_OnDamaged(object sender, System.EventArgs e){
         if(!deathFlag)
-            damagedHealthShrinkTimer = DAMAGED_TIMER_SHRINK_MAX;
+            damagedHealthShrinkTimer = DAMAGED_TIMER_SHRINK_MAX + hitstunaddTimer;
         SetHealth(healthSystem.GetHealthNormalized());
     }
 }
