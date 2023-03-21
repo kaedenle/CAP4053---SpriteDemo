@@ -78,7 +78,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
                 //change speed if heavy weapon
                 Player_Movement movementScript = gameObject.GetComponent<Player_Movement>();
                 if (weaponID == 1)
-                    gameObject.GetComponent<Player_Movement>().speed = 10;
+                    gameObject.GetComponent<Player_Movement>().speed = 8;
                 else
                     gameObject.GetComponent<Player_Movement>().speed = movementScript.MAX_SPEED;
             }

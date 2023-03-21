@@ -5,6 +5,8 @@ using UnityEngine;
 public class DynamicSorting : MonoBehaviour
 {
     private List<Renderer> rends;
+    public bool TakeParent;
+    public int deltaDown;
     private void GetChildRecursive(GameObject obj)
     {
         if (null == obj)
@@ -20,9 +22,12 @@ public class DynamicSorting : MonoBehaviour
     }
     private void UpdateRends()
     {
+        float original = gameObject.GetComponent<Renderer>().transform.position.y;
         foreach(Renderer r in rends)
         {
-            r.sortingOrder = (int)(r.transform.position.y * -100);
+            float newCoords = TakeParent ? original : r.transform.position.y;
+            r.sortingOrder = (int)(newCoords * -100) + deltaDown;
+
         }
     }
     // Start is called before the first frame update

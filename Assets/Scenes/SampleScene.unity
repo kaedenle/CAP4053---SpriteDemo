@@ -6074,19 +6074,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6197798176421269809, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
   m_PrefabInstance: {fileID: 501857205}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &153283111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 153283094}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 558c5b973272d134e8f1443bbb2c9f1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Main: {fileID: 405129055}
 --- !u!1 &154969654
 GameObject:
   m_ObjectHideFlags: 0
@@ -16077,11 +16064,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &405129055 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6197798177006665903, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
-  m_PrefabInstance: {fileID: 501857205}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &408019888
 GameObject:
   m_ObjectHideFlags: 0
@@ -20867,10 +20849,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6197798176022084575, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
-      propertyPath: m_SortingOrder
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 6197798176421269809, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_Name
       value: Player
@@ -20917,38 +20895,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6197798176421269814, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6197798177006665901, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6197798177016697439, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6197798177016697439, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6197798177016697439, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 359116491
-      objectReference: {fileID: 0}
-    - target: {fileID: 8340756177781156867, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
-      propertyPath: m_SortingOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8802820891676576214, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
-      propertyPath: m_Size.x
-      value: 5.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 8802820891676576214, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
-      propertyPath: m_Size.y
-      value: 5.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 8802820891676576214, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
-      propertyPath: m_WasSpriteAssigned
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -78279,6 +78225,14 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6674768559125777893, guid: 927e3f03c2cd5224cb7334cdb14627e0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6674768559125777893, guid: 927e3f03c2cd5224cb7334cdb14627e0, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1305270975
+      objectReference: {fileID: 0}
+    - target: {fileID: 6674768559125777893, guid: 927e3f03c2cd5224cb7334cdb14627e0, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
@@ -91641,6 +91595,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 2003510045}
+    - target: {fileID: 1554438271625386809, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1554438271625386812, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
       propertyPath: m_Name
       value: Menu Canvas
