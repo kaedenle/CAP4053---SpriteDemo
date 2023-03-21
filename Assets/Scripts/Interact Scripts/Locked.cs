@@ -17,7 +17,7 @@ public class Locked : Interactive
         lockedText = InteractiveInfo.ParseData(InteractiveTextDatabase.GetText(lockedTextId));
     }
 
-    new void Update()
+    new public void Update()
     {
         if(IsTriggered())
         {

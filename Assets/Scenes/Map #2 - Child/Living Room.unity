@@ -1224,9 +1224,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineThickness: 0.5
   pauseOnInteract: 1
+  textId: 
   loopLast: 0
   highlightEnds: 0
-  textId: 
   _nextScene: 8
 --- !u!1 &1032946257
 GameObject:
@@ -1693,6 +1693,8 @@ MonoBehaviour:
   followPlayerX: 0
   followPlayerY: 0
   generateBoundary: 1
+  forceAspectRatio: 1
+  defaultBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &1210283150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1814,15 +1816,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1210283150}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b20524b5cfe474479bb4b0bfb67d06d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   outlineThickness: 0.5
   pauseOnInteract: 1
+  textId: 
   loopLast: 0
   highlightEnds: 0
-  textId: 
-  _nextScene: 9
+  requiredItem: 2
+  lockedTextId: lockedChildDoor
+  nextScene: 9
 --- !u!1001 &1259720909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2016,8 +2020,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1292937148}
   - component: {fileID: 1292937147}
-  - component: {fileID: 1292937146}
   - component: {fileID: 1292937145}
+  - component: {fileID: 1292937149}
   m_Layer: 0
   m_Name: BedroomKey
   m_TagString: Untagged
@@ -2051,24 +2055,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0360523, y: 0.59490204}
   m_EdgeRadius: 0.55
---- !u!114 &1292937146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1292937144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineThickness: 0.5
-  pauseOnInteract: 1
-  loopLast: 0
-  highlightEnds: 0
-  textId: childKeyItem
-  _itemType: 2
 --- !u!212 &1292937147
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2136,6 +2122,26 @@ Transform:
   m_Father: {fileID: 1826998836}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 80}
+--- !u!114 &1292937149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292937144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aab8332b78ea7b40bacb979852a20be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineThickness: 0.5
+  pauseOnInteract: 1
+  textId: childKeyItem
+  loopLast: 0
+  highlightEnds: 0
+  requiredItem: 1
+  lockedTextId: childKeyLocked
+  itemType: 2
 --- !u!1 &1402339350
 GameObject:
   m_ObjectHideFlags: 0
@@ -3218,9 +3224,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineThickness: 0.5
   pauseOnInteract: 1
+  textId: 
   loopLast: 0
   highlightEnds: 0
-  textId: 
   _nextScene: 7
 --- !u!1 &1791858962
 GameObject:

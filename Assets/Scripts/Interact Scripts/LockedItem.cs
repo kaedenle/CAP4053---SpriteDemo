@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class LockedItem : Locked
 {
-    public InventoryManager.AllItems itemType;
+    [SerializeField] public InventoryManager.AllItems itemType;
 
     new void Awake()
     {
         if(InventoryManager.PickedUp(itemType))
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
 
         base.Awake();
@@ -22,8 +22,9 @@ public class LockedItem : Locked
         base.Update();
         if(IsTriggered() && IsUnlocked())
         {
+            Debug.Log("inside LockedItem Update()");
             InventoryManager.AddItem(itemType);
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 }
