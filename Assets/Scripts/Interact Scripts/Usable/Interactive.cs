@@ -22,7 +22,6 @@ public class Interactive : MonoBehaviour
 
     // dialogue vars
     private InteractiveInfo[] interactivesText;
-    private int interactive_index;
     private InteractiveUIController UI;
 
     public void OnTriggerEnter2D(Collider2D collider)
@@ -45,13 +44,13 @@ public class Interactive : MonoBehaviour
 
     public void Update()
     {
-        if(IsPlayerNear() && InputManager.InteractKeyDown())
+        if(IsTriggered())
         {
             TriggerDialogue();
         }
     }
 
-    void Awake()
+    public void Awake()
     {
         // get the objects for the outlines
         sprite_renderer = gameObject.GetComponent<SpriteRenderer>();
@@ -59,7 +58,6 @@ public class Interactive : MonoBehaviour
 
         // set default vars
         near = false;
-        interactive_index = 0;
     }
 
     public void Start()
@@ -98,34 +96,42 @@ public class Interactive : MonoBehaviour
     }
     public void TriggerDialogue()
     {
-        // don't trigger dialogue if you've already triggered the last one
-        if(interactive_index >= interactivesText.Length) return;
-
-        // do the dialogue
-        bool triggered = TriggerDialogue(interactivesText[interactive_index]);
-        if(!triggered) return;
-        
-        if(!loopLast || interactive_index + 1 < interactivesText.Length) interactive_index++;
+        TriggerDialogue(textId, interactivesText, loopLast);
 
         if(!OutlineEnabled())
             DisableOutline();
     }
 
-    public bool TriggerDialogue(InteractiveInfo script)
+    public void TriggerDialogue(string script_id, InteractiveInfo[] allScripts, bool loop_last)
     {
+        if(script_id == null) return;
+
         // don't trigger if dialogue is currently active
-        if(UI.IsActive()) return false;
+        if(UI.IsActive()) return;
 
         // pause now if I've made it this far
+
+        int index = UIManager.GetInteractiveIndex(script_id);
+
+        if(index >= allScripts.Length) return;
+
         if(pauseOnInteract) EntityManager.DialoguePause();
+        UI.StartInteractive(allScripts[index], pauseOnInteract);
 
-        UI.StartInteractive(script, pauseOnInteract);
+        if(!loop_last || index + 1 < allScripts.Length) index++;
 
-        return true;
+        UIManager.SetInteractiveIndex(script_id, index);
     }
 
     bool OutlineEnabled()
     {
-        return !highlightEnds || interactive_index < interactivesText.Length;
+        int index = UIManager.GetInteractiveIndex(textId);
+
+        return !highlightEnds || index < interactivesText.Length;
+    }
+
+    public bool IsTriggered()
+    {
+        return IsPlayerNear() && InputManager.InteractKeyDown();
     }
 }

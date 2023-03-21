@@ -17,11 +17,11 @@ public class Locked : Interactive
         lockedText = InteractiveInfo.ParseData(InteractiveTextDatabase.GetText(lockedTextId));
     }
 
-    new void Update()
+    new public void Update()
     {
-        if(IsPlayerNear() &&  InputManager.InteractKeyDown())
+        if(IsTriggered())
         {
-            bool unlocked = InventoryManager.PickedUp(requiredItem);
+            bool unlocked = IsUnlocked();
 
             if(unlocked)
                 TriggerDialogue();
@@ -32,14 +32,12 @@ public class Locked : Interactive
 
     void TriggerLockedDialogue()
     {
-        // don't trigger dialogue if you've already triggered the last one
-        if(locked_index >= lockedText.Length) return;
+        TriggerDialogue(lockedTextId, lockedText, true);
+    }
 
-        // do the dialogue
-        TriggerDialogue(lockedText[locked_index]);
-        
-        // default behavior: loop last
-        if(locked_index + 1 < lockedText.Length) locked_index++;
+    public bool IsUnlocked()
+    {
+        return InventoryManager.PickedUp(requiredItem);
     }
 
 }

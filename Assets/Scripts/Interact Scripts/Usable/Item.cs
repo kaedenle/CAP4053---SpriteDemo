@@ -18,7 +18,7 @@ public class Item : Interactive
 
     new void Update()
     {
-        if(IsPlayerNear() && InputManager.InteractKeyDown())
+        if(IsTriggered())
         {
             InventoryManager.AddItem(_itemType);
             base.Update();
