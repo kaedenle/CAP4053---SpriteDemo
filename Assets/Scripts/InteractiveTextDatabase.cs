@@ -67,7 +67,7 @@ public class InteractiveTextDatabase : MonoBehaviour
 
         string[][] words = new string[dialogue.Count][];
 
-        Debug.Log("Interactive: " + id);
+        // Debug.Log("Interactive: " + id);
         for(int i = 0 ;i < dialogue.Count; i++)
         {
             words[i] = new string[dialogue[i].Count];

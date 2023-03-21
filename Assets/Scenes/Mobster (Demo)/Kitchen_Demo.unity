@@ -335,18 +335,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8154879778039951100, guid: c3d0b6d17f8e71346b43fee4db681bca, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8154879778039951100, guid: c3d0b6d17f8e71346b43fee4db681bca, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8154879778039951100, guid: c3d0b6d17f8e71346b43fee4db681bca, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8154879778039951100, guid: c3d0b6d17f8e71346b43fee4db681bca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -397,10 +385,6 @@ PrefabInstance:
     - target: {fileID: 8154879778039951101, guid: c3d0b6d17f8e71346b43fee4db681bca, type: 3}
       propertyPath: m_Name
       value: Pause
-      objectReference: {fileID: 0}
-    - target: {fileID: 8154879778039951101, guid: c3d0b6d17f8e71346b43fee4db681bca, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3d0b6d17f8e71346b43fee4db681bca, type: 3}
@@ -1791,9 +1775,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineThickness: 0.5
   pauseOnInteract: 1
+  textId: 
   loopLast: 0
   highlightEnds: 0
-  textId: 
   _nextScene: 3
 --- !u!58 &555459316
 CircleCollider2D:
@@ -2911,9 +2895,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineThickness: 0.5
   pauseOnInteract: 1
+  textId: mobsterDemoKeyItem
   loopLast: 0
   highlightEnds: 0
-  textId: mobsterDemoKeyItem
   _itemType: 0
 --- !u!58 &1020108984
 CircleCollider2D:
@@ -4041,25 +4025,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6083947564830271202, guid: 888b416750fbc2e4aaafbf6c819030bc, type: 3}
   m_PrefabInstance: {fileID: 1424249661}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1445916979 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8154879778277109706, guid: c3d0b6d17f8e71346b43fee4db681bca, type: 3}
-  m_PrefabInstance: {fileID: 124018141}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1445916983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1445916979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AspectMode: 3
-  m_AspectRatio: 1.777778
 --- !u!1 &1456515958
 GameObject:
   m_ObjectHideFlags: 0
@@ -5176,6 +5141,8 @@ MonoBehaviour:
   followPlayerX: 0
   followPlayerY: 0
   generateBoundary: 1
+  forceAspectRatio: 1
+  defaultBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!4 &1938205425 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8123929155930452557, guid: 4fa80cee5f388f242ba025fa7f934303, type: 3}

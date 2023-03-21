@@ -98,21 +98,30 @@ public class Interactive : MonoBehaviour
     }
     void TriggerDialogue()
     {
-        // don't trigger if dialogue is currently active
-        if(UI.IsActive()) return;
-
         // don't trigger dialogue if you've already triggered the last one
         if(interactive_index >= interactivesText.Length) return;
 
-        // pause now if I've made it this far
-        if(pauseOnInteract) EntityManager.DialoguePause();
-
         // do the dialogue
-        UI.StartInteractive(interactivesText[interactive_index], pauseOnInteract);
+        bool triggered = TriggerDialogue(interactivesText[interactive_index]);
+        if(!triggered) return;
+        
         if(!loopLast || interactive_index + 1 < interactivesText.Length) interactive_index++;
 
         if(!OutlineEnabled())
             DisableOutline();
+    }
+
+    bool TriggerDialogue(InteractiveInfo script)
+    {
+        // don't trigger if dialogue is currently active
+        if(UI.IsActive()) return false;
+
+        // pause now if I've made it this far
+        if(pauseOnInteract) EntityManager.DialoguePause();
+
+        UI.StartInteractive(script, pauseOnInteract);
+
+        return true;
     }
 
     bool OutlineEnabled()
