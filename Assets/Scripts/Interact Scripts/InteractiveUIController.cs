@@ -30,9 +30,8 @@ public class InteractiveUIController : MonoBehaviour
         on = false;
         on_using = false;
 
-        nameBox.SetActive(true); // = true;
-        nameField = nameBox.GetComponentInChildren<TMP_Text>();
-        nameField.text = "Test";
+        if(nameBox != null)
+            nameField = nameBox.GetComponentInChildren<TMP_Text>();
     }
 
     // check if the interactive needs to be triggered
@@ -136,6 +135,7 @@ public class InteractiveUIController : MonoBehaviour
     {
         canvas_renderer.enabled = true; //turn them off. 
 
+        if(nameBox == null) return;
         if(isDialogue)
         {
             nameBox.SetActive(true);
