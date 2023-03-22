@@ -7,14 +7,18 @@ public class InteractiveUIController : MonoBehaviour
 {
     // public variables
     public TMP_Text textField;
+    public GameObject nameBox;
 
     // internal variables
     private Queue<string> sentences;
+    private Queue<string> names;
     private Canvas canvas_renderer;
     private bool on_using;
     private bool on;
     private float delay = 0.5F;
     private bool pause = true;
+    private TMP_Text nameField;
+    private bool isDialogue = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,8 +26,13 @@ public class InteractiveUIController : MonoBehaviour
         canvas_renderer = gameObject.GetComponent<Canvas>(); 
         TurnUIOff();
         sentences = new Queue<string>();
+        names = new Queue<string>();
         on = false;
         on_using = false;
+
+        nameBox.SetActive(true); // = true;
+        nameField = nameBox.GetComponentInChildren<TMP_Text>();
+        nameField.text = "Test";
     }
 
     // check if the interactive needs to be triggered
@@ -43,6 +52,8 @@ public class InteractiveUIController : MonoBehaviour
 
         on = true;
         on_using = true;
+        isDialogue = false;
+
         sentences.Clear();
         foreach (string sentence in interactive.GetSentences())
         {
@@ -53,6 +64,26 @@ public class InteractiveUIController : MonoBehaviour
         DisplayNextSentence();
     }
 
+    public void StartDialogue(Dialogue dialogue)
+    {
+        EntityManager.DialoguePause();
+
+        on = true;
+        on_using = true;
+        isDialogue = true;
+        sentences.Clear();
+
+        foreach(string sentence in dialogue.GetSentences())
+            sentences.Enqueue(sentence);
+        
+        foreach(string name in dialogue.GetNames())
+            names.Enqueue(name);
+        
+        TurnUIOn();
+
+        DisplayNextSentence();
+    }
+
     // display the next sentence
     void DisplayNextSentence()
     {
@@ -60,6 +91,12 @@ public class InteractiveUIController : MonoBehaviour
         {
             EndInteractive();
             return;
+        }
+
+        if(isDialogue)
+        {
+            string name = names.Dequeue();
+            nameField.text = name;
         }
 
         string sentence = sentences.Dequeue();
@@ -93,11 +130,20 @@ public class InteractiveUIController : MonoBehaviour
     void TurnUIOff()
     {
         canvas_renderer.enabled = false; //turn them off. 
-        
     }
 
     void TurnUIOn()
     {
         canvas_renderer.enabled = true; //turn them off. 
+
+        if(isDialogue)
+        {
+            nameBox.SetActive(true);
+        }
+
+        else
+        {
+            nameBox.SetActive(false);
+        }
     }
 }
