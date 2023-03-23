@@ -26,7 +26,6 @@ public class EntityManager : MonoBehaviour
 
     private static bool[] states; 
 
-
     void Awake()
     {
         Instance = this;
@@ -38,47 +37,48 @@ public class EntityManager : MonoBehaviour
         }
     }
 
-    public static bool GetState(AllStates state)
-    {
-        return states[(int) state];
-    }
-
-    public static void EnableState(AllStates state)
-    {
-        states[(int) state] = true;
-    }
-
-    public static void DisableState(AllStates state)
-    {
-        states[(int) state] = false;
-    }
-
     public static bool IsPaused()
     {
         return _pause;
     }
 
+    public static int PauseAndMask()
+    {
+        int mask = 0;
+
+        for(int i = 0, d = 1; i < states.Length; i++, d <<= 1)
+        {
+            if(states[i])
+            {
+                mask |= d;
+                DisableState((AllStates) i);
+            }
+        }
+
+        return mask;
+    }
+
+    public static void UnpauseWithMask(int mask)
+    {
+        for(int i = 0, d = 1; i < states.Length; i++, d <<= 1)
+        {
+            if((mask & d) != 0)
+            {
+                EnableState((AllStates) i);
+            }
+        }
+    }
     public static void Pause()
     {
         _pause = true;
-        DisableMovement();
-        DisableAttack();
-        DisableEnvironmentInteractable();
-        DisableUIInteractable();
-        DisableSwap();
-        DisableEquip();
+        Array.Fill(states, false);
         Time.timeScale = 0;
     }
 
     public static void Unpause()
     {
         _pause = false;
-        EnableMovement();
-        EnableAttack();
-        EnableEnvironmentInteractable();
-        EnableUIInteractable();
-        EnableEquip();
-        EnableSwap();
+        Array.Fill(states, true);
         Time.timeScale = 1;
     }
 
@@ -108,6 +108,21 @@ public class EntityManager : MonoBehaviour
     public static void PlayerDied()
     {
         LevelManager.TriggerPlayerDeath();
+    }
+
+    public static void EnableState(AllStates state)
+    {
+        states[(int) state] = true;
+    }
+
+    public static void DisableState(AllStates state)
+    {
+        states[(int) state] = false;
+    }
+
+    public static bool GetState(AllStates state)
+    {
+        return states[(int) state];
     }
 
     public static void EnableSwap()

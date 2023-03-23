@@ -10,6 +10,8 @@ public class UIManager : MonoBehaviour
     public GameObject MenuUI;
     public static Dictionary<string, int> interactive_index;
 
+    private static int pause_mask = 0;
+
 
     void Awake()
     {
@@ -52,13 +54,13 @@ public class UIManager : MonoBehaviour
 
     static void Pause()
     {
-        EntityManager.Pause();
+        pause_mask = EntityManager.PauseAndMask();
     }
 
     void Unpause()
     {
         paused = false;
-        EntityManager.Unpause();
+        EntityManager.UnpauseWithMask(pause_mask);
     }
 
     public static bool IsPaused()
