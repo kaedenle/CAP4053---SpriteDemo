@@ -35,6 +35,11 @@ public class ScenesManager : MonoBehaviour
         Instance.StartCoroutine(LoadSceneAfterDelay((int)scene));
     }
 
+    public static void ReloadScene()
+    {
+        LoadScene((AllScenes) (SceneManager.GetActiveScene().buildIndex));
+    }
+
     static IEnumerator LoadSceneAfterDelay(int build_idx)
     {
         yield return new WaitForSecondsRealtime(nextSceneDelay);
@@ -77,6 +82,11 @@ public class ScenesManager : MonoBehaviour
     public static AllScenes GetPreviousScene()
     {
         return _prevScene;
+    }
+
+        public static AllScenes GetCurrentScene()
+    {
+        return _currentScene;
     }
 
     public void Awake()

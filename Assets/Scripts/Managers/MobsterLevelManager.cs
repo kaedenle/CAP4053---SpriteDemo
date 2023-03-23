@@ -19,12 +19,7 @@ public class MobsterLevelManager : LevelManager
         _alleyGateOpen = false;
         InventoryManager.RemoveItem(InventoryManager.AllItems.MobsterKeyDemo);
     }
-
-    public override void TriggerReset()
-    {
-        ResetVariables();
-    }
-
+    
     // Start is called before the first frame update
     public static bool AlleyGateUnlocked()
     {
