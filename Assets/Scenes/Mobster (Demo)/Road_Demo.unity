@@ -1418,9 +1418,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineThickness: 0.5
   pauseOnInteract: 1
+  textId: 
   loopLast: 0
   highlightEnds: 0
-  textId: 
 --- !u!61 &160634258
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3267,6 +3267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 349623656}
   - component: {fileID: 349623657}
+  - component: {fileID: 349623658}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -3327,8 +3328,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 359116491
-  m_SortingLayer: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -1855327736, guid: e0cf1444ae701e643a708ba20a6990b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3341,6 +3342,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &349623658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349623655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8eaee893abf094085c9fbed34a56a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TakeParent: 0
+  deltaDown: 0
+  dynamic: 0
 --- !u!1001 &360221692
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4367,9 +4383,9 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 441108714}
   m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingLayerID: -1248407793
+  m_SortingLayer: -3
+  m_SortingOrder: -2
 --- !u!1 &450664625
 GameObject:
   m_ObjectHideFlags: 0
@@ -5428,9 +5444,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineThickness: 0.5
   pauseOnInteract: 1
+  textId: 
   loopLast: 0
   highlightEnds: 0
-  textId: 
 --- !u!61 &507720440
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6374,6 +6390,8 @@ MonoBehaviour:
   followPlayerX: 1
   followPlayerY: 0
   generateBoundary: 0
+  forceAspectRatio: 1
+  defaultBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &602447488
 GameObject:
   m_ObjectHideFlags: 0
@@ -7362,9 +7380,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineThickness: 0.5
   pauseOnInteract: 1
+  textId: 
   loopLast: 0
   highlightEnds: 0
-  textId: 
 --- !u!212 &676393334
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8294,10 +8312,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3393781334134885235, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
-      propertyPath: MaxAmmo
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 6197798176421269809, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_Name
       value: Player
@@ -11261,6 +11275,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1023640435}
   - component: {fileID: 1023640436}
+  - component: {fileID: 1023640437}
   m_Layer: 0
   m_Name: Purple Car
   m_TagString: Untagged
@@ -11323,7 +11338,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: -1342058088, guid: e0cf1444ae701e643a708ba20a6990b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -11335,6 +11350,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1023640437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023640434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8eaee893abf094085c9fbed34a56a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TakeParent: 0
+  deltaDown: 0
+  dynamic: 0
 --- !u!1001 &1030173285
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12945,8 +12975,8 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1215875001}
   m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1248407793
+  m_SortingLayer: -3
   m_SortingOrder: 0
 --- !u!1 &1238160102 stripped
 GameObject:
@@ -13969,7 +13999,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1352158713
 Transform:
   m_ObjectHideFlags: 0
@@ -14180,8 +14210,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1248407793
+  m_SortingLayer: -3
   m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 1efc14524702f8c4694fc4697517592f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -14390,8 +14420,8 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1408699289}
   m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1248407793
+  m_SortingLayer: -3
   m_SortingOrder: 0
 --- !u!1 &1409765781
 GameObject:
@@ -14463,6 +14493,8 @@ MonoBehaviour:
   followPlayerX: 1
   followPlayerY: 0
   generateBoundary: 1
+  forceAspectRatio: 1
+  defaultBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &1409765784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14585,7 +14617,7 @@ SortingGroup:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1429625315}
-  m_Enabled: 1
+  m_Enabled: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
@@ -15153,6 +15185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1498422498}
   - component: {fileID: 1498422499}
+  - component: {fileID: 1498422500}
   m_Layer: 0
   m_Name: Bus
   m_TagString: Untagged
@@ -15215,8 +15248,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 359116491
-  m_SortingLayer: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: -951002174, guid: b60fdda582257094aba21c7ab3d41b49, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -15229,6 +15262,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1498422500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498422497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8eaee893abf094085c9fbed34a56a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TakeParent: 0
+  deltaDown: 50
+  dynamic: 0
 --- !u!1 &1511987889
 GameObject:
   m_ObjectHideFlags: 0
@@ -15771,8 +15819,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 359116491
-  m_SortingLayer: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 2138602076, guid: b60fdda582257094aba21c7ab3d41b49, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -16976,8 +17024,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 359116491
-  m_SortingLayer: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 1237192612, guid: b60fdda582257094aba21c7ab3d41b49, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -18535,7 +18583,7 @@ SortingGroup:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1873688001}
-  m_Enabled: 1
+  m_Enabled: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
@@ -19097,6 +19145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1952336852}
   - component: {fileID: 1952336853}
+  - component: {fileID: 1952336854}
   m_Layer: 0
   m_Name: Red Car
   m_TagString: Untagged
@@ -19171,6 +19220,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1952336854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952336851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8eaee893abf094085c9fbed34a56a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TakeParent: 0
+  deltaDown: 0
+  dynamic: 0
 --- !u!1 &1954044035
 GameObject:
   m_ObjectHideFlags: 0
