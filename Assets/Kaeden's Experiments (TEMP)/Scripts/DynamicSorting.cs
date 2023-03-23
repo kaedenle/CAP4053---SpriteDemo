@@ -7,6 +7,7 @@ public class DynamicSorting : MonoBehaviour
     private List<Renderer> rends;
     public bool TakeParent;
     public int deltaDown;
+    public bool dynamic;
     private void GetChildRecursive(GameObject obj)
     {
         if (null == obj)
@@ -35,11 +36,13 @@ public class DynamicSorting : MonoBehaviour
     {
         rends = new List<Renderer>();
         GetChildRecursive(gameObject);
+        UpdateRends();
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        UpdateRends();
+        if(dynamic)
+            UpdateRends();
     }
 }
