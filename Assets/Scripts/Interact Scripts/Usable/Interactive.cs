@@ -134,4 +134,9 @@ public class Interactive : MonoBehaviour
     {
         return IsPlayerNear() && InputManager.InteractKeyDown();
     }
+
+    public bool UIActive()
+    {
+        return UI.IsActive();
+    }
 }
