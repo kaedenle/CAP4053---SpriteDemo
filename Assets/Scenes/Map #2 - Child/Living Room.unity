@@ -238,7 +238,7 @@ Transform:
   - {fileID: 1785929741}
   - {fileID: 1577841933}
   m_Father: {fileID: 1826998836}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &69246400
 GameObject:
@@ -398,7 +398,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1826998836}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &188164084
 SpriteRenderer:
@@ -440,7 +440,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1248407793
   m_SortingLayer: -3
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 3c80f46d57e1b1448920657e7f35e8ff, type: 3}
   m_Color: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 1}
   m_FlipX: 0
@@ -576,8 +576,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1007629035
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1689304473, guid: fb30cce81547ab847967d6a53fac67f4, type: 3}
   m_Color: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
@@ -784,7 +784,7 @@ Transform:
   - {fileID: 1018827035}
   - {fileID: 494698499}
   m_Father: {fileID: 1826998836}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &631779048
 PrefabInstance:
@@ -1129,6 +1129,7 @@ GameObject:
   - component: {fileID: 1018827038}
   - component: {fileID: 1018827037}
   - component: {fileID: 1018827040}
+  - component: {fileID: 1018827041}
   m_Layer: 0
   m_Name: Door to Playroom
   m_TagString: Untagged
@@ -1273,6 +1274,20 @@ MonoBehaviour:
   loopLast: 0
   highlightEnds: 0
   _nextScene: 8
+--- !u!114 &1018827041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018827034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8eaee893abf094085c9fbed34a56a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TakeParent: 0
+  deltaDown: 0
 --- !u!1 &1032946257
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,7 +1320,7 @@ Transform:
   - {fileID: 1210283151}
   - {fileID: 1402339351}
   m_Father: {fileID: 1826998836}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1048867122
 GameObject:
@@ -1541,8 +1556,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1248407793
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: -801978075, guid: 3fe36a722aede2b4ab17b7b37fcb7ac6, type: 3}
   m_Color: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
@@ -1838,8 +1853,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1248407793
+  m_SortingLayer: -3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 1729d92eb524d674d95248f87f35bfce, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1897,11 +1912,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6197798176421269814, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.25
+      value: -0.33
       objectReference: {fileID: 0}
     - target: {fileID: 6197798176421269814, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.13
+      value: -1.43
       objectReference: {fileID: 0}
     - target: {fileID: 6197798176421269814, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2257,8 +2272,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1248407793
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: be73f49897b28f74a9513cbae67b3877, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2687,7 +2702,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1826998836}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1666218699
 BoxCollider2D:
@@ -2702,7 +2717,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.484243, y: 3.6493547}
+  m_Offset: {x: -2.4842434, y: 3.5199804}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2713,7 +2728,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 27.15939, y: 3.3697104}
+  m_Size: {x: 27.15939, y: 3.628459}
   m_EdgeRadius: 0
 --- !u!61 &1666218700
 BoxCollider2D:
@@ -2932,8 +2947,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1007629035
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1689304473, guid: fb30cce81547ab847967d6a53fac67f4, type: 3}
   m_Color: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
@@ -3052,8 +3067,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1007629035
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1109603420, guid: b1f73bdc7e3f92a43bcdd89ae4f42dcb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3129,6 +3144,7 @@ GameObject:
   - component: {fileID: 1785929744}
   - component: {fileID: 1785929743}
   - component: {fileID: 1785929746}
+  - component: {fileID: 1785929747}
   m_Layer: 0
   m_Name: Door to Parent
   m_TagString: Untagged
@@ -3273,6 +3289,20 @@ MonoBehaviour:
   loopLast: 0
   highlightEnds: 0
   _nextScene: 7
+--- !u!114 &1785929747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785929740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8eaee893abf094085c9fbed34a56a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TakeParent: 0
+  deltaDown: 0
 --- !u!1 &1791858962
 GameObject:
   m_ObjectHideFlags: 0
@@ -3334,11 +3364,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1666218698}
   - {fileID: 188164083}
   - {fileID: 60986424}
   - {fileID: 571335592}
   - {fileID: 1032946258}
-  - {fileID: 1666218698}
   - {fileID: 1064745720}
   - {fileID: 1079069121}
   - {fileID: 1708774162}
@@ -3450,8 +3480,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1007629035
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1099537112, guid: c280132a97d6b674e95b53e992509205, type: 3}
   m_Color: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
