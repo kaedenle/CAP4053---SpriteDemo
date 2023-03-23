@@ -42,6 +42,18 @@ public class EntityManager : MonoBehaviour
         return _pause;
     }
 
+    public static void SetPause()
+    {
+        _pause = true;
+        Time.timeScale = 0;
+    }
+
+    public static void SetUnpause()
+    {
+        _pause = false;
+        Time.timeScale = 1;
+    }
+
     public static int PauseAndMask()
     {
         int mask = 0;
@@ -55,6 +67,7 @@ public class EntityManager : MonoBehaviour
             }
         }
 
+        SetPause();
         return mask;
     }
 
@@ -67,6 +80,8 @@ public class EntityManager : MonoBehaviour
                 EnableState((AllStates) i);
             }
         }
+
+        SetUnpause();
     }
     public static void Pause()
     {
