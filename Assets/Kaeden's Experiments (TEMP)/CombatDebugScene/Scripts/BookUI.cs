@@ -17,7 +17,7 @@ public class BookUI : MonoBehaviour
     private bool RememberPages = true;
     public void ToggleBook()
     {
-        IsOut = EntityManager.IsPaused();
+        IsOut = UIManager.IsPaused();
         if (!IsOut)
         {
             anim.ResetTrigger("In");
