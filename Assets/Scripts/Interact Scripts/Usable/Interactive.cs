@@ -2,44 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interactive : MonoBehaviour
+public class Interactive : OutlineObject
 {
     // public variables
-    public float outlineThickness = 0.5F;
     public bool pauseOnInteract = true;
     public string textId;
     public bool loopLast;
     public bool highlightEnds = false;
 
     // private trackers
-    // outline vars
-    private Material defaultMaterial;
-    private Material outline;
-    private SpriteRenderer sprite_renderer;
-
-    // player tracker
-    private bool near;
 
     // dialogue vars
     private InteractiveInfo[] interactivesText;
     private InteractiveUIController UI;
 
-    public void OnTriggerEnter2D(Collider2D collider)
+    new public void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.tag == "Player" && OutlineEnabled())
-        {
-            near = true;
-            EnableOutline();
-        }
-    }
-
-    public void OnTriggerExit2D(Collider2D collider)
-    {
-        if(collider.tag == "Player")
-        {
-            near = false;
-            DisableOutline();
-        }
+        if(OutlineEnabled())
+            base.OnTriggerEnter2D(collider);
     }
 
     public void Update()
@@ -50,50 +30,22 @@ public class Interactive : MonoBehaviour
         }
     }
 
-    public void Awake()
+    new public void Awake()
     {
-        // get the objects for the outlines
-        sprite_renderer = gameObject.GetComponent<SpriteRenderer>();
-        defaultMaterial = sprite_renderer.material;
-
-        // set default vars
-        near = false;
+        base.Awake();
     }
 
-    public void Start()
+    new public void Start()
     {
+        base.Start();
+
         UI = FindObjectOfType<InteractiveUIController>();
-        outline.SetFloat("_Outline_Thickness", outlineThickness); 
 
         interactivesText = InteractiveInfo.ParseData(InteractiveTextDatabase.GetText(textId));
         if(interactivesText == null)
             interactivesText = new InteractiveInfo[0];
     }
 
-    public bool IsPlayerNear()
-    {
-        return near;
-    }
-
-    public void SetOutline(Material outline)
-    {
-        this.outline = new Material(outline);
-    }
-
-    public Material GetOutline()
-    {
-        return outline;
-    }
-
-    void EnableOutline()
-    {
-        sprite_renderer.material = outline;
-    }
-
-    void DisableOutline()
-    {
-        sprite_renderer.material = defaultMaterial;
-    }
     public void TriggerDialogue()
     {
         TriggerDialogue(textId, interactivesText, loopLast);
