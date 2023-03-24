@@ -21,10 +21,9 @@ public class Bullet : MonoBehaviour
         
         
         this.ShotFrom = ShotFrom;
-
         //permenatly set hitbox on bullet
-        if(am != null) am.StartPlay(0);
-
+        if (am != null) am.StartPlay(0);
+        if (am != null) am.ProjectileOwner = ShotFrom;
         Destroy(gameObject, 5);
 
         shootDirection = new Vector3(1, 0, 0);

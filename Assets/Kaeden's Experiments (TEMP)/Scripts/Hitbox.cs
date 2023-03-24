@@ -20,6 +20,7 @@ public class Hitbox : MonoBehaviour
     public string hitsTag;
     private bool relativeKnockback;
     private string functCall;
+    private GameObject ProjectileOwner;
 
     //colliding information
     public List<Collider2D> collidersList;
@@ -93,7 +94,10 @@ public class Hitbox : MonoBehaviour
         }
         return part;
     } 
-
+    public void SetProjectileUser(GameObject user)
+    {
+        ProjectileOwner = user;
+    }
     //return true if you've applied effect
     public bool hitEntity(GameObject hit)
     {
@@ -109,6 +113,7 @@ public class Hitbox : MonoBehaviour
         //apply damage
         //object with attack manager
         GameObject myGameObject = SearchAttackManger(gameObject);
+        if (ProjectileOwner != null) myGameObject = ProjectileOwner;
         foreach (IDamagable script in scripts)
         {
             Vector3 tempKnockBack = (hit.transform.position - myGameObject.transform.position).normalized;

@@ -14,6 +14,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
     public AttackManager.WeaponList wpnList = new AttackManager.WeaponList();
     public Hurtbox hrtbx;
     private SpriteRenderer onhand;
+    Player_Movement movementScript;
     public int BufferWeaponID = 0;
     // Start is called before the first frame update
 
@@ -24,6 +25,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
         wpnList = gameObject.GetComponent<AttackManager>().wpnList;
         hrtbx = gameObject?.GetComponent<Hurtbox>();
         onhand = gameObject.transform.Find("Right Arm").Find("On-Hand").GetComponent<SpriteRenderer>();
+        movementScript = gameObject.GetComponent<Player_Movement>();
     }
     
     //scripts to be disabled/enabled when attacking
@@ -56,31 +58,33 @@ public class WeaponManager : MonoBehaviour, IScriptable
 
         //toggle between not equiped and equiped
         if(InputManager.EquipKeyDown() && animator.GetFloat("attack") == 0){
-            if (animator.GetBool("equiped"))
+            if (equiped)
                 onhand.enabled = false;
             else
                 onhand.enabled = true;
             animator.SetBool("equiped", !equiped);
             //set animation to follow weapon's ID
             animator.SetFloat("weapon", wpnList.weaponlist[wpnList.index].ID);
-        }
             
+        }
+
+        //change speed if heavy weapon
+        if (wpnList.index == 1 && equiped)
+            gameObject.GetComponent<Player_Movement>().speed = 8;
+        else
+            gameObject.GetComponent<Player_Movement>().speed = movementScript.MAX_SPEED;
+
         //disable weapon from rendering if it's not out  
         if (!equiped)
         {
             sr.sprite = null;
         }
-        else if(equiped){
+        //input for the player
+        if(equiped){
             if (InputManager.SwapKeyDown())
             {
                 wpnList.index += 1;
                 wpnList.index %= wpnList.weaponlist.Length;
-                //change speed if heavy weapon
-                Player_Movement movementScript = gameObject.GetComponent<Player_Movement>();
-                if (weaponID == 1)
-                    gameObject.GetComponent<Player_Movement>().speed = 8;
-                else
-                    gameObject.GetComponent<Player_Movement>().speed = movementScript.MAX_SPEED;
             }
 
             //only swap if not attacking
@@ -91,13 +95,8 @@ public class WeaponManager : MonoBehaviour, IScriptable
                 if (animator.GetFloat("weapon") != wpnList.weaponlist[wpnList.index].ID)
                     animator.SetFloat("weapon", wpnList.weaponlist[wpnList.index].ID);
             }
-
-        }
-
-        //input for the player
-        if(equiped){
             //make it move cancellable
-            if(gameObject.GetComponent<Player_Movement>().move_flag && animator.GetFloat("movement") > 0 && animator.GetFloat("attack") > 0){
+            if (gameObject.GetComponent<Player_Movement>().move_flag && animator.GetFloat("movement") > 0 && animator.GetFloat("attack") > 0){
                 gameObject.GetComponent<AttackManager>().DestroyPlay();
                 gameObject.GetComponent<Player_Movement>().move_flag = false;
             }

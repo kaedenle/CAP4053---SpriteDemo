@@ -10,6 +10,7 @@ public class PlayerScript : MonoBehaviour, IUnique
     private AttackManager am;
     private WeaponManager wm;
     private EffectsManager fxm;
+    private Player_Movement pm;
 
     //Death Handling
     private bool killPlayer = false;
@@ -31,6 +32,8 @@ public class PlayerScript : MonoBehaviour, IUnique
     private bool ShootEnd = true;
     private float ShootEndTimer;
     private float MAX_SHOOT_TIMER = 10f;
+
+    public int TackleSpeed;
 
     public void EffectManager(string funct)
     {
@@ -56,7 +59,8 @@ public class PlayerScript : MonoBehaviour, IUnique
         if (Ammo > 0)
         {
             Ammo -= 1;
-            GameObject proj = Instantiate(bullet, transform.Find("Right Arm").Find("On-Hand").transform.position, Quaternion.identity);
+            int turn = animator.GetBool("flipped") ? 1 : -1;
+            GameObject proj = Instantiate(bullet, transform.Find("Right Arm").Find("On-Hand").transform.position - new Vector3((-1 * turn), 0, 0), Quaternion.identity);
             Bullet bulScript = proj?.GetComponent<Bullet>();
             if (bulScript != null) bulScript.InitBullet(gameObject);
         }
@@ -115,8 +119,18 @@ public class PlayerScript : MonoBehaviour, IUnique
     {
         if (fxm != null) fxm.ShakeCam(0.1f, 0.75f);
     }
+    private void Tackle()
+    {
+        Vector3 temp = pm.direction();
+        //bool flipped = animator.GetBool("flipped");
+        Vector3 move = temp.normalized * TackleSpeed;
+        //if (flipped) move *= -1;
+        body.AddForce(move);
+    }
+
     public void onDeath()
     {
+
         Debug.Log("You've died!");
 
         //disable all scripts
@@ -176,6 +190,7 @@ public class PlayerScript : MonoBehaviour, IUnique
         am = gameObject.GetComponent<AttackManager>();
         Ammo = MaxAmmo;
         fxm = FindObjectOfType<EffectsManager>();
+        pm = gameObject.GetComponent<Player_Movement>();
     }
 
     // Update is called once per frame
