@@ -7,7 +7,7 @@ public class DialogueTrigger_Test : MonoBehaviour
     // public bool triggerPause;
     // public bool repeatable;
     public bool loop_last;
-    public Dialogue[] interactives;
+    public Conversation[] interactives;
 
     private int interactive_index;
     private InteractiveUIController UI;
@@ -21,9 +21,9 @@ public class DialogueTrigger_Test : MonoBehaviour
         UI = FindObjectOfType<InteractiveUIController>();
     }
 
-    void TriggerInteractive(Dialogue current)
+    void TriggerInteractive(Conversation current)
     {
-        UI.StartDialogue(current);
+        UI.StartConversation(current);
     }
 
     // Update is called once per frame

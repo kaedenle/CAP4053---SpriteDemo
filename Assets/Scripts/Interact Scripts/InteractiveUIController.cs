@@ -12,6 +12,7 @@ public class InteractiveUIController : MonoBehaviour
     // internal variables
     private Queue<string> sentences;
     private Queue<string> names;
+    private Queue<Dialogue> conversation;
     private Canvas canvas_renderer;
     private bool on_using;
     private bool on;
@@ -63,7 +64,7 @@ public class InteractiveUIController : MonoBehaviour
         DisplayNextSentence();
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    public void StartConversation(Conversation converse)
     {
         EntityManager.DialoguePause();
 
@@ -71,12 +72,14 @@ public class InteractiveUIController : MonoBehaviour
         on_using = true;
         isDialogue = true;
         sentences.Clear();
+        names.Clear();
 
-        foreach(string sentence in dialogue.GetSentences())
-            sentences.Enqueue(sentence);
-        
-        foreach(string name in dialogue.GetNames())
-            names.Enqueue(name);
+        foreach(Dialogue dialogue in converse.dialogue)
+        {
+            sentences.Enqueue(dialogue.words);
+            names.Enqueue(NPCManager.GetName(dialogue.speaker));
+
+        }
         
         TurnUIOn();
 

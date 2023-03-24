@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MindTrigger : Interactive
+public class MindTrigger : NPCDialogue
 {
     [SerializeField] public HubManager.PhaseTag phase;
 
