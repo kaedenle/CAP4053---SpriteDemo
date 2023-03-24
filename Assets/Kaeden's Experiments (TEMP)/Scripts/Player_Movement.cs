@@ -12,6 +12,8 @@ public class Player_Movement : MonoBehaviour, IScriptable
     private float moveX, moveY;
     private Vector3 movement;
     public Animator animator;
+    private float lastNonZeroX = 1;
+    private float lastNonZeroY = 0;
     GameObject[] objs;
 
     public bool move_flag;
@@ -24,12 +26,36 @@ public class Player_Movement : MonoBehaviour, IScriptable
         flipped = false;
         move_flag = false;
     }
+    public Vector3 direction()
+    {
+        return new Vector3(lastNonZeroX, lastNonZeroY, 0) ; 
+    }
+    private void SetLastLooked()
+    {
+        //if player is stationary dont do anything
+        if (moveX == 0 && moveY == 0)
+            return;
+
+        float tempX = 0, tempY = 0;
+        //player only moved in y direction
+        if (moveY != 0)
+            tempY = moveY;
+        //player only moved in x direction
+        if (moveX != 0)
+            tempX = moveX;
+        if (tempX == 0 && tempY == 0)
+            return;
+        lastNonZeroX = tempX;
+        lastNonZeroY = tempY;
+
+    }
     // Update is called once per frame
     void Update()
     {
         moveX = InputManager.GetAxis("Horizontal");
         moveY = InputManager.GetAxis("Vertical");
-        
+        SetLastLooked();
+
         if(moveX != 0){
             bool temp = flipped;
             flipped = moveX < 0 ? true : false;

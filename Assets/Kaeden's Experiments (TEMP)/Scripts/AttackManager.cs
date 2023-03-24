@@ -38,6 +38,8 @@ public class AttackManager : MonoBehaviour
     private IUnique uniqueScript;
     [HideInInspector]
     public int bufferCancel = -1;
+    [HideInInspector]
+    public GameObject ProjectileOwner;
 
     //framedata
     public TextAsset[] moveContainer;
@@ -92,7 +94,7 @@ public class AttackManager : MonoBehaviour
         GameObject createdHitbox = Instantiate(HitboxPrefab);
         createdHitbox.name = "Hitbox";
         createdHitbox.transform.SetParent(parent.transform);
-        
+        if(ProjectileOwner != null) createdHitbox.GetComponent<Hitbox>().SetProjectileUser(ProjectileOwner);
         Hitbox HBObj = createdHitbox.GetComponent<Hitbox>();
         HBObj.Atk = a;
         HBList.Add(HBObj);
@@ -172,7 +174,7 @@ public class AttackManager : MonoBehaviour
                 GameObject effect = HurtBoxSearch(entity.gameObject);
                 if (hasHit[entity].hitEntity(effect))
                 {
-                    Debug.Log(hasHit[entity].Atk.ID + " has hit " + effect.name);
+                    //Debug.Log(hasHit[entity].Atk.ID + " has hit " + effect.name);
                     alreadyDamaged.Add(entity);
                 }
                     
@@ -201,8 +203,13 @@ public class AttackManager : MonoBehaviour
             int tmp = bufferCancel;
             if (tag == "Player") GetComponent<WeaponManager>().SetSprite();
             DestroyPlay();
+            if(wpnList.index != 2)
+                animator.SetLayerWeight(1, 0);
+            else
+                animator.SetLayerWeight(1, 1);
             InvokeAttack(tmp);
             cancellableFlag = false;
+            Debug.Log("Cancelled!");
         }
     }
     public GameObject HurtBoxSearch(GameObject part){
@@ -271,6 +278,7 @@ public class AttackManager : MonoBehaviour
     }
 
     public void DestroyPlay(){
+        
         active = false;
         cancellableFlag = false;
         ScriptToggle(1);
@@ -284,6 +292,8 @@ public class AttackManager : MonoBehaviour
         if (tag == "Player")
         {
             animator.SetFloat("attack", 0);
+            //restore shooting layer
+            animator.SetLayerWeight(1, 1);
             animator.ResetTrigger("Attack");
         }
     }
