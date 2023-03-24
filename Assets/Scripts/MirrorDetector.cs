@@ -9,7 +9,6 @@ public class MirrorDetector : MonoBehaviour
     {
         if(insideMirror ^ ChildLevelManager.InMirror())
         {
-            Debug.Log("destroying this");
             Destroy(this.gameObject);
         }
     }
