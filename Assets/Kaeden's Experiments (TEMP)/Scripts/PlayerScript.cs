@@ -86,6 +86,10 @@ public class PlayerScript : MonoBehaviour, IUnique
         }
         
     }
+    public void Immobilize()
+    {
+        am.ScriptDeactivate(AttackManager.ScriptTypes.Movement);
+    }
     //set variables associated with reload animation
     public void CleanShoot()
     {

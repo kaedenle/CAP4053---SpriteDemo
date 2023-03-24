@@ -428,12 +428,14 @@ MonoBehaviour:
   hitboxParent: {fileID: 9056604147769991447}
   HBList: []
   bufferCancel: -1
+  ProjectileOwner: {fileID: 0}
   moveContainer:
   - {fileID: 4900000, guid: 4ccd3bdf65ab2f24d8ef550b6652a892, type: 3}
   - {fileID: 4900000, guid: 7c785d1dfc5c7a74aa6b84c64c8e4bae, type: 3}
   - {fileID: 4900000, guid: a7b9be4854fdbb441a4dc1f0179ac6e8, type: 3}
   - {fileID: 4900000, guid: 1f134f51ffa16e34880d10fcaceb3e02, type: 3}
   - {fileID: 4900000, guid: d0afab7d34af1344ba1e39eb4012f559, type: 3}
+  - {fileID: 4900000, guid: cbb93d3e40dd0dd4a811b7b513b89989, type: 3}
   framedata:
     framedata: []
     damage: 0
@@ -489,6 +491,7 @@ MonoBehaviour:
   bullet: {fileID: 662058475778597127, guid: c0f36b8081129474fb1f0ada3edff123, type: 3}
   cancel: 0
   ShootAgain: 0
+  TackleSpeed: 1150
 --- !u!114 &8521604005571251972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -741,7 +744,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6704057532249523804}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.5, z: 0}
+  m_LocalPosition: {x: 0.069, y: -1.487, z: 0}
   m_LocalScale: {x: 1.0981783, y: 1.2017007, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -878,7 +881,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.12, y: 5.12}
+  m_Size: {x: 0.12, y: 0.05}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -958,7 +961,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: dc770ace5941049438a3e32fdea8e103, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 89ea98f4835ed024fbe5cdf15b1355c5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
