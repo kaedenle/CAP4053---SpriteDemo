@@ -9,19 +9,21 @@ public class NPCDialogue : OutlineObject
     public bool highlightEnds = true;
 
     private bool pauseOnInteract = true;
+
     private InteractiveUIController UI;
 
     // Start is called before the first frame update
-    new void Start()
+    new public void Start()
     {
         base.Start();
 
-        UI = FindObjectOfType<InteractiveUIController>();
+        UI = (InteractiveUIController) FindObjectOfType(typeof(InteractiveUIController));
     }
 
     // Update is called once per frame
     public void Update()
     {
+
         if(IsTriggered())
         {
             TriggerDialogue();

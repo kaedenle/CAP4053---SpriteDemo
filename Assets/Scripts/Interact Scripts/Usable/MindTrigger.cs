@@ -5,10 +5,12 @@ using UnityEngine;
 public class MindTrigger : NPCDialogue
 {
     [SerializeField] public HubManager.PhaseTag phase;
+    private bool triggered;
 
     // Start is called before the first frame update
     new void Start()
     {
+        triggered = false;
         base.Start();
         
         // destroy the object if it's not it's phase
@@ -22,9 +24,11 @@ public class MindTrigger : NPCDialogue
     new void Update()
     {
         base.Update();
+        triggered |= IsTriggered();
 
-        if (base.IsPlayerNear() && InputManager.InteractKeyDown())
+        if (triggered && !UIActive())
         {
+            triggered = false;
             HubManager.LoadNextMind();
         }
     }
