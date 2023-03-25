@@ -3046,11 +3046,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: 7
   pauseOnInteract: 1
+  textId: 
   loopLast: 0
   highlightEnds: 0
-  textId: 
   _nextScene: 2
 --- !u!58 &555826900
 CircleCollider2D:
@@ -3555,6 +3555,8 @@ MonoBehaviour:
   followPlayerX: 0
   followPlayerY: 0
   generateBoundary: 1
+  forceAspectRatio: 1
+  defaultBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &649649989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8780,9 +8782,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineThickness: 0.5
   pauseOnInteract: 1
+  textId: 
   loopLast: 0
   highlightEnds: 0
-  textId: 
 --- !u!61 &1955604437
 BoxCollider2D:
   m_ObjectHideFlags: 0
