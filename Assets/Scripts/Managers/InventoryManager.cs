@@ -12,7 +12,8 @@ public class InventoryManager : MonoBehaviour
         Child_Grabber,
         Child_Bedroom_Key,
         Child_Lightbulb,
-        Child_Fuse
+        Child_Fuse,
+        Child_Safe_Combo
     }
 
     public static List<AllItems> _inventoryItems = new List<AllItems>();  // our inventory items

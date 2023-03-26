@@ -7,10 +7,12 @@ public class NPCDialogue : OutlineObject
     public NPCReport dialogue;
     public bool loopLast = false;
     public bool highlightEnds = true;
+    public LockedDialogueBehavior lockable;
+
 
     private bool pauseOnInteract = true;
-
     private InteractiveUIController UI;
+    private bool triggered = false;
 
     // Start is called before the first frame update
     new public void Start()
@@ -23,9 +25,9 @@ public class NPCDialogue : OutlineObject
     // Update is called once per frame
     public void Update()
     {
-
         if(IsTriggered())
         {
+            if(!UIActive() && lockable.IsUnlocked()) triggered = true;
             TriggerDialogue();
         }
     }
@@ -38,9 +40,20 @@ public class NPCDialogue : OutlineObject
 
     public void TriggerDialogue()
     {
-        if(dialogue == null) return;
+        if(lockable.IsUnlocked())
+            TriggerDialogue(dialogue);
+        else   
+            TriggerDialogue(lockable.GetDialogue());
 
-        string script_id = dialogue.conversation_id;
+        if(!OutlineEnabled())
+            DisableOutline();
+    }
+
+    public void TriggerDialogue(NPCReport conversation)
+    {
+        if(conversation == null) return;
+
+        string script_id = conversation.conversation_id;
 
         if(script_id == null) return;
 
@@ -49,23 +62,20 @@ public class NPCDialogue : OutlineObject
 
         int index = UIManager.GetInteractiveIndex(script_id);
 
-        if(index >= dialogue.Length()) return;
+        if(index >= conversation.Length()) return;
 
         // pause now if I've made it this far
         if(pauseOnInteract) EntityManager.DialoguePause();
-        UI.StartConversation(dialogue.conversations[index]);
+        UI.StartConversation(conversation.conversations[index]);
 
-        if(!loopLast || index + 1 < dialogue.Length()) index++;
+        if(!loopLast || index + 1 < conversation.Length()) index++;
 
         UIManager.SetInteractiveIndex(script_id, index);
-        
-        if(!OutlineEnabled())
-            DisableOutline();
     }
 
     bool OutlineEnabled()
     {
-        if(dialogue == null) return true;
+        if(dialogue == null || !lockable.IsUnlocked()) return true;
 
         int index = UIManager.GetInteractiveIndex(dialogue.conversation_id);
 
@@ -81,5 +91,13 @@ public class NPCDialogue : OutlineObject
     {
         if(UI == null) Debug.Log("UI is null in NPCDialogue");
         return UI.IsActive();
+    }
+
+     public bool ActivateBehavior()
+    {
+        if(!triggered || UIActive() || !lockable.IsUnlocked()) return false;
+
+        triggered = false;
+        return true;
     }
 }

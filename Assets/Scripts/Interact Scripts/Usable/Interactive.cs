@@ -29,9 +29,8 @@ public class Interactive : OutlineObject
     {
         if(IsTriggered())
         {
-            if(!UIActive()) triggered = true;
+            if(!UIActive() && lockable.IsUnlocked()) triggered = true;
             TriggerDialogue();
-            Debug.Log("triggered = true");
         }
     }
 

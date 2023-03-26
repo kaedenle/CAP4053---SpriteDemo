@@ -9,7 +9,8 @@ public class NPCManager : MonoBehaviour
         Player, 
         Mobster,
         Child,
-        Boss
+        Boss,
+        Mom
     }
 
     public static string[] personName =
@@ -17,7 +18,8 @@ public class NPCManager : MonoBehaviour
         "Detective",
         "Antonio",
         "Kaleigh",
-        "Thomas"
+        "Thomas",
+        "Mother"
     };
 
     public static string GetName(Person person)

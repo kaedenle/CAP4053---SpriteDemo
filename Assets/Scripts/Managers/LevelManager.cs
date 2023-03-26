@@ -20,7 +20,6 @@ public class LevelManager : MonoBehaviour
 
         if(objectState == null)
         {
-            Debug.Log("resetting objectState");
             objectState = new Dictionary<string, bool>();
         }
     }

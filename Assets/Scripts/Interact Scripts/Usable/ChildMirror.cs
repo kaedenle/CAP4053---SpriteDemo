@@ -10,6 +10,7 @@ public class ChildMirror : Interactive
 
         if(ActivateBehavior())
         {
+            Debug.Log("toggling mirror state...");
             ChildLevelManager.ToggleMirrorWorld();
             LevelManager.ReloadScene();
         }    

@@ -13,7 +13,7 @@ public class Enabler : Interactive
 
     new void Start()
     {
-        bool state = LevelManager.GetInteractiveState(stateID);
+        state = LevelManager.GetInteractiveState(stateID);
         if(state)
         {
             ActivateChildren();
@@ -40,7 +40,7 @@ public class Enabler : Interactive
         foreach(GameObject obj in enables)
         {
             if(obj == null) continue;
-            
+
             obj.SetActive(true);
         }
 
