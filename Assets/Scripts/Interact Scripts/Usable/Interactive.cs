@@ -10,6 +10,8 @@ public class Interactive : OutlineObject
     public bool loopLast;
     public bool highlightEnds = false;
 
+    public LockedBehavior lockable;
+
     // private trackers
 
     // dialogue vars
@@ -44,14 +46,25 @@ public class Interactive : OutlineObject
 
         UI = FindObjectOfType<InteractiveUIController>();
 
-        interactivesText = InteractiveInfo.ParseData(InteractiveTextDatabase.GetText(textId));
+        interactivesText = GetText(textId);
         if(interactivesText == null)
             interactivesText = new InteractiveInfo[0];
+
+        if(lockable.isLocked)
+            lockable.SetText(GetText(lockable.lockedTextID));
+    }
+
+    public InteractiveInfo[] GetText(string id)
+    {
+        return InteractiveInfo.ParseData(InteractiveTextDatabase.GetText(id));
     }
 
     public void TriggerDialogue()
     {
-        TriggerDialogue(textId, interactivesText, loopLast);
+        if(lockable.IsUnlocked())
+            TriggerDialogue(textId, interactivesText, loopLast);
+        else
+            TriggerDialogue(lockable.lockedTextID, lockable.GetText(), lockable.loopLast);
 
         if(!OutlineEnabled())
             DisableOutline();
@@ -82,7 +95,7 @@ public class Interactive : OutlineObject
     {
         int index = UIManager.GetInteractiveIndex(textId);
 
-        return !highlightEnds || index < interactivesText.Length;
+        return !highlightEnds || index < interactivesText.Length || !lockable.IsUnlocked();
     }
 
     public bool IsTriggered()
@@ -94,13 +107,12 @@ public class Interactive : OutlineObject
     {
         if(UI == null) return false;
 
-        Debug.Log("UI is active: " + UI.IsActive());
         return UI.IsActive();
     }
 
     public bool ActivateBehavior()
     {
-        if(!triggered || UIActive()) return false;
+        if(!triggered || UIActive() || !lockable.IsUnlocked()) return false;
 
         triggered = false;
         return true;
