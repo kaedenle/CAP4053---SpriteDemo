@@ -4,19 +4,14 @@ using UnityEngine;
 
 public class ChildMirror : Interactive
 {
-    public GameObject player;
-    bool was_triggered;
     new void Update()
     {
         base.Update();
-        was_triggered |= IsTriggered();
 
-        if(was_triggered && !UIActive())
+        if(ActivateBehavior())
         {
             ChildLevelManager.ToggleMirrorWorld();
-            ChildLevelManager.SetRespawn(player.transform.position);
-            ScenesManager.ReloadScene();
-            was_triggered = false;
+            LevelManager.ReloadScene();
         }    
     }
 }

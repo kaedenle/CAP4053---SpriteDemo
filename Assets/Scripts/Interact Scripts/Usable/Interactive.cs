@@ -15,6 +15,7 @@ public class Interactive : OutlineObject
     // dialogue vars
     private InteractiveInfo[] interactivesText;
     private InteractiveUIController UI;
+    private bool triggered = false;
 
     new public void OnTriggerEnter2D(Collider2D collider)
     {
@@ -26,6 +27,7 @@ public class Interactive : OutlineObject
     {
         if(IsTriggered())
         {
+            triggered = true;
             TriggerDialogue();
         }
     }
@@ -90,5 +92,13 @@ public class Interactive : OutlineObject
     public bool UIActive()
     {
         return UI.IsActive();
+    }
+
+    public bool ActivateBehavior()
+    {
+        if(!triggered || UIActive()) return false;
+
+        triggered = false;
+        return true;
     }
 }

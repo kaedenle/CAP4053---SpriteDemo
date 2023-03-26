@@ -5,7 +5,6 @@ using UnityEngine;
 public class ChildLevelManager : LevelManager
 {
     private static bool inMirror = false;
-    private static Vector3 mirrorSpawnPoint;
 
     // Start is called before the first frame update
     new void Start()
@@ -27,15 +26,5 @@ public class ChildLevelManager : LevelManager
     public static bool InMirror()
     {
         return inMirror;
-    }
-
-    public static void SetRespawn(Vector3 pos)
-    {
-        mirrorSpawnPoint = pos;
-    }
-
-    public static Vector3 GetRespawnPosition()
-    {
-        return mirrorSpawnPoint;
     }
 }

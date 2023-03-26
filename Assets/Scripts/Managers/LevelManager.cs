@@ -10,6 +10,14 @@ public class LevelManager : MonoBehaviour
     private static bool _playerDied = false;
     private static float default_delay = 0.7F;
 
+    private static GameObject player;
+    private static Vector3 spawnPosition;
+
+    public void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
     public void Start()
     {
         EntityManager.Pause();
@@ -77,4 +85,20 @@ public class LevelManager : MonoBehaviour
     }
 
     public virtual void TriggerReset() { } // used abstractly; kinda sketchy
+
+    public static void ReloadScene()
+    {
+        SetRespawn();
+        ScenesManager.ReloadScene();
+    }
+
+    public static void SetRespawn()
+    {
+        spawnPosition = player.transform.position;
+    }
+
+    public static Vector3 GetRespawnPosition()
+    {
+        return spawnPosition;
+    }
 }

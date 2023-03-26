@@ -10,7 +10,7 @@ public class ReloadSpawnPoint : MonoBehaviour
     {
         if(ScenesManager.GetPreviousScene() == ScenesManager.GetCurrentScene())
         {
-            player.transform.position = ChildLevelManager.GetRespawnPosition();
+            player.transform.position = LevelManager.GetRespawnPosition();
         }
     }
 

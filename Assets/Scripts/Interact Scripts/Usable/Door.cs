@@ -10,7 +10,7 @@ public class Door : Interactive
     {
         base.Update();
 
-        if(IsPlayerNear() && InputManager.InteractKeyDown())
+        if(ActivateBehavior())
         {
             ScenesManager.LoadScene(_nextScene);
         }
