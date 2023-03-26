@@ -9,7 +9,7 @@ public class OutlineLoader : MonoBehaviour
     void Awake()
     {
         // set all objects with the Interactive Script to have the outline material
-        foreach (OutlineObject obj in FindObjectsOfType(typeof(OutlineObject)))
+        foreach (OutlineObject obj in FindObjectsOfType(typeof(OutlineObject), true))
         {
             obj.SetOutline(outline);
         }

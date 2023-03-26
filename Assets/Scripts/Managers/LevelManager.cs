@@ -4,24 +4,31 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    private static bool _levelEnding = false;
-    private static LevelManager Instance;
-    private static ScenesManager.AllScenes _startScene;
-    private static bool _playerDied = false;
     private static float default_delay = 0.7F;
 
+    private static LevelManager Instance;
+    private static ScenesManager.AllScenes _startScene;
+    private static bool _levelEnding = false;
+    private static bool _playerDied = false;
     private static GameObject player;
     private static Vector3 spawnPosition;
+    private static Dictionary<string, bool> objectState;
 
     public void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+
+        if(objectState == null)
+        {
+            Debug.Log("resetting objectState");
+            objectState = new Dictionary<string, bool>();
+        }
     }
 
     public void Start()
     {
         EntityManager.Pause();
-        ResetVariables();
+        // ResetVariables();
         EntityManager.WaitThenUnpause(default_delay);
     }
 
@@ -36,6 +43,7 @@ public class LevelManager : MonoBehaviour
     {
         _playerDied = false;
         _levelEnding = false;
+        objectState = new Dictionary<string, bool>();
     }
 
     static void ResetAllVariables()
@@ -100,5 +108,18 @@ public class LevelManager : MonoBehaviour
     public static Vector3 GetRespawnPosition()
     {
         return spawnPosition;
+    }
+
+    public static void ToggleInteractiveState(string id)
+    {
+        if(!objectState.ContainsKey(id))
+            objectState.Add(id, false);
+
+        objectState[id] = !objectState[id];
+    }
+
+    public static bool GetInteractiveState(string id)
+    {
+        return objectState.GetValueOrDefault(id, false);
     }
 }

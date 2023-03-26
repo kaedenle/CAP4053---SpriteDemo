@@ -47,11 +47,12 @@ public class InteractiveUIController : MonoBehaviour
     // start the interactive
     public void StartInteractive(InteractiveInfo interactive, bool pause)
     {
-        if(this.pause = pause)
-            EntityManager.DialoguePause();
-
         on = true;
         on_using = true;
+
+        if(this.pause = pause)
+            EntityManager.DialoguePause();
+        
         isDialogue = false;
 
         sentences.Clear();
@@ -66,10 +67,11 @@ public class InteractiveUIController : MonoBehaviour
 
     public void StartConversation(Conversation converse)
     {
-        EntityManager.DialoguePause();
-
         on = true;
         on_using = true;
+
+        EntityManager.DialoguePause();
+
         isDialogue = true;
         sentences.Clear();
         names.Clear();
@@ -138,15 +140,17 @@ public class InteractiveUIController : MonoBehaviour
     {
         canvas_renderer.enabled = true; //turn them off. 
 
-        if(nameBox == null) return;
-        if(isDialogue)
+        if(nameBox != null)
         {
-            nameBox.SetActive(true);
-        }
+            if(isDialogue)
+            {
+                nameBox.SetActive(true);
+            }
 
-        else
-        {
-            nameBox.SetActive(false);
+            else
+            {
+                nameBox.SetActive(false);
+            }
         }
     }
 }

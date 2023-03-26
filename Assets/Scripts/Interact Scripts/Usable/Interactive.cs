@@ -27,8 +27,9 @@ public class Interactive : OutlineObject
     {
         if(IsTriggered())
         {
-            triggered = true;
+            if(!UIActive()) triggered = true;
             TriggerDialogue();
+            Debug.Log("triggered = true");
         }
     }
 
@@ -91,6 +92,9 @@ public class Interactive : OutlineObject
 
     public bool UIActive()
     {
+        if(UI == null) return false;
+
+        Debug.Log("UI is active: " + UI.IsActive());
         return UI.IsActive();
     }
 
