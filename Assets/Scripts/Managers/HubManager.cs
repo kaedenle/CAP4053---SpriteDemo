@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class HubManager : MonoBehaviour
 {
-    private GameObject player;
-    private HealthTracker playerHT;
     public enum PhaseTag
     {
         Mobster,
@@ -13,8 +11,12 @@ public class HubManager : MonoBehaviour
     }
     void Start()
     {
-        GameObject player = GameObject.Find("Player");
-        playerHT = player.GetComponent<HealthTracker>();
+        GameObject GameManager = GameObject.Find("GameManager");
+        GameManager gm = GameManager.GetComponent<GameManager>();
+        //reset player health to max
+        gm.ResetHealth();
+        //reset in hand
+        gm.ResetEquip();
     }
     // array of the starting mind scenes
     private static ScenesManager.AllScenes[] mindSceneStarts =
@@ -37,9 +39,6 @@ public class HubManager : MonoBehaviour
             EntityManager.DisableSwap();
         if(EntityManager.EquipEnabled())
             EntityManager.DisableEquip();
-        //reset player health to max
-        if(playerHT.healthSystem.getHealth() != playerHT.health)
-            playerHT.SetHealth(playerHT.health);
     }
     
     public static void LoadNextMind()

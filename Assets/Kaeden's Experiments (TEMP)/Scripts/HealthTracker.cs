@@ -40,10 +40,6 @@ public class HealthTracker : MonoBehaviour, IDamagable
             ft.offset = barOffset;
             bar = newBar;
         }
-
-    }
-
-    void Start(){
         HPBar = bar.transform.Find("Foreground").GetComponent<Image>();
         damagedBarImage = bar.transform.Find("Damaged").GetComponent<Image>();
         healthSystem = new HealthSystem(health);
@@ -53,8 +49,8 @@ public class HealthTracker : MonoBehaviour, IDamagable
         healthSystem.OnDamaged += HealthSystem_OnDamaged;
         healthSystem.OnHealed += HealthSystem_OnHealed;
         damagedBarImage.fillAmount = HPBar.fillAmount;
-    }
 
+    }
     // Update is called once per frame
     void Update()
     {

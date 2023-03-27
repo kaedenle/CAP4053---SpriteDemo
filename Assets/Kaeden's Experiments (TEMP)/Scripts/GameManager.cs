@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     private Animator anim;
     private int WeaponInt;
     private int Health;
+    private int MaxHealth;
     // Start is called before the first frame update
     void Awake()
     {
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
         FindStuff();
         UpdateCurrentValues();
         SeenScene = SceneManager.GetActiveScene().name;
+        MaxHealth = ht.health;
     }
     public void FindStuff()
     {
@@ -42,20 +44,38 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Entered");
     }
+    public void ResetHealth()
+    {
+        Health = MaxHealth;
+        reload();
+    }
+    public void ResetEquip()
+    {
+        WeaponInt = -1;
+        reload();
+    }
     private void reload()
     {
+        //find new player object
         if (ht == null) FindStuff();
-        ht.SetHealth(Health);
+        //reset health
+        if(ht != null) ht.SetHealth(Health);
+        //equip weapon you had in last scene
         if (WeaponInt != -1)
         {
-            am.wpnList.index = WeaponInt;
-            anim.SetBool("equiped", true);
+            if(am != null) am.wpnList.index = WeaponInt;
+            if(anim != null) anim.SetBool("equiped", true);
+        }
+        else
+        {
+            if (anim != null) anim.SetBool("equiped", false);
         }
     }
     private void UpdateCurrentValues()
     {
         Health = ht.healthSystem.getHealth();
-        bool equiped = anim.GetBool("equiped");
+        bool equiped = false;
+        if(anim != null) equiped = anim.GetBool("equiped");
         WeaponInt = equiped ? am.wpnList.index : -1;
     }
     // Update is called once per frame
