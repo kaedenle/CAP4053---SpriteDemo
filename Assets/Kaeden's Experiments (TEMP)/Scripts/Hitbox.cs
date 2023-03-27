@@ -21,6 +21,7 @@ public class Hitbox : MonoBehaviour
     private bool relativeKnockback;
     private string functCall;
     private GameObject ProjectileOwner;
+    private int weaponID;
 
     //colliding information
     public List<Collider2D> collidersList;
@@ -31,15 +32,15 @@ public class Hitbox : MonoBehaviour
         collidersList = new List<Collider2D>();
     }
 
-    public void SetAuxillaryValues(float hitstop, string hitsTag, bool relativeKnockback, string funct){
+    public void SetAuxillaryValues(float hitstop, string hitsTag, bool relativeKnockback, string funct, int weapon){
         this.hitstop = hitstop;
         this.hitsTag = hitsTag;
         this.relativeKnockback = relativeKnockback;
         this.functCall = funct;
     }
-    public void UpdateHitboxInfo(AttackManager.FrameData framedata, Attack atk)
+    public void UpdateHitboxInfo(AttackManager.FrameData framedata, Attack atk, int weapon)
     {
-        SetAuxillaryValues(framedata.hitstop, framedata.hitsTag, framedata.relativeKnockback, framedata.functCall);
+        SetAuxillaryValues(framedata.hitstop, framedata.hitsTag, framedata.relativeKnockback, framedata.functCall, weapon);
         //set default value (when frame's damage/knockback is 0)
         if (atk == null)
             atk = new Attack();
@@ -123,7 +124,7 @@ public class Hitbox : MonoBehaviour
                 tempKnockBack = new Vector3(Atk.x_knockback, Atk.y_knockback, 0);
                 tempKnockBack = checkKnockback(hit, myGameObject, tempKnockBack);
             }
-            script.damage(Atk.knockback * tempKnockBack, Atk.damage, Atk.hitstun, hitstop);
+            script.damage(Atk.knockback * tempKnockBack, Atk.damage, Atk.hitstun, hitstop, weaponID);
         }
         return true;
     }

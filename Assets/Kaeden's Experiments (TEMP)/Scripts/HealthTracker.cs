@@ -87,7 +87,7 @@ public class HealthTracker : MonoBehaviour, IDamagable
     }
 
     //implement IDamagable interface
-    public void damage(Vector3 knockback, int damage, float hitstun, float hitstop){
+    public void damage(Vector3 knockback, int damage, float hitstun, float hitstop, int weapon){
         if(!deathFlag){
             hitstunaddTimer = hitstun;
             Debug.Log(gameObject.name + " took " + damage + " damage and " + knockback + " knockback");
