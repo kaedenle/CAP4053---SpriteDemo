@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameObject OneGM;
-    private ScenesManager.AllScenes SeenScene;
+    private string SeenScene;
     private GameObject player;
     private HealthTracker ht;
-    private WeaponManager wm;
+    private AttackManager am;
     private Animator anim;
     private int WeaponInt;
     private int Health;
@@ -22,8 +23,18 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
+    }
+    void Start()
+    {
+        FindStuff();
+        UpdateCurrentValues();
+        SeenScene = SceneManager.GetActiveScene().name;
+    }
+    public void FindStuff()
+    {
         player = GameObject.Find("Player");
-        wm = player.GetComponent<WeaponManager>();
+        am = player.GetComponent<AttackManager>();
         ht = player.GetComponent<HealthTracker>();
         anim = player.GetComponent<Animator>();
     }
@@ -33,23 +44,31 @@ public class GameManager : MonoBehaviour
     }
     private void reload()
     {
-        //player.GetComponent<HealthTracker>().SetHealth = health;
+        if (ht == null) FindStuff();
+        ht.SetHealth(Health);
+        if (WeaponInt != -1)
+        {
+            am.wpnList.index = WeaponInt;
+            anim.SetBool("equiped", true);
+        }
     }
-    private void UpdateCurrentValue()
+    private void UpdateCurrentValues()
     {
-        Health = ht.health;
+        Health = ht.healthSystem.getHealth();
+        bool equiped = anim.GetBool("equiped");
+        WeaponInt = equiped ? am.wpnList.index : -1;
     }
     // Update is called once per frame
     void Update()
     {
-        if(SeenScene != ScenesManager.GetCurrentScene())
+        if(SeenScene != SceneManager.GetActiveScene().name)
         {
-            SeenScene = ScenesManager.GetCurrentScene();
+            SeenScene = SceneManager.GetActiveScene().name;
             reload();
         }
         else
         {
-
+            UpdateCurrentValues();
         }
     }
 }

@@ -47,7 +47,7 @@ public class HealthTracker : MonoBehaviour, IDamagable
         HPBar = bar.transform.Find("Foreground").GetComponent<Image>();
         damagedBarImage = bar.transform.Find("Damaged").GetComponent<Image>();
         healthSystem = new HealthSystem(health);
-        SetHealth(healthSystem.GetHealthNormalized());
+        SetHealthBar(healthSystem.GetHealthNormalized());
 
         //subscribe to event system
         healthSystem.OnDamaged += HealthSystem_OnDamaged;
@@ -78,8 +78,14 @@ public class HealthTracker : MonoBehaviour, IDamagable
             if (unique != null) unique.onDeath();
         }
     }
-    public void SetHealth(float health){
+    private void SetHealthBar(float health){
         HPBar.fillAmount = health;
+    }
+    public void SetHealth(int health)
+    {
+        healthSystem.Set(health);
+        SetHealthBar(healthSystem.GetHealthNormalized());
+        damagedBarImage.fillAmount = HPBar.fillAmount;
     }
     public float GetTrueFillAmount()
     {
@@ -97,13 +103,13 @@ public class HealthTracker : MonoBehaviour, IDamagable
 
     //events to happen when healed
     private void HealthSystem_OnHealed(object sender, System.EventArgs e){
-        SetHealth(healthSystem.GetHealthNormalized());
+        SetHealthBar(healthSystem.GetHealthNormalized());
         damagedBarImage.fillAmount = HPBar.fillAmount;
     }
     //events to happen when damage is taken
     private void HealthSystem_OnDamaged(object sender, System.EventArgs e){
         if(!deathFlag)
             damagedHealthShrinkTimer = DAMAGED_TIMER_SHRINK_MAX + hitstunaddTimer;
-        SetHealth(healthSystem.GetHealthNormalized());
+        SetHealthBar(healthSystem.GetHealthNormalized());
     }
 }

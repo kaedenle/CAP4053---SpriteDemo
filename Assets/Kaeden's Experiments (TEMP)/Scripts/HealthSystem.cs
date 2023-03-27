@@ -23,7 +23,14 @@ public class HealthSystem
         }
         if (OnDamaged != null) OnDamaged(this, EventArgs.Empty);
     }
-
+    public void Set(int amount)
+    {
+        healthAmount = amount;
+        if (healthAmount > healthAmountMax)
+            healthAmount = healthAmountMax;
+        if (healthAmount < 0)
+            healthAmount = 0;
+    }
     public void Heal(int amount){
         healthAmount += amount;
         if (healthAmount > healthAmountMax) {
