@@ -24,7 +24,8 @@ public class ScenesManager : MonoBehaviour
         ChildParentBedroom,
         ChildPlayroom,
         ChildForest,
-        ChildUnderground
+        ChildUnderground,
+        ChildChildRoom
     }
 
     // loads a scene

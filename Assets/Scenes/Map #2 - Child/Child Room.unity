@@ -2496,8 +2496,8 @@ GameObject:
   m_Component:
   - component: {fileID: 891138986}
   - component: {fileID: 891138989}
-  - component: {fileID: 891138988}
   - component: {fileID: 891138987}
+  - component: {fileID: 891138990}
   m_Layer: 0
   m_Name: unicorn plushie
   m_TagString: Untagged
@@ -2536,29 +2536,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.07
---- !u!114 &891138988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 891138985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineThickness: 0.5
-  pauseOnInteract: 1
-  textId: unicorn_plushie
-  loopLast: 0
-  highlightEnds: 0
-  lockable:
-    isLocked: 0
-    lockedTextID: 
-    loopLast: 0
-    requiredItems: 
-  _itemType: 6
 --- !u!212 &891138989
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2611,6 +2588,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &891138990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891138985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c33f58f5d6f1887458ad59a65a67896f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineThickness: 0.5
+  pauseOnInteract: 1
+  textId: unicorn_plushie
+  loopLast: 0
+  highlightEnds: 0
+  lockable:
+    isLocked: 0
+    lockedTextID: 
+    loopLast: 1
+    requiredItems: 
+  eventID: pick_up_unicorn
+  destroyOnUse: 1
+  enables: []
+  gainItem: 1
+  itemGained: 6
 --- !u!1 &913113507
 GameObject:
   m_ObjectHideFlags: 0
@@ -2769,7 +2773,7 @@ MonoBehaviour:
   enables:
   - {fileID: 1744569611}
   - {fileID: 1352184280}
-  destroyOnUse: 0
+  destroyOnUse: 1
 --- !u!212 &917658839
 SpriteRenderer:
   m_ObjectHideFlags: 0

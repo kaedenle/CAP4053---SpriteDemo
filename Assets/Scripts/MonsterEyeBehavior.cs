@@ -11,7 +11,7 @@ public class MonsterEyeBehavior : MonoBehaviour
 
     private double prob_on = 0.001;  // between 0 and 100
     private double prob_off = 0.003; // between 0 and 100
-    private double prob_blink = 0.01;
+    private double prob_blink = 0.05;
     private System.Random rand;
 
     private double blink_time = 2.0;
