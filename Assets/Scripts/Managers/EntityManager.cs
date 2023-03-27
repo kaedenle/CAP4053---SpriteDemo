@@ -108,6 +108,12 @@ public class EntityManager : MonoBehaviour
         Time.timeScale = 0;
     }
 
+    public static void SetHubStates()
+    {
+        DisableSwap();
+        DisableEquip();
+    }
+
     public static void WaitThenUnpause(float delay)
     {
         Instance.StartCoroutine(Instance.DoDelayedUnpause(delay));

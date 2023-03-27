@@ -24,6 +24,14 @@ public class HubManager : MonoBehaviour
     };
 
     private static int currentPhase = 0;
+
+    public void Update()
+    {
+        if(EntityManager.SwapEnabled())
+            EntityManager.DisableSwap();
+        if(EntityManager.EquipEnabled())
+            EntityManager.DisableEquip();
+    }
     
     public static void LoadNextMind()
     {

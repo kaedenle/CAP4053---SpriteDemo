@@ -851,6 +851,11 @@ MonoBehaviour:
   dialogue: {fileID: 11400000, guid: 34e8ff06a9b994542af86e27b9acc93b, type: 2}
   loopLast: 0
   highlightEnds: 0
+  lockable:
+    isLocked: 0
+    loopLast: 0
+    requiredItems: 
+    lockedText: {fileID: 0}
   phase: 1
 --- !u!58 &92485182
 CircleCollider2D:
@@ -1173,6 +1178,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 148052834}
+  - component: {fileID: 148052835}
   m_Layer: 0
   m_Name: Triggers
   m_TagString: Untagged
@@ -1197,6 +1203,17 @@ Transform:
   m_Father: {fileID: 1826998836}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &148052835
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148052833}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 999
 --- !u!1 &150804326
 GameObject:
   m_ObjectHideFlags: 0
@@ -2567,6 +2584,11 @@ MonoBehaviour:
   dialogue: {fileID: 0}
   loopLast: 0
   highlightEnds: 0
+  lockable:
+    isLocked: 0
+    loopLast: 0
+    requiredItems: 
+    lockedText: {fileID: 0}
   phase: 0
 --- !u!1 &352097187
 GameObject:
