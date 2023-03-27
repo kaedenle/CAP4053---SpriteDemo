@@ -15,7 +15,8 @@ public class InventoryManager : MonoBehaviour
         Child_Fuse,
         Child_Safe_Combo,
         Child_Plushie,
-        Child_Crowbar
+        Child_Crowbar,
+        Child_Rope
     }
 
     public static List<AllItems> _inventoryItems = new List<AllItems>();  // our inventory items
