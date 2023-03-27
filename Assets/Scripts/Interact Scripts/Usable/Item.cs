@@ -18,17 +18,14 @@ public class Item : Interactive
 
     new void Update()
     {
-        if(IsTriggered())
+        base.Update();
+
+        if(ActivateBehavior())
         {
             InventoryManager.AddItem(_itemType);
-            base.Update();
             Destroy(gameObject);
         }
 
-        else
-        {
-            base.Update();
-        }
 
     }
 }

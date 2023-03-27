@@ -15,11 +15,6 @@ public class InteractiveTextDatabase : MonoBehaviour
 
     void Awake()
     {
-        if(Instance != null)
-        {
-            Destroy(this);
-        }
-
         Instance = this;
 
         if(interact_data == null)
@@ -75,11 +70,13 @@ public class InteractiveTextDatabase : MonoBehaviour
                 words[i][j] = dialogue[i][j];
         }
 
+        id = id.Trim();
         interact_data.Add(id, words);
     }
 
     public static string[][] GetText(string id)
     {
+        id = id.Trim();
         if(!interact_data.ContainsKey(id)) return null;
 
         return interact_data[id];
