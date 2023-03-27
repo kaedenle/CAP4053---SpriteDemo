@@ -7,18 +7,20 @@ public class WeaponManager : MonoBehaviour, IScriptable
 {
 
     public Sprite[] spriteList;
-    public int weaponID;
+    public GameObject WeaponUI;
     public SpriteRenderer sr;
+    public int weaponID;
+    public int BufferWeaponID = 0;
     private Animator animator;
     public bool equiped;
     public AttackManager.WeaponList wpnList = new AttackManager.WeaponList();
-    public Hurtbox hrtbx;
+    private Hurtbox hrtbx;
     private SpriteRenderer onhand;
     Player_Movement movementScript;
-    public int BufferWeaponID = 0;
+    
     // Start is called before the first frame update
 
-    void Start()
+    void Awake()
     {
         weaponID = 0;
         animator = gameObject.GetComponent<Animator>();
@@ -59,7 +61,10 @@ public class WeaponManager : MonoBehaviour, IScriptable
         //toggle between not equiped and equiped
         if(InputManager.EquipKeyDown() && animator.GetFloat("attack") == 0){
             if (equiped)
+            {
                 onhand.enabled = false;
+                WeaponUI.GetComponent<WeaponUI>().PreemptivelyFinish();
+            }   
             else
                 onhand.enabled = true;
             animator.SetBool("equiped", !equiped);
@@ -67,7 +72,25 @@ public class WeaponManager : MonoBehaviour, IScriptable
             animator.SetFloat("weapon", wpnList.weaponlist[wpnList.index].ID);
             
         }
-
+        if (InputManager.SwapKeyDown())
+        {
+            //equip last when when press swap
+            if (!equiped)
+            {
+                onhand.enabled = true;
+                animator.SetBool("equiped", !equiped);
+                //set animation to follow weapon's ID
+                animator.SetFloat("weapon", wpnList.weaponlist[wpnList.index].ID);
+            }
+            //if equiped swap
+            if (equiped)
+            {
+                wpnList.index += 1;
+                wpnList.index %= spriteList.Length;
+                if (WeaponUI != null) WeaponUI.GetComponent<WeaponUI>().Invoke();
+            }
+            
+        }
         //change speed if heavy weapon
         if (wpnList.index == 1 && equiped)
             gameObject.GetComponent<Player_Movement>().speed = 8;
@@ -81,12 +104,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
         }
         //input for the player
         if(equiped){
-            if (InputManager.SwapKeyDown())
-            {
-                wpnList.index += 1;
-                wpnList.index %= wpnList.weaponlist.Length;
-            }
-
+            
             //only swap if not attacking
             if (animator.GetFloat("attack") == 0)
             {
