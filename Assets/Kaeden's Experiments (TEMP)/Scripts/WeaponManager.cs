@@ -72,7 +72,25 @@ public class WeaponManager : MonoBehaviour, IScriptable
             animator.SetFloat("weapon", wpnList.weaponlist[wpnList.index].ID);
             
         }
-
+        if (InputManager.SwapKeyDown())
+        {
+            //equip last when when press swap
+            if (!equiped)
+            {
+                onhand.enabled = true;
+                animator.SetBool("equiped", !equiped);
+                //set animation to follow weapon's ID
+                animator.SetFloat("weapon", wpnList.weaponlist[wpnList.index].ID);
+            }
+            //if equiped swap
+            if (equiped)
+            {
+                wpnList.index += 1;
+                wpnList.index %= spriteList.Length;
+                if (WeaponUI != null) WeaponUI.GetComponent<WeaponUI>().Invoke();
+            }
+            
+        }
         //change speed if heavy weapon
         if (wpnList.index == 1 && equiped)
             gameObject.GetComponent<Player_Movement>().speed = 8;
@@ -86,13 +104,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
         }
         //input for the player
         if(equiped){
-            if (InputManager.SwapKeyDown())
-            {
-                wpnList.index += 1;
-                wpnList.index %= spriteList.Length;
-                if (WeaponUI != null) WeaponUI.GetComponent<WeaponUI>().Invoke();
-            }
-
+            
             //only swap if not attacking
             if (animator.GetFloat("attack") == 0)
             {

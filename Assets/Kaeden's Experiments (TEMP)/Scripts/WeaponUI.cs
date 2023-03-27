@@ -39,6 +39,10 @@ public class WeaponUI : MonoBehaviour
         //next next (for transition)
         tiles[3].GetComponent<Image>().sprite = wm.spriteList[(wpnList.index + 2) % wm.spriteList.Length];
     }
+    private void OnEnable()
+    {
+        wpnList = wm.wpnList;
+    }
     public void FinishUp()
     {
         Done = true;
