@@ -11,6 +11,7 @@ public class PlayerScript : MonoBehaviour, IUnique
     private WeaponManager wm;
     private EffectsManager fxm;
     private Player_Movement pm;
+    public static GameObject OnePlayer;
 
     //Death Handling
     private bool killPlayer = false;
@@ -183,8 +184,7 @@ public class PlayerScript : MonoBehaviour, IUnique
     }
 
     void Awake()
-    {
-        //DontDestroyOnLoad(this.gameObject);
+    {    
     }
     void Start()
     {

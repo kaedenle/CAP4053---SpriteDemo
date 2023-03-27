@@ -120,7 +120,7 @@ public class AttackManager : MonoBehaviour
             //create hitboxes if need more
             if (counter >= HBListLength)
                 CreateHitbox(a);
-            HBList[counter].UpdateHitboxInfo(framedata, a);
+            HBList[counter].UpdateHitboxInfo(framedata, a, wpnList.index);
             counter += 1;
         }
 

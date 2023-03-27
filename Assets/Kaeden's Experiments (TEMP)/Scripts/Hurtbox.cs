@@ -12,6 +12,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
     //hitstun variables
     private float hitstunTimer;
     public bool inHitStun;
+    public bool NotFlash;
 
     //hitstop variables
     public string default_ani;
@@ -25,7 +26,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
     private bool FlashFlag = false;
     private float FlashTimer;
     private SpriteRenderer[] sr;
-    public void damage(Vector3 knockback, int damage, float hitstun, float hitstop)
+    public void damage(Vector3 knockback, int damage, float hitstun, float hitstop, int weapon)
     {
         //Hit particle effect
         if (HitEffect != null)
@@ -45,7 +46,8 @@ public class Hurtbox : MonoBehaviour, IDamagable
         }
 
         //if not dead play hitstun animation
-        if (GetComponent<HealthTracker>().healthSystem.getHealth() > 0)
+        HealthTracker ht = gameObject?.GetComponent<HealthTracker>();
+        if (ht != null && ht.healthSystem.getHealth() > 0)
         {
             hitstunTimer = hitstun;
             inHitStun = true;
@@ -59,7 +61,6 @@ public class Hurtbox : MonoBehaviour, IDamagable
                 uniqueScript.HitStunAni();
             }
         }
-
         //get rid of hitboxes if you've just been hit (circumvent bug)
         AttackManager am = this?.GetComponent<AttackManager>();
         if (am != null)
@@ -81,14 +82,18 @@ public class Hurtbox : MonoBehaviour, IDamagable
         }
 
         //flash white
-        foreach (SpriteRenderer piece in sr)
+        if (!NotFlash)
         {
-            piece.material.shader = HitShader;
-            piece.material.color = Color.white;
-             
+            foreach (SpriteRenderer piece in sr)
+            {
+                piece.material.shader = HitShader;
+                piece.material.color = Color.white;
+
+            }
+            FlashTimer = hitstop * 0.005f;
+            FlashFlag = true;
         }
-        FlashTimer = hitstop * 0.005f;
-        FlashFlag = true;
+        
     }
     IEnumerator Wait(float amt)
     {
@@ -111,8 +116,8 @@ public class Hurtbox : MonoBehaviour, IDamagable
     {
         scriptableScripts = gameObject.GetComponentsInChildren<IScriptable>();
         damagableScripts = gameObject.GetComponentsInChildren<IDamagable>();
-        uniqueScript = this?.GetComponent<IUnique>();
-        animator = this?.GetComponent<Animator>();
+        uniqueScript = gameObject?.GetComponent<IUnique>();
+        animator = gameObject?.GetComponent<Animator>();
         sr = GetComponentsInChildren<SpriteRenderer>();
         FXM = GameObject.Find("EffectsManager")?.GetComponent<EffectsManager>();
 
