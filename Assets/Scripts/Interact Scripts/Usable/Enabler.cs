@@ -40,7 +40,7 @@ public class Enabler : Interactive
         foreach(GameObject obj in enables)
         {
             if(obj == null) continue;
-
+            
             obj.SetActive(true);
         }
 
