@@ -28,6 +28,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
         hrtbx = gameObject?.GetComponent<Hurtbox>();
         onhand = gameObject.transform.Find("Right Arm").Find("On-Hand").GetComponent<SpriteRenderer>();
         movementScript = gameObject.GetComponent<Player_Movement>();
+        WeaponUI = GameObject.Find("/-- UI --/Menu Canvas/WeaponUI");
     }
     
     //scripts to be disabled/enabled when attacking

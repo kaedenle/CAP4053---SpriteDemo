@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
 
     void Awake()
     {
+        MenuUI = GameObject.Find("/-- UI --/Menu Canvas/Book UI");
         isSwitching = false;
 
         if(interactive_index == null)
