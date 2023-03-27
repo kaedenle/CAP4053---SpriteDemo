@@ -12,11 +12,15 @@ public class HubManager : MonoBehaviour
     void Start()
     {
         GameObject GameManager = GameObject.Find("GameManager");
-        GameManager gm = GameManager.GetComponent<GameManager>();
-        //reset player health to max
-        gm.ResetHealth();
-        //reset in hand
-        gm.ResetEquip();
+        if (GameManager != null)
+        {
+            GameManager gm = GameManager.GetComponent<GameManager>();
+            //reset player health to max
+            gm.ResetHealth();
+            //reset in hand
+            gm.ResetEquip();
+        }
+        
     }
     // array of the starting mind scenes
     private static ScenesManager.AllScenes[] mindSceneStarts =
