@@ -111,6 +111,8 @@ public class LevelManager : MonoBehaviour
 
     public static void ToggleInteractiveState(string id)
     {
+        if(id == null) return;
+
         if(!objectState.ContainsKey(id))
             objectState.Add(id, false);
 
@@ -119,6 +121,8 @@ public class LevelManager : MonoBehaviour
 
     public static bool GetInteractiveState(string id)
     {
+        if(id == null) return false;
+        
         return objectState.GetValueOrDefault(id, false);
     }
 }

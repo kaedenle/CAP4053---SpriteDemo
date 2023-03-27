@@ -20,6 +20,11 @@ public class NPCTriggersEvent : NPCDialogue
         if(activated)
         {
             ActivateChildren();
+
+            if(destroyOnTrigger)
+            {
+                Destroy(gameObject);
+            }
         }
 
         base.Start();

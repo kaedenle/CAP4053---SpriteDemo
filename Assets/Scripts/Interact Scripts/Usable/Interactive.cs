@@ -50,7 +50,10 @@ public class Interactive : OutlineObject
             interactivesText = new InteractiveInfo[0];
 
         if(lockable.isLocked)
+        {
             lockable.SetText(GetText(lockable.lockedTextID));
+            
+        }
     }
 
     public InteractiveInfo[] GetText(string id)
@@ -63,7 +66,9 @@ public class Interactive : OutlineObject
         if(lockable.IsUnlocked())
             TriggerDialogue(textId, interactivesText, loopLast);
         else
+        {
             TriggerDialogue(lockable.lockedTextID, lockable.GetText(), lockable.loopLast);
+        }
 
         if(!OutlineEnabled())
             DisableOutline();

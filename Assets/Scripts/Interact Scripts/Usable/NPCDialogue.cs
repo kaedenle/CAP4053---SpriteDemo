@@ -41,15 +41,15 @@ public class NPCDialogue : OutlineObject
     public void TriggerDialogue()
     {
         if(lockable.IsUnlocked())
-            TriggerDialogue(dialogue);
+            TriggerDialogue(dialogue, loopLast);
         else   
-            TriggerDialogue(lockable.GetDialogue());
+            TriggerDialogue(lockable.GetDialogue(), lockable.loopLast);
 
         if(!OutlineEnabled())
             DisableOutline();
     }
 
-    public void TriggerDialogue(NPCReport conversation)
+    public void TriggerDialogue(NPCReport conversation, bool loop)
     {
         if(conversation == null) return;
 
@@ -68,7 +68,7 @@ public class NPCDialogue : OutlineObject
         if(pauseOnInteract) EntityManager.DialoguePause();
         UI.StartConversation(conversation.conversations[index]);
 
-        if(!loopLast || index + 1 < conversation.Length()) index++;
+        if(!loop || index + 1 < conversation.Length()) index++;
 
         UIManager.SetInteractiveIndex(script_id, index);
     }

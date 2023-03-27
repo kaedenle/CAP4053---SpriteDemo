@@ -7,7 +7,7 @@ public class LockedBehavior
 {
     public bool isLocked = false;
     public string lockedTextID;
-    public bool loopLast;
+    public bool loopLast = true;
     public InventoryManager.AllItems[] requiredItems; 
 
     private bool unlocked = false;
