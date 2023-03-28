@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowEnemy : MonoBehaviour, IScriptable
+public class FollowEnemy : MonoBehaviour, IScriptable, IAI
 {
     public float speed;
     public Transform target;
     public float minimumDistance;
     public float lineOfSightDistance;
-    public HealthTracker healthTracker; 
-    public Animator animator;
-    public SpriteRenderer sr;
+    private HealthTracker healthTracker; 
+    private Animator animator;
+    private SpriteRenderer sr;
     //gameObject enemy;
 
     private const float ATTACK_TIMER_MAX = 0.0f;

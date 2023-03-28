@@ -22,6 +22,7 @@ public class Hitbox : MonoBehaviour
     private string functCall;
     private GameObject ProjectileOwner;
     private int weaponID;
+    public bool marked;
 
     //colliding information
     public List<Collider2D> collidersList;
