@@ -15,10 +15,8 @@ public class HubManager : MonoBehaviour
         if (GameManager != null)
         {
             GameManager gm = GameManager.GetComponent<GameManager>();
-            //reset player health to max
-            gm.ResetHealth();
-            //reset in hand
-            gm.ResetEquip();
+            //reset gamemanager
+            gm.ResetManager();
         }
         
     }

@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DeathUIController : MonoBehaviour
 {
     private Animator animator;
     private string trigger = "trigger";
     private bool triggered = false;
+    public bool IsDebug;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +27,14 @@ public class DeathUIController : MonoBehaviour
 
     public void ResetButton()
     {
+        //ONLY FOR KAEDEN'S DEBUG MODE
+        if (IsDebug)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            LevelManager.ResetVariables();
+            return;
+        }
+           
         LevelManager.RestartLevel();
     }
 }

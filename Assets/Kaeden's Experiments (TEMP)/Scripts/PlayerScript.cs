@@ -12,6 +12,7 @@ public class PlayerScript : MonoBehaviour, IUnique
     private EffectsManager fxm;
     private Player_Movement pm;
     public static GameObject OnePlayer;
+    private GameManager gm;
 
     //Death Handling
     private bool killPlayer = false;
@@ -195,6 +196,8 @@ public class PlayerScript : MonoBehaviour, IUnique
         Ammo = MaxAmmo;
         fxm = FindObjectOfType<EffectsManager>();
         pm = gameObject.GetComponent<Player_Movement>();
+        GameObject gmo = GameObject.Find("GameManager");
+        gm = gmo.GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -218,6 +221,7 @@ public class PlayerScript : MonoBehaviour, IUnique
             if(DeathDelayTimer <= 0)
             {
                 EntityManager.PlayerDied();
+                gm.SoftResetManager();
                 killPlayer = false;
             }
                 

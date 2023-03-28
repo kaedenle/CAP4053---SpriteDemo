@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     public void FindStuff()
     {
         player = GameObject.Find("Player");
+        if (player == null) return;
         am = player.GetComponent<AttackManager>();
         ht = player.GetComponent<HealthTracker>();
         anim = player.GetComponent<Animator>();
@@ -60,11 +61,24 @@ public class GameManager : MonoBehaviour
         WeaponInt = -1;
         reload();
     }
-
+    //resets manager, from level to level loading
+    public void ResetManager()
+    {
+        EnemyLists.Clear();
+        WeaponInt = -1;
+        Health = MaxHealth;
+        reload();
+    }
+    public void SoftResetManager()
+    {
+        EnemyLists.Clear();
+        WeaponInt = -1;
+        Health = MaxHealth;
+    }
     private void reload()
     {
         //find new player object
-        if (ht == null) FindStuff();
+        if (ht == null || player == null) FindStuff();
         //reset health
         if(ht != null) ht.SetHealth(Health);
         //equip weapon you had in last scene
