@@ -104,7 +104,7 @@ public class AttackManager : MonoBehaviour
         int HBListLength = HBList != null ? HBList.Count : 0;
         for(int i = 0; i < HBListLength; i++){
             Hitbox hb = HBList[i];
-            Destroy(hb.gameObject);
+            if(hb != null) Destroy(hb.gameObject);
         }
         HBList.Clear();
     }
@@ -114,6 +114,8 @@ public class AttackManager : MonoBehaviour
             return;
         int counter = 0;
         int HBListLength = HBList != null ? HBList.Count : 0;
+        foreach (Hitbox hb in HBList)
+            hb.marked = true;
         //update (and create) hitboxes
         foreach(Attack a in frames[frameCount])
         {
@@ -121,17 +123,18 @@ public class AttackManager : MonoBehaviour
             if (counter >= HBListLength)
                 CreateHitbox(a);
             HBList[counter].UpdateHitboxInfo(framedata, a, wpnList.index);
+            HBList[counter].marked = false;
             counter += 1;
         }
 
         //update length of HBList
         HBListLength = HBList != null ? HBList.Count : 0;
         //destroy extra hitboxes
-        for(int i = counter; i < HBListLength; i++){
-            Hitbox hb = HBList[i];
-            HBList.RemoveAt(i);
-            Destroy(hb.gameObject);
-        }
+        for (int i = 0; i < HBListLength; i++)
+            if (HBList[i].marked)
+                Destroy(HBList[i].gameObject);
+                
+        HBList.RemoveAll(item => item.marked);
         //Debug.Log("CURRENT: " + currentFrame);
         CallHitboxes();
     }
@@ -147,6 +150,7 @@ public class AttackManager : MonoBehaviour
             //have you hit something?
             foreach (Hitbox box in HBList)
             {
+                if (box == null) continue;
                 box.updateHitboxes();
                 if (box._state == Hitbox.ColliderState.Colliding)
                 {
