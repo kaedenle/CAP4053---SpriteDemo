@@ -32,8 +32,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5750500544224692366}
   - {fileID: 8153827873994902380}
+  - {fileID: 5750500544224692366}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -131,7 +131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8153827874136046148, guid: 75e798d718d73174aba3b2478ca1b297, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8153827874136046148, guid: 75e798d718d73174aba3b2478ca1b297, type: 3}
       propertyPath: m_AnchorMax.x
@@ -213,6 +213,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8153827874136046201, guid: 75e798d718d73174aba3b2478ca1b297, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 8153827874136046207, guid: 75e798d718d73174aba3b2478ca1b297, type: 3}
       propertyPath: m_Name
       value: WeaponUI
@@ -253,7 +257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5750500544806480822, guid: a54911043d5420244a2f17b8d5df41d6, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5750500544806480822, guid: a54911043d5420244a2f17b8d5df41d6, type: 3}
       propertyPath: m_AnchorMax.x
