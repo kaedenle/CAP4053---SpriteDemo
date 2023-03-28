@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public bool CanSpawnEnemies;
     private bool FirstTime;
     private IDictionary<string, List<EnemyStore>> EnemyLists = new Dictionary<string, List<EnemyStore>>();
+    private static GameObject EnemyParent;
     [HideInInspector]
     // Start is called before the first frame update
     void Awake()
@@ -144,9 +145,13 @@ public class GameManager : MonoBehaviour
     public void ReloadEnemies()
     {
         if (!EnemyLists.ContainsKey(SceneManager.GetActiveScene().name)) return;
-        foreach(EnemyStore es in EnemyLists[SceneManager.GetActiveScene().name])
+        if (EnemyParent == null) EnemyParent = GameObject.Find("-- Enemies -- ");
+        //if still null, don't do anything
+        if (EnemyParent == null) EnemyParent = new GameObject("-- Enemies --");
+        foreach (EnemyStore es in EnemyLists[SceneManager.GetActiveScene().name])
         {
             GameObject enemy = Instantiate(es.entityType, es.PosStore, Quaternion.identity);
+            enemy.transform.SetParent(EnemyParent.transform);
             es.SetValues(enemy);
         }
     }

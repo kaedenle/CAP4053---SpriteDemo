@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Spawn : MonoBehaviour
 {
     public GameObject EnemyType;
-    public int SpawnRadius;
+    public float SpawnRadius;
     public int amount;
     //private GameObject[] EnemyReference;
     
@@ -14,12 +14,17 @@ public class Spawn : MonoBehaviour
     public bool RespawnOnLoad;
     //should you respawn in same position or reset to original?
     public bool OriginalPos;
+    private bool flag = false;
+    private static GameObject parent;
 
     private GameManager gm;
     private void CreateEnemies()
     {
-        GameObject parent = GameObject.Find("-- Enemies -- ");
+        if (flag) return;
+        
         if (parent == null)
+            parent = GameObject.Find("-- Enemies -- ");
+        if(parent == null)
             parent = new GameObject("-- Enemies --");
         for(int i = 0; i < amount; i++)
         {
@@ -30,13 +35,26 @@ public class Spawn : MonoBehaviour
 
             EnemyStore es = new EnemyStore(enemy, EnemyType, randomPos, OriginalPos, EnemyType.GetComponent<HealthTracker>().health);
             if(!RespawnOnLoad) gm.AddEnemy(RespawnOnLoad, es);
+            flag = true;
         }
     }
+
+    //draw hitbox
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = new Color(0, 1, 1, 0.5f);
+        //Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.localScale);
+        //Gizmos.DrawCube(Vector3.zero, transform.localScale);
+        Gizmos.DrawWireSphere(transform.position, SpawnRadius);
+        Gizmos.DrawIcon(transform.position, EnemyType.name, true);
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-        if (!gm.VerifyScene(SceneManager.GetActiveScene().name, RespawnOnLoad))
-            CreateEnemies();
+        if (gm == null) CreateEnemies();
+        if (gm != null && !gm.VerifyScene(SceneManager.GetActiveScene().name, RespawnOnLoad)) CreateEnemies();
     }
 }
