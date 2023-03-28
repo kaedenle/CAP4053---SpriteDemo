@@ -6,9 +6,6 @@ public class Interactive : OutlineObject
 {
     // public variables
     public bool pauseOnInteract = true;
-    public string textId;
-    public bool loopLast;
-
     public InteractiveText interactiveText;
     public bool highlightEnds = false;
 
@@ -32,7 +29,7 @@ public class Interactive : OutlineObject
 
         UI = FindObjectOfType<InteractiveUIController>();
 
-        interactiveText.SetText( GetText(textId) );
+        interactiveText.SetText( GetText( interactiveText.GetID() ) );
 
         if(lockable.isLocked)
         {

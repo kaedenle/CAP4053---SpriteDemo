@@ -7,12 +7,9 @@ public class LockedBehavior
 {
     public bool isLocked = false;
     public InteractiveText lockedInteractiveText;
-    public string lockedTextID;
-    public bool loopLast = true;
     public InventoryManager.AllItems[] requiredItems; 
 
     private bool unlocked = false;
-    private InteractiveInfo[] lockedText;
     
     public bool IsUnlocked()
     {
@@ -25,18 +22,6 @@ public class LockedBehavior
         }
 
         return (unlocked = true);
-    }
-
-    public void SetText(InteractiveInfo[] text)
-    {
-        lockedText = text;
-        if(text == null)
-            lockedText = new InteractiveInfo[0];
-    }
-
-    public InteractiveInfo[] GetText()
-    {
-        return lockedText;
     }
 
     public void SetText(string[][] txt)
