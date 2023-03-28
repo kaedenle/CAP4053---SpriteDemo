@@ -6,7 +6,6 @@ using UnityEngine;
 public class LockedDialogueBehavior
 {
     public bool isLocked = false;
-    public bool loopLast;
     public InventoryManager.AllItems[] requiredItems; 
     public NPCReport lockedText;
 

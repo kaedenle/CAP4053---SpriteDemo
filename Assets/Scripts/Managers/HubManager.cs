@@ -9,17 +9,7 @@ public class HubManager : MonoBehaviour
         Mobster,
         Child
     }
-    void Start()
-    {
-        GameObject GameManager = GameObject.Find("GameManager");
-        if (GameManager != null)
-        {
-            GameManager gm = GameManager.GetComponent<GameManager>();
-            //reset gamemanager
-            gm.ResetManager();
-        }
-        
-    }
+    
     // array of the starting mind scenes
     private static ScenesManager.AllScenes[] mindSceneStarts =
     {
@@ -34,6 +24,18 @@ public class HubManager : MonoBehaviour
     };
 
     private static int currentPhase = 0;
+
+    void Start()
+    {
+        GameObject GameManager = GameObject.Find("GameManager");
+        if (GameManager != null)
+        {
+            GameManager gm = GameManager.GetComponent<GameManager>();
+            //reset gamemanager
+            gm.ResetManager();
+        }
+        
+    }
 
     public void Update()
     {

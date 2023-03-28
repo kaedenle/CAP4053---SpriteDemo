@@ -5,7 +5,6 @@ using UnityEngine;
 public class NPCDialogue : OutlineObject
 {
     public NPCReport dialogue;
-    public bool loopLast = false;
     public bool highlightEnds = true;
     public LockedDialogueBehavior lockable;
 
@@ -41,15 +40,15 @@ public class NPCDialogue : OutlineObject
     public void TriggerDialogue()
     {
         if(lockable.IsUnlocked())
-            TriggerDialogue(dialogue, loopLast);
+            TriggerDialogue(dialogue);
         else   
-            TriggerDialogue(lockable.GetDialogue(), lockable.loopLast);
+            TriggerDialogue(lockable.GetDialogue());
 
         if(!OutlineEnabled())
             DisableOutline();
     }
 
-    public void TriggerDialogue(NPCReport conversation, bool loop)
+    public void TriggerDialogue(NPCReport conversation)
     {
         if(conversation == null) return;
 
@@ -68,8 +67,7 @@ public class NPCDialogue : OutlineObject
         if(pauseOnInteract) EntityManager.DialoguePause();
         UI.StartConversation(conversation.conversations[index]);
 
-        if(!loop || index + 1 < conversation.Length()) index++;
-
+        index = conversation.CalculateNextIndex(index);
         UIManager.SetInteractiveIndex(script_id, index);
     }
 
