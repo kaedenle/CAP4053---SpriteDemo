@@ -45,7 +45,7 @@ public class InteractiveUIController : MonoBehaviour
     }
 
     // start the interactive
-    public void StartInteractive(InteractiveInfo interactive, bool pause)
+    public void StartInteractive(string[] interactive, bool pause)
     {
         on = true;
         on_using = true;
@@ -56,7 +56,7 @@ public class InteractiveUIController : MonoBehaviour
         isDialogue = false;
 
         sentences.Clear();
-        foreach (string sentence in interactive.GetSentences())
+        foreach (string sentence in interactive)
         {
             sentences.Enqueue(sentence);
         }

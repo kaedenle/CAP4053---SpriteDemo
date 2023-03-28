@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 57174335}
   - component: {fileID: 57174336}
   m_Layer: 0
-  m_Name: mind door
+  m_Name: bedroom door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -362,9 +362,15 @@ MonoBehaviour:
   pauseOnInteract: 1
   textId: 
   loopLast: 0
+  interactiveText:
+    textID: 
+    loopLast: 1
   highlightEnds: 0
   lockable:
     isLocked: 0
+    lockedInteractiveText:
+      textID: 
+      loopLast: 1
     lockedTextID: 
     loopLast: 0
     requiredItems: 
@@ -1642,9 +1648,15 @@ MonoBehaviour:
   pauseOnInteract: 1
   textId: unicorn_plushie
   loopLast: 0
+  interactiveText:
+    textID: 
+    loopLast: 1
   highlightEnds: 0
   lockable:
     isLocked: 0
+    lockedInteractiveText:
+      textID: 
+      loopLast: 1
     lockedTextID: 
     loopLast: 0
     requiredItems: 

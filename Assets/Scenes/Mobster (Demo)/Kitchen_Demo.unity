@@ -1782,13 +1782,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: 11
   pauseOnInteract: 1
   textId: 
   loopLast: 0
+  interactiveText:
+    textID: 
+    loopLast: 1
   highlightEnds: 0
   lockable:
     isLocked: 0
+    lockedInteractiveText:
+      textID: 
+      loopLast: 1
     lockedTextID: 
     loopLast: 0
     requiredItems: 
@@ -3046,9 +3052,15 @@ MonoBehaviour:
   pauseOnInteract: 1
   textId: mobsterDemoKeyItem
   loopLast: 0
+  interactiveText:
+    textID: mobsterDemoKeyItem
+    loopLast: 0
   highlightEnds: 0
   lockable:
     isLocked: 0
+    lockedInteractiveText:
+      textID: 
+      loopLast: 1
     lockedTextID: 
     loopLast: 0
     requiredItems: 

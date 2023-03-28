@@ -6,6 +6,7 @@ using UnityEngine;
 public class LockedBehavior
 {
     public bool isLocked = false;
+    public InteractiveText lockedInteractiveText;
     public string lockedTextID;
     public bool loopLast = true;
     public InventoryManager.AllItems[] requiredItems; 
@@ -36,5 +37,20 @@ public class LockedBehavior
     public InteractiveInfo[] GetText()
     {
         return lockedText;
+    }
+
+    public void SetText(string[][] txt)
+    {
+        lockedInteractiveText.SetText(txt);
+    }
+
+    public string GetTextID()
+    {
+        return lockedInteractiveText.GetID();
+    }
+
+    public InteractiveText GetInteractiveText()
+    {
+        return lockedInteractiveText;
     }
 }

@@ -9,7 +9,6 @@ public class UIManager : MonoBehaviour
     private static bool isSwitching = false;
     public GameObject MenuUI;
     public static Dictionary<string, int> interactive_index;
-
     private static int pause_mask = 0;
 
 

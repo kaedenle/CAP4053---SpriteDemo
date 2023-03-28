@@ -8,6 +8,8 @@ public class Interactive : OutlineObject
     public bool pauseOnInteract = true;
     public string textId;
     public bool loopLast;
+
+    public InteractiveText interactiveText;
     public bool highlightEnds = false;
 
     public LockedBehavior lockable;
@@ -15,9 +17,33 @@ public class Interactive : OutlineObject
     // private trackers
 
     // dialogue vars
-    private InteractiveInfo[] interactivesText;
+    // private InteractiveInfo[] interactivesText;
     private InteractiveUIController UI;
     private bool triggered = false;
+
+    new public void Awake()
+    {
+        base.Awake();
+    }
+
+    new public void Start()
+    {
+        base.Start();
+
+        UI = FindObjectOfType<InteractiveUIController>();
+
+        interactiveText.SetText( GetText(textId) );
+
+        if(lockable.isLocked)
+        {
+            lockable.SetText(GetText(lockable.GetTextID()));
+        }
+    }
+
+    public string[][] GetText(string id)
+    {
+        return InteractiveTextDatabase.GetText(id);
+    }
 
     new public void OnTriggerEnter2D(Collider2D collider)
     {
@@ -34,72 +60,47 @@ public class Interactive : OutlineObject
         }
     }
 
-    new public void Awake()
-    {
-        base.Awake();
-    }
-
-    new public void Start()
-    {
-        base.Start();
-
-        UI = FindObjectOfType<InteractiveUIController>();
-
-        interactivesText = GetText(textId);
-        if(interactivesText == null)
-            interactivesText = new InteractiveInfo[0];
-
-        if(lockable.isLocked)
-        {
-            lockable.SetText(GetText(lockable.lockedTextID));
-            
-        }
-    }
-
-    public InteractiveInfo[] GetText(string id)
-    {
-        return InteractiveInfo.ParseData(InteractiveTextDatabase.GetText(id));
-    }
 
     public void TriggerDialogue()
     {
         if(lockable.IsUnlocked())
-            TriggerDialogue(textId, interactivesText, loopLast);
+            TriggerDialogue(interactiveText);
         else
         {
-            TriggerDialogue(lockable.lockedTextID, lockable.GetText(), lockable.loopLast);
+            TriggerDialogue(lockable.GetInteractiveText());
         }
 
         if(!OutlineEnabled())
             DisableOutline();
     }
 
-    public void TriggerDialogue(string script_id, InteractiveInfo[] allScripts, bool loop_last)
+    public void TriggerDialogue(InteractiveText txt)
     {
-        if(script_id == null) return;
+        if(txt.IsEmpty()) return;
 
         // don't trigger if dialogue is currently active
         if(UI.IsActive()) return;
 
+        int index = UIManager.GetInteractiveIndex(txt.GetID());
+
+        if(txt.OutOfBounds(index)) return;
+
         // pause now if I've made it this far
-
-        int index = UIManager.GetInteractiveIndex(script_id);
-
-        if(index >= allScripts.Length) return;
-
         if(pauseOnInteract) EntityManager.DialoguePause();
-        UI.StartInteractive(allScripts[index], pauseOnInteract);
+        UI.StartInteractive(txt.GetUnit(index), pauseOnInteract);
 
-        if(!loop_last || index + 1 < allScripts.Length) index++;
+        index = txt.CalcNextIndex(index);
 
-        UIManager.SetInteractiveIndex(script_id, index);
+        UIManager.SetInteractiveIndex(txt.GetID(), index);
     }
 
     bool OutlineEnabled()
     {
-        int index = UIManager.GetInteractiveIndex(textId);
+        if(interactiveText.IsEmpty()) return true;
 
-        return !highlightEnds || index < interactivesText.Length || !lockable.IsUnlocked();
+        int index = UIManager.GetInteractiveIndex(interactiveText.GetID());
+
+        return !highlightEnds || index < interactiveText.Length() || !lockable.IsUnlocked();
     }
 
     public bool IsTriggered()

@@ -8,13 +8,16 @@ public class Locked : Interactive
     public InventoryManager.AllItems requiredItem;
     public string lockedTextId;
 
-    private InteractiveInfo[] lockedText;
+    private InteractiveText lockedText;
     private int locked_index;
 
     new void Start()
     {
+        lockedText.textID = lockedTextId;
+        lockedText.loopLast = true;
+        
         base.Start();
-        lockedText = InteractiveInfo.ParseData(InteractiveTextDatabase.GetText(lockedTextId));
+        lockedText.SetText( InteractiveTextDatabase.GetText(lockedTextId) );
     }
 
     new public void Update()
@@ -32,7 +35,7 @@ public class Locked : Interactive
 
     void TriggerLockedDialogue()
     {
-        TriggerDialogue(lockedTextId, lockedText, true);
+        TriggerDialogue(lockedText);
     }
 
     public bool IsUnlocked()

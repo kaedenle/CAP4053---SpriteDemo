@@ -6,8 +6,7 @@ public class InteractiveTrigger : MonoBehaviour
 {
     // public bool triggerPause;
     // public bool repeatable;
-    public bool loop_last;
-    public InteractiveInfo[] interactives;
+    public InteractiveText interactives;
 
     private int interactive_index;
     private InteractiveUIController UI;
@@ -21,7 +20,7 @@ public class InteractiveTrigger : MonoBehaviour
         UI = FindObjectOfType<InteractiveUIController>();
     }
 
-    void TriggerInteractive(InteractiveInfo current)
+    void TriggerInteractive(string[] current)
     {
         UI.StartInteractive(current, false);
     }
@@ -31,10 +30,11 @@ public class InteractiveTrigger : MonoBehaviour
     {
         if(!UI.IsActive() && InputManager.ContinueKeyPressed())
         {
-            if(interactive_index <= interactives.Length)
+            if(interactive_index <= interactives.Length())
             {
-                TriggerInteractive(interactives[interactive_index]);
-                if(!loop_last || interactive_index + 1 < interactives.Length) interactive_index++;
+                TriggerInteractive(interactives.GetUnit(interactive_index));
+                interactive_index = interactives.CalcNextIndex(interactive_index);
+               
             }
         }
     }
