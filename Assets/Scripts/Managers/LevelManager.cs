@@ -26,6 +26,7 @@ public class LevelManager : MonoBehaviour
 
     public void Start()
     {
+        _levelEnding = false;
         EntityManager.Pause();
         // ResetVariables();
         EntityManager.WaitThenUnpause(default_delay);
