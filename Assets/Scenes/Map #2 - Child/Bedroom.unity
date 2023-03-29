@@ -2286,11 +2286,6 @@ Transform:
   m_Father: {fileID: 1826998836}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!224 &621993640 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1554438271625386808, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
-  m_PrefabInstance: {fileID: 303897741}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &558183433
 GameObject:
   m_ObjectHideFlags: 0
@@ -2590,6 +2585,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!224 &621993640 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1554438271625386808, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
+  m_PrefabInstance: {fileID: 303897741}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &645492808
 GameObject:
   m_ObjectHideFlags: 0
@@ -5845,10 +5845,7 @@ MonoBehaviour:
     lockedInteractiveText:
       textID: 
       loopLast: 0
-    requiredItems: 
-      textID: mat_suspicious
-      loopLast: 1
-    requiredItems: 00000000
+    requiredItems: 0000000001000000
   stateID: map2_bedroomMat
   enables:
   - {fileID: 1452053942}
@@ -6220,7 +6217,7 @@ MonoBehaviour:
   lockable:
     isLocked: 1
     lockedInteractiveText:
-      textID: 
+      textID: locked_safe
       loopLast: 0
     requiredItems: 05000000
   stateID: bedroom_safe_closed
