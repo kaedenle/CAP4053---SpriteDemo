@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    private static float default_delay = 0.7F;
+    private static float default_delay = 1F;
 
     private static LevelManager Instance;
     private static ScenesManager.AllScenes _startScene;

@@ -56,7 +56,8 @@ public class EffectsManager : MonoBehaviour
     void Start()
     {
         //add pausing logic here
-        Time.timeScale = 1f;
+        if(!EntityManager.IsPaused())
+            Time.timeScale = 1f;
         MainCam = Camera.main;
     }
 }
