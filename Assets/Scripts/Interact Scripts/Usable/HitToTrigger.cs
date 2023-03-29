@@ -14,8 +14,8 @@ public class HitToTrigger :  MonoBehaviour, IDamagable
 
     public enum AttackType
     {
-        First,
         Second,
+        First,
         Any
     }
 
@@ -69,20 +69,19 @@ public class HitToTrigger :  MonoBehaviour, IDamagable
         }
     }
 
-    public void damage(Vector3 knockback, int damage, float hitstun, float hitstop, int weapon)
+    public void damage(AttackData ad)
     {
         if(!activated)
         {
-            Debug.Log("I've been hit with weapon " + weapon);
-
-            if(weapon == (int) weaponNeeded || weaponNeeded == WeaponType.Any)
+                    Debug.Log("I've been hit with weapon " + ad.weapon + " and attack " + ad.attack);
+            if(ad.weapon == (int) weaponNeeded || weaponNeeded == WeaponType.Any)
             {
-                
+                if((ad.attack%2) == (int) attackTypeNeeded || attackTypeNeeded == AttackType.Any)
+                {
+                    // trigger the actions, but only after the weapon animation finishes
+                    StartCoroutine(DelayTrigger());
+                }
             }
-
-            // trigger the actions, but only after the weapon animation finishes
-            StartCoroutine(DelayTrigger());
-            // assumes UI is not being used
         }
     }
 
