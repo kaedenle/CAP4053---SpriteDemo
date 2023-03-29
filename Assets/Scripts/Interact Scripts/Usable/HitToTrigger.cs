@@ -76,7 +76,7 @@ public class HitToTrigger :  MonoBehaviour, IDamagable
                     Debug.Log("I've been hit with weapon " + ad.weapon + " and attack " + ad.attack);
             if(ad.weapon == (int) weaponNeeded || weaponNeeded == WeaponType.Any)
             {
-                if(((ad.attack)%2) == (int) attackTypeNeeded || attackTypeNeeded == AttackType.Any)
+                if(((ad.attack+1)%2) == (int) attackTypeNeeded || attackTypeNeeded == AttackType.Any)
                 {
                     // trigger the actions, but only after the weapon animation finishes
                     StartCoroutine(DelayTrigger());
