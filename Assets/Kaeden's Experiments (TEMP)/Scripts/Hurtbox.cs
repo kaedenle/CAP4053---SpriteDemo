@@ -29,6 +29,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
     public bool NotHitPart;
     public void damage(AttackData ad)
     {
+        Debug.Log(ad.weapon + " " + ad.attack);
         //Hit particle effect
         if (HitEffect != null && !NotHitPart)
         {
