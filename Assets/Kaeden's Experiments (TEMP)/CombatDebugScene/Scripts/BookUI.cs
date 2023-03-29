@@ -15,6 +15,12 @@ public class BookUI : MonoBehaviour
     private GameObject LeftPage;
     private int PageIndex;
     private bool RememberPages = true;
+
+    public GameObject RightArrow;
+    public GameObject LeftArrow;
+    private Button RightButton;
+    private Button LeftButton;
+
     public void ToggleBook()
     {
         IsOut = UIManager.IsPaused();
@@ -29,6 +35,18 @@ public class BookUI : MonoBehaviour
         gameObject.SetActive(IsOut);
         //gameObject.transform.GetChild(0).gameObject.SetActive(IsOut);
         if (IsOut) anim.SetTrigger("In");
+    }
+    private void CheckArrows()
+    {
+        if (PageIndex == 0 && LeftButton != null)
+            LeftButton.interactable = false;
+        else
+            LeftButton.interactable = true;
+
+        if (PageIndex == ((pages.Length - 1) / 2) && RightButton != null)
+            RightButton.interactable = false;
+        else
+            RightButton.interactable = true;
     }
     public void SkipAnim()
     {
@@ -80,6 +98,8 @@ public class BookUI : MonoBehaviour
         else
             anim.Play("Flip Page 2");
         PageIndex += jump;
+        CheckArrows();
+        
     }
     public void LoadPages()
     {
@@ -93,6 +113,8 @@ public class BookUI : MonoBehaviour
             RightPage.SetActive(true);
         }
 
+        if(LeftArrow != null) LeftArrow.SetActive(true);
+        if (RightArrow != null) RightArrow.SetActive(true);
         ChangeText((PageIndex * 2 + 1).ToString(), gameObject.transform.Find("PageNumberLeft").gameObject);
         ChangeText((PageIndex * 2 + 2).ToString(), gameObject.transform.Find("PageNumberRight").gameObject);
     }
@@ -114,6 +136,8 @@ public class BookUI : MonoBehaviour
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         audiosrc = GetComponent<AudioSource>();
+        if(LeftArrow != null) LeftButton = LeftArrow?.GetComponentInChildren<Button>();
+        if(RightArrow != null) RightButton = RightArrow?.GetComponentInChildren<Button>();
         TurnOffChildren();
         
     }

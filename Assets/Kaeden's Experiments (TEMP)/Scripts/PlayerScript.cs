@@ -240,7 +240,7 @@ public class PlayerScript : MonoBehaviour, IUnique
             cancel = false;
             ShootAgain = false;
             UnShoot();
-            am.InvokeAttack(3);
+            am.InvokeAttack(5);
         }
 
     }

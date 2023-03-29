@@ -367,14 +367,14 @@ MonoBehaviour:
   - {fileID: -1209616074, guid: f5fc1fe8bc349d74d84152148774c8e2, type: 3}
   - {fileID: 21300000, guid: dc770ace5941049438a3e32fdea8e103, type: 3}
   - {fileID: 21300000, guid: c1be47631819d024988780c53f9ce44f, type: 3}
-  weaponID: 0
+  WeaponUI: {fileID: 0}
   sr: {fileID: 8340756177781156867}
+  weaponID: 0
+  BufferWeaponID: 0
   equiped: 0
   wpnList:
     weaponlist: []
     index: 0
-  hrtbx: {fileID: 0}
-  BufferWeaponID: 0
 --- !u!114 &6197798176421269817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,9 +432,9 @@ MonoBehaviour:
   moveContainer:
   - {fileID: 4900000, guid: 4ccd3bdf65ab2f24d8ef550b6652a892, type: 3}
   - {fileID: 4900000, guid: 7c785d1dfc5c7a74aa6b84c64c8e4bae, type: 3}
-  - {fileID: 4900000, guid: a7b9be4854fdbb441a4dc1f0179ac6e8, type: 3}
   - {fileID: 4900000, guid: 1f134f51ffa16e34880d10fcaceb3e02, type: 3}
   - {fileID: 4900000, guid: d0afab7d34af1344ba1e39eb4012f559, type: 3}
+  - {fileID: 4900000, guid: a7b9be4854fdbb441a4dc1f0179ac6e8, type: 3}
   - {fileID: 4900000, guid: cbb93d3e40dd0dd4a811b7b513b89989, type: 3}
   framedata:
     framedata: []
@@ -449,6 +449,7 @@ MonoBehaviour:
     deactivateMove: 0
     relativeKnockback: 0
     functCall: 
+    ID: 0
 --- !u!114 &4459850622582732022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,7 +475,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inHitStun: 0
+  NotFlash: 0
   default_ani: Idle
+  NotHitPart: 0
 --- !u!114 &3393781334134885235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,7 +494,7 @@ MonoBehaviour:
   bullet: {fileID: 662058475778597127, guid: c0f36b8081129474fb1f0ada3edff123, type: 3}
   cancel: 0
   ShootAgain: 0
-  TackleSpeed: 1150
+  TackleSpeed: 1250
 --- !u!114 &8521604005571251972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -881,7 +884,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.12, y: 0.05}
+  m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
