@@ -105,7 +105,7 @@ public class InteractiveUIController : MonoBehaviour
 
         string sentence = sentences.Dequeue();
         textField.text = sentence;
-        Debug.Log("sentence: " + sentence);
+        // Debug.Log("sentence: " + sentence);
     }
 
     // returns if this UI is being used
@@ -117,7 +117,7 @@ public class InteractiveUIController : MonoBehaviour
     // end this interactive
     void EndInteractive()
     {
-        Debug.Log("Ending Interactive...");
+        // Debug.Log("Ending Interactive...");
         on_using = false;
         TurnUIOff();
         StartCoroutine(WaitAndTurnOff());
