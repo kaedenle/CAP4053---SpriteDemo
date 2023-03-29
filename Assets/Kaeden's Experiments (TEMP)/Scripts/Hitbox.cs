@@ -119,7 +119,7 @@ public class Hitbox : MonoBehaviour
         //object with attack manager
         GameObject myGameObject = SearchAttackManger(gameObject);
         if (ProjectileOwner != null) myGameObject = ProjectileOwner;
-        //Debug.Log(hit.name + " hit by " + weapon + " attack " + attackID);
+        Debug.Log(hit.name + " hit by " + weapon + " attack " + attackID);
         foreach (IDamagable script in scripts)
         {
             Vector3 tempKnockBack = (hit.transform.position - myGameObject.transform.position).normalized;
