@@ -130,8 +130,7 @@ public class Hitbox : MonoBehaviour
                 tempKnockBack = checkKnockback(hit, myGameObject, tempKnockBack);
             }
             AttackData ad = new AttackData(Atk, tempKnockBack);
-            ad.setAux(hitstop);
-
+            ad.setAux(hitstop, weapon, attackID);
             script.damage(ad);
         }
         return true;

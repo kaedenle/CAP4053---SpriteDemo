@@ -23,8 +23,10 @@ public class AttackData
         this.hitstun = hitstun;
         this.knockback = knockback;
     }
-    public void setAux(float hitstop)
+    public void setAux(float hitstop, int weapon, int attack)
     {
         this.hitstop = hitstop;
+        this.weapon = weapon;
+        this.attack = attack;
     }
 }
