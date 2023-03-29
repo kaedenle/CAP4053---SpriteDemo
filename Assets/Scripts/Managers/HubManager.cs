@@ -9,7 +9,7 @@ public class HubManager : MonoBehaviour
         Mobster,
         Child
     }
-    
+
     // array of the starting mind scenes
     private static ScenesManager.AllScenes[] mindSceneStarts =
     {
@@ -34,7 +34,6 @@ public class HubManager : MonoBehaviour
             //reset gamemanager
             gm.ResetManager();
         }
-        
     }
 
     public void Update()

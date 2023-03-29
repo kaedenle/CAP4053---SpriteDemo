@@ -35,6 +35,9 @@ public class InteractiveTriggersEvent : Interactive
 
         if(!activated && ActivateBehavior())
         {
+            if(gainItem)
+                InventoryManager.AddItem(itemGained);
+            
             Activate();
 
             LevelManager.ToggleInteractiveState(eventID);
@@ -49,11 +52,6 @@ public class InteractiveTriggersEvent : Interactive
 
     void Activate()
     {
-        if(gainItem)
-        {
-            InventoryManager.AddItem(itemGained);
-        }
-
         foreach(GameObject obj in enables)
         {
             if(obj == null) continue;

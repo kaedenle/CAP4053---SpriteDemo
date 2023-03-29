@@ -21,6 +21,7 @@ public class BossIdleBehavior : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        Debug.Log("here now");
         spawnerLeft = animator.gameObject.transform.Find("Spawners").Find("SpawnerLeft");
         spawnerRight = animator.gameObject.transform.Find("Spawners").Find("SpawnerRight");
 
@@ -28,12 +29,12 @@ public class BossIdleBehavior : StateMachineBehaviour
         {
             Debug.Log("L bozo");
         }
-        if(enemy == null && numEnemiesKilled < 3)
+        if(enemy == null && numEnemiesKilled < 1)
         {
             enemy = Instantiate(meleeEnemyPrefab, spawnerLeft.position, Quaternion.identity);  
 
         }
-        if(enemy2 == null && numEnemiesKilled < 3) 
+        if(enemy2 == null && numEnemiesKilled < 1) 
         {
             enemy2 = Instantiate(meleeEnemyPrefab, spawnerRight.position, Quaternion.identity);
         }
@@ -59,7 +60,7 @@ public class BossIdleBehavior : StateMachineBehaviour
 
         
         Debug.Log(numEnemiesKilled);
-        if(numEnemiesKilled < 3)
+        if(numEnemiesKilled < 1)
         {
             if(enemy == null)
             {

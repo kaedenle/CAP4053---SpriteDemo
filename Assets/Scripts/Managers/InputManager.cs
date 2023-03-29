@@ -81,7 +81,7 @@ public class InputManager : MonoBehaviour
     // tells you whether a specific key was pressed
     public static bool InteractKeyDown()
     {
-        return _interact && KeyPressed(Keys.Interact);
+        return _interact && (KeyPressed(Keys.Interact) || Input.GetKeyDown(KeyCode.F));
     }
 
     public static bool PauseKeyDown()

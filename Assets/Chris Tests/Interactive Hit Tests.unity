@@ -133,11 +133,13 @@ GameObject:
   m_Component:
   - component: {fileID: 121980402}
   - component: {fileID: 121980401}
-  - component: {fileID: 121980400}
   - component: {fileID: 121980399}
-  m_Layer: 0
+  - component: {fileID: 121980404}
+  - component: {fileID: 121980403}
+  - component: {fileID: 121980405}
+  m_Layer: 7
   m_Name: mat_default_0
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -168,40 +170,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.92, y: 0.59}
   m_EdgeRadius: 0
---- !u!114 &121980400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 121980398}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccad916a9481bc248b959ad85cb88523, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineThickness: 0.5
-  pauseOnInteract: 1
-  textId: mat_temp
-  loopLast: 0
-  interactiveText:
-    textID: 
-    loopLast: 0
-  highlightEnds: 1
-  lockable:
-    isLocked: 0
-    lockedInteractiveText:
-      textID: 
-      loopLast: 0
-    lockedTextID: 
-    loopLast: 0
-    requiredItems: 
-  stateID: map2_bedroomMat
-  enables:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  destroyOnUse: 0
 --- !u!212 &121980401
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -265,10 +233,72 @@ Transform:
   m_LocalPosition: {x: 5.49, y: -2.6794, z: -0.00000029802322}
   m_LocalScale: {x: 5.9577, y: 5.7047796, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1408856300}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &121980403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121980398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab190700ad4b8fe4ea483fec27692b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventID: 
+  weaponNeeded: 0
+  attackTypeNeeded: 0
+  destroyOnTrigger: 0
+  gainItem: 0
+  itemGained: 0
+  enables: []
+  disables: []
+--- !u!114 &121980404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121980398}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4abf5276bc24cc44b687f04ee394caf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inHitStun: 0
+  NotFlash: 0
+  default_ani: 
+--- !u!61 &121980405
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121980398}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.028241366, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.1, y: 1.46}
+    newSize: {x: 2.1, y: 1.46}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.2810001, y: 1.46}
+  m_EdgeRadius: 0
 --- !u!1 &251311376
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,8 +621,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineThickness: 0.5
   pauseOnInteract: 1
-  textId: 
-  loopLast: 0
   interactiveText:
     textID: 
     loopLast: 0
@@ -602,8 +630,6 @@ MonoBehaviour:
     lockedInteractiveText:
       textID: 
       loopLast: 0
-    lockedTextID: 
-    loopLast: 1
     requiredItems: 
   _nextScene: 7
 --- !u!61 &508937300
@@ -1303,8 +1329,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineThickness: 0.5
   pauseOnInteract: 1
-  textId: 
-  loopLast: 0
   interactiveText:
     textID: 
     loopLast: 0
@@ -1314,8 +1338,6 @@ MonoBehaviour:
     lockedInteractiveText:
       textID: 
       loopLast: 0
-    lockedTextID: 
-    loopLast: 1
     requiredItems: 
   _nextScene: 8
 --- !u!61 &742213155
@@ -2060,6 +2082,101 @@ Transform:
   m_Father: {fileID: 1899075340}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1408856299
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1408856300}
+  - component: {fileID: 1408856302}
+  - component: {fileID: 1408856301}
+  - component: {fileID: 1408856303}
+  m_Layer: 7
+  m_Name: hitbox
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1408856300
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408856299}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 121980402}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1408856301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408856299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4abf5276bc24cc44b687f04ee394caf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inHitStun: 0
+  NotFlash: 0
+  default_ani: 
+--- !u!61 &1408856302
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408856299}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.025512308, y: -0.033180118}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.1749058, y: 0.87465286}
+  m_EdgeRadius: 0
+--- !u!114 &1408856303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408856299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab190700ad4b8fe4ea483fec27692b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventID: mat_test_0
+  weaponNeeded: 1
+  attackTypeNeeded: 1
+  destroyOnTrigger: 1
+  gainItem: 1
+  itemGained: 7
+  enables: []
+  disables: []
 --- !u!1001 &1411767049
 PrefabInstance:
   m_ObjectHideFlags: 0
