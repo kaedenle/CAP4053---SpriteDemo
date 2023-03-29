@@ -23,7 +23,7 @@ public class HitBoxAttack : MonoBehaviour
             if(hit != null && can_attack)
             {
                 AttackData ad = new AttackData(_attackPower, 10, new Vector3(0, 0, 0));
-                ad.setAux(10);
+                ad.setAux(10, 0, 0);
                 hit.damage(ad);
                 can_attack = false;
                 tempTime = Time.time;
