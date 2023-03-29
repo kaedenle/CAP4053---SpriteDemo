@@ -710,7 +710,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 440135177}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.258, y: 0.137, z: 0}
+  m_LocalPosition: {x: -1.065, y: -0.105, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -860,11 +860,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6105205938035449262, guid: 6d1444703d8fa62419c9da85b2af53fe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.16
+      value: 2.91
       objectReference: {fileID: 0}
     - target: {fileID: 6105205938035449262, guid: 6d1444703d8fa62419c9da85b2af53fe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.01
+      value: -1.39
       objectReference: {fileID: 0}
     - target: {fileID: 6105205938035449262, guid: 6d1444703d8fa62419c9da85b2af53fe, type: 3}
       propertyPath: m_LocalPosition.z
@@ -901,7 +901,7 @@ PrefabInstance:
     - target: {fileID: 6105205938035449264, guid: 6d1444703d8fa62419c9da85b2af53fe, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 4d1cce34d3ceb524a8642b26d459805f, type: 2}
+      objectReference: {fileID: 9100000, guid: ee7d1e889fc1e9d4c8a94b3e3a19d2a5, type: 2}
     - target: {fileID: 6105205938035449265, guid: 6d1444703d8fa62419c9da85b2af53fe, type: 3}
       propertyPath: m_FlipX
       value: 0
@@ -911,12 +911,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6105205938035449265, guid: 6d1444703d8fa62419c9da85b2af53fe, type: 3}
+      propertyPath: m_Size.x
+      value: 0.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 6105205938035449265, guid: 6d1444703d8fa62419c9da85b2af53fe, type: 3}
+      propertyPath: m_Size.y
+      value: 0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 6105205938035449265, guid: 6d1444703d8fa62419c9da85b2af53fe, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 3db1f94c2a9c4456ca0c885b6b8736cb, type: 3}
+      objectReference: {fileID: 21300000, guid: 0defd1063d508e843964cb897f612d5a, type: 3}
     - target: {fileID: 6105205938035449265, guid: 6d1444703d8fa62419c9da85b2af53fe, type: 3}
       propertyPath: m_DrawMode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6105205938035449265, guid: 6d1444703d8fa62419c9da85b2af53fe, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6105205938035449267, guid: 6d1444703d8fa62419c9da85b2af53fe, type: 3}
       propertyPath: m_Name
@@ -989,9 +1001,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 968780474}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24d74be111c2b08418504c1920c9fe37, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ec102c2f13c06b4ab16bee0630be3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meleeEnemyPrefab: {fileID: 968780474}
+  rangedEnemyPrefab: {fileID: 0}
+  spawnInterval: 100
+  numEnemiesSpawned: 3
+  numEnemiesKilled: 0
 --- !u!1 &986237245
 GameObject:
   m_ObjectHideFlags: 0
