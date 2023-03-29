@@ -9,6 +9,8 @@ public class ScenesManager : MonoBehaviour
     private static ScenesManager.AllScenes _currentScene = AllScenes.Menu, _prevScene = AllScenes.Menu; // need to update these defaults after setting up central room
     private static bool _demo = false;
     private static float nextSceneDelay = 1.0F;
+
+    private static bool firstSceneDebug = true;
     // update this enum whenever you add (or remove) a Scene (must be in same order as in building settings)
     // edit these names at your own risk; so many things use these, so you'll have to track them all down if
     // you want to change these (adding more is fine, as long as you add to the end)
@@ -58,28 +60,22 @@ public class ScenesManager : MonoBehaviour
             LoadScene(full);
     }
 
-    static void Reset()
-    {
-        HubManager.ResetVariables();
-        MobsterLevelManager.ResetVariables();
-    }
-
     // loads the first scene (that's not the menu)
-    public static void LoadNewGame()
-    {
-        Reset();
-        // load the first scene here
-        _demo = false;
-        LoadScene(AllScenes.CentralHub);
-    }
+    // public static void LoadNewGame()
+    // {
+    //     Reset();
+    //     // load the first scene here
+    //     _demo = false;
+    //     LoadScene(AllScenes.CentralHub);
+    // }
 
-    public static void StartDemo()
-    {
-        Reset();
-        _demo = true;
-        // set default level manager
-        LoadScene(AllScenes.MobsterRoadDemo);
-    }
+    // public static void StartDemo()
+    // {
+    //     Reset();
+    //     _demo = true;
+    //     // set default level manager
+    //     LoadScene(AllScenes.MobsterRoadDemo);
+    // }
 
     public static AllScenes GetPreviousScene()
     {
@@ -93,8 +89,33 @@ public class ScenesManager : MonoBehaviour
 
     public void Awake()
     {
-        Instance = this;
         _currentScene = (AllScenes) SceneManager.GetActiveScene().buildIndex;
+
+        // if you've inialized the game outside of the menu
+        if(firstSceneDebug && _currentScene != AllScenes.Menu)
+        {
+            GameState temp = new GameState(0, 0);
+
+            if(_currentScene == AllScenes.CentralHub)
+            {
+                temp  = new GameState(0, 0);
+            }
+
+            else if((int)_currentScene <= (int) AllScenes.MobsterAlleyDemo)
+            {
+                temp = new GameState(0, 1);
+            }
+
+            else if((int)_currentScene <= (int) AllScenes.ChildChildRoom)
+            {
+                temp = new GameState(1, 1);
+            }
+
+            temp.Save();
+        }
+
+        Instance = this;
+        firstSceneDebug = false;
     }
 
     public static void setDemo()

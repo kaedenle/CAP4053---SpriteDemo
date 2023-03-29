@@ -23,7 +23,14 @@ public class HubManager : MonoBehaviour
         ScenesManager.AllScenes.MobsterRoadDemo
     };
 
-    private static int currentPhase = 0;
+    private static int currentPhase;
+    private static GameState game;
+
+    void Awake()
+    {
+        game = GameState.LoadGame();
+        currentPhase = game.GetLevel();
+    }
 
     void Start()
     {
@@ -43,11 +50,17 @@ public class HubManager : MonoBehaviour
         if(EntityManager.EquipEnabled())
             EntityManager.DisableEquip();
     }
+
+    // load the given phase if you are not loading the phase from the Hub
+    public static void LoadPhase(int phase)
+    {
+        ScenesManager.LoadScene(mindSceneStarts[phase]);
+    }
     
     public static void LoadNextMind()
     {
-        currentPhase++;
-        ScenesManager.LoadScene(mindSceneStarts[currentPhase - 1]);
+        game.IncrementStateAndSave();
+        ScenesManager.LoadScene(mindSceneStarts[currentPhase]);
     }
     
     // doesn't distinguish between Demo and Full

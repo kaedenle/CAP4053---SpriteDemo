@@ -49,8 +49,7 @@ public class CutsceneLoader : MonoBehaviour
 
         if(on && delayComplete && Input.anyKeyDown)
         {
-            if (demoForks && ScenesManager.isDemo()) ScenesManager.LoadScene(nextDemoScene);
-            else ScenesManager.LoadScene(nextScene);
+            LevelManager.EndLevel();
             delayComplete = false;
         }
     }
