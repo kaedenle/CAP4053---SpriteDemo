@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IDamagable
 {
-    void damage(Vector3 knockback, int damage, float hitstun, float hitstop, int weapon);
+    void damage(AttackData ad);
 }

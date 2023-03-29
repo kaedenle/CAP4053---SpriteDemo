@@ -137,7 +137,7 @@ public class PlayerScript : MonoBehaviour, IUnique
     public void onDeath()
     {
 
-        Debug.Log("You've died!");
+        //Debug.Log("You've died!");
 
         //disable all scripts
         Hurtbox hrt = gameObject?.GetComponent<Hurtbox>();

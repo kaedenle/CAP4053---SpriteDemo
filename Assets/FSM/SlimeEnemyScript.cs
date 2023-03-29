@@ -11,7 +11,7 @@ public class SlimeEnemyScript : MonoBehaviour, IUnique
     public void onDeath()
     {
         HealthTracker healthTracker = GetComponent<HealthTracker>();
-        Debug.Log("Dead Ooze boy");
+        //Debug.Log("Dead Ooze boy");
         Destroy(healthTracker.bar.gameObject);
         Destroy(gameObject);
     }

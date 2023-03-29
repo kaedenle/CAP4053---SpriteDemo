@@ -26,22 +26,23 @@ public class Hurtbox : MonoBehaviour, IDamagable
     private bool FlashFlag = false;
     private float FlashTimer;
     private SpriteRenderer[] sr;
-    public void damage(Vector3 knockback, int damage, float hitstun, float hitstop, int weapon)
+    public bool NotHitPart;
+    public void damage(AttackData ad)
     {
         //Hit particle effect
-        if (HitEffect != null)
+        if (HitEffect != null && !NotHitPart)
         {
             GameObject instance = Instantiate(HitEffect, transform.position, Quaternion.identity);
             instance.transform.SetParent(gameObject.transform);
             //set correct scale
-            float XScale = instance.transform.localScale.x * gameObject.transform.localScale.x + (0.05f*hitstop);
-            float YScale = instance.transform.localScale.y * gameObject.transform.localScale.y + (0.05f*hitstop);
+            float XScale = instance.transform.localScale.x * gameObject.transform.localScale.x + (0.05f*ad.hitstop);
+            float YScale = instance.transform.localScale.y * gameObject.transform.localScale.y + (0.05f*ad.hitstop);
             instance.transform.localScale = new Vector3(XScale, YScale, instance.transform.localScale.z);
 
             //play slower if hitstop is greater
             ParticleSystem ps = instance.GetComponent<ParticleSystem>();
             var main = ps.main;
-            float Speed = main.simulationSpeed - hitstop * 0.02f > 0 ? main.simulationSpeed - hitstop * 0.02f: 0.001f;
+            float Speed = main.simulationSpeed - ad.hitstop * 0.02f > 0 ? main.simulationSpeed - ad.hitstop * 0.02f: 0.001f;
             main.simulationSpeed = Speed;
         }
 
@@ -49,7 +50,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
         HealthTracker ht = gameObject?.GetComponent<HealthTracker>();
         if (ht != null && ht.healthSystem.getHealth() > 0)
         {
-            hitstunTimer = hitstun;
+            hitstunTimer = ad.hitstun;
             inHitStun = true;
             //CHANGE LOGIC HERE TO ROUTE TO HITSTUN ANIMATION
             if (uniqueScript == null)
@@ -78,7 +79,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
         //apply hitstop
         if (FXM != null)
         {
-            FXM.StopTime(hitstop / 100);
+            FXM.StopTime(ad.hitstop / 100);
         }
 
         //flash white
@@ -90,7 +91,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
                 piece.material.color = Color.white;
 
             }
-            FlashTimer = hitstop * 0.005f;
+            FlashTimer = ad.hitstop * 0.005f;
             FlashFlag = true;
         }
         

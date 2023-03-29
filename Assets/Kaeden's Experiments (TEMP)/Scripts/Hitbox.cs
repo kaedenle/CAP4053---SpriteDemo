@@ -21,8 +21,9 @@ public class Hitbox : MonoBehaviour
     private bool relativeKnockback;
     private string functCall;
     private GameObject ProjectileOwner;
-    private int weaponID;
     public bool marked;
+    private int weapon;
+    private int attackID;
 
     //colliding information
     public List<Collider2D> collidersList;
@@ -33,15 +34,17 @@ public class Hitbox : MonoBehaviour
         collidersList = new List<Collider2D>();
     }
 
-    public void SetAuxillaryValues(float hitstop, string hitsTag, bool relativeKnockback, string funct, int weapon){
+    public void SetAuxillaryValues(float hitstop, string hitsTag, bool relativeKnockback, string funct, int weapon, int attackID){
         this.hitstop = hitstop;
         this.hitsTag = hitsTag;
         this.relativeKnockback = relativeKnockback;
         this.functCall = funct;
+        this.weapon = weapon;
+        this.attackID = attackID;
     }
     public void UpdateHitboxInfo(AttackManager.FrameData framedata, Attack atk, int weapon)
     {
-        SetAuxillaryValues(framedata.hitstop, framedata.hitsTag, framedata.relativeKnockback, framedata.functCall, weapon);
+        SetAuxillaryValues(framedata.hitstop, framedata.hitsTag, framedata.relativeKnockback, framedata.functCall, weapon, framedata.ID);
         //set default value (when frame's damage/knockback is 0)
         if (atk == null)
             atk = new Attack();
@@ -116,6 +119,7 @@ public class Hitbox : MonoBehaviour
         //object with attack manager
         GameObject myGameObject = SearchAttackManger(gameObject);
         if (ProjectileOwner != null) myGameObject = ProjectileOwner;
+        //Debug.Log(hit.name + " hit by " + weapon + " attack " + attackID);
         foreach (IDamagable script in scripts)
         {
             Vector3 tempKnockBack = (hit.transform.position - myGameObject.transform.position).normalized;
@@ -125,7 +129,10 @@ public class Hitbox : MonoBehaviour
                 tempKnockBack = new Vector3(Atk.x_knockback, Atk.y_knockback, 0);
                 tempKnockBack = checkKnockback(hit, myGameObject, tempKnockBack);
             }
-            script.damage(Atk.knockback * tempKnockBack, Atk.damage, Atk.hitstun, hitstop, weaponID);
+            AttackData ad = new AttackData(Atk, tempKnockBack);
+            ad.setAux(hitstop);
+
+            script.damage(ad);
         }
         return true;
     }

@@ -69,7 +69,7 @@ public class AttackManager : MonoBehaviour
         public bool relativeKnockback;
 
         public string functCall;
-        
+        public int ID;        
     }
     [HideInInspector]
     public FrameData framedata = new FrameData();
@@ -213,7 +213,7 @@ public class AttackManager : MonoBehaviour
                 animator.SetLayerWeight(1, 1);
             InvokeAttack(tmp);
             cancellableFlag = false;
-            Debug.Log("Cancelled!");
+            //Debug.Log("Cancelled!");
         }
     }
     public GameObject HurtBoxSearch(GameObject part){
@@ -248,6 +248,7 @@ public class AttackManager : MonoBehaviour
         
         //get framedata
         framedata = JsonUtility.FromJson<FrameData>(moveContainer[(moveIndex - 1) % moveContainer.Length].text);
+        
         //load cancellable moves for O(1) entry
         cancellableSet.Clear();
         if (framedata.cancelBy == null)

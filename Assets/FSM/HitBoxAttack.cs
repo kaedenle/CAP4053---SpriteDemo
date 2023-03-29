@@ -18,11 +18,13 @@ public class HitBoxAttack : MonoBehaviour
        Debug.Log("cringer");
         if(other.transform.name == "Player")
         {
-            Debug.Log("HITTERHITTER");
+            //Debug.Log("HITTERHITTER");
             var hit = other.GetComponent<HealthTracker>();
             if(hit != null && can_attack)
             {
-                hit.damage(new Vector3(0, 0, 0), _attackPower, 10, 10, 0);
+                AttackData ad = new AttackData(_attackPower, 10, new Vector3(0, 0, 0));
+                ad.setAux(10);
+                hit.damage(ad);
                 can_attack = false;
                 tempTime = Time.time;
             }

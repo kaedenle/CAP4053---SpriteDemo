@@ -9,13 +9,13 @@ public class KnockBackable : MonoBehaviour, IDamagable
         body = gameObject.GetComponent<Rigidbody2D>();
     }
 
-    public void damage(Vector3 knockback, int damage, float hitstun, float hitstop, int weapon){
+    public void damage(AttackData ad){
         if(body == null)
             return;
 
-        body.AddForce(knockback, ForceMode2D.Impulse);
+        body.AddForce(ad.knockback, ForceMode2D.Impulse);
         //body.velocity = new Vector2(knockback.x, knockback.y);
-        Debug.Log(gameObject.name + " Took Knockback! " + knockback);
+        //Debug.Log(gameObject.name + " Took Knockback! " + ad.knockback);
     }
 
     void FixedUpdate(){

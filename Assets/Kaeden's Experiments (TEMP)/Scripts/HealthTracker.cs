@@ -68,7 +68,7 @@ public class HealthTracker : MonoBehaviour, IDamagable
         }
         //check for death
         if(healthSystem.getHealth() == 0 && !deathFlag){
-            Debug.Log(gameObject.name + " is dead");
+            //Debug.Log(gameObject.name + " is dead");
             deathFlag = true;
             IUnique unique = this?.GetComponent<IUnique>();
             if (unique != null) unique.onDeath();
@@ -89,11 +89,11 @@ public class HealthTracker : MonoBehaviour, IDamagable
     }
 
     //implement IDamagable interface
-    public void damage(Vector3 knockback, int damage, float hitstun, float hitstop, int weapon){
+    public void damage(AttackData ad){
         if(!deathFlag){
-            hitstunaddTimer = hitstun;
-            Debug.Log(gameObject.name + " took " + damage + " damage and " + knockback + " knockback");
-            healthSystem.Damage(damage);
+            hitstunaddTimer = ad.hitstun;
+            //Debug.Log(gameObject.name + " took " + ad.damage + " damage and " + ad.knockback + " knockback");
+            healthSystem.Damage(ad.damage);
         }
     }
 

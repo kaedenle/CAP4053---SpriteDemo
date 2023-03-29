@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        Debug.Log("Entered");
+        //Debug.Log("Entered");
     }
     public void ResetHealth()
     {
