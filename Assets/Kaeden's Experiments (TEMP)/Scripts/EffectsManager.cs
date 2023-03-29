@@ -8,7 +8,7 @@ public class EffectsManager : MonoBehaviour
     private bool waiting = false;
     private bool ResumeTime = false;
     //Camera variables
-    public Camera MainCam;
+    private Camera MainCam;
     public void ShakeCam(float duration, float magnitude)
     {
         CameraShake cs = MainCam.GetComponent<CameraShake>();
@@ -57,5 +57,6 @@ public class EffectsManager : MonoBehaviour
     {
         //add pausing logic here
         Time.timeScale = 1f;
+        MainCam = Camera.main;
     }
 }
