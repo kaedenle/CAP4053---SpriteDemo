@@ -70,7 +70,7 @@ public class HealthTracker : MonoBehaviour, IDamagable
         if(healthSystem.getHealth() == 0 && !deathFlag){
             //Debug.Log(gameObject.name + " is dead");
             deathFlag = true;
-            IUnique unique = this?.GetComponent<IUnique>();
+            IUnique unique = gameObject?.GetComponent<IUnique>();
             if (unique != null) unique.onDeath();
         }
     }
