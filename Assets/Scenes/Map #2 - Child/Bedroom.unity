@@ -1996,7 +1996,7 @@ MonoBehaviour:
   outlineThickness: 0.5
   pauseOnInteract: 1
   interactiveText:
-    textID: 
+    textID: crowbar_obtained
     loopLast: 0
   highlightEnds: 0
   lockable:
@@ -2377,7 +2377,7 @@ MonoBehaviour:
   - {fileID: 2112074505}
   - {fileID: 1256701439}
   - {fileID: 592632318}
-  destroyOnUse: 0
+  destroyOnUse: 1
 --- !u!212 &558183437
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5608,7 +5608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventID: map2_bedroomMat
   weaponNeeded: 1
-  attackTypeNeeded: 1
+  attackTypeNeeded: 0
   destroyOnTrigger: 1
   gainItem: 0
   itemGained: 0
@@ -5664,6 +5664,7 @@ MonoBehaviour:
   inHitStun: 0
   NotFlash: 0
   default_ani: 
+  NotHitPart: 1
 --- !u!114 &1552094182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5843,7 +5844,7 @@ MonoBehaviour:
   lockable:
     isLocked: 1
     lockedInteractiveText:
-      textID: 
+      textID: mat_suspicious
       loopLast: 0
     requiredItems: 0000000001000000
   stateID: map2_bedroomMat
@@ -5852,7 +5853,7 @@ MonoBehaviour:
   - {fileID: 2112074505}
   - {fileID: 1256701439}
   - {fileID: 592632318}
-  destroyOnUse: 0
+  destroyOnUse: 1
 --- !u!212 &1586579147
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6211,7 +6212,7 @@ MonoBehaviour:
   outlineThickness: 0.5
   pauseOnInteract: 1
   interactiveText:
-    textID: 
+    textID: opened_safe
     loopLast: 0
   highlightEnds: 0
   lockable:
