@@ -20,7 +20,7 @@ public class OutlineObject : MonoBehaviour
 
     public void Start()
     {
-        outline.SetFloat("_Outline_Thickness", outlineThickness); 
+        if(outline != null) outline.SetFloat("_Outline_Thickness", outlineThickness); 
     }
 
     public void OnTriggerEnter2D(Collider2D collider)

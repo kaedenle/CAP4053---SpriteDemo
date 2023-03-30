@@ -42,7 +42,8 @@ public class AttackManager : MonoBehaviour
     public GameObject ProjectileOwner;
 
     //framedata
-    public TextAsset[] moveContainer;
+    public AttackClass[] attackContainer;
+    private AudioClip[] currentAudio;
     public enum ScriptTypes{
         Movement,
         Attacking
@@ -122,7 +123,7 @@ public class AttackManager : MonoBehaviour
             //create hitboxes if need more
             if (counter >= HBListLength)
                 CreateHitbox(a);
-            HBList[counter].UpdateHitboxInfo(framedata, a, wpnList.index);
+            HBList[counter].UpdateHitboxInfo(framedata, a, wpnList.index, getAudioClip());
             HBList[counter].marked = false;
             counter += 1;
         }
@@ -138,7 +139,12 @@ public class AttackManager : MonoBehaviour
         //Debug.Log("CURRENT: " + currentFrame);
         CallHitboxes();
     }
-
+    //returns random audio file from HitSFX
+    private AudioClip getAudioClip()
+    {
+        if (currentAudio == null || currentAudio.Length == 0) return null;
+        return currentAudio[Random.Range(0, currentAudio.Length)];
+    }
     private void CallHitboxes()
     {
         //update each hitbox
@@ -247,8 +253,8 @@ public class AttackManager : MonoBehaviour
        //if(animator != null) Debug.Log(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
         
         //get framedata
-        framedata = JsonUtility.FromJson<FrameData>(moveContainer[(moveIndex - 1) % moveContainer.Length].text);
-        
+        framedata = JsonUtility.FromJson<FrameData>(attackContainer[(moveIndex - 1) % attackContainer.Length].moveData.text);
+        currentAudio = attackContainer[(moveIndex - 1) % attackContainer.Length].HitSFX;
         //load cancellable moves for O(1) entry
         cancellableSet.Clear();
         if (framedata.cancelBy == null)

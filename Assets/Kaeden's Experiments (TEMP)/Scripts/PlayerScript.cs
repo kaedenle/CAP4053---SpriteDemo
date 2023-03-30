@@ -11,6 +11,7 @@ public class PlayerScript : MonoBehaviour, IUnique
     private WeaponManager wm;
     private EffectsManager fxm;
     private Player_Movement pm;
+    private Hurtbox hb;
     public static GameObject OnePlayer;
     private GameManager gm;
 
@@ -104,12 +105,10 @@ public class PlayerScript : MonoBehaviour, IUnique
         ShootEnd = true;
         cancel = false;
     }
-
     public void CancelShoot()
     {
         ShootAgain = true;
     }
-
     private void Sword1()
     {
         bool flipped = animator.GetBool("flipped");
@@ -136,7 +135,6 @@ public class PlayerScript : MonoBehaviour, IUnique
 
     public void onDeath()
     {
-
         //Debug.Log("You've died!");
 
         //disable all scripts
@@ -184,9 +182,6 @@ public class PlayerScript : MonoBehaviour, IUnique
         if(animator.GetFloat("shooting") == 2) CleanShoot();
     }
 
-    void Awake()
-    {    
-    }
     void Start()
     {
         body = gameObject.GetComponent<Rigidbody2D>();
@@ -196,6 +191,7 @@ public class PlayerScript : MonoBehaviour, IUnique
         Ammo = MaxAmmo;
         fxm = FindObjectOfType<EffectsManager>();
         pm = gameObject.GetComponent<Player_Movement>();
+        hb = gameObject.GetComponent<Hurtbox>();
         //GameObject gmo = GameObject.Find("GameManager");
         GameObject gmo;
         if (GameManager.OneGM != null)
@@ -212,7 +208,6 @@ public class PlayerScript : MonoBehaviour, IUnique
     // Update is called once per frame
     void Update()
     {
-
         //fix bug where shoot value is active but weapon is not gun
         if (animator.GetFloat("shooting") > 0 && wm.wpnList.index != 2)
         {
@@ -250,6 +245,14 @@ public class PlayerScript : MonoBehaviour, IUnique
             ShootAgain = false;
             UnShoot();
             am.InvokeAttack(5);
+        }
+
+        //track if you've picked up heart
+        if(InventoryManager.HasItem(InventoryManager.AllItems.HealingHeart))
+        {
+            InventoryManager.RemoveItem(InventoryManager.AllItems.HealingHeart);
+            GetComponent<HealthTracker>().healthSystem.Heal(15);
+            hb.InvokeFlash(0.15f, new Color(0, 1f, 0), false);
         }
 
     }

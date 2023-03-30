@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 using System;
+[Serializable]
 
 public class HealthTracker : MonoBehaviour, IDamagable
 {
@@ -51,12 +53,16 @@ public class HealthTracker : MonoBehaviour, IDamagable
         damagedBarImage.fillAmount = HPBar.fillAmount;
 
     }
+    public float TotalDown()
+    {
+        return damagedBarImage.fillAmount;
+    }
     // Update is called once per frame
     void Update()
     {
         //health bar effect
         damagedHealthShrinkTimer -= Time.deltaTime;
-        if(damagedHealthShrinkTimer < 0){
+        if(damagedHealthShrinkTimer < 0 && bar != null){
             if(HPBar.fillAmount < damagedBarImage.fillAmount){
                 float shrinkSpeed = 1f;
                 damagedBarImage.fillAmount -= shrinkSpeed * Time.deltaTime;
@@ -73,6 +79,9 @@ public class HealthTracker : MonoBehaviour, IDamagable
             IUnique unique = gameObject?.GetComponent<IUnique>();
             if (unique != null) unique.onDeath();
         }
+
+        //healing effect
+
     }
     private void SetHealthBar(float health){
         HPBar.fillAmount = health;
@@ -87,7 +96,6 @@ public class HealthTracker : MonoBehaviour, IDamagable
     {
         return damagedBarImage.fillAmount;
     }
-
     //implement IDamagable interface
     public void damage(AttackData ad){
         if(!deathFlag){

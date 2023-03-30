@@ -19,16 +19,21 @@ public class Hurtbox : MonoBehaviour, IDamagable
     private GameObject HitEffect;
     private EffectsManager FXM; //used for hitstop
     private Shader HitShader;
-    private Shader OriginalShader;
 
     //misc variables
     private Animator animator;
-    private bool FlashFlag = false;
-    private float FlashTimer;
+    private AudioSource audiosrc;
     private SpriteRenderer[] sr;
+    private Shader[] OriginalShader;
     public bool NotHitPart;
+    private IEnumerator running;
+    private Color[] OriginalColors;
     public void damage(AttackData ad)
     {
+        //play hit audio if it exists
+        if (audiosrc != null && ad.audio != null)
+            audiosrc.PlayOneShot(ad.audio, 0.75f);
+
         Debug.Log(ad.weapon + " " + ad.attack);
         //Hit particle effect
         if (HitEffect != null && !NotHitPart)
@@ -86,31 +91,50 @@ public class Hurtbox : MonoBehaviour, IDamagable
         //flash white
         if (!NotFlash)
         {
-            foreach (SpriteRenderer piece in sr)
-            {
-                piece.material.shader = HitShader;
-                piece.material.color = Color.white;
-
-            }
-            FlashTimer = ad.hitstop * 0.005f;
-            FlashFlag = true;
+            InvokeFlash(ad.hitstop * 0.005f, Color.white);
         }
         
     }
-    IEnumerator Wait(float amt)
+    public void InvokeFlash(float duration, Color c, bool solidColor = true, int repeat = 1, float endingDuration = 0.05f)
     {
-        yield return new WaitForSecondsRealtime(amt);
-        FlashFlag = false;
-        //unflash white
-        foreach (SpriteRenderer piece in sr)
+        if (running != null) StopCoroutine(running);
+        running = Flash(duration, c, solidColor, repeat, endingDuration);
+        StartCoroutine(running);
+    }
+    IEnumerator Flash(float duration, Color c, bool solidColor = true, int repeats = 1, float endingDuration = 0.05f)
+    {
+        for(int i = 0; i < repeats; i++)
         {
-            piece.material.shader = OriginalShader;
+            //flash color
+            for (int j = 0; j < sr.Length; j++)
+            {
+                if (solidColor)
+                {
+                    sr[j].material.shader = HitShader;
+                    sr[j].material.color = c;
+                    sr[j].color = OriginalColors[i];
+                }
+                else
+                    sr[j].color = c;
+            }
+            //duration
+            yield return new WaitForSeconds(duration);
+            //unflash
+            for (int j = 0; j < sr.Length; j++)
+            {
+                sr[j].material.shader = OriginalShader[j];
+                sr[j].material.color = Color.white;
+                sr[j].color = OriginalColors[i];
+            }
+
+            if(i != repeats - 1) yield return new WaitForSeconds(endingDuration);
         }
+        running = null;
     }
 
     void Awake()
     {
-        HitEffect = Resources.Load("Prefabs/HitEffect Particle") as GameObject;
+        HitEffect = Resources.Load("Prefabs/Particles/HitEffect Particle") as GameObject;
     }
 
     // Start is called before the first frame update
@@ -122,12 +146,19 @@ public class Hurtbox : MonoBehaviour, IDamagable
         animator = gameObject?.GetComponent<Animator>();
         sr = GetComponentsInChildren<SpriteRenderer>();
         FXM = GameObject.Find("EffectsManager")?.GetComponent<EffectsManager>();
+        audiosrc = gameObject?.GetComponent<AudioSource>();
 
         hitstunTimer = -1;
         inHitStun = false;
         
         HitShader = Shader.Find("GUI/Text Shader");
-        OriginalShader = sr.Length > 0 ? sr[0].material.shader : null;
+        OriginalShader = new Shader[sr.Length];
+        OriginalColors = new Color[sr.Length];
+        for(int i = 0; i < sr.Length; i++)
+        {
+            OriginalShader[i] = sr[i].material.shader;
+            OriginalColors[i] = sr[i].color;
+        }  
     }
 
     // Update is called once per frame
@@ -142,17 +173,6 @@ public class Hurtbox : MonoBehaviour, IDamagable
                 s.ScriptHandler(true);
             inHitStun = false;
         }
-
-        if (FlashFlag)
-            FlashTimer -= Time.deltaTime;
-        //unflash white after unpause
-        if (FlashTimer <= 0 && FlashFlag)
-        {
-            foreach (SpriteRenderer piece in sr)
-                piece.material.shader = OriginalShader;
-            FlashFlag = false;
-        }
-
     }
     
 }
