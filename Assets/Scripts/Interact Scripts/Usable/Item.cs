@@ -5,12 +5,13 @@ using UnityEngine;
 public class Item : Interactive
 {
     [SerializeField] InventoryManager.AllItems _itemType;
+    public bool repeatable;
 
     new void Start()
     {
         base.Start();
 
-        if (InventoryManager.PickedUp(_itemType))
+        if (InventoryManager.PickedUp(_itemType) && !repeatable)
         {
             Destroy(gameObject);
         }

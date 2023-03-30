@@ -76,7 +76,7 @@ public class InteractiveTextDatabase : MonoBehaviour
 
     public static string[][] GetText(string id)
     {
-        if(id == null) return null;
+        if(id == null || id == "") return null;
         
         id = id.Trim();
         if(!interact_data.ContainsKey(id)) return null;
