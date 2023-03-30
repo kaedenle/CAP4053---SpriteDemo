@@ -196,7 +196,16 @@ public class PlayerScript : MonoBehaviour, IUnique
         Ammo = MaxAmmo;
         fxm = FindObjectOfType<EffectsManager>();
         pm = gameObject.GetComponent<Player_Movement>();
-        GameObject gmo = GameObject.Find("GameManager");
+        //GameObject gmo = GameObject.Find("GameManager");
+        GameObject gmo;
+        if (GameManager.OneGM != null)
+            gmo = GameManager.OneGM;
+        else
+        {
+            gmo = Instantiate(Resources.Load("Prefabs/GameManager")) as GameObject;
+            gmo.name = "GameManager";
+        }
+            
         gm = gmo.GetComponent<GameManager>();
     }
 
