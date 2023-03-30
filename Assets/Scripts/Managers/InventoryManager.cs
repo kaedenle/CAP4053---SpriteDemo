@@ -18,8 +18,23 @@ public class InventoryManager : MonoBehaviour
         Child_Crowbar,
         Child_Rope,
         Child_KnowledgeOf_Child,
-        Child_WorkingFusebox
+        Child_WorkingFusebox,
+        Boss_KeyLeft,
+        Boss_KeyDown,
+        Boss_KeyRight,
+        Boss_KeyUsedLeft,
+        Boss_KeyUsedDown,
+        Boss_KeyUsedRight
     }
+
+    private static AllItems[] intangibles =
+    {
+        AllItems.Child_KnowledgeOf_Child,
+        AllItems.Child_WorkingFusebox,
+        AllItems.Boss_KeyUsedLeft,
+        AllItems.Boss_KeyUsedDown,
+        AllItems.Boss_KeyUsedRight
+    };
 
     public static List<AllItems> _inventoryItems = new List<AllItems>();  // our inventory items
     public static List<AllItems> _usedItems = new List<AllItems>();  // our inventory items
@@ -35,7 +50,8 @@ public class InventoryManager : MonoBehaviour
         // make sure to only have one of each unique item in inventory
         if(!_inventoryItems.Contains(item))
         {
-            _inventoryItems.Add(item);
+            if(!IsIntangible(item))
+                _inventoryItems.Add(item);
 
             if(!_usedItems.Contains(item)) 
                 _usedItems.Add(item);
@@ -44,6 +60,14 @@ public class InventoryManager : MonoBehaviour
             Debug.Log("added " + item.ToString() + " to inventory");
             // Debug.Log("added " + item.ToString() + " to inventory, current inventory size is now " + _inventoryItems.Count);
         }
+    }
+
+    public static bool IsIntangible(AllItems item)
+    {
+        foreach(AllItems t in intangibles)
+            if(t == item)
+                return true;
+        return false;
     }
 
     // remove item from current inventory

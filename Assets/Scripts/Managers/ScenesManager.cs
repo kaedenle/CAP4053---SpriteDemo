@@ -27,7 +27,16 @@ public class ScenesManager : MonoBehaviour
         ChildPlayroom,
         ChildForest,
         ChildUnderground,
-        ChildChildRoom
+        ChildChildRoom,
+        Boss_Arena,
+        Boss_HallwayLeft,
+        Boss_HallwayDown,
+        Boss_HallwayRight,
+        Boss_HallwayUp,
+        Boss_LeverLeft,
+        Boss_LeverDown,
+        Boss_LeverRight,
+        Boss_BossRoom
     }
 
     // loads a scene
@@ -59,23 +68,6 @@ public class ScenesManager : MonoBehaviour
         else
             LoadScene(full);
     }
-
-    // loads the first scene (that's not the menu)
-    // public static void LoadNewGame()
-    // {
-    //     Reset();
-    //     // load the first scene here
-    //     _demo = false;
-    //     LoadScene(AllScenes.CentralHub);
-    // }
-
-    // public static void StartDemo()
-    // {
-    //     Reset();
-    //     _demo = true;
-    //     // set default level manager
-    //     LoadScene(AllScenes.MobsterRoadDemo);
-    // }
 
     public static AllScenes GetPreviousScene()
     {
