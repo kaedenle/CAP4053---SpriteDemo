@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
             OneGM = gameObject;
         if(OneGM != gameObject)
             Destroy(gameObject);
-        CanSpawnEnemies = false;
+        //CanSpawnEnemies = false;
     }
     void Start()
     {
