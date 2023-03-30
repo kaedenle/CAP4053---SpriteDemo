@@ -10,6 +10,7 @@ public class AttackData
     public float hitstop;
     public int weapon;
     public int attack;
+    public AudioClip audio;
 
     public AttackData(Attack a, Vector3 knockback)
     {
@@ -23,10 +24,11 @@ public class AttackData
         this.hitstun = hitstun;
         this.knockback = knockback;
     }
-    public void setAux(float hitstop, int weapon, int attack)
+    public void setAux(float hitstop, int weapon, int attack, AudioClip audio)
     {
         this.hitstop = hitstop;
         this.weapon = weapon;
         this.attack = attack;
+        this.audio = audio;
     }
 }

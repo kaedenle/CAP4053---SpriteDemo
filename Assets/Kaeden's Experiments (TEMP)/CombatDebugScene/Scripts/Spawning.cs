@@ -23,7 +23,7 @@ public class Spawning : MonoBehaviour
             return;
         }
 
-        if (amount > 0)
+        if (amount > 0 && OffsetList.Length > AliveList.Count)
         {
             GameObject spawned = Instantiate(spawning, OffsetList[AliveList.Count] * OffsetMagnitude, Quaternion.identity);
             AliveList.Add(spawned);

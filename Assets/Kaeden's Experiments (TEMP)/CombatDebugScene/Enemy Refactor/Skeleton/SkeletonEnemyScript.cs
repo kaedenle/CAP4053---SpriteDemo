@@ -8,6 +8,7 @@ public class SkeletonEnemyScript : MonoBehaviour, IUnique
     private SpriteRenderer sr;
     private Rigidbody2D body;
     private ItemDrop drops;
+    private AudioSource audiosrc;
     private float MAX_DEATH_TIMER = 2.5f;
     private float death_timer;
     public void EffectManager(string funct)
@@ -58,6 +59,7 @@ public class SkeletonEnemyScript : MonoBehaviour, IUnique
         sr = gameObject.GetComponent<SpriteRenderer>();
         body = gameObject.GetComponent<Rigidbody2D>();
         drops = gameObject?.GetComponent<ItemDrop>();
+        audiosrc = gameObject?.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

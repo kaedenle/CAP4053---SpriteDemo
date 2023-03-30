@@ -132,8 +132,10 @@ MonoBehaviour:
   hitboxParent: {fileID: 0}
   HBList: []
   bufferCancel: -1
-  moveContainer:
-  - {fileID: 4900000, guid: a7b9be4854fdbb441a4dc1f0179ac6e8, type: 3}
+  ProjectileOwner: {fileID: 0}
+  attackContainer:
+  - moveData: {fileID: 4900000, guid: a7b9be4854fdbb441a4dc1f0179ac6e8, type: 3}
+    HitSFX: []
   framedata:
     framedata: []
     damage: 0
@@ -147,6 +149,7 @@ MonoBehaviour:
     deactivateMove: 0
     relativeKnockback: 0
     functCall: 
+    ID: 0
 --- !u!50 &-3665376565895842453
 Rigidbody2D:
   serializedVersion: 4

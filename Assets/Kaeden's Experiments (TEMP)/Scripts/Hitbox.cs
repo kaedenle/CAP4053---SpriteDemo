@@ -24,6 +24,7 @@ public class Hitbox : MonoBehaviour
     public bool marked;
     private int weapon;
     private int attackID;
+    private AudioClip audio;
 
     //colliding information
     public List<Collider2D> collidersList;
@@ -34,17 +35,18 @@ public class Hitbox : MonoBehaviour
         collidersList = new List<Collider2D>();
     }
 
-    public void SetAuxillaryValues(float hitstop, string hitsTag, bool relativeKnockback, string funct, int weapon, int attackID){
+    public void SetAuxillaryValues(float hitstop, string hitsTag, bool relativeKnockback, string funct, int weapon, int attackID, AudioClip audio){
         this.hitstop = hitstop;
         this.hitsTag = hitsTag;
         this.relativeKnockback = relativeKnockback;
         this.functCall = funct;
         this.weapon = weapon;
         this.attackID = attackID;
+        this.audio = audio;
     }
-    public void UpdateHitboxInfo(AttackManager.FrameData framedata, Attack atk, int weapon)
+    public void UpdateHitboxInfo(AttackManager.FrameData framedata, Attack atk, int weapon, AudioClip audio)
     {
-        SetAuxillaryValues(framedata.hitstop, framedata.hitsTag, framedata.relativeKnockback, framedata.functCall, weapon, framedata.ID);
+        SetAuxillaryValues(framedata.hitstop, framedata.hitsTag, framedata.relativeKnockback, framedata.functCall, weapon, framedata.ID, audio);
         //set default value (when frame's damage/knockback is 0)
         if (atk == null)
             atk = new Attack();
@@ -130,7 +132,7 @@ public class Hitbox : MonoBehaviour
                 tempKnockBack = checkKnockback(hit, myGameObject, tempKnockBack);
             }
             AttackData ad = new AttackData(Atk, tempKnockBack);
-            ad.setAux(hitstop, weapon, attackID);
+            ad.setAux(hitstop, weapon, attackID, audio);
             script.damage(ad);
         }
         return true;

@@ -22,14 +22,18 @@ public class Hurtbox : MonoBehaviour, IDamagable
 
     //misc variables
     private Animator animator;
+    private AudioSource audiosrc;
     private SpriteRenderer[] sr;
     private Shader[] OriginalShader;
-    private Color[] OriginalColor;
     public bool NotHitPart;
     private IEnumerator running;
-
+    private Color[] OriginalColors;
     public void damage(AttackData ad)
     {
+        //play hit audio if it exists
+        if (audiosrc != null && ad.audio != null)
+            audiosrc.PlayOneShot(ad.audio, 0.75f);
+
         Debug.Log(ad.weapon + " " + ad.attack);
         //Hit particle effect
         if (HitEffect != null && !NotHitPart)
@@ -102,30 +106,25 @@ public class Hurtbox : MonoBehaviour, IDamagable
         for(int i = 0; i < repeats; i++)
         {
             //flash color
-            foreach (SpriteRenderer piece in sr)
+            for (int j = 0; j < sr.Length; j++)
             {
                 if (solidColor)
                 {
-                    piece.material.shader = HitShader;
-                    piece.material.color = c;
+                    sr[j].material.shader = HitShader;
+                    sr[j].material.color = c;
+                    sr[j].color = OriginalColors[i];
                 }
                 else
-                    piece.color = c;
-
+                    sr[j].color = c;
             }
             //duration
             yield return new WaitForSeconds(duration);
             //unflash
             for (int j = 0; j < sr.Length; j++)
             {
-                if (solidColor)
-                {
-                    sr[j].material.shader = OriginalShader[j];
-                    sr[j].material.color = Color.white;
-                }
-                else
-                    sr[j].color = Color.white;
-                
+                sr[j].material.shader = OriginalShader[j];
+                sr[j].material.color = Color.white;
+                sr[j].color = OriginalColors[i];
             }
 
             if(i != repeats - 1) yield return new WaitForSeconds(endingDuration);
@@ -147,15 +146,18 @@ public class Hurtbox : MonoBehaviour, IDamagable
         animator = gameObject?.GetComponent<Animator>();
         sr = GetComponentsInChildren<SpriteRenderer>();
         FXM = GameObject.Find("EffectsManager")?.GetComponent<EffectsManager>();
+        audiosrc = gameObject?.GetComponent<AudioSource>();
 
         hitstunTimer = -1;
         inHitStun = false;
         
         HitShader = Shader.Find("GUI/Text Shader");
         OriginalShader = new Shader[sr.Length];
+        OriginalColors = new Color[sr.Length];
         for(int i = 0; i < sr.Length; i++)
         {
             OriginalShader[i] = sr[i].material.shader;
+            OriginalColors[i] = sr[i].color;
         }  
     }
 

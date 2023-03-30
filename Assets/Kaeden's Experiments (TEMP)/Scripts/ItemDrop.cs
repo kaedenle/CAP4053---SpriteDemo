@@ -18,6 +18,7 @@ public class ItemDrop : MonoBehaviour
         foreach(ItemClass item in items)
         {
             float chance = 1 - item.percentChance/100 >= 0 ? 1 - item.percentChance/100 : 1;
+            if (item.usePlayerHealth) chance = PlayerHealthTracker.healthSystem.GetHealthNormalized();
             if (Random.value >= chance) 
                 DropItem(item.item);
         } 

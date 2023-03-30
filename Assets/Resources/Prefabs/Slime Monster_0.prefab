@@ -243,6 +243,9 @@ MonoBehaviour:
   ProjectileOwner: {fileID: 0}
   moveContainer:
   - {fileID: 4900000, guid: ee6df8931df8c534585c8505aa6814c5, type: 3}
+  attackContainer:
+  - moveData: {fileID: 4900000, guid: ee6df8931df8c534585c8505aa6814c5, type: 3}
+    HitSFX: []
   framedata:
     framedata: []
     damage: 0
@@ -256,6 +259,7 @@ MonoBehaviour:
     deactivateMove: 0
     relativeKnockback: 0
     functCall: 
+    ID: 0
 --- !u!114 &1865415170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,9 +276,6 @@ MonoBehaviour:
   target: {fileID: 0}
   minimumDistance: 2
   lineOfSightDistance: 12
-  healthTracker: {fileID: 1865415172}
-  animator: {fileID: 0}
-  sr: {fileID: 0}
 --- !u!114 &1865415171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,6 +318,7 @@ MonoBehaviour:
   inHitStun: 0
   NotFlash: 0
   default_ani: SlimeIdle
+  NotHitPart: 0
 --- !u!114 &1732503762
 MonoBehaviour:
   m_ObjectHideFlags: 0
