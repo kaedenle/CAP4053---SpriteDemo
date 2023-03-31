@@ -108,6 +108,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
             //flash color
             for (int j = 0; j < sr.Length; j++)
             {
+                if (sr[j].gameObject.tag == "Shadow") continue;
                 if (solidColor)
                 {
                     sr[j].material.shader = HitShader;
@@ -122,6 +123,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
             //unflash
             for (int j = 0; j < sr.Length; j++)
             {
+                if (sr[j].gameObject.tag == "Shadow") continue;
                 sr[j].material.shader = OriginalShader[j];
                 sr[j].material.color = Color.white;
                 sr[j].color = OriginalColors[i];

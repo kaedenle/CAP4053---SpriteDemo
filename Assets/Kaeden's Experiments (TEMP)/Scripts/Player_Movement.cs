@@ -7,7 +7,8 @@ public class Player_Movement : MonoBehaviour, IScriptable
     public Rigidbody2D body;
     public SpriteRenderer sr;
 
-    public float MAX_SPEED = 12f;
+    [HideInInspector]
+    public float MAX_SPEED;
     public float speed;
     private float moveX, moveY;
     private Vector3 movement;
@@ -18,6 +19,7 @@ public class Player_Movement : MonoBehaviour, IScriptable
 
     public bool move_flag;
     public bool flipped;
+    private bool isMoveable = true;
 
     void Start(){
         body = GetComponent<Rigidbody2D>(); 
@@ -25,7 +27,8 @@ public class Player_Movement : MonoBehaviour, IScriptable
         objs = GameObject.FindGameObjectsWithTag("Player");
         flipped = false;
         move_flag = false;
-    }
+        MAX_SPEED = speed;
+}
     public Vector3 direction()
     {
         return new Vector3(lastNonZeroX, lastNonZeroY, 0) ; 
@@ -52,12 +55,11 @@ public class Player_Movement : MonoBehaviour, IScriptable
     // Update is called once per frame
     void Update()
     {
-        moveX = InputManager.GetAxis("Horizontal");
-        moveY = InputManager.GetAxis("Vertical");
+        moveX = isMoveable ? InputManager.GetAxis("Horizontal") : 0;
+        moveY = isMoveable ? InputManager.GetAxis("Vertical") : 0;
         SetLastLooked();
 
         if(moveX != 0){
-            bool temp = flipped;
             flipped = moveX < 0 ? true : false;
             
             foreach(GameObject part in objs) {
@@ -80,14 +82,14 @@ public class Player_Movement : MonoBehaviour, IScriptable
             animator.SetFloat("movement", 0);
         if (flag)
             cleanUp();
-        this.enabled = flag;
+        isMoveable = flag;
     }
 
     public void EnableByID(int ID){
         cleanUp();
         //move_flag = true;
         if(ID == 0)
-            this.enabled = true;
+            isMoveable = true;
     }
 
     public void DisableByID(int ID)
@@ -96,7 +98,7 @@ public class Player_Movement : MonoBehaviour, IScriptable
         animator.SetFloat("movement", 0);
         //move_flag = false;
         if (ID == 0)
-            this.enabled = false;
+            isMoveable = false;
     }
 
     void cleanUp(){
@@ -109,7 +111,8 @@ public class Player_Movement : MonoBehaviour, IScriptable
 
     void FixedUpdate()
     {
-        gameObject.transform.position += movement * speed * Time.fixedDeltaTime;
+        //gameObject.transform.position += movement * speed * Time.fixedDeltaTime;
+        body.AddForce(movement * 200 * speed * Time.fixedDeltaTime);
         //body.MovePosition(body.position + movement * speed * Time.fixedDeltaTime);
     }
 }
