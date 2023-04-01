@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public GameObject player;
+    private GameObject playerReference;
     public bool followPlayerX, followPlayerY;
     public bool generateBoundary = true;
 
@@ -84,9 +85,37 @@ public class CameraController : MonoBehaviour
             }
         }
     }
+    //the setter functions below are made for scripting
+    public void ChangeTarget(GameObject target)
+    {
+        player = target;
+    }
+    public void DisableFollow()
+    {
+        followPlayerX = false;
+        followPlayerY = false;
+    }
+    public void EnableFollowX()
+    {
+        followPlayerX = true;
+    }
+    public void EnableFollowY()
+    {
+        followPlayerY = true;
+    }
+    public void EnableFollow()
+    {
+        followPlayerX = true;
+        followPlayerY = true;
+    }
+    public void ResetTarget()
+    {
+        player = playerReference;
+    }
     private void Start()
     {
         player = GameObject.Find("Player");
+        playerReference = player;
     }
     // Update is called once per frame
     void Update()

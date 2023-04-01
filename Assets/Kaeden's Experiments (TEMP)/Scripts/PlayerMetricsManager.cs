@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class PlayerMetricsManager : MonoBehaviour
 {
-    private static PlayerMetricsManager instance;
+    private static PlayerMetricsManager instance; 
     private IDictionary<string, int> MetricsKeeperInt = new Dictionary<string, int>();
     private IDictionary<string, float> MetricsKeeperFloat = new Dictionary<string, float>();
     public static PlayerMetricsManager GetManager()
     {
-        if (instance == null)
-            instance = (Instantiate(Resources.Load("Prefabs/PlayerMetricsManager")) as GameObject).GetComponent<PlayerMetricsManager>();
         return instance;
     }
     void Awake()

@@ -14,6 +14,7 @@ public class SampleTimelineManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Item.PickedUp += plaything;
         player = GameObject.Find("player");
         pmm = PlayerMetricsManager.GetManager();
         EntityManager.DisableMovement();
@@ -39,9 +40,12 @@ public class SampleTimelineManager : MonoBehaviour
     private void CheckCondition()
     {
         //if player killed one thing
-        Debug.Log(pmm.GetMetricInt("killed"));
         if (step == 0 && dummy < pmm.GetMetricInt("killed"))
             PlayEvent();
+    }
+    public void plaything(object sender, System.EventArgs e)
+    {
+        eventList[1].Play();
     }
     // Update is called once per frame
     void Update()

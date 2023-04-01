@@ -149,8 +149,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 5
-  m_AngularDrag: 0.05
+  m_LinearDrag: 3
+  m_AngularDrag: 1
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -390,7 +390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 6197798176421269813}
   sr: {fileID: 0}
-  MAX_SPEED: 12
+  MAX_SPEED: 15
   speed: 12
   animator: {fileID: 6197798176421269819}
   move_flag: 0
@@ -423,16 +423,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponList: {fileID: 4900000, guid: 89aa6f64318e75241ae68b9f158262df, type: 3}
-  wpnList:
-    weaponlist: []
-    index: 0
-  hitboxParent: {fileID: 9056604147769991447}
-  HBList: []
-  bufferCancel: -1
-  ProjectileOwner: {fileID: 0}
   attackContainer:
   - moveData: {fileID: 4900000, guid: 4ccd3bdf65ab2f24d8ef550b6652a892, type: 3}
-    HitSFX: []
+    HitSFX:
+    - {fileID: 8300000, guid: 67f3866022997ce4190e4a3befad1626, type: 3}
   - moveData: {fileID: 4900000, guid: 7c785d1dfc5c7a74aa6b84c64c8e4bae, type: 3}
     HitSFX: []
   - moveData: {fileID: 4900000, guid: 1f134f51ffa16e34880d10fcaceb3e02, type: 3}
@@ -443,6 +437,7 @@ MonoBehaviour:
     HitSFX: []
   - moveData: {fileID: 4900000, guid: cbb93d3e40dd0dd4a811b7b513b89989, type: 3}
     HitSFX: []
+  HBList: []
   framedata:
     framedata: []
     damage: 0
@@ -457,6 +452,12 @@ MonoBehaviour:
     relativeKnockback: 0
     functCall: 
     ID: 0
+  wpnList:
+    weaponlist: []
+    index: 0
+  bufferCancel: -1
+  ProjectileOwner: {fileID: 0}
+  hitboxParent: {fileID: 9056604147769991447}
 --- !u!114 &4459850622582732022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -501,7 +502,6 @@ MonoBehaviour:
   bullet: {fileID: 662058475778597127, guid: c0f36b8081129474fb1f0ada3edff123, type: 3}
   cancel: 0
   ShootAgain: 0
-  TackleSpeed: 1250
 --- !u!114 &8521604005571251972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -521,6 +521,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d07a15e929620a047bb4cae468ec6cad, type: 3}
   - {fileID: 8300000, guid: 7db1e7623c0734f4289486cfa299b20d, type: 3}
   - {fileID: 8300000, guid: f4deb82d40a07164fa5e44649c9dc8ce, type: 3}
+  - {fileID: 8300000, guid: e81a67d1308181c4d87bb09aa651ed8f, type: 3}
+  - {fileID: 8300000, guid: aa2fd4d7a7e10a14ea3a5afb64652f35, type: 3}
   myaudiosrc: {fileID: 0}
 --- !u!114 &153283111
 MonoBehaviour:
@@ -754,7 +756,7 @@ GameObject:
   - component: {fileID: 4222106323890433916}
   m_Layer: 0
   m_Name: Shadow
-  m_TagString: Untagged
+  m_TagString: Shadow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -904,7 +906,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.28, y: 0.32}
+  m_Size: {x: 4.8, y: 4.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0

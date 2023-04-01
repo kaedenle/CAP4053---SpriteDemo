@@ -2905,6 +2905,8 @@ GameObject:
   m_Component:
   - component: {fileID: 74375620}
   - component: {fileID: 74375619}
+  - component: {fileID: 74375621}
+  - component: {fileID: 74375622}
   m_Layer: 0
   m_Name: Camera Parent
   m_TagString: Untagged
@@ -2946,6 +2948,71 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &74375621
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74375618}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &74375622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74375618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 3baf274edc892454da1382e1a795c898, type: 2}
+    - {fileID: 11400000, guid: b3faf6133a47b4c42b72fd5e758f4631, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 74375619}
+          m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
+          m_MethodName: EnableFollow
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 74375619}
+          m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
+          m_MethodName: DisableFollow
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &79554327
 GameObject:
   m_ObjectHideFlags: 0
@@ -6275,6 +6342,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6197798176421269809, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
   m_PrefabInstance: {fileID: 501857205}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &153283101 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3923120615845457395, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
+  m_PrefabInstance: {fileID: 501857205}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153283094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34658e90b6b667342a950a514752cbc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &154969654
 GameObject:
   m_ObjectHideFlags: 0
@@ -21564,15 +21642,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6197798176421269814, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6197798176421269814, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6197798176421269814, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6197798176421269814, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -49662,7 +49740,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b6995e5842fbef478ab2fcd49604851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventList: []
+  eventList:
+  - {fileID: 1862591072}
 --- !u!1 &1161453565
 GameObject:
   m_ObjectHideFlags: 0
@@ -58535,6 +58614,7 @@ Transform:
   - {fileID: 2083476174}
   - {fileID: 12995876}
   - {fileID: 1161363786}
+  - {fileID: 1686684600}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -74149,6 +74229,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &1686684600 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 219111939238356992, guid: 91c6a9b95a32f104a9be5f3f5adc6274, type: 3}
+  m_PrefabInstance: {fileID: 1838513414}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1688270566
 GameObject:
   m_ObjectHideFlags: 0
@@ -79555,6 +79640,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1838513414
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1350574816}
+    m_Modifications:
+    - target: {fileID: 219111939238356992, guid: 91c6a9b95a32f104a9be5f3f5adc6274, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 219111939238356992, guid: 91c6a9b95a32f104a9be5f3f5adc6274, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 61.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 219111939238356992, guid: 91c6a9b95a32f104a9be5f3f5adc6274, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 219111939238356992, guid: 91c6a9b95a32f104a9be5f3f5adc6274, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.42686406
+      objectReference: {fileID: 0}
+    - target: {fileID: 219111939238356992, guid: 91c6a9b95a32f104a9be5f3f5adc6274, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 219111939238356992, guid: 91c6a9b95a32f104a9be5f3f5adc6274, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 219111939238356992, guid: 91c6a9b95a32f104a9be5f3f5adc6274, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 219111939238356992, guid: 91c6a9b95a32f104a9be5f3f5adc6274, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 219111939238356992, guid: 91c6a9b95a32f104a9be5f3f5adc6274, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 219111939238356992, guid: 91c6a9b95a32f104a9be5f3f5adc6274, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 219111939238356992, guid: 91c6a9b95a32f104a9be5f3f5adc6274, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640339483875437882, guid: 91c6a9b95a32f104a9be5f3f5adc6274, type: 3}
+      propertyPath: m_Name
+      value: PlayerMetricsManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 91c6a9b95a32f104a9be5f3f5adc6274, type: 3}
 --- !u!1 &1841213028
 GameObject:
   m_ObjectHideFlags: 0
@@ -80365,7 +80507,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: e5d7a35c890e3c947961bcc2acfb2fab, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -80568,7 +80710,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1865370405}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.1715, y: 5.7485, z: 0}
+  m_LocalPosition: {x: -7.29, y: 5.7485, z: 0}
   m_LocalScale: {x: 3.9861233, y: 3.9861233, z: 3.9861233}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -80648,6 +80790,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 3a841eb188120c94ab0c2ed86cb6526e, type: 2}
     - {fileID: 11400000, guid: a8c3c8ad20edf924aad0281b1cb49d7d, type: 2}
     - {fileID: 11400000, guid: 5923fde7a6ea55b45882c3b71a5b7a38, type: 2}
+    - {fileID: 11400000, guid: 85fadffc7456da24093cb53dbdba625b, type: 2}
+    - {fileID: 11400000, guid: b3faf6133a47b4c42b72fd5e758f4631, type: 2}
+    - {fileID: 11400000, guid: 3baf274edc892454da1382e1a795c898, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -80675,6 +80820,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 153283101}
+          m_TargetAssemblyTypeName: AttackManager, Assembly-CSharp
+          m_MethodName: ScriptToggle
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1865370411}
@@ -80698,6 +80855,60 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 11400000, guid: c1481971592ec584ca8f25f09f7926ed, type: 2}
             m_ObjectArgumentAssemblyTypeName: NPCReport, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1161363787}
+          m_TargetAssemblyTypeName: SampleTimelineManager, Assembly-CSharp
+          m_MethodName: PlayEvent
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 74375619}
+          m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
+          m_MethodName: DisableFollow
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 153283101}
+          m_TargetAssemblyTypeName: AttackManager, Assembly-CSharp
+          m_MethodName: ScriptToggle
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 74375619}
+          m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
+          m_MethodName: EnableFollow
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -89226,7 +89437,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 9f461f08b1273694783d544835562408, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -89235,6 +89446,8 @@ PlayableDirector:
     value: {fileID: 1865370405}
   - key: {fileID: 895499952320597772, guid: 9f461f08b1273694783d544835562408, type: 2}
     value: {fileID: 1865370412}
+  - key: {fileID: 2725998635774174554, guid: 9f461f08b1273694783d544835562408, type: 2}
+    value: {fileID: 74375621}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &2060427817

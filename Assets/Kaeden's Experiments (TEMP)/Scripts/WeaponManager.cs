@@ -25,14 +25,18 @@ public class WeaponManager : MonoBehaviour, IScriptable
     {
         weaponID = 0;
         animator = gameObject.GetComponent<Animator>();
-        wpnList = gameObject.GetComponent<AttackManager>().wpnList;
+        
         hrtbx = gameObject?.GetComponent<Hurtbox>();
         onhand = gameObject.transform.Find("Right Arm").Find("On-Hand").GetComponent<SpriteRenderer>();
         movementScript = gameObject.GetComponent<Player_Movement>();
         WeaponUI = GameObject.Find("/-- UI --/Menu Canvas/WeaponUI");
         unlocked = new bool[wpnList.weaponlist.Length];
+    }
+    void Start()
+    {
         int counter = 0;
-        while(wpnList.weaponlist[wpnList.index].active == false)
+        wpnList = gameObject.GetComponent<AttackManager>().wpnList;
+        while (wpnList.weaponlist[wpnList.index].active == false)
         {
             if (counter > wpnList.weaponlist.Length) break;
             wpnList.index++;
@@ -44,7 +48,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
     //scripts to be disabled/enabled when attacking
     public void ScriptHandler(bool flag)
     {
-        //this.enabled = flag;
+        this.enabled = flag;
     }
     //what happens when disable
     public void EnableByID(int ID)

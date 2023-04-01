@@ -27,12 +27,16 @@ public class DebugSceneManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.P))
             pmm.ReturnKeeperInt();
+        if (Input.GetKeyDown(KeyCode.O))
+            UIManager.EnableHealthUI();
+        if (Input.GetKeyDown(KeyCode.I))
+            UIManager.DisableHealthUI();
 
-        
     }
 
     void Start()
     {
+        UIManager.DisableHealthUI();
         pmm = PlayerMetricsManager.GetManager();
         player = GameObject.Find("Player");
         BlackFade = GameObject.Find("BlackFade");
