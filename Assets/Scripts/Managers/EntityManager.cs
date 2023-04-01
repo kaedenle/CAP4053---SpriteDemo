@@ -5,13 +5,8 @@ using System;
 
 public class EntityManager : MonoBehaviour
 {
-    // private static bool _movementEnabled = true, 
-    //                     _uiInteractable = true, 
-    //                     _envInteractable = true,
-    //                      _attackEnabled = true, 
-    //                      _swapEnabled = true, 
-    //                      _equipEnabled = true;
     private static bool _pause = false;
+    private static int numPauses = 0;
     private static EntityManager Instance;
 
     public enum AllStates
@@ -45,13 +40,21 @@ public class EntityManager : MonoBehaviour
     public static void SetPause()
     {
         _pause = true;
-        Time.timeScale = 0;
+
+        if(numPauses <= 0)
+            Time.timeScale = 0;
+
+        numPauses ++;
+
     }
 
     public static void SetUnpause()
     {
         _pause = false;
-        Time.timeScale = 1;
+        numPauses--;
+
+        if(numPauses <= 0)
+            Time.timeScale = 1;
     }
 
     public static int PauseAndMask()
@@ -85,27 +88,26 @@ public class EntityManager : MonoBehaviour
     }
     public static void Pause()
     {
-        _pause = true;
+        SetPause();
         Array.Fill(states, false);
-        Time.timeScale = 0;
     }
 
     public static void Unpause()
     {
-        _pause = false;
+        SetUnpause();
         Array.Fill(states, true);
-        Time.timeScale = 1;
     }
 
     public static void DialoguePause()
     {
-        _pause = true;
+        SetPause();
+
+        // disable specific states
         DisableMovement();
         DisableAttack();
         DisableEnvironmentInteractable();
         DisableSwap();
         DisableEquip();
-        Time.timeScale = 0;
     }
 
     public static void SetHubStates()
