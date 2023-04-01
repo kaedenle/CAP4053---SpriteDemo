@@ -36,8 +36,6 @@ public class PlayerScript : MonoBehaviour, IUnique
     private float ShootEndTimer;
     private float MAX_SHOOT_TIMER = 10f;
 
-    public int TackleSpeed;
-
     public void EffectManager(string funct)
     {
         //call function via string reference
@@ -124,12 +122,19 @@ public class PlayerScript : MonoBehaviour, IUnique
     {
         if (fxm != null) fxm.ShakeCam(0.1f, 0.75f);
     }
-    private void Tackle()
+    private void Tackle(int speed)
     {
         Vector3 temp = pm.direction();
         //bool flipped = animator.GetBool("flipped");
-        Vector3 move = temp.normalized * TackleSpeed;
+        Vector3 move = temp.normalized * speed;
         //if (flipped) move *= -1;
+        body.AddForce(move);
+    }
+    private void XTackle(int speed)
+    {
+        bool flipped = animator.GetBool("flipped");
+        Vector3 move = new Vector3(1, 0, 0) * speed;
+        if (flipped) move *= -1;
         body.AddForce(move);
     }
 

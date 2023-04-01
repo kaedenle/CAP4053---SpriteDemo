@@ -16,7 +16,7 @@ public class SkeletonEnemyScript : MonoBehaviour, IUnique
     }
     public void onDeath()
     {
-        animator.SetTrigger("Death");
+        animator.SetBool("Death", true);
         if (drops != null) drops.AttemptDrop();
         body.velocity = Vector2.zero;
         foreach (BoxCollider2D box in transform.GetComponentsInChildren<BoxCollider2D>())
@@ -43,7 +43,7 @@ public class SkeletonEnemyScript : MonoBehaviour, IUnique
             yield return null;
         }
         yield return new WaitForSeconds(0.05F);
-        
+        if (healthTracker.bar.gameObject != null) Destroy(healthTracker.bar);
         Destroy(gameObject);
     }
 
@@ -53,7 +53,7 @@ public class SkeletonEnemyScript : MonoBehaviour, IUnique
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         animator = gameObject.GetComponent<Animator>();
         sr = gameObject.GetComponent<SpriteRenderer>();
@@ -65,6 +65,5 @@ public class SkeletonEnemyScript : MonoBehaviour, IUnique
     // Update is called once per frame
     void Update()
     {
-
     }
 }

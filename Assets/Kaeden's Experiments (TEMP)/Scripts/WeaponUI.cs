@@ -31,13 +31,52 @@ public class WeaponUI : MonoBehaviour
     private void UpdateWeaponGUI()
     {
         //center
-        tiles[0].GetComponent<Image>().sprite = wm.spriteList[wpnList.index % wm.spriteList.Length];
+        int count = 0;
+        int center = wpnList.index % wm.spriteList.Length;
+        while(wpnList.weaponlist[center].active == false)
+        {
+            if (count > wpnList.weaponlist.Length) break;
+            center++;
+            center %= wpnList.weaponlist.Length;
+            count++;
+        }
+        tiles[0].GetComponent<Image>().sprite = wm.spriteList[center];
+
         //left (next)
-        tiles[1].GetComponent<Image>().sprite = wm.spriteList[(wpnList.index + 1) % wm.spriteList.Length];
+        count = 0;
+        int nex = (wpnList.index + 1) % wm.spriteList.Length;
+        while (wpnList.weaponlist[nex].active == false)
+        {
+            if (count > wpnList.weaponlist.Length) break;
+            nex++;
+            nex %= wpnList.weaponlist.Length;
+            count++;
+        }
+        tiles[1].GetComponent<Image>().sprite = wm.spriteList[nex];
+
         //right (prev)
-        tiles[2].GetComponent<Image>().sprite = wm.spriteList[mod((wpnList.index - 1), wm.spriteList.Length)];
+        count = 0;
+        int prev = mod((wpnList.index - 1), wm.spriteList.Length);
+        while (wpnList.weaponlist[prev].active == false)
+        {
+            if (count > wpnList.weaponlist.Length) break;
+            prev--;
+            prev = mod(prev, wpnList.weaponlist.Length);
+            count++;
+        }
+        tiles[2].GetComponent<Image>().sprite = wm.spriteList[prev];
+
         //next next (for transition)
-        tiles[3].GetComponent<Image>().sprite = wm.spriteList[(wpnList.index + 2) % wm.spriteList.Length];
+        count = 0;
+        int dummy = (wpnList.index + 2) % wm.spriteList.Length;
+        while (wpnList.weaponlist[dummy].active == false)
+        {
+            if (count > wpnList.weaponlist.Length) break;
+            dummy++;
+            dummy %= wpnList.weaponlist.Length;
+            count++;
+        }
+        tiles[3].GetComponent<Image>().sprite = wm.spriteList[dummy];
     }
     private void OnEnable()
     {
@@ -68,6 +107,12 @@ public class WeaponUI : MonoBehaviour
         timer = MAX_TIMER;
         anim.Play("PopIn");
     }
+    public void Shift()
+    {
+        gameObject.SetActive(true);
+        timer = MAX_TIMER;
+        anim.Play("MoveRight");
+    }
     // Update is called once per frame
     void Update()
     {
@@ -77,11 +122,11 @@ public class WeaponUI : MonoBehaviour
             anim.Play("FadeOut");
             Done = false;
         }
-        if (Done && InternalWeaponID != wpnList.index)
+        /*if (Done && InternalWeaponID != wpnList.index)
         {
             anim.Play("MoveRight");
             InternalWeaponID = wpnList.index;
             timer = MAX_TIMER;
-        }
+        }*/
     }
 }

@@ -114,8 +114,8 @@ public class Player_Movement : MonoBehaviour, IScriptable
         //gameObject.transform.position += movement * speed * Time.fixedDeltaTime;
         body.AddForce(movement * 200 * speed * Time.fixedDeltaTime);
         //kill velocity faster
-        if (moveX == 0 && moveY == 0 && body.velocity.sqrMagnitude > 0.1f && isMoveable)
-            body.AddForce(-body.velocity * 10 * speed * Time.fixedDeltaTime);
+        if (moveX == 0 && moveY == 0 && body.velocity.sqrMagnitude > 0.1f)
+            body.AddForce(-body.velocity * 25 * speed * Time.fixedDeltaTime);
         //body.MovePosition(body.position + movement * speed * Time.fixedDeltaTime);
     }
 }

@@ -16,6 +16,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
     public AttackManager.WeaponList wpnList = new AttackManager.WeaponList();
     private Hurtbox hrtbx;
     private SpriteRenderer onhand;
+    private bool[] unlocked;
     Player_Movement movementScript;
     
     // Start is called before the first frame update
@@ -29,6 +30,15 @@ public class WeaponManager : MonoBehaviour, IScriptable
         onhand = gameObject.transform.Find("Right Arm").Find("On-Hand").GetComponent<SpriteRenderer>();
         movementScript = gameObject.GetComponent<Player_Movement>();
         WeaponUI = GameObject.Find("/-- UI --/Menu Canvas/WeaponUI");
+        unlocked = new bool[wpnList.weaponlist.Length];
+        int counter = 0;
+        while(wpnList.weaponlist[wpnList.index].active == false)
+        {
+            if (counter > wpnList.weaponlist.Length) break;
+            wpnList.index++;
+            wpnList.index %= wpnList.weaponlist.Length;
+            counter++;
+        }
     }
     
     //scripts to be disabled/enabled when attacking
@@ -86,9 +96,17 @@ public class WeaponManager : MonoBehaviour, IScriptable
             //if equiped swap
             if (equiped)
             {
-                wpnList.index += 1;
-                wpnList.index %= spriteList.Length;
-                if (WeaponUI != null) WeaponUI.GetComponent<WeaponUI>().Invoke();
+                int count = 0;
+                do
+                {
+                    if (count > spriteList.Length) break;
+                    wpnList.index += 1;
+                    wpnList.index %= spriteList.Length;
+                    count++;
+                } while (wpnList.weaponlist[wpnList.index].active == false);
+                
+                if (WeaponUI != null && !WeaponUI.activeSelf) WeaponUI.GetComponent<WeaponUI>().Invoke();
+                else if (WeaponUI != null && WeaponUI.activeSelf) WeaponUI.GetComponent<WeaponUI>().Shift();
             }
             
         }

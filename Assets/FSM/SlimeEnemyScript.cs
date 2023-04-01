@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SlimeEnemyScript : MonoBehaviour, IUnique
 {
+    private PlayerMetricsManager pmm = PlayerMetricsManager.GetManager();
     private Animator animator;
     public void EffectManager(string funct)
     {
@@ -12,6 +13,7 @@ public class SlimeEnemyScript : MonoBehaviour, IUnique
     {
         HealthTracker healthTracker = GetComponent<HealthTracker>();
         //Debug.Log("Dead Ooze boy");
+        pmm.IncrementKeeperInt("killed");
         Destroy(healthTracker.bar.gameObject);
         Destroy(gameObject);
     }

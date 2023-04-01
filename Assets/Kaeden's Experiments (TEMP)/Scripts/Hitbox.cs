@@ -24,7 +24,7 @@ public class Hitbox : MonoBehaviour
     public bool marked;
     private int weapon;
     private int attackID;
-    private AudioClip audio;
+    private AudioClip audios;
 
     //colliding information
     public List<Collider2D> collidersList;
@@ -42,7 +42,7 @@ public class Hitbox : MonoBehaviour
         this.functCall = funct;
         this.weapon = weapon;
         this.attackID = attackID;
-        this.audio = audio;
+        this.audios = audio;
     }
     public void UpdateHitboxInfo(AttackManager.FrameData framedata, Attack atk, int weapon, AudioClip audio)
     {
@@ -132,7 +132,7 @@ public class Hitbox : MonoBehaviour
                 tempKnockBack = checkKnockback(hit, myGameObject, tempKnockBack);
             }
             AttackData ad = new AttackData(Atk, tempKnockBack);
-            ad.setAux(hitstop, weapon, attackID, audio);
+            ad.setAux(hitstop, weapon, attackID, audios);
             script.damage(ad);
         }
         return true;

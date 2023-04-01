@@ -7,48 +7,12 @@ using UnityEngine;
 //THIS SCRIPT SIMPLY PLAYS HITBOX ANIMATIONS. IT IS NOT A DECIDER
 public class AttackManager : MonoBehaviour
 {
-    //Weapon interfacing (not used in this file but offered for others to interface with)
-    public TextAsset weaponList;
     [System.Serializable]
     public class WeaponList
     {
         public Weapon[] weaponlist;
         public int index;
     }
-    [HideInInspector]
-    public WeaponList wpnList = new WeaponList();
-
-    //Components
-    private Animator animator;
-    //easy reference to gameobject that's parent of hitbox (not constant)
-    [HideInInspector]
-    public GameObject hitboxParent;
-
-    //Component Lists/Arrays
-    [HideInInspector]
-    public List<Hitbox> HBList = new List<Hitbox>();
-    private IDictionary<int, List<Attack>> frames = new Dictionary<int, List<Attack>>();
-    private IDictionary<Collider2D, Hitbox> hasHit = new Dictionary<Collider2D, Hitbox>();
-    private HashSet<int> cancellableSet = new HashSet<int>();
-    private HashSet<Collider2D> alreadyDamaged = new HashSet<Collider2D>();
-
-    //technical information
-    private bool active = false;
-    private bool cancellableFlag = false;
-    private IUnique uniqueScript;
-    [HideInInspector]
-    public int bufferCancel = -1;
-    [HideInInspector]
-    public GameObject ProjectileOwner;
-
-    //framedata
-    public AttackClass[] attackContainer;
-    private AudioClip[] currentAudio;
-    public enum ScriptTypes{
-        Movement,
-        Attacking
-    }
-
     [System.Serializable]
     public class FrameData
     {
@@ -70,15 +34,55 @@ public class AttackManager : MonoBehaviour
         public bool relativeKnockback;
 
         public string functCall;
-        public int ID;        
+        public int ID;
     }
+    //Weapon interfacing (not used in this file but offered for others to interface with)
+    public TextAsset weaponList;
+    public AttackClass[] attackContainer;
+
+    //Components
+    private Animator animator;
+    private PlayerMetricsManager pmm;
+
+    //Component Lists/Arrays
+    [HideInInspector]
+    public List<Hitbox> HBList = new List<Hitbox>();
+    private IDictionary<int, List<Attack>> frames = new Dictionary<int, List<Attack>>();
+    private IDictionary<Collider2D, Hitbox> hasHit = new Dictionary<Collider2D, Hitbox>();
+    private HashSet<int> cancellableSet = new HashSet<int>();
+    private HashSet<Collider2D> alreadyDamaged = new HashSet<Collider2D>();
+
+    //technical information
+    private bool active = false;
+    private bool cancellableFlag = false;
+    private IUnique uniqueScript;
+
+    //audio
+    private AudioClip[] currentAudio;
+    
+
+    public enum ScriptTypes{
+        Movement,
+        Attacking
+    }
+
     [HideInInspector]
     public FrameData framedata = new FrameData();
+    [HideInInspector]
+    public WeaponList wpnList = new WeaponList();
+    [HideInInspector]
+    public int bufferCancel = -1;
+    [HideInInspector]
+    public GameObject ProjectileOwner;
+    //easy reference to gameobject that's parent of hitbox (not constant)
+    [HideInInspector]
+    public GameObject hitboxParent;
 
     // Start is called before the first frame update
     void Awake()
     {
         HBList.Clear();
+        pmm = PlayerMetricsManager.GetManager();
         uniqueScript = gameObject?.GetComponent<IUnique>();
         animator = gameObject?.GetComponent<Animator>();
         //variable for others to grab
@@ -186,6 +190,14 @@ public class AttackManager : MonoBehaviour
                 {
                     //Debug.Log(hasHit[entity].Atk.ID + " has hit " + effect.name);
                     alreadyDamaged.Add(entity);
+                    //PlayerMetricsManager
+                    if(tag == "Player")
+                    {
+                        if (effect.GetComponent<HealthTracker>().healthSystem.getHealth() == 0)
+                            pmm.IncrementKeeperInt("killed");
+                        pmm.IncrementKeeperInt("hit_" + entity.gameObject.transform.root.gameObject.name);
+                        pmm.IncrementKeeperInt("enemies_hit");
+                    } 
                 }
                     
             }

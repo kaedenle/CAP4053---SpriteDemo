@@ -9,4 +9,5 @@ public class Weapon
     public int ID;
     public int attack1;
     public int attack2;
+    public bool active;
 }
