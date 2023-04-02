@@ -83,7 +83,6 @@ public class Interactive : OutlineObject
         if(txt.OutOfBounds(index)) return;
 
         // pause now if I've made it this far
-        if(pauseOnInteract) EntityManager.DialoguePause();
         UI.StartInteractive(txt.GetUnit(index), pauseOnInteract);
 
         index = txt.CalcNextIndex(index);
