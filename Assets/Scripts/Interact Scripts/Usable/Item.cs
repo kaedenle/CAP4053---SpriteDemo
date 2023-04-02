@@ -9,12 +9,6 @@ public class Item : Interactive
     public static event EventHandler PickedUp;
     [SerializeField] InventoryManager.AllItems _itemType;
     public bool repeatable;
-    private void Pickup()
-    {
-        InventoryManager.AddItem(_itemType);
-        if (PickedUp != null) PickedUp(this, EventArgs.Empty);
-        Destroy(gameObject);
-    }
 
     new void Start()
     {
@@ -34,7 +28,16 @@ public class Item : Interactive
         {
             Pickup();
         }
-
-
     }
+
+    private void Pickup()
+    {
+        InventoryManager.AddItem(_itemType);
+
+        if (PickedUp != null) 
+            PickedUp(this, EventArgs.Empty);
+
+        Destroy(gameObject);
+    }
+
 }
