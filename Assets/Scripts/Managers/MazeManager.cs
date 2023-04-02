@@ -6,9 +6,13 @@ using System;
 public class MazeManager : MonoBehaviour
 {
     public GameObject[] specials;
-    [Range(1,15)] public int pathLength = 6;
     public GameObject[] decorations;
     public int averageNumberOfDecorations = 4;
+
+    // The length of the maze path (number of rooms traversed until exit)
+    private int pathLength = 5;
+
+    // maze hints object
     private MazeHints hints;
 
     public enum Direction
@@ -36,12 +40,14 @@ public class MazeManager : MonoBehaviour
             path = new Stack<Maze>();
         }
 
-        Debug.Log("entered rest of Awake()");
         if(path.Count <= 0)
             path.Push(maze);    // start in the first room  
 
         hints = FindObjectOfType<MazeHints>();
+    }
 
+    void Start()
+    {
         SetupRoom(GetCurrentRoom());
     }
 
@@ -94,18 +100,7 @@ public class MazeManager : MonoBehaviour
 
         if(cur.NotSetup())
         {
-            // set up decorations
-            double prob = averageNumberOfDecorations / (double) decorations.Length;
-            dec_state = new bool[decorations.Length];
-
-            for(int i = 0; i < dec_state.Length; i++)
-                if(rand.NextDouble() < prob)
-                    dec_state[i] = true;
-            
-            cur.SetDecorations(dec_state);
-
-            // set up hint type
-            cur.SetHints(rand.Next(0, directions));
+            cur.SetupRoom(rand, decorations.Length, averageNumberOfDecorations / (double) decorations.Length);
         }
 
         for(int i = 0; i < decorations.Length; i++)
@@ -116,7 +111,7 @@ public class MazeManager : MonoBehaviour
         }
 
         // set up hints
-        SetupHints(cur);
+        hints.SetHints(cur);
 
         // set up specials
         // (specials default should be false)
@@ -126,22 +121,6 @@ public class MazeManager : MonoBehaviour
                 if(cur.IsOnPath(special) && CastleLevelManager.ObtainedPrereqs(special) && specials[special] != null)
                     specials[special].SetActive(true);
         }
-    }
-
-    public void SetupHints(Maze cur)
-    {
-        hints.RemoveAll();
-
-        if(cur.IsSpecial())
-        {
-            // remove all hints
-            return;
-        }
-
-        // set the room banner
-        int bannerType = cur.GetHint();
-        hints.SetBanner(bannerType);
-
     }
 
     public void EndOfPath()
@@ -154,6 +133,7 @@ public class MazeManager : MonoBehaviour
     public void ExitMaze(bool status)
     {
         CastleLevelManager.SetMazeStatus(status);
+        path.Clear();
         ScenesManager.LoadScene(ScenesManager.AllScenes.CastleArena);
     }
 
