@@ -5,9 +5,10 @@ using System;
 
 public class MazeManager : MonoBehaviour
 {
+    public GameObject[] specials;
+    [Range(1,15)] public int pathLength = 6;
     public GameObject[] decorations;
     public int averageNumberOfDecorations = 4;
-    [Range(1,15)] public int pathLength = 6;
 
     public enum Direction
     {
@@ -18,12 +19,10 @@ public class MazeManager : MonoBehaviour
     }
 
     // constants
-    const int specials = 3,
-              directions = 3,
+    const int directions = 3,
               seed = 42_069_420;
 
     private static System.Random rand;
-
     private static Maze maze;
     private static Stack<Maze> path;
 
@@ -53,7 +52,15 @@ public class MazeManager : MonoBehaviour
         // go back
         if(dir == Direction.Down)
         {
+            if(path.Count <= 1)
+            {
+                ExitMaze(false);
+                return;
+            }
+
             // do stuff
+            path.Pop();
+            RestartRoom();
 
             return;
         }
@@ -101,26 +108,39 @@ public class MazeManager : MonoBehaviour
             decorations[i].SetActive(dec_state[i]);
         }
 
+        // set up specials
+        // (specials default should be false)
+        if(cur.IsTerminal())
+        {
+            for(int special = 0; special < specials.Length; special++)
+                if(cur.IsOnPath(special) && CastleLevelManager.ObtainedPrereqs(special) && specials[special] != null)
+                    specials[special].SetActive(true);
+        }
+
         // set up the proper hints
     }
 
     public void EndOfPath()
     {
-        // if satisfied path sequence
-
-
         // didn't satisfy special sequence
-        CastleLevelManager.SetMazeStatus(true);
+        ExitMaze(true);
+    }
+
+    // exits back to the arena
+    public void ExitMaze(bool status)
+    {
+        CastleLevelManager.SetMazeStatus(status);
         ScenesManager.LoadScene(ScenesManager.AllScenes.CastleArena);
     }
-    
+
+    // generates all the paths of the maze
     public Maze GenerateMaze()
     {
         // make trie maze
         Maze root = new Maze(pathLength + 1);
         
         // make the special paths
-        for(int special = 0; special < specials; special ++)
+        for(int special = 0; special < specials.Length; special ++)
         {
             Maze cur = root;
             cur.SetOnPath(special);

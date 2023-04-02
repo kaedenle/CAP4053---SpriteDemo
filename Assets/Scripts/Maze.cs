@@ -29,6 +29,11 @@ public class Maze
         onPath[special] = true;
     }
 
+    public bool IsOnPath(int special)
+    {
+        return onPath[special];
+    }
+
     public Maze GetNext(int direction)
     {
         return children[direction];

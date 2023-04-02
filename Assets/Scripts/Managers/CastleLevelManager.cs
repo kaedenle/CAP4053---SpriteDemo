@@ -5,6 +5,10 @@ using UnityEngine;
 public class CastleLevelManager : LevelManager
 {
     private static bool maze_status = false;
+    private static InventoryManager.AllItems[] specials = {
+        InventoryManager.AllItems.CastleChestKey,
+        InventoryManager.AllItems.CastleDagger
+    };
 
     new void Start()
     {
@@ -20,5 +24,13 @@ public class CastleLevelManager : LevelManager
     public static void SetMazeStatus(bool status)
     {
         maze_status = status;
+    }
+
+    public static bool ObtainedPrereqs(int special)
+    {
+        for(int i = 0; i < special; i++)
+            if(!InventoryManager.PickedUp(specials[i]))
+                return false;
+        return true;
     }
 }
