@@ -31,11 +31,13 @@ public class BossIdleBehavior : StateMachineBehaviour
         }
         if(enemy == null && numEnemiesKilled < 1)
         {
+            numEnemiesSpawned += 1;
             enemy = Instantiate(meleeEnemyPrefab, spawnerLeft.position, Quaternion.identity);  
 
         }
         if(enemy2 == null && numEnemiesKilled < 1) 
         {
+            numEnemiesSpawned += 1;
             enemy2 = Instantiate(meleeEnemyPrefab, spawnerRight.position, Quaternion.identity);
         }
       // player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -59,27 +61,30 @@ public class BossIdleBehavior : StateMachineBehaviour
         //animator.SetTrigger("Attack");
 
         
-        Debug.Log(numEnemiesKilled);
+        Debug.Log(numEnemiesKilled + " < " + numEnemiesKilled);
         if(numEnemiesKilled < 1)
         {
             if(enemy == null)
             {
                 numEnemiesKilled += 1;
+                numEnemiesSpawned += 1;
                 enemy = Instantiate(meleeEnemyPrefab, spawnerLeft.position, Quaternion.identity);  
             }
             if(enemy2 == null)
             {
                 numEnemiesKilled += 1;
+                numEnemiesSpawned += 1;
                 enemy2 = Instantiate(meleeEnemyPrefab, spawnerRight.position, Quaternion.identity);
             }
             
         }
         else
         {
-            Destroy(enemy);
-            Destroy(enemy2);
-            animator.SetTrigger("Phase2");
             Debug.Log("You killed all of the enemies poggy");
+
+            //Destroy(enemy);
+            //Destroy(enemy2);
+            animator.SetTrigger("Phase2");
         }
         
     }

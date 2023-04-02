@@ -46,7 +46,10 @@ public class Projectile : MonoBehaviour
     {
         //transform.position = Vector2.MoveTowards(transform.position, previousPosition, speed *  Time.deltaTime);
         transform.position += (shootDirection * speed * Time.deltaTime);
-
+        if(transform.position.x > 20 || transform.position.y > 20)
+        {
+            Destroy(gameObject);
+        }
        // transform.Translate((transform.forward * speed * Time.deltaTime));
         //transform.position += transform.forward * speed * Time.deltaTime;
 

@@ -42,7 +42,16 @@ public class Phase2BossBehavior : StateMachineBehaviour
        }
        else if(currState == 3)
        {
-            animator.SetTrigger("ChargeAttack");
+             if(Vector2.Distance(animator.gameObject.transform.position, player.position) > minimumDistance)
+            {
+                animator.gameObject.transform.position = Vector2.MoveTowards(animator.gameObject.transform.position, player.position, speed * Time.deltaTime);
+
+            }
+            else
+            {
+                animator.SetTrigger("ChargeAttack");
+            }
+           // animator.SetTrigger("ChargeAttack");
             //animator.gameObject.transform.position = Vector2.MoveTowards(animator.gameObject.transform.position, animator.gameObject.transform.position)
        }
        
