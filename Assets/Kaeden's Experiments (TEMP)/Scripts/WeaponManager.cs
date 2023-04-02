@@ -5,7 +5,7 @@ using System;
 
 public class WeaponManager : MonoBehaviour, IScriptable
 {
-
+    public static EventHandler Swapping;
     public Sprite[] spriteList;
     public GameObject WeaponUIInstance;
     public SpriteRenderer sr;
@@ -112,6 +112,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
             //if equiped swap
             if (equiped)
             {
+                int original = wpnList.index;
                 int count = 0;
                 do
                 {
@@ -123,6 +124,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
                 
                 if (WeaponUIInstance != null && !WeaponUIInstance.activeSelf && WeaponUI.render) ui.Invoke();
                 else if (WeaponUIInstance != null && WeaponUIInstance.activeSelf && WeaponUI.render) ui.Shift();
+                if (wpnList.index != original) pmm.IncrementKeeperInt("swap");
             }
             
         }

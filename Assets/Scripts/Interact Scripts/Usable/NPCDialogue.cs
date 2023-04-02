@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class NPCDialogue : OutlineObject
 {
@@ -8,7 +9,7 @@ public class NPCDialogue : OutlineObject
     public bool highlightEnds = true;
     public LockedDialogueBehavior lockable;
 
-
+    public static event EventHandler Talked;
     private bool pauseOnInteract = true;
     private InteractiveUIController UI;
     private bool triggered = false;
@@ -68,6 +69,7 @@ public class NPCDialogue : OutlineObject
 
         index = conversation.CalculateNextIndex(index);
         UIManager.SetInteractiveIndex(script_id, index);
+        if (Talked != null) Talked(gameObject, EventArgs.Empty);
     }
 
     bool OutlineEnabled()

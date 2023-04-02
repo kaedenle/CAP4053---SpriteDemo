@@ -15,6 +15,22 @@ public class TutorialCutsceneManager : MonoBehaviour
     private NPCDialogue dialouge;
     private PlayerMetricsManager pmm;
     private int above;
+    private int timesTalked = 0;
+    private int pickedup = 0;
+
+    public void Talked(object sender, System.EventArgs e)
+    {
+        if(sender == (object)subject)
+        {
+            Debug.Log(subject.name);
+            timesTalked++;
+        }
+    }
+    public void PickedUp(object sender, System.EventArgs e)
+    {
+        Debug.Log("picked");
+        pickedup++;
+    }
 
     // Start is called before the first frame update
     void Awake()
@@ -30,6 +46,8 @@ public class TutorialCutsceneManager : MonoBehaviour
         dialouge = subject.GetComponent<NPCDialogue>();
         pmm = PlayerMetricsManager.GetManager();
         above = pmm.GetMetricInt("equip");
+        NPCDialogue.Talked += Talked;
+        Item.PickedUp += PickedUp;
     }
     public void SetDialouge(NPCReport report)
     {
@@ -37,15 +55,25 @@ public class TutorialCutsceneManager : MonoBehaviour
     }
     private void CheckConditions()
     {
-        if (pmm.GetMetricInt("equip") > above && step == 0)
+        switch (step)
         {
-            PlayTimeline();
+            case 0:
+                if(pmm.GetMetricInt("equip") > above && timesTalked > 1)
+                    PlayTimeline();
+                break;
+            case 1:
+                if (pmm.GetMetricInt("killed") > above)
+                    PlayTimeline();
+                break;
+            case 2:
+                if (pickedup > 0)
+                    PlayTimeline();
+                break;
+            case 3:
+                if (pmm.GetMetricInt("swap") > 0)
+                    PlayTimeline();
+                break;
         }
-        else if(pmm.GetMetricInt("killed") > above && step == 1)
-        {
-            PlayTimeline();
-        }
-     
     }
     private void PlayTimeline()
     {
@@ -58,6 +86,42 @@ public class TutorialCutsceneManager : MonoBehaviour
     {
         if (step == 1)
             above = pmm.GetMetricInt("killed");
+    }
+    public void EnableSwap()
+    {
+        player.GetComponent<AttackManager>().wpnList.weaponlist[1].active = true;
+    }
+    public void Prick()
+    {
+        //damage the player 5
+        player.GetComponent<HealthTracker>().healthSystem.Damage(5);
+    }
+    //allows events to recognize static calls
+    public void DisableCombatUI()
+    {
+        WeaponUI.DisableWeaponUI();
+        UIManager.DisableHealthUI();
+    }
+    public void EnableCombatUI()
+    {
+        WeaponUI.EnableWeaponUI();
+        UIManager.EnableHealthUI();
+    }
+    public void DisableHealthUI()
+    {
+        UIManager.DisableHealthUI();
+    }
+    public void EnableHealthUI()
+    {
+        UIManager.EnableHealthUI();
+    }
+    public void EnableWeaponUI()
+    {
+        WeaponUI.EnableWeaponUI();
+    }
+    public void DisableWeaponUI()
+    {
+        WeaponUI.DisableWeaponUI();
     }
     // Update is called once per frame
     void Update()

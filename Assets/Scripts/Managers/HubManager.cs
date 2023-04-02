@@ -29,7 +29,7 @@ public class HubManager : MonoBehaviour
     void Awake()
     {
         game = GameState.LoadGame();
-        currentPhase = game.GetLevel();
+        currentPhase = game.GetLevel(); 
         UIManager.DisableHealthUI();
     }
 
