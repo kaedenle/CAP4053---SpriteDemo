@@ -9,6 +9,7 @@ public class MazeManager : MonoBehaviour
     [Range(1,15)] public int pathLength = 6;
     public GameObject[] decorations;
     public int averageNumberOfDecorations = 4;
+    private MazeHints hints;
 
     public enum Direction
     {
@@ -38,6 +39,8 @@ public class MazeManager : MonoBehaviour
         Debug.Log("entered rest of Awake()");
         if(path.Count <= 0)
             path.Push(maze);    // start in the first room  
+
+        hints = FindObjectOfType<MazeHints>();
 
         SetupRoom(GetCurrentRoom());
     }
@@ -89,8 +92,9 @@ public class MazeManager : MonoBehaviour
         // set up the decorations
         bool[] dec_state = cur.GetDecorations();
 
-        if(dec_state == null)
+        if(cur.NotSetup())
         {
+            // set up decorations
             double prob = averageNumberOfDecorations / (double) decorations.Length;
             dec_state = new bool[decorations.Length];
 
@@ -99,6 +103,9 @@ public class MazeManager : MonoBehaviour
                     dec_state[i] = true;
             
             cur.SetDecorations(dec_state);
+
+            // set up hint type
+            cur.SetHints(rand.Next(0, directions));
         }
 
         for(int i = 0; i < decorations.Length; i++)
@@ -108,6 +115,9 @@ public class MazeManager : MonoBehaviour
             decorations[i].SetActive(dec_state[i]);
         }
 
+        // set up hints
+        SetupHints(cur);
+
         // set up specials
         // (specials default should be false)
         if(cur.IsTerminal())
@@ -116,8 +126,22 @@ public class MazeManager : MonoBehaviour
                 if(cur.IsOnPath(special) && CastleLevelManager.ObtainedPrereqs(special) && specials[special] != null)
                     specials[special].SetActive(true);
         }
+    }
 
-        // set up the proper hints
+    public void SetupHints(Maze cur)
+    {
+        hints.RemoveAll();
+
+        if(cur.IsSpecial())
+        {
+            // remove all hints
+            return;
+        }
+
+        // set the room banner
+        int bannerType = cur.GetHint();
+        hints.SetBanner(bannerType);
+
     }
 
     public void EndOfPath()

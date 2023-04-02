@@ -8,8 +8,13 @@ public class Maze
     const int directions = 3;
 
     Maze[] children;
-    bool[] onPath;
+
+    // decorations
     bool[] decorations;
+
+    // hints
+    bool[] onPath; // on path
+    int hints;
 
     public Maze(int depth_left)
     {
@@ -22,6 +27,11 @@ public class Maze
 
         for(int i = 0; i < directions; i++)
             children[i] = new Maze(depth_left - 1);
+    }
+
+    public bool NotSetup()
+    {
+        return decorations == null;
     }
 
     public void SetOnPath(int special)
@@ -44,6 +54,11 @@ public class Maze
         return children == null;
     }
 
+    public bool IsSpecial()
+    {
+        return children == null && (IsOnPath(0) || IsOnPath(1) || IsOnPath(2));
+    }
+
     public bool[] GetDecorations()
     {
         return decorations;
@@ -52,5 +67,15 @@ public class Maze
     public void SetDecorations(bool[] decorations)
     {
         this.decorations = decorations;
+    }
+
+    public void SetHints(int hint)
+    {
+        this.hints = hint;
+    }
+
+    public int GetHint()
+    {
+        return hints;
     }
 }
