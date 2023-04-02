@@ -8,6 +8,7 @@ public class DynamicSorting : MonoBehaviour
     public bool TakeParent;
     public int deltaDown;
     public bool dynamic;
+    private Renderer original;
     private void GetChildRecursive(GameObject obj)
     {
         if (null == obj)
@@ -23,10 +24,12 @@ public class DynamicSorting : MonoBehaviour
     }
     private void UpdateRends()
     {
-        float original = gameObject.GetComponent<Renderer>().transform.position.y;
+        float pos = transform.position.y;
+        if(original != null) pos = original.transform.position.y;
+
         foreach(Renderer r in rends)
         {
-            float newCoords = TakeParent ? original : r.transform.position.y;
+            float newCoords = TakeParent ? pos : r.transform.position.y;
             r.sortingOrder = (int)(newCoords * -100) + deltaDown;
 
         }
@@ -34,6 +37,7 @@ public class DynamicSorting : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        original = gameObject.GetComponent<Renderer>();
         rends = new List<Renderer>();
         GetChildRecursive(gameObject);
         UpdateRends();

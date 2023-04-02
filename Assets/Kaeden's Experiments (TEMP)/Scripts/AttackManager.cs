@@ -79,10 +79,14 @@ public class AttackManager : MonoBehaviour
     public GameObject hitboxParent;
 
     // Start is called before the first frame update
+    private void Start()
+    {
+        pmm = PlayerMetricsManager.GetManager();
+    }
     void Awake()
     {
         HBList.Clear();
-        pmm = PlayerMetricsManager.GetManager();
+        
         uniqueScript = gameObject?.GetComponent<IUnique>();
         animator = gameObject?.GetComponent<Animator>();
         //variable for others to grab

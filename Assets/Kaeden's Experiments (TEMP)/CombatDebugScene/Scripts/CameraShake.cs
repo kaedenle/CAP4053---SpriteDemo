@@ -26,6 +26,10 @@ public class CameraShake : MonoBehaviour
 
         transform.localPosition = originalPos;
     }
+    public void StartShake(float magnitude)
+    {
+        StartCoroutine(Shake(0.1f, magnitude));
+    }
     // Start is called before the first frame update
     void Start()
     {

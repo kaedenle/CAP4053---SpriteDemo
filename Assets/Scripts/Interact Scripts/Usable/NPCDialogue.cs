@@ -64,7 +64,7 @@ public class NPCDialogue : OutlineObject
         if(index >= conversation.Length()) return;
 
         // pause now if I've made it this far
-        if(pauseOnInteract) EntityManager.DialoguePause();
+        if(pauseOnInteract && !EntityManager.IsPaused()) EntityManager.DialoguePause();
         UI.StartConversation(conversation.conversations[index]);
 
         index = conversation.CalculateNextIndex(index);

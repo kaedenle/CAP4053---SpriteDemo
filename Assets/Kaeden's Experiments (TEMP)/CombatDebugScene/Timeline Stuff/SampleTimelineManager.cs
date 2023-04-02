@@ -10,6 +10,8 @@ public class SampleTimelineManager : MonoBehaviour
     private int dummy;
     public PlayableDirector[] eventList;
     private GameObject player;
+    private GameObject subject;
+    private NPCDialogue dialouge;
     private PlayerMetricsManager pmm;
     // Start is called before the first frame update
     void Start()

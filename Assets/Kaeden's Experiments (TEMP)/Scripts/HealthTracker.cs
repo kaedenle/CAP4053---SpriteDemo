@@ -42,7 +42,7 @@ public class HealthTracker : MonoBehaviour, IDamagable
             ft.offset = barOffset;
             bar = newBar;
         }
-        if (!UIManager.getHealthUI()) bar.SetActive(false);
+        
         HPBar = bar.transform.Find("Foreground").GetComponent<Image>();
         damagedBarImage = bar.transform.Find("Damaged").GetComponent<Image>();
         healthSystem = new HealthSystem(health);
@@ -53,6 +53,10 @@ public class HealthTracker : MonoBehaviour, IDamagable
         healthSystem.OnHealed += HealthSystem_OnHealed;
         damagedBarImage.fillAmount = HPBar.fillAmount;
 
+    }
+    void Start()
+    {
+        if (!UIManager.getHealthUI()) bar.SetActive(false);
     }
     public float TotalDown()
     {

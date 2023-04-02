@@ -13,6 +13,8 @@ public class WeaponUI : MonoBehaviour
     //for ease of access because I don't want to do three child gets
     public GameObject[] tiles;
     public bool Done = false;
+    [HideInInspector]
+    public static bool render = true;
     private float MAX_TIMER = 1.0f;
     private float timer = 0;
     // Start is called before the first frame update
@@ -112,6 +114,15 @@ public class WeaponUI : MonoBehaviour
         gameObject.SetActive(true);
         timer = MAX_TIMER;
         anim.Play("MoveRight");
+    }
+    //enabler and disabler
+    public static void EnableWeaponUI()
+    {
+        render = true;
+    }
+    public static void DisableWeaponUI()
+    {
+        render = false;
     }
     // Update is called once per frame
     void Update()

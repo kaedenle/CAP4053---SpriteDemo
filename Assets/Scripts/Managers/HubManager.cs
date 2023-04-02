@@ -30,6 +30,7 @@ public class HubManager : MonoBehaviour
     {
         game = GameState.LoadGame();
         currentPhase = game.GetLevel();
+        UIManager.DisableHealthUI();
     }
 
     void Start()

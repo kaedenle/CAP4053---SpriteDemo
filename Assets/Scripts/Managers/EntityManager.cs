@@ -241,4 +241,9 @@ public class EntityManager : MonoBehaviour
     {
         return GetState(AllStates._envInteractable);
     }
+
+    public static bool isPaused()
+    {
+        return _pause;
+    }
 }

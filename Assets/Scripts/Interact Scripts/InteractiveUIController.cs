@@ -70,7 +70,7 @@ public class InteractiveUIController : MonoBehaviour
         on = true;
         on_using = true;
 
-        EntityManager.DialoguePause();
+        if(!EntityManager.IsPaused()) EntityManager.DialoguePause();
 
         isDialogue = true;
         sentences.Clear();

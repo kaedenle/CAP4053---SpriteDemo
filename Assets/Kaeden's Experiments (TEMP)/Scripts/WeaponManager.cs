@@ -7,7 +7,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
 {
 
     public Sprite[] spriteList;
-    public GameObject WeaponUI;
+    public GameObject WeaponUIInstance;
     public SpriteRenderer sr;
     public int weaponID;
     public int BufferWeaponID = 0;
@@ -18,6 +18,8 @@ public class WeaponManager : MonoBehaviour, IScriptable
     private SpriteRenderer onhand;
     private bool[] unlocked;
     Player_Movement movementScript;
+    private WeaponUI ui;
+    private PlayerMetricsManager pmm;
     
     // Start is called before the first frame update
 
@@ -29,8 +31,10 @@ public class WeaponManager : MonoBehaviour, IScriptable
         hrtbx = gameObject?.GetComponent<Hurtbox>();
         onhand = gameObject.transform.Find("Right Arm").Find("On-Hand").GetComponent<SpriteRenderer>();
         movementScript = gameObject.GetComponent<Player_Movement>();
-        WeaponUI = GameObject.Find("/-- UI --/Menu Canvas/WeaponUI");
+        WeaponUIInstance = GameObject.Find("/-- UI --/Menu Canvas/WeaponUI");
         unlocked = new bool[wpnList.weaponlist.Length];
+        ui = WeaponUIInstance.GetComponent<WeaponUI>();
+        
     }
     void Start()
     {
@@ -43,6 +47,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
             wpnList.index %= wpnList.weaponlist.Length;
             counter++;
         }
+        pmm = PlayerMetricsManager.GetManager();
     }
     
     //scripts to be disabled/enabled when attacking
@@ -78,10 +83,15 @@ public class WeaponManager : MonoBehaviour, IScriptable
             if (equiped)
             {
                 onhand.enabled = false;
-                WeaponUI.GetComponent<WeaponUI>().PreemptivelyFinish();
+                //force UI away
+                ui.PreemptivelyFinish();
             }   
             else
+            {
                 onhand.enabled = true;
+                pmm.IncrementKeeperInt("equip");
+            }
+                
             animator.SetBool("equiped", !equiped);
             //set animation to follow weapon's ID
             animator.SetFloat("weapon", wpnList.weaponlist[wpnList.index].ID);
@@ -93,9 +103,11 @@ public class WeaponManager : MonoBehaviour, IScriptable
             if (!equiped)
             {
                 onhand.enabled = true;
+                pmm.IncrementKeeperInt("equip");
                 animator.SetBool("equiped", !equiped);
                 //set animation to follow weapon's ID
                 animator.SetFloat("weapon", wpnList.weaponlist[wpnList.index].ID);
+                animator.SetBool("equiped", !equiped);
             }
             //if equiped swap
             if (equiped)
@@ -109,8 +121,8 @@ public class WeaponManager : MonoBehaviour, IScriptable
                     count++;
                 } while (wpnList.weaponlist[wpnList.index].active == false);
                 
-                if (WeaponUI != null && !WeaponUI.activeSelf) WeaponUI.GetComponent<WeaponUI>().Invoke();
-                else if (WeaponUI != null && WeaponUI.activeSelf) WeaponUI.GetComponent<WeaponUI>().Shift();
+                if (WeaponUIInstance != null && !WeaponUIInstance.activeSelf && WeaponUI.render) ui.Invoke();
+                else if (WeaponUIInstance != null && WeaponUIInstance.activeSelf && WeaponUI.render) ui.Shift();
             }
             
         }
