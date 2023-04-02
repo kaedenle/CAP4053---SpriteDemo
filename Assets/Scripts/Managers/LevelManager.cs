@@ -39,7 +39,10 @@ public class LevelManager : MonoBehaviour
     public void Start()
     {
         _levelEnding = false;
-        EntityManager.Pause();
+
+        if(!EntityManager.IsPaused()) 
+            EntityManager.Pause();
+            
         EntityManager.WaitThenUnpause(default_delay);
         // ResetVariables();
     }
@@ -57,6 +60,7 @@ public class LevelManager : MonoBehaviour
         ChildLevelManager.ResetVariables();
         HubManager.ResetVariables();
         MobsterLevelManager.ResetVariables();
+        CastleLevelManager.ResetVariables();
     }
 
     public static void ResetVariables()

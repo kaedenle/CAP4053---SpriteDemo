@@ -1344,6 +1344,53 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &404393973
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 404393974}
+  - component: {fileID: 404393975}
+  m_Layer: 0
+  m_Name: MazeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &404393974
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404393973}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1123332479}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &404393975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404393973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cf1ab89d326ed048a2448c18f79ed74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decorations: []
+  averageNumberOfDecorations: 4
+  pathLength: 7
 --- !u!1 &404549794
 GameObject:
   m_ObjectHideFlags: 0
@@ -1935,6 +1982,8 @@ GameObject:
   m_Component:
   - component: {fileID: 464199763}
   - component: {fileID: 464199762}
+  - component: {fileID: 464199764}
+  - component: {fileID: 464199765}
   m_Layer: 0
   m_Name: Door Back
   m_TagString: Untagged
@@ -2009,6 +2058,57 @@ Transform:
   m_Father: {fileID: 1899075340}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &464199764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464199761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d15da8ad5bcfeb2439b99a9923425805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineThickness: 0.5
+  pauseOnInteract: 1
+  interactiveText:
+    textID: 
+    loopLast: 1
+  highlightEnds: 0
+  lockable:
+    isLocked: 0
+    lockedInteractiveText:
+      textID: 
+      loopLast: 1
+    requiredItems: 
+  direction: 3
+--- !u!61 &464199765
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464199761}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.18205416, y: -0.02022791}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.8125, y: 4.875}
+    newSize: {x: 3, y: 4}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.2541523, y: 5.7396326}
+  m_EdgeRadius: 0
 --- !u!1 &520987492
 GameObject:
   m_ObjectHideFlags: 0
@@ -2337,6 +2437,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &628437782
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 628437783}
+  - component: {fileID: 628437784}
+  m_Layer: 0
+  m_Name: CastleLevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &628437783
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628437782}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1123332479}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &628437784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628437782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b222df64d6a21754fa723c7f0afb786e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &648817738
 GameObject:
   m_ObjectHideFlags: 0
@@ -3350,6 +3494,8 @@ GameObject:
   m_Component:
   - component: {fileID: 801929456}
   - component: {fileID: 801929455}
+  - component: {fileID: 801929457}
+  - component: {fileID: 801929458}
   m_Layer: 0
   m_Name: Door Left
   m_TagString: Untagged
@@ -3424,6 +3570,57 @@ Transform:
   m_Father: {fileID: 1899075340}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &801929457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801929454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d15da8ad5bcfeb2439b99a9923425805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineThickness: 0.5
+  pauseOnInteract: 1
+  interactiveText:
+    textID: 
+    loopLast: 1
+  highlightEnds: 0
+  lockable:
+    isLocked: 0
+    lockedInteractiveText:
+      textID: 
+      loopLast: 1
+    requiredItems: 
+  direction: 0
+--- !u!61 &801929458
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801929454}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.18205416, y: -0.02022791}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.8125, y: 4.875}
+    newSize: {x: 3, y: 4}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.2541523, y: 5.7396326}
+  m_EdgeRadius: 0
 --- !u!1 &831181042
 GameObject:
   m_ObjectHideFlags: 0
@@ -4469,6 +4666,8 @@ Transform:
   - {fileID: 251311377}
   - {fileID: 578066201}
   - {fileID: 1097592039}
+  - {fileID: 628437783}
+  - {fileID: 404393974}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5366,6 +5565,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1314232731}
   - component: {fileID: 1314232730}
+  - component: {fileID: 1314232732}
+  - component: {fileID: 1314232733}
   m_Layer: 0
   m_Name: Door Right
   m_TagString: Untagged
@@ -5440,6 +5641,57 @@ Transform:
   m_Father: {fileID: 1899075340}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &1314232732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314232729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d15da8ad5bcfeb2439b99a9923425805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineThickness: 0.5
+  pauseOnInteract: 1
+  interactiveText:
+    textID: 
+    loopLast: 1
+  highlightEnds: 0
+  lockable:
+    isLocked: 0
+    lockedInteractiveText:
+      textID: 
+      loopLast: 1
+    requiredItems: 
+  direction: 2
+--- !u!61 &1314232733
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314232729}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.18205416, y: -0.02022791}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.8125, y: 4.875}
+    newSize: {x: 3, y: 4}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.2541523, y: 5.7396326}
+  m_EdgeRadius: 0
 --- !u!1 &1342636321
 GameObject:
   m_ObjectHideFlags: 0
@@ -6974,6 +7226,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1600334779}
   - component: {fileID: 1600334780}
+  - component: {fileID: 1600334781}
+  - component: {fileID: 1600334782}
   m_Layer: 0
   m_Name: Door Up
   m_TagString: Untagged
@@ -7048,6 +7302,57 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1600334781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1600334778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d15da8ad5bcfeb2439b99a9923425805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineThickness: 0.5
+  pauseOnInteract: 1
+  interactiveText:
+    textID: 
+    loopLast: 1
+  highlightEnds: 0
+  lockable:
+    isLocked: 0
+    lockedInteractiveText:
+      textID: 
+      loopLast: 1
+    requiredItems: 
+  direction: 1
+--- !u!61 &1600334782
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1600334778}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.18205416, y: -0.02022791}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.8125, y: 4.875}
+    newSize: {x: 3, y: 4}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.2541523, y: 5.7396326}
+  m_EdgeRadius: 0
 --- !u!1 &1621472736
 GameObject:
   m_ObjectHideFlags: 0

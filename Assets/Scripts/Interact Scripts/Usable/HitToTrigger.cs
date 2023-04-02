@@ -38,7 +38,7 @@ public class HitToTrigger :  MonoBehaviour, IDamagable
     private bool triggered = false;
     private bool activated;
 
-    new void Start()
+    void Start()
     {
         activated = LevelManager.GetInteractiveState(eventID);
 
@@ -51,7 +51,7 @@ public class HitToTrigger :  MonoBehaviour, IDamagable
         interactiveText.SetText( InteractiveTextDatabase.GetText( interactiveText.GetID() ) );
     }
 
-    new void Update()
+    void Update()
     {
         if(triggered && !UI.IsActive())
         {
@@ -73,7 +73,7 @@ public class HitToTrigger :  MonoBehaviour, IDamagable
     {
         if(!activated)
         {
-                    Debug.Log("I've been hit with weapon " + ad.weapon + " and attack " + ad.attack);
+            Debug.Log("I've been hit with weapon " + ad.weapon + " and attack " + ad.attack);
             if(ad.weapon == (int) weaponNeeded || weaponNeeded == WeaponType.Any)
             {
                 if(((ad.attack+1)%2) == (int) attackTypeNeeded || attackTypeNeeded == AttackType.Any)
