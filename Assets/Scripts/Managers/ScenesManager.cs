@@ -36,9 +36,10 @@ public class ScenesManager : MonoBehaviour
         Boss_LeverLeft,
         Boss_LeverDown,
         Boss_LeverRight,
-        // Boss_BossRoom,
+        Boss_BossRoom,
         CastleArena,
-        CastleMaze
+        CastleMaze,
+        TheEnd
     }
 
     // loads a scene

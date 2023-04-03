@@ -18,22 +18,16 @@ public class CutsceneLoader : MonoBehaviour
     // the next scene
     [SerializeField] public ScenesManager.AllScenes nextScene;
 
-    // demo versions of above (marked if the demo versions are different)
-    public bool demoForks = false;
-    [SerializeField] public ScenesManager.AllScenes nextDemoScene;
-    public TextAsset demoCutSceneTextFile;
-
     // keep track of the text of the cut scene
     private string cutSceneText;
-    private string demoCutSceneText;
     public TMP_Text wordsTextField;
+    public bool isEnd = false;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();
         cutSceneText = getText(cutSceneTextFile);
-        if(demoForks) demoCutSceneText = getText(demoCutSceneTextFile);
     }
 
     // Update is called once per frame
@@ -41,7 +35,7 @@ public class CutsceneLoader : MonoBehaviour
     {
         if(!on && LevelManager.IsEndOfLevel())
         {
-            wordsTextField.text = ((demoForks && ScenesManager.isDemo()) ? demoCutSceneText : cutSceneText);
+            wordsTextField.text = cutSceneText;
             animator.SetTrigger(trigger);
             on = true;
             StartCoroutine(ControlDelay());
@@ -49,7 +43,11 @@ public class CutsceneLoader : MonoBehaviour
 
         if(on && delayComplete && Input.anyKeyDown)
         {
-            LevelManager.EndLevel();
+            if(!isEnd)
+                LevelManager.EndLevel();
+            else
+                ScenesManager.LoadScene(ScenesManager.AllScenes.Menu);
+                
             delayComplete = false;
         }
     }

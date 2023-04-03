@@ -17,12 +17,6 @@ public class HubManager : MonoBehaviour
         ScenesManager.AllScenes.ChildLivingRoom
     };
 
-    // array of starting demo mind scenes
-    private static ScenesManager.AllScenes[] demoSceneStarts =
-    {
-        ScenesManager.AllScenes.MobsterRoadDemo
-    };
-
     private static int currentPhase;
     private static GameState game;
 
@@ -41,6 +35,12 @@ public class HubManager : MonoBehaviour
             GameManager gm = GameManager.GetComponent<GameManager>();
             //reset gamemanager
             gm.ResetManager();
+        }
+
+        if(currentPhase >= mindSceneStarts.Length)
+        {
+            // ScenesManager.LoadScene(ScenesManager.AllScenes.TheEnd);
+            LevelManager.TriggerEnd();
         }
     }
 

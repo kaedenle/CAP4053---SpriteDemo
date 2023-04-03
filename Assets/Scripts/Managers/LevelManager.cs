@@ -42,7 +42,7 @@ public class LevelManager : MonoBehaviour
 
         if(!EntityManager.IsPaused()) 
             EntityManager.Pause();
-            
+
         EntityManager.WaitThenUnpause(default_delay);
         // ResetVariables();
     }
@@ -81,7 +81,6 @@ public class LevelManager : MonoBehaviour
 
     public static void TriggerEnd()
     {
-        // EntityManager.Pause();
         ResetAllVariables();
         _levelEnding = true;
     }
