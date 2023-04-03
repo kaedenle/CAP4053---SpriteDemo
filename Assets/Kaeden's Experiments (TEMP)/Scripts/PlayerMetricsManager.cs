@@ -47,4 +47,9 @@ public class PlayerMetricsManager : MonoBehaviour
         if (!MetricsKeeperFloat.ContainsKey(metric)) return 0;
         return MetricsKeeperFloat[metric];
     }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+            ReturnKeeperInt();
+    }
 }
