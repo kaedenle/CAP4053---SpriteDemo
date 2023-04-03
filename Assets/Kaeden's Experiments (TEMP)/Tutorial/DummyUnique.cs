@@ -37,6 +37,9 @@ public class DummyUnique : MonoBehaviour, IUnique
     public void HealSelf()
     {
         gameObject.GetComponent<HealthTracker>().healthSystem.Heal(1000);
+        ht.deathFlag = false;
+        DeathFlag = false;
+        anim.Play("DIdle");
     }
     public void ResetPos()
     {
