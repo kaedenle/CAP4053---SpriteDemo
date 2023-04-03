@@ -174,6 +174,8 @@ public class Hurtbox : MonoBehaviour, IDamagable
             foreach (IScriptable s in scriptableScripts)
                 s.ScriptHandler(true);
             inHitStun = false;
+            //set player's animator hitstun bool to false
+            if (tag == "Player") animator.SetBool("Hitstun", false);
         }
     }
     

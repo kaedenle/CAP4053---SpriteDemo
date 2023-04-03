@@ -13,6 +13,7 @@ public class DummyUnique : MonoBehaviour, IUnique
     private HealthTracker ht;
     private Rigidbody2D body;
     private EffectsManager fxm;
+    private Hurtbox hb;
     public void EffectManager(string s)
     {}
     private void ShakeEntrance()
@@ -80,7 +81,10 @@ public class DummyUnique : MonoBehaviour, IUnique
         gameObject.GetComponent<ItemDrop>().AttemptDrop();
     }
     public void HitStunAni()
-    {}
+    {
+        anim.SetBool("Hitstun", true);
+        anim.Play("Hitstun");
+    }
     // Start is called before the first frame update
     
     public void AnimatorPlayerDeath()
@@ -101,6 +105,7 @@ public class DummyUnique : MonoBehaviour, IUnique
         ht = gameObject.GetComponent<HealthTracker>();
         anim = gameObject.GetComponent<Animator>();
         fxm = FindObjectOfType<EffectsManager>();
+        hb = GetComponent<Hurtbox>();
     }
     // Update is called once per frame
     void Update()
@@ -111,6 +116,7 @@ public class DummyUnique : MonoBehaviour, IUnique
             DisableCombat();
             Hide = true;
         }
+        if (!hb.inHitStun) anim.SetBool("Hitstun", false);
     }
     void LateUpdate()
     {

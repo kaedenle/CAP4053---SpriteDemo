@@ -176,13 +176,9 @@ public class PlayerScript : MonoBehaviour, IUnique
         //if current clip is death don't play below
         //GetComponent<AttackManager>().DestroyPlay();
         //TEMPORARY
-
-        bool equiped = animator.GetBool("equiped");
-        if (equiped)
-            animator.Play("Idle_E");
-        else
-            animator.Play("Idle");
-
+        animator.SetBool("Skid", false);
+        animator.SetBool("Hitstun", true);
+        animator.Play("Hitstun");
         //getting hit while reloading (reload for you then transition)
         if(animator.GetFloat("shooting") == 2) CleanShoot();
     }
@@ -202,7 +198,7 @@ public class PlayerScript : MonoBehaviour, IUnique
         if (GameManager.OneGM != null)
             gmo = GameManager.OneGM;
         else
-        {
+        {animator.SetBool("Hitstun", true);
             gmo = Instantiate(Resources.Load("Prefabs/GameManager")) as GameObject;
             gmo.name = "GameManager";
         }
