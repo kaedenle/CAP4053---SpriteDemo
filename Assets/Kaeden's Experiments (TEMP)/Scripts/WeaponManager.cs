@@ -19,6 +19,8 @@ public class WeaponManager : MonoBehaviour, IScriptable
     Player_Movement movementScript;
     private WeaponUI ui;
     private AttackManager am;
+    [HideInInspector]
+    public int prevWeapon;
 
     // Start is called before the first frame update
 
@@ -122,6 +124,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
                 if (WeaponUIInstance != null && !WeaponUIInstance.activeSelf && WeaponUI.render) ui.Invoke();
                 else if (WeaponUIInstance != null && WeaponUIInstance.activeSelf && WeaponUI.render) ui.Shift();
                 if (wpnList.index != original) PlayerMetricsManager.IncrementKeeperInt("swap");
+                prevWeapon = original;
             }
             
         }

@@ -234,8 +234,7 @@ public class AttackManager : MonoBehaviour
 
             //metrics
             PlayerMetricsManager.IncrementKeeperInt("cancel");
-            if (wpnList.index != lastWeapon) PlayerMetricsManager.IncrementKeeperInt("cross_cancel");
-            lastWeapon = wpnList.index;
+            if (wpnList.index != pwm.prevWeapon) PlayerMetricsManager.IncrementKeeperInt("cross_cancel");
         }
     }
     public GameObject HurtBoxSearch(GameObject part){
