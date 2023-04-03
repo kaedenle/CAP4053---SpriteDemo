@@ -79,7 +79,7 @@ public class TutorialCutsceneManager : MonoBehaviour
                 break;
             //cancel
             case 3:
-                if (PlayerMetricsManager.GetMetricInt("cancel") > above && PlayerMetricsManager.GetMetricInt("killed") > above) 
+                if (PlayerMetricsManager.GetMetricInt("cancel") > above && PlayerMetricsManager.GetMetricInt("killed") > 1) 
                     PlayTimeline();
                 if (dummy.Hide && PlayerMetricsManager.GetMetricInt("cancel") <= above && Respawn)
                     ResetDummy();
