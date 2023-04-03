@@ -44,6 +44,32 @@ MonoBehaviour:
   lineOfSightDistance: 3
   minimumDistance: 1
   bulletPrefab: {fileID: 2939056562520899370, guid: b8a574bece5c28048b262088e69dd3e5, type: 3}
+--- !u!1102 &-8469600660239631276
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Combined_Attack
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 68cea8f08eaca9a40be3ff5dc2d39e7f, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1107 &-8443783512297280074
 AnimatorStateMachine:
   serializedVersion: 6
@@ -104,6 +130,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 1476230538017858476}
     m_Position: {x: -290, y: 210, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -8469600660239631276}
+    m_Position: {x: -255, y: 275, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -113,7 +142,7 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 650, y: 420, z: 0}
   m_ExitPosition: {x: 900, y: 230, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 3701109255646114397}
+  m_DefaultState: {fileID: -768045403769767471}
 --- !u!1101 &-8428803939910854181
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -453,7 +482,7 @@ MonoBehaviour:
   currState: 0
   speed: 5
   lineOfSightDistance: 3
-  minimumDistance: 1
+  minimumDistance: 2
   bulletPrefab: {fileID: 2939056562520899370, guid: b8a574bece5c28048b262088e69dd3e5, type: 3}
 --- !u!1102 &-2675958230098970085
 AnimatorState:
@@ -644,7 +673,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 51d364b2ac5c6124d8f82dda516b8efc, type: 2}
+  m_Motion: {fileID: 7400000, guid: 68cea8f08eaca9a40be3ff5dc2d39e7f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -718,37 +747,37 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Phase2
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: ShootAttack
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: BasicAttack
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: ChargeAttack
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: InHitStun
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -868,7 +897,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Big Attack_0
-  m_Speed: 0.2
+  m_Speed: 0.7
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -1421717122549185801}
