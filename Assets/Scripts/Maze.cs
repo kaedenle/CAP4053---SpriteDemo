@@ -45,6 +45,17 @@ public class Maze
         return onPath[special];
     }
 
+    public int GetNextOnPath(int special)
+    {
+        if(!IsOnPath(special) || IsTerminal()) return -1;
+
+        for(int i = 0; i < children.Length; i++)
+            if(children[i].IsOnPath(special))
+                return i;
+        
+        return -1;
+    }
+
     public Maze GetNext(int direction)
     {
         return children[direction];

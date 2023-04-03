@@ -10,6 +10,7 @@ public class MazeHints : MonoBehaviour
     public GameObject[] matUp;
     public GameObject[] matRight;
     public GameObject[][] bannerDoorDirections;
+    public GameObject[] footprints;
 
     void Awake()
     {
@@ -26,18 +27,27 @@ public class MazeHints : MonoBehaviour
 
         SetBanner(cur.GetBanner());
         SetMats(cur.GetMats());
+        SetFootprints(cur);
     }
 
     public void RemoveAll()
     {
-        foreach(GameObject hint in bannerHint)
-            if(hint != null)
-                hint.SetActive(false);
+        DisableArray(bannerHint);
         
         if(bannerDoorDirections != null)
             foreach(GameObject[] ls in bannerDoorDirections)
-                foreach(GameObject hint in ls)
-                    hint.SetActive(false);
+                DisableArray(ls);
+
+        DisableArray(footprints);
+    }
+
+    public void DisableArray(GameObject[] arr)
+    {
+        if(arr == null) return;
+
+        foreach(GameObject obj in arr)
+            if(obj != null)
+                obj.SetActive(false);
     }
 
     public void SetBanner(int idx)
@@ -55,6 +65,23 @@ public class MazeHints : MonoBehaviour
             GameObject obj = bannerDoorDirections[i][permutation[i]];
             if(obj != null)
                 obj.SetActive(true);
+        }
+    }
+
+    public void SetFootprints(Maze cur)
+    {
+        int footprintSpecial = 1;
+        
+        Debug.Log("SetFootprints()");
+        Debug.Log("is on path of special? " + cur.IsOnPath(footprintSpecial));
+
+        if(cur.IsOnPath(footprintSpecial))
+        {
+            int idx = cur.GetNextOnPath(footprintSpecial);
+            Debug.Log("idx direction: " + idx);
+
+            if(footprints[idx] != null)
+                footprints[idx].SetActive(true);
         }
     }
 }
