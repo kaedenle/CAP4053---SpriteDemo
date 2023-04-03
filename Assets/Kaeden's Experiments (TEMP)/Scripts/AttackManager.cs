@@ -42,7 +42,7 @@ public class AttackManager : MonoBehaviour
 
     //Components
     private Animator animator;
-    private PlayerMetricsManager pmm;
+    private WeaponManager pwm;
 
     //Component Lists/Arrays
     [HideInInspector]
@@ -56,6 +56,7 @@ public class AttackManager : MonoBehaviour
     private bool active = false;
     private bool cancellableFlag = false;
     private IUnique uniqueScript;
+    private int lastWeapon;
 
     //audio
     private AudioClip[] currentAudio;
@@ -77,16 +78,10 @@ public class AttackManager : MonoBehaviour
     //easy reference to gameobject that's parent of hitbox (not constant)
     [HideInInspector]
     public GameObject hitboxParent;
-
-    // Start is called before the first frame update
-    private void Start()
-    {
-        pmm = PlayerMetricsManager.GetManager();
-    }
     void Awake()
     {
         HBList.Clear();
-        
+        if (tag == "Player") pwm = GetComponent<WeaponManager>();
         uniqueScript = gameObject?.GetComponent<IUnique>();
         animator = gameObject?.GetComponent<Animator>();
         //variable for others to grab
@@ -198,9 +193,9 @@ public class AttackManager : MonoBehaviour
                     if(tag == "Player")
                     {
                         if (effect.GetComponent<HealthTracker>().healthSystem.getHealth() == 0)
-                            pmm.IncrementKeeperInt("killed");
-                        pmm.IncrementKeeperInt("hit_" + entity.gameObject.transform.root.gameObject.name);
-                        pmm.IncrementKeeperInt("enemies_hit");
+                            PlayerMetricsManager.IncrementKeeperInt("killed");
+                        PlayerMetricsManager.IncrementKeeperInt("hit_" + entity.gameObject.transform.root.gameObject.name);
+                        PlayerMetricsManager.IncrementKeeperInt("enemies_hit");
                     } 
                 }
                     
@@ -221,21 +216,26 @@ public class AttackManager : MonoBehaviour
         if (cancellableSet.Contains(bufferCancel))
         {
             //prevent bug that swaps you out of cancel
-            if (GetComponent<WeaponManager>().BufferWeaponID != GetComponent<WeaponManager>().wpnList.index) return;
+            if (pwm.BufferWeaponID != pwm.wpnList.index) return;
             if (alreadyDamaged.Count == 0)
             {
                 return;
             }
             int tmp = bufferCancel;
-            if (tag == "Player") GetComponent<WeaponManager>().SetSprite();
+            pwm.SetSprite();
             DestroyPlay();
+            //disable gun layer if not cancel into it
             if(wpnList.index != 2)
                 animator.SetLayerWeight(1, 0);
             else
                 animator.SetLayerWeight(1, 1);
             InvokeAttack(tmp);
             cancellableFlag = false;
-            //Debug.Log("Cancelled!");
+
+            //metrics
+            PlayerMetricsManager.IncrementKeeperInt("cancel");
+            if (wpnList.index != lastWeapon) PlayerMetricsManager.IncrementKeeperInt("cross_cancel");
+            lastWeapon = wpnList.index;
         }
     }
     public GameObject HurtBoxSearch(GameObject part){
@@ -266,8 +266,8 @@ public class AttackManager : MonoBehaviour
     //For animator's use
     public void StartPlay(int moveIndex){
         //get current animation to keep track of current animation frame (attach hitboxes to animation)
-       //if(animator != null) Debug.Log(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
-        
+        //if(animator != null) Debug.Log(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+        lastWeapon = wpnList.index;
         //get framedata
         framedata = JsonUtility.FromJson<FrameData>(attackContainer[(moveIndex - 1) % attackContainer.Length].moveData.text);
         currentAudio = attackContainer[(moveIndex - 1) % attackContainer.Length].HitSFX;

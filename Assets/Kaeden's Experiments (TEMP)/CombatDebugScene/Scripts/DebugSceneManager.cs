@@ -26,7 +26,7 @@ public class DebugSceneManager : MonoBehaviour
             book.GetComponent<BookUI>().ToggleBook();
         }
         if (Input.GetKeyDown(KeyCode.P))
-            pmm.ReturnKeeperInt();
+            PlayerMetricsManager.ReturnKeeperInt();
         if (Input.GetKeyDown(KeyCode.O))
             UIManager.EnableHealthUI();
         if (Input.GetKeyDown(KeyCode.I))
@@ -37,7 +37,6 @@ public class DebugSceneManager : MonoBehaviour
     void Start()
     {
         UIManager.DisableHealthUI();
-        pmm = PlayerMetricsManager.GetManager();
         player = GameObject.Find("Player");
         BlackFade = GameObject.Find("BlackFade");
     }
