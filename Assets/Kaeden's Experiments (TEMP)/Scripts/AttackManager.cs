@@ -77,12 +77,6 @@ public class AttackManager : MonoBehaviour
     //easy reference to gameobject that's parent of hitbox (not constant)
     [HideInInspector]
     public GameObject hitboxParent;
-
-    // Start is called before the first frame update
-    private void Start()
-    {
-        pmm = PlayerMetricsManager.GetManager();
-    }
     void Awake()
     {
         HBList.Clear();
@@ -198,9 +192,9 @@ public class AttackManager : MonoBehaviour
                     if(tag == "Player")
                     {
                         if (effect.GetComponent<HealthTracker>().healthSystem.getHealth() == 0)
-                            pmm.IncrementKeeperInt("killed");
-                        pmm.IncrementKeeperInt("hit_" + entity.gameObject.transform.root.gameObject.name);
-                        pmm.IncrementKeeperInt("enemies_hit");
+                            PlayerMetricsManager.IncrementKeeperInt("killed");
+                        PlayerMetricsManager.IncrementKeeperInt("hit_" + entity.gameObject.transform.root.gameObject.name);
+                        PlayerMetricsManager.IncrementKeeperInt("enemies_hit");
                     } 
                 }
                     

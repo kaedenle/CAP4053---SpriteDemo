@@ -5,11 +5,15 @@ using UnityEngine;
 public class PlayerMetricsManager : MonoBehaviour
 {
     private static PlayerMetricsManager instance; 
-    private IDictionary<string, int> MetricsKeeperInt = new Dictionary<string, int>();
-    private IDictionary<string, float> MetricsKeeperFloat = new Dictionary<string, float>();
-    public static PlayerMetricsManager GetManager()
+    private static IDictionary<string, int> MetricsKeeperInt = new Dictionary<string, int>();
+    private static IDictionary<string, float> MetricsKeeperFloat = new Dictionary<string, float>();
+    /*public static PlayerMetricsManager GetManager()
     {
         return instance;
+    }
+    public static void CreateManager()
+    {
+        Instantiate(Resources.Load("Prefabs/PlayerMetricsManager"));
     }
     void Awake()
     {
@@ -19,33 +23,28 @@ public class PlayerMetricsManager : MonoBehaviour
             instance = this;
         if(instance != this)
             Destroy(gameObject);
-    }
-    public void IncrementKeeperInt(string metric)
+    }*/
+    public static void IncrementKeeperInt(string metric)
     {
         if (!MetricsKeeperInt.ContainsKey(metric))
             MetricsKeeperInt.Add(metric, 0);
         MetricsKeeperInt[metric]++;
     }
-    public void ReturnKeeperInt()
+    public static void ReturnKeeperInt()
     {
         Debug.Log("==========================");
         foreach (var s in MetricsKeeperInt.Keys)
             Debug.Log(s + ": " + MetricsKeeperInt[s]);
         Debug.Log("==========================");
     }
-    public int GetMetricInt(string metric)
+    public static int GetMetricInt(string metric)
     {
         if (!MetricsKeeperInt.ContainsKey(metric)) return 0;
         return MetricsKeeperInt[metric];
     }
-    public float GetMetricFloat(string metric)
+    public static float GetMetricFloat(string metric)
     {
         if (!MetricsKeeperFloat.ContainsKey(metric)) return 0;
         return MetricsKeeperFloat[metric];
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

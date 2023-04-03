@@ -8,10 +8,22 @@ public class DummyUnique : MonoBehaviour, IUnique
     private bool Hide = false;
     public void EffectManager(string s)
     {}
+    public void EnableSelf()
+    {
+        anim.Play("CIdle");
+        Hide = false;
+    }
+    public void DisableDeath()
+    {
+        this.enabled = false;
+    }
+    public void EnableDeath()
+    {
+        this.enabled = true;
+    }
     public void EnableCombat()
     {
         transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = true;
-        UIManager.EnableHealthUI();
     }
     public void DisableCombat()
     {
