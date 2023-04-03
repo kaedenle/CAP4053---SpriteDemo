@@ -19,7 +19,8 @@ public class WeaponManager : MonoBehaviour, IScriptable
     private bool[] unlocked;
     Player_Movement movementScript;
     private WeaponUI ui;
-    
+    private AttackManager am;
+
     // Start is called before the first frame update
 
     void Awake()
@@ -33,7 +34,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
         WeaponUIInstance = GameObject.Find("/-- UI --/Menu Canvas/WeaponUI");
         unlocked = new bool[wpnList.weaponlist.Length];
         ui = WeaponUIInstance.GetComponent<WeaponUI>();
-        
+        am = GetComponent<AttackManager>();
     }
     void Start()
     {
@@ -173,10 +174,10 @@ public class WeaponManager : MonoBehaviour, IScriptable
                     else if (animator.GetFloat("attack") != 0)
                     {
                         BufferWeaponID = wpnList.index;
-                        GetComponent<AttackManager>().bufferCancel = wpnList.weaponlist[wpnList.index].attack1;
+                        am.bufferCancel = wpnList.weaponlist[wpnList.index].attack1;
                     }   
                     else
-                        GetComponent<AttackManager>().InvokeAttack(wpnList.weaponlist[wpnList.index].attack1);
+                        am.InvokeAttack(wpnList.weaponlist[wpnList.index].attack1);
 
                     //damage self by 5 points
                     //gameObject.GetComponent<HealthTracker>().healthSystem.Damage(5);
@@ -188,10 +189,10 @@ public class WeaponManager : MonoBehaviour, IScriptable
                     if (animator.GetFloat("attack") != 0)
                     {
                         BufferWeaponID = wpnList.index;
-                        GetComponent<AttackManager>().bufferCancel = wpnList.weaponlist[wpnList.index].attack2;
+                        am.bufferCancel = wpnList.weaponlist[wpnList.index].attack2;
                     }
                     else
-                        GetComponent<AttackManager>().InvokeAttack(wpnList.weaponlist[wpnList.index].attack2);
+                        am.InvokeAttack(wpnList.weaponlist[wpnList.index].attack2);
                 }
                 if (animator.GetFloat("attack") != 0 && animator.GetBool("Attack") == false)
                 {

@@ -14,7 +14,8 @@ public class HealthTracker : MonoBehaviour, IDamagable
     public Vector3 barOffset;
     private Image damagedBarImage;
     private Image HPBar;
-    private bool deathFlag = false;
+    [HideInInspector]
+    public bool deathFlag = false;
 
     private float hitstunaddTimer = 0;
     private const float DAMAGED_TIMER_SHRINK_MAX = 0.5f;

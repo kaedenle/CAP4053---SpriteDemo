@@ -16,8 +16,8 @@ public class InputManager : MonoBehaviour
         Hit1 = KeyCode.Mouse0,
         Hit2 = KeyCode.Mouse1,
         Pause = KeyCode.Escape,
-        Equip = KeyCode.LeftControl,
-        Swap = KeyCode.LeftShift,
+        Equip = KeyCode.LeftShift,
+        Swap = KeyCode.Space,
         Continue = KeyCode.Space
     }
 
@@ -55,18 +55,18 @@ public class InputManager : MonoBehaviour
 
             case Keys.Equip:
                 if(_equip)
-                    real_key = KeyCode.LeftControl;
+                    real_key = KeyCode.LeftShift;
                 break;
 
             case Keys.Swap:
                 if(_swap)
-                    real_key = KeyCode.LeftShift;
-                break;
-            
-            case Keys.Continue:
-                if(_ui)
                     real_key = KeyCode.Space;
                 break;
+            
+            /*case Keys.Continue:
+                if(_ui)
+                    real_key = KeyCode.Space;
+                break;*/
         }
 
         // default case (just return default)
@@ -75,7 +75,7 @@ public class InputManager : MonoBehaviour
 
     public static bool ContinueKeyPressed()
     {
-        return _ui && KeyPressed(Keys.Continue);
+        return _ui && Input.GetKeyDown(KeyCode.Space);
     }
 
     // tells you whether a specific key was pressed

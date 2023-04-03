@@ -5,6 +5,8 @@ using UnityEngine;
 public class ItemDrop : MonoBehaviour
 {
     public ItemClass[] items;
+    public Vector3 deltas;
+    public bool RandomDirection;
     private GameObject player;
     private HealthTracker PlayerHealthTracker;
     // Start is called before the first frame update
@@ -25,10 +27,11 @@ public class ItemDrop : MonoBehaviour
     }
     private void DropItem(GameObject item)
     {
-        GameObject newItem = Instantiate(item, transform.position, Quaternion.identity);
+        Vector3 pos = new Vector3(transform.position.x + deltas.x, transform.position.y + deltas.y, transform.position.z);
+        GameObject newItem = Instantiate(item, pos, Quaternion.identity);
         Rigidbody2D body = newItem?.GetComponent<Rigidbody2D>();
         float speed = 3;
-        if (body!=null) body.velocity = -Random.onUnitSphere * speed;
+        if (body!=null && RandomDirection) body.velocity = -Random.onUnitSphere * speed;
     }
 
     // Update is called once per frame
