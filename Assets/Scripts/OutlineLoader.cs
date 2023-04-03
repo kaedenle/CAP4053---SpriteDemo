@@ -14,4 +14,9 @@ public class OutlineLoader : MonoBehaviour
             obj.SetOutline(outline);
         }
     }
+    
+    public Material GetOutline()
+    {
+        return outline;
+    }
 }
