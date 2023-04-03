@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 8521604005571251972}
   - component: {fileID: 153283111}
   - component: {fileID: 7203927996692447189}
+  - component: {fileID: 153283118}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -368,7 +369,7 @@ MonoBehaviour:
   - {fileID: -1209616074, guid: f5fc1fe8bc349d74d84152148774c8e2, type: 3}
   - {fileID: 21300000, guid: dc770ace5941049438a3e32fdea8e103, type: 3}
   - {fileID: 21300000, guid: c1be47631819d024988780c53f9ce44f, type: 3}
-  WeaponUI: {fileID: 0}
+  WeaponUIInstance: {fileID: 0}
   sr: {fileID: 8340756177781156867}
   weaponID: 0
   BufferWeaponID: 0
@@ -376,6 +377,7 @@ MonoBehaviour:
   wpnList:
     weaponlist: []
     index: 0
+  prevWeapon: 0
 --- !u!114 &6197798176421269817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,6 +412,7 @@ MonoBehaviour:
   health: 100
   bar: {fileID: 5894459449886815197, guid: fb1b7fc730420314d876a7daece293d1, type: 3}
   barOffset: {x: 0, y: 1.5, z: 0}
+  deathFlag: 0
 --- !u!114 &3923120615845457395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -549,6 +552,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38bf904e3ebab4b4d91ad341084e4ece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &153283118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6197798176421269809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 4101625b5de287c4db827cee6f7a16bb, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: NPCDialogue, Assembly-CSharp
+          m_MethodName: TriggerDialogue
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: efb76c8131f6f8d488c3f0ec06d5542f, type: 2}
+            m_ObjectArgumentAssemblyTypeName: NPCReport, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &6197798177006665903
 GameObject:
   m_ObjectHideFlags: 0
@@ -939,7 +972,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9056604147769991447}
   m_LocalRotation: {x: 0, y: 0, z: -0.15589146, w: 0.9877742}
-  m_LocalPosition: {x: 0.128, y: -0.441, z: 0}
+  m_LocalPosition: {x: -0.59, y: -0.441, z: 0}
   m_LocalScale: {x: 0.18455341, y: 0.1645294, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -988,7 +1021,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 89ea98f4835ed024fbe5cdf15b1355c5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aa3dbbbd433ec7a449e4dab17ddf7d0b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

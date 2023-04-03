@@ -56,7 +56,6 @@ public class AttackManager : MonoBehaviour
     private bool active = false;
     private bool cancellableFlag = false;
     private IUnique uniqueScript;
-    private int lastWeapon;
 
     //audio
     private AudioClip[] currentAudio;
@@ -266,7 +265,6 @@ public class AttackManager : MonoBehaviour
     public void StartPlay(int moveIndex){
         //get current animation to keep track of current animation frame (attach hitboxes to animation)
         //if(animator != null) Debug.Log(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
-        lastWeapon = wpnList.index;
         //get framedata
         framedata = JsonUtility.FromJson<FrameData>(attackContainer[(moveIndex - 1) % attackContainer.Length].moveData.text);
         currentAudio = attackContainer[(moveIndex - 1) % attackContainer.Length].HitSFX;

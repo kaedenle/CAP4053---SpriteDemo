@@ -79,7 +79,7 @@ public class TutorialCutsceneManager : MonoBehaviour
                 break;
             //cancel
             case 3:
-                if (PlayerMetricsManager.GetMetricInt("cancel") > above && PlayerMetricsManager.GetMetricInt("killed") > 1) 
+                if (PlayerMetricsManager.GetMetricInt("cancel") > above) 
                     PlayTimeline();
                 if (dummy.Hide && PlayerMetricsManager.GetMetricInt("cancel") <= above && Respawn)
                     ResetDummy();
@@ -92,13 +92,13 @@ public class TutorialCutsceneManager : MonoBehaviour
                     ResetDummy();
                 break;
             case 5:
-                if(PlayerMetricsManager.GetMetricInt("used_" + am.wpnList.weaponlist[1].name) > 0 && PlayerMetricsManager.GetMetricInt("killed") > above)
+                if(PlayerMetricsManager.GetMetricInt("used_" + am.wpnList.weaponlist[1].name) > 0)
                     PlayTimeline();
                 if (PlayerMetricsManager.GetMetricInt("used_" + am.wpnList.weaponlist[1].name) <= 0 && dummy.Hide)
                     ResetDummy();
                 break;
             case 6:
-                if (PlayerMetricsManager.GetMetricInt("cross_cancel") > 0 && PlayerMetricsManager.GetMetricInt("killed") > above)
+                if (PlayerMetricsManager.GetMetricInt("cross_cancel") > 0)
                     PlayTimeline();
                 if (PlayerMetricsManager.GetMetricInt("cross_cancel") <= 0 && dummy.Hide)
                     ResetDummy();

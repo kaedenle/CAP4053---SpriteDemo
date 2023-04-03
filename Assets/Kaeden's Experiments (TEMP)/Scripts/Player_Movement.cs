@@ -111,21 +111,30 @@ public class Player_Movement : MonoBehaviour, IScriptable
 
     void FixedUpdate()
     {
+        animator.SetBool("Skid", false);
         //gameObject.transform.position += movement * speed * Time.fixedDeltaTime;
         body.AddForce(movement * 200 * speed * Time.fixedDeltaTime);
         float dragCoeffic = 30;
         //kill velocity faster
         if (moveX == 0 && moveY == 0 && body.velocity.sqrMagnitude > 0.1f)
+        {
             body.AddForce(-body.velocity * dragCoeffic * speed * Time.fixedDeltaTime);
-
+            animator.SetBool("Skid", true);
+        }
         Vector2 xtemp = new Vector2(-body.velocity.x, 0);
         Vector2 ytemp = new Vector2(0, -body.velocity.y);
         float turnCoeffic = 45;
         //reverse velocity faster
         if (moveX > 0 && body.velocity.x < 0 || moveX < 0 && body.velocity.x > 0)
+        {
             body.AddForce(xtemp * turnCoeffic * speed * Time.fixedDeltaTime);
+        }
+            
         if (moveY > 0 && body.velocity.y < 0 || moveY < 0 && body.velocity.y > 0)
+        {
             body.AddForce(ytemp * turnCoeffic * speed * Time.fixedDeltaTime);
+        }
+            
 
         //body.MovePosition(body.position + movement * speed * Time.fixedDeltaTime);
     }
