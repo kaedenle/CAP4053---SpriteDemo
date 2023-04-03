@@ -16,7 +16,6 @@ public class WeaponManager : MonoBehaviour, IScriptable
     public AttackManager.WeaponList wpnList = new AttackManager.WeaponList();
     private Hurtbox hrtbx;
     private SpriteRenderer onhand;
-    private bool[] unlocked;
     Player_Movement movementScript;
     private WeaponUI ui;
     private AttackManager am;
@@ -32,7 +31,6 @@ public class WeaponManager : MonoBehaviour, IScriptable
         onhand = gameObject.transform.Find("Right Arm").Find("On-Hand").GetComponent<SpriteRenderer>();
         movementScript = gameObject.GetComponent<Player_Movement>();
         WeaponUIInstance = GameObject.Find("/-- UI --/Menu Canvas/WeaponUI");
-        unlocked = new bool[wpnList.weaponlist.Length];
         ui = WeaponUIInstance.GetComponent<WeaponUI>();
         am = GetComponent<AttackManager>();
     }
