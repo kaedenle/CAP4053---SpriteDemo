@@ -14,6 +14,7 @@ public class TutorialCutsceneManager : MonoBehaviour
     private GameObject subject;
     private NPCDialogue dialouge;
     private PlayerMetricsManager pmm;
+    private AttackManager am;
     private int above;
     private int timesTalked = 0;
     private int pickedup = 0;
@@ -36,7 +37,7 @@ public class TutorialCutsceneManager : MonoBehaviour
     void Awake()
     {
         player = GameObject.Find("Player");
-        AttackManager am = player.GetComponent<AttackManager>();
+        am = player.GetComponent<AttackManager>();
         am.wpnList.weaponlist[1].active = false;
         am.wpnList.weaponlist[2].active = false;
         UIManager.DisableHealthUI();
@@ -44,8 +45,7 @@ public class TutorialCutsceneManager : MonoBehaviour
         llf = LevelLoaderBlackScreen.GetComponent<LevelLoaderFinish>();
         subject = GameObject.Find("Conscious");
         dialouge = subject.GetComponent<NPCDialogue>();
-        pmm = PlayerMetricsManager.GetManager();
-        above = pmm.GetMetricInt("equip");
+        above = PlayerMetricsManager.GetMetricInt("equip");
         NPCDialogue.Talked += Talked;
         Item.PickedUp += PickedUp;
     }
@@ -58,11 +58,11 @@ public class TutorialCutsceneManager : MonoBehaviour
         switch (step)
         {
             case 0:
-                if(pmm.GetMetricInt("equip") > above && timesTalked > 1)
+                if(PlayerMetricsManager.GetMetricInt("equip") > above && timesTalked > 1)
                     PlayTimeline();
                 break;
             case 1:
-                if (pmm.GetMetricInt("killed") > above)
+                if (PlayerMetricsManager.GetMetricInt("killed") > above)
                     PlayTimeline();
                 break;
             case 2:
@@ -70,7 +70,11 @@ public class TutorialCutsceneManager : MonoBehaviour
                     PlayTimeline();
                 break;
             case 3:
-                if (pmm.GetMetricInt("swap") > 0)
+                if (PlayerMetricsManager.GetMetricInt("swap") > 0)
+                    PlayTimeline();
+                break;
+            case 4:
+                if(PlayerMetricsManager.GetMetricInt("used_" + am.wpnList.weaponlist[1].name) > 0)
                     PlayTimeline();
                 break;
         }
@@ -85,7 +89,7 @@ public class TutorialCutsceneManager : MonoBehaviour
     private void PresetVar()
     {
         if (step == 1)
-            above = pmm.GetMetricInt("killed");
+            above = PlayerMetricsManager.GetMetricInt("killed");
     }
     public void EnableSwap()
     {
