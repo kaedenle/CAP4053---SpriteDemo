@@ -21,22 +21,26 @@ public class InputManager : MonoBehaviour
         Continue
     }
 
+    // the actual key bindings the player uses
     private static Dictionary<Keys, KeyCode> keycodes;
+
+    // Default Key Bindings (in case the player wants to revert to default)
+    private static Dictionary<Keys, KeyCode> defaultKeyCodes = new Dictionary<Keys, KeyCode>
+    {
+        {Keys.Interact, KeyCode.F},
+        {Keys.Hit1, KeyCode.Mouse0},
+        {Keys.Hit2, KeyCode.Mouse1},
+        {Keys.Pause, KeyCode.Escape},
+        {Keys.Equip, KeyCode.LeftShift},
+        {Keys.Swap, KeyCode.Space},
+        {Keys.Continue, KeyCode.Space}
+    };
 
     void Awake()
     {
         if(keycodes == null)
         {
-            keycodes = new Dictionary<Keys, KeyCode>
-            {
-                {Keys.Interact, KeyCode.E},
-                {Keys.Hit1, KeyCode.Mouse0},
-                {Keys.Hit2, KeyCode.Mouse1},
-                {Keys.Pause, KeyCode.Escape},
-                {Keys.Equip, KeyCode.LeftShift},
-                {Keys.Swap, KeyCode.Space},
-                {Keys.Continue, KeyCode.Space}
-            };
+            keycodes = defaultKeyCodes;
         }
     }
 
@@ -59,13 +63,13 @@ public class InputManager : MonoBehaviour
 
     public static bool ContinueKeyPressed()
     {
-        return _ui && Pressed(Keys.Continue);
+        return _ui && (Pressed(Keys.Continue) || Pressed(Keys.Interact));
     }
 
     // tells you whether a specific key was pressed
     public static bool InteractKeyDown()
     {
-        return _interact && (Pressed(Keys.Interact) || Input.GetKeyDown(KeyCode.F));
+        return _interact && (Pressed(Keys.Interact) || Input.GetKeyDown(KeyCode.E));
     }
 
     public static bool PauseKeyDown()
