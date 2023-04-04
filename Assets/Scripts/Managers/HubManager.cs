@@ -6,15 +6,19 @@ public class HubManager : MonoBehaviour
 {
     public enum PhaseTag
     {
+        Tutorial,
         Mobster,
-        Child
+        Child,
+        Boss
     }
 
     // array of the starting mind scenes
     private static ScenesManager.AllScenes[] mindSceneStarts =
     {
+        ScenesManager.AllScenes.TutorialSkyBox,
         ScenesManager.AllScenes.MobsterRoadDemo,
-        ScenesManager.AllScenes.ChildLivingRoom
+        ScenesManager.AllScenes.ChildLivingRoom,
+        ScenesManager.AllScenes.Boss_Arena
     };
 
     private static int currentPhase;

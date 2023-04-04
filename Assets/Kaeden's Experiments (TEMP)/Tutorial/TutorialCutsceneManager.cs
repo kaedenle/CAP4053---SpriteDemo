@@ -107,7 +107,9 @@ public class TutorialCutsceneManager : MonoBehaviour
     }
     public void LoadHub()
     {
-        ScenesManager.LoadScene(ScenesManager.AllScenes.CentralHub);
+        // update the game state and load the hub
+        LevelManager.EndLevel();
+        // ScenesManager.LoadScene(ScenesManager.AllScenes.CentralHub);
     }
     public void EnableRespawn()
     {

@@ -39,7 +39,7 @@ public class ScenesManager : MonoBehaviour
         Boss_BossRoom,
         CastleArena,
         CastleMaze,
-        TheEnd
+        TutorialSkyBox
     }
 
     // loads a scene
@@ -98,14 +98,14 @@ public class ScenesManager : MonoBehaviour
 
             else if((int)_currentScene <= (int) AllScenes.MobsterAlleyDemo)
             {
-                temp = new GameState(0, 1);
+                temp = new GameState(1, 1);
             }
 
             else if((int)_currentScene <= (int) AllScenes.ChildChildRoom)
             {
-                temp = new GameState(1, 1);
+                temp = new GameState(2, 1);
             }
-
+            
             temp.Save();
         }
 
