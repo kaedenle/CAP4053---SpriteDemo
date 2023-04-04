@@ -42,8 +42,9 @@ public class UIManager : MonoBehaviour
 
             else
             {
-                UIPause();
+                Pause();
             }
+
             if (MenuUI != null)
             {
                 MenuUI.SetActive(true);
@@ -52,14 +53,15 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    static void UIPause()
+    public static void ResetManager()
     {
-        paused = true;
-        Pause();
+        pause_mask = 0;
+        interactive_index = new Dictionary<string, int>();
     }
 
     static void Pause()
     {
+        paused = true;
         pause_mask = EntityManager.PauseAndMask();
     }
 

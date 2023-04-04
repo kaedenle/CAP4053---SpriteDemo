@@ -2,22 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossLevelManager : LevelManager
+public class BossLevelManager : SubLevelManager
 {
-    static BossLevelManager boss_instance;
     // delay in seconds after the boss is killed before the level end is triggered
     static float boss_death_wait = 2.5F;
 
     new void Awake()
     {
+        if(ScenesManager.GetCurrentScene() == ScenesManager.AllScenes.Boss_BossRoom)
+            startScene = ScenesManager.AllScenes.Boss_BossRoom;
+        else
+            startScene = ScenesManager.AllScenes.Boss_Arena;
+
+        SetInstance(this);
         base.Awake();
-        boss_instance = this;
     }
 
-    new void Start()
+    public override void TriggerReset()
     {
-        setInstance(this, ScenesManager.AllScenes.Boss_Arena);
-        base.Start();
+        ResetVariables();
     }
 
     new public static void ResetVariables()
@@ -39,6 +42,6 @@ public class BossLevelManager : LevelManager
 
     public static BossLevelManager GetInstance()
     {
-        return boss_instance;
+        return (BossLevelManager) Instance;
     }
 }

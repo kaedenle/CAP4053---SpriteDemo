@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CastleLevelManager : LevelManager
+public class CastleLevelManager : SubLevelManager
 {
     private static bool maze_status = false;
     private static InventoryManager.AllItems[] specials = {
@@ -10,10 +10,17 @@ public class CastleLevelManager : LevelManager
         InventoryManager.AllItems.CastleDagger
     };
 
-    new void Start()
+    new void Awake()
     {
-        setInstance(this, ScenesManager.AllScenes.CastleArena);
-        base.Start();
+        startScene = ScenesManager.AllScenes.CastleArena;
+        SetInstance(this);
+
+        base.Awake();
+    }
+
+    public override void TriggerReset()
+    {
+        ResetVariables();
     }
 
     new public static void ResetVariables()

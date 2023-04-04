@@ -7,11 +7,9 @@ public class LevelManager : MonoBehaviour
     // delay between when the scene loads and when the player and other entities can move
     private static float default_delay = 1F;
 
-    // Instance holds which LevelManager child that is currently managing the level
-    private static LevelManager Instance;
-
     // the starting scene of the current level
     private static ScenesManager.AllScenes _startScene;
+    private static SubLevelManager level;
 
     // bool for the cutscene triggering
     private static bool _levelEnding = false;
@@ -47,11 +45,10 @@ public class LevelManager : MonoBehaviour
         // ResetVariables();
     }
 
-    protected LevelManager setInstance(LevelManager obj, ScenesManager.AllScenes start)
+    public static void SetLevel(SubLevelManager sublevel, ScenesManager.AllScenes start)
     {
-        Instance = obj;
         _startScene = start;
-        return this;
+        level = sublevel;
     }
 
     public static void FullReset()
@@ -74,9 +71,10 @@ public class LevelManager : MonoBehaviour
     {
         ResetVariables();
         InventoryManager.ResetVariables();
+        UIManager.ResetManager();
 
-        if (Instance != null)
-            Instance.TriggerReset();
+        if (level != null)
+            level.TriggerReset();
     }
 
     public static void TriggerEnd()
@@ -119,7 +117,7 @@ public class LevelManager : MonoBehaviour
     {   
         ResetAllVariables();
         EntityManager.Pause(); // reset from player death
-        if (Instance != null)
+        if (level != null)
             ScenesManager.LoadScene(_startScene);
     }
 

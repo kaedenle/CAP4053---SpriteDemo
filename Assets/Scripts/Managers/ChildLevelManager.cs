@@ -2,15 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChildLevelManager : LevelManager
+public class ChildLevelManager : SubLevelManager
 {
     private static bool inMirror = false;
 
-    // Start is called before the first frame update
-    new void Start()
+    new void Awake()
     {
-        setInstance(this, ScenesManager.AllScenes.ChildLivingRoom);
-        base.Start();
+        startScene = ScenesManager.AllScenes.ChildLivingRoom;
+        SetInstance(this);
+
+        base.Awake();
+    }
+
+    public override void TriggerReset()
+    {
+        ResetVariables();
     }
 
     new public static void ResetVariables()

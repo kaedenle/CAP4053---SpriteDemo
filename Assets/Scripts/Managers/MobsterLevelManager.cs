@@ -2,15 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MobsterLevelManager : LevelManager
+public class MobsterLevelManager : SubLevelManager
 {
     static bool _alleyGateOpen = false;
-    private static LevelManager parent;
 
-    new void Start()
+    new void Awake()
     {
-        setInstance(this, ScenesManager.AllScenes.MobsterRoadDemo);
-        base.Start();
+        startScene = ScenesManager.AllScenes.MobsterRoadDemo;
+        SetInstance(this);
+
+        base.Awake();
+    }
+
+    public override void TriggerReset()
+    {
+        ResetVariables();
     }
 
     // reset the manager variables

@@ -39,6 +39,7 @@ public class EntityManager : MonoBehaviour
 
     public static void SetPause()
     {
+        Debug.Log("in SetPause | initial numPauses=" + numPauses);
         _pause = true;
 
         if(numPauses <= 0)
@@ -50,6 +51,7 @@ public class EntityManager : MonoBehaviour
 
     public static void SetUnpause()
     {
+        Debug.Log("in SetUnpause | initial numPauses=" + numPauses);
         _pause = false;
         numPauses--;
 
@@ -60,6 +62,7 @@ public class EntityManager : MonoBehaviour
     public static int PauseAndMask()
     {
         int mask = 0;
+        SetPause();
 
         for(int i = 0, d = 1; i < states.Length; i++, d <<= 1)
         {
@@ -70,7 +73,6 @@ public class EntityManager : MonoBehaviour
             }
         }
 
-        SetPause();
         return mask;
     }
 
