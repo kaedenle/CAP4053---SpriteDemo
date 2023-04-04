@@ -154,7 +154,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inHitStun: 0
+  NotFlash: 0
   default_ani: Bullet
+  NotHitPart: 0
 --- !u!95 &6412734456593120152
 Animator:
   serializedVersion: 5
@@ -188,15 +190,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponList: {fileID: 0}
-  wpnList:
-    weaponlist: []
-    index: 0
-  hitboxParent: {fileID: 0}
+  attackContainer:
+  - moveData: {fileID: 4900000, guid: 3bc3fd6f198022c49997c3f461890f8b, type: 3}
+    HitSFX: []
   HBList: []
-  active: 0
-  bufferCancel: -1
-  moveContainer:
-  - {fileID: 4900000, guid: 4c7451bc8342b3a4db6c8efacb3241f8, type: 3}
   framedata:
     framedata: []
     damage: 0
@@ -210,3 +207,10 @@ MonoBehaviour:
     deactivateMove: 0
     relativeKnockback: 0
     functCall: 
+    ID: 0
+  wpnList:
+    weaponlist: []
+    index: 0
+  bufferCancel: -1
+  ProjectileOwner: {fileID: 0}
+  hitboxParent: {fileID: 0}
