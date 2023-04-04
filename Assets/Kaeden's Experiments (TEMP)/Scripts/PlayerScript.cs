@@ -198,7 +198,7 @@ public class PlayerScript : MonoBehaviour, IUnique
         if (GameManager.OneGM != null)
             gmo = GameManager.OneGM;
         else
-        {animator.SetBool("Hitstun", true);
+        {
             gmo = Instantiate(Resources.Load("Prefabs/GameManager")) as GameObject;
             gmo.name = "GameManager";
         }

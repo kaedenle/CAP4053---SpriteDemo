@@ -191,7 +191,8 @@ public class AttackManager : MonoBehaviour
                     //PlayerMetricsManager
                     if(tag == "Player")
                     {
-                        if (effect.GetComponent<HealthTracker>().healthSystem.getHealth() == 0)
+                        HealthTracker tempht = effect?.GetComponent<HealthTracker>();
+                        if (tempht != null && tempht.GetComponent<HealthTracker>().healthSystem.getHealth() == 0)
                             PlayerMetricsManager.IncrementKeeperInt("killed");
                         PlayerMetricsManager.IncrementKeeperInt("hit_" + entity.gameObject.transform.root.gameObject.name);
                         PlayerMetricsManager.IncrementKeeperInt("enemies_hit");
