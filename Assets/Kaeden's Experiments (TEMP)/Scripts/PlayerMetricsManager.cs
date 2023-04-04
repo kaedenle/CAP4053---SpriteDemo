@@ -7,7 +7,7 @@ public class PlayerMetricsManager : MonoBehaviour
     private static PlayerMetricsManager instance; 
     private static IDictionary<string, int> MetricsKeeperInt = new Dictionary<string, int>();
     private static IDictionary<string, float> MetricsKeeperFloat = new Dictionary<string, float>();
-    /*public static PlayerMetricsManager GetManager()
+    public static PlayerMetricsManager GetManager()
     {
         return instance;
     }
@@ -23,26 +23,26 @@ public class PlayerMetricsManager : MonoBehaviour
             instance = this;
         if(instance != this)
             Destroy(gameObject);
-    }*/
-    public static void IncrementKeeperInt(string metric)
+    }
+    public void IncrementKeeperInt(string metric)
     {
         if (!MetricsKeeperInt.ContainsKey(metric))
             MetricsKeeperInt.Add(metric, 0);
         MetricsKeeperInt[metric]++;
     }
-    public static void ReturnKeeperInt()
+    public void ReturnKeeperInt()
     {
         Debug.Log("==========================");
         foreach (var s in MetricsKeeperInt.Keys)
             Debug.Log(s + ": " + MetricsKeeperInt[s]);
         Debug.Log("==========================");
     }
-    public static int GetMetricInt(string metric)
+    public int GetMetricInt(string metric)
     {
         if (!MetricsKeeperInt.ContainsKey(metric)) return 0;
         return MetricsKeeperInt[metric];
     }
-    public static float GetMetricFloat(string metric)
+    public float GetMetricFloat(string metric)
     {
         if (!MetricsKeeperFloat.ContainsKey(metric)) return 0;
         return MetricsKeeperFloat[metric];

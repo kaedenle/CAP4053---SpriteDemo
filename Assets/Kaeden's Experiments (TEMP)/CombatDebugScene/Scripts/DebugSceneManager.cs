@@ -26,14 +26,17 @@ public class DebugSceneManager : MonoBehaviour
             book.GetComponent<BookUI>().ToggleBook();
         }
         if (Input.GetKeyDown(KeyCode.P))
-            PlayerMetricsManager.ReturnKeeperInt();
+            pmm.ReturnKeeperInt();
         if (Input.GetKeyDown(KeyCode.O))
             UIManager.EnableHealthUI();
         if (Input.GetKeyDown(KeyCode.I))
             UIManager.DisableHealthUI();
 
     }
-
+    void Awake()
+    {
+        pmm = GameObject.Find("PlayerMetricsManager").GetComponent<PlayerMetricsManager>();
+    }
     void Start()
     {
         UIManager.DisableHealthUI();

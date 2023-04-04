@@ -5,6 +5,7 @@ using UnityEngine;
 public class SlimeEnemyScript : MonoBehaviour, IUnique
 {
     private Animator animator;
+    private PlayerMetricsManager pmm;
     public void EffectManager(string funct)
     {
     }
@@ -12,7 +13,7 @@ public class SlimeEnemyScript : MonoBehaviour, IUnique
     {
         HealthTracker healthTracker = GetComponent<HealthTracker>();
         //Debug.Log("Dead Ooze boy");
-        PlayerMetricsManager.IncrementKeeperInt("killed");
+        pmm.IncrementKeeperInt("killed");
         Destroy(healthTracker.bar.gameObject);
         Destroy(gameObject);
     }
@@ -22,7 +23,10 @@ public class SlimeEnemyScript : MonoBehaviour, IUnique
         //TEMPORARY
         animator.Play("SlimeIdle");
     }
-
+    void Awake()
+    {
+        pmm = GameObject.Find("PlayerMetricsManager").GetComponent<PlayerMetricsManager>();
+    }
     // Start is called before the first frame update
     void Start()
     {
