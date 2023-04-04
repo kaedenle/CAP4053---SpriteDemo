@@ -16,7 +16,7 @@ public class BossLevelManager : LevelManager
 
     new void Start()
     {
-        setInstance(this, ScenesManager.AllScenes.CastleArena);
+        setInstance(this, ScenesManager.AllScenes.Boss_Arena);
         base.Start();
     }
 
