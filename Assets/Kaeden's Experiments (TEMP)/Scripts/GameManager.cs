@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     private bool FirstTime;
     private IDictionary<string, List<EnemyStore>> EnemyLists = new Dictionary<string, List<EnemyStore>>();
     private static GameObject EnemyParent;
+    private bool firstLoad = false;
     [HideInInspector]
     // Start is called before the first frame update
     void Awake()
@@ -34,6 +35,12 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        FirstLoad();
+    }
+    public void FirstLoad()
+    {
+        if (firstLoad) return;
+        firstLoad = true;
         FindStuff();
         UpdateCurrentValues();
         SeenScene = SceneManager.GetActiveScene().name;
@@ -65,16 +72,11 @@ public class GameManager : MonoBehaviour
     //resets manager, from level to level loading
     public void ResetManager()
     {
+        if (!firstLoad) FirstLoad();
         EnemyLists.Clear();
         WeaponInt = -1;
         Health = MaxHealth;
         reload();
-    }
-    public void SoftResetManager()
-    {
-        EnemyLists.Clear();
-        WeaponInt = -1;
-        Health = MaxHealth;
     }
     private void reload()
     {

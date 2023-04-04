@@ -226,7 +226,7 @@ public class PlayerScript : MonoBehaviour, IUnique
             if(DeathDelayTimer <= 0)
             {
                 EntityManager.PlayerDied();
-                gm.SoftResetManager();
+                gm.ResetManager();
                 killPlayer = false;
             }
                 
