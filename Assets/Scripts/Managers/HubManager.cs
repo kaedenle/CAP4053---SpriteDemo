@@ -21,6 +21,7 @@ public class HubManager : MonoBehaviour
         ScenesManager.AllScenes.Boss_Arena
     };
 
+    private bool revisit = false;
     private static int currentPhase;
     private static GameState game;
 
@@ -33,13 +34,6 @@ public class HubManager : MonoBehaviour
 
     void Start()
     {
-        GameObject GameManager = GameObject.Find("GameManager");
-        if (GameManager != null)
-        {
-            GameManager gm = GameManager.GetComponent<GameManager>();
-            //reset gamemanager
-            gm.ResetManager();
-        }
 
         if(currentPhase >= mindSceneStarts.Length)
         {
@@ -54,6 +48,17 @@ public class HubManager : MonoBehaviour
             EntityManager.DisableSwap();
         if(EntityManager.EquipEnabled())
             EntityManager.DisableEquip();
+        if(!revisit)
+        {
+            GameObject GameManager = GameObject.Find("GameManager");
+            if (GameManager != null)
+            {
+                GameManager gm = GameManager.GetComponent<GameManager>();
+                //reset gamemanager
+                gm.ResetManager();
+            }
+            revisit = true;
+        }
     }
 
     // load the given phase if you are not loading the phase from the Hub
