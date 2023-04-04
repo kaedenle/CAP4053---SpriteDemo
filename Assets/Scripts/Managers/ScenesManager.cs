@@ -60,6 +60,7 @@ public class ScenesManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(nextSceneDelay);
         SceneManager.LoadScene( build_idx );
+        UIManager.EnableHealthUI();
     }
 
     // loads a scene based on demo boolean
