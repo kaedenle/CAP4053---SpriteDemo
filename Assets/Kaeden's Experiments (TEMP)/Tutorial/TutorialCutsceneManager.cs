@@ -40,20 +40,25 @@ public class TutorialCutsceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        UIManager.DisableHealthUI();
+        WeaponUI.DisableWeaponUI();
+        NPCDialogue.Talked += Talked;
+        Item.PickedUp += PickedUp;
+        PlayerPrefs.SetInt("In here!", 1);
+    }
+    private void Start()
+    {
         pmm = GameObject.Find("PlayerMetricsManager").GetComponent<PlayerMetricsManager>();
         player = GameObject.Find("Player");
         am = player.GetComponent<AttackManager>();
         am.wpnList.weaponlist[1].active = false;
         am.wpnList.weaponlist[2].active = false;
-        UIManager.DisableHealthUI();
-        WeaponUI.DisableWeaponUI();
-        llf = LevelLoaderBlackScreen.GetComponent<LevelLoaderFinish>();
+        above = pmm.GetMetricInt("equip");
+        dummy = dummyObject.GetComponent<DummyUnique>();
+
         subject = GameObject.Find("Conscious");
         dialouge = subject.GetComponent<NPCDialogue>();
-        above = pmm.GetMetricInt("equip");
-        NPCDialogue.Talked += Talked;
-        Item.PickedUp += PickedUp;
-        dummy = dummyObject.GetComponent<DummyUnique>();
+        llf = LevelLoaderBlackScreen.GetComponent<LevelLoaderFinish>();
     }
     public void SetDialouge(NPCReport report)
     {
