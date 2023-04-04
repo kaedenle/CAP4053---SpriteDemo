@@ -84,13 +84,17 @@ public class BossAI : MonoBehaviour, IUnique
     {
 
     }
+
     public void onDeath()
     {
         HealthTracker healthTracker = GetComponent<HealthTracker>();
         Destroy(healthTracker.bar.gameObject);
         anim.SetTrigger("Death");
         //Destroy(gameObject);
+
+        BossLevelManager.GetInstance().TriggerBossDeath();
     }
+
     public void HitStunAni()
     {
         //TEMPORARY
