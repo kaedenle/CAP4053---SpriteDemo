@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
         if (firstLoad) return;
         firstLoad = true;
         FindStuff();
+        if (player == null) Destroy(gameObject);
         UpdateCurrentValues();
         SeenScene = SceneManager.GetActiveScene().name;
         SceneID = ScenesManager.GetCurrentScene();
@@ -51,6 +52,7 @@ public class GameManager : MonoBehaviour
     {
         player = GameObject.Find("Player");
         if (player == null) return;
+
         am = player.GetComponent<AttackManager>();
         ht = player.GetComponent<HealthTracker>();
         anim = player.GetComponent<Animator>();

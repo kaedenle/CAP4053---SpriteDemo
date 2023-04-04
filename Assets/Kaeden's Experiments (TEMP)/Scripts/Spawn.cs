@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEditor;
 
 public class Spawn : MonoBehaviour
 {
@@ -47,7 +46,7 @@ public class Spawn : MonoBehaviour
         //Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.localScale);
         //Gizmos.DrawCube(Vector3.zero, transform.localScale);
         Gizmos.DrawWireSphere(transform.position, SpawnRadius);
-        Handles.Label(transform.position, EnemyType.name);
+        //Handles.Label(transform.position, EnemyType.name);
         //Gizmos.DrawIcon(transform.position, EnemyType.name, true);
 
     }
