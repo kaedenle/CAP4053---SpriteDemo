@@ -112,9 +112,11 @@ public class Hitbox : MonoBehaviour
         string tempTag = hitsTag == null ? "" : hitsTag;
         if (!hit.tag.Equals(tempTag))
             return false;
+        //get hurtbox
+        Hurtbox hrt = hit?.GetComponent<Hurtbox>();
         //get all idamagable scripts
-        IDamagable[] scripts = hit?.GetComponent<Hurtbox>()?.damagableScripts;
-        if (scripts == null)
+        IDamagable[] scripts = hrt?.damagableScripts;
+        if (scripts == null || hrt.invin)
             return false;
 
         //apply damage

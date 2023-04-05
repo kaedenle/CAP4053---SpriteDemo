@@ -28,11 +28,12 @@ public class Hurtbox : MonoBehaviour, IDamagable
     public bool NotHitPart;
     private IEnumerator running;
     private Color[] OriginalColors;
+    public bool invin;
     public void damage(AttackData ad)
     {
         //play hit audio if it exists
         if (audiosrc != null && ad.audio != null)
-            audiosrc.PlayOneShot(ad.audio, 0.75f);
+            audiosrc.PlayOneShot(ad.audio, 0.5f);
 
         Debug.Log(ad.weapon + " " + ad.attack);
         //Hit particle effect
@@ -95,11 +96,26 @@ public class Hurtbox : MonoBehaviour, IDamagable
         }
         
     }
-    public void InvokeFlash(float duration, Color c, bool solidColor = true, int repeat = 1, float endingDuration = 0.05f)
+    public void InvokeFlash(float duration, Color c, bool solidColor = true, bool priority = true, int repeat = 1, float endingDuration = 0.05f)
     {
+        //if something is already running and you're not a priority, return
+        if (running != null && !priority) return;
         if (running != null) StopCoroutine(running);
         running = Flash(duration, c, solidColor, repeat, endingDuration);
         StartCoroutine(running);
+    }
+    public void CancelFlash()
+    {
+        if (running == null) return;
+        StopCoroutine(running);
+        for (int j = 0; j < sr.Length; j++)
+        {
+            if (sr[j].gameObject.tag == "Shadow") continue;
+            sr[j].material.shader = OriginalShader[j];
+            sr[j].material.color = Color.white;
+            sr[j].color = OriginalColors[j];
+        }
+        running = null;
     }
     IEnumerator Flash(float duration, Color c, bool solidColor = true, int repeats = 1, float endingDuration = 0.05f)
     {
@@ -126,7 +142,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
                 if (sr[j].gameObject.tag == "Shadow") continue;
                 sr[j].material.shader = OriginalShader[j];
                 sr[j].material.color = Color.white;
-                sr[j].color = OriginalColors[i];
+                sr[j].color = OriginalColors[j];
             }
 
             if(i != repeats - 1) yield return new WaitForSeconds(endingDuration);

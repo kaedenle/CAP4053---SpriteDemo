@@ -34,7 +34,7 @@ public class DebugSceneManager : MonoBehaviour
     }
     void Start()
     {
-        UIManager.DisableHealthUI();
+        //UIManager.DisableHealthUI();
         player = GameObject.Find("Player");
         BlackFade = GameObject.Find("BlackFade");
     }

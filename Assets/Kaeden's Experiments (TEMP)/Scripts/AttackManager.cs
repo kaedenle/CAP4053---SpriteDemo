@@ -56,6 +56,7 @@ public class AttackManager : MonoBehaviour
     private bool active = false;
     private bool cancellableFlag = false;
     private IUnique uniqueScript;
+    public bool invulerable = false;
 
     //audio
     private AudioClip[] currentAudio;
