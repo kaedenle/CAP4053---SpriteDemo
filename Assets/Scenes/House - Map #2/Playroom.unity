@@ -3880,7 +3880,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 533218ab08cc16c42938bbf8441c1a24, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -4069,6 +4069,8 @@ GameObject:
   - component: {fileID: 798243752}
   - component: {fileID: 798243755}
   - component: {fileID: 798243756}
+  - component: {fileID: 798243757}
+  - component: {fileID: 798243758}
   m_Layer: 0
   m_Name: Dog
   m_TagString: Untagged
@@ -4205,6 +4207,41 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.5372958, y: 1.3919959}
   m_EdgeRadius: 0
+--- !u!114 &798243757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798243751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c3b8c955297b3f48b88b1c75e13ea8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineThickness: 0.5
+  dialogue: {fileID: 11400000, guid: bab6d0bc716dcb94a8fd2311eb580d40, type: 2}
+  highlightEnds: 1
+  lockable:
+    isLocked: 0
+    requiredItems: 
+    lockedText: {fileID: 0}
+--- !u!58 &798243758
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798243751}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.6581197, y: -0.8205123}
+  serializedVersion: 2
+  m_Radius: 1.4358978
 --- !u!1 &802767834
 GameObject:
   m_ObjectHideFlags: 0
@@ -4390,7 +4427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1554438271625386812, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5750500544224692365, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
       propertyPath: m_IsActive
