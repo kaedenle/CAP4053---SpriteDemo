@@ -9,8 +9,10 @@ public class SkeletonEnemyScript : MonoBehaviour, IUnique
     private Rigidbody2D body;
     private ItemDrop drops;
     private AudioSource audiosrc;
+    private Hurtbox hrt;
     private float MAX_DEATH_TIMER = 2.5f;
     private float death_timer;
+    public bool shooting = false;
     public void EffectManager(string funct)
     {
     }
@@ -18,6 +20,9 @@ public class SkeletonEnemyScript : MonoBehaviour, IUnique
     {
         animator.SetBool("Death", true);
         if (drops != null) drops.AttemptDrop();
+        IScriptable[] scripts = GetComponents<IScriptable>();
+        foreach (IScriptable uni in scripts)
+            uni.ScriptHandler(false);
         body.velocity = Vector2.zero;
         foreach (BoxCollider2D box in transform.GetComponentsInChildren<BoxCollider2D>())
             box.enabled = false;
@@ -35,7 +40,7 @@ public class SkeletonEnemyScript : MonoBehaviour, IUnique
         {
             while (EntityManager.IsPaused()) yield return null;
             Color c = sr.color;
-            c.a = c.a > 0 ? c.a - 0.001f : 0;
+            c.a = c.a > 0 ? c.a - 0.005f : 0;
             sr.color = c;
             death_timer -= Time.deltaTime;
             if (healthTracker.bar.gameObject != null && healthTracker.TotalDown() == 0) Destroy(healthTracker.bar.gameObject);
@@ -50,8 +55,9 @@ public class SkeletonEnemyScript : MonoBehaviour, IUnique
     public void HitStunAni()
     {
         animator.Play("Hurt");
+        animator.SetBool("Hitstun", true);
+        shooting = false;
     }
-
     // Start is called before the first frame update
     void Awake()
     {
@@ -60,10 +66,15 @@ public class SkeletonEnemyScript : MonoBehaviour, IUnique
         body = gameObject.GetComponent<Rigidbody2D>();
         drops = gameObject?.GetComponent<ItemDrop>();
         audiosrc = gameObject?.GetComponent<AudioSource>();
+        hrt = gameObject.GetComponent<Hurtbox>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //if hurt is null immediate set Hitstun to false
+        //OR if not in hitstun from hurtbox, set animator value to false
+        if ((hrt == null) || (hrt != null && !hrt.inHitStun))
+            animator.SetBool("Hitstun", false);
     }
 }

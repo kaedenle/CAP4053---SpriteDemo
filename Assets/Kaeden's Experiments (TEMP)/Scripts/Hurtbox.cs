@@ -32,7 +32,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
     {
         //play hit audio if it exists
         if (audiosrc != null && ad.audio != null)
-            audiosrc.PlayOneShot(ad.audio, 0.75f);
+            audiosrc.PlayOneShot(ad.audio, 0.5f);
 
         Debug.Log(ad.weapon + " " + ad.attack);
         //Hit particle effect

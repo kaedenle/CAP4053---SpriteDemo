@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class RangedEnemy : MonoBehaviour, IScriptable
 {
-    public float speed;
     public Transform target;
+    public GameObject bulletPrefab;
+    public float speed;
     public float minimumDistance;
     public float lineOfSightDistance;
-    public HealthTracker healthTracker; 
-    public Animator animator;
-    public SpriteRenderer sr;
-    public GameObject bulletPrefab;
+    private HealthTracker healthTracker; 
+    private Animator animator;
+    private SpriteRenderer sr;
     //gameObject enemy;
 
     private const float ATTACK_TIMER_MAX = 1.5f;
