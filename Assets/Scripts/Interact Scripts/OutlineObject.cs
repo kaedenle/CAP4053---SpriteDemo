@@ -132,6 +132,7 @@ public class OutlineObject : MonoBehaviour
         // set outline material
         outlineRenderer.material = outlineMaterial;
 
-        outlineRenderer.sortingLayerName = "Outline";
+        // outlineRenderer.sortingLayerName = "Outline";
+        outlineRenderer.sortingLayerName = sprite_renderer.sortingLayerName;
     }
 }
