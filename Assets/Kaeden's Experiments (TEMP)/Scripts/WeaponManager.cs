@@ -19,7 +19,6 @@ public class WeaponManager : MonoBehaviour, IScriptable
     Player_Movement movementScript;
     private WeaponUI ui;
     private AttackManager am;
-    private PlayerMetricsManager pmm;
     [HideInInspector]
     public int prevWeapon;
 
@@ -27,7 +26,6 @@ public class WeaponManager : MonoBehaviour, IScriptable
 
     void Awake()
     {
-        pmm = GameObject.Find("PlayerMetricsManager").GetComponent<PlayerMetricsManager>();
         weaponID = 0;
         animator = gameObject.GetComponent<Animator>();
         
@@ -90,7 +88,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
             else
             {
                 onhand.enabled = true;
-                pmm.IncrementKeeperInt("equip");
+                PlayerMetricsManager.IncrementKeeperInt("equip");
             }
                 
             animator.SetBool("equiped", !equiped);
@@ -104,7 +102,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
             if (!equiped)
             {
                 onhand.enabled = true;
-                pmm.IncrementKeeperInt("equip");
+                PlayerMetricsManager.IncrementKeeperInt("equip");
                 animator.SetBool("equiped", !equiped);
                 //set animation to follow weapon's ID
                 animator.SetFloat("weapon", wpnList.weaponlist[wpnList.index].ID);
@@ -125,7 +123,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
                 
                 if (WeaponUIInstance != null && !WeaponUIInstance.activeSelf && WeaponUI.render) ui.Invoke();
                 else if (WeaponUIInstance != null && WeaponUIInstance.activeSelf && WeaponUI.render) ui.Shift();
-                if (wpnList.index != original) pmm.IncrementKeeperInt("swap");
+                if (wpnList.index != original) PlayerMetricsManager.IncrementKeeperInt("swap");
                 prevWeapon = original;
             }
             
@@ -200,7 +198,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
                 if (animator.GetFloat("attack") != 0 && animator.GetBool("Attack") == false)
                 {
                     animator.SetTrigger("Attack");
-                    pmm.IncrementKeeperInt("used_" + wpnList.weaponlist[wpnList.index].name);
+                    PlayerMetricsManager.IncrementKeeperInt("used_" + wpnList.weaponlist[wpnList.index].name);
                 }
             }   
         }
