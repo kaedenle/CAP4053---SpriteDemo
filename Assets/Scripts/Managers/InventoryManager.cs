@@ -27,7 +27,8 @@ public class InventoryManager : MonoBehaviour
         Boss_KeyUsedRight,
         HealingHeart,
         CastleChestKey,
-        CastleDagger
+        CastleDagger,
+        CastleSunglasses
     }
 
     private static AllItems[] intangibles =

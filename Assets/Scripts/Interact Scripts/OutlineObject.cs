@@ -134,5 +134,6 @@ public class OutlineObject : MonoBehaviour
 
         // outlineRenderer.sortingLayerName = "Outline";
         outlineRenderer.sortingLayerName = sprite_renderer.sortingLayerName;
+        outlineRenderer.sortingOrder = sprite_renderer.sortingOrder;
     }
 }

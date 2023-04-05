@@ -70,6 +70,9 @@ public class MazeHints : MonoBehaviour
 
     public void SetFootprints(Maze cur)
     {
+        // don't activate footprints if the player hasn't obtained the sunglasses
+        if(!InventoryManager.PickedUp(InventoryManager.AllItems.CastleSunglasses)) return;
+
         int footprintSpecial = 1;
         
         Debug.Log("SetFootprints()");
