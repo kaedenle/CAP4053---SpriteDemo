@@ -38,10 +38,12 @@ public class LevelManager : MonoBehaviour
     {
         _levelEnding = false;
 
+        Debug.Log("in Start of Level Manager");
         if(!EntityManager.IsPaused()) 
             EntityManager.Pause();
 
         EntityManager.WaitThenUnpause(default_delay);
+        Debug.Log("finished start of level manager");
         // ResetVariables();
     }
 
@@ -105,7 +107,9 @@ public class LevelManager : MonoBehaviour
     public static void TriggerPlayerDeath()
     {
         _playerDied = true;
-        EntityManager.Pause();
+
+        if(!EntityManager.IsPaused())
+            EntityManager.Pause();
     }
 
     public static bool PlayerDead()
@@ -116,7 +120,11 @@ public class LevelManager : MonoBehaviour
     public static void RestartLevel()
     {   
         ResetAllVariables();
-        EntityManager.Pause(); // reset from player death
+
+        // reset from player death
+        if(!EntityManager.IsPaused())
+            EntityManager.Pause(); 
+
         if (level != null)
             ScenesManager.LoadScene(_startScene);
     }

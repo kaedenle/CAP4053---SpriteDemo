@@ -45,16 +45,19 @@ public class EntityManager : MonoBehaviour
             Time.timeScale = 0;
 
         numPauses ++;
-
+        Debug.Log("in SetPause(), numPauses is now = " + numPauses);
     }
 
     public static void SetUnpause()
     {
-        _pause = false;
         numPauses--;
 
         if(numPauses <= 0)
+        {
+            _pause = false;
             Time.timeScale = 1;
+        }
+        Debug.Log("in SetUnpause(), numPauses is now = " + numPauses);
     }
 
     public static int PauseAndMask()

@@ -79,7 +79,9 @@ public class UIManager : MonoBehaviour
     public static void EndScene()
     {
         isSwitching = true;
-        EntityManager.Pause();
+
+        if(!EntityManager.IsPaused())
+            EntityManager.Pause();
     }
 
     public static bool SceneSwitching()
