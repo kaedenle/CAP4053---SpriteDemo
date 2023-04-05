@@ -8,7 +8,6 @@ public class DebugSceneManager : MonoBehaviour
     private GameObject player;
     private GameObject BlackFade;
     public GameObject book;
-    private PlayerMetricsManager pmm;
     private void SceneInputs()
     {
         //fade in then reset level
@@ -26,16 +25,12 @@ public class DebugSceneManager : MonoBehaviour
             book.GetComponent<BookUI>().ToggleBook();
         }
         if (Input.GetKeyDown(KeyCode.P))
-            pmm.ReturnKeeperInt();
+            PlayerMetricsManager.ReturnKeeperInt();
         if (Input.GetKeyDown(KeyCode.O))
             UIManager.EnableHealthUI();
         if (Input.GetKeyDown(KeyCode.I))
             UIManager.DisableHealthUI();
 
-    }
-    void Awake()
-    {
-        pmm = GameObject.Find("PlayerMetricsManager").GetComponent<PlayerMetricsManager>();
     }
     void Start()
     {

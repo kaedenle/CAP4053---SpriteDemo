@@ -12,11 +12,6 @@ public class SampleTimelineManager : MonoBehaviour
     private GameObject player;
     private GameObject subject;
     private NPCDialogue dialouge;
-    private PlayerMetricsManager pmm;
-    void Awake()
-    {
-        pmm = GameObject.Find("PlayerMetricsManager").GetComponent<PlayerMetricsManager>();
-    }
     // Start is called before the first frame update
     void Start()
     {
@@ -40,12 +35,12 @@ public class SampleTimelineManager : MonoBehaviour
     }
     private void PresetVariables()
     {
-        if (step == 0) dummy = pmm.GetMetricInt("killed");
+        if (step == 0) dummy = PlayerMetricsManager.GetMetricInt("killed");
     }
     private void CheckCondition()
     {
         //if player killed one thing
-        if (step == 0 && dummy < pmm.GetMetricInt("killed"))
+        if (step == 0 && dummy < PlayerMetricsManager.GetMetricInt("killed"))
             PlayEvent();
     }
     public void plaything(object sender, System.EventArgs e)

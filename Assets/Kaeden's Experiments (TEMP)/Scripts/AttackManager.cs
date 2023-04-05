@@ -56,7 +56,6 @@ public class AttackManager : MonoBehaviour
     private bool active = false;
     private bool cancellableFlag = false;
     private IUnique uniqueScript;
-    private PlayerMetricsManager pmm;
 
     //audio
     private AudioClip[] currentAudio;
@@ -80,7 +79,6 @@ public class AttackManager : MonoBehaviour
     public GameObject hitboxParent;
     void Awake()
     {
-        pmm = GameObject.Find("PlayerMetricsManager").GetComponent<PlayerMetricsManager>();
         HBList.Clear();
         if (tag == "Player") pwm = GetComponent<WeaponManager>();
         uniqueScript = gameObject?.GetComponent<IUnique>();
@@ -195,9 +193,9 @@ public class AttackManager : MonoBehaviour
                     {
                         HealthTracker tempht = effect?.GetComponent<HealthTracker>();
                         if (tempht != null && tempht.GetComponent<HealthTracker>().healthSystem.getHealth() == 0)
-                            pmm.IncrementKeeperInt("killed");
-                        pmm.IncrementKeeperInt("hit_" + entity.gameObject.transform.root.gameObject.name);
-                        pmm.IncrementKeeperInt("enemies_hit");
+                            PlayerMetricsManager.IncrementKeeperInt("killed");
+                        PlayerMetricsManager.IncrementKeeperInt("hit_" + entity.gameObject.transform.root.gameObject.name);
+                        PlayerMetricsManager.IncrementKeeperInt("enemies_hit");
                     } 
                 }
                     
@@ -235,8 +233,8 @@ public class AttackManager : MonoBehaviour
             cancellableFlag = false;
 
             //metrics
-            pmm.IncrementKeeperInt("cancel");
-            if (wpnList.index != pwm.prevWeapon) pmm.IncrementKeeperInt("cross_cancel");
+            PlayerMetricsManager.IncrementKeeperInt("cancel");
+            if (wpnList.index != pwm.prevWeapon) PlayerMetricsManager.IncrementKeeperInt("cross_cancel");
         }
     }
     public GameObject HurtBoxSearch(GameObject part){

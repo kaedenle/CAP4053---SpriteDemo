@@ -48,14 +48,12 @@ public class TutorialCutsceneManager : MonoBehaviour
     }
     private void Start()
     {
-        pmm = GameObject.Find("PlayerMetricsManager").GetComponent<PlayerMetricsManager>();
         player = GameObject.Find("Player");
         am = player.GetComponent<AttackManager>();
         am.wpnList.weaponlist[1].active = false;
         am.wpnList.weaponlist[2].active = false;
-        above = pmm.GetMetricInt("equip");
+        above = PlayerMetricsManager.GetMetricInt("equip");
         dummy = dummyObject.GetComponent<DummyUnique>();
-
         subject = GameObject.Find("Conscious");
         dialouge = subject.GetComponent<NPCDialogue>();
         llf = LevelLoaderBlackScreen.GetComponent<LevelLoaderFinish>();
@@ -70,12 +68,12 @@ public class TutorialCutsceneManager : MonoBehaviour
         {
             //talked and equip
             case 0:
-                if(pmm.GetMetricInt("equip") > above && timesTalked > 1)
+                if(PlayerMetricsManager.GetMetricInt("equip") > above && timesTalked > 1)
                     PlayTimeline();
                 break;
             //kill (general)
             case 1:
-                if (pmm.GetMetricInt("killed") > above)
+                if (PlayerMetricsManager.GetMetricInt("killed") > above)
                     PlayTimeline();
                 break;
             //pickup item
@@ -85,28 +83,28 @@ public class TutorialCutsceneManager : MonoBehaviour
                 break;
             //cancel
             case 3:
-                if (pmm.GetMetricInt("cancel") > above) 
+                if (PlayerMetricsManager.GetMetricInt("cancel") > above) 
                     PlayTimeline();
-                if (dummy.Hide && pmm.GetMetricInt("cancel") <= above && Respawn)
+                if (dummy.Hide && PlayerMetricsManager.GetMetricInt("cancel") <= above && Respawn)
                     ResetDummy();
                 break;
             //swap to sign
             case 4:
-                if (pmm.GetMetricInt("swap") > 0)
+                if (PlayerMetricsManager.GetMetricInt("swap") > 0)
                     PlayTimeline();
-                if (dummy.Hide && pmm.GetMetricInt("swap") < 0)
+                if (dummy.Hide && PlayerMetricsManager.GetMetricInt("swap") < 0)
                     ResetDummy();
                 break;
             case 5:
-                if(pmm.GetMetricInt("used_" + am.wpnList.weaponlist[1].name) > 0)
+                if(PlayerMetricsManager.GetMetricInt("used_" + am.wpnList.weaponlist[1].name) > above)
                     PlayTimeline();
-                if (pmm.GetMetricInt("used_" + am.wpnList.weaponlist[1].name) <= 0 && dummy.Hide)
+                if (PlayerMetricsManager.GetMetricInt("used_" + am.wpnList.weaponlist[1].name) <= 0 && dummy.Hide)
                     ResetDummy();
                 break;
             case 6:
-                if (pmm.GetMetricInt("cross_cancel") > 0)
+                if (PlayerMetricsManager.GetMetricInt("cross_cancel") > above)
                     PlayTimeline();
-                if (pmm.GetMetricInt("cross_cancel") <= 0 && dummy.Hide)
+                if (PlayerMetricsManager.GetMetricInt("cross_cancel") <= 0 && dummy.Hide)
                     ResetDummy();
                 break;
         }
@@ -142,10 +140,14 @@ public class TutorialCutsceneManager : MonoBehaviour
     }
     private void PresetVar()
     {
-        if (step == 1 || step == 5 || step == 6)
-            above = pmm.GetMetricInt("killed");
+        if (step == 1)
+            above = PlayerMetricsManager.GetMetricInt("killed");
         if (step == 3)
-            above = pmm.GetMetricInt("cancel");
+            above = PlayerMetricsManager.GetMetricInt("cancel");
+        if (step == 5)
+            above = PlayerMetricsManager.GetMetricInt("used_" + am.wpnList.weaponlist[1].name);
+        if (step == 6)
+            above = PlayerMetricsManager.GetMetricInt("cross_cancel");
     }
     public void EnableSwap()
     {
