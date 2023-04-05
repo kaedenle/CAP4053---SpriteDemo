@@ -13,7 +13,8 @@ public class NPCManager : MonoBehaviour
         Mom,
         Placeholder,
         Skelly,
-        Tutorial
+        Tutorial,
+        Dog,
     }
 
     public static string[] personName =
@@ -25,7 +26,8 @@ public class NPCManager : MonoBehaviour
         "Mother",
         "Placeholder",
         "Skelly",
-        "You"
+        "You",
+        "Honey"
     };
 
     public static string GetName(Person person)
