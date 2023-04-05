@@ -23,8 +23,10 @@ public class NPCDialogue : OutlineObject
     }
 
     // Update is called once per frame
-    public void Update()
+    new public void Update()
     {
+        base.Update();
+
         if(IsTriggered())
         {
             if(!UIActive() && lockable.IsUnlocked()) triggered = true;

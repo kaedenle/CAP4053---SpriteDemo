@@ -50,6 +50,8 @@ public class Interactive : OutlineObject
 
     public void Update()
     {
+        base.Update();
+        
         if(IsTriggered())
         {
             if(!UIActive() && lockable.IsUnlocked()) triggered = true;
