@@ -24,6 +24,7 @@ public class PlayerScript : MonoBehaviour, IUnique
     public int MaxAmmo;
     public GameObject bullet;
     private int Ammo;
+
     //cancel: "did player press?"
     //ShootAgain: "is my window open?"
     [HideInInspector]
@@ -35,6 +36,10 @@ public class PlayerScript : MonoBehaviour, IUnique
     private bool ShootEnd = true;
     private float ShootEndTimer;
     private float MAX_SHOOT_TIMER = 10f;
+
+    //invincibillity after hit
+    private float MAX_INVIN_TIME = 0.75f;
+    private float InvinTimer;
 
     public void EffectManager(string funct)
     {
@@ -179,8 +184,9 @@ public class PlayerScript : MonoBehaviour, IUnique
         animator.SetBool("Skid", false);
         animator.SetBool("Hitstun", true);
         animator.Play("Hitstun");
+        InvinTimer = MAX_INVIN_TIME;
         //getting hit while reloading (reload for you then transition)
-        if(animator.GetFloat("shooting") == 2) CleanShoot();
+        if (animator.GetFloat("shooting") == 2) CleanShoot();
     }
 
     void Start()
@@ -206,6 +212,21 @@ public class PlayerScript : MonoBehaviour, IUnique
         gm = gmo.GetComponent<GameManager>();
     }
 
+    private void InvinClock()
+    {
+        //for player invincibillity (usually right after they get up from a hit)
+        if (InvinTimer > 0)
+        {
+            InvinTimer -= Time.deltaTime;
+            hb.invin = true;
+            hb.InvokeFlash(0.1f, new Color(0.39f, 0.59f, 1f), false, false, 100, 0.1f);
+        }
+        if (InvinTimer <= 0)
+        {
+            hb.invin = false;
+            hb.CancelFlash();
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -255,6 +276,8 @@ public class PlayerScript : MonoBehaviour, IUnique
             GetComponent<HealthTracker>().healthSystem.Heal(15);
             hb.InvokeFlash(0.15f, new Color(0, 1f, 0), false);
         }
+
+        InvinClock();
 
     }
     void LateUpdate()
