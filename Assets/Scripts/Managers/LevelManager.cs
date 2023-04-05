@@ -38,12 +38,10 @@ public class LevelManager : MonoBehaviour
     {
         _levelEnding = false;
 
-        Debug.Log("in Start of Level Manager");
         if(!EntityManager.IsPaused()) 
             EntityManager.Pause();
 
         EntityManager.WaitThenUnpause(default_delay);
-        Debug.Log("finished start of level manager");
         // ResetVariables();
     }
 
