@@ -14,7 +14,10 @@ public class MenuManager : MonoBehaviour
     // button behavior for Load Game
     public void LoadGame()
     {
-        StartGame();
+        if(GameState.HasSavedGame())
+            StartGame();
+        
+        // do nothing if no game saved
     }
 
     // starts the game from the menu

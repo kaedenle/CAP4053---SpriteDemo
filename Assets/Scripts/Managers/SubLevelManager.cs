@@ -7,7 +7,7 @@ public class SubLevelManager : MonoBehaviour
     protected static SubLevelManager Instance;
     protected static ScenesManager.AllScenes startScene = ScenesManager.AllScenes.Menu;
 
-    protected void Awake()
+    protected void Start()
     {
         if(Instance != null)
         {

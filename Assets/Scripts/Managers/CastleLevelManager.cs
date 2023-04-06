@@ -10,12 +10,12 @@ public class CastleLevelManager : SubLevelManager
         InventoryManager.AllItems.CastleDagger
     };
 
-    new void Awake()
+    new void Start()
     {
         startScene = ScenesManager.AllScenes.CastleArena;
         SetInstance(this);
 
-        base.Awake();
+        base.Start();
     }
 
     public override void TriggerReset()

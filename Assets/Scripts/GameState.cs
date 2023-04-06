@@ -33,7 +33,11 @@ public class GameState
 
     public static bool HasSavedGame()
     {
-        return PlayerPrefs.HasKey(levelString) && PlayerPrefs.HasKey(stateString);
+        if(! (PlayerPrefs.HasKey(levelString) && PlayerPrefs.HasKey(stateString)))
+            return false;
+
+        int boss_level_number = 4;   
+        return LoadLevel() <= boss_level_number;
     }
 
     public static void HardReset()
@@ -67,6 +71,15 @@ public class GameState
         PlayerPrefs.Save();
     }
 
+    public static int LoadLevel()
+    {
+        return PlayerPrefs.GetInt(levelString);
+    }
+
+    public static int LoadState()
+    {
+        return PlayerPrefs.GetInt(stateString);
+    }
 
     public int GetLevel()
     {

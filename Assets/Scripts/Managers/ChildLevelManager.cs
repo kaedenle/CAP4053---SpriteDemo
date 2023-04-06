@@ -6,12 +6,12 @@ public class ChildLevelManager : SubLevelManager
 {
     private static bool inMirror = false;
 
-    new void Awake()
+    new void Start()
     {
         startScene = ScenesManager.AllScenes.ChildLivingRoom;
         SetInstance(this);
 
-        base.Awake();
+        base.Start();
     }
 
     public override void TriggerReset()

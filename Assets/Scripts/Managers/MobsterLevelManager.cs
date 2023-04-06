@@ -6,12 +6,12 @@ public class MobsterLevelManager : SubLevelManager
 {
     static bool _alleyGateOpen = false;
 
-    new void Awake()
+    new void Start()
     {
         startScene = ScenesManager.AllScenes.MobsterRoadDemo;
         SetInstance(this);
 
-        base.Awake();
+        base.Start();
     }
 
     public override void TriggerReset()

@@ -7,7 +7,7 @@ public class BossLevelManager : SubLevelManager
     // delay in seconds after the boss is killed before the level end is triggered
     static float boss_death_wait = 2.5F;
 
-    new void Awake()
+    new void Start()
     {
         if(ScenesManager.GetCurrentScene() == ScenesManager.AllScenes.Boss_BossRoom)
             startScene = ScenesManager.AllScenes.Boss_BossRoom;
@@ -15,7 +15,7 @@ public class BossLevelManager : SubLevelManager
             startScene = ScenesManager.AllScenes.Boss_Arena;
 
         SetInstance(this);
-        base.Awake();
+        base.Start();
     }
 
     public override void TriggerReset()
