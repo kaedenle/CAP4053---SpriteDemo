@@ -27,7 +27,7 @@ public class NPCManager : MonoBehaviour
         "Placeholder",
         "Skelly",
         "You",
-        "Honey"
+        "Dog"
     };
 
     public static string GetName(Person person)
