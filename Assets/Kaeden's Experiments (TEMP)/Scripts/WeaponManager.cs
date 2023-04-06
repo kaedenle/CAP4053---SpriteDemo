@@ -124,7 +124,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
                 if (WeaponUIInstance != null && !WeaponUIInstance.activeSelf && WeaponUI.render) ui.Invoke();
                 else if (WeaponUIInstance != null && WeaponUIInstance.activeSelf && WeaponUI.render) ui.Shift();
                 if (wpnList.index != original) PlayerMetricsManager.IncrementKeeperInt("swap");
-                prevWeapon = original;
+                 prevWeapon = original;
             }
             
         }
@@ -146,6 +146,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
             if (animator.GetFloat("attack") == 0)
             {
                 SetSprite();
+                prevWeapon = wpnList.index;
                 //set animation to follow weapon's ID
                 if (animator.GetFloat("weapon") != wpnList.weaponlist[wpnList.index].ID)
                     animator.SetFloat("weapon", wpnList.weaponlist[wpnList.index].ID);

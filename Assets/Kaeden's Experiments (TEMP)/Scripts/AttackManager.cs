@@ -214,7 +214,7 @@ public class AttackManager : MonoBehaviour
         //1. DestroyPlay
         //2. InvokeAttack
         if (!cancellableFlag || tag != "Player") return;
-        if (cancellableSet.Contains(bufferCancel))
+          if (cancellableSet.Contains(bufferCancel))
         {
             //prevent bug that swaps you out of cancel
             if (pwm.BufferWeaponID != pwm.wpnList.index) return;
@@ -223,6 +223,7 @@ public class AttackManager : MonoBehaviour
                 return;
             }
             int tmp = bufferCancel;
+
             pwm.SetSprite();
             DestroyPlay();
             //disable gun layer if not cancel into it
@@ -230,12 +231,10 @@ public class AttackManager : MonoBehaviour
                 animator.SetLayerWeight(1, 0);
             else
                 animator.SetLayerWeight(1, 1);
-            InvokeAttack(tmp);
-            cancellableFlag = false;
-
-            //metrics
             PlayerMetricsManager.IncrementKeeperInt("cancel");
-            if (wpnList.index != pwm.prevWeapon) PlayerMetricsManager.IncrementKeeperInt("cross_cancel");
+            if (wpnList.index != pwm.prevWeapon)
+                 PlayerMetricsManager.IncrementKeeperInt("cross_cancel");
+            InvokeAttack(tmp);
         }
     }
     public GameObject HurtBoxSearch(GameObject part){
