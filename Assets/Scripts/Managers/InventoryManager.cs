@@ -40,6 +40,13 @@ public class InventoryManager : MonoBehaviour
         AllItems.Boss_KeyUsedRight
     };
 
+    // temporary solution to dropable heart problem
+    // may cause issues later on when implementing an inventory UI
+    private static AllItems[] repeatables =
+    {
+        AllItems.HealingHeart
+    };
+
     public static List<AllItems> _inventoryItems = new List<AllItems>();  // our inventory items
     public static List<AllItems> _usedItems = new List<AllItems>();  // our inventory items
 
@@ -52,7 +59,7 @@ public class InventoryManager : MonoBehaviour
     public static void AddItem(AllItems item)
     {
         // make sure to only have one of each unique item in inventory
-        if(!_inventoryItems.Contains(item))
+        if(!_inventoryItems.Contains(item) || !IsUnique(item))
         {
             if(!IsIntangible(item))
                 _inventoryItems.Add(item);
@@ -64,6 +71,11 @@ public class InventoryManager : MonoBehaviour
             Debug.Log("added " + item.ToString() + " to inventory");
             // Debug.Log("added " + item.ToString() + " to inventory, current inventory size is now " + _inventoryItems.Count);
         }
+    }
+
+    public static bool IsUnique(AllItems item)
+    {
+        return Array.IndexOf(repeatables, item) < 0;
     }
 
     public static bool IsIntangible(AllItems item)
