@@ -101,7 +101,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
         //if something is already running and you're not a priority, return
         if (running != null && !priority) return;
         if (running != null) StopCoroutine(running);
-        running = Flash(duration, c, solidColor, repeat, endingDuration);
+          running = Flash(duration, c, solidColor, repeat, endingDuration);
         StartCoroutine(running);
     }
     public void CancelFlash()

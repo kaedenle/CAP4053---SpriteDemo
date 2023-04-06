@@ -4403,7 +4403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7392138662841345113, guid: 1be913d943c7b0d4f90de4d6f052223e, type: 3}
       propertyPath: OriginalPos
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7392138662841345113, guid: 1be913d943c7b0d4f90de4d6f052223e, type: 3}
       propertyPath: SpawnRadius
@@ -4671,25 +4671,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ed1f80b4c99c04cabb5fcf3bdbe002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
   target: {fileID: 656014955}
+  bulletPrefab: {fileID: 2939056562520899370, guid: b8a574bece5c28048b262088e69dd3e5, type: 3}
+  speed: 3
   minimumDistance: 10
   lineOfSightDistance: 15
-  healthTracker: {fileID: 463741151}
-  animator: {fileID: 0}
-  sr: {fileID: 0}
-  bulletPrefab: {fileID: 2939056562520899370, guid: b8a574bece5c28048b262088e69dd3e5, type: 3}
---- !u!114 &463741151 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1865415172, guid: 6d1444703d8fa62419c9da85b2af53fe, type: 3}
-  m_PrefabInstance: {fileID: 1318308814}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 463741146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5bced5c9136fef4695d97b62350e4d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &470009047
 GameObject:
   m_ObjectHideFlags: 0
@@ -12194,7 +12180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7392138662841345113, guid: 1be913d943c7b0d4f90de4d6f052223e, type: 3}
       propertyPath: OriginalPos
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7392138662841345113, guid: 1be913d943c7b0d4f90de4d6f052223e, type: 3}
       propertyPath: SpawnRadius

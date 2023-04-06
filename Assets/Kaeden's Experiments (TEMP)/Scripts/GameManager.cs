@@ -29,13 +29,17 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         if (OneGM == null)
             OneGM = gameObject;
-        if(OneGM != gameObject)
+        if (OneGM != gameObject)
             Destroy(gameObject);
         //CanSpawnEnemies = false;
     }
     void Start()
     {
         FirstLoad();
+    }
+    public void RemoveCurrentScene()
+    {
+        EnemyLists.Remove(SceneManager.GetActiveScene().name);
     }
     public void FirstLoad()
     {

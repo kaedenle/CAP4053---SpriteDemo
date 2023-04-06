@@ -12,6 +12,7 @@ public class ButtonEvents : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     private Text[] affect;
     private Button AttachedButton;
     public bool Disable;
+    private GameManager gm;
     //OnPointerDown is also required to receive OnPointerUp callbacks
     /*public void OnPointerDown(PointerEventData eventData)
     {
@@ -49,8 +50,11 @@ public class ButtonEvents : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
     public void Restart()
     {
+        if(gm == null) gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        if (gm != null) gm.RemoveCurrentScene();
         LevelManager.RestartLevel();
         Debug.Log("RESTART!");
+        
     }
     // Start is called before the first frame update
     void Start()
@@ -62,6 +66,7 @@ public class ButtonEvents : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         originalColor = new Color[affect.Length];
         for (int i = 0; i < affect.Length; i++)
             originalColor[i] = affect[i].color;
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
