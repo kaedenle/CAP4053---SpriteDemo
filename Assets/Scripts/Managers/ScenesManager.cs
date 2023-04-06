@@ -104,7 +104,22 @@ public class ScenesManager : MonoBehaviour
 
             else if((int)_currentScene <= (int) AllScenes.ChildChildRoom)
             {
+                temp = new GameState(3, 1);
+            }
+
+            else if((int) _currentScene <= (int) AllScenes.Boss_BossRoom)
+            {
+                temp = new GameState(4, 1);
+            }
+
+            else if((int) _currentScene <= (int) AllScenes.CastleMaze)
+            {
                 temp = new GameState(2, 1);
+            }
+
+            else if((int) _currentScene <= (int) AllScenes.TutorialSkyBox)
+            {
+                temp = new GameState(0, 1);
             }
             
             temp.Save();

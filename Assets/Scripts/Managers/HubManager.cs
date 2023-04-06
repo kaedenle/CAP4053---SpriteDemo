@@ -8,6 +8,7 @@ public class HubManager : MonoBehaviour
     {
         Tutorial,
         Mobster,
+        Castle,
         Child,
         Boss
     }
@@ -17,6 +18,7 @@ public class HubManager : MonoBehaviour
     {
         ScenesManager.AllScenes.TutorialSkyBox,
         ScenesManager.AllScenes.MobsterRoadDemo,
+        ScenesManager.AllScenes.CastleArena,
         ScenesManager.AllScenes.ChildLivingRoom,
         ScenesManager.AllScenes.Boss_Arena
     };
@@ -34,10 +36,8 @@ public class HubManager : MonoBehaviour
 
     void Start()
     {
-
         if(currentPhase >= mindSceneStarts.Length)
         {
-            // ScenesManager.LoadScene(ScenesManager.AllScenes.TheEnd);
             LevelManager.TriggerEnd();
         }
     }
