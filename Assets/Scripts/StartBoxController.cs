@@ -8,7 +8,7 @@ public class StartBoxController : MonoBehaviour
     public GameObject player;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // move the player to the location of the attached object iff the previous scene was _prevScene
         if(ScenesManager.GetPreviousScene() == _prevScene)
