@@ -931,7 +931,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 148052834}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &92485180
 MonoBehaviour:
@@ -1355,13 +1355,14 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1704497152}
   - {fileID: 1953365290}
   - {fileID: 322480535}
   - {fileID: 406938323}
   - {fileID: 92485179}
   - {fileID: 1762940550}
   m_Father: {fileID: 1826998836}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!210 &148052835
 SortingGroup:
@@ -2907,7 +2908,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 148052834}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &322480539
 CircleCollider2D:
@@ -3618,7 +3619,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 148052834}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &406938324
 CircleCollider2D:
@@ -11593,12 +11594,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1704497150}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.3961067, y: -2.7323704, z: 7.8234434}
+  m_LocalPosition: {x: 3.9561067, y: 3.2176294, z: 7.8234434}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1826998836}
-  m_RootOrder: 12
+  m_Father: {fileID: 148052834}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1733083744
 GameObject:
@@ -11968,7 +11969,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 148052834}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &1762940551
 CircleCollider2D:
@@ -12539,7 +12540,6 @@ Transform:
   - {fileID: 168897527}
   - {fileID: 225173060}
   - {fileID: 2001940495}
-  - {fileID: 1704497152}
   - {fileID: 148052834}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -14242,7 +14242,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 148052834}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 13.348}
 --- !u!114 &1953365291
 MonoBehaviour:
@@ -14257,7 +14257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineThickness: 2
-  dialogue: {fileID: 11400000, guid: d48d39fa83b5f704a9ffad11970bbd03, type: 2}
+  dialogue: {fileID: 11400000, guid: 6be97c75a8f75454fa395e38e328e100, type: 2}
   normalAudio:
     audioFile: {fileID: 0}
   highlightEnds: 1
