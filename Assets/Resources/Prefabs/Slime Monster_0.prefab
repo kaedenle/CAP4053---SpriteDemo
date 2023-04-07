@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 1865415181}
   - component: {fileID: 1732503762}
   - component: {fileID: 7407193695743904109}
+  - component: {fileID: 7033832474386410872}
   m_Layer: 0
   m_Name: Slime Monster_0
   m_TagString: Enemy
@@ -234,18 +235,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponList: {fileID: 0}
-  wpnList:
-    weaponlist: []
-    index: 0
-  hitboxParent: {fileID: 6105205938035449267}
-  HBList: []
-  bufferCancel: -1
-  ProjectileOwner: {fileID: 0}
-  moveContainer:
-  - {fileID: 4900000, guid: ee6df8931df8c534585c8505aa6814c5, type: 3}
   attackContainer:
   - moveData: {fileID: 4900000, guid: ee6df8931df8c534585c8505aa6814c5, type: 3}
     HitSFX: []
+  HBList: []
+  invulerable: 0
   framedata:
     framedata: []
     damage: 0
@@ -260,6 +254,12 @@ MonoBehaviour:
     relativeKnockback: 0
     functCall: 
     ID: 0
+  wpnList:
+    weaponlist: []
+    index: 0
+  bufferCancel: -1
+  ProjectileOwner: {fileID: 0}
+  hitboxParent: {fileID: 6105205938035449267}
 --- !u!114 &1865415170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,6 +303,7 @@ MonoBehaviour:
   health: 30
   bar: {fileID: 5894459449886815197, guid: fb1b7fc730420314d876a7daece293d1, type: 3}
   barOffset: {x: 0.1, y: 2.5, z: 0}
+  deathFlag: 0
 --- !u!114 &1865415181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,6 +320,7 @@ MonoBehaviour:
   NotFlash: 0
   default_ani: SlimeIdle
   NotHitPart: 0
+  invin: 0
 --- !u!114 &1732503762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,6 +348,24 @@ MonoBehaviour:
   TakeParent: 0
   deltaDown: 0
   dynamic: 1
+--- !u!114 &7033832474386410872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6105205938035449267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8c88aaa53faeea4580bb680ff51c561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - item: {fileID: 8457935506673110615, guid: 3c39bca40218f4f439e925e025d0f2c1, type: 3}
+    percentChance: 50
+    usePlayerHealth: 1
+  deltas: {x: 0, y: 0, z: 0}
+  RandomDirection: 0
 --- !u!1001 &2024928596
 PrefabInstance:
   m_ObjectHideFlags: 0
