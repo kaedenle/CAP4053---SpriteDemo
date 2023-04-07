@@ -1376,12 +1376,16 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
 --- !u!61 &160634258
 BoxCollider2D:
@@ -1654,12 +1658,16 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
   _nextScene: 3
 --- !u!212 &191822270
@@ -2704,7 +2712,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prevScene: 5
-  player: {fileID: 656014943}
 --- !u!212 &314577440
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3788,7 +3795,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prevScene: 3
-  player: {fileID: 656014943}
 --- !u!1 &407058682
 GameObject:
   m_ObjectHideFlags: 0
@@ -5470,12 +5476,16 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
 --- !u!61 &507720440
 BoxCollider2D:
@@ -7419,12 +7429,16 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
 --- !u!212 &676393334
 SpriteRenderer:
@@ -8361,6 +8375,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6197798176421269814, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6197798176421269814, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6197798176421269814, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
+      propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6197798176421269814, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
@@ -20022,6 +20044,10 @@ PrefabInstance:
     - target: {fileID: 1554438271625386812, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
       propertyPath: m_Name
       value: Menu Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460151658627110113, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
+      propertyPath: offset.y
+      value: 2.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}

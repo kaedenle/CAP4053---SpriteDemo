@@ -3021,12 +3021,16 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
   _nextScene: 2
 --- !u!58 &555826900
@@ -5497,6 +5501,10 @@ PrefabInstance:
       propertyPath: FollowY
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7460151658627110113, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
+      propertyPath: offset.y
+      value: 2.7
+      objectReference: {fileID: 0}
     - target: {fileID: 8153827873994902359, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -5511,11 +5519,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8153827873994902380, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -11.548
+      value: -31
       objectReference: {fileID: 0}
     - target: {fileID: 8153827873994902380, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 506.49
+      value: 492
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
@@ -8922,12 +8930,16 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
 --- !u!61 &1955604437
 BoxCollider2D:

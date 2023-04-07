@@ -424,7 +424,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prevScene: 3
-  player: {fileID: 229266658}
 --- !u!212 &133772479
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -774,11 +773,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
---- !u!1 &229266658 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6197798176421269809, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
-  m_PrefabInstance: {fileID: 229266657}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &237111702
 GameObject:
   m_ObjectHideFlags: 0
@@ -1224,11 +1218,6 @@ Transform:
   m_Father: {fileID: 1762773821}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!224 &324594259 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1554438271625386808, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
-  m_PrefabInstance: {fileID: 943042320}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &329441910
 GameObject:
   m_ObjectHideFlags: 0
@@ -1984,12 +1973,16 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
   _nextScene: 3
 --- !u!58 &555459316
@@ -3109,6 +3102,10 @@ PrefabInstance:
       propertyPath: FollowY
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7460151658627110113, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
+      propertyPath: offset.y
+      value: 2.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
 --- !u!1 &1020108978
@@ -3232,12 +3229,16 @@ MonoBehaviour:
   interactiveText:
     textID: mobsterDemoKeyItem
     loopLast: 0
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
   _itemType: 0
   repeatable: 0
@@ -5665,7 +5666,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1935532481}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: 0.89, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5972,7 +5973,7 @@ RectTransform:
   - {fileID: 124018142}
   - {fileID: 1513328778}
   - {fileID: 1430767133}
-  - {fileID: 324594259}
+  - {fileID: 1554438272299922472}
   - {fileID: 1320153256}
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -6402,6 +6403,11 @@ Transform:
   m_Father: {fileID: 1107634319}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &1554438272299922472 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1554438271625386808, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
+  m_PrefabInstance: {fileID: 943042320}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4127551036536442738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6506,7 +6512,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6671746520784045526}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.11, y: -0.4300003, z: 0}
+  m_LocalPosition: {x: -0.89, y: 0.4599997, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

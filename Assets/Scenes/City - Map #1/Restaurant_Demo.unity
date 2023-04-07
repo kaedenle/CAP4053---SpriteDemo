@@ -927,12 +927,16 @@ MonoBehaviour:
   interactiveText:
     textID: mells_adventure
     loopLast: 1
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
 --- !u!1 &125279528
 GameObject:
@@ -2212,12 +2216,16 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
   _nextScene: 4
 --- !u!61 &383328673
@@ -2763,12 +2771,16 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
   _nextScene: 2
 --- !u!58 &510341204
@@ -4579,15 +4591,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7460151658627110113, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
       propertyPath: FollowX
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7460151658627110113, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
       propertyPath: FollowY
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460151658627110113, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
+      propertyPath: offset.y
+      value: 2.7
       objectReference: {fileID: 0}
     - target: {fileID: 8153827873994902359, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153827873994902380, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 492
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
@@ -10464,7 +10484,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prevScene: 4
-  player: {fileID: 229209199}
 --- !u!212 &2031533586
 SpriteRenderer:
   m_ObjectHideFlags: 0

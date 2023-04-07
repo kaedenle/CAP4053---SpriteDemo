@@ -175,6 +175,7 @@ MonoBehaviour:
   NotFlash: 0
   default_ani: SlimeIdle
   NotHitPart: 0
+  invin: 0
 --- !u!50 &393389812
 Rigidbody2D:
   serializedVersion: 4
@@ -2922,9 +2923,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponList: {fileID: 0}
   attackContainer:
-  - moveData: {fileID: 4900000, guid: ee6df8931df8c534585c8505aa6814c5, type: 3}
+  - moveData: {fileID: 4900000, guid: 27023d5612c2c6943990a544ae274c45, type: 3}
+    HitSFX: []
+  - moveData: {fileID: 4900000, guid: a1c217d7617c71b4cada996318f86a0d, type: 3}
     HitSFX: []
   HBList: []
+  invulerable: 0
   framedata:
     framedata: []
     damage: 0
