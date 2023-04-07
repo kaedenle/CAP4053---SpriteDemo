@@ -79,7 +79,6 @@ public class LevelManager : MonoBehaviour
 
     public static void TriggerEnd()
     {
-        ResetAllVariables();
         _levelEnding = true;
     }
 
@@ -87,6 +86,7 @@ public class LevelManager : MonoBehaviour
     {
         GameState game = GameState.LoadGame();
         game.IncrementStateAndSave();
+        ResetAllVariables();
 
         ScenesManager.LoadScene(ScenesManager.AllScenes.CentralHub);
     }
