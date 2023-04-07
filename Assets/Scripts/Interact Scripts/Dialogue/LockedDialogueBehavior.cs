@@ -8,6 +8,7 @@ public class LockedDialogueBehavior
     public bool isLocked = false;
     public InventoryManager.AllItems[] requiredItems; 
     public NPCReport lockedText;
+    public AudioPlayer lockedAudio;
 
     private bool unlocked = false;
     
@@ -27,5 +28,10 @@ public class LockedDialogueBehavior
     public NPCReport GetDialogue()
     {
         return lockedText;
+    }
+
+    public void PlayAudio()
+    {
+        lockedAudio.PlayAudio();
     }
 }

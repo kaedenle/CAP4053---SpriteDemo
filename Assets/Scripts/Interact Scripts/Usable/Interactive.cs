@@ -7,6 +7,7 @@ public class Interactive : OutlineObject
     // public variables
     public bool pauseOnInteract = true;
     public InteractiveText interactiveText;
+    public AudioPlayer normalAudio;
     public bool highlightEnds = false;
 
     public LockedBehavior lockable;
@@ -54,8 +55,26 @@ public class Interactive : OutlineObject
         
         if(IsTriggered())
         {
-            if(!UIActive() && lockable.IsUnlocked()) triggered = true;
+            if(!UIActive() && lockable.IsUnlocked())
+            {
+                InitiateBehaviors();
+                
+            }
             TriggerDialogue();
+        }
+    }
+
+    public void InitiateBehaviors()
+    {
+        triggered = true;
+
+        if(lockable.IsUnlocked())
+        {
+            normalAudio.PlayAudio();
+        }
+        else
+        {
+            lockable.PlayAudio();
         }
     }
 
