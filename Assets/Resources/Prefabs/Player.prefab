@@ -127,7 +127,7 @@ Transform:
   m_GameObject: {fileID: 6197798176421269809}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.9447, y: 6.0153, z: 0}
-  m_LocalScale: {x: 0.8186611, y: 0.81866115, z: 0}
+  m_LocalScale: {x: 1.2719547, y: 1.2719547, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6197798177016697438}
@@ -411,7 +411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   bar: {fileID: 5894459449886815197, guid: fb1b7fc730420314d876a7daece293d1, type: 3}
-  barOffset: {x: 0, y: 1.5, z: 0}
+  barOffset: {x: 0, y: 2, z: 0}
   deathFlag: 0
 --- !u!114 &3923120615845457395
 MonoBehaviour:
@@ -441,6 +441,7 @@ MonoBehaviour:
   - moveData: {fileID: 4900000, guid: cbb93d3e40dd0dd4a811b7b513b89989, type: 3}
     HitSFX: []
   HBList: []
+  invulerable: 0
   framedata:
     framedata: []
     damage: 0
@@ -489,6 +490,7 @@ MonoBehaviour:
   NotFlash: 0
   default_ani: Idle
   NotHitPart: 0
+  invin: 0
 --- !u!114 &3393781334134885235
 MonoBehaviour:
   m_ObjectHideFlags: 0

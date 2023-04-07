@@ -21622,6 +21622,14 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6197798176421269814, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6197798176421269814, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6197798176421269814, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.9447
       objectReference: {fileID: 0}
@@ -28868,11 +28876,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineThickness: 0.5
   dialogue: {fileID: 0}
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 1
   lockable:
     isLocked: 0
     requiredItems: 
     lockedText: {fileID: 0}
+    lockedAudio:
+      audioFile: {fileID: 0}
 --- !u!212 &705862865
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -68913,6 +68925,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 917416424, guid: bbb0bda49fc5ab349934ebb35d799e99, type: 3}
+      propertyPath: items.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 917416424, guid: bbb0bda49fc5ab349934ebb35d799e99, type: 3}
+      propertyPath: items.Array.data[0].percentChance
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 917416424, guid: bbb0bda49fc5ab349934ebb35d799e99, type: 3}
+      propertyPath: items.Array.data[0].usePlayerHealth
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7392912437748552742, guid: bbb0bda49fc5ab349934ebb35d799e99, type: 3}
       propertyPath: m_Name
       value: MeleeEnemy
@@ -80882,11 +80906,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineThickness: 0.25
   dialogue: {fileID: 11400000, guid: 05323ce36b8941f45847daba94b9b228, type: 2}
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 1
   lockable:
     isLocked: 0
     requiredItems: 
     lockedText: {fileID: 0}
+    lockedAudio:
+      audioFile: {fileID: 0}
 --- !u!114 &1865370411
 MonoBehaviour:
   m_ObjectHideFlags: 0
