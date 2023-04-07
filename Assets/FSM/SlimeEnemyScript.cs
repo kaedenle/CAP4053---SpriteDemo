@@ -10,6 +10,11 @@ public class SlimeEnemyScript : MonoBehaviour, IUnique
     }
     public void onDeath()
     {
+        foreach (ItemDrop item in gameObject.GetComponents<ItemDrop>())
+        {
+            item.AttemptDrop();
+        }
+
         HealthTracker healthTracker = GetComponent<HealthTracker>();
         //Debug.Log("Dead Ooze boy");
         PlayerMetricsManager.IncrementKeeperInt("killed");
