@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class MindDoorBehavior : Interactive
 {
+    new void Awake()
+    {
+        base.Awake();
+        outlineThickness = 7.0F;
+    }
+
     new void Start()
     {
         base.Start();
-        outlineThickness = 7.0F;
-        base.GetOutline().SetFloat("_Outline_Thickness", 7.0F);
+        base.GetOutline().SetFloat("_Outline_Thickness", outlineThickness);
     }
+
     new void Update()
     {
-        if(IsPlayerNear() && InputManager.InteractKeyDown())
+        base.Update();
+
+        if(ActivateBehavior())
         {
-            base.Update();
             LevelManager.TriggerEnd();
         }
     }
