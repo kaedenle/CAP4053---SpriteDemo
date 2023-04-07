@@ -33,6 +33,11 @@ public class CastleLevelManager : SubLevelManager
         maze_status = status;
     }
 
+    public static bool GetMazeStatus()
+    {
+        return maze_status;
+    }
+
     public static bool ObtainedPrereqs(int special)
     {
         for(int i = 0; i < special; i++)

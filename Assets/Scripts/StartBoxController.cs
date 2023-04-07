@@ -5,11 +5,16 @@ using UnityEngine;
 public class StartBoxController : MonoBehaviour
 {
     [SerializeField] ScenesManager.AllScenes _prevScene;
-    public GameObject player;
+    private GameObject player;
 
     // Start is called before the first frame update
-    void Awake()
+    protected void Awake()
     {
+        // get the player
+        player = GameObject.FindGameObjectWithTag("Player");
+        if(player == null) 
+            return;
+
         // move the player to the location of the attached object iff the previous scene was _prevScene
         if(ScenesManager.GetPreviousScene() == _prevScene)
         {
