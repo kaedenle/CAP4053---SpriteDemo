@@ -7,6 +7,7 @@ public class LockedBehavior
 {
     public bool isLocked = false;
     public InteractiveText lockedInteractiveText;
+    public AudioPlayer lockedAudio;
     public InventoryManager.AllItems[] requiredItems; 
 
     private bool unlocked = false;
@@ -37,5 +38,10 @@ public class LockedBehavior
     public InteractiveText GetInteractiveText()
     {
         return lockedInteractiveText;
+    }
+
+    public void PlayAudio()
+    {
+        lockedAudio.PlayAudio();
     }
 }

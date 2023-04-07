@@ -8,7 +8,7 @@ public class MenuManager : MonoBehaviour
     public void NewGame()
     {
         GameState.HardReset();
-        StartGame();
+        ScenesManager.LoadScene( ScenesManager.AllScenes.StartCutScene );
     }
 
     // button behavior for Load Game

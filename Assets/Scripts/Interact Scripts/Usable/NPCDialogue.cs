@@ -6,6 +6,7 @@ using System;
 public class NPCDialogue : OutlineObject
 {
     public NPCReport dialogue;
+    public AudioPlayer normalAudio;
     public bool highlightEnds = true;
     public LockedDialogueBehavior lockable;
 
@@ -29,9 +30,23 @@ public class NPCDialogue : OutlineObject
 
         if(IsTriggered())
         {
-            if(!UIActive() && lockable.IsUnlocked()) triggered = true;
+            if(!UIActive() && lockable.IsUnlocked())
+            {
+                InitiateBehaviors();
+
+            }
             TriggerDialogue();
         }
+    }
+
+    public void InitiateBehaviors()
+    {
+        triggered = true;
+
+        if(lockable.IsUnlocked())
+            normalAudio.PlayAudio();
+        else
+            lockable.PlayAudio();
     }
 
     new public void OnTriggerEnter2D(Collider2D collider)
