@@ -39,7 +39,8 @@ public class ScenesManager : MonoBehaviour
         Boss_BossRoom,
         CastleArena,
         CastleMaze,
-        TutorialSkyBox
+        TutorialSkyBox,
+        StartCutScene
     }
 
     // loads a scene
