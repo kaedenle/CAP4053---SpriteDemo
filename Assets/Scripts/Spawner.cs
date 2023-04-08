@@ -54,7 +54,7 @@ public class Spawner : MonoBehaviour
             Destroy(gameObject);
 
         // find the player
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GeneralFunctions.GetPlayer();
     }
     
     // Start is called before the first frame update

@@ -114,7 +114,7 @@ public class CameraController : MonoBehaviour
     }
     private void Start()
     {
-        player = GameObject.Find("Player");
+        player = GeneralFunctions.GetPlayer();
         playerReference = player;
     }
     // Update is called once per frame

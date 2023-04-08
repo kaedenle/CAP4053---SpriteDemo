@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour
 
     public void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GeneralFunctions.GetPlayer();
 
         if(objectState == null) // not seen before
         {
