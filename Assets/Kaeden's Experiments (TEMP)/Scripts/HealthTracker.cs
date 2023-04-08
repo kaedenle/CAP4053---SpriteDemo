@@ -40,7 +40,7 @@ public class HealthTracker : MonoBehaviour, IDamagable
 
             FollowTarget ft = newBar.GetComponent<FollowTarget>();
             ft.target = gameObject;
-            ft.offset = barOffset;
+            ft.offset = barOffset * gameObject.transform.localScale.y;
             bar = newBar;
         }
         

@@ -1238,6 +1238,7 @@ MonoBehaviour:
   NotFlash: 0
   default_ani: 
   NotHitPart: 0
+  invin: 0
 --- !u!114 &533731728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1252,7 +1253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 15
   bar: {fileID: 5894459449886815197, guid: fb1b7fc730420314d876a7daece293d1, type: 3}
-  barOffset: {x: 0, y: 2, z: 0}
+  barOffset: {x: 0, y: 1.5, z: 0}
   deathFlag: 0
 --- !u!114 &533731729
 MonoBehaviour:
@@ -2044,11 +2045,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineThickness: 0.5
   dialogue: {fileID: 11400000, guid: 9498a42cf9776914489aa9ce2fa90df4, type: 2}
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     requiredItems: 
     lockedText: {fileID: 0}
+    lockedAudio:
+      audioFile: {fileID: 0}
 --- !u!212 &741510956
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4336,6 +4341,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3022009316415555036, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
+      propertyPath: barOffset.y
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6197798176421269809, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_Name
       value: Player
@@ -5159,7 +5168,7 @@ SortingGroup:
   m_GameObject: {fileID: 2037892902}
   m_Enabled: 1
   m_SortingLayerID: -1305270975
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: -1
 --- !u!1001 &2056680389
 PrefabInstance:
@@ -13702,7 +13711,7 @@ SortingGroup:
   m_GameObject: {fileID: 8153827875330114670}
   m_Enabled: 1
   m_SortingLayerID: -1305270975
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: -1
 --- !u!95 &8153827875330114666
 Animator:

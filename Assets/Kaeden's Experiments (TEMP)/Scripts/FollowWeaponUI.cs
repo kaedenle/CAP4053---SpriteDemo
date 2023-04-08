@@ -14,6 +14,8 @@ public class FollowWeaponUI : MonoBehaviour
     {
         myRectTransform = GetComponent<RectTransform>();
         target = GameObject.Find("Player");
+        offset = new Vector3(offset.x, offset.y * target.transform.localScale.y, offset.z);
+        myRectTransform.position = new Vector3(target.transform.position.x + offset.x, target.transform.position.y + offset.y, target.transform.position.z + offset.z);
     }
     // Update is called once per frame
     void LateUpdate()
