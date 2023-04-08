@@ -11,10 +11,15 @@ public class StartBoxController : MonoBehaviour
     protected void Awake()
     {
         // get the player
-        player = GameObject.FindGameObjectWithTag("Player");
-        if(player == null) 
-            return;
+        player = GeneralFunctions.GetPlayer();
 
+        if(player == null) 
+        {
+            Debug.Log("didn't find player for StartBoxController");
+            return;
+        }
+
+        Debug.Log("detected previous scene as " + ScenesManager.GetPreviousScene() + " for StartBoxController");
         // move the player to the location of the attached object iff the previous scene was _prevScene
         if(ScenesManager.GetPreviousScene() == _prevScene)
         {

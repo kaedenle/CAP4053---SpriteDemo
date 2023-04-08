@@ -64,7 +64,7 @@ public class LevelManager : MonoBehaviour
     {
         _playerDied = false;
         _levelEnding = false;
-        objectState = new Dictionary<string, bool>();
+        objectState.Clear();
     }
 
     static void ResetAllVariables()
