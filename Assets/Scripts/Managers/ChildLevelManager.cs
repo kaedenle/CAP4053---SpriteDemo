@@ -19,7 +19,7 @@ public class ChildLevelManager : SubLevelManager
         ResetVariables();
     }
 
-    new public static void ResetVariables()
+    public static void ResetVariables()
     {
         inMirror = false;
     }

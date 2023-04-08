@@ -20,7 +20,7 @@ public class MobsterLevelManager : SubLevelManager
     }
 
     // reset the manager variables
-    new public static void ResetVariables()
+    public static void ResetVariables()
     {
         _alleyGateOpen = false;
         InventoryManager.RemoveItem(InventoryManager.AllItems.MobsterKeyDemo);
