@@ -18,7 +18,11 @@ public class InputManager : MonoBehaviour
         Pause,
         Equip,
         Swap,
-        Continue
+        Continue,
+        Up,
+        Down,
+        Left,
+        Right
     }
 
     // the actual key bindings the player uses
@@ -33,7 +37,11 @@ public class InputManager : MonoBehaviour
         {Keys.Pause, KeyCode.Escape},
         {Keys.Equip, KeyCode.LeftShift},
         {Keys.Swap, KeyCode.Space},
-        {Keys.Continue, KeyCode.Space}
+        {Keys.Continue, KeyCode.Space},
+        {Keys.Up, KeyCode.W},
+        {Keys.Down, KeyCode.S},
+        {Keys.Left, KeyCode.A},
+        {Keys.Right, KeyCode.D}
     };
 
     void Awake()
