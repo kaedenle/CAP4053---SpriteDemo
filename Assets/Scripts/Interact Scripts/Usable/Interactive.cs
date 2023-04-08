@@ -49,7 +49,7 @@ public class Interactive : OutlineObject
             base.OnTriggerEnter2D(collider);
     }
 
-    public void Update()
+    new public void Update()
     {
         base.Update();
         

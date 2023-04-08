@@ -23,7 +23,7 @@ public class BossLevelManager : SubLevelManager
         ResetVariables();
     }
 
-    new public static void ResetVariables()
+    public static void ResetVariables()
     {
         // no variables yet
     }

@@ -23,7 +23,7 @@ public class CastleLevelManager : SubLevelManager
         ResetVariables();
     }
 
-    new public static void ResetVariables()
+    public static void ResetVariables()
     {
         maze_status = true;
     }

@@ -163,7 +163,7 @@ public class MazeManager : MonoBehaviour
             while(!cur.IsTerminal())
             {
                 int dir = rand.Next(0, directions);
-                Debug.Log("dir is " + dir + " for path " + special);
+                // Debug.Log("dir is " + dir + " for path " + special);
                 cur = cur.GetNext(dir);
                 cur.SetOnPath(special);
             }
