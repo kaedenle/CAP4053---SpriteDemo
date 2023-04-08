@@ -155,7 +155,7 @@ Transform:
   - {fileID: 1108721860}
   - {fileID: 1927940238}
   m_Father: {fileID: 1480503607}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &38747140
 MonoBehaviour:
@@ -849,13 +849,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1259322660}
   - {fileID: 1589353494}
   - {fileID: 1937558775}
   - {fileID: 535951424}
   - {fileID: 1854744747}
   m_Father: {fileID: 357622184}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &357622183
 GameObject:
@@ -888,7 +887,6 @@ Transform:
   m_Children:
   - {fileID: 1032946258}
   - {fileID: 1292937148}
-  - {fileID: 689081051}
   - {fileID: 1352541314}
   - {fileID: 614697316}
   - {fileID: 282506143}
@@ -1012,12 +1010,16 @@ MonoBehaviour:
   interactiveText:
     textID: childKeyItem
     loopLast: 1
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
   _itemType: 2
   repeatable: 0
@@ -1330,12 +1332,16 @@ MonoBehaviour:
   interactiveText:
     textID: got_fuse
     loopLast: 0
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 1
   lockable:
     isLocked: 1
     lockedInteractiveText:
       textID: need_fuse
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 0a000000
   stateID: lightbulb_need_fuse
   enables:
@@ -1628,7 +1634,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 282506143}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &535951425
 MonoBehaviour:
@@ -1728,7 +1734,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 357622184}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &617600274
 GameObject:
@@ -2029,12 +2035,16 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
 --- !u!61 &689081049
 BoxCollider2D:
@@ -2126,8 +2136,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 357622184}
-  m_RootOrder: 2
+  m_Father: {fileID: 1480503607}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &719084561
 PrefabInstance:
@@ -2462,6 +2472,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ff98a488c02175418990b20462af46e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &893510175
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 893510176}
+  m_Layer: 0
+  m_Name: -- Triggers --
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &893510176
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893510175}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1259322660}
+  m_Father: {fileID: 1480503607}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &901368652
 GameObject:
   m_ObjectHideFlags: 0
@@ -2547,7 +2589,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1305270975
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 10
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0, b: 0.60661507, a: 0.14117648}
@@ -2880,12 +2922,16 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
   _nextScene: 8
 --- !u!114 &1018827041
@@ -2954,12 +3000,16 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
   _nextScene: 11
 --- !u!61 &1025673643
@@ -3415,12 +3465,16 @@ MonoBehaviour:
   interactiveText:
     textID: closed_to_open_fusebox
     loopLast: 0
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
   eventID: fusebox_closed
   destroyOnUse: 1
@@ -3831,12 +3885,16 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
   requiredItem: 2
   lockedTextId: lockedChildDoor
@@ -3858,12 +3916,16 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 1
     lockedInteractiveText:
       textID: lockedChildDoor
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 02000000
   _nextScene: 9
 --- !u!1 &1259322659
@@ -3895,7 +3957,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 282506143}
+  m_Father: {fileID: 893510176}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1259322661
@@ -4327,12 +4389,16 @@ MonoBehaviour:
   interactiveText:
     textID: childBulbItem
     loopLast: 1
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 1
     lockedInteractiveText:
       textID: child_bulb_locked
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 01000000
   _itemType: 3
   repeatable: 0
@@ -4372,12 +4438,16 @@ MonoBehaviour:
   interactiveText:
     textID: added_fuse
     loopLast: 0
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 1
     lockedInteractiveText:
       textID: missing_fuse
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 04000000
   eventID: fusebox_missing
   destroyOnUse: 1
@@ -4586,7 +4656,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 357622184}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1352541315
 MonoBehaviour:
@@ -4722,7 +4792,9 @@ Transform:
   - {fileID: 453964515}
   - {fileID: 1320306438}
   - {fileID: 143407926}
+  - {fileID: 689081051}
   - {fileID: 38747139}
+  - {fileID: 893510176}
   m_Father: {fileID: 1826998836}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4994,7 +5066,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 282506143}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1589353495
 MonoBehaviour:
@@ -5744,12 +5816,16 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
   _nextScene: 7
 --- !u!114 &1785929747
@@ -5879,7 +5955,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 282506143}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1854744748
 MonoBehaviour:
@@ -5997,11 +6073,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineThickness: 0.25
   dialogue: {fileID: 11400000, guid: 05ad801f00c4a534e9be03c9fe1ac598, type: 2}
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 1
   lockable:
     isLocked: 0
     requiredItems: 09000000
     lockedText: {fileID: 11400000, guid: 2e5e2b140a3154c4bac23beb052658d6, type: 2}
+    lockedAudio:
+      audioFile: {fileID: 0}
   triggeredEventId: mom_ghost_1
   destroyOnTrigger: 1
   gainItem: 1
@@ -6142,7 +6222,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 282506143}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1937558776
 MonoBehaviour:
@@ -6273,11 +6353,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineThickness: 0.25
   dialogue: {fileID: 11400000, guid: fbe54e6f59c666348afe4cfb594fa2cf, type: 2}
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 1
   lockable:
     isLocked: 1
     requiredItems: 09000000
     lockedText: {fileID: 11400000, guid: 2e5e2b140a3154c4bac23beb052658d6, type: 2}
+    lockedAudio:
+      audioFile: {fileID: 0}
   triggeredEventId: mom_ghost_2
   destroyOnTrigger: 0
   gainItem: 0
@@ -6472,12 +6556,16 @@ MonoBehaviour:
   interactiveText:
     textID: lightbulb_replacement
     loopLast: 0
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 1
     lockedInteractiveText:
       textID: prompt_lightbulb_replacement
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 0300000004000000
   stateID: broken_lightbulb
   enables:

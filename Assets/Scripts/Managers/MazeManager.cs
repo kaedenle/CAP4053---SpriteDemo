@@ -6,7 +6,8 @@ using System;
 public class MazeManager : MonoBehaviour
 {
     public GameObject[] specials;
-    public GameObject[] decorations;
+    public GameObject decorationsContainer;
+    private GameObject[] decorations;
     public int averageNumberOfDecorations = 4;
 
     // The length of the maze path (number of rooms traversed until exit)
@@ -44,6 +45,16 @@ public class MazeManager : MonoBehaviour
             path.Push(maze);    // start in the first room  
 
         hints = FindObjectOfType<MazeHints>();
+
+        if(decorationsContainer != null)
+        {
+            decorations = new GameObject[decorationsContainer.transform.childCount];
+            int idx = 0;
+            foreach(Transform tr in decorationsContainer.transform)
+                decorations[idx++] = tr.gameObject;
+        }
+        else
+            decorations = new GameObject[0];
     }
 
     void Start()
@@ -95,13 +106,13 @@ public class MazeManager : MonoBehaviour
 
     public void SetupRoom(Maze cur)
     {
-        // set up the decorations
-        bool[] dec_state = cur.GetDecorations();
-
         if(cur.NotSetup())
         {
             cur.SetupRoom(rand, decorations.Length, averageNumberOfDecorations / (double) decorations.Length);
         }
+
+        // set up the decorations
+        bool[] dec_state = cur.GetDecorations();
 
         for(int i = 0; i < decorations.Length; i++)
         {
