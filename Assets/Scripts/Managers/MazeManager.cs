@@ -6,9 +6,11 @@ using System;
 public class MazeManager : MonoBehaviour
 {
     public GameObject[] specials;
+    public GameObject doors;
     public GameObject decorationsContainer;
     private GameObject[] decorations;
     public int averageNumberOfDecorations = 4;
+    public GameObject[] startPosition;
 
     // The length of the maze path (number of rooms traversed until exit)
     private int pathLength = 5;
@@ -31,6 +33,7 @@ public class MazeManager : MonoBehaviour
     private static System.Random rand;
     private static Maze maze;
     private static Stack<Maze> path;
+    private static Stack<Direction> dirPath;
 
     void Awake()
     {
@@ -39,6 +42,7 @@ public class MazeManager : MonoBehaviour
             rand = new System.Random(seed);
             maze = GenerateMaze();
             path = new Stack<Maze>();
+            dirPath = new Stack<Direction>();
         }
 
         if(path.Count <= 0)
@@ -60,6 +64,17 @@ public class MazeManager : MonoBehaviour
     void Start()
     {
         SetupRoom(GetCurrentRoom());
+
+        // check if the player went backward
+        if(dirPath.Count >= 2)
+        {
+            if(dirPath.Peek() == Direction.Down)
+            {
+                dirPath.Pop();
+                GeneralFunctions.GetPlayer().transform.position = startPosition[(int) dirPath.Peek()].transform.position;
+                dirPath.Pop();
+            }
+        }
     }
 
     public Maze GetCurrentRoom()
@@ -79,6 +94,7 @@ public class MazeManager : MonoBehaviour
             }
 
             // do stuff
+            dirPath.Push(Direction.Down);
             path.Pop();
             RestartRoom();
 
@@ -96,6 +112,7 @@ public class MazeManager : MonoBehaviour
         }
 
         path.Push(cur.GetNext((int)dir));
+        dirPath.Push(dir);
         RestartRoom();
     }
 
@@ -131,6 +148,12 @@ public class MazeManager : MonoBehaviour
             for(int special = 0; special < specials.Length; special++)
                 if(cur.IsOnPath(special) && CastleLevelManager.ObtainedPrereqs(special) && specials[special] != null)
                     specials[special].SetActive(true);
+        }
+
+        if(doors != null)
+        {
+            // disables doors if this is a special room
+            doors.SetActive(!cur.IsSpecial());
         }
     }
 
