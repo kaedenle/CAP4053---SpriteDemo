@@ -17,7 +17,7 @@ public class InteractiveUIController : MonoBehaviour
     private bool on_using;
     private bool on;
     private float delay = 0.5F;
-    private float react_delay = 0.25F;
+    private float react_delay = 0.1F;
     private bool delay_complete = false;
     private bool pause = true;
     private TMP_Text nameField;
