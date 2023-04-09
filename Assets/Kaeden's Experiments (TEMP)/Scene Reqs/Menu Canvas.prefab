@@ -113,7 +113,7 @@ SortingGroup:
   m_GameObject: {fileID: 1554438271625386812}
   m_Enabled: 1
   m_SortingLayerID: -1305270975
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
 --- !u!1 &5164051491132913672
 GameObject:
@@ -252,11 +252,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7460151658503808457, guid: 75e798d718d73174aba3b2478ca1b297, type: 3}
       propertyPath: FollowX
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7460151658503808457, guid: 75e798d718d73174aba3b2478ca1b297, type: 3}
       propertyPath: FollowY
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460151658503808457, guid: 75e798d718d73174aba3b2478ca1b297, type: 3}
+      propertyPath: offset.y
+      value: 2.7
       objectReference: {fileID: 0}
     - target: {fileID: 8153827874136046148, guid: 75e798d718d73174aba3b2478ca1b297, type: 3}
       propertyPath: m_Pivot.x
@@ -336,7 +340,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8153827874136046148, guid: 75e798d718d73174aba3b2478ca1b297, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 41
+      value: 492
       objectReference: {fileID: 0}
     - target: {fileID: 8153827874136046148, guid: 75e798d718d73174aba3b2478ca1b297, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
