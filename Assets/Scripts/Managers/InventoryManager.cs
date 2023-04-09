@@ -29,7 +29,8 @@ public class InventoryManager : MonoBehaviour
         HealingHeart,
         CastleChestKey,
         CastleDagger,
-        CastleSunglasses
+        CastleSunglasses,
+        Boss_Lever_Pulled
     }
 
     private static AllItems[] intangibles =
@@ -38,7 +39,8 @@ public class InventoryManager : MonoBehaviour
         AllItems.Child_WorkingFusebox,
         AllItems.Boss_KeyUsedLeft,
         AllItems.Boss_KeyUsedDown,
-        AllItems.Boss_KeyUsedRight
+        AllItems.Boss_KeyUsedRight,
+        AllItems.Boss_Lever_Pulled
     };
 
     // temporary solution to dropable heart problem

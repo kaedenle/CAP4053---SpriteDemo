@@ -112,6 +112,9 @@ public class InteractiveUIController : MonoBehaviour
             return;
         }
 
+        delay_complete = false;
+        StartCoroutine(ReactDelay());
+
         if(isDialogue)
         {
             string name = names.Dequeue();
