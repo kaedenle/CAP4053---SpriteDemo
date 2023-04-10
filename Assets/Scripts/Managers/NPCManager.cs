@@ -15,6 +15,9 @@ public class NPCManager : MonoBehaviour
         Skelly,
         Tutorial,
         Dog,
+        KaleighAdult,
+        AntonioVelucci,
+        FinnKoenig
     }
 
     public static string[] personName =
@@ -27,7 +30,10 @@ public class NPCManager : MonoBehaviour
         "Placeholder",
         "Skelly",
         "You",
-        "Dog"
+        "Dog",
+        "Kaleigh Blanchard",
+        "Antonio Velucci",
+        "Finn Koenig"
     };
 
     public static string GetName(Person person)
