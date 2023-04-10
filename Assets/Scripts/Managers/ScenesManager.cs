@@ -42,8 +42,8 @@ public class ScenesManager : MonoBehaviour
         TutorialSkyBox,
         StartCutScene,
         Hallway,
-        AntonioHome,
         Classroom,
+        AntonioHome,
         TrainStation
     }
 

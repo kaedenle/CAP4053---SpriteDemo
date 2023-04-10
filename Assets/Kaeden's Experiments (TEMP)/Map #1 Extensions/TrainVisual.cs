@@ -9,11 +9,13 @@ public class TrainVisual : MonoBehaviour
     public float speed;
     public bool TriggerOnStart;
     private bool Triggered;
+    private float WaitTill;
     // Start is called before the first frame update
     void Start()
     {
         Triggered = TriggerOnStart;
         gameObject.transform.position = new Vector3(StartPos, gameObject.transform.position.y, gameObject.transform.position.z);
+        WaitTill = Random.Range(10f, 20f);
     }
     private void PlayTrain()
     {
@@ -21,18 +23,9 @@ public class TrainVisual : MonoBehaviour
         //end conditions
         if((speed > 0 && gameObject.transform.position.x > EndPos) || (speed < 0 && gameObject.transform.position.x < EndPos))
         {
-            StartCoroutine(WaitTillGoAgain());   
+            WaitTill = Random.Range(10f, 20f);
+            Triggered = false;
         }
-    }
-    IEnumerator WaitTillGoAgain()
-    {
-        gameObject.transform.position = new Vector3(StartPos, gameObject.transform.position.y, gameObject.transform.position.z);
-        Triggered = false;
-        int time = Random.Range(5, 6);
-        yield return new WaitForSeconds(time);
-        //50% to go the other way
-        if (Random.value < 0.5f) Reverse();
-        Triggered = true;
     }
     private void Reverse()
     {
@@ -44,6 +37,16 @@ public class TrainVisual : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!Triggered)
+        {
+            WaitTill -= Time.deltaTime;
+            if(WaitTill <= 0)
+            {
+                Triggered = true;
+                if (Random.value < 0.5f) Reverse();
+                gameObject.transform.position = new Vector3(StartPos, gameObject.transform.position.y, gameObject.transform.position.z);
+            }
+        }
         if(Triggered) PlayTrain();
     }
 }
