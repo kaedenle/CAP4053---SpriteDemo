@@ -44,4 +44,30 @@ public class Attack
         this.x_scale = 0;
         this.y_scale = 0;
     }
+    public Attack(int damage, int knockback, int frame, float hitstun, float x_knockback, float y_knockback, float x_pos, float y_pos, float x_scale, float y_scale)
+    {
+        this.damage = damage;
+        this.knockback = knockback;
+        this.frame = frame;
+        this.hitstun = hitstun;
+        this.x_knockback = x_knockback;
+        this.y_knockback = y_knockback;
+        this.x_pos = x_pos;
+        this.y_pos = y_pos;
+        this.x_scale = x_scale;
+        this.y_scale = y_scale;
+    }
+    public Attack(Attack atk)
+    {
+        this.damage = atk.damage;
+        this.knockback = atk.knockback;
+        this.frame = atk.frame;
+        this.hitstun = atk.hitstun;
+        this.x_knockback = atk.x_knockback;
+        this.y_knockback = atk.y_knockback;
+        this.x_pos = atk.x_pos;
+        this.y_pos = atk.y_pos;
+        this.x_scale = atk.x_scale;
+        this.y_scale = atk.y_scale;
+    }
 }

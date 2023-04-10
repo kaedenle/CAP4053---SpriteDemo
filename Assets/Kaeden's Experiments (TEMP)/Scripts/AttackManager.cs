@@ -51,6 +51,7 @@ public class AttackManager : MonoBehaviour
     private IDictionary<Collider2D, Hitbox> hasHit = new Dictionary<Collider2D, Hitbox>();
     private HashSet<int> cancellableSet = new HashSet<int>();
     private HashSet<Collider2D> alreadyDamaged = new HashSet<Collider2D>();
+    private Hurtbox hb;
 
     //technical information
     private bool active = false;
@@ -60,7 +61,15 @@ public class AttackManager : MonoBehaviour
 
     //audio
     private AudioClip[] currentAudio;
-    
+    [HideInInspector]
+    public float OffsenseDamageMultiplier = 1;
+    [HideInInspector]
+    public float OffenseKnockbackMultiplier = 1;
+    [HideInInspector]
+    public float DefenseDamageMultiplier = 1;
+    [HideInInspector]
+    public float DefenseKnockbackMultiplier = 1;
+    public float MultiplierAttack;
 
     public enum ScriptTypes{
         Movement,
@@ -81,6 +90,7 @@ public class AttackManager : MonoBehaviour
     void Awake()
     {
         HBList.Clear();
+        hb = GetComponent<Hurtbox>();
         if (tag == "Player") pwm = GetComponent<WeaponManager>();
         uniqueScript = gameObject?.GetComponent<IUnique>();
         animator = gameObject?.GetComponent<Animator>();
@@ -98,8 +108,9 @@ public class AttackManager : MonoBehaviour
         GameObject createdHitbox = Instantiate(HitboxPrefab);
         createdHitbox.name = "Hitbox";
         createdHitbox.transform.SetParent(parent.transform);
-        if(ProjectileOwner != null) createdHitbox.GetComponent<Hitbox>().SetProjectileUser(ProjectileOwner);
+
         Hitbox HBObj = createdHitbox.GetComponent<Hitbox>();
+        if (ProjectileOwner != null) HBObj.SetProjectileUser(ProjectileOwner);
         HBObj.Atk = a;
         HBList.Add(HBObj);
     }
@@ -126,7 +137,7 @@ public class AttackManager : MonoBehaviour
             //create hitboxes if need more
             if (counter >= HBListLength)
                 CreateHitbox(a);
-            HBList[counter].UpdateHitboxInfo(framedata, a, wpnList.index, getAudioClip());
+            HBList[counter].UpdateHitboxInfo(framedata, a, wpnList.index, getAudioClip(), OffsenseDamageMultiplier, OffenseKnockbackMultiplier);
             HBList[counter].marked = false;
             counter += 1;
         }
@@ -226,6 +237,7 @@ public class AttackManager : MonoBehaviour
 
             pwm.SetSprite();
             DestroyPlay();
+            if (hb != null) hb.InvokeFlash(0.05f, Color.white, true, true, 2, 0.05f);
             //disable gun layer if not cancel into it
             if(wpnList.index != 2)
                 animator.SetLayerWeight(1, 0);
@@ -235,6 +247,7 @@ public class AttackManager : MonoBehaviour
             if (wpnList.index != pwm.prevWeapon)
                  PlayerMetricsManager.IncrementKeeperInt("cross_cancel");
             InvokeAttack(tmp);
+            OffsenseDamageMultiplier = MultiplierAttack;
         }
     }
     public GameObject HurtBoxSearch(GameObject part){
@@ -302,8 +315,10 @@ public class AttackManager : MonoBehaviour
             box.Deactivate();
     }
 
-    public void DestroyPlay(){
-        
+    public void DestroyPlay()
+    {
+        OffenseKnockbackMultiplier = 1;
+        OffsenseDamageMultiplier = 1;
         active = false;
         cancellableFlag = false;
         ScriptToggle(1);

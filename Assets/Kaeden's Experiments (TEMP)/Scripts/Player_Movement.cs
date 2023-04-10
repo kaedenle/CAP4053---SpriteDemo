@@ -19,6 +19,7 @@ public class Player_Movement : MonoBehaviour, IScriptable
 
     public bool move_flag;
     public bool flipped;
+    private bool lastFlipped;
     private bool isMoveable = true;
 
     void Start(){
@@ -28,7 +29,8 @@ public class Player_Movement : MonoBehaviour, IScriptable
         flipped = false;
         move_flag = false;
         MAX_SPEED = speed;
-}
+        lastFlipped = flipped;
+    }
     public Vector3 direction()
     {
         return new Vector3(lastNonZeroX, lastNonZeroY, 0) ; 
@@ -58,14 +60,17 @@ public class Player_Movement : MonoBehaviour, IScriptable
         moveX = isMoveable ? InputManager.GetAxis("Horizontal") : 0;
         moveY = isMoveable ? InputManager.GetAxis("Vertical") : 0;
         SetLastLooked();
-
-        if(moveX != 0){
-            flipped = moveX < 0 ? true : false;
-            
-            foreach(GameObject part in objs) {
-                part.GetComponent<SpriteRenderer>().flipX=flipped;
+        
+        if(moveX != 0) flipped = moveX < 0 ? true : false;
+        if (lastFlipped != flipped)
+        {
+            foreach (GameObject part in objs)
+            {
+                part.GetComponent<SpriteRenderer>().flipX = flipped;
             }
+            lastFlipped = flipped;
         }
+  
         animator.SetBool("flipped", flipped);
         movement = new Vector3(moveX, moveY, 0).normalized;
         animator.SetFloat("movement", movement.sqrMagnitude);

@@ -35,7 +35,6 @@ public class Hurtbox : MonoBehaviour, IDamagable
         if (audiosrc != null && ad.audio != null)
             audiosrc.PlayOneShot(ad.audio, 0.5f);
 
-        Debug.Log(ad.weapon + " " + ad.attack);
         //Hit particle effect
         if (HitEffect != null && !NotHitPart)
         {

@@ -30,7 +30,10 @@ public class InventoryManager : MonoBehaviour
         CastleChestKey,
         CastleDagger,
         CastleSunglasses,
-        Boss_Lever_Pulled
+        Boss_Lever_Pulled,
+        Hub_TalkedToKaleigh,
+        Hub_TalkedToAntonio,
+        Hub_TalkedToFinn
     }
 
     private static AllItems[] intangibles =
@@ -40,7 +43,10 @@ public class InventoryManager : MonoBehaviour
         AllItems.Boss_KeyUsedLeft,
         AllItems.Boss_KeyUsedDown,
         AllItems.Boss_KeyUsedRight,
-        AllItems.Boss_Lever_Pulled
+        AllItems.Boss_Lever_Pulled,
+        AllItems.Hub_TalkedToKaleigh,
+        AllItems.Hub_TalkedToAntonio,
+        AllItems.Hub_TalkedToFinn
     };
 
     // temporary solution to dropable heart problem
