@@ -28,6 +28,8 @@ public class Hitbox : MonoBehaviour
 
     //colliding information
     public List<Collider2D> collidersList;
+    private float DamageMultiplier;
+    private float KnockbackMultiplier;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +37,7 @@ public class Hitbox : MonoBehaviour
         collidersList = new List<Collider2D>();
     }
 
-    public void SetAuxillaryValues(float hitstop, string hitsTag, bool relativeKnockback, string funct, int weapon, int attackID, AudioClip audio){
+    public void SetAuxillaryValues(float hitstop, string hitsTag, bool relativeKnockback, string funct, int weapon, int attackID, AudioClip audio, float ODM, float OKM){
         this.hitstop = hitstop;
         this.hitsTag = hitsTag;
         this.relativeKnockback = relativeKnockback;
@@ -43,10 +45,12 @@ public class Hitbox : MonoBehaviour
         this.weapon = weapon;
         this.attackID = attackID;
         this.audios = audio;
+        DamageMultiplier = ODM;
+        KnockbackMultiplier = OKM;
     }
-    public void UpdateHitboxInfo(AttackManager.FrameData framedata, Attack atk, int weapon, AudioClip audio)
+    public void UpdateHitboxInfo(AttackManager.FrameData framedata, Attack atk, int weapon, AudioClip audio, float ODM, float OKM)
     {
-        SetAuxillaryValues(framedata.hitstop, framedata.hitsTag, framedata.relativeKnockback, framedata.functCall, weapon, framedata.ID, audio);
+        SetAuxillaryValues(framedata.hitstop, framedata.hitsTag, framedata.relativeKnockback, framedata.functCall, weapon, framedata.ID, audio, ODM, OKM);
         //set default value (when frame's damage/knockback is 0)
         if (atk == null)
             atk = new Attack();
@@ -133,7 +137,11 @@ public class Hitbox : MonoBehaviour
                 tempKnockBack = new Vector3(Atk.x_knockback, Atk.y_knockback, 0);
                 tempKnockBack = checkKnockback(hit, myGameObject, tempKnockBack);
             }
-            AttackData ad = new AttackData(Atk, tempKnockBack);
+            Attack AtkClone = new Attack(Atk);
+            AtkClone.damage = (int)(Atk.damage * DamageMultiplier);
+            AtkClone.knockback = (int)(Atk.knockback * KnockbackMultiplier);
+            Debug.Log("Damage: " + AtkClone.damage + " " + DamageMultiplier);
+            AttackData ad = new AttackData(AtkClone, tempKnockBack);
             ad.setAux(hitstop, weapon, attackID, audios);
             script.damage(ad);
         }

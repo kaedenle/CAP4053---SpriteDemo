@@ -60,7 +60,15 @@ public class AttackManager : MonoBehaviour
 
     //audio
     private AudioClip[] currentAudio;
-    
+    [HideInInspector]
+    public float OffsenseDamageMultiplier = 1;
+    [HideInInspector]
+    public float OffenseKnockbackMultiplier = 1;
+    [HideInInspector]
+    public float DefenseDamageMultiplier = 1;
+    [HideInInspector]
+    public float DefenseKnockbackMultiplier = 1;
+    public float MultiplierAttack;
 
     public enum ScriptTypes{
         Movement,
@@ -126,7 +134,7 @@ public class AttackManager : MonoBehaviour
             //create hitboxes if need more
             if (counter >= HBListLength)
                 CreateHitbox(a);
-            HBList[counter].UpdateHitboxInfo(framedata, a, wpnList.index, getAudioClip());
+            HBList[counter].UpdateHitboxInfo(framedata, a, wpnList.index, getAudioClip(), OffsenseDamageMultiplier, OffenseKnockbackMultiplier);
             HBList[counter].marked = false;
             counter += 1;
         }
@@ -235,6 +243,7 @@ public class AttackManager : MonoBehaviour
             if (wpnList.index != pwm.prevWeapon)
                  PlayerMetricsManager.IncrementKeeperInt("cross_cancel");
             InvokeAttack(tmp);
+            OffsenseDamageMultiplier = MultiplierAttack;
         }
     }
     public GameObject HurtBoxSearch(GameObject part){
@@ -302,8 +311,10 @@ public class AttackManager : MonoBehaviour
             box.Deactivate();
     }
 
-    public void DestroyPlay(){
-        
+    public void DestroyPlay()
+    {
+        OffenseKnockbackMultiplier = 1;
+        OffsenseDamageMultiplier = 1;
         active = false;
         cancellableFlag = false;
         ScriptToggle(1);

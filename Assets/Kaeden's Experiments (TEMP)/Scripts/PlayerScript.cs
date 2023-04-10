@@ -186,7 +186,7 @@ public class PlayerScript : MonoBehaviour, IUnique
         animator.Play("Hitstun");
         InvinTimer = MAX_INVIN_TIME;
         //getting hit while reloading (reload for you then transition)
-        if (animator.GetFloat("shooting") == 2) CleanShoot();
+        if (animator.GetFloat("shooting") > 0) CleanShoot();
     }
 
     void Start()

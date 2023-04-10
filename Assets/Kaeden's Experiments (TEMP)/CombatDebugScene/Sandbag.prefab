@@ -105,7 +105,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 20
   bar: {fileID: 5894459449886815197, guid: fb1b7fc730420314d876a7daece293d1, type: 3}
-  barOffset: {x: 0.1, y: 2, z: 0}
+  barOffset: {x: 0.05, y: 0.75, z: 0}
+  deathFlag: 0
 --- !u!114 &2582704783332661028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +179,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inHitStun: 0
+  NotFlash: 0
   default_ani: 
+  NotHitPart: 0
+  invin: 0
 --- !u!114 &3207327891253271178
 MonoBehaviour:
   m_ObjectHideFlags: 0
