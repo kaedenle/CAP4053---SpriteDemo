@@ -40,7 +40,11 @@ public class ScenesManager : MonoBehaviour
         CastleArena,
         CastleMaze,
         TutorialSkyBox,
-        StartCutScene
+        StartCutScene,
+        Hallway,
+        AntonioHome,
+        Classroom,
+        TrainStation
     }
 
     // loads a scene
