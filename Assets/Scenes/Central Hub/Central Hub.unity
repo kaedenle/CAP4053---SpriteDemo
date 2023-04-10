@@ -1039,7 +1039,7 @@ MonoBehaviour:
     lockedText: {fileID: 11400000, guid: 19d1a13f7bbe5d549a8b43da4c77adb0, type: 2}
     lockedAudio:
       audioFile: {fileID: 0}
-  phase: 0
+  phase: 3
 --- !u!58 &92485182
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3160,9 +3160,9 @@ GameObject:
   m_Component:
   - component: {fileID: 352918460}
   - component: {fileID: 352918463}
-  - component: {fileID: 352918462}
   - component: {fileID: 352918461}
   - component: {fileID: 352918465}
+  - component: {fileID: 352918462}
   - component: {fileID: 352918464}
   m_Layer: 0
   m_Name: Antonio Velucci
@@ -3897,7 +3897,7 @@ Transform:
   m_GameObject: {fileID: 406938322}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.73781097, y: 1.2275753, z: 0.94536716}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.80555, y: 0.80555, z: 0.80555}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 148052834}
@@ -3916,9 +3916,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.14855981, y: -1.2691932}
+  m_Offset: {x: 0.65294075, y: -1.269193}
   serializedVersion: 2
-  m_Radius: 2.336886
+  m_Radius: 2.8412666
 --- !u!114 &406938325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3931,7 +3931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 512e797cb14145246b3dd171664802e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: 0.2
   dialogue: {fileID: 0}
   normalAudio:
     audioFile: {fileID: 0}
@@ -3942,7 +3942,7 @@ MonoBehaviour:
     lockedText: {fileID: 11400000, guid: 4ce7d40ece61c844f83f8af5f45ebf14, type: 2}
     lockedAudio:
       audioFile: {fileID: 0}
-  phase: 2
+  phase: 0
 --- !u!212 &406938326
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3984,7 +3984,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 1504389089, guid: 029030ab7555c8c4e95178103a2328f6, type: 3}
+  m_Sprite: {fileID: 2126895107, guid: b74f01eaa579fc447873b0c0e3d8aeb2, type: 3}
   m_Color: {r: 0.94509804, g: 0.94509804, b: 0.94509804, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -12858,6 +12858,7 @@ GameObject:
   - component: {fileID: 1696234529}
   - component: {fileID: 1696234528}
   - component: {fileID: 1696234527}
+  - component: {fileID: 1696234530}
   m_Layer: 0
   m_Name: Finn Koenig
   m_TagString: Untagged
@@ -12893,7 +12894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05b0e7b714cee5b4cbd62b7a421da97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phase: 2
+  phase: 0
 --- !u!114 &1696234525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13031,6 +13032,26 @@ MonoBehaviour:
   TakeParent: 0
   deltaDown: 0
   dynamic: 0
+--- !u!95 &1696234530
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696234522}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 78938a61766ca854caf65570f3153a49, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1704497150
 GameObject:
   m_ObjectHideFlags: 0
@@ -16689,12 +16710,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2013922818}
   - component: {fileID: 2013922824}
-  - component: {fileID: 2013922823}
   - component: {fileID: 2013922819}
   - component: {fileID: 2013922820}
   - component: {fileID: 2013922822}
   - component: {fileID: 2013922821}
   - component: {fileID: 2013922825}
+  - component: {fileID: 2013922823}
   m_Layer: 0
   m_Name: Kaleigh Blanchard
   m_TagString: Untagged
@@ -16758,7 +16779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05b0e7b714cee5b4cbd62b7a421da97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phase: 0
+  phase: 3
 --- !u!58 &2013922821
 CircleCollider2D:
   m_ObjectHideFlags: 0
