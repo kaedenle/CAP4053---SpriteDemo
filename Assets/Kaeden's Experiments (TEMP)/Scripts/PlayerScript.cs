@@ -68,7 +68,11 @@ public class PlayerScript : MonoBehaviour, IUnique
             int turn = animator.GetBool("flipped") ? 1 : -1;
             GameObject proj = Instantiate(bullet, transform.Find("Right Arm").Find("On-Hand").transform.position - new Vector3((-1 * turn), 0, 0), Quaternion.identity);
             Bullet bulScript = proj?.GetComponent<Bullet>();
-            if (bulScript != null) bulScript.InitBullet(gameObject);
+            if (bulScript != null)
+            {
+                proj.GetComponent<AttackManager>().ProjectileOwner = gameObject;
+                bulScript.InitBullet(gameObject);
+            }
         }
     }
     public void UnShoot()
@@ -78,6 +82,7 @@ public class PlayerScript : MonoBehaviour, IUnique
             EntityManager.EnableSwap();
             EntityManager.EnableEquip();
             animator.SetFloat("shooting", 0);
+            am.OffsenseDamageMultiplier = 1;
         }
         else
         {
@@ -221,7 +226,7 @@ public class PlayerScript : MonoBehaviour, IUnique
             hb.invin = true;
             hb.InvokeFlash(0.1f, new Color(0.39f, 0.59f, 1f), false, false, 100, 0.1f);
         }
-        if (InvinTimer <= 0)
+        if (InvinTimer <= 0 && hb.invin)
         {
             hb.invin = false;
             hb.CancelFlash();

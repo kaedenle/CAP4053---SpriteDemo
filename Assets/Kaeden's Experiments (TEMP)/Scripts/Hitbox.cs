@@ -126,7 +126,12 @@ public class Hitbox : MonoBehaviour
         //apply damage
         //object with attack manager
         GameObject myGameObject = SearchAttackManger(gameObject);
-        if (ProjectileOwner != null) myGameObject = ProjectileOwner;
+        if (ProjectileOwner != null)
+        {
+            myGameObject = ProjectileOwner;
+            AttackManager am = ProjectileOwner.GetComponent<AttackManager>();
+            if (am != null) DamageMultiplier = am.OffsenseDamageMultiplier;
+        }
         Debug.Log(hit.name + " hit by " + weapon + " attack " + attackID);
         foreach (IDamagable script in scripts)
         {
