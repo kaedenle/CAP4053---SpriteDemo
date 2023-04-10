@@ -39,7 +39,7 @@ public class LevelManager : MonoBehaviour
         _levelEnding = false;
 
         if(!EntityManager.IsPaused()) 
-            EntityManager.Pause();
+            EntityManager.SceneStartPause();
 
         EntityManager.WaitThenUnpause(default_delay);
         // ResetVariables();

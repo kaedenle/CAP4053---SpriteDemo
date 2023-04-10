@@ -58,8 +58,8 @@ public class Interactive : OutlineObject
             if(!UIActive() && lockable.IsUnlocked())
             {
                 InitiateBehaviors();
-                
             }
+            
             TriggerDialogue();
         }
     }

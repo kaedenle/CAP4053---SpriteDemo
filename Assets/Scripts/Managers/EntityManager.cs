@@ -53,6 +53,11 @@ public class EntityManager : MonoBehaviour
 
         if(numPauses <= 0)
         {
+            if(numPauses < 0)
+            {
+                numPauses = 0;
+                Debug.LogError("pause count was set to less than zero");
+            }
             _pause = false;
             Time.timeScale = 1;
         }
@@ -90,6 +95,14 @@ public class EntityManager : MonoBehaviour
     public static void Pause()
     {
         SetPause();
+        Array.Fill(states, false);
+    }
+
+    public static void SceneStartPause()
+    {
+        _pause = true;
+        numPauses = 1;
+        Time.timeScale = 0;
         Array.Fill(states, false);
     }
 
