@@ -2053,6 +2053,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 354316694}
+  - component: {fileID: 354316695}
   m_Layer: 0
   m_Name: Booth (1)
   m_TagString: Untagged
@@ -2078,6 +2079,17 @@ Transform:
   m_Father: {fileID: 38306839}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &354316695
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354316693}
+  m_Enabled: 1
+  m_SortingLayerID: -1007629035
+  m_SortingLayer: -2
+  m_SortingOrder: 0
 --- !u!1 &359213657
 GameObject:
   m_ObjectHideFlags: 0
@@ -2296,6 +2308,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 393960418}
+  - component: {fileID: 393960419}
   m_Layer: 0
   m_Name: Booth
   m_TagString: Untagged
@@ -2321,6 +2334,17 @@ Transform:
   m_Father: {fileID: 38306839}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &393960419
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393960417}
+  m_Enabled: 1
+  m_SortingLayerID: -1007629035
+  m_SortingLayer: -2
+  m_SortingOrder: 0
 --- !u!1 &458025849
 GameObject:
   m_ObjectHideFlags: 0
@@ -6615,6 +6639,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1080741837}
+  - component: {fileID: 1080741838}
   m_Layer: 0
   m_Name: Booth (2)
   m_TagString: Untagged
@@ -6640,6 +6665,17 @@ Transform:
   m_Father: {fileID: 38306839}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &1080741838
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080741836}
+  m_Enabled: 1
+  m_SortingLayerID: -1007629035
+  m_SortingLayer: -2
+  m_SortingOrder: 0
 --- !u!1 &1093677289
 GameObject:
   m_ObjectHideFlags: 0
@@ -8768,6 +8804,7 @@ GameObject:
   - component: {fileID: 1613906620}
   - component: {fileID: 1613906622}
   - component: {fileID: 1613906621}
+  - component: {fileID: 1613906623}
   m_Layer: 0
   m_Name: TV, Widescreen_0
   m_TagString: Untagged
@@ -8862,6 +8899,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1613906623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1613906619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49724c29999d01a459234abca7ad45ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineThickness: 0.5
+  pauseOnInteract: 1
+  interactiveText:
+    textID: restaurant_tv
+    loopLast: 1
+  normalAudio:
+    audioFile: {fileID: 0}
+  highlightEnds: 0
+  lockable:
+    isLocked: 0
+    lockedInteractiveText:
+      textID: 
+      loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
+    requiredItems: 
 --- !u!1 &1616152084
 GameObject:
   m_ObjectHideFlags: 0
@@ -9350,6 +9415,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1724784558}
+  - component: {fileID: 1724784559}
   m_Layer: 0
   m_Name: Booth (3)
   m_TagString: Untagged
@@ -9375,6 +9441,17 @@ Transform:
   m_Father: {fileID: 38306839}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &1724784559
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724784557}
+  m_Enabled: 1
+  m_SortingLayerID: -1007629035
+  m_SortingLayer: -2
+  m_SortingOrder: 0
 --- !u!1 &1760525449
 GameObject:
   m_ObjectHideFlags: 0
@@ -11402,7 +11479,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7.6781826
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
