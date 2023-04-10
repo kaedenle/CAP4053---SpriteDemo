@@ -17,6 +17,8 @@ public class InteractiveUIController : MonoBehaviour
     private bool on_using;
     private bool on;
     private float delay = 0.5F;
+    private float react_delay = 0.1F;
+    private bool delay_complete = false;
     private bool pause = true;
     private TMP_Text nameField;
     private bool isDialogue = false;
@@ -38,7 +40,7 @@ public class InteractiveUIController : MonoBehaviour
     // check if the interactive needs to be triggered
     void Update()
     {
-        if(on_using && InputManager.ContinueKeyPressed())
+        if(on_using && delay_complete && InputManager.ContinueKeyPressed())
         {
             DisplayNextSentence();
         }
@@ -47,8 +49,11 @@ public class InteractiveUIController : MonoBehaviour
     // start the interactive
     public void StartInteractive(string[] interactive, bool pause)
     {
+        delay_complete = false;
         on = true;
         on_using = true;
+
+        StartCoroutine(ReactDelay());
 
         if(this.pause = pause)
             EntityManager.DialoguePause();
@@ -63,6 +68,12 @@ public class InteractiveUIController : MonoBehaviour
 
         TurnUIOn();
         DisplayNextSentence();
+    }
+
+    IEnumerator ReactDelay()
+    {
+        yield return new WaitForSecondsRealtime(react_delay);
+        delay_complete = true;
     }
 
     public void StartConversation(Conversation converse)
@@ -101,6 +112,9 @@ public class InteractiveUIController : MonoBehaviour
             return;
         }
 
+        delay_complete = false;
+        StartCoroutine(ReactDelay());
+
         if(isDialogue)
         {
             string name = names.Dequeue();
@@ -128,7 +142,7 @@ public class InteractiveUIController : MonoBehaviour
     }
     IEnumerator WaitAndTurnOff()
     {
-        //Wait for 4 seconds
+        //Wait for <delay> seconds
         yield return new WaitForSecondsRealtime(delay);
         on = false;
         if(pause)
@@ -142,7 +156,7 @@ public class InteractiveUIController : MonoBehaviour
 
     void TurnUIOn()
     {
-        canvas_renderer.enabled = true; //turn them off. 
+        canvas_renderer.enabled = true; //turn it on 
 
         if(nameBox != null)
         {
