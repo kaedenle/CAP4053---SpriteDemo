@@ -51,16 +51,15 @@ public class EnemyBase : MonoBehaviour, IUnique, IScriptable, IDamagable
 
         else
         {
-            AboutFace();
+            TurnAround();
             dir = 1;
         }
-        
     }
     
     
     protected void Start()
     {
-        lineOfSightDistance = Camera.main.orthographicSize * 2f * Camera.main.aspect;
+        lineOfSightDistance = Camera.main.orthographicSize * 2f * Camera.main.aspect * maxSightAsCamWidthPercent / 100.0F;
         Debug.Log("baseMaxSightDistance=" + lineOfSightDistance);
 
     }
@@ -73,31 +72,36 @@ public class EnemyBase : MonoBehaviour, IUnique, IScriptable, IDamagable
         }
         else
         {
-            if((transform.position.x < target.position.x) ^ (dir < 0))
+            if((transform.position.x > target.position.x) ^ (dir < 0))
             {
-                dir = -dir;
-                float newX = Mathf.Abs(transform.localScale.x);
-                transform.localScale = new Vector3(-newX, transform.localScale.y, transform.localScale.z);
-            }
-            else
-            {
-                float newX = Mathf.Abs(transform.localScale.x);
-                transform.localScale = new Vector3(newX, transform.localScale.y, transform.localScale.z);
+                TurnAround();
             }
 
+            // move towards player
             if(Vector2.Distance(transform.position, target.position) > minimumDistance)
             {
-                
-                transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+                Chase();
             }
+
             else
             {   
-                //attack here
-                attackTimer -= Time.deltaTime;
-                if(attackTimer < 0){
-                    GetComponent<AttackManager>().InvokeAttack("SlimeAttack");
-                }
+                Attack();   
             }
+        }
+    }
+
+    protected virtual void Chase()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+    }
+
+    /* Actions */
+    protected virtual void Attack()
+    {
+        //attack here
+        attackTimer -= Time.deltaTime;
+        if(attackTimer < 0){
+            GetComponent<AttackManager>().InvokeAttack("SlimeAttack");
         }
     }
 
@@ -181,7 +185,7 @@ public class EnemyBase : MonoBehaviour, IUnique, IScriptable, IDamagable
         Vector3 baseSight = gameObject.transform.position - new Vector3(transform.position.x + (maxDistance * dir), transform.position.y, transform.position.z);
         Vector3 vecToPlayer = gameObject.transform.position - target.transform.position;
         double angle = Vector3.Angle(baseSight, vecToPlayer);
-        // Debug.Log("angle is currently " + angle);
+        // Debug.Log("angle is currently " + angle + " and target angle is " + maxAngleInDegrees);
 
         if(Math.Abs(angle) > maxAngleInDegrees)
             return false;
@@ -190,9 +194,9 @@ public class EnemyBase : MonoBehaviour, IUnique, IScriptable, IDamagable
     }
 
     // assumes that start is left
-    protected virtual void AboutFace()
+    protected virtual void TurnAround()
     {
-        transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        gameObject.transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         dir = -dir;
     }
 }

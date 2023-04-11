@@ -155,6 +155,7 @@ GameObject:
   - component: {fileID: 8457935506673110614}
   - component: {fileID: 5166899273208246072}
   - component: {fileID: 7754863307800598277}
+  - component: {fileID: 7877260786756900870}
   m_Layer: 0
   m_Name: Heart Placeholder
   m_TagString: Untagged
@@ -171,7 +172,7 @@ Transform:
   m_GameObject: {fileID: 8457935506673110615}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.4137, y: 3.6069, z: 0}
-  m_LocalScale: {x: 0.12583901, y: 0.12583901, z: 0.12583901}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.12583901}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2043991250256116354}
@@ -238,7 +239,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8457935506673110615}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
   m_Name: 
@@ -248,12 +249,16 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
   _itemType: 17
   repeatable: 1
@@ -293,4 +298,34 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 7.21
+  m_Radius: 15.02
+--- !u!114 &7877260786756900870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8457935506673110615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce995ddc7eb7ae44ba3b0b84c5f5fb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineThickness: 4
+  pauseOnInteract: 1
+  interactiveText:
+    textID: 
+    loopLast: 1
+  normalAudio:
+    audioFile: {fileID: 0}
+  highlightEnds: 0
+  lockable:
+    isLocked: 0
+    lockedInteractiveText:
+      textID: 
+      loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
+    requiredItems: 
+  _itemType: 17
+  repeatable: 1
