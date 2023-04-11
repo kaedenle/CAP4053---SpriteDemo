@@ -5,7 +5,7 @@ using UnityEngine;
 public class SkeletonRanged : MonoBehaviour, IScriptable
 {
     public Transform target;
-    public GameObject bulletPrefab;
+    private GameObject bulletPrefab;
     public float speed;
     public float minimumDistance;
     public float lineOfSightDistance;
@@ -20,6 +20,7 @@ public class SkeletonRanged : MonoBehaviour, IScriptable
     // Start is called before the first frame update
     void Start()
     {
+        bulletPrefab = Resources.Load("Prefabs/Enemies/Fireball") as GameObject;
         sr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         healthTracker = GetComponent<HealthTracker>();
@@ -52,9 +53,9 @@ public class SkeletonRanged : MonoBehaviour, IScriptable
     }
     public void Shooting()
     {
-        //Debug.Log("pew pew");
+        Debug.Log("pew pew");
 
-        Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        GameObject obj = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         Vector2 directionToTarget = target.transform.position - transform.position;
         float angle = Vector3.Angle(Vector3.right, directionToTarget);
 
