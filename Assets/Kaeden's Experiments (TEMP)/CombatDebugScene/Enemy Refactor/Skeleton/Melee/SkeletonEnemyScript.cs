@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SkeletonEnemyScript : MonoBehaviour, IUnique
 {
@@ -18,6 +19,13 @@ public class SkeletonEnemyScript : MonoBehaviour, IUnique
     }
     public void onDeath()
     {
+        NavMeshAgent agent = GetComponent<NavMeshAgent>();
+        //if (agent != null) agent.enabled = false;
+        if(agent != null)
+        {
+            agent.enabled = false;
+        }
+        
         animator.SetBool("Death", true);
         if (drops != null) drops.AttemptDrop();
         IScriptable[] scripts = GetComponents<IScriptable>();
@@ -26,6 +34,8 @@ public class SkeletonEnemyScript : MonoBehaviour, IUnique
         body.velocity = Vector2.zero;
         foreach (BoxCollider2D box in transform.GetComponentsInChildren<BoxCollider2D>())
             box.enabled = false;
+        
+        
     }
     
     public void AnimationDeath()

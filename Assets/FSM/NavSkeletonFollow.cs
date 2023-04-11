@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class NavSkeletonFollow : MonoBehaviour, IScriptable, IAI
 {
@@ -12,8 +13,11 @@ public class NavSkeletonFollow : MonoBehaviour, IScriptable, IAI
     private Animator animator;
     private SpriteRenderer sr;
     private AttackManager am;
+    private Vector3 originalSpot;
     //gameObject enemy;
-    UnityEngine.AI.NavMeshAgent agent;
+    NavMeshAgent agent;
+    private NavMeshPath path;
+    private bool attacking = false;
 
     private const float ATTACK_TIMER_MAX = 0.0f;
     private float attackTimer;
@@ -21,7 +25,8 @@ public class NavSkeletonFollow : MonoBehaviour, IScriptable, IAI
     // Update is called once per frame
     void Start()
     {
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        originalSpot = gameObject.transform.position;
+        agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -30,6 +35,7 @@ public class NavSkeletonFollow : MonoBehaviour, IScriptable, IAI
         healthTracker = GetComponent<HealthTracker>();
         target = GameObject.Find("Player").transform;
         am = GetComponent<AttackManager>();
+        path = new NavMeshPath();
     }
 
     //enable and disable script
@@ -38,10 +44,17 @@ public class NavSkeletonFollow : MonoBehaviour, IScriptable, IAI
         if (flag)
         {
             attackTimer = ATTACK_TIMER_MAX;
+            attacking = false;
+        }
+        else
+        {
+            if(agent.enabled) agent.SetDestination(new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z));
         }
         this.enabled = flag;
+        if(agent.enabled) agent.isStopped = !flag;
+        //agent.enabled = flag;
+        
     }
-
     void destroyEnemy()
     {
         //Destroy(enemy);
@@ -51,18 +64,22 @@ public class NavSkeletonFollow : MonoBehaviour, IScriptable, IAI
     {
         if (ID == 0)
             this.enabled = true;
+        if(agent.enabled) agent.isStopped = false;
+        //agent.enabled = true;
     }
     public void DisableByID(int ID)
     {
         if (ID == 0)
             this.enabled = false;
+        if(agent.enabled) agent.isStopped = true;
+        //agent.enabled = false;
     }
-
     void Update()
     {
+        
         animator.SetFloat("movement", 0);
-        //Debug.Log(healthTracker.healthSystem.getHealth());
-        if (transform.position.x < target.position.x)
+            //Debug.Log(healthTracker.healthSystem.getHealth());
+            if (transform.position.x < target.position.x)
         {
             //sr.flipX = true;
             float newX = Mathf.Abs(transform.localScale.x);
@@ -83,16 +100,31 @@ public class NavSkeletonFollow : MonoBehaviour, IScriptable, IAI
         {
             if (Vector2.Distance(transform.position, target.position) > minimumDistance)
             {
-                agent.SetDestination(new Vector3(target.position.x, target.position.y, transform.position.z));
-                //transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-                animator.SetFloat("movement", 1);
+                if(agent.enabled)
+                {
+                    agent.CalculatePath(target.position, path);
+                    if (path.status == NavMeshPathStatus.PathComplete && !attacking)
+                    {
+                        agent.isStopped = false;
+                        //agent.updatePosition = true;
+                        agent.SetDestination(new Vector3(target.position.x, target.position.y, transform.position.z));
+                        //transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+                        animator.SetFloat("movement", 1);
+                    }
+                    else
+                    {
+                        agent.isStopped = true;
+                    }
+                }
             }
             else
             {
                 //attack here
                 if(attackTimer >= 0) attackTimer -= Time.deltaTime;
-                if (attackTimer < 0)
+                if (attackTimer < 0 && !attacking)
                 {
+                    attacking = true;
+                    if(agent.enabled) agent.isStopped = true;
                     am.InvokeAttack("SlimeAttack");
                 }
             }

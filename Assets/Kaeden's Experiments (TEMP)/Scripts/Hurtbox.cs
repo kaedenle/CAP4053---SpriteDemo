@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 public class Hurtbox : MonoBehaviour, IDamagable
 {
     //reference variables
@@ -29,6 +29,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
     private IEnumerator running;
     private Color[] OriginalColors;
     public bool invin;
+    private NavMeshAgent agent;
     public void damage(AttackData ad)
     {
         //play hit audio if it exists
@@ -58,6 +59,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
         {
             hitstunTimer = ad.hitstun;
             inHitStun = true;
+            //if (agent != null) agent.enabled = false;
             //CHANGE LOGIC HERE TO ROUTE TO HITSTUN ANIMATION
             if (uniqueScript == null)
             {
@@ -164,6 +166,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
         sr = GetComponentsInChildren<SpriteRenderer>();
         FXM = GameObject.Find("EffectsManager")?.GetComponent<EffectsManager>();
         audiosrc = gameObject?.GetComponent<AudioSource>();
+        agent = GetComponent<NavMeshAgent>();
 
         hitstunTimer = -1;
         inHitStun = false;
@@ -189,6 +192,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
             foreach (IScriptable s in scriptableScripts)
                 s.ScriptHandler(true);
             inHitStun = false;
+            //if(agent != null) agent.enabled = true;
             //set player's animator hitstun bool to false
             if (tag == "Player") animator.SetBool("Hitstun", false);
         }

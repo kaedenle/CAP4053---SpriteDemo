@@ -289,6 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2debd88c1ebc61e4da4f4349c60484f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shooting: 0
 --- !u!114 &7392912437748552745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,7 +304,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   bar: {fileID: 5894459449886815197, guid: fb1b7fc730420314d876a7daece293d1, type: 3}
-  barOffset: {x: 0, y: 1.5, z: 0}
+  barOffset: {x: 0, y: 0.5, z: 0}
+  deathFlag: 0
 --- !u!114 &7392912437748552751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,16 +319,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponList: {fileID: 0}
-  wpnList:
-    weaponlist: []
-    index: 0
-  hitboxParent: {fileID: 0}
-  HBList: []
-  bufferCancel: -1
-  ProjectileOwner: {fileID: 0}
   attackContainer:
   - moveData: {fileID: 4900000, guid: fe3b7c78d4061734e8dc6302aff0f76b, type: 3}
     HitSFX: []
+  HBList: []
+  invulerable: 0
+  OffsenseDamageMultiplier: 1
+  OffenseKnockbackMultiplier: 1
+  DefenseDamageMultiplier: 1
+  DefenseKnockbackMultiplier: 1
+  MultiplierAttack: 0
   framedata:
     framedata: []
     damage: 0
@@ -341,6 +343,12 @@ MonoBehaviour:
     relativeKnockback: 0
     functCall: 
     ID: 0
+  wpnList:
+    weaponlist: []
+    index: 0
+  bufferCancel: -1
+  ProjectileOwner: {fileID: 0}
+  hitboxParent: {fileID: 0}
 --- !u!114 &7392912437748552750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,6 +365,7 @@ MonoBehaviour:
   NotFlash: 0
   default_ani: 
   NotHitPart: 0
+  invin: 0
 --- !u!114 &7392912437748552913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,6 +459,8 @@ MonoBehaviour:
   - item: {fileID: 8457935506673110615, guid: 3c39bca40218f4f439e925e025d0f2c1, type: 3}
     percentChance: 100
     usePlayerHealth: 1
+  deltas: {x: 0, y: 0, z: 0}
+  RandomDirection: 0
 --- !u!114 &6402939420863855764
 MonoBehaviour:
   m_ObjectHideFlags: 0

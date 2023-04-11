@@ -273,6 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2debd88c1ebc61e4da4f4349c60484f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shooting: 0
 --- !u!114 &6083526909266549724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,7 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   bar: {fileID: 5894459449886815197, guid: fb1b7fc730420314d876a7daece293d1, type: 3}
-  barOffset: {x: 0, y: 1.5, z: 0}
+  barOffset: {x: 0, y: 0.5, z: 0}
   deathFlag: 0
 --- !u!114 &6083526909266549722
 MonoBehaviour:
@@ -306,6 +307,12 @@ MonoBehaviour:
   - moveData: {fileID: 4900000, guid: fe3b7c78d4061734e8dc6302aff0f76b, type: 3}
     HitSFX: []
   HBList: []
+  invulerable: 0
+  OffsenseDamageMultiplier: 1
+  OffenseKnockbackMultiplier: 1
+  DefenseDamageMultiplier: 1
+  DefenseKnockbackMultiplier: 1
+  MultiplierAttack: 0
   framedata:
     framedata: []
     damage: 0
@@ -342,6 +349,7 @@ MonoBehaviour:
   NotFlash: 0
   default_ani: 
   NotHitPart: 0
+  invin: 0
 --- !u!114 &6083526909266549540
 MonoBehaviour:
   m_ObjectHideFlags: 0
