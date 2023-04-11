@@ -13,7 +13,7 @@ public class MazeManager : MonoBehaviour
     public GameObject[] startPosition;
 
     // The length of the maze path (number of rooms traversed until exit)
-    private int pathLength = 5;
+    private int pathLength = 4;
 
     // maze hints object
     private MazeHints hints;
