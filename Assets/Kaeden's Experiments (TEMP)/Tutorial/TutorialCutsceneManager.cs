@@ -44,6 +44,7 @@ public class TutorialCutsceneManager : MonoBehaviour
         WeaponUI.DisableWeaponUI();
         NPCDialogue.Talked += Talked;
         Item.PickedUp += PickedUp;
+        PriorityDrops.PickedUp += PickedUp;
         PlayerPrefs.SetInt("In here!", 1);
     }
     private void Start()
