@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 // see original at Kaeden's Experiments > Scripts > Spawn
 public class Spawner : MonoBehaviour
 {
-    public GameObject EnemyType;
+    public GameObject[] enemy;
     public float SpawnRadius = 1.0F;
     [Range(0, 20)] public int minEnemies;
     [Range(0, 20)] public int maxEnemies;
@@ -69,6 +69,12 @@ public class Spawner : MonoBehaviour
     }
     private void CreateEnemies()
     {
+        if(enemy == null || enemy.Length == 0)
+        {
+            Debug.LogError("invalid spawner has no enemies loaded");
+            return;
+        }
+        
         if (flag) return;
         
         if (parent == null)
@@ -82,11 +88,18 @@ public class Spawner : MonoBehaviour
             Vector3 randomPos = GetEnemyPosition();
 
             if(randomPos == NULLPOINT) continue; // couldn't find an acceptable player distance
-            //make new entity
-            GameObject enemy = Instantiate(EnemyType, randomPos, Quaternion.identity);
-            enemy.transform.SetParent(parent.transform);
 
-            EnemyStore es = new EnemyStore(enemy, EnemyType, randomPos, OriginalPos, EnemyType.GetComponent<HealthTracker>().health);
+            GameObject EnemyType = enemy[Random.Range(0, enemy.Length)];
+            if(EnemyType == null)
+            {
+                Debug.LogError("spawner attempted to spawn null enemy type");
+                continue;
+            }
+            //make new entity
+            GameObject enemyObject = Instantiate(EnemyType, randomPos, Quaternion.identity);
+            enemyObject.transform.SetParent(parent.transform);
+
+            EnemyStore es = new EnemyStore(enemyObject, EnemyType, randomPos, OriginalPos, EnemyType.GetComponent<HealthTracker>().health);
             if(!RespawnOnLoad) gm.AddEnemy(RespawnOnLoad, es);
             flag = true;
         }
