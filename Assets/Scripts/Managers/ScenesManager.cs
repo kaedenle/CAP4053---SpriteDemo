@@ -95,39 +95,40 @@ public class ScenesManager : MonoBehaviour
         // if you've inialized the game outside of the menu
         if(firstSceneDebug && _currentScene != AllScenes.Menu)
         {
-            GameState temp = new GameState(0, 0);
+            GameData data = GameData.GetInstance();
+            data.ResetData();
 
             if(_currentScene == AllScenes.CentralHub)
             {
-                temp  = new GameState(0, 0);
+                // do nothing, setting start level as 0 is fine
             }
 
             else if((int)_currentScene <= (int) AllScenes.MobsterAlleyDemo)
             {
-                temp = new GameState(1, 1);
+                data.SetLevel(1);
             }
 
             else if((int)_currentScene <= (int) AllScenes.ChildChildRoom)
             {
-                temp = new GameState(3, 1);
+                data.SetLevel(3);
             }
 
             else if((int) _currentScene <= (int) AllScenes.Boss_BossRoom)
             {
-                temp = new GameState(4, 1);
+                data.SetLevel(4);
             }
 
             else if((int) _currentScene <= (int) AllScenes.CastleMaze)
             {
-                temp = new GameState(2, 1);
+                data.SetLevel(2);
             }
 
             else if((int) _currentScene <= (int) AllScenes.TutorialSkyBox)
             {
-                temp = new GameState(0, 1);
+                data.SetLevel(0);
             }
             
-            temp.Save();
+            data.SaveCurrentData();
         }
 
         Instance = this;

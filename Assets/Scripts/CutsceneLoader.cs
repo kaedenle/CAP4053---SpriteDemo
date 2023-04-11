@@ -47,12 +47,8 @@ public class CutsceneLoader : MonoBehaviour
             if(!isEnd)
                 LevelManager.EndLevel();
             else
-            {
-                // CHANGE THIS ONCE AN END BEHAVIOR IS DEFINED
-                GameState game = GameState.LoadGame();
-                game.IncrementStateAndSave();
-                ScenesManager.LoadScene(ScenesManager.AllScenes.Menu);
-            }
+                LevelManager.EndGame();
+            
                 
             delayComplete = false;
         }
