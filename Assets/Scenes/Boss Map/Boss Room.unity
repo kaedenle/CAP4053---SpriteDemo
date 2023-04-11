@@ -211,7 +211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 30
   bar: {fileID: 5894459449886815197, guid: fb1b7fc730420314d876a7daece293d1, type: 3}
-  barOffset: {x: 0.1, y: 2.5, z: 0}
+  barOffset: {x: 0.1, y: 0.3, z: 0}
   deathFlag: 0
 --- !u!114 &393389822
 MonoBehaviour:
@@ -2929,6 +2929,11 @@ MonoBehaviour:
     HitSFX: []
   HBList: []
   invulerable: 0
+  OffsenseDamageMultiplier: 1
+  OffenseKnockbackMultiplier: 1
+  DefenseDamageMultiplier: 1
+  DefenseKnockbackMultiplier: 1
+  MultiplierAttack: 0
   framedata:
     framedata: []
     damage: 0
