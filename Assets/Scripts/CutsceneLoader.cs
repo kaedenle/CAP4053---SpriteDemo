@@ -35,6 +35,7 @@ public class CutsceneLoader : MonoBehaviour
     {
         if(!on && LevelManager.IsEndOfLevel())
         {
+            EntityManager.DialoguePause();
             wordsTextField.text = cutSceneText;
             animator.SetTrigger(trigger);
             on = true;
