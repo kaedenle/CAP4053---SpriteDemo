@@ -8,6 +8,7 @@ public class DebugSceneManager : MonoBehaviour
     private GameObject player;
     private GameObject BlackFade;
     public GameObject book;
+    public GameObject testTable;
     private void SceneInputs()
     {
         //fade in then reset level
@@ -30,6 +31,8 @@ public class DebugSceneManager : MonoBehaviour
             UIManager.EnableHealthUI();
         if (Input.GetKeyDown(KeyCode.I))
             UIManager.DisableHealthUI();
+        if (Input.GetKeyDown(KeyCode.U))
+            testTable.SetActive(!testTable.activeSelf);
 
     }
     void Start()

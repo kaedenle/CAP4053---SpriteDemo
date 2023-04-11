@@ -98,13 +98,13 @@ public class TutorialCutsceneManager : MonoBehaviour
             case 5:
                 if(PlayerMetricsManager.GetMetricInt("used_" + am.wpnList.weaponlist[1].name) > above)
                     PlayTimeline();
-                if (PlayerMetricsManager.GetMetricInt("used_" + am.wpnList.weaponlist[1].name) <= 0 && dummy.Hide)
+                if (PlayerMetricsManager.GetMetricInt("used_" + am.wpnList.weaponlist[1].name) <= above && dummy.Hide)
                     ResetDummy();
                 break;
             case 6:
                 if (PlayerMetricsManager.GetMetricInt("cross_cancel") > above)
                     PlayTimeline();
-                if (PlayerMetricsManager.GetMetricInt("cross_cancel") <= 0 && dummy.Hide)
+                if (PlayerMetricsManager.GetMetricInt("cross_cancel") <= above && dummy.Hide)
                     ResetDummy();
                 break;
         }
