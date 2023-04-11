@@ -19,7 +19,7 @@ public class StartBoxController : MonoBehaviour
             return;
         }
 
-        Debug.Log("detected previous scene as " + ScenesManager.GetPreviousScene() + " for StartBoxController");
+        // Debug.Log("detected previous scene as " + ScenesManager.GetPreviousScene() + " for StartBoxController");
         // move the player to the location of the attached object iff the previous scene was _prevScene
         if(ScenesManager.GetPreviousScene() == _prevScene)
         {

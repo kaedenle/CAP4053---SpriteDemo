@@ -54,9 +54,10 @@ public class GameData : MonoBehaviour
         
     }
 
-    public void SaveCurrentData()
+    public void SaveCurrentData(bool useCurrentScene = true)
     {
-        data.scene = ScenesManager.GetCurrentScene();
+        if(useCurrentScene)
+            data.scene = ScenesManager.GetCurrentScene();
 
         if(data.scene == ScenesManager.AllScenes.Menu)
         {
@@ -110,6 +111,12 @@ public class GameData : MonoBehaviour
     {
         data.level ++;
         Debug.Log("level is now " + data.level);
+    }
+
+    public void MindLoad(ScenesManager.AllScenes scene)
+    {
+        data.scene = scene;
+        SaveCurrentData(false);
     }
 
     public void SetLevel(int val)

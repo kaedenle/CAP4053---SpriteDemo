@@ -32,16 +32,17 @@ public class LevelManager : MonoBehaviour
         {
             objectState = new Dictionary<string, bool>();
         }
-    }
-
-    public void Start()
-    {
+        
         _levelEnding = false;
 
         if(!EntityManager.IsPaused()) 
             EntityManager.SceneStartPause();
 
         EntityManager.WaitThenUnpause(default_delay);
+    }
+
+    public void Start()
+    {
         // ResetVariables();
     }
 

@@ -78,6 +78,7 @@ public class HubManager : MonoBehaviour
     {
         WeaponUI.EnableWeaponUI();
         // game.IncrementStateAndSave();
+        GameData.GetInstance().MindLoad(mindSceneStarts[currentPhase]);
         ScenesManager.LoadScene(mindSceneStarts[currentPhase]);
     }
     
