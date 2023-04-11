@@ -64,7 +64,6 @@ public class PlayerScript : MonoBehaviour, IUnique
     {
         if (Ammo > 0)
         {
-            Debug.Log(animator.GetFloat("shooting") + " " + animator.GetFloat("attack").ToString());
             Ammo -= 1;
             int turn = animator.GetBool("flipped") ? 1 : -1;
             GameObject proj = Instantiate(bullet, transform.Find("Right Arm").Find("On-Hand").transform.position - new Vector3((-1 * turn), 0, 0), Quaternion.identity);

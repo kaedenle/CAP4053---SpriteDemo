@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5bced5c9136fef4695d97b62350e4d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  health: 20
   bar: {fileID: 5894459449886815197, guid: fb1b7fc730420314d876a7daece293d1, type: 3}
   barOffset: {x: 0, y: 0.25, z: 0}
   deathFlag: 0
@@ -456,9 +456,6 @@ MonoBehaviour:
   - item: {fileID: 8457935506673110615, guid: 3c39bca40218f4f439e925e025d0f2c1, type: 3}
     percentChance: 100
     usePlayerHealth: 1
-  - item: {fileID: 8457935506673110615, guid: 3c39bca40218f4f439e925e025d0f2c1, type: 3}
-    percentChance: 100
-    usePlayerHealth: 1
   deltas: {x: 0, y: 0, z: 0}
   RandomDirection: 0
 --- !u!114 &6402939420863855764
@@ -476,6 +473,7 @@ MonoBehaviour:
   AttackAudio:
   - {fileID: 8300000, guid: d0e8728da527084428fa5effda8b8354, type: 3}
   - {fileID: 8300000, guid: d9ffe2be3173e22449d5dc2cdc6b1072, type: 3}
+  - {fileID: 8300000, guid: b09c345b5d7e23f47990cb1b8e041a4c, type: 3}
   myaudiosrc: {fileID: 0}
 --- !u!82 &7131361830329380798
 AudioSource:

@@ -94,15 +94,22 @@ public class NavSkele : MonoBehaviour, IScriptable, IAI
         Physics2D.OverlapCircle(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y),
                 radius, contactFilter, collidersList);
         
-        if (collidersList.Count != 0 && collidersList .Count != 1)
+        if (collidersList.Count != 01)
         {
             Transform target = collidersList[0].transform;
-            if (target.parent.transform == transform) target = collidersList[1].transform;
+            //find player
+            foreach(Collider2D coll in collidersList)
+            {
+                if(coll.gameObject.tag == "Player")
+                {
+                    target = coll.gameObject.transform;
+                    break;
+                }
+            }
 
-            Vector3 directionToTarget = (target.position - transform.position).normalized;
             if (target.tag != "Player") return false;
-
-            if(Vector2.Angle(looking, directionToTarget) < angle / 2)
+            Vector3 directionToTarget = (target.position - transform.position).normalized;
+            if (Vector2.Angle(looking, directionToTarget) < angle / 2)
             {
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToTarget, distanceToTarget, contactFilter.layerMask);
