@@ -3545,7 +3545,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &120069324
 Transform:
   m_ObjectHideFlags: 0
@@ -3599,7 +3599,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc48eec4d1c47d44e91896ca5df9e23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyType: {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
+  enemy:
+  - {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 2
@@ -7434,9 +7435,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc48eec4d1c47d44e91896ca5df9e23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyType: {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
+  enemy:
+  - {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
   SpawnRadius: 0
-  minEnemies: 0
+  minEnemies: 1
   maxEnemies: 1
   minimumAcceptablePlayerDistance: 2
   RespawnOnLoad: 1
@@ -12636,7 +12638,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &518195661
 Transform:
   m_ObjectHideFlags: 0
@@ -12690,7 +12692,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc48eec4d1c47d44e91896ca5df9e23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyType: {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
+  enemy:
+  - {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 1
@@ -15308,7 +15311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &636913872
 Transform:
   m_ObjectHideFlags: 0
@@ -15362,7 +15365,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc48eec4d1c47d44e91896ca5df9e23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyType: {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
+  enemy:
+  - {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 2
@@ -19136,7 +19140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &795688263
 Transform:
   m_ObjectHideFlags: 0
@@ -19190,7 +19194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc48eec4d1c47d44e91896ca5df9e23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyType: {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
+  enemy:
+  - {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 2
@@ -25242,7 +25247,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &998467844
 Transform:
   m_ObjectHideFlags: 0
@@ -25296,9 +25301,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc48eec4d1c47d44e91896ca5df9e23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyType: {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
+  enemy:
+  - {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
   SpawnRadius: 0
-  minEnemies: 0
+  minEnemies: 1
   maxEnemies: 1
   minimumAcceptablePlayerDistance: 2
   RespawnOnLoad: 1
@@ -28158,7 +28164,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1097436846
 Transform:
   m_ObjectHideFlags: 0
@@ -28212,7 +28218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc48eec4d1c47d44e91896ca5df9e23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyType: {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
+  enemy:
+  - {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 1
@@ -31404,7 +31411,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1203917553
 Transform:
   m_ObjectHideFlags: 0
@@ -31458,7 +31465,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc48eec4d1c47d44e91896ca5df9e23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyType: {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
+  enemy:
+  - {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 1
@@ -33116,7 +33124,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1243463799
 Transform:
   m_ObjectHideFlags: 0
@@ -33170,7 +33178,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc48eec4d1c47d44e91896ca5df9e23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyType: {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
+  enemy:
+  - {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 6
@@ -44581,7 +44590,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1593702495
 Transform:
   m_ObjectHideFlags: 0
@@ -44635,7 +44644,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc48eec4d1c47d44e91896ca5df9e23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyType: {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
+  enemy:
+  - {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 5
@@ -46787,7 +46797,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1677205642
 Transform:
   m_ObjectHideFlags: 0
@@ -46841,7 +46851,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc48eec4d1c47d44e91896ca5df9e23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyType: {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
+  enemy:
+  - {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 2
@@ -51634,7 +51645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1815657181
 Transform:
   m_ObjectHideFlags: 0
@@ -51688,7 +51699,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc48eec4d1c47d44e91896ca5df9e23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyType: {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
+  enemy:
+  - {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 1
@@ -59419,7 +59431,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2123778548
 Transform:
   m_ObjectHideFlags: 0
@@ -59473,7 +59485,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc48eec4d1c47d44e91896ca5df9e23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyType: {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
+  enemy:
+  - {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 4
