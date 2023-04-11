@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossLevelManager : SubLevelManager
 {
     // delay in seconds after the boss is killed before the level end is triggered
-    static float boss_death_wait = 2.5F;
+    static float boss_death_wait = 2.0F;
 
     new void Start()
     {

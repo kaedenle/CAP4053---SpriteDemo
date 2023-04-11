@@ -124,6 +124,14 @@ public class EntityManager : MonoBehaviour
         DisableEquip();
     }
 
+    public static void FalsePause()
+    {
+        DisableMovement();
+        DisableAttack();
+        DisableSwap();
+        DisableEquip();
+    }
+
     public static void SetHubStates()
     {
         DisableSwap();
