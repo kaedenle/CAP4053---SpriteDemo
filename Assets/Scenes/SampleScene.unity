@@ -90076,6 +90076,7 @@ GameObject:
   - component: {fileID: 2026428883}
   - component: {fileID: 2026428886}
   - component: {fileID: 2026428882}
+  - component: {fileID: 2026428887}
   m_Layer: 5
   m_Name: BlackFade
   m_TagString: Untagged
@@ -90195,6 +90196,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2026428887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026428880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3df731a3574b7e4c9417015055f3783, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 0
+  angle: 0
+  speed: 0
+  target: {fileID: 0}
+  minimumDistance: 0
+  lineOfSightDistance: 0
+  collidersList: []
 --- !u!1 &2027443473
 GameObject:
   m_ObjectHideFlags: 0
@@ -100161,7 +100181,7 @@ GameObject:
   - component: {fileID: 7392912436766200746}
   - component: {fileID: 7392912436766200749}
   - component: {fileID: 7392912436766200751}
-  - component: {fileID: 7392912436766200752}
+  - component: {fileID: 7392912436766200754}
   - component: {fileID: 7392912436766200750}
   - component: {fileID: 7392912436766200744}
   - component: {fileID: 7392912436766200745}
@@ -100358,22 +100378,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shooting: 0
---- !u!114 &7392912436766200752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7392912436766200737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8ade284ac53b1b43a712bc22ae4bfbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  target: {fileID: 0}
-  minimumDistance: 2
-  lineOfSightDistance: 10
 --- !u!195 &7392912436766200753
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -100396,6 +100400,25 @@ NavMeshAgent:
   m_BaseOffset: 0.24000002
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &7392912436766200754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7392912436766200737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3df731a3574b7e4c9417015055f3783, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 0
+  angle: 0
+  speed: 5
+  target: {fileID: 0}
+  minimumDistance: 2
+  lineOfSightDistance: 10
+  collidersList: []
 --- !u!4 &7392912436886649264
 Transform:
   m_ObjectHideFlags: 0
