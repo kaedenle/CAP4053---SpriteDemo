@@ -916,12 +916,16 @@ MonoBehaviour:
   interactiveText:
     textID: fuse_obtain
     loopLast: 0
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 0
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
   _itemType: 4
   repeatable: 0
@@ -1451,12 +1455,16 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 0
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 0
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
   stateID: map2_bedroomMat
   enables:
@@ -1696,12 +1704,16 @@ MonoBehaviour:
   interactiveText:
     textID: whiskey_bottle
     loopLast: 1
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
 --- !u!1001 &303897741
 PrefabInstance:
@@ -2159,12 +2171,16 @@ MonoBehaviour:
   interactiveText:
     textID: suitcase
     loopLast: 1
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
 --- !u!58 &388241050
 CircleCollider2D:
@@ -2267,7 +2283,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1305270975
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 10
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0, b: 0.60661507, a: 0.14117648}
@@ -2431,12 +2447,16 @@ MonoBehaviour:
   interactiveText:
     textID: crowbar_obtained
     loopLast: 0
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 0
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
   _itemType: 7
   repeatable: 0
@@ -2939,12 +2959,16 @@ MonoBehaviour:
   interactiveText:
     textID: mat_temp
     loopLast: 0
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 1
   lockable:
     isLocked: 1
     lockedInteractiveText:
       textID: mat_normal
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 00000000
   stateID: map2_bedroomMat
   enables:
@@ -3208,12 +3232,16 @@ MonoBehaviour:
   interactiveText:
     textID: mat_temp
     loopLast: 0
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 1
   lockable:
     isLocked: 1
     lockedInteractiveText:
       textID: mat_normal
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 00000000
   stateID: map2_bedroomMat
   enables:
@@ -4497,12 +4525,16 @@ MonoBehaviour:
   interactiveText:
     textID: bedroom_painting
     loopLast: 0
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 0
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
   stateID: bedroom_painting
   enables:
@@ -4604,12 +4636,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc48eec4d1c47d44e91896ca5df9e23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyType: {fileID: 6105205938035449267, guid: 6d1444703d8fa62419c9da85b2af53fe, type: 3}
+  enemy:
+  - {fileID: 6105205938035449267, guid: 6d1444703d8fa62419c9da85b2af53fe, type: 3}
+  - {fileID: 7392912437748552742, guid: bbb0bda49fc5ab349934ebb35d799e99, type: 3}
+  - {fileID: 6083526909266549715, guid: 4550bdd5e424f9347b5ed9787d6029b4, type: 3}
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 1
   minimumAcceptablePlayerDistance: 0.5
-  RespawnOnLoad: 1
+  RespawnOnLoad: 0
   OriginalPos: 0
 --- !u!4 &923175914
 Transform:
@@ -5266,12 +5301,16 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 0
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 0
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
   _nextScene: 6
 --- !u!1 &1191988408
@@ -5515,12 +5554,16 @@ MonoBehaviour:
   interactiveText:
     textID: bedroom_painting
     loopLast: 0
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 1
     lockedInteractiveText:
       textID: painting_stuck
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 00000000
   stateID: bedroom_painting
   enables:
@@ -5631,12 +5674,16 @@ MonoBehaviour:
   interactiveText:
     textID: obtained_rope
     loopLast: 0
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 0
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
   _itemType: 8
   repeatable: 0
@@ -6024,12 +6071,16 @@ MonoBehaviour:
   interactiveText:
     textID: underground_entrance
     loopLast: 0
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 1
     lockedInteractiveText:
       textID: locked_hole
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 08000000
   _nextScene: 10
 --- !u!114 &1256701443
@@ -7503,12 +7554,16 @@ MonoBehaviour:
   interactiveText:
     textID: patrick_painting
     loopLast: 1
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 
 --- !u!1 &1586579143
 GameObject:
@@ -7588,12 +7643,16 @@ MonoBehaviour:
   interactiveText:
     textID: mat_temp
     loopLast: 0
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 1
   lockable:
     isLocked: 1
     lockedInteractiveText:
       textID: mat_suspicious
       loopLast: 0
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 0700000000000000
   stateID: map2_bedroomMat
   enables:
@@ -8729,12 +8788,16 @@ MonoBehaviour:
   interactiveText:
     textID: opened_safe
     loopLast: 0
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 0
   lockable:
     isLocked: 1
     lockedInteractiveText:
       textID: locked_safe
       loopLast: 0
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 05000000
   stateID: bedroom_safe_closed
   enables:
@@ -9309,12 +9372,16 @@ MonoBehaviour:
   interactiveText:
     textID: supply_crate_open
     loopLast: 0
+  normalAudio:
+    audioFile: {fileID: 0}
   highlightEnds: 1
   lockable:
     isLocked: 1
     lockedInteractiveText:
       textID: supply_crate_locked
       loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
     requiredItems: 07000000
   stateID: supply_crate_locked
   enables:
