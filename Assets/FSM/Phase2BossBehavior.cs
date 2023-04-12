@@ -14,20 +14,40 @@ public class Phase2BossBehavior : StateMachineBehaviour
     //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        speed = 5;
         am = animator.gameObject.GetComponent<AttackManager>();
         player = GameObject.Find("Player").transform;
 
         currState = Random.Range(1,4);
         Debug.Log("Time for phase 2" + currState);
-
+        if(Vector2.Distance(animator.gameObject.transform.position, player.position) > 6)
+        {
+            speed = 10;
+            currState = 1;
+        }
     }
 
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if(animator.gameObject.transform.position.x > player.position.x)
+        {
+            //sr.flipX = true;
+            float newX = Mathf.Abs(animator.gameObject.transform.localScale.x);
+            animator.gameObject.transform.localScale = new Vector3(-newX, animator.gameObject.transform.localScale.y, animator.gameObject.transform.localScale.z);
+            //Debug.Log("Flipping should happen");
+        }
+        else
+        {
+            float newX = Mathf.Abs(animator.gameObject.transform.localScale.x);
+            animator.gameObject.transform.localScale = new Vector3(newX, animator.gameObject.transform.localScale.y, animator.gameObject.transform.localScale.z);
+            //sr.flipX = false;
+        }
         //currState = 1;
-        Debug.Log(currState);       
-        // if curr is basic attack
+        //Debug.Log(currState);       
+        
+                 // if curr is basic attack
+
        if(currState == 1)
        {
             if(Vector2.Distance(animator.gameObject.transform.position, player.position) > minimumDistance)
@@ -44,7 +64,8 @@ public class Phase2BossBehavior : StateMachineBehaviour
        }
        else if(currState == 2)
        {
-           animator.SetTrigger("ShootAttack");
+            am.InvokeAttack("Shoot at Player");
+           //animator.SetTrigger("ShootAttack");
        }
        else if(currState == 3)
        {
@@ -55,7 +76,8 @@ public class Phase2BossBehavior : StateMachineBehaviour
             }
             else
             {
-                animator.SetTrigger("ChargeAttack");
+                am.InvokeAttack("Big Attack_0");
+                //animator.SetTrigger("ChargeAttack");
             }
            // animator.SetTrigger("ChargeAttack");
             //animator.gameObject.transform.position = Vector2.MoveTowards(animator.gameObject.transform.position, animator.gameObject.transform.position)
