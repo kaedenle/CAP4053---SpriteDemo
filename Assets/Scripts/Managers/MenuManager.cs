@@ -8,17 +8,17 @@ public class MenuManager : MonoBehaviour
     // button behavior for New Game
     public void NewGame()
     {
-        GameState.HardReset();
+        GameData.GetInstance().ResetData();
         ScenesManager.LoadScene( ScenesManager.AllScenes.StartCutScene );
     }
 
     // button behavior for Load Game
     public void LoadGame()
     {
-        if(GameState.HasSavedGame())
+        if(GameData.GetInstance().HasLoadData())
             StartGame();
         
-        // do nothing if no game saved
+        // do nothing if no game saved (or maybe play a fail sound)
     }
 
     // starts the game from the menu
@@ -28,15 +28,17 @@ public class MenuManager : MonoBehaviour
         LevelManager.FullReset();
 
         // grab the current game
-        GameState game = GameState.LoadGame();
-        int state = game.GetState();
+        GameData.GetInstance().RevertToSave();
 
-        if(state == 0) 
-            ScenesManager.LoadScene(ScenesManager.AllScenes.CentralHub);
-        else
-        {
-            HubManager.LoadPhase(game.GetLevel());
-        }
+        // GameState game = GameState.LoadGame();
+        // int state = game.GetState();
+
+        // if(state == 0) 
+        //     ScenesManager.LoadScene(ScenesManager.AllScenes.CentralHub);
+        // else
+        // {
+        //     HubManager.LoadPhase(game.GetLevel());
+        // }
     }
 
     // quit button behavior

@@ -25,14 +25,12 @@ public class HubManager : MonoBehaviour
 
     private bool revisit = false;
     private static int currentPhase;
-    private static GameState game;
     public static bool firstTime = false;
 
     void Awake()
     {
-        
-        game = GameState.LoadGame();
-        currentPhase = game.GetLevel(); 
+        currentPhase = GameData.GetInstance().GetLevel();
+        GameData.GetInstance().SaveCurrentData();
         UIManager.DisableHealthUI();
     }
 
@@ -79,7 +77,8 @@ public class HubManager : MonoBehaviour
     public static void LoadNextMind()
     {
         WeaponUI.EnableWeaponUI();
-        game.IncrementStateAndSave();
+        // game.IncrementStateAndSave();
+        GameData.GetInstance().MindLoad(mindSceneStarts[currentPhase]);
         ScenesManager.LoadScene(mindSceneStarts[currentPhase]);
     }
     

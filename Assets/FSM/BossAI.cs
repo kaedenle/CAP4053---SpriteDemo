@@ -35,19 +35,19 @@ public class BossAI : MonoBehaviour, IUnique
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.x > player.position.x)
-        {
-            //sr.flipX = true;
-            float newX = Mathf.Abs(transform.localScale.x);
-            transform.localScale = new Vector3(-newX, transform.localScale.y, transform.localScale.z);
-            //Debug.Log("Flipping should happen");
-        }
-        else
-        {
-            float newX = Mathf.Abs(transform.localScale.x);
-            transform.localScale = new Vector3(newX, transform.localScale.y, transform.localScale.z);
-            //sr.flipX = false;
-        }
+        // if(transform.position.x > player.position.x)
+        // {
+        //     //sr.flipX = true;
+        //     float newX = Mathf.Abs(transform.localScale.x);
+        //     transform.localScale = new Vector3(-newX, transform.localScale.y, transform.localScale.z);
+        //     //Debug.Log("Flipping should happen");
+        // }
+        // else
+        // {
+        //     float newX = Mathf.Abs(transform.localScale.x);
+        //     transform.localScale = new Vector3(newX, transform.localScale.y, transform.localScale.z);
+        //     //sr.flipX = false;
+        // }
         /*if(enemy == null)
         {
             numEnemiesKilled += 1;

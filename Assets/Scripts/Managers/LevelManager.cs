@@ -32,16 +32,17 @@ public class LevelManager : MonoBehaviour
         {
             objectState = new Dictionary<string, bool>();
         }
-    }
-
-    public void Start()
-    {
+        
         _levelEnding = false;
 
         if(!EntityManager.IsPaused()) 
             EntityManager.SceneStartPause();
 
         EntityManager.WaitThenUnpause(default_delay);
+    }
+
+    public void Start()
+    {
         // ResetVariables();
     }
 
@@ -84,11 +85,21 @@ public class LevelManager : MonoBehaviour
 
     public static void EndLevel()
     {
-        GameState game = GameState.LoadGame();
-        game.IncrementStateAndSave();
+        // GameState game = GameState.LoadGame();
+        // game.IncrementStateAndSave();
+        GameData.GetInstance().IncrementLevel();
         ResetAllVariables();
 
         ScenesManager.LoadScene(ScenesManager.AllScenes.CentralHub);
+    }
+
+    public static void EndGame()
+    {
+        // GameState game = GameState.LoadGame();
+        // game.IncrementStateAndSave();
+
+        GameData.GetInstance().ResetData();
+        ScenesManager.LoadScene(ScenesManager.AllScenes.Menu);
     }
 
     public static bool IsEndOfLevel()

@@ -1,3 +1,4 @@
+/*
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,6 @@ public class GameState
 
     private static string levelString = "CurrentLevel";
     private static string stateString = "CurrentState";
-
 
     public GameState (int level, int state)
     {
@@ -91,3 +91,5 @@ public class GameState
         return current_level_state;
     }
 }
+
+*/
