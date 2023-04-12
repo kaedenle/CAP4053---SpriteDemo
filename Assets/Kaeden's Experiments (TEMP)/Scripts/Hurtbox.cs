@@ -130,7 +130,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
                 {
                     sr[j].material.shader = HitShader;
                     sr[j].material.color = c;
-                    sr[j].color = OriginalColors[i];
+                    sr[j].color = OriginalColors[j];
                 }
                 else
                     sr[j].color = c;
