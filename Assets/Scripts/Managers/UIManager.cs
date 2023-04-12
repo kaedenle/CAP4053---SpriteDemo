@@ -102,6 +102,7 @@ public class UIManager : MonoBehaviour
 
     public static Dictionary<string, int> GetStates()
     {
+        if(interactive_index == null) return null;
         return new Dictionary<string, int> ( interactive_index );
     }
 
