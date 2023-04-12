@@ -84,7 +84,6 @@ public class Spawner : MonoBehaviour
         
         for(int i = 0; i < numEnemies; i++)
         {
-            Debug.Log("Making enemy " + i);
             Vector3 randomPos = GetEnemyPosition();
 
             if(randomPos == NULLPOINT) continue; // couldn't find an acceptable player distance

@@ -29,11 +29,11 @@ public class InteractiveTriggersEvent : Interactive
         base.Start();
     }
 
-    new void Update()
+    protected override void ActivateBehaviors()
     {
-        base.Update();
+        base.ActivateBehaviors();
 
-        if(!activated && ActivateBehavior())
+        if(!activated)
         {
             if(gainItem)
                 InventoryManager.AddItem(itemGained);

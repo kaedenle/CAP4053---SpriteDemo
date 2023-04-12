@@ -120,12 +120,22 @@ public class InventoryManager : MonoBehaviour
 
     public static List<AllItems> GetInventoryItems()
     {
-        return _inventoryItems;
+        return new List<AllItems>( _inventoryItems );
     }
 
         public static List<AllItems> GetUsedItems()
     {
-        return _usedItems;
+        return new List<AllItems> ( _usedItems );
+    }
+
+    public static void SetInventory(List<AllItems> ls)
+    {
+        _inventoryItems = new List<AllItems> (ls);
+    }
+
+    public static void SetUsed(List<AllItems> ls)
+    {
+        _usedItems = new List<AllItems> (ls);
     }
     
 }

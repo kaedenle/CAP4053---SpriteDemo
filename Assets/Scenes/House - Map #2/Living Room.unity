@@ -4000,7 +4000,6 @@ GameObject:
   - component: {fileID: 1210283151}
   - component: {fileID: 1210283153}
   - component: {fileID: 1210283152}
-  - component: {fileID: 1210283154}
   - component: {fileID: 1210283155}
   m_Layer: 0
   m_Name: Door to Forest
@@ -4102,37 +4101,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1210283154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1210283150}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b20524b5cfe474479bb4b0bfb67d06d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineThickness: 0.5
-  pauseOnInteract: 1
-  interactiveText:
-    textID: 
-    loopLast: 1
-  normalAudio:
-    audioFile: {fileID: 0}
-  highlightEnds: 0
-  lockable:
-    isLocked: 0
-    lockedInteractiveText:
-      textID: 
-      loopLast: 1
-    lockedAudio:
-      audioFile: {fileID: 0}
-    requiredItems: 
-  requiredItem: 2
-  lockedTextId: lockedChildDoor
-  nextScene: 9
 --- !u!114 &1210283155
 MonoBehaviour:
   m_ObjectHideFlags: 0

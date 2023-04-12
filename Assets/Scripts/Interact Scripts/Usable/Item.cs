@@ -20,14 +20,10 @@ public class Item : Interactive
         }
     }
 
-    new void Update()
+    protected override void ActivateBehaviors()
     {
-        base.Update();
-
-        if(ActivateBehavior())
-        {
-            Pickup();
-        }
+        base.ActivateBehaviors();
+        Pickup();
     }
 
     private void Pickup()

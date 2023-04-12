@@ -22,12 +22,11 @@ public class Enabler : Interactive
         base.Start(); 
     }
 
-    // Update is called once per frame
-    new void Update()
+    protected override void ActivateBehaviors()
     {
-        base.Update();
+        base.ActivateBehaviors();
 
-        if(!state && ActivateBehavior())
+        if(!state)
         {
             ActivateChildren();
             LevelManager.ToggleInteractiveState(stateID);

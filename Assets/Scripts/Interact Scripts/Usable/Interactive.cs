@@ -19,12 +19,12 @@ public class Interactive : OutlineObject
     private InteractiveUIController UI;
     private bool triggered = false;
 
-    new public void Awake()
+    new protected void Awake()
     {
         base.Awake();
     }
 
-    new public void Start()
+    new protected void Start()
     {
         base.Start();
 
@@ -38,18 +38,18 @@ public class Interactive : OutlineObject
         }
     }
 
-    public string[][] GetText(string id)
+    protected string[][] GetText(string id)
     {
         return InteractiveTextDatabase.GetText(id);
     }
 
-    new public void OnTriggerEnter2D(Collider2D collider)
+    new protected void OnTriggerEnter2D(Collider2D collider)
     {
         if(OutlineEnabled())
             base.OnTriggerEnter2D(collider);
     }
 
-    new public void Update()
+    new protected void Update()
     {
         base.Update();
         
@@ -57,17 +57,15 @@ public class Interactive : OutlineObject
         {
             if(!UIActive() && lockable.IsUnlocked())
             {
-                InitiateBehaviors();
+                ActivateBehaviors();
             }
             
             TriggerDialogue();
         }
     }
 
-    public void InitiateBehaviors()
+    protected virtual void ActivateBehaviors()
     {
-        triggered = true;
-
         if(lockable.IsUnlocked())
         {
             normalAudio.PlayAudio();
@@ -79,7 +77,7 @@ public class Interactive : OutlineObject
     }
 
 
-    public void TriggerDialogue()
+    protected void TriggerDialogue()
     {
         if(lockable.IsUnlocked())
             TriggerDialogue(interactiveText);
@@ -92,7 +90,7 @@ public class Interactive : OutlineObject
             DisableOutline();
     }
 
-    public void TriggerDialogue(InteractiveText txt)
+    protected void TriggerDialogue(InteractiveText txt)
     {
         if(txt.IsEmpty()) return;
 
@@ -120,23 +118,15 @@ public class Interactive : OutlineObject
         return !highlightEnds || index < interactiveText.Length() || !lockable.IsUnlocked();
     }
 
-    public bool IsTriggered()
+    protected bool IsTriggered()
     {
         return IsPlayerNear() && InputManager.InteractKeyDown();
     }
 
-    public bool UIActive()
+    protected bool UIActive()
     {
         if(UI == null) return false;
 
         return UI.IsActive();
-    }
-
-    public bool ActivateBehavior()
-    {
-        if(!triggered || UIActive() || !lockable.IsUnlocked()) return false;
-
-        triggered = false;
-        return true;
     }
 }

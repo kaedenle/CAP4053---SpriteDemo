@@ -172,16 +172,16 @@ public class LevelManager : MonoBehaviour
     {
         if(id == null) return false;
         
-        return objectState.GetValueOrDefault(id, false);
+        return objectState.GetValueOrDefault(id, false) ;
     }
 
     public static Dictionary<string, bool> GetObjectStates()
     {
-        return objectState;
+        return new Dictionary<string, bool> ( objectState );
     }
 
     public static void SetObjectStates(Dictionary<string, bool> os)
     {
-        objectState = os;
+        objectState = new Dictionary<string, bool> ( os );
     }
 }

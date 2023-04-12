@@ -13,13 +13,9 @@ public class MazeDoor : Interactive
         maze = FindObjectOfType<MazeManager>();
     }
 
-    new void Update()
+    protected override void ActivateBehaviors()
     {
-        base.Update();
-
-        if(ActivateBehavior())
-        {
-            maze.TakeStairs(direction);
-        }
+        base.ActivateBehaviors();
+        maze.TakeStairs(direction);
     }
 }

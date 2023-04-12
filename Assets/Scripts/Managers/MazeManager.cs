@@ -69,7 +69,7 @@ public class MazeManager : MonoBehaviour
 
     public static void SetPath(Stack<Maze> p)
     {
-        path = p;
+        path = new Stack<Maze>(p);
     }
 
     void Start()
@@ -93,13 +93,16 @@ public class MazeManager : MonoBehaviour
         {
             Maze cur = GetCurrentRoom();
 
-            int type = GetSpecialType(cur);
-            if(type != -1)
-                if(!CastleLevelManager.ObtainedPrereqs(type + 1))
-                {
-                    GameData.GetInstance().UpdatePath(path);
-                    GameData.GetInstance().SaveCurrentData();
-                }
+            if(cur.IsTerminal())
+            {
+                int type = GetSpecialType(cur);
+                if(type != -1)
+                    if(!CastleLevelManager.ObtainedPrereqs(type + 1))
+                    {
+                        GameData.GetInstance().UpdatePath(path);
+                        GameData.GetInstance().SaveCurrentData();
+                    }
+            }
         }
     }
 
@@ -172,10 +175,10 @@ public class MazeManager : MonoBehaviour
         // (specials default should be false)
         if(cur.IsTerminal())
         {
-            Debug.Log("is terminal; specials.Length=" + specials.Length);
+            // Debug.Log("is terminal; specials.Length=" + specials.Length);
             for(int special = 0; special < specials.Length; special++)
             {
-                Debug.Log("is on path: " + cur.IsOnPath(special).ToString() + " obtained prereqs: " + CastleLevelManager.ObtainedPrereqs(special).ToString() + " is not null: " + (specials[special] != null).ToString());
+                // Debug.Log("is on path: " + cur.IsOnPath(special).ToString() + " obtained prereqs: " + CastleLevelManager.ObtainedPrereqs(special).ToString() + " is not null: " + (specials[special] != null).ToString());
                 if(cur.IsOnPath(special) && CastleLevelManager.ObtainedPrereqs(special) && specials[special] != null)
                     specials[special].SetActive(true);
             }
@@ -241,6 +244,6 @@ public class MazeManager : MonoBehaviour
     }
     public static Stack<Maze> GetPath()
     {
-        return path;
+        return new Stack<Maze>(path);
     }
 }

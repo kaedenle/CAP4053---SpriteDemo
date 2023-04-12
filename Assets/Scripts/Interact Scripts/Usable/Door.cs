@@ -6,13 +6,10 @@ public class Door : Interactive
 {
     [SerializeField] ScenesManager.AllScenes _nextScene;
 
-    new void Update()
+    protected override void ActivateBehaviors()
     {
-        base.Update();
+        base.ActivateBehaviors();
 
-        if(ActivateBehavior())
-        {
-            ScenesManager.LoadScene(_nextScene);
-        }
+        ScenesManager.LoadScene(_nextScene);
     }
 }

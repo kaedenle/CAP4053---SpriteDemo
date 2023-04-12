@@ -56,6 +56,7 @@ public class GameData : MonoBehaviour
 
     public void SaveCurrentData(bool useCurrentScene = true)
     {
+        Debug.Log("useCurrentScene=" + useCurrentScene);
         if(ScenesManager.GetCurrentScene() == ScenesManager.AllScenes.Menu || (!useCurrentScene && data.scene == ScenesManager.AllScenes.Menu))
         {
             Debug.LogError("tried to save data while on menu");
@@ -100,14 +101,14 @@ public class GameData : MonoBehaviour
             }
         }
 
-        if(GeneralFunctions.IsDebug())
-            PrintSaveData();
 
         FileStream file = File.Create(Application.persistentDataPath  + "/" + saveFileName); 
         formatter.Serialize(file, data);
 
         file.Close();
-        if( GeneralFunctions.IsDebug() ) Debug.Log("Game data saved!");
+        // if( GeneralFunctions.IsDebug() ) Debug.Log("Game data saved!");
+        if(GeneralFunctions.IsDebug())
+            PrintSaveData("Save Data");
     }
 
     // doesn't actually save data
@@ -150,9 +151,14 @@ public class GameData : MonoBehaviour
             return;
         }
 
+        if(GeneralFunctions.IsDebug())
+        {
+            PrintSaveData("Load Data");
+        }
+
         // set general manager vars
-        InventoryManager._inventoryItems = data.log.inventory;
-        InventoryManager._usedItems = data.log.usedInventory;
+        InventoryManager.SetInventory(data.log.inventory);
+        InventoryManager.SetUsed(data.log.usedInventory);
         LevelManager.SetObjectStates(data.log.levelManagerObjectState);
         UIManager.SetStates(data.log.interactiveStates);
 
@@ -258,12 +264,12 @@ public class GameData : MonoBehaviour
 
     public List<InventoryManager.AllItems> GetInventory()
     {
-        return data.log.inventory;
+        return new List<InventoryManager.AllItems>( data.log.inventory );
     }
 
     public List<InventoryManager.AllItems> GetUsed()
     {
-        return data.log.usedInventory;
+        return new List<InventoryManager.AllItems>( data.log.usedInventory );
     }
 
     public void UpdateMaze(Maze m)
@@ -274,7 +280,7 @@ public class GameData : MonoBehaviour
 
     public void UpdatePath(Stack<Maze> path)
     {
-        data.log.mazePath = path;
+        data.log.mazePath = new Stack<Maze>(path);
     }
 
     // data classes
@@ -349,9 +355,9 @@ public class GameData : MonoBehaviour
         }
     }
 
-    public void PrintSaveData()
+    public void PrintSaveData(string label)
     {
-        Debug.Log("==============Save Data============");
+        Debug.Log("==============" + label + "============");
         Debug.Log("Scene: " + data.scene);
         Debug.Log("level: " + data.level);
         Debug.Log("playVals: " + data.playVals);

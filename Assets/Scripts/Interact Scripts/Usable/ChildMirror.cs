@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class ChildMirror : Interactive
 {
-    new void Update()
+    protected override void ActivateBehaviors()
     {
-        base.Update();
-
-        if(ActivateBehavior())
-        {
-            Debug.Log("toggling mirror state...");
-            ChildLevelManager.ToggleMirrorWorld();
-            LevelManager.ReloadScene();
-        }    
+        base.ActivateBehaviors();
+        
+        Debug.Log("toggling mirror state...");
+        ChildLevelManager.ToggleMirrorWorld();
+        LevelManager.ReloadScene();
     }
 }

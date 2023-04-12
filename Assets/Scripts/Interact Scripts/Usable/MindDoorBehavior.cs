@@ -16,13 +16,9 @@ public class MindDoorBehavior : Interactive
         base.GetOutline().SetFloat("_Outline_Thickness", outlineThickness);
     }
 
-    new void Update()
+    protected override void ActivateBehaviors()
     {
-        base.Update();
-
-        if(ActivateBehavior())
-        {
-            LevelManager.TriggerEnd();
-        }
+        base.ActivateBehaviors();
+        LevelManager.TriggerEnd();
     }
 }
