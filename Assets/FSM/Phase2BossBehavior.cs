@@ -22,7 +22,7 @@ public class Phase2BossBehavior : StateMachineBehaviour
         Debug.Log("Time for phase 2" + currState);
         if(Vector2.Distance(animator.gameObject.transform.position, player.position) > 6)
         {
-            speed = 10;
+            speed = 12;
             currState = 1;
         }
     }
