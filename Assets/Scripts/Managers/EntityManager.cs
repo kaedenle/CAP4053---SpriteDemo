@@ -39,6 +39,7 @@ public class EntityManager : MonoBehaviour
 
     public static void SetPause()
     {
+        Debug.Log("SetPause()");
         _pause = true;
 
         if(numPauses <= 0)
@@ -49,6 +50,7 @@ public class EntityManager : MonoBehaviour
 
     public static void SetUnpause()
     {
+        Debug.Log("SetUnpause()");
         numPauses--;
 
         if(numPauses <= 0)
@@ -100,6 +102,8 @@ public class EntityManager : MonoBehaviour
 
     public static void SceneStartPause()
     {
+        Debug.Log("SceneStartPause()");
+        
         _pause = true;
         numPauses = 1;
         Time.timeScale = 0;

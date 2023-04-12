@@ -26,18 +26,17 @@ public class LevelManager : MonoBehaviour
 
     public void Awake()
     {
+        Debug.Log("in Awake() of LevelManager");
         player = GeneralFunctions.GetPlayer();
 
         if(objectState == null) // not seen before
         {
             objectState = new Dictionary<string, bool>();
         }
-        
+
         _levelEnding = false;
 
-        if(!EntityManager.IsPaused()) 
-            EntityManager.SceneStartPause();
-
+        EntityManager.SceneStartPause();
         EntityManager.WaitThenUnpause(default_delay);
     }
 
