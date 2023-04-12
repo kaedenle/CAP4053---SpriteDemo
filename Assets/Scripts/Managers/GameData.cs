@@ -68,8 +68,13 @@ public class GameData : MonoBehaviour
             data.scene = ScenesManager.GetCurrentScene();
             StoreManagerVariables();
 
+            if(data.scene == ScenesManager.AllScenes.CentralHub)
+            {
+                data.playVals = false;
+            }
+
             // store player variables
-            if(GameManager.OneGM != null)
+            else if(GameManager.OneGM != null)
             {
                 GameManager gm = GameManager.OneGM.GetComponent<GameManager>();
                 data.playerHealth = gm.GetPlayerHealth();
@@ -187,7 +192,7 @@ public class GameData : MonoBehaviour
             {
                 // set player
                 GameManager gm = GameManager.OneGM.GetComponent<GameManager>();
-                gm.SetPlayerHealth(data.playerHealth);
+                if(data.playerHealth > 0) gm.SetPlayerHealth(data.playerHealth);
                 gm.SetPlayerWeapon(data.playerWeapon);
                 
                 GameObject player = GeneralFunctions.GetPlayer();
@@ -291,8 +296,7 @@ public class GameData : MonoBehaviour
         {
             scene = ScenesManager.AllScenes.Menu;
             level = 0;
-            // weapon = 0;
-            // player_direction = 1;
+            playVals = false;
             log = new LogData();
         }
 
