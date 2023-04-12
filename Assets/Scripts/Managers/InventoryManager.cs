@@ -124,5 +124,15 @@ public class InventoryManager : MonoBehaviour
         _inventoryItems.Clear();
         _usedItems.Clear();
     }
+
+    public static List<AllItems> GetInventoryItems()
+    {
+        return _inventoryItems;
+    }
+
+        public static List<AllItems> GetUsedItems()
+    {
+        return _usedItems;
+    }
     
 }

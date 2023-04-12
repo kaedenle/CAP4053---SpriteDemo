@@ -26,7 +26,6 @@ public class LevelManager : MonoBehaviour
 
     public void Awake()
     {
-        Debug.Log("in Awake() of LevelManager");
         player = GeneralFunctions.GetPlayer();
 
         if(objectState == null) // not seen before
@@ -170,5 +169,10 @@ public class LevelManager : MonoBehaviour
         if(id == null) return false;
         
         return objectState.GetValueOrDefault(id, false);
+    }
+
+    public static Dictionary<string, bool> GetObjectStates()
+    {
+        return objectState;
     }
 }

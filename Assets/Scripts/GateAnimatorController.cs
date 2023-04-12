@@ -10,6 +10,6 @@ public class GateAnimatorController : MonoBehaviour
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();
-        animator.SetBool("foundKey", MobsterLevelManager.HasObtainedAlleyKey());
+        animator.SetBool("foundKey", InventoryManager.PickedUp(InventoryManager.AllItems.MobsterKeyDemo));
     }
 }

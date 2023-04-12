@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
 
     void Awake()
     {
+        paused = false;
+        
         GameObject UIBar = GameObject.Find("-- UI --");
         HealthBarUI = GameObject.Find("/-- UI --/UI Canvas");
         if (HealthBarUI == null) HealthBarUI = Instantiate(Resources.Load("Prefabs/UI Canvas")) as GameObject;
@@ -27,7 +29,8 @@ public class UIManager : MonoBehaviour
         {
             interactive_index = new Dictionary<string, int>();
         }
-        paused = false;
+
+        EnableHealthUI();
     }
 
     // Update is called once per frame
@@ -80,9 +83,6 @@ public class UIManager : MonoBehaviour
     public static void EndScene()
     {
         isSwitching = true;
-
-        if(!EntityManager.IsPaused())
-            EntityManager.Pause();
     }
 
     public static bool SceneSwitching()

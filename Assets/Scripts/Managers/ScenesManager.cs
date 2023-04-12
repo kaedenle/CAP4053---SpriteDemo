@@ -63,9 +63,9 @@ public class ScenesManager : MonoBehaviour
 
     static IEnumerator LoadSceneAfterDelay(int build_idx)
     {
+        EntityManager.Pause();
         yield return new WaitForSecondsRealtime(nextSceneDelay);
         SceneManager.LoadScene( build_idx );
-        UIManager.EnableHealthUI();
     }
 
     // loads a scene based on demo boolean
@@ -90,6 +90,7 @@ public class ScenesManager : MonoBehaviour
 
     public void Awake()
     {
+        Instance = this;
         _currentScene = (AllScenes) SceneManager.GetActiveScene().buildIndex;
 
         // if you've inialized the game outside of the menu
@@ -131,7 +132,6 @@ public class ScenesManager : MonoBehaviour
             data.SaveCurrentData();
         }
 
-        Instance = this;
         firstSceneDebug = false;
     }
 

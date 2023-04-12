@@ -58,6 +58,8 @@ public class GameData : MonoBehaviour
     {
         if(useCurrentScene)
             data.scene = ScenesManager.GetCurrentScene();
+        
+        StoreManagerVariables();
 
         if(data.scene == ScenesManager.AllScenes.Menu)
         {
@@ -85,7 +87,16 @@ public class GameData : MonoBehaviour
         {
             FileStream file =  File.Open(Application.persistentDataPath  + "/" + saveFileName, FileMode.Open);
 
-            data = (Data)formatter.Deserialize(file);
+            try
+            {
+                data = (Data)formatter.Deserialize(file);
+            }
+            catch
+            {
+                data = new Data();
+                Debug.LogError("data file formatting was out of date or invalid. Resetting data...");
+            }
+
             file.Close();
 
             Debug.Log("Game data loaded!");
@@ -144,6 +155,13 @@ public class GameData : MonoBehaviour
         return Instance;
     }
 
+    public void StoreManagerVariables()
+    {
+        data.log.inventory = InventoryManager.GetInventoryItems();
+        data.log.usedInventory = InventoryManager.GetUsedItems();
+        data.log.levelManagerObjectState = LevelManager.GetObjectStates();
+    }
+
     // data classes
     [System.Serializable]
     class Data
@@ -152,7 +170,7 @@ public class GameData : MonoBehaviour
         public int level;
         // public int weapon;
         // public int player_direction;
-        // public List<LogData> log;
+        public LogData log;
 
         public Data()
         {
@@ -160,14 +178,16 @@ public class GameData : MonoBehaviour
             level = 0;
             // weapon = 0;
             // player_direction = 1;
-            // log = new List<LogData>();
+            log = new LogData();
         }
 
     }
 
+    [Serializable]
     class LogData
     {
-        public List<GameData.ManagerMethods> method;
-        // public List<> data;
+        public List<InventoryManager.AllItems> inventory;
+        public List<InventoryManager.AllItems> usedInventory;
+        public Dictionary<string, bool> levelManagerObjectState;
     }
 }
