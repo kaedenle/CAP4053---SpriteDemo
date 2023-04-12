@@ -5,8 +5,6 @@ using System;
 
 public class InventoryManager : MonoBehaviour
 {
-    public static InventoryManager Instance;
-
     public enum AllItems    // all available inventory items
     {
         MobsterKeyDemo,
@@ -58,11 +56,6 @@ public class InventoryManager : MonoBehaviour
 
     public static List<AllItems> _inventoryItems = new List<AllItems>();  // our inventory items
     public static List<AllItems> _usedItems = new List<AllItems>();  // our inventory items
-
-    public void Awake()
-    {
-        Instance = this;
-    }
        
     // add item to current inventory
     public static void AddItem(AllItems item)

@@ -192,4 +192,26 @@ public class GameManager : MonoBehaviour
             FirstTime = false;
         }
     }
+
+    public int GetPlayerHealth()
+    {
+        return Health;
+    }
+
+    public void SetPlayerHealth(int amnt)
+    {
+        Health = amnt;
+        reload();
+    }
+
+    public int GetPlayerWeapon()
+    {
+        return WeaponInt;
+    }
+
+    public void SetPlayerWeapon(int wID)
+    {
+        WeaponInt = wID;
+        reload();
+    }  
 }

@@ -99,6 +99,17 @@ public class UIManager : MonoBehaviour
     {
         interactive_index[id] = value;
     }
+
+    public static Dictionary<string, int> GetStates()
+    {
+        return interactive_index;
+    }
+
+    public static void SetStates(Dictionary<string, int> ii)
+    {
+        interactive_index = ii;
+    }
+
     //for seeing if health bars should be rendered
     public static void DisableHealthUI()
     {

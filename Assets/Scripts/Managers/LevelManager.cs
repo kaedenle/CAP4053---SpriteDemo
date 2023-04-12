@@ -129,8 +129,8 @@ public class LevelManager : MonoBehaviour
         ResetAllVariables();
 
         // reset from player death
-        if(!EntityManager.IsPaused())
-            EntityManager.Pause(); 
+        // if(!EntityManager.IsPaused())
+        //     EntityManager.Pause(); 
 
         if (level != null)
             ScenesManager.LoadScene(_startScene);
@@ -174,5 +174,10 @@ public class LevelManager : MonoBehaviour
     public static Dictionary<string, bool> GetObjectStates()
     {
         return objectState;
+    }
+
+    public static void SetObjectStates(Dictionary<string, bool> os)
+    {
+        objectState = os;
     }
 }

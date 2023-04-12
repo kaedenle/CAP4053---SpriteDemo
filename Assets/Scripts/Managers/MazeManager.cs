@@ -13,7 +13,7 @@ public class MazeManager : MonoBehaviour
     public GameObject[] startPosition;
 
     // The length of the maze path (number of rooms traversed until exit)
-    private int pathLength = 4;
+    private static int pathLength = 4;
 
     // maze hints object
     private MazeHints hints;
@@ -37,13 +37,10 @@ public class MazeManager : MonoBehaviour
 
     void Awake()
     {
-        if(maze == null)
-        {
-            rand = new System.Random(seed);
-            maze = GenerateMaze();
-            path = new Stack<Maze>();
-            dirPath = new Stack<Direction>();
-        }
+        if(maze == null) maze = GenerateMaze();
+        if(rand == null) rand = new System.Random(seed);
+        if(dirPath == null) dirPath = new Stack<Direction>();
+        if(path == null)  path = new Stack<Maze>();
 
         if(path.Count <= 0)
             path.Push(maze);    // start in the first room  
@@ -59,6 +56,21 @@ public class MazeManager : MonoBehaviour
         }
         else
             decorations = new GameObject[0];
+    }
+
+    public static bool MazeCreated()
+    {
+        return maze != null;
+    }
+
+    public static void SetMaze(Maze m)
+    {
+        maze = m;
+    }
+
+    public static void SetPath(Stack<Maze> p)
+    {
+        path = p;
     }
 
     void Start()
@@ -126,6 +138,7 @@ public class MazeManager : MonoBehaviour
         if(cur.NotSetup())
         {
             cur.SetupRoom(rand, decorations.Length, averageNumberOfDecorations / (double) decorations.Length);
+            GameData.GetInstance().UpdateMaze(maze);
         }
 
         // set up the decorations
@@ -174,6 +187,7 @@ public class MazeManager : MonoBehaviour
     // generates all the paths of the maze
     public Maze GenerateMaze()
     {
+        if(rand == null) rand = new System.Random(seed);
         // make trie maze
         Maze root = new Maze(pathLength + 1);
         
@@ -192,10 +206,15 @@ public class MazeManager : MonoBehaviour
             }
         }
 
-        // set up decorations
-        
-
-
         return root;
+    }
+
+    public static Maze GetMaze()
+    {
+        return maze;
+    }
+    public static Stack<Maze> GetPath()
+    {
+        return path;
     }
 }

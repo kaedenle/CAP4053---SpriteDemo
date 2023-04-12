@@ -9,11 +9,6 @@ using System.IO;
 // must run before other scripts
 public class GameData : MonoBehaviour
 {
-    public enum ManagerMethods
-    {
-
-    }
-
     private BinaryFormatter formatter;
 
     // this game data
@@ -56,15 +51,16 @@ public class GameData : MonoBehaviour
 
     public void SaveCurrentData(bool useCurrentScene = true)
     {
-        if(useCurrentScene)
-            data.scene = ScenesManager.GetCurrentScene();
-        
-        StoreManagerVariables();
-
         if(data.scene == ScenesManager.AllScenes.Menu)
         {
             Debug.LogError("tried to save data while on menu");
             return;
+        }
+
+        if(useCurrentScene)
+        {
+            data.scene = ScenesManager.GetCurrentScene();
+            StoreManagerVariables();
         }
 
         FileStream file = File.Create(Application.persistentDataPath  + "/" + saveFileName); 
@@ -115,7 +111,20 @@ public class GameData : MonoBehaviour
             return;
         }
 
+        // set general manager vars
+        InventoryManager._inventoryItems = data.log.inventory;
+        InventoryManager._usedItems = data.log.usedInventory;
+        LevelManager.SetObjectStates(data.log.levelManagerObjectState);
+        UIManager.SetStates(data.log.interactiveStates);
+
         ScenesManager.LoadScene(data.scene);
+
+        // set specific managers
+        if(data.level == (int) HubManager.PhaseTag.Castle)
+        {
+            MazeManager.SetMaze(data.log.maze);
+            MazeManager.SetPath(data.log.mazePath);
+        }
     }
 
     public void IncrementLevel()
@@ -155,11 +164,38 @@ public class GameData : MonoBehaviour
         return Instance;
     }
 
+    // assumption: PhaseTag integer is equal to level integer
+    // assumption: maze will only need last room of maze
     public void StoreManagerVariables()
     {
         data.log.inventory = InventoryManager.GetInventoryItems();
         data.log.usedInventory = InventoryManager.GetUsedItems();
         data.log.levelManagerObjectState = LevelManager.GetObjectStates();
+        data.log.interactiveStates = UIManager.GetStates();
+
+        // castle level data
+        if(ScenesManager.GetCurrentScene() == ScenesManager.AllScenes.CastleMaze)
+        {
+            data.log.maze = MazeManager.GetMaze();
+            data.log.mazePath = MazeManager.GetPath();
+        }
+
+    }
+
+    public List<InventoryManager.AllItems> GetInventory()
+    {
+        return data.log.inventory;
+    }
+
+    public List<InventoryManager.AllItems> GetUsed()
+    {
+        return data.log.usedInventory;
+    }
+
+    public void UpdateMaze(Maze m)
+    {
+        data.log.maze = m;
+        SaveCurrentData(false);
     }
 
     // data classes
@@ -189,5 +225,20 @@ public class GameData : MonoBehaviour
         public List<InventoryManager.AllItems> inventory;
         public List<InventoryManager.AllItems> usedInventory;
         public Dictionary<string, bool> levelManagerObjectState;
+        public Dictionary<string, int> interactiveStates;
+
+        // Castle Level
+        public Maze maze;
+        public Stack<Maze> mazePath;
+
+        public LogData()
+        {
+            inventory = new List<InventoryManager.AllItems>();
+            usedInventory = new List<InventoryManager.AllItems>();
+            levelManagerObjectState = new Dictionary<string, bool>();
+            interactiveStates = new Dictionary<string, int>();
+            
+            mazePath = new Stack<Maze>();
+        }
     }
 }

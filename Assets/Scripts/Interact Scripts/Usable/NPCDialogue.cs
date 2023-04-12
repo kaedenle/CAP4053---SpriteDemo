@@ -11,7 +11,6 @@ public class NPCDialogue : OutlineObject
     public LockedDialogueBehavior lockable;
 
     public static event EventHandler Talked;
-    private bool pauseOnInteract = true;
     private InteractiveUIController UI;
     private bool triggered = false;
 
@@ -81,7 +80,6 @@ public class NPCDialogue : OutlineObject
 
         if(index >= conversation.Length()) return;
 
-        // pause now if I've made it this far
         UI.StartConversation(conversation.conversations[index]);
 
         index = conversation.CalculateNextIndex(index);
