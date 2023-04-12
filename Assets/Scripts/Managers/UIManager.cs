@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
         {
             interactive_index = new Dictionary<string, int>();
         }
+        paused = false;
     }
 
     // Update is called once per frame
