@@ -8,7 +8,7 @@ public class ScenesManager : MonoBehaviour
     public static ScenesManager Instance;
     private static ScenesManager.AllScenes _currentScene = AllScenes.Menu, _prevScene = AllScenes.Menu; // need to update these defaults after setting up central room
     private static bool _demo = false;
-    private static float nextSceneDelay = 1.0F;
+    const float nextSceneDelay = 1.0F;
 
     private static bool firstSceneDebug = true;
     // update this enum whenever you add (or remove) a Scene (must be in same order as in building settings)

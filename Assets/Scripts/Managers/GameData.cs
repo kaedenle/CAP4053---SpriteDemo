@@ -6,6 +6,8 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
+using UnityEngine.SceneManagement;
+
 // must run before other scripts
 public class GameData : MonoBehaviour
 {
@@ -18,11 +20,15 @@ public class GameData : MonoBehaviour
     // constants
     const string saveFileName = "SubliminalGameData.dat";
 
+    // actual variables
+    bool reverting = false, saving = false;
+
     void Awake()
     {
         if(Instance == null)
         {
             formatter = new BinaryFormatter();
+            SceneManager.sceneLoaded += OnSceneLoaded;
 
             Instance = this;
             DontDestroyOnLoad(this);
@@ -43,15 +49,14 @@ public class GameData : MonoBehaviour
             Destroy(gameObject);
     }
 
-    // Update is called once per frame
-    void UpdateData()
+    public void SaveAfterSceneChange()
     {
-        
+        saving = true;
     }
 
     public void SaveCurrentData(bool useCurrentScene = true)
     {
-        if(data.scene == ScenesManager.AllScenes.Menu)
+        if(ScenesManager.GetCurrentScene() == ScenesManager.AllScenes.Menu || (!useCurrentScene && data.scene == ScenesManager.AllScenes.Menu))
         {
             Debug.LogError("tried to save data while on menu");
             return;
@@ -59,22 +64,51 @@ public class GameData : MonoBehaviour
 
         if(useCurrentScene)
         {
+            // store level variables
             data.scene = ScenesManager.GetCurrentScene();
             StoreManagerVariables();
+
+            // store player variables
+            if(GameManager.OneGM != null)
+            {
+                GameManager gm = GameManager.OneGM.GetComponent<GameManager>();
+                data.playerHealth = gm.GetPlayerHealth();
+                data.playerWeapon = gm.GetPlayerWeapon();
+
+                GameObject player = GeneralFunctions.GetPlayer();
+
+                if(player == null)
+                {
+                    Debug.LogError("Player not found in GameData. Save aborted.");
+                    return;
+                }
+
+                data.playerPosition = new VectorsAreDumb(player.transform.position);
+                data.playerDirection = player.GetComponent<Player_Movement>().flipped;
+                data.playVals = true;
+            }
+
+            else
+            {
+                Debug.LogWarning("GameManager not found, resetting player values to default");
+                data.playVals = false;
+            }
         }
+
+        if(GeneralFunctions.IsDebug())
+            PrintSaveData();
 
         FileStream file = File.Create(Application.persistentDataPath  + "/" + saveFileName); 
         formatter.Serialize(file, data);
 
         file.Close();
-        Debug.Log("Game data saved!");
+        if( GeneralFunctions.IsDebug() ) Debug.Log("Game data saved!");
     }
 
     // doesn't actually save data
     public void ResetData()
     {
         data = new Data();
-        // SaveCurrentData();
     }
 
     public void LoadData()
@@ -90,7 +124,7 @@ public class GameData : MonoBehaviour
             catch
             {
                 data = new Data();
-                Debug.LogError("data file formatting was out of date or invalid. Resetting data...");
+                Debug.LogWarning("data file formatting was out of date or invalid. Resetting data...");
             }
 
             file.Close();
@@ -99,7 +133,7 @@ public class GameData : MonoBehaviour
         }
         else
         {
-            Debug.LogError("There is no save data!");
+            Debug.LogWarning("There is no save data!");
         }
     }
 
@@ -117,13 +151,57 @@ public class GameData : MonoBehaviour
         LevelManager.SetObjectStates(data.log.levelManagerObjectState);
         UIManager.SetStates(data.log.interactiveStates);
 
+        // castle vars
+        MazeManager.SetMaze(data.log.maze);
+        MazeManager.SetPath(data.log.mazePath);
+
+        reverting = true;
         ScenesManager.LoadScene(data.scene);
 
-        // set specific managers
-        if(data.level == (int) HubManager.PhaseTag.Castle)
+    }
+
+    public void RevertAfterDeath()
+    {
+        // reset player health
+        data.playerHealth = GameManager.OneGM.GetComponent<GameManager>().GetMaxHealth();
+
+        // save current health
+        SaveCurrentData(false);
+
+        // revert
+        RevertToSave();
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if( GeneralFunctions.IsDebug() ) Debug.Log("OnSceneLoaded: " + scene.name + " | " + mode);
+
+        if(saving && reverting)
         {
-            MazeManager.SetMaze(data.log.maze);
-            MazeManager.SetPath(data.log.mazePath);
+            Debug.LogError("saving and reverting GameData at the same time");
+        }
+
+        if(reverting)
+        {
+            if(data.playVals)
+            {
+                // set player
+                GameManager gm = GameManager.OneGM.GetComponent<GameManager>();
+                gm.SetPlayerHealth(data.playerHealth);
+                gm.SetPlayerWeapon(data.playerWeapon);
+                
+                GameObject player = GeneralFunctions.GetPlayer();
+                player.transform.position = data.playerPosition.Get();
+                player.GetComponent<Player_Movement>().flipped = data.playerDirection;
+            }
+
+            reverting = false;
+        }
+
+        if(saving)
+        {
+            SaveCurrentData();
+            saving = false;
         }
     }
 
@@ -135,8 +213,7 @@ public class GameData : MonoBehaviour
 
     public void MindLoad(ScenesManager.AllScenes scene)
     {
-        data.scene = scene;
-        SaveCurrentData(false);
+        SaveAfterSceneChange();
     }
 
     public void SetLevel(int val)
@@ -172,14 +249,6 @@ public class GameData : MonoBehaviour
         data.log.usedInventory = InventoryManager.GetUsedItems();
         data.log.levelManagerObjectState = LevelManager.GetObjectStates();
         data.log.interactiveStates = UIManager.GetStates();
-
-        // castle level data
-        if(ScenesManager.GetCurrentScene() == ScenesManager.AllScenes.CastleMaze)
-        {
-            data.log.maze = MazeManager.GetMaze();
-            data.log.mazePath = MazeManager.GetPath();
-        }
-
     }
 
     public List<InventoryManager.AllItems> GetInventory()
@@ -198,12 +267,22 @@ public class GameData : MonoBehaviour
         SaveCurrentData(false);
     }
 
+    public void UpdatePath(Stack<Maze> path)
+    {
+        data.log.mazePath = path;
+    }
+
     // data classes
     [System.Serializable]
     class Data
     {
         public ScenesManager.AllScenes scene;
         public int level;
+        public bool playVals;
+        public int playerWeapon;
+        public int playerHealth;
+        public bool playerDirection;
+        public VectorsAreDumb playerPosition;
         // public int weapon;
         // public int player_direction;
         public LogData log;
@@ -241,4 +320,60 @@ public class GameData : MonoBehaviour
             mazePath = new Stack<Maze>();
         }
     }
+
+    [Serializable]
+    class VectorsAreDumb
+    {
+        float x, y, z;
+        public VectorsAreDumb(Vector3 vec)
+        {
+            if(vec == null) return;
+
+            x = vec.x;
+            y = vec.y;
+            z = vec.z;
+        }
+
+        public Vector3 Get()
+        {
+            return new Vector3(x, y, z);
+        }
+
+        public override string ToString()
+        {
+            return "(" + x + ", " + y  + ", " + z + ")";
+        }
+    }
+
+    public void PrintSaveData()
+    {
+        Debug.Log("==============Save Data============");
+        Debug.Log("Scene: " + data.scene);
+        Debug.Log("level: " + data.level);
+        Debug.Log("playVals: " + data.playVals);
+
+        if(data.playVals)
+        {
+            Debug.Log("player health: " + data.playerHealth);
+            Debug.Log("player weapon: " + data.playerWeapon);
+            Debug.Log("player position: " + data.playerPosition.ToString());
+            Debug.Log("player is flipped?: " + data.playerDirection);
+        }
+
+        Debug.Log("Inventory: " + data.log.inventory.ToString());
+
+        Debug.Log("==================================");
+    }
 }
+
+/*
+
+Notes
+
+Current Save Locations:
+After entering & exiting hub
+After dying (resets health)
+Maze generation (sets maze)
+
+After reaching special room in maze
+*/

@@ -35,6 +35,6 @@ public class DeathUIController : MonoBehaviour
             return;
         }
            
-        LevelManager.RestartLevel();
+        LevelManager.CheckpointButton();
     }
 }

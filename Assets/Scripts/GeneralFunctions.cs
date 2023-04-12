@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GeneralFunctions
 {
+    private static bool DEBUG = true;
     public static GameObject GetPlayer()
     {
         string target = "Player";
@@ -21,5 +22,10 @@ public class GeneralFunctions
         }
 
         return player;
+    }
+
+    public static bool IsDebug()
+    {
+        return DEBUG;
     }
 }

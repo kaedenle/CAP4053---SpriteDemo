@@ -26,12 +26,13 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);
         if (OneGM == null)
+        {
             OneGM = gameObject;
-        if (OneGM != gameObject)
+            DontDestroyOnLoad(gameObject);
+        }
+        else
             Destroy(gameObject);
-        //CanSpawnEnemies = false;
     }
     void Start()
     {
@@ -54,11 +55,17 @@ public class GameManager : MonoBehaviour
     }
     public void FindStuff()
     {
-        player = GameObject.Find("Player");
-        if (player == null) return;
+        player = GeneralFunctions.GetPlayer();
+        if (player == null) 
+        {
+            Debug.LogWarning("player not found");
+            return;
+        }
 
         am = player.GetComponent<AttackManager>();
         ht = player.GetComponent<HealthTracker>();
+        if(ht == null)
+            Debug.LogError("hit tracker not found");
         anim = player.GetComponent<Animator>();
     }
     private void OnEnable()
@@ -202,6 +209,11 @@ public class GameManager : MonoBehaviour
     {
         Health = amnt;
         reload();
+    }
+
+    public int GetMaxHealth()
+    {
+        return MaxHealth;
     }
 
     public int GetPlayerWeapon()

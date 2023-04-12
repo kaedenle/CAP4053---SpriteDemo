@@ -13,7 +13,7 @@ public class MazeManager : MonoBehaviour
     public GameObject[] startPosition;
 
     // The length of the maze path (number of rooms traversed until exit)
-    private static int pathLength = 4;
+    private static int pathLength = 4;  // the lower this goes, the more likely a collision will happen
 
     // maze hints object
     private MazeHints hints;
@@ -39,8 +39,7 @@ public class MazeManager : MonoBehaviour
     {
         if(maze == null) maze = GenerateMaze();
         if(rand == null) rand = new System.Random(seed);
-        if(dirPath == null) dirPath = new Stack<Direction>();
-        if(path == null)  path = new Stack<Maze>();
+        if(path == null) path = new Stack<Maze>();
 
         if(path.Count <= 0)
             path.Push(maze);    // start in the first room  
@@ -78,6 +77,7 @@ public class MazeManager : MonoBehaviour
         SetupRoom(GetCurrentRoom());
 
         // check if the player went backward
+        if(dirPath == null) dirPath = new Stack<Direction>();
         if(dirPath.Count >= 2)
         {
             if(dirPath.Peek() == Direction.Down)
@@ -86,6 +86,20 @@ public class MazeManager : MonoBehaviour
                 GeneralFunctions.GetPlayer().transform.position = startPosition[(int) dirPath.Peek()].transform.position;
                 dirPath.Pop();
             }
+        }
+
+        // add checkpoint: reach a special room
+        if(path.Count > 0)
+        {
+            Maze cur = GetCurrentRoom();
+
+            int type = GetSpecialType(cur);
+            if(type != -1)
+                if(!CastleLevelManager.ObtainedPrereqs(type + 1))
+                {
+                    GameData.GetInstance().UpdatePath(path);
+                    GameData.GetInstance().SaveCurrentData();
+                }
         }
     }
 
@@ -158,9 +172,13 @@ public class MazeManager : MonoBehaviour
         // (specials default should be false)
         if(cur.IsTerminal())
         {
+            Debug.Log("is terminal; specials.Length=" + specials.Length);
             for(int special = 0; special < specials.Length; special++)
+            {
+                Debug.Log("is on path: " + cur.IsOnPath(special).ToString() + " obtained prereqs: " + CastleLevelManager.ObtainedPrereqs(special).ToString() + " is not null: " + (specials[special] != null).ToString());
                 if(cur.IsOnPath(special) && CastleLevelManager.ObtainedPrereqs(special) && specials[special] != null)
                     specials[special].SetActive(true);
+            }
         }
 
         if(doors != null)
@@ -168,6 +186,14 @@ public class MazeManager : MonoBehaviour
             // disables doors if this is a special room
             doors.SetActive(!cur.IsSpecial());
         }
+    }
+
+    public int GetSpecialType(Maze cur)
+    {
+        for(int special = 0; special < specials.Length; special++)
+            if(cur.IsOnPath(special) && CastleLevelManager.ObtainedPrereqs(special) && specials[special] != null)
+                return special;
+        return -1;
     }
 
     public void EndOfPath()

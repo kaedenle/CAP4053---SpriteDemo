@@ -85,16 +85,18 @@ public class InputManager : MonoBehaviour
         keycodes = new Dictionary<Keys, KeyPair>(defaultKeyCodes);
         Dictionary<Keys, KeyPair> loadedKeyCodes = new Dictionary<Keys, KeyPair>();
 
+        if(GeneralFunctions.IsDebug()) Debug.Log("================ Input Keys ===============");
         foreach(KeyValuePair<Keys, KeyPair> entry in keycodes)
         {
             string prefString = entry.Key.ToString() + "Key";
             KeyCode primary = (KeyCode) PlayerPrefs.GetInt(prefString + "1");
             KeyCode secondary = (KeyCode) PlayerPrefs.GetInt(prefString + "2");
 
-            Debug.Log("loaded key " + prefString + " to keys " + ((KeyCode)primary).ToString() + " and " + ((KeyCode)secondary).ToString());
+            if(GeneralFunctions.IsDebug()) Debug.Log("loaded key " + prefString + " to keys " + ((KeyCode)primary).ToString() + " and " + ((KeyCode)secondary).ToString());
 
             loadedKeyCodes[entry.Key] = new KeyPair(primary, secondary);
         }
+        if(GeneralFunctions.IsDebug()) Debug.Log("=========================================");
 
         keycodes = loadedKeyCodes;
     }

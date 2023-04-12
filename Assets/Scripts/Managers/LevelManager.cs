@@ -34,6 +34,7 @@ public class LevelManager : MonoBehaviour
         }
 
         _levelEnding = false;
+        _playerDied = false;
 
         EntityManager.SceneStartPause();
         EntityManager.WaitThenUnpause(default_delay);
@@ -93,9 +94,6 @@ public class LevelManager : MonoBehaviour
 
     public static void EndGame()
     {
-        // GameState game = GameState.LoadGame();
-        // game.IncrementStateAndSave();
-
         GameData.GetInstance().ResetData();
         ScenesManager.LoadScene(ScenesManager.AllScenes.Menu);
     }
@@ -131,9 +129,15 @@ public class LevelManager : MonoBehaviour
         // reset from player death
         // if(!EntityManager.IsPaused())
         //     EntityManager.Pause(); 
+        GameData.GetInstance().SaveAfterSceneChange();
 
         if (level != null)
             ScenesManager.LoadScene(_startScene);
+    }
+
+    public static void CheckpointButton()
+    {
+        GameData.GetInstance().RevertAfterDeath();
     }
 
     public virtual void TriggerReset() { } // used abstractly; kinda sketchy

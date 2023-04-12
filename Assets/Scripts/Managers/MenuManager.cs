@@ -9,6 +9,7 @@ public class MenuManager : MonoBehaviour
     public void NewGame()
     {
         GameData.GetInstance().ResetData();
+        // GameData.GetInstance().SaveAfterSceneChange();
         ScenesManager.LoadScene( ScenesManager.AllScenes.StartCutScene );
     }
 
