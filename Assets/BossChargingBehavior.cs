@@ -9,7 +9,7 @@ public class BossChargingBehavior : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Hurtbox hb = animator.gameObject.GetComponent<Hurtbox>();
-        hb.InvokeFlash(5, Color.magenta);
+        hb.InvokeFlash(0.2f, Color.magenta, false, false, 100, 0.2f);
         hb.invin = true;
     }
 

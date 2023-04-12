@@ -33,8 +33,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
     public void damage(AttackData ad)
     {
         //play hit audio if it exists
-        if (audiosrc != null && ad.audio != null)
-            audiosrc.PlayOneShot(ad.audio, 0.5f);
+        //if (audiosrc != null && ad.audio != null) audiosrc.PlayOneShot(ad.audio, 0.5f);
 
         //Hit particle effect
         if (HitEffect != null && !NotHitPart)
@@ -130,7 +129,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
                 {
                     sr[j].material.shader = HitShader;
                     sr[j].material.color = c;
-                    sr[j].color = OriginalColors[i];
+                    sr[j].color = OriginalColors[j];
                 }
                 else
                     sr[j].color = c;
