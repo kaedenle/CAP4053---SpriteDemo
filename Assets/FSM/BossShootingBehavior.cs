@@ -6,6 +6,7 @@ using UnityEngine;
 public class BossShootingBehavior : StateMachineBehaviour
 {
     public GameObject bulletPrefab;
+    GameObject thing;
     //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -21,8 +22,9 @@ public class BossShootingBehavior : StateMachineBehaviour
     //OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Instantiate(bulletPrefab, animator.gameObject.transform.position, Quaternion.identity);
+        thing = Instantiate(bulletPrefab, animator.gameObject.transform.position, Quaternion.identity);
 
+       // thing.GetComponent<Projectile>().speed = 14;
     }
 
     
