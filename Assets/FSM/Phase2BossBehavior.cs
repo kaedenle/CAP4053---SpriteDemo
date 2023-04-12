@@ -23,7 +23,7 @@ public class Phase2BossBehavior : StateMachineBehaviour
         if(Vector2.Distance(animator.gameObject.transform.position, player.position) > 6)
         {
             speed = 12;
-            currState = 1;
+            //currState = 1;
         }
     }
 

@@ -9,6 +9,7 @@ public class BossChargingBehavior : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Hurtbox hb = animator.gameObject.GetComponent<Hurtbox>();
+        hb.InvokeFlash(5, Color.magenta);
         hb.invin = true;
     }
 
@@ -23,6 +24,7 @@ public class BossChargingBehavior : StateMachineBehaviour
     {
         Hurtbox hb = animator.gameObject.GetComponent<Hurtbox>();
         hb.invin = false;
+        hb.CancelFlash();
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
