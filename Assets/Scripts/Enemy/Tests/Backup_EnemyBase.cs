@@ -8,10 +8,9 @@ List of Assumptions
 - Camera is Orthographic
 */
 
-public class EnemyBase : MonoBehaviour, IUnique, IScriptable, IDamagable
+public class BackupEnemyBase : MonoBehaviour, IUnique, IScriptable, IDamagable
 {
     // variables to be configured at creation
-    public BasicEnemy.FSM fsm;
     public float speed;
     [Range(0, 100)] public float maxSightAsCamWidthPercent;
     [Range(0, 180)] public float maxBaseSightAngle;
@@ -67,43 +66,37 @@ public class EnemyBase : MonoBehaviour, IUnique, IScriptable, IDamagable
 
     protected void Update()
     {
-        // fsm.ExecuteCurrentState();
-        // if(!SeesPlayer(lineOfSightDistance, maxBaseSightAngle))
-        // {
-        //     transform.position = transform.position;
-        // }
-        // else
-        // {
-        //     if((transform.position.x > target.position.x) ^ (dir < 0))
-        //     {
-        //         TurnAround();
-        //     }
+        if(!SeesPlayer(lineOfSightDistance, maxBaseSightAngle))
+        {
+            transform.position = transform.position;
+        }
+        else
+        {
+            if((transform.position.x > target.position.x) ^ (dir < 0))
+            {
+                TurnAround();
+            }
 
-        //     // move towards player
-        //     if(Vector2.Distance(transform.position, target.position) > minimumDistance)
-        //     {
-        //         Chase();
-        //     }
+            // move towards player
+            if(Vector2.Distance(transform.position, target.position) > minimumDistance)
+            {
+                Chase();
+            }
 
-        //     else
-        //     {   
-        //         Attack();   
-        //     }
-        // }
+            else
+            {   
+                Attack();   
+            }
+        }
     }
 
-    /* Actions */
-    public virtual void Idle()
-    {
-        // ??? do nothing
-    }
-
-    public virtual void Chase()
+    protected virtual void Chase()
     {
         transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
     }
 
-    public virtual void Attack()
+    /* Actions */
+    protected virtual void Attack()
     {
         //attack here
         attackTimer -= Time.deltaTime;
@@ -115,9 +108,6 @@ public class EnemyBase : MonoBehaviour, IUnique, IScriptable, IDamagable
     /* IUnique Functions */
     public virtual void onDeath()
     {
-        // destory FSM (don't want to be doing things while dead)
-        Destroy(fsm);
-
         // drop any attached items
         foreach (ItemDrop item in gameObject.GetComponents<ItemDrop>())
         {

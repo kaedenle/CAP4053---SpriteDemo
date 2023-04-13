@@ -77,6 +77,7 @@ GameObject:
   - component: {fileID: 7407193695743904109}
   - component: {fileID: 7033832474386410872}
   - component: {fileID: 834188646202899586}
+  - component: {fileID: 5225552735611010838}
   m_Layer: 0
   m_Name: Green Refactor
   m_TagString: Enemy
@@ -238,6 +239,11 @@ MonoBehaviour:
     HitSFX: []
   HBList: []
   invulerable: 0
+  OffsenseDamageMultiplier: 1
+  OffenseKnockbackMultiplier: 1
+  DefenseDamageMultiplier: 1
+  DefenseKnockbackMultiplier: 1
+  MultiplierAttack: 0
   framedata:
     framedata: []
     damage: 0
@@ -336,10 +342,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eea2d9a01ee97b4a803bfdefb4f299c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fsm: {fileID: 0}
   speed: 9
   maxSightAsCamWidthPercent: 25
   maxBaseSightAngle: 60
   minimumDistance: 2
+--- !u!114 &5225552735611010838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6105205938035449267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7fa553f2d51ecc43ac8554003dee3a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _initialState: {fileID: 11400000, guid: a12b43347917c414fb31a7bbf6e49bc8, type: 2}
 --- !u!1001 &2024928596
 PrefabInstance:
   m_ObjectHideFlags: 0
