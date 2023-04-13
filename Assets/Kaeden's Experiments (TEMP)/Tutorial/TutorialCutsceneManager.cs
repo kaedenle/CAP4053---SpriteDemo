@@ -36,6 +36,11 @@ public class TutorialCutsceneManager : MonoBehaviour
         Debug.Log("picked");
         pickedup++;
     }
+    public void PickedUp(object sender, InventoryManager.AllItems e)
+    {
+        Debug.Log("picked");
+        pickedup++;
+    }
 
     // Start is called before the first frame update
     void Awake()

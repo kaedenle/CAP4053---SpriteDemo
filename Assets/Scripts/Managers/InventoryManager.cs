@@ -31,7 +31,15 @@ public class InventoryManager : MonoBehaviour
         Boss_Lever_Pulled,
         Hub_TalkedToKaleigh,
         Hub_TalkedToAntonio,
-        Hub_TalkedToFinn
+        Hub_TalkedToFinn,
+        City_Paper1,
+        City_Paper2,
+        City_Paper3,
+        City_Paper4,
+        City_Paper5,
+        City_Paper6,
+        City_Paper7,
+        City_Paper8
     }
 
     private static AllItems[] intangibles =

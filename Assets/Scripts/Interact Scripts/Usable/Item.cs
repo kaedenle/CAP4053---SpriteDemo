@@ -6,8 +6,8 @@ using System;
 public class Item : Interactive
 {
     [HideInInspector]
-    public static event EventHandler PickedUp;
-    [SerializeField] InventoryManager.AllItems _itemType;
+    public static event EventHandler<InventoryManager.AllItems> PickedUp;
+    [SerializeField] public InventoryManager.AllItems _itemType;
     public bool repeatable;
 
     new void Start()
@@ -31,7 +31,7 @@ public class Item : Interactive
         InventoryManager.AddItem(_itemType);
 
         if (PickedUp != null) 
-            PickedUp(this, EventArgs.Empty);
+            PickedUp(this, _itemType);
 
         Destroy(gameObject);
     }
