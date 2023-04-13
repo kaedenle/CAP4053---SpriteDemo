@@ -56,7 +56,9 @@ public class Interactive : OutlineObject
         if(IsTriggered())
         {
             TriggerDialogue();
-            triggered = true;
+
+            if(lockable.IsUnlocked())
+                triggered = true;
         }
 
         if(triggered && !UIActive() && lockable.IsUnlocked())
