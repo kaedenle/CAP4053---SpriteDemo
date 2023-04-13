@@ -108,7 +108,8 @@ public class UIManager : MonoBehaviour
 
     public static void SetStates(Dictionary<string, int> ii)
     {
-        interactive_index = new Dictionary<string, int>( ii );
+        if(ii == null) interactive_index = new Dictionary<string, int>();
+        else interactive_index = new Dictionary<string, int>( ii );
     }
 
     //for seeing if health bars should be rendered
