@@ -1888,6 +1888,7 @@ GameObject:
   - component: {fileID: 692913871}
   - component: {fileID: 692913870}
   - component: {fileID: 692913869}
+  - component: {fileID: 692913872}
   - component: {fileID: 692913868}
   m_Layer: 0
   m_Name: Boss Level Doors_Up
@@ -1903,7 +1904,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 692913867}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
@@ -2018,6 +2019,35 @@ Transform:
   m_Father: {fileID: 2124962804}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &692913872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692913867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bcfab326687304eba99b4d3d802ac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineThickness: 0.5
+  pauseOnInteract: 1
+  interactiveText:
+    textID: 
+    loopLast: 1
+  normalAudio:
+    audioFile: {fileID: 0}
+  highlightEnds: 0
+  lockable:
+    isLocked: 0
+    lockedInteractiveText:
+      textID: 
+      loopLast: 1
+    lockedAudio:
+      audioFile: {fileID: 0}
+    requiredItems: 
+  _nextScene: 20
 --- !u!1 &702082321
 GameObject:
   m_ObjectHideFlags: 0
