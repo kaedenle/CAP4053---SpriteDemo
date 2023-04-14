@@ -16,7 +16,6 @@ namespace BasicEnemy
             enemyController = gameObject.GetComponent<EnemyBase>();
         }
 
-
         private void Update()
         {
             currentState.Execute(this);

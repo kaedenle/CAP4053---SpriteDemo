@@ -61,7 +61,7 @@ public class Interactive : OutlineObject
                 triggered = true;
         }
 
-        if(triggered && !UIActive() && lockable.IsUnlocked())
+        if(triggered && !UIActive())
         {
             ActivateBehaviors();
             triggered = false;
