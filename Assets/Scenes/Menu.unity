@@ -216,7 +216,6 @@ GameObject:
   - component: {fileID: 38835867}
   - component: {fileID: 38835866}
   - component: {fileID: 38835865}
-  - component: {fileID: 38835868}
   m_Layer: 0
   m_Name: Main Theme
   m_TagString: Untagged
@@ -349,19 +348,6 @@ Transform:
   m_Father: {fileID: 1976258573}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &38835868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 38835864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64b4601d642db2a459e32c8a780ecf1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeValue: 1
 --- !u!1 &44444752
 GameObject:
   m_ObjectHideFlags: 0
@@ -11445,6 +11431,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1279181586}
   - component: {fileID: 1279181587}
+  - component: {fileID: 1279181588}
   m_Layer: 0
   m_Name: VolumeManager
   m_TagString: LevelTheme
@@ -11459,7 +11446,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1279181584}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 444.47498, y: 236.20912, z: -3.4930627}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11479,6 +11466,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87f14fcfc47cc2544991fbe5cfe4199f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1279181588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279181584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64b4601d642db2a459e32c8a780ecf1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeValue: 1
 --- !u!1 &1282004357
 GameObject:
   m_ObjectHideFlags: 0
