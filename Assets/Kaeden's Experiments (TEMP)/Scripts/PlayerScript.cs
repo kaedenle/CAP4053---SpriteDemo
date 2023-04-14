@@ -40,7 +40,37 @@ public class PlayerScript : MonoBehaviour, IUnique
     //invincibillity after hit
     private float MAX_INVIN_TIME = 0.75f;
     private float InvinTimer;
-
+    private GameObject[] wpnObjs;
+    //METHODS THAT TIMELINE CAN ACCESS
+    public void DisableHealthUI()
+    {
+        UIManager.DisableHealthUI();
+    }
+    public void EnableHealthUI()
+    {
+        UIManager.EnableHealthUI();
+    }
+    public void DisableWeaponUI()
+    {
+        WeaponUI.DisableWeaponUI();
+    }
+    public void EnableWeaponUI()
+    {
+        WeaponUI.EnableWeaponUI();
+    }
+    public void DefaultFlip()
+    {
+        GetComponent<Player_Movement>().flipped = false;
+    }
+    public void OtherFlip()
+    {
+        GetComponent<Player_Movement>().flipped = true;
+    }
+    public void Dequip()
+    {
+        wm.equiped = false;
+        animator.SetBool("equiped", false);
+    }
     public void EffectManager(string funct)
     {
         //call function via string reference
@@ -196,6 +226,24 @@ public class PlayerScript : MonoBehaviour, IUnique
 
     void Start()
     {
+        wpnObjs = GameObject.FindGameObjectsWithTag("Weapon");
+        //force On-Hand to be first
+        if (wpnObjs[0].name != "On-Hand")
+        {
+            GameObject onHand = wpnObjs[0];
+            int index = 0;
+            for (int i = 1; i < wpnObjs.Length; i++)
+            {
+                if (wpnObjs[i].name == "On-Hand")
+                {
+                    onHand = wpnObjs[i];
+                    index = i;
+                    break;
+                }
+            }
+            wpnObjs[index] = wpnObjs[0];
+            wpnObjs[0] = onHand;
+        }
         body = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
         wm = gameObject.GetComponent<WeaponManager>();
@@ -291,7 +339,7 @@ public class PlayerScript : MonoBehaviour, IUnique
         int temp = flipped ? 180 : 0;
 
         //update the Weapon tag to rotate correctly (all will be animated the same)
-        GameObject[] wpnObjs = GameObject.FindGameObjectsWithTag("Weapon");
+        
         foreach (GameObject wpn in wpnObjs)
         {
             GameObject parent = wpn.transform.parent.gameObject;

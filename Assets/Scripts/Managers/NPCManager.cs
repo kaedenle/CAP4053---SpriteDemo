@@ -17,7 +17,8 @@ public class NPCManager : MonoBehaviour
         Dog,
         KaleighAdult,
         AntonioVelucci,
-        FinnKoenig
+        FinnKoenig,
+        AntonioMind
     }
 
     public static string[] personName =
@@ -33,7 +34,8 @@ public class NPCManager : MonoBehaviour
         "Dog",
         "Kaleigh Blanchard",
         "Antonio Velucci",
-        "Finn Koenig"
+        "Finn Koenig",
+        "Capo"
     };
 
     public static string GetName(Person person)
