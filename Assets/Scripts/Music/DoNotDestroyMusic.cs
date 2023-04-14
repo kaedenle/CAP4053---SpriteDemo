@@ -7,7 +7,7 @@ public class DoNotDestroyMusic : MonoBehaviour
     // Start is called before the first frame update
     private void Awake() 
     {   
-        GameObject[] musicObj = GameObject.FindGameObjectsWithTag("LevelTheme");  
+        GameObject[] musicObj = GameObject.FindGameObjectsWithTag("VolumeManager");  
 
         if (musicObj.Length > 1)
             Destroy(this.gameObject);

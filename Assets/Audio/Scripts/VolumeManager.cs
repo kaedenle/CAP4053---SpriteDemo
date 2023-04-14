@@ -6,6 +6,7 @@ public class VolumeManager : MonoBehaviour
 {
     public static VolumeManager instance;
     public float volumeValue = 1f;
+    public float soundEffectValue = 1f;
 
     private void Awake() {
         if (instance != null && instance != this) {

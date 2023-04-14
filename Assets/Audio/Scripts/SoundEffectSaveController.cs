@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class VolumeSaveController : MonoBehaviour
+public class SoundEffectSaveController : MonoBehaviour
 {
     [SerializeField] private Slider volumeSlider = null;
     [SerializeField] private TMP_Text volumeTextUI = null;
@@ -17,29 +17,30 @@ public class VolumeSaveController : MonoBehaviour
     public void VolumeSlider(float volume)
     {
         volumeTextUI.text = volume.ToString("0.0");
-        VolumeManager.instance.volumeValue = volume;
+        VolumeManager.instance.soundEffectValue = volume;
         ApplyVolumeToAudioSources();
     }
 
     public void SaveVolumeButton()
     {
-        float volumeValue = volumeSlider.value;
-        PlayerPrefs.SetFloat("VolumeValue", volumeValue);
+        float soundEffectValue = volumeSlider.value;
+        PlayerPrefs.SetFloat("SoundEffectValue", soundEffectValue);
         LoadValues();
     }
 
     void LoadValues()
     {
-        float volumeValue = PlayerPrefs.GetFloat("VolumeValue");
-        volumeSlider.value = volumeValue;
+        float soundEffectValue = PlayerPrefs.GetFloat("SoundEffectValue");
+        volumeSlider.value = soundEffectValue;
+        VolumeManager.instance.soundEffectValue = soundEffectValue;
         ApplyVolumeToAudioSources();
     }
 
     void ApplyVolumeToAudioSources() {
         AudioSource[] audioSources = FindObjectsOfType<AudioSource>();
         foreach (AudioSource audioSource in audioSources) {
-            if (audioSource.tag == "LevelTheme") {
-                audioSource.volume = VolumeManager.instance.volumeValue;
+            if (audioSource.tag == "SoundEffect") {
+                audioSource.volume = VolumeManager.instance.soundEffectValue;
             }
         }
     }
