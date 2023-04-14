@@ -112,6 +112,17 @@ public class EnemyBase : MonoBehaviour, IUnique, IScriptable, IDamagable
         }
     }
 
+    /* Conditions */
+    public virtual bool PlayerVisibile()
+    {
+        return true;
+    }
+
+    public virtual bool InRangeOfPlayer()
+    {
+        return false;
+    }
+
     /* IUnique Functions */
     public virtual void onDeath()
     {

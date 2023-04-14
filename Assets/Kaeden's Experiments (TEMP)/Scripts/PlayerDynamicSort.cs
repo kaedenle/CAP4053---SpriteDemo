@@ -31,6 +31,10 @@ public class PlayerDynamicSort : MonoBehaviour
         }
         MainRend.sortingOrder = projlayer;
     }
+    public void CalibrateLeftArm()
+    {
+        rends["Left Arm"].sortingOrder = Main.GetComponent<SpriteRenderer>().sortingOrder - 1;
+    }
     // Start is called before the first frame update
     void Start()
     {

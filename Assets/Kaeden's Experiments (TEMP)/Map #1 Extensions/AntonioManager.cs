@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class AntonioManager : MonoBehaviour
 {
     [HideInInspector]
     public int papers = 0;
+    public PlayableDirector[] eventList;
+    private int play = 0;
+
     //will check to see if you picked up paper
     private HashSet<InventoryManager.AllItems> checkPaper = new HashSet<InventoryManager.AllItems>() { InventoryManager.AllItems.City_Paper1, InventoryManager.AllItems.City_Paper2, 
         InventoryManager.AllItems.City_Paper3, InventoryManager.AllItems.City_Paper4, InventoryManager.AllItems.City_Paper5, InventoryManager.AllItems.City_Paper6, InventoryManager.AllItems.City_Paper7, 
@@ -19,7 +23,7 @@ public class AntonioManager : MonoBehaviour
     {
         if(papers == 1 && !startingFlag)
         {
-            Debug.Log("Triggered");
+            eventList[play++].Play();
             startingFlag = true;
         }
     }
