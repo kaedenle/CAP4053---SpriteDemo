@@ -39,7 +39,8 @@ public class InventoryManager : MonoBehaviour
         City_Paper5,
         City_Paper6,
         City_Paper7,
-        City_Paper8
+        City_Paper8,
+        Bedroom_Revealed_Safe
     }
 
     private static AllItems[] intangibles =
@@ -52,7 +53,8 @@ public class InventoryManager : MonoBehaviour
         AllItems.Boss_Lever_Pulled,
         AllItems.Hub_TalkedToKaleigh,
         AllItems.Hub_TalkedToAntonio,
-        AllItems.Hub_TalkedToFinn
+        AllItems.Hub_TalkedToFinn,
+        AllItems.Bedroom_Revealed_Safe
     };
 
     // temporary solution to dropable heart problem

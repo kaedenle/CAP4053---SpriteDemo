@@ -1466,10 +1466,13 @@ MonoBehaviour:
     lockedAudio:
       audioFile: {fileID: 0}
     requiredItems: 
+  eventID: 
   stateID: map2_bedroomMat
   enables:
   - {fileID: 1452053942}
   destroyOnUse: 1
+  gainItem: 0
+  itemGained: 0
 --- !u!61 &233402538
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3220,6 +3223,7 @@ MonoBehaviour:
     lockedAudio:
       audioFile: {fileID: 0}
     requiredItems: 00000000
+  eventID: 
   stateID: map2_bedroomMat
   enables:
   - {fileID: 1452053942}
@@ -3228,6 +3232,8 @@ MonoBehaviour:
   - {fileID: 592632318}
   - {fileID: 2043423738}
   destroyOnUse: 1
+  gainItem: 0
+  itemGained: 0
 --- !u!212 &558183437
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3493,12 +3499,15 @@ MonoBehaviour:
     lockedAudio:
       audioFile: {fileID: 0}
     requiredItems: 00000000
+  eventID: 
   stateID: map2_bedroomMat
   enables:
   - {fileID: 1452053942}
   - {fileID: 2112074505}
   - {fileID: 1256701439}
   destroyOnUse: 0
+  gainItem: 0
+  itemGained: 0
 --- !u!212 &592632322
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4830,11 +4839,14 @@ MonoBehaviour:
     lockedAudio:
       audioFile: {fileID: 0}
     requiredItems: 
+  eventID: 
   stateID: bedroom_painting
   enables:
   - {fileID: 1422328998}
   - {fileID: 1941907994}
   destroyOnUse: 1
+  gainItem: 1
+  itemGained: 25
 --- !u!61 &865782444
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5859,11 +5871,14 @@ MonoBehaviour:
     lockedAudio:
       audioFile: {fileID: 0}
     requiredItems: 00000000
+  eventID: 
   stateID: bedroom_painting
   enables:
   - {fileID: 1422328998}
   - {fileID: 1941907994}
   destroyOnUse: 1
+  gainItem: 0
+  itemGained: 0
 --- !u!212 &1192746792
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8047,6 +8062,7 @@ MonoBehaviour:
     lockedAudio:
       audioFile: {fileID: 0}
     requiredItems: 0700000000000000
+  eventID: 
   stateID: map2_bedroomMat
   enables:
   - {fileID: 1452053942}
@@ -8054,6 +8070,8 @@ MonoBehaviour:
   - {fileID: 356749932}
   - {fileID: 592632318}
   destroyOnUse: 1
+  gainItem: 0
+  itemGained: 0
 --- !u!212 &1586579147
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9192,12 +9210,15 @@ MonoBehaviour:
     lockedAudio:
       audioFile: {fileID: 0}
     requiredItems: 05000000
+  eventID: 
   stateID: bedroom_safe_closed
   enables:
   - {fileID: 51896393}
   - {fileID: 165500837}
   - {fileID: 444954585}
   destroyOnUse: 1
+  gainItem: 0
+  itemGained: 0
 --- !u!61 &1941907997
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9776,11 +9797,14 @@ MonoBehaviour:
     lockedAudio:
       audioFile: {fileID: 0}
     requiredItems: 07000000
+  eventID: 
   stateID: supply_crate_locked
   enables:
   - {fileID: 775069924}
   - {fileID: 1194365155}
   destroyOnUse: 1
+  gainItem: 0
+  itemGained: 0
 --- !u!58 &2112074508
 CircleCollider2D:
   m_ObjectHideFlags: 0
