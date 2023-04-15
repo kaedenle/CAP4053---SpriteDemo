@@ -19,7 +19,8 @@ public class NPCManager : MonoBehaviour
         AntonioVelucci,
         FinnKoenig,
         AntonioMind,
-        PatrickBlanchard
+        PatrickBlanchard,
+        NewsAnchor
     }
 
     public static string[] personName =
@@ -37,7 +38,8 @@ public class NPCManager : MonoBehaviour
         "Antonio Velucci",
         "Finn Koenig",
         "Capo",
-        "Patrick Blanchard"
+        "Patrick Blanchard",
+        "News Anchor"
     };
 
     public static string GetName(Person person)
