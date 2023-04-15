@@ -9,11 +9,13 @@ namespace BasicEnemy
         [SerializeField] private FSMState _initialState;
         public FSMState currentState { get; set; }
         public EnemyBase enemyController { get; set; }
+        public bool ActionReady {get; set;}
 
         private void Awake()
         {
             currentState = _initialState;
             enemyController = gameObject.GetComponent<EnemyBase>();
+            if(_initialState != null) _initialState.Enter(this);
         }
 
         private void Update()

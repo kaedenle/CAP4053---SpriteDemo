@@ -5,7 +5,7 @@ using UnityEngine;
 namespace BasicEnemy
 {
     [CreateAssetMenu(menuName = "FSM/State")]
-    public sealed class State : FSMState
+    public class State : FSMState
     {
         public List<FSMAction> EnterActions = new List<FSMAction>();
         public List<FSMAction> Action = new List<FSMAction>();

@@ -106,10 +106,12 @@ public class EnemyBase : MonoBehaviour, IUnique, IScriptable, IDamagable
     public virtual void Attack()
     {
         //attack here
-        attackTimer -= Time.deltaTime;
-        if(attackTimer < 0){
-            GetComponent<AttackManager>().InvokeAttack("SlimeAttack");
-        }
+        // attackTimer -= Time.deltaTime;
+        // if(attackTimer < 0){
+        //     GetComponent<AttackManager>().InvokeAttack("SlimeAttack");
+        // }
+        Debug.Log("attacking...");
+        GetComponent<AttackManager>().InvokeAttack("SlimeAttack");
     }
 
     /* Conditions */

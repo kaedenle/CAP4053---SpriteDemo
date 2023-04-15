@@ -8,8 +8,8 @@
     "mobsterDemoKeyItem" : 
     [
         [
-            "You've picked up an alley key.",
-            "You hear a click and a slow opening of a gate in the distance. Could this be the alley gate that you saw outside?"
+            "You've picked up an apartment key",
+            "Could this be for the locked building?"
         ]
     ],
 
@@ -24,14 +24,11 @@
     "childKeyLocked" :
     [
         [ "You can't quite reach the key from the ground.",
-           "You lean on the shelf to try to grab the key...",
-            "But the shelf make a cracking noise and starts to give under your weight!"
+           "You lean on the shelf to try to grab the bulb...",
+            "You reach up but the bulb stays just out of reach."
         ],
-        [ "This bookshelf isn't stable enough to hold your weight, and the key too high to reach." ],
-        [ "You'll need something to help you reach this key." ],
-        [ "It looks like an old bedroom key." ],
-        [ "Maybe there's something in one of the other rooms that can help you reach this." ],
-        [ "It's too high to reach." ]
+        [ "This bookshelf isn't stable enough to hold your weight, and the bulb is too high to reach." ],
+        [ "Maybe there's something around here to help you reach this bulb?" ]
     ],
 
     "GrabberItem" :
@@ -45,12 +42,9 @@
     "lockedChildDoor" :
     [
         [
-            "The door is locked.  The area surrounding the door feels warped and off.",
-            "That's not a good sign"
+            "The door is locked. The area surrounding the door feels... ominous."
         ],
-        [ "The door is locked" ],
-        [ "Maybe there's a key around here somewhere?" ],
-        [ "It's locked" ]
+        [ "Maybe there's a key around here somewhere?" ]
     ],
 
     "childMirror" :
@@ -58,7 +52,7 @@
         [
             "You feel her mind shudder.",
             "You grow dizzy for some seconds...",
-            "...and you feel young again?"
+            "...and, suddenly, you feel young again?"
         ],
 
         ["The mind shudders again, and you feel decades older."],
@@ -129,19 +123,15 @@
         [ 
             "You can't quite reach the lightbulb from the ground.",
             "You lean on the shelf to try to grab the bulb...",
-            "But the shelf make a cracking noise and starts to give under your weight!"
+            "You reach up but the bulb stays just out of reach."
         ],
-        [ "This bookshelf isn't stable enough to hold your weight, and the bulb too high to reach." ],
-        [ "You'll need something to help you reach this bulb." ],
-        [ "It looks like an old lightbulb." ],
-        [ "Maybe there's something in one of the other rooms that can help you reach this." ],
-        [ "It's too high to reach." ]
+        [ "Maybe there's something around here to help you reach this bulb?" ]
     ],
 
     "supply_crate_open" :
     [
         [
-            "You pry the lid off of the crate."
+            "You use the crowbar to pry the lid off of the crate."
         ]
     ],
 
@@ -160,7 +150,7 @@
 
     "locked_hole" :
     [
-        ["You can't see the bottom.  You'll need some rope if you want to reach the bottom."],
+        ["You can't see the bottom.  You'll need something to help repel you down to the bottom."],
         ["It's a long way down..."],
         ["Some rope would come in handy right about now."],
         ["You can't jump. Please don't jump."],
@@ -205,23 +195,23 @@
 
     "mat_normal" :
     [
-        ["A very old mat.", "The floorboards creak strangly under here but the ground feels very solid."]
+        ["A very old rug.", "The floorboards creak strangly under here but the ground feels very solid.", "Something feels different about the floor here."],
+        ["Could there be more to this rug?"],
+        ["Maybe the rug in the mirror world will be different?"]
     ],
 
     "mat_suspicious" :
     [
-        ["A very old mat.", "The floorboards creak suspiciously under here."],
-        ["The ground under here feels weird. Like there's no foundation under the boards."],
-        ["Maybe you can find a way to break the boards?"],
-        ["You already have everything you need to break the boards."]
+        ["A very old rug.", "The ground feels hollow beneath."],
+        ["Almost like there's no foundation under the boards."],
+        ["Maybe you can find a way to break the boards?"]
     ],
 
     "ground_gives_way" :
     [
         [
             "Suddenly, the ground gives way.",
-            "Broken floorboards fall down down down",
-            "You can barely hear the echos of their crashes when they hit ground"
+            "You can barely hear the echos of their crashes when they hit the ground beneath."
         ]
     ],
 
@@ -233,7 +223,7 @@
     "crowbar_obtained" :
     [
         [
-            "You've obtained a crowbar!"
+            "You've obtained a crowbar!", "Maybe this could help you pry something open?"
         ]
     ],
 
@@ -414,7 +404,9 @@
 
     "use_rope_on_hole" :
     [
-        ["You secure the rope on the edge.  Here goes nothing."]
+        ["You secure the rope on the edge.", 
+         "Here goes nothing..."
+        ]
     ],
     "paper_1" :
     [
@@ -473,4 +465,5 @@
             "Taking them wouldn't do much though. They are imaginary after all."
         ]
     ]
+
 }
