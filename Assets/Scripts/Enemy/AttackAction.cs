@@ -11,22 +11,13 @@ namespace BasicEnemy
     {
         public override void Execute(FSM stateMachine)
         {
-            Debug.Log("attacking");
+            stateMachine.ExecutionReady = false;
             Attack(stateMachine);
         }
 
         void Attack(FSM stateMachine)
         {
-            Debug.Log("got here");
-            stateMachine.enemyController.Attack();
-            Debug.Log("initial state: " +  stateMachine.enemyController.enabled);
-            while(!stateMachine.enemyController.enabled)
-            {
-                // do nothing
-            }
-            // yield return new WaitUntil(() => );
-            stateMachine.ActionReady = true;
-            Debug.Log("finished attacking");
+            stateMachine.enemyController.Attack(stateMachine);
         }
     }
 }

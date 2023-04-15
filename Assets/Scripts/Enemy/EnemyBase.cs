@@ -8,7 +8,7 @@ List of Assumptions
 - Camera is Orthographic
 */
 
-public class EnemyBase : MonoBehaviour, IUnique, IScriptable, IDamagable
+public class EnemyBase : MonoBehaviour, IUnique, IDamagable
 {
     // variables to be configured at creation
     public BasicEnemy.FSM fsm;
@@ -16,14 +16,13 @@ public class EnemyBase : MonoBehaviour, IUnique, IScriptable, IDamagable
     [Range(0, 100)] public float maxSightAsCamWidthPercent;
     [Range(0, 180)] public float maxBaseSightAngle;
     public float minimumDistance;
-    private const float ATTACK_TIMER_MAX = 0.0f;
-    private float attackTimer;
     
     // automatically found GameObjects or Components
     protected Animator animator;
     protected Rigidbody2D body;
     protected SpriteRenderer sr;
     protected HealthTracker healthTracker; 
+    protected MovementController movementController;
     protected Transform target;
 
     // inherent configuration variables of the enemy
@@ -41,7 +40,8 @@ public class EnemyBase : MonoBehaviour, IUnique, IScriptable, IDamagable
         body = gameObject.GetComponent<Rigidbody2D>();
         healthTracker = GetComponent<HealthTracker>();
         target = GeneralFunctions.GetPlayer().transform;
-
+        movementController = gameObject.GetComponent<MovementController>();
+        
         // get starting direction (-1 or 1)
         dir = UnityEngine.Random.Range(0, 2);
         // is facing 
@@ -103,15 +103,17 @@ public class EnemyBase : MonoBehaviour, IUnique, IScriptable, IDamagable
         transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
     }
 
-    public virtual void Attack()
+    public void Attack(BasicEnemy.FSM stateMachine)
     {
-        //attack here
-        // attackTimer -= Time.deltaTime;
-        // if(attackTimer < 0){
-        //     GetComponent<AttackManager>().InvokeAttack("SlimeAttack");
-        // }
-        Debug.Log("attacking...");
-        GetComponent<AttackManager>().InvokeAttack("SlimeAttack");
+        StartCoroutine(TriggerAttack(stateMachine));
+    }
+
+    public IEnumerator TriggerAttack(BasicEnemy.FSM stateMachine)
+    {
+        movementController.Attack();
+
+        yield return new WaitUntil(() => movementController.enabled);
+        stateMachine.ExecutionReady = true;
     }
 
     /* Conditions */
@@ -158,27 +160,7 @@ public class EnemyBase : MonoBehaviour, IUnique, IScriptable, IDamagable
 
     }
 
-    /* IScriptable Functions */
-
-    public virtual void EnableByID(int ID)
-    {
-        if(ID == 0)
-            this.enabled = true;
-    }
-
-    public virtual void DisableByID(int ID)
-    {
-        if (ID == 0)
-            this.enabled = false;
-    }
-
-    //enable and disable script
-    public void ScriptHandler(bool flag){
-        if(flag){
-            attackTimer = ATTACK_TIMER_MAX;
-        }
-        this.enabled = flag;
-    }
+    
 
     /* IDamagable Functions */
     // deals with knockback
