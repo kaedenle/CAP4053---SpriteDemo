@@ -1600,6 +1600,7 @@ GameObject:
   - component: {fileID: 300765493}
   - component: {fileID: 300765496}
   - component: {fileID: 300765495}
+  - component: {fileID: 300765497}
   m_Layer: 0
   m_Name: Whiskey (interactable)
   m_TagString: Untagged
@@ -1718,6 +1719,29 @@ MonoBehaviour:
     lockedAudio:
       audioFile: {fileID: 0}
     requiredItems: 
+--- !u!114 &300765497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300765492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c3b8c955297b3f48b88b1c75e13ea8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineThickness: 0.5
+  dialogue: {fileID: 0}
+  normalAudio:
+    audioFile: {fileID: 0}
+  highlightEnds: 1
+  lockable:
+    isLocked: 0
+    requiredItems: 
+    lockedText: {fileID: 0}
+    lockedAudio:
+      audioFile: {fileID: 0}
 --- !u!1001 &303897741
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3211,7 +3235,7 @@ MonoBehaviour:
   pauseOnInteract: 1
   interactiveText:
     textID: mat_temp
-    loopLast: 0
+    loopLast: 1
   normalAudio:
     audioFile: {fileID: 0}
   highlightEnds: 1
@@ -7855,6 +7879,7 @@ GameObject:
   - component: {fileID: 1571657779}
   - component: {fileID: 1571657781}
   - component: {fileID: 1571657782}
+  - component: {fileID: 1571657783}
   m_Layer: 0
   m_Name: Patrick Blanchard Painting (interactable)
   m_TagString: Untagged
@@ -7973,6 +7998,29 @@ MonoBehaviour:
     lockedAudio:
       audioFile: {fileID: 0}
     requiredItems: 
+--- !u!114 &1571657783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571657778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c3b8c955297b3f48b88b1c75e13ea8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineThickness: 0.5
+  dialogue: {fileID: 0}
+  normalAudio:
+    audioFile: {fileID: 0}
+  highlightEnds: 1
+  lockable:
+    isLocked: 0
+    requiredItems: 
+    lockedText: {fileID: 0}
+    lockedAudio:
+      audioFile: {fileID: 0}
 --- !u!1 &1586579143
 GameObject:
   m_ObjectHideFlags: 0
@@ -8050,7 +8098,7 @@ MonoBehaviour:
   pauseOnInteract: 1
   interactiveText:
     textID: mat_temp
-    loopLast: 0
+    loopLast: 1
   normalAudio:
     audioFile: {fileID: 0}
   highlightEnds: 1

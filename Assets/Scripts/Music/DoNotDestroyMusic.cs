@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DoNotDestroyMusic : MonoBehaviour
 {
+    AudioSource m_MyAudioSource;
     // Start is called before the first frame update
     private void Awake() 
     {   
@@ -16,5 +18,16 @@ public class DoNotDestroyMusic : MonoBehaviour
             Destroy(this.gameObject);
 
         DontDestroyOnLoad(this.gameObject); 
+    }
+    private void Update() 
+    {
+        if (SceneManager.GetActiveScene().name == "Child Room")
+        {
+            m_MyAudioSource.Stop();
+        }
+        else if (SceneManager.GetActiveScene().name == "Living Room" && !m_MyAudioSource.isPlaying)
+        {
+            m_MyAudioSource.Play();
+        }
     }
 }
