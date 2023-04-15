@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         FirstLoad();
+        ScenesManager.ChangedScenes += OnSceneCalled;
+        SceneManager.sceneLoaded += OnNewSceneLoaded;
     }
     public void RemoveCurrentScene()
     {
@@ -52,6 +54,7 @@ public class GameManager : MonoBehaviour
         SeenScene = SceneManager.GetActiveScene().name;
         SceneID = ScenesManager.GetCurrentScene();
         MaxHealth = ht.health;
+        Debug.Log("first");
     }
     public void FindStuff()
     {
@@ -170,34 +173,27 @@ public class GameManager : MonoBehaviour
             es.SetValues(enemy);
         }
     }
+    public void OnNewSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        SeenScene = SceneManager.GetActiveScene().name;
+        reload();
+        //reload enemies here with data
+        if (CanSpawnEnemies)
+            ReloadEnemies();
+        else
+            CanSpawnEnemies = true;
+    }
+    public void OnSceneCalled(object sender, System.EventArgs e)
+    {
+        SceneID = ScenesManager.GetCurrentScene();
+        //Update enemies values
+        UpdateEnemyValues();
+        FirstTime = false;
+    }
     // Update is called once per frame
     void Update()
     {
-        //you've completely swapped scenes
-        if(SeenScene != SceneManager.GetActiveScene().name)
-        {
-            SeenScene = SceneManager.GetActiveScene().name;
-            reload();
-            //reload enemies here with data
-            if (CanSpawnEnemies)
-                ReloadEnemies();
-            else
-                CanSpawnEnemies = true;
-            
-        }
-        else
-        {
-            UpdateCurrentValues();
-        }
-
-        //you've registered a scene swap but haven't done it yet
-        if (SceneID != ScenesManager.GetCurrentScene())
-        {
-            SceneID = ScenesManager.GetCurrentScene();
-            //Update enemies values
-            UpdateEnemyValues();
-            FirstTime = false;
-        }
+        UpdateCurrentValues();
     }
 
     public int GetPlayerHealth()

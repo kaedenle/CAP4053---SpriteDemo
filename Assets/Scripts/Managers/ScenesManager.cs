@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class ScenesManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class ScenesManager : MonoBehaviour
     const float nextSceneDelay = 1.0F;
 
     private static bool firstSceneDebug = true;
+    public static EventHandler ChangedScenes;
+
     // update this enum whenever you add (or remove) a Scene (must be in same order as in building settings)
     // edit these names at your own risk; so many things use these, so you'll have to track them all down if
     // you want to change these (adding more is fine, as long as you add to the end)
@@ -53,11 +56,13 @@ public class ScenesManager : MonoBehaviour
         _prevScene = _currentScene;
         _currentScene = scene;
         UIManager.EndScene();
+        if (ChangedScenes != null) ChangedScenes(null, EventArgs.Empty);
         Instance.StartCoroutine(LoadSceneAfterDelay((int)scene));
     }
 
     public static void ReloadScene()
     {
+        
         LoadScene((AllScenes) (SceneManager.GetActiveScene().buildIndex));
     }
 
