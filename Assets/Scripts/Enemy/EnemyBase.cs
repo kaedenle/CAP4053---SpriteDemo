@@ -8,30 +8,20 @@ List of Assumptions
 - Camera is Orthographic
 */
 
-public class EnemyBase : MonoBehaviour, IUnique, IScriptable, IDamagable
-{
-    // variables to be configured at creation
-    public BasicEnemy.FSM fsm;
-    public float speed;
-    [Range(0, 100)] public float maxSightAsCamWidthPercent;
-    [Range(0, 180)] public float maxBaseSightAngle;
-    public float minimumDistance;
-    private const float ATTACK_TIMER_MAX = 0.0f;
-    private float attackTimer;
-    
+// works in conjuction with BasicEnemy.FSM and MovementController to control basic enemy
+public class EnemyBase : MonoBehaviour, IUnique, IDamagable
+{    
     // automatically found GameObjects or Components
     protected Animator animator;
     protected Rigidbody2D body;
     protected SpriteRenderer sr;
     protected HealthTracker healthTracker; 
+    protected MovementController movementController;
     protected Transform target;
+    protected BasicEnemy.FSM fsm;
 
     // inherent configuration variables of the enemy
-    protected float lineOfSightDistance;
-
-
-    // variables that keep track of the enemy's state
-    private int dir = 1;
+    public EnemyStats enemyStats;
 
     /* Awake, Start, Update */
     protected void Awake()
@@ -41,58 +31,21 @@ public class EnemyBase : MonoBehaviour, IUnique, IScriptable, IDamagable
         body = gameObject.GetComponent<Rigidbody2D>();
         healthTracker = GetComponent<HealthTracker>();
         target = GeneralFunctions.GetPlayer().transform;
-
-        // get starting direction (-1 or 1)
-        dir = UnityEngine.Random.Range(0, 2);
-        // is facing 
-        if(dir == 0)
-        {
-            dir--;
-        }
-
-        else
-        {
-            TurnAround();
-            dir = 1;
-        }
+        movementController = gameObject.GetComponent<MovementController>();
+        fsm = gameObject.GetComponent<BasicEnemy.FSM>();
     }
     
-    
-    protected void Start()
-    {
-        lineOfSightDistance = Camera.main.orthographicSize * 2f * Camera.main.aspect * maxSightAsCamWidthPercent / 100.0F;
-        Debug.Log("baseMaxSightDistance=" + lineOfSightDistance);
-
-    }
-
     protected void Update()
-    {
-        // fsm.ExecuteCurrentState();
-        // if(!SeesPlayer(lineOfSightDistance, maxBaseSightAngle))
-        // {
-        //     transform.position = transform.position;
-        // }
-        // else
-        // {
-        //     if((transform.position.x > target.position.x) ^ (dir < 0))
-        //     {
-        //         TurnAround();
-        //     }
-
-        //     // move towards player
-        //     if(Vector2.Distance(transform.position, target.position) > minimumDistance)
-        //     {
-        //         Chase();
-        //     }
-
-        //     else
-        //     {   
-        //         Attack();   
-        //     }
-        // }
+    {        
+        //if((transform.position.x > target.position.x) ^ (dir < 0))
+        //{
+    //         TurnAround();
+    //     }
     }
 
-    /* Actions */
+    /* 
+    ================= Actions ================
+    */
     public virtual void Idle()
     {
         // ??? do nothing
@@ -100,29 +53,57 @@ public class EnemyBase : MonoBehaviour, IUnique, IScriptable, IDamagable
 
     public virtual void Chase()
     {
-        transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+        // movementController.MoveTowards(minimumDistance);
+        transform.position = Vector2.MoveTowards(transform.position, target.position, enemyStats.speed * Time.deltaTime);
     }
 
-    public virtual void Attack()
+    public virtual void ExpressSurprise(BasicEnemy.FSM stateMachine)
     {
-        //attack here
-        // attackTimer -= Time.deltaTime;
-        // if(attackTimer < 0){
-        //     GetComponent<AttackManager>().InvokeAttack("SlimeAttack");
-        // }
-        Debug.Log("attacking...");
-        GetComponent<AttackManager>().InvokeAttack("SlimeAttack");
+        // have an exclamation mark pop up over enemy head & make surprise noise
+        StartCoroutine( StopBeingSurprised(stateMachine) );
+    }
+
+    public IEnumerator StopBeingSurprised(BasicEnemy.FSM stateMachine)
+    {
+        yield return new WaitForSeconds(enemyStats.surprise_reaction_time);
+        stateMachine.TransitionReady = true;
+    }
+
+    public void Attack(BasicEnemy.FSM stateMachine)
+    {
+        StartCoroutine(TriggerAttack(stateMachine));
+    }
+
+    public IEnumerator TriggerAttack(BasicEnemy.FSM stateMachine)
+    {
+        movementController.Attack();
+
+        yield return new WaitUntil(() => movementController.enabled);
+        stateMachine.TransitionReady = true;
+    }
+
+    public void Alerted(BasicEnemy.FSM stateMachine)
+    {
+        // question mark over enemy head
+        // sound?
+        StartCoroutine(CompleteTimer(enemyStats.memory_time, stateMachine));
+    }
+
+    public IEnumerator CompleteTimer(float time_wait, BasicEnemy.FSM stateMachine)
+    {
+        yield return new WaitForSeconds(time_wait);
+        stateMachine.TimerComplete = true;
     }
 
     /* Conditions */
     public virtual bool PlayerVisibile()
     {
-        return true;
+        return movementController.FOVCheck();
     }
 
     public virtual bool InRangeOfPlayer()
     {
-        return false;
+        return movementController.InRangeOfPlayer(enemyStats.minimumDistance);
     }
 
     /* IUnique Functions */
@@ -158,28 +139,6 @@ public class EnemyBase : MonoBehaviour, IUnique, IScriptable, IDamagable
 
     }
 
-    /* IScriptable Functions */
-
-    public virtual void EnableByID(int ID)
-    {
-        if(ID == 0)
-            this.enabled = true;
-    }
-
-    public virtual void DisableByID(int ID)
-    {
-        if (ID == 0)
-            this.enabled = false;
-    }
-
-    //enable and disable script
-    public void ScriptHandler(bool flag){
-        if(flag){
-            attackTimer = ATTACK_TIMER_MAX;
-        }
-        this.enabled = flag;
-    }
-
     /* IDamagable Functions */
     // deals with knockback
     public void damage(AttackData ad){
@@ -196,32 +155,11 @@ public class EnemyBase : MonoBehaviour, IUnique, IScriptable, IDamagable
         PlayerMetricsManager.IncrementKeeperInt("killed");
     }
 
-    // determine if the player is within the enemy's sight line
-    // Potential bug: assumes all z values are valid
-    protected bool SeesPlayer(float maxDistance, double maxAngleInDegrees)
-    {
-        // determine if the distance is valid
-        float distance = Vector3.Distance(target.transform.position, gameObject.transform.position);
-        if(distance > maxDistance) return false;
+    /*
+    ======= Animation ========
+    */
 
-        // determine if the sight angle is valid
-        Vector3 baseSight = gameObject.transform.position - new Vector3(transform.position.x + (maxDistance * dir), transform.position.y, transform.position.z);
-        Vector3 vecToPlayer = gameObject.transform.position - target.transform.position;
-        double angle = Vector3.Angle(baseSight, vecToPlayer);
-        // Debug.Log("angle is currently " + angle + " and target angle is " + maxAngleInDegrees);
-
-        if(Math.Abs(angle) > maxAngleInDegrees)
-            return false;
-        
-        return true;
-    }
-
-    // assumes that start is left
-    protected virtual void TurnAround()
-    {
-        gameObject.transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        dir = -dir;
-    }
+    public virtual void MoveAnimation() {}
 }
 
 
