@@ -8,10 +8,10 @@ List of Assumptions
 - Camera is Orthographic
 */
 
+// works in conjuction with BasicEnemy.FSM and MovementController to control basic enemy
 public class EnemyBase : MonoBehaviour, IUnique, IDamagable
 {
     // variables to be configured at creation
-    public BasicEnemy.FSM fsm;
     public float speed;
     [Range(0, 100)] public float maxSightAsCamWidthPercent;
     [Range(0, 180)] public float maxBaseSightAngle;
@@ -24,14 +24,12 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
     protected HealthTracker healthTracker; 
     protected MovementController movementController;
     protected Transform target;
+    protected BasicEnemy.FSM fsm;
 
     // inherent configuration variables of the enemy
     protected float lineOfSightDistance;
     protected float surprise_reaction_time = 1.0F;
     protected float memory_time = 1.0F;
-
-    // variables that keep track of the enemy's state
-    private int dir = 1;
 
     /* Awake, Start, Update */
     protected void Awake()
@@ -42,20 +40,7 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
         healthTracker = GetComponent<HealthTracker>();
         target = GeneralFunctions.GetPlayer().transform;
         movementController = gameObject.GetComponent<MovementController>();
-        
-        // get starting direction (-1 or 1)
-        dir = UnityEngine.Random.Range(0, 2);
-        // is facing 
-        if(dir == 0)
-        {
-            dir--;
-        }
-
-        else
-        {
-            TurnAround();
-            dir = 1;
-        }
+        fsm = gameObject.GetComponent<BasicEnemy.FSM>();
     }
     
     
@@ -67,33 +52,16 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
     }
 
     protected void Update()
-    {
-        // fsm.ExecuteCurrentState();
-        // if(!SeesPlayer(lineOfSightDistance, maxBaseSightAngle))
-        // {
-        //     transform.position = transform.position;
-        // }
-        // else
-        // {
-        //     if((transform.position.x > target.position.x) ^ (dir < 0))
-        //     {
-        //         TurnAround();
-        //     }
-
-        //     // move towards player
-        //     if(Vector2.Distance(transform.position, target.position) > minimumDistance)
-        //     {
-        //         Chase();
-        //     }
-
-        //     else
-        //     {   
-        //         Attack();   
-        //     }
-        // }
+    {        
+        //if((transform.position.x > target.position.x) ^ (dir < 0))
+        //{
+    //         TurnAround();
+    //     }
     }
 
-    /* Actions */
+    /* 
+    ================= Actions ================
+    */
     public virtual void Idle()
     {
         // ??? do nothing
@@ -101,6 +69,7 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
 
     public virtual void Chase()
     {
+        // movementController.MoveTowards(minimumDistance);
         transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
     }
 
@@ -145,7 +114,7 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
     /* Conditions */
     public virtual bool PlayerVisibile()
     {
-        return SeesPlayer(lineOfSightDistance, maxBaseSightAngle);
+        return movementController.FOVCheck();
     }
 
     public virtual bool InRangeOfPlayer()
@@ -186,8 +155,6 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
 
     }
 
-    
-
     /* IDamagable Functions */
     // deals with knockback
     public void damage(AttackData ad){
@@ -204,32 +171,11 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
         PlayerMetricsManager.IncrementKeeperInt("killed");
     }
 
-    // determine if the player is within the enemy's sight line
-    // Potential bug: assumes all z values are valid
-    protected bool SeesPlayer(float maxDistance, double maxAngleInDegrees)
-    {
-        // determine if the distance is valid
-        float distance = Vector3.Distance(target.transform.position, gameObject.transform.position);
-        if(distance > maxDistance) return false;
+    /*
+    ======= Animation ========
+    */
 
-        // determine if the sight angle is valid
-        Vector3 baseSight = gameObject.transform.position - new Vector3(transform.position.x + (maxDistance * dir), transform.position.y, transform.position.z);
-        Vector3 vecToPlayer = gameObject.transform.position - target.transform.position;
-        double angle = Vector3.Angle(baseSight, vecToPlayer);
-        // Debug.Log("angle is currently " + angle + " and target angle is " + maxAngleInDegrees);
-
-        if(Math.Abs(angle) > maxAngleInDegrees)
-            return false;
-        
-        return true;
-    }
-
-    // assumes that start is left
-    protected virtual void TurnAround()
-    {
-        gameObject.transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        dir = -dir;
-    }
+    public virtual void MoveAnimation() {}
 }
 
 

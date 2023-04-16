@@ -4,16 +4,7 @@ using UnityEngine;
 
 public class SlimeEnemy : EnemyBase
 {
-    private const string idleAnimateLable = "SlimeIdle";
-    public override void EffectManager(string funct)
-    {
-        base.EffectManager(funct);
-    }
-
-    public override void onDeath()
-    {
-        base.onDeath();
-    }
+    protected const string idleAnimateLable = "SlimeIdle";
 
     public override void HitStunAni()
     {
