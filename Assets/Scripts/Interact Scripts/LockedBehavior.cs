@@ -7,7 +7,7 @@ public class LockedBehavior
 {
     public bool isLocked = false;
     public InteractiveText lockedInteractiveText;
-    public AudioPlayer lockedAudio;
+    public string lockedAudio;
     public InventoryManager.AllItems[] requiredItems; 
 
     private bool unlocked = false;
@@ -42,6 +42,11 @@ public class LockedBehavior
 
     public void PlayAudio()
     {
-        lockedAudio.PlayAudio();
+        if(!lockedAudio.Equals(""))
+        {
+            SoundEffectManager.PlayAudio(lockedAudio);
+
+        }
+        //lockedAudio.PlayAudio();
     }
 }
