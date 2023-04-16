@@ -7,7 +7,7 @@ public class Interactive : OutlineObject
     // public variables
     public bool pauseOnInteract = true;
     public InteractiveText interactiveText;
-    public AudioPlayer normalAudio;
+    public string normalAudio;
     public bool highlightEnds = false;
 
     public LockedBehavior lockable;
@@ -70,12 +70,14 @@ public class Interactive : OutlineObject
 
     protected virtual void ActivateBehaviors()
     {
+        Debug.Log(normalAudio + " bozo");
+
         if(lockable.IsUnlocked())
         {
-            normalAudio.PlayAudio();
+            SoundEffectManager.PlayAudio(normalAudio);
         }
         else
-        {
+        {            
             lockable.PlayAudio();
         }
     }
@@ -84,10 +86,14 @@ public class Interactive : OutlineObject
     protected void TriggerDialogue()
     {
         if(lockable.IsUnlocked())
+        {
             TriggerDialogue(interactiveText);
+
+        }
         else
         {
             TriggerDialogue(lockable.GetInteractiveText());
+            lockable.PlayAudio();
         }
 
         if(!OutlineEnabled())

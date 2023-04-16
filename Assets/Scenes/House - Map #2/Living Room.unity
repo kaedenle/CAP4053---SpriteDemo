@@ -847,7 +847,6 @@ GameObject:
   m_Component:
   - component: {fileID: 234888797}
   - component: {fileID: 234888796}
-  - component: {fileID: 234888798}
   - component: {fileID: 234888799}
   m_Layer: 0
   m_Name: -- Music --
@@ -967,18 +966,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &234888798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234888795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87f14fcfc47cc2544991fbe5cfe4199f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &234888799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1257,16 +1244,14 @@ MonoBehaviour:
   interactiveText:
     textID: childKeyItem
     loopLast: 1
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
-    lockedAudio:
-      audioFile: {fileID: 0}
+    lockedAudio: 
     requiredItems: 
   _itemType: 2
   repeatable: 0
@@ -1579,16 +1564,14 @@ MonoBehaviour:
   interactiveText:
     textID: got_fuse
     loopLast: 0
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 1
   lockable:
     isLocked: 1
     lockedInteractiveText:
       textID: need_fuse
       loopLast: 1
-    lockedAudio:
-      audioFile: {fileID: 0}
+    lockedAudio: 
     requiredItems: 0a000000
   eventID: 
   stateID: lightbulb_need_fuse
@@ -2372,16 +2355,14 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
-    lockedAudio:
-      audioFile: {fileID: 0}
+    lockedAudio: 
     requiredItems: 
 --- !u!61 &689081049
 BoxCollider2D:
@@ -3260,16 +3241,14 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
-    lockedAudio:
-      audioFile: {fileID: 0}
+    lockedAudio: 
     requiredItems: 
   _nextScene: 8
 --- !u!114 &1018827041
@@ -3338,16 +3317,14 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
-    lockedAudio:
-      audioFile: {fileID: 0}
+    lockedAudio: 
     requiredItems: 
   _nextScene: 11
 --- !u!61 &1025673643
@@ -3803,16 +3780,14 @@ MonoBehaviour:
   interactiveText:
     textID: closed_to_open_fusebox
     loopLast: 0
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
-    lockedAudio:
-      audioFile: {fileID: 0}
+    lockedAudio: 
     requiredItems: 
   eventID: fusebox_closed
   destroyOnUse: 1
@@ -4223,16 +4198,14 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 0
   lockable:
     isLocked: 1
     lockedInteractiveText:
       textID: lockedChildDoor
       loopLast: 1
-    lockedAudio:
-      audioFile: {fileID: 0}
+    lockedAudio: 
     requiredItems: 02000000
   _nextScene: 9
 --- !u!114 &1210283156
@@ -4252,16 +4225,14 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 0
   lockable:
     isLocked: 1
     lockedInteractiveText:
       textID: lockedChildDoor
       loopLast: 1
-    lockedAudio:
-      audioFile: {fileID: 0}
+    lockedAudio: 
     requiredItems: 02000000
   _nextScene: 9
 --- !u!1 &1259322659
@@ -4741,16 +4712,14 @@ MonoBehaviour:
   interactiveText:
     textID: childBulbItem
     loopLast: 1
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 0
   lockable:
     isLocked: 1
     lockedInteractiveText:
       textID: child_bulb_locked
       loopLast: 1
-    lockedAudio:
-      audioFile: {fileID: 0}
+    lockedAudio: 
     requiredItems: 01000000
   _itemType: 3
   repeatable: 0
@@ -4790,16 +4759,14 @@ MonoBehaviour:
   interactiveText:
     textID: added_fuse
     loopLast: 0
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 0
   lockable:
     isLocked: 1
     lockedInteractiveText:
       textID: missing_fuse
       loopLast: 1
-    lockedAudio:
-      audioFile: {fileID: 0}
+    lockedAudio: 
     requiredItems: 04000000
   eventID: fusebox_missing
   destroyOnUse: 1
@@ -6361,16 +6328,14 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
-    lockedAudio:
-      audioFile: {fileID: 0}
+    lockedAudio: 
     requiredItems: 
   _nextScene: 7
 --- !u!114 &1785929747
@@ -7149,16 +7114,14 @@ MonoBehaviour:
   interactiveText:
     textID: lightbulb_replacement
     loopLast: 0
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 0
   lockable:
     isLocked: 1
     lockedInteractiveText:
       textID: prompt_lightbulb_replacement
       loopLast: 1
-    lockedAudio:
-      audioFile: {fileID: 0}
+    lockedAudio: 
     requiredItems: 0300000004000000
   eventID: 
   stateID: broken_lightbulb

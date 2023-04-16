@@ -6,10 +6,10 @@ public class BossAI : MonoBehaviour, IUnique
 {
     public GameObject meleeEnemyPrefab;
     public GameObject rangedEnemyPrefab;
-    private float spawnCounter = 0;
+    //private float spawnCounter = 0;
     public float spawnInterval = 100;
     public float numEnemiesSpawned = 0;
-    private float maxEnemiesSpawned = 5;
+   // private float maxEnemiesSpawned = 5;
     GameObject enemy;
     Transform spawnerLeft;
     GameObject spawnerRight;
