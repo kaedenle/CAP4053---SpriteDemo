@@ -9,10 +9,10 @@ public class BossIdleBehavior : StateMachineBehaviour
     public float minimumDistance;
     public GameObject meleeEnemyPrefab;
     public GameObject rangedEnemyPrefab;
-    private float spawnCounter = 0;
+   // private float spawnCounter = 0;
     public float spawnInterval = 100;
     public float numEnemiesSpawned = 0;
-    private float maxEnemiesSpawned = 5;
+    //private float maxEnemiesSpawned = 5;
     GameObject enemy, enemy2;
     Transform spawnerLeft;
     Transform spawnerRight;

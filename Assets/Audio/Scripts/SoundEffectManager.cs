@@ -53,7 +53,6 @@ public class SoundEffectManager : MonoBehaviour
             {
                 Debug.Log("Playing " + name);
                 return sfxList[i];
-                break;
             }
         }
         return null;
