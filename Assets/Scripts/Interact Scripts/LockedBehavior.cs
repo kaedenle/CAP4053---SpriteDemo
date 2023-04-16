@@ -42,11 +42,6 @@ public class LockedBehavior
 
     public void PlayAudio()
     {
-        if(!lockedAudio.Equals(""))
-        {
-            SoundEffectManager.PlayAudio(lockedAudio);
-
-        }
-        //lockedAudio.PlayAudio();
+        SoundEffectManager.PlayAudio(lockedAudio);
     }
 }

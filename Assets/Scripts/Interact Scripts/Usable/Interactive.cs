@@ -74,19 +74,10 @@ public class Interactive : OutlineObject
 
         if(lockable.IsUnlocked())
         {
-            if(!normalAudio.Equals(""))
-            {
-                SoundEffectManager.PlayAudio(normalAudio);
-
-            }
-            //Debug.Log(normalAudio);
-            //normalAudio.PlayAudio();
+            SoundEffectManager.PlayAudio(normalAudio);
         }
         else
-        {
-            //SoundEffectManager.PlayAudio(lockAudio);
-            //Debug.Log("locked L BOZO");
-            
+        {            
             lockable.PlayAudio();
         }
     }
@@ -97,7 +88,6 @@ public class Interactive : OutlineObject
         if(lockable.IsUnlocked())
         {
             TriggerDialogue(interactiveText);
-            //SoundEffectManager.PlayAudio(normalAudio);
 
         }
         else

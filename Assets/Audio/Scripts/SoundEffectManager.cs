@@ -28,6 +28,9 @@ public class SoundEffectManager : MonoBehaviour
 
     public static void PlayAudio(string name)
     {
+        // don't play the audio if there is no specified audio
+        if(name.Equals("")) return;
+
         //Debug.Log("Playing audio or somethin");
         //Debug.Log(name);
         for(int i = 0; i < sfxList.Length; ++i)
