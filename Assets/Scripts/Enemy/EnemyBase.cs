@@ -13,8 +13,6 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
 {
     // variables to be configured at creation
     public float speed;
-    [Range(0, 100)] public float maxSightAsCamWidthPercent;
-    [Range(0, 180)] public float maxBaseSightAngle;
     public float minimumDistance;
     
     // automatically found GameObjects or Components
@@ -27,7 +25,6 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
     protected BasicEnemy.FSM fsm;
 
     // inherent configuration variables of the enemy
-    protected float lineOfSightDistance;
     protected float surprise_reaction_time = 1.0F;
     protected float memory_time = 1.0F;
 
@@ -43,14 +40,6 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
         fsm = gameObject.GetComponent<BasicEnemy.FSM>();
     }
     
-    
-    protected void Start()
-    {
-        lineOfSightDistance = Camera.main.orthographicSize * 2f * Camera.main.aspect * maxSightAsCamWidthPercent / 100.0F;
-        Debug.Log("baseMaxSightDistance=" + lineOfSightDistance);
-
-    }
-
     protected void Update()
     {        
         //if((transform.position.x > target.position.x) ^ (dir < 0))
@@ -119,7 +108,7 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
 
     public virtual bool InRangeOfPlayer()
     {
-        return Vector2.Distance(transform.position, target.position) <= minimumDistance;
+        return movementController.InRangeOfPlayer(minimumDistance);
     }
 
     /* IUnique Functions */

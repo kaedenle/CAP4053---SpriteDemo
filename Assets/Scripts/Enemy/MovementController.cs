@@ -10,6 +10,7 @@ public class MovementController : MonoBehaviour, IScriptable
     [Range(1.0F, 360.0F)] public float angle;
     public bool LockFOVToY;
     public float speed;
+    public bool defaultLooksLeft;
 
     // private internal metrics
     private const float ATTACK_TIMER_MAX = 0.0f;
@@ -127,14 +128,14 @@ public class MovementController : MonoBehaviour, IScriptable
             if (lastPos.y < transform.position.y) flipLook = true;
             if (lastPos.y > transform.position.y) flipLook = false;
         }
-        if (lastPos.x < transform.position.x)
+        if ((lastPos.x < transform.position.x) ^ defaultLooksLeft)
         {
             //sr.flipX = true;
             float newX = Mathf.Abs(transform.localScale.x);
             transform.localScale = new Vector3(newX, transform.localScale.y, transform.localScale.z);
             if(!LockFOVToY) flipLook = false;
         }
-        if (lastPos.x > transform.position.x)
+        if ((lastPos.x > transform.position.x) ^ defaultLooksLeft)
         {
             float newX = Mathf.Abs(transform.localScale.x);
             transform.localScale = new Vector3(-newX, transform.localScale.y, transform.localScale.z);
@@ -146,10 +147,20 @@ public class MovementController : MonoBehaviour, IScriptable
     private void LookingForDirection()
     {
         GetDirection();
-        if (!LockFOVToY && !flipLook) looking = Vector3.right;
-        else if (!LockFOVToY && flipLook) looking = Vector3.left;
-        else if (LockFOVToY && !flipLook) looking = Vector3.down;
-        else if (LockFOVToY && flipLook) looking = Vector3.up;
+
+        if(!LockFOVToY)
+        {
+            if(!flipLook ^ defaultLooksLeft) looking = Vector3.right;
+            else  looking = Vector3.left;
+        }
+
+        else
+        {
+            if (!flipLook) looking = Vector3.down;
+            else looking = Vector3.up;
+        }
+
+        Debug.Log("looking = " + looking);
     }
 
     public bool FOVCheck()
@@ -165,7 +176,7 @@ public class MovementController : MonoBehaviour, IScriptable
         Physics2D.OverlapCircle(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y),
                 radius, contactFilter, collidersList);
         
-        if (collidersList.Count != 01)
+        if (collidersList.Count != 0)
         {
             Transform target = collidersList[0].transform;
             //find player
