@@ -13,8 +13,6 @@ public class MovementController : MonoBehaviour, IScriptable
     public bool defaultLooksLeft;
 
     // private internal metrics
-    private const float ATTACK_TIMER_MAX = 0.0f;
-    private float attackTimer;
     private Vector3 looking;
     private Vector3 lastPos;
     private bool flipLook;
@@ -31,6 +29,12 @@ public class MovementController : MonoBehaviour, IScriptable
     */
     void Awake()
     {
+        LookingForDirection();
+        lastPos = transform.position;
+        target = GeneralFunctions.GetPlayer().transform;
+
+        enemyController = gameObject.GetComponent<EnemyBase>();
+
         // NavMesh Agent
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
@@ -38,12 +42,6 @@ public class MovementController : MonoBehaviour, IScriptable
         agent.updateUpAxis = false;
 
         path = new NavMeshPath();
-
-        LookingForDirection();
-        lastPos = transform.position;
-        target = GeneralFunctions.GetPlayer().transform;
-
-        enemyController = gameObject.GetComponent<EnemyBase>();
     }
 
     void Start()
@@ -68,15 +66,14 @@ public class MovementController : MonoBehaviour, IScriptable
     }
 
     //enable and disable script
-    public void ScriptHandler(bool flag){
-        if(flag){
-            attackTimer = ATTACK_TIMER_MAX;
-        }
+    public void ScriptHandler(bool flag)
+    {
         this.enabled = flag;
     }
 
     public void Attack()
     {
+        Debug.Log("attacking...");
         GetComponent<AttackManager>().InvokeAttack("SlimeAttack");
     }
 
@@ -229,6 +226,9 @@ public class MovementController : MonoBehaviour, IScriptable
 
     public bool InRangeOfPlayer(float minimumDistance)
     {
+        Debug.Log("InRangeOfPlayer(minDist=" + minimumDistance + ")");
+        Debug.Log("target is null: " + (target == null));
+        Debug.Log("Distance: " + Vector2.Distance(transform.position, target.position));
         return Vector2.Distance(transform.position, target.position) <= minimumDistance;
     }
 

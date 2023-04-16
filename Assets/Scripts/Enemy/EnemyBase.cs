@@ -10,11 +10,7 @@ List of Assumptions
 
 // works in conjuction with BasicEnemy.FSM and MovementController to control basic enemy
 public class EnemyBase : MonoBehaviour, IUnique, IDamagable
-{
-    // variables to be configured at creation
-    public float speed;
-    public float minimumDistance;
-    
+{    
     // automatically found GameObjects or Components
     protected Animator animator;
     protected Rigidbody2D body;
@@ -25,8 +21,7 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
     protected BasicEnemy.FSM fsm;
 
     // inherent configuration variables of the enemy
-    protected float surprise_reaction_time = 1.0F;
-    protected float memory_time = 1.0F;
+    public EnemyStats enemyStats;
 
     /* Awake, Start, Update */
     protected void Awake()
@@ -59,7 +54,7 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
     public virtual void Chase()
     {
         // movementController.MoveTowards(minimumDistance);
-        transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, target.position, enemyStats.speed * Time.deltaTime);
     }
 
     public virtual void ExpressSurprise(BasicEnemy.FSM stateMachine)
@@ -70,7 +65,7 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
 
     public IEnumerator StopBeingSurprised(BasicEnemy.FSM stateMachine)
     {
-        yield return new WaitForSeconds(surprise_reaction_time);
+        yield return new WaitForSeconds(enemyStats.surprise_reaction_time);
         stateMachine.TransitionReady = true;
     }
 
@@ -91,7 +86,7 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
     {
         // question mark over enemy head
         // sound?
-        StartCoroutine(CompleteTimer(memory_time, stateMachine));
+        StartCoroutine(CompleteTimer(enemyStats.memory_time, stateMachine));
     }
 
     public IEnumerator CompleteTimer(float time_wait, BasicEnemy.FSM stateMachine)
@@ -108,7 +103,7 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
 
     public virtual bool InRangeOfPlayer()
     {
-        return movementController.InRangeOfPlayer(minimumDistance);
+        return movementController.InRangeOfPlayer(enemyStats.minimumDistance);
     }
 
     /* IUnique Functions */
