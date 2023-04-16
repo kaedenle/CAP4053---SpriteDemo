@@ -27,7 +27,8 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
 
     // inherent configuration variables of the enemy
     protected float lineOfSightDistance;
-
+    protected float surprise_reaction_time = 1.0F;
+    protected float memory_time = 1.0F;
 
     // variables that keep track of the enemy's state
     private int dir = 1;
@@ -103,6 +104,18 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
         transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
     }
 
+    public virtual void ExpressSurprise(BasicEnemy.FSM stateMachine)
+    {
+        // have an exclamation mark pop up over enemy head & make surprise noise
+        StartCoroutine( StopBeingSurprised(stateMachine) );
+    }
+
+    public IEnumerator StopBeingSurprised(BasicEnemy.FSM stateMachine)
+    {
+        yield return new WaitForSeconds(surprise_reaction_time);
+        stateMachine.TransitionReady = true;
+    }
+
     public void Attack(BasicEnemy.FSM stateMachine)
     {
         StartCoroutine(TriggerAttack(stateMachine));
@@ -113,18 +126,31 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
         movementController.Attack();
 
         yield return new WaitUntil(() => movementController.enabled);
-        stateMachine.ExecutionReady = true;
+        stateMachine.TransitionReady = true;
+    }
+
+    public void Alerted(BasicEnemy.FSM stateMachine)
+    {
+        // question mark over enemy head
+        // sound?
+        StartCoroutine(CompleteTimer(memory_time, stateMachine));
+    }
+
+    public IEnumerator CompleteTimer(float time_wait, BasicEnemy.FSM stateMachine)
+    {
+        yield return new WaitForSeconds(time_wait);
+        stateMachine.TimerComplete = true;
     }
 
     /* Conditions */
     public virtual bool PlayerVisibile()
     {
-        return true;
+        return SeesPlayer(lineOfSightDistance, maxBaseSightAngle);
     }
 
     public virtual bool InRangeOfPlayer()
     {
-        return false;
+        return Vector2.Distance(transform.position, target.position) <= minimumDistance;
     }
 
     /* IUnique Functions */

@@ -5,13 +5,13 @@ using System;
 
 namespace BasicEnemy
 {
-    [CreateAssetMenu(menuName = "FSM/Actions/AttackAction")]
-    public class AttackAction : FSMAction
+    [CreateAssetMenu(menuName = "FSM/Actions/SurpriseAction")]
+    public class SurpriseAction : FSMAction
     {
         public override void Execute(FSM stateMachine)
         {
             stateMachine.TransitionReady = false;
-            stateMachine.enemyController.Attack(stateMachine);
+            stateMachine.enemyController.ExpressSurprise(stateMachine);
         }
     }
 }

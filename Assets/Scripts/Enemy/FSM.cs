@@ -9,7 +9,9 @@ namespace BasicEnemy
         [SerializeField] private FSMState _initialState;
         public FSMState currentState { get; set; }
         public EnemyBase enemyController { get; set; }
-        public bool ExecutionReady {get; set;}
+        public bool ExecutionReady {get; set;} = true;
+        public bool TransitionReady {get; set;} = true;
+        public bool TimerComplete {get; set;} = true;
 
         private void Awake()
         {
@@ -17,15 +19,9 @@ namespace BasicEnemy
             enemyController = gameObject.GetComponent<EnemyBase>();
         }
 
-        private void Start()
-        {
-            if(_initialState != null) _initialState.Enter(this);
-        }
-
         private void Update()
         {
-            if(ExecutionReady)
-                currentState.Execute(this);
+            currentState.Execute(this);
         } 
 
         public void ChangeState(FSMState newState)
