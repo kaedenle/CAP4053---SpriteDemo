@@ -66,7 +66,8 @@ public class Player_Movement : MonoBehaviour, IScriptable
         {
             foreach (GameObject part in objs)
             {
-                part.GetComponent<SpriteRenderer>().flipX = flipped;
+                SpriteRenderer srtemp = part.GetComponent<SpriteRenderer>();
+                if (srtemp != null) srtemp.flipX = flipped;
             }
             lastFlipped = flipped;
         }

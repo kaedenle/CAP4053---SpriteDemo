@@ -55,6 +55,8 @@ public class AttackManager : MonoBehaviour
 
     //technical information
     private bool active = false;
+    [HideInInspector]
+    public bool attacking = false;
     private bool cancellableFlag = false;
     private IUnique uniqueScript;
     public bool invulerable = false;
@@ -65,10 +67,6 @@ public class AttackManager : MonoBehaviour
     public float OffsenseDamageMultiplier = 1;
     [HideInInspector]
     public float OffenseKnockbackMultiplier = 1;
-    [HideInInspector]
-    public float DefenseDamageMultiplier = 1;
-    [HideInInspector]
-    public float DefenseKnockbackMultiplier = 1;
     public float MultiplierAttack;
 
     public enum ScriptTypes{
@@ -266,6 +264,7 @@ public class AttackManager : MonoBehaviour
     public void InvokeAttack(string move)
     {
         //turn off scripts for attacking here
+        attacking = true;
         ScriptDeactivate(ScriptTypes.Movement);
         animator.Play(move);
     }
@@ -280,8 +279,17 @@ public class AttackManager : MonoBehaviour
         //get current animation to keep track of current animation frame (attach hitboxes to animation)
         //if(animator != null) Debug.Log(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
         //get framedata
-        framedata = JsonUtility.FromJson<FrameData>(attackContainer[(moveIndex - 1) % attackContainer.Length].moveData.text);
-        currentAudio = attackContainer[(moveIndex - 1) % attackContainer.Length].HitSFX;
+        if (tag == "Player")
+        {
+            framedata = JsonUtility.FromJson<FrameData>(attackContainer[(moveIndex - 1) % attackContainer.Length].moveData.text);
+            currentAudio = attackContainer[(moveIndex - 1) % attackContainer.Length].HitSFX;
+        }
+        else
+        {
+            framedata = JsonUtility.FromJson<FrameData>(attackContainer[(moveIndex) % attackContainer.Length].moveData.text);
+            currentAudio = attackContainer[(moveIndex ) % attackContainer.Length].HitSFX;
+        }
+        
         //load cancellable moves for O(1) entry
         cancellableSet.Clear();
         if (framedata.cancelBy == null)
@@ -301,6 +309,8 @@ public class AttackManager : MonoBehaviour
         }
         //tell hitboxes to update
         active = true;
+        //currently attacking?
+        attacking = true;
         ProvisionHitboxes(0);
         //apply function effect (on first frame of attack)
         if((framedata.functCall != null || framedata.functCall == "") && uniqueScript != null)
@@ -320,6 +330,7 @@ public class AttackManager : MonoBehaviour
         OffenseKnockbackMultiplier = 1;
         OffsenseDamageMultiplier = 1;
         active = false;
+        attacking = false;
         cancellableFlag = false;
         ScriptToggle(1);
         frames.Clear();

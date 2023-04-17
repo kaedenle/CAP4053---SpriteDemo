@@ -23,6 +23,7 @@ public class HealthTracker : MonoBehaviour, IDamagable
 
     [HideInInspector] 
     public HealthSystem healthSystem;
+    public float DefenseModifier;
 
     // Starts whether or not this script is enabled
     void Awake()
@@ -107,7 +108,8 @@ public class HealthTracker : MonoBehaviour, IDamagable
         if(!deathFlag){
             hitstunaddTimer = ad.hitstun;
             //Debug.Log(gameObject.name + " took " + ad.damage + " damage and " + ad.knockback + " knockback");
-            healthSystem.Damage(ad.damage);
+            int deal = (int)(ad.damage - (DefenseModifier / 1)) > 0 ? (int)(ad.damage - (DefenseModifier / 1)) : 0;
+            healthSystem.Damage(deal);
         }
     }
 
