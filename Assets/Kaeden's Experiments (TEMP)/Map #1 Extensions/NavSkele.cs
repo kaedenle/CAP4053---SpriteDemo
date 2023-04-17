@@ -94,7 +94,7 @@ public class NavSkele : MonoBehaviour, IScriptable, IAI
         Physics2D.OverlapCircle(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y),
                 radius, contactFilter, collidersList);
         
-        if (collidersList.Count != 01)
+        if (collidersList.Count != 0)
         {
             Transform target = collidersList[0].transform;
             //find player

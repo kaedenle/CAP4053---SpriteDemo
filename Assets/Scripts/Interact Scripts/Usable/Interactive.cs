@@ -9,20 +9,11 @@ public class Interactive : OutlineObject
     public InteractiveText interactiveText;
     public string normalAudio;
     public bool highlightEnds = false;
-
     public LockedBehavior lockable;
 
-    // private trackers
-
     // dialogue vars
-    // private InteractiveInfo[] interactivesText;
     private InteractiveUIController UI;
     private bool triggered = false;
-
-    new protected void Awake()
-    {
-        base.Awake();
-    }
 
     new protected void Start()
     {
@@ -70,8 +61,6 @@ public class Interactive : OutlineObject
 
     protected virtual void ActivateBehaviors()
     {
-        Debug.Log(normalAudio + " bozo");
-
         if(lockable.IsUnlocked())
         {
             SoundEffectManager.PlayAudio(normalAudio);

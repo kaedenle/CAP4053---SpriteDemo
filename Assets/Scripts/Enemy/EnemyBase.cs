@@ -91,8 +91,14 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
 
     public IEnumerator CompleteTimer(float time_wait, BasicEnemy.FSM stateMachine)
     {
+        float start_time = Time.time;
         yield return new WaitForSeconds(time_wait);
-        stateMachine.TimerComplete = true;
+        
+        // if the state is still the same
+        if(stateMachine.StateConstant(start_time))
+        {
+            stateMachine.TimerComplete = true;
+        }
     }
 
     /* Conditions */

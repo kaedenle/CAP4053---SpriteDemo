@@ -125,14 +125,14 @@ public class MovementController : MonoBehaviour, IScriptable
             if (lastPos.y < transform.position.y) flipLook = true;
             if (lastPos.y > transform.position.y) flipLook = false;
         }
-        if ((lastPos.x < transform.position.x) ^ defaultLooksLeft)
+        if (lastPos.x < transform.position.x)
         {
             //sr.flipX = true;
             float newX = Mathf.Abs(transform.localScale.x);
             transform.localScale = new Vector3(newX, transform.localScale.y, transform.localScale.z);
             if(!LockFOVToY) flipLook = false;
         }
-        if ((lastPos.x > transform.position.x) ^ defaultLooksLeft)
+        if (lastPos.x > transform.position.x)
         {
             float newX = Mathf.Abs(transform.localScale.x);
             transform.localScale = new Vector3(-newX, transform.localScale.y, transform.localScale.z);
@@ -144,20 +144,10 @@ public class MovementController : MonoBehaviour, IScriptable
     private void LookingForDirection()
     {
         GetDirection();
-
-        if(!LockFOVToY)
-        {
-            if(!flipLook ^ defaultLooksLeft) looking = Vector3.right;
-            else  looking = Vector3.left;
-        }
-
-        else
-        {
-            if (!flipLook) looking = Vector3.down;
-            else looking = Vector3.up;
-        }
-
-        Debug.Log("looking = " + looking);
+        if (!LockFOVToY && !flipLook) looking = Vector3.right;
+        else if (!LockFOVToY && flipLook) looking = Vector3.left;
+        else if (LockFOVToY && !flipLook) looking = Vector3.down;
+        else if (LockFOVToY && flipLook) looking = Vector3.up;
     }
 
     public bool FOVCheck()
@@ -226,9 +216,6 @@ public class MovementController : MonoBehaviour, IScriptable
 
     public bool InRangeOfPlayer(float minimumDistance)
     {
-        Debug.Log("InRangeOfPlayer(minDist=" + minimumDistance + ")");
-        Debug.Log("target is null: " + (target == null));
-        Debug.Log("Distance: " + Vector2.Distance(transform.position, target.position));
         return Vector2.Distance(transform.position, target.position) <= minimumDistance;
     }
 

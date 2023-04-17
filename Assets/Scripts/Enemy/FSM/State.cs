@@ -11,7 +11,6 @@ namespace BasicEnemy
         public List<FSMAction> Action = new List<FSMAction>();
         public List<FSMAction> ExitActions = new List<FSMAction>();
         public List<Transition> Transitions = new List<Transition>();
-        public string stateName;
 
         public override void Execute(FSM stateMachine)
         {
