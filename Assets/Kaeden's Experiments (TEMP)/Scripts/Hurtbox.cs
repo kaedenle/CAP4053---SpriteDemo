@@ -11,32 +11,33 @@ public class Hurtbox : MonoBehaviour, IDamagable
 
     //hitstun variables
     private float hitstunTimer;
+    [HideInInspector]
     public bool inHitStun;
-    public bool NotFlash;
-
-    //hitstop variables
-    public string default_ani;
-    private GameObject HitEffect;
-    private EffectsManager FXM; //used for hitstop
-    private Shader HitShader;
+    public bool NoFlash;
 
     //misc variables
     private Animator animator;
     private AudioSource audiosrc;
     private SpriteRenderer[] sr;
     private Shader[] OriginalShader;
-    public bool NotHitPart;
+    public bool NoHitParticles;
     private IEnumerator running;
     private Color[] OriginalColors;
     public bool invin;
-    private NavMeshAgent agent;
+
+    //hitstop variables
+    private GameObject HitEffect;
+    private EffectsManager FXM; //used for hitstop
+    private Shader HitShader;
+    public bool FSMHitstun;
+    public string default_ani;
     public void damage(AttackData ad)
     {
         //play hit audio if it exists
         //if (audiosrc != null && ad.audio != null) audiosrc.PlayOneShot(ad.audio, 0.5f);
 
         //Hit particle effect
-        if (HitEffect != null && !NotHitPart)
+        if (HitEffect != null && !NoHitParticles)
         {
             GameObject instance = Instantiate(HitEffect, transform.position, Quaternion.identity);
             instance.transform.SetParent(gameObject.transform);
@@ -58,15 +59,18 @@ public class Hurtbox : MonoBehaviour, IDamagable
         {
             hitstunTimer = ad.hitstun;
             inHitStun = true;
-            //if (agent != null) agent.enabled = false;
-            //CHANGE LOGIC HERE TO ROUTE TO HITSTUN ANIMATION
-            if (uniqueScript == null)
+            if (!FSMHitstun)
             {
-                if (animator != null) animator.Play(default_ani);
-            }
-            else
-            {
-                uniqueScript.HitStunAni();
+                //if (agent != null) agent.enabled = false;
+                //CHANGE LOGIC HERE TO ROUTE TO HITSTUN ANIMATION
+                if (uniqueScript == null)
+                {
+                    if (animator != null) animator.Play(default_ani);
+                }
+                else
+                {
+                    uniqueScript.HitStunAni();
+                }
             }
         }
         //get rid of hitboxes if you've just been hit (circumvent bug)
@@ -90,7 +94,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
         }
 
         //flash white
-        if (!NotFlash)
+        if (!NoFlash)
         {
             InvokeFlash(ad.hitstop * 0.005f, Color.white);
         }
@@ -165,7 +169,6 @@ public class Hurtbox : MonoBehaviour, IDamagable
         sr = GetComponentsInChildren<SpriteRenderer>();
         FXM = GameObject.Find("EffectsManager")?.GetComponent<EffectsManager>();
         audiosrc = gameObject?.GetComponent<AudioSource>();
-        agent = GetComponent<NavMeshAgent>();
 
         hitstunTimer = -1;
         inHitStun = false;
@@ -179,12 +182,10 @@ public class Hurtbox : MonoBehaviour, IDamagable
             OriginalColors[i] = sr[i].color;
         }  
     }
-
-    // Update is called once per frame
-    void Update()
+    public void HitstunTimer()
     {
         //timer to get yourself out of hitstun
-        if(inHitStun) 
+        if (inHitStun)
             hitstunTimer -= Time.deltaTime;
         if (hitstunTimer <= 0 && inHitStun)
         {
@@ -194,6 +195,14 @@ public class Hurtbox : MonoBehaviour, IDamagable
             //if(agent != null) agent.enabled = true;
             //set player's animator hitstun bool to false
             if (tag == "Player") animator.SetBool("Hitstun", false);
+        }
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        if (!FSMHitstun)
+        {
+            HitstunTimer();
         }
     }
     

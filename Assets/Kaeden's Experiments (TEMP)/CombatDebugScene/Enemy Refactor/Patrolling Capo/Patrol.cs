@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Patrol : MonoBehaviour, IScriptable, IAI
+public class Patrol : MonoBehaviour
 {
 
     public float radius;
@@ -16,30 +16,38 @@ public class Patrol : MonoBehaviour, IScriptable, IAI
     public float distFromPoint;
 
     //gameObject enemy;
-    NavMeshAgent agent;
-    private NavMeshPath path;
+    [HideInInspector]
+    public NavMeshAgent agent;
+    [HideInInspector]
+    public NavMeshPath path;
     private NavMeshPath pathToPoint;
     private int pointIndex;
     private bool attacking = false;
     private List<Collider2D> collidersList = new List<Collider2D>();
     private Vector3 looking;
-    private bool flipLook;
     private Vector3 lastPos;
     private float rememberTimer = 0;
+    private bool initFlag = false;
 
     private const float ATTACK_TIMER_MAX = 0.0f;
-    private float attackTimer;
-    private bool seesPlayer = false;
+    [HideInInspector]
+    public bool seesPlayer = false;
     private bool trigger = false;
     private Animator anim;
     //0 = up; 1 = right; 2 = down; 3 = left
     private int direction;
+    private CapoScript myScript;
 
     public GameObject[] points;
 
     // Update is called once per frame
-    void Start()
+    void Awake()
     {
+        if(!initFlag) init();
+    }
+    public void init()
+    {
+        myScript = GetComponent<CapoScript>();
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -50,60 +58,50 @@ public class Patrol : MonoBehaviour, IScriptable, IAI
         LookingForDirection();
         lastPos = transform.position;
         anim = GetComponentInChildren<Animator>();
+        initFlag = true;
     }
     private float Round2Digits(float num)
     {
         return Mathf.Round(num * 10.0f) * 0.1f;
     }
+    public void ResetMemory()
+    {
+        rememberTimer = MAX_REMEMBER_TIMER;
+    }
     private void GetDirection()
     {
         float deltax = Mathf.Abs(lastPos.x - transform.position.x);
         float deltay = Mathf.Abs(lastPos.y - transform.position.y);
-
+        
         if (deltay > deltax)
         {
             if (lastPos.y < transform.position.y) direction = 0;
             if (lastPos.y > transform.position.y) direction = 2;
         }
+
         if (Round2Digits(lastPos.x) < Round2Digits(transform.position.x))
         {
-            //sr.flipX = true;
-            float newX = Mathf.Abs(transform.localScale.x);
-            transform.localScale = new Vector3(newX, transform.localScale.y, transform.localScale.z);
+             myScript.flipped = false;
             if (deltax > deltay) direction = 1;
         }
         else if (Round2Digits(lastPos.x) > Round2Digits(transform.position.x))
         {
-            float newX = Mathf.Abs(transform.localScale.x);
-            transform.localScale = new Vector3(-newX, transform.localScale.y, transform.localScale.z);
+            myScript.flipped = true;
             if (deltax > deltay) direction = 3;
         }
         lastPos = transform.position;
-    }
-    private void FlipEntity()
-    {
-        //right way
-        if(target.transform.position.x > transform.position.x)
-        {
-            float newX = Mathf.Abs(transform.localScale.x);
-           transform.localScale = new Vector3(newX, transform.localScale.y, transform.localScale.z);
-        }
-        //left way
-        else if(target.transform.position.x < transform.position.x)
-        {
-            float newX = Mathf.Abs(transform.localScale.x);
-            transform.localScale = new Vector3(-newX, transform.localScale.y, transform.localScale.z);
-        }
+   
     }
     private void LookingForDirection()
     {
+        //player relative is if the direction you're flipped depends on the player's position
         GetDirection();
         if (direction == 1) looking = Vector3.right;
         else if (direction == 3) looking = Vector3.left;
         else if (direction == 2) looking = Vector3.down;
         else if (direction == 0) looking = Vector3.up;
     }
-    private bool FOVCheck()
+    public bool FOVCheck()
     {
         LookingForDirection();
         var contactFilter = new ContactFilter2D();
@@ -153,13 +151,20 @@ public class Patrol : MonoBehaviour, IScriptable, IAI
             agent.speed = 3.5f;
         }
     }
-
-    private void MoveTowards()
+    public bool PlayerInRange()
     {
-        //animator.SetFloat("movement", 0);
-        //Debug.Log(healthTracker.healthSystem.getHealth());
-        //FlipEntity();
-
+        if (Vector2.Distance(transform.position, target.position) <= minimumDistance)
+        {
+            agent.isStopped = true;
+            return true;
+        }
+            
+        return false;
+    }
+    public void MoveTowards()
+    {
+        Memory();
+        LookingForDirection();
         if (Vector2.Distance(transform.position, target.position) <= 1000f)
         {
             if (Vector2.Distance(transform.position, target.position) > minimumDistance)
@@ -173,7 +178,7 @@ public class Patrol : MonoBehaviour, IScriptable, IAI
                         agent.isStopped = false;
                         //agent.updatePosition = true;
                         agent.SetDestination(new Vector3(target.position.x, target.position.y, target.position.z));
-                        rememberTimer = MAX_REMEMBER_TIMER;
+                        ResetMemory();
                         //transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
                         //animator.SetFloat("movement", 1);
                     }
@@ -185,25 +190,35 @@ public class Patrol : MonoBehaviour, IScriptable, IAI
                     }
                 }
             }
-            else
-            {
-                agent.isStopped = true;
-                anim.SetFloat("movement", 0);
-                rememberTimer = MAX_REMEMBER_TIMER;
-                //attack here
-                /*if (attackTimer >= 0) attackTimer -= Time.deltaTime;
-                if (attackTimer < 0 && !attacking)
-                {
-                    //attacking = true;
-                    if (agent.enabled) agent.isStopped = true;
-                    //am.InvokeAttack("SlimeAttack");
-                }*/
-            }
         }
     }
-    private void Patroling()
+    public bool LookAtPlayer()
     {
-        if (points.Length == 0 || !agent.enabled) return;
+        bool fov = FOVCheck();
+        if(fov)
+        {
+            agent.CalculatePath(target.position, path);
+            if (path.status == NavMeshPathStatus.PathComplete)
+            {
+                trigger = true;
+                agent.SetDestination(new Vector3(target.position.x, target.position.y, target.position.z));
+                agent.isStopped = true;
+                ResetMemory();
+                anim.Play("Appear");
+                return true;
+            }
+        }
+        return false;
+    }
+    public void Patroling()
+    {
+
+        if (points.Length == 0 || !agent.enabled || trigger) return;
+        bool flag = false;
+        //eject if you've seen player
+        if (!seesPlayer) flag = LookAtPlayer();
+        if (flag) return;
+
         agent.CalculatePath(new Vector2(points[pointIndex].transform.position.x, points[pointIndex].transform.position.y), pathToPoint);
         if (pathToPoint.status == NavMeshPathStatus.PathComplete)
         {
@@ -231,35 +246,12 @@ public class Patrol : MonoBehaviour, IScriptable, IAI
         trigger = false;
         agent.speed = 10;
     }
-    void Update()
-    {
-        bool fov = FOVCheck();
-        if (fov)
-        {
-            //if you don't see player but they're in your field of view start transition
-            if(!seesPlayer)
-            {
-                agent.CalculatePath(target.position, path);
-                if (path.status == NavMeshPathStatus.PathComplete)
-                {
-                    trigger = true;
-                    agent.SetDestination(new Vector3(target.position.x, target.position.y, target.position.z));
-                    agent.isStopped = true;
-                    rememberTimer = MAX_REMEMBER_TIMER;
-                    anim.Play("Appear");
-                }
-            }
-        }
-        Memory();
-        if (seesPlayer && !trigger) MoveTowards();
-        else if (!seesPlayer && !trigger) Patroling();
-    }
+
     //enable and disable script
-    public void ScriptHandler(bool flag)
+    /*public void ScriptHandler(bool flag)
     {
         if (flag)
         {
-            attackTimer = ATTACK_TIMER_MAX;
             attacking = false;
         }
         else
@@ -285,7 +277,8 @@ public class Patrol : MonoBehaviour, IScriptable, IAI
             this.enabled = false;
         if (agent.enabled) agent.isStopped = true;
         //agent.enabled = false;
-    }
+    }*/
+
     private void OnDrawGizmos()
     {
         Gizmos.color = new Color(1, 0, 0, 0.5f);
