@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/*
+Movement Controller - controls Enemy movement (slime, skeleton ranged, skeleton melee)
+
+Assumptions:
+- the medium and large FOVs need to have angles > 180 in order to work
+*/
 public class MovementController : MonoBehaviour, IScriptable
 {
     // public adjustable variables
-    public float radius;
-    [Range(1.0F, 360.0F)] public float angle;
+    [SerializeField] public MovementStats movementConfiguration;
+    [SerializeField] public MovementStats.FOVType currentFOVType;
     public bool LockFOVToY;
     public float speed;
     public bool defaultLooksLeft;
@@ -20,15 +26,19 @@ public class MovementController : MonoBehaviour, IScriptable
     // level or enemy components
     private EnemyBase enemyController;
     private List<Collider2D> collidersList = new List<Collider2D>();
-    Transform target;
+    private Transform target;
     NavMeshAgent agent;
     private NavMeshPath path;
+
+    // tracking variables
+    private Vector3 lastSeen;
 
     /*
     ==================== Setup ======================
     */
     void Awake()
     {
+        lastSeen = transform.position; // default last seen is current position
         LookingForDirection();
         lastPos = transform.position;
         target = GeneralFunctions.GetPlayer().transform;
@@ -73,7 +83,6 @@ public class MovementController : MonoBehaviour, IScriptable
 
     public void Attack()
     {
-        Debug.Log("attacking...");
         GetComponent<AttackManager>().InvokeAttack("SlimeAttack");
     }
 
@@ -82,6 +91,9 @@ public class MovementController : MonoBehaviour, IScriptable
     */
     private void OnDrawGizmos()
     {
+        float radius = movementConfiguration.GetRadius(currentFOVType);
+        float angle = movementConfiguration.GetAngle(currentFOVType);
+
         Gizmos.color = new Color(1, 0, 0, 0.5f);
         Gizmos.DrawWireSphere(gameObject.transform.position, radius);
         Gizmos.color = new Color(0, 1, 0, 1f);
@@ -118,21 +130,22 @@ public class MovementController : MonoBehaviour, IScriptable
         return srcAngles;
     }
 
-    private void GetDirection()
+    // sets the enemy's physical facing direction (only call if the enemy can see the player)
+    private void SetDirection(Vector3 target)
     {
         if (LockFOVToY)
         {
-            if (lastPos.y < transform.position.y) flipLook = true;
-            if (lastPos.y > transform.position.y) flipLook = false;
+            if (target.y < transform.position.y) flipLook = true;
+            if (target.y > transform.position.y) flipLook = false;
         }
-        if (lastPos.x < transform.position.x)
+        if ((target.x > transform.position.x) ^ defaultLooksLeft)
         {
             //sr.flipX = true;
             float newX = Mathf.Abs(transform.localScale.x);
             transform.localScale = new Vector3(newX, transform.localScale.y, transform.localScale.z);
             if(!LockFOVToY) flipLook = false;
         }
-        if (lastPos.x > transform.position.x)
+        if ((target.x < transform.position.x) ^ defaultLooksLeft)
         {
             float newX = Mathf.Abs(transform.localScale.x);
             transform.localScale = new Vector3(-newX, transform.localScale.y, transform.localScale.z);
@@ -143,9 +156,9 @@ public class MovementController : MonoBehaviour, IScriptable
 
     private void LookingForDirection()
     {
-        GetDirection();
-        if (!LockFOVToY && !flipLook) looking = Vector3.right;
-        else if (!LockFOVToY && flipLook) looking = Vector3.left;
+        // GetDirection();
+        if (!LockFOVToY && (!flipLook ^ defaultLooksLeft)) looking = Vector3.right;
+        else if (!LockFOVToY && (flipLook ^ defaultLooksLeft)) looking = Vector3.left;
         else if (LockFOVToY && !flipLook) looking = Vector3.down;
         else if (LockFOVToY && flipLook) looking = Vector3.up;
     }
@@ -161,7 +174,7 @@ public class MovementController : MonoBehaviour, IScriptable
 
         collidersList.Clear();
         Physics2D.OverlapCircle(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y),
-                radius, contactFilter, collidersList);
+                movementConfiguration.GetRadius(currentFOVType), contactFilter, collidersList);
         
         if (collidersList.Count != 0)
         {
@@ -177,7 +190,10 @@ public class MovementController : MonoBehaviour, IScriptable
             }
 
             if (target.tag != "Player") return false;
+
             Vector3 directionToTarget = (target.position - transform.position).normalized;
+            float angle = movementConfiguration.GetAngle(currentFOVType);
+
             if (Vector2.Angle(looking, directionToTarget) < angle / 2)
             {
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
@@ -188,7 +204,18 @@ public class MovementController : MonoBehaviour, IScriptable
                 }   
             }
         }
+
+        if(ret)
+        {
+            lastSeen = target.transform.position;
+            SetDirection(lastSeen);
+        }
         return ret;
+    }
+
+    public void UpdateVision(MovementStats.FOVType visionType)
+    {
+        currentFOVType = visionType;
     }
 
     /*
