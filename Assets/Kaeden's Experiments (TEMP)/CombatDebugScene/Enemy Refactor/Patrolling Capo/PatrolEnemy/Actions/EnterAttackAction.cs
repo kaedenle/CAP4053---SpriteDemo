@@ -11,7 +11,8 @@ namespace PatrolEnemy
         public override void Execute(FSM stateMachine)
         {
             stateMachine.anim.SetBool("Attacking", true);
-            stateMachine.am.InvokeAttack("Attack");
+            if(!stateMachine.myScript.kick) stateMachine.am.InvokeAttack("Attack");
+            else stateMachine.am.InvokeAttack("Kick!");
         }
     }
 }

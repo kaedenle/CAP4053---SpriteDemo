@@ -279,8 +279,17 @@ public class AttackManager : MonoBehaviour
         //get current animation to keep track of current animation frame (attach hitboxes to animation)
         //if(animator != null) Debug.Log(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
         //get framedata
-        framedata = JsonUtility.FromJson<FrameData>(attackContainer[(moveIndex - 1) % attackContainer.Length].moveData.text);
-        currentAudio = attackContainer[(moveIndex - 1) % attackContainer.Length].HitSFX;
+        if (tag == "Player")
+        {
+            framedata = JsonUtility.FromJson<FrameData>(attackContainer[(moveIndex - 1) % attackContainer.Length].moveData.text);
+            currentAudio = attackContainer[(moveIndex - 1) % attackContainer.Length].HitSFX;
+        }
+        else
+        {
+            framedata = JsonUtility.FromJson<FrameData>(attackContainer[(moveIndex) % attackContainer.Length].moveData.text);
+            currentAudio = attackContainer[(moveIndex ) % attackContainer.Length].HitSFX;
+        }
+        
         //load cancellable moves for O(1) entry
         cancellableSet.Clear();
         if (framedata.cancelBy == null)

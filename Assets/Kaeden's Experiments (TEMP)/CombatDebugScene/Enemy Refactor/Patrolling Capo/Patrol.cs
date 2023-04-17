@@ -106,8 +106,8 @@ public class Patrol : MonoBehaviour
         LookingForDirection();
         var contactFilter = new ContactFilter2D();
         bool ret = false;
-        //can only hit on entity layer (may change)
-        contactFilter.layerMask = LayerMask.GetMask("Entity") | LayerMask.GetMask("Action");
+        //can only hit on entity layer and action layer
+        contactFilter.layerMask = LayerMask.GetMask("Action") | LayerMask.GetMask("Raycast");
         contactFilter.useLayerMask = true;
 
         collidersList.Clear();
@@ -133,7 +133,7 @@ public class Patrol : MonoBehaviour
             {
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToTarget, distanceToTarget, contactFilter.layerMask);
-                if (hit.collider != null)
+                if (hit.collider != null && hit.collider.gameObject.tag == "Player")
                 {
                     ret = true;
                 }
@@ -178,7 +178,7 @@ public class Patrol : MonoBehaviour
                         agent.isStopped = false;
                         //agent.updatePosition = true;
                         agent.SetDestination(new Vector3(target.position.x, target.position.y, target.position.z));
-                        ResetMemory();
+                        if(FOVCheck()) ResetMemory();
                         //transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
                         //animator.SetFloat("movement", 1);
                     }
@@ -213,11 +213,12 @@ public class Patrol : MonoBehaviour
     public void Patroling()
     {
 
-        if (points.Length == 0 || !agent.enabled || trigger) return;
+        if (!agent.enabled || trigger) return;
         bool flag = false;
         //eject if you've seen player
         if (!seesPlayer) flag = LookAtPlayer();
         if (flag) return;
+        if (points.Length == 0) return;
 
         agent.CalculatePath(new Vector2(points[pointIndex].transform.position.x, points[pointIndex].transform.position.y), pathToPoint);
         if (pathToPoint.status == NavMeshPathStatus.PathComplete)
@@ -244,7 +245,7 @@ public class Patrol : MonoBehaviour
     {
         seesPlayer = true;
         trigger = false;
-        agent.speed = 10;
+        agent.speed = 16;
     }
 
     //enable and disable script

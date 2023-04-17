@@ -13,6 +13,7 @@ public class CapoScript : MonoBehaviour, IUnique
     private AttackManager am;
     private HealthTracker ht;
     public bool flipped;
+    public bool kick;
     public void EffectManager(string script)
     {
 
