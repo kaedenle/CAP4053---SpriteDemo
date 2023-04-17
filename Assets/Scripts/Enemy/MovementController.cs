@@ -20,15 +20,19 @@ public class MovementController : MonoBehaviour, IScriptable
     // level or enemy components
     private EnemyBase enemyController;
     private List<Collider2D> collidersList = new List<Collider2D>();
-    Transform target;
+    private Transform target;
     NavMeshAgent agent;
     private NavMeshPath path;
+
+    // tracking variables
+    private Vector3 lastSeen;
 
     /*
     ==================== Setup ======================
     */
     void Awake()
     {
+        lastSeen = transform.position; // default last seen is current position
         LookingForDirection();
         lastPos = transform.position;
         target = GeneralFunctions.GetPlayer().transform;
@@ -42,6 +46,8 @@ public class MovementController : MonoBehaviour, IScriptable
         agent.updateUpAxis = false;
 
         path = new NavMeshPath();
+
+         
     }
 
     void Start()
@@ -73,7 +79,6 @@ public class MovementController : MonoBehaviour, IScriptable
 
     public void Attack()
     {
-        Debug.Log("attacking...");
         GetComponent<AttackManager>().InvokeAttack("SlimeAttack");
     }
 
@@ -118,21 +123,22 @@ public class MovementController : MonoBehaviour, IScriptable
         return srcAngles;
     }
 
-    private void GetDirection()
+    // sets the enemy's physical facing direction (only call if the enemy can see the player)
+    private void SetDirection(Vector3 target)
     {
         if (LockFOVToY)
         {
-            if (lastPos.y < transform.position.y) flipLook = true;
-            if (lastPos.y > transform.position.y) flipLook = false;
+            if (target.y < transform.position.y) flipLook = true;
+            if (target.y > transform.position.y) flipLook = false;
         }
-        if (lastPos.x < transform.position.x)
+        if ((target.x > transform.position.x) ^ defaultLooksLeft)
         {
             //sr.flipX = true;
             float newX = Mathf.Abs(transform.localScale.x);
             transform.localScale = new Vector3(newX, transform.localScale.y, transform.localScale.z);
             if(!LockFOVToY) flipLook = false;
         }
-        if (lastPos.x > transform.position.x)
+        if ((target.x < transform.position.x) ^ defaultLooksLeft)
         {
             float newX = Mathf.Abs(transform.localScale.x);
             transform.localScale = new Vector3(-newX, transform.localScale.y, transform.localScale.z);
@@ -143,9 +149,9 @@ public class MovementController : MonoBehaviour, IScriptable
 
     private void LookingForDirection()
     {
-        GetDirection();
-        if (!LockFOVToY && !flipLook) looking = Vector3.right;
-        else if (!LockFOVToY && flipLook) looking = Vector3.left;
+        // GetDirection();
+        if (!LockFOVToY && (!flipLook ^ defaultLooksLeft)) looking = Vector3.right;
+        else if (!LockFOVToY && (flipLook ^ defaultLooksLeft)) looking = Vector3.left;
         else if (LockFOVToY && !flipLook) looking = Vector3.down;
         else if (LockFOVToY && flipLook) looking = Vector3.up;
     }
@@ -187,6 +193,12 @@ public class MovementController : MonoBehaviour, IScriptable
                     ret = true;
                 }   
             }
+        }
+
+        if(ret)
+        {
+            lastSeen = target.transform.position;
+            SetDirection(lastSeen);
         }
         return ret;
     }
