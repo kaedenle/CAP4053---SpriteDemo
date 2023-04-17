@@ -32618,7 +32618,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3213768974601810346, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
       propertyPath: angle
-      value: 220
+      value: 213
       objectReference: {fileID: 0}
     - target: {fileID: 3213768974601810346, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
       propertyPath: speed
@@ -32629,12 +32629,40 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3213768974601810346, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
+      propertyPath: currentFOVType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213768974601810346, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
       propertyPath: defaultLooksLeft
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3213768974601810346, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
       propertyPath: defaultLooksLeftView
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213768974601810346, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
+      propertyPath: movementConfiguration.largeFOV.angle
+      value: 260
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213768974601810346, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
+      propertyPath: movementConfiguration.smallFOV.angle
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213768974601810346, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
+      propertyPath: movementConfiguration.largeFOV.radius
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213768974601810346, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
+      propertyPath: movementConfiguration.mediumFOV.angle
+      value: 220
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213768974601810346, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
+      propertyPath: movementConfiguration.smallFOV.radius
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213768974601810346, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
+      propertyPath: movementConfiguration.mediumFOV.radius
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5225552735611010838, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
       propertyPath: _initialState

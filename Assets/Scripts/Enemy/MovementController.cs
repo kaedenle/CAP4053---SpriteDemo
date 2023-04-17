@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/*
+Movement Controller - controls Enemy movement (slime, skeleton ranged, skeleton melee)
+
+Assumptions:
+- the medium and large FOVs need to have angles > 180 in order to work
+*/
 public class MovementController : MonoBehaviour, IScriptable
 {
     // public adjustable variables
-    public float radius;
-    [Range(1.0F, 360.0F)] public float angle;
+    [SerializeField] public MovementStats movementConfiguration;
+    [SerializeField] public MovementStats.FOVType currentFOVType;
     public bool LockFOVToY;
     public float speed;
     public bool defaultLooksLeft;
@@ -46,8 +52,6 @@ public class MovementController : MonoBehaviour, IScriptable
         agent.updateUpAxis = false;
 
         path = new NavMeshPath();
-
-         
     }
 
     void Start()
@@ -87,6 +91,9 @@ public class MovementController : MonoBehaviour, IScriptable
     */
     private void OnDrawGizmos()
     {
+        float radius = movementConfiguration.GetRadius(currentFOVType);
+        float angle = movementConfiguration.GetAngle(currentFOVType);
+
         Gizmos.color = new Color(1, 0, 0, 0.5f);
         Gizmos.DrawWireSphere(gameObject.transform.position, radius);
         Gizmos.color = new Color(0, 1, 0, 1f);
@@ -167,7 +174,7 @@ public class MovementController : MonoBehaviour, IScriptable
 
         collidersList.Clear();
         Physics2D.OverlapCircle(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y),
-                radius, contactFilter, collidersList);
+                movementConfiguration.GetRadius(currentFOVType), contactFilter, collidersList);
         
         if (collidersList.Count != 0)
         {
@@ -183,7 +190,10 @@ public class MovementController : MonoBehaviour, IScriptable
             }
 
             if (target.tag != "Player") return false;
+
             Vector3 directionToTarget = (target.position - transform.position).normalized;
+            float angle = movementConfiguration.GetAngle(currentFOVType);
+
             if (Vector2.Angle(looking, directionToTarget) < angle / 2)
             {
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
@@ -201,6 +211,11 @@ public class MovementController : MonoBehaviour, IScriptable
             SetDirection(lastSeen);
         }
         return ret;
+    }
+
+    public void UpdateVision(MovementStats.FOVType visionType)
+    {
+        currentFOVType = visionType;
     }
 
     /*

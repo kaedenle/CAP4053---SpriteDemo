@@ -101,6 +101,11 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
         }
     }
 
+    public void UpdateVision(MovementStats.FOVType visionType)
+    {
+        movementController.UpdateVision(visionType);
+    }
+
     /* Conditions */
     public virtual bool PlayerVisibile()
     {
