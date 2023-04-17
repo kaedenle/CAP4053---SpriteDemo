@@ -22,6 +22,7 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
 
     // inherent configuration variables of the enemy
     public EnemyStats enemyStats;
+    private EnemyStats.SurpriseReactionType currentSurpriseReaction; 
 
     /* Awake, Start, Update */
     protected void Awake()
@@ -33,6 +34,10 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
         target = GeneralFunctions.GetPlayer().transform;
         movementController = gameObject.GetComponent<MovementController>();
         fsm = gameObject.GetComponent<BasicEnemy.FSM>();
+
+        // set default enemy configs
+        currentSurpriseReaction = EnemyStats.SurpriseReactionType.Slow;
+        movementController.UpdateVision(MovementStats.FOVType.Small);
     }
     
     protected void Update()
@@ -65,7 +70,7 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
 
     public IEnumerator StopBeingSurprised(BasicEnemy.FSM stateMachine)
     {
-        yield return new WaitForSeconds(enemyStats.surprise_reaction_time);
+        yield return new WaitForSeconds(enemyStats.GetSurpriseReactionTime(currentSurpriseReaction));
         stateMachine.TransitionReady = true;
     }
 
@@ -101,9 +106,15 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
         }
     }
 
+    /* Stat Update Actions */
     public void UpdateVision(MovementStats.FOVType visionType)
     {
         movementController.UpdateVision(visionType);
+    }
+
+    public void UpdateSurpriseReactionTime(EnemyStats.SurpriseReactionType reactionType)
+    {
+        currentSurpriseReaction = reactionType;
     }
 
     /* Conditions */
