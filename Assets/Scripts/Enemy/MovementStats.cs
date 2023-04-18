@@ -6,6 +6,7 @@ using System;
 [Serializable]
 public class MovementStats
 {
+    public float speed = 6.0F;
     [SerializeField] public FOV smallFOV;
     [SerializeField] public FOV mediumFOV;
     [SerializeField] public FOV largeFOV;

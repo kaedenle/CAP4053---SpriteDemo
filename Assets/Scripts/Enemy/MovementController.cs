@@ -15,7 +15,6 @@ public class MovementController : MonoBehaviour, IScriptable
     [SerializeField] public MovementStats movementConfiguration;
     [SerializeField] public MovementStats.FOVType currentFOVType;
     public bool LockFOVToY;
-    public float speed;
     public bool defaultLooksLeft;
 
     // private internal metrics
@@ -32,6 +31,10 @@ public class MovementController : MonoBehaviour, IScriptable
 
     // tracking variables
     private Vector3 lastSeen;
+    private float lastSeenTime;
+
+    // constants
+    public const double epsilon_distance = 1e-3;
 
     /*
     ==================== Setup ======================
@@ -39,6 +42,7 @@ public class MovementController : MonoBehaviour, IScriptable
     void Awake()
     {
         lastSeen = transform.position; // default last seen is current position
+        lastSeenTime = Time.time;
         LookingForDirection();
         lastPos = transform.position;
         target = GeneralFunctions.GetPlayer().transform;
@@ -47,7 +51,7 @@ public class MovementController : MonoBehaviour, IScriptable
 
         // NavMesh Agent
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = speed;
+        agent.speed = movementConfiguration.speed;
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 
@@ -208,6 +212,7 @@ public class MovementController : MonoBehaviour, IScriptable
         if(ret)
         {
             lastSeen = target.transform.position;
+            lastSeenTime = Time.time;
             SetDirection(lastSeen);
         }
         return ret;
@@ -241,9 +246,25 @@ public class MovementController : MonoBehaviour, IScriptable
         
     }
 
+    // chase the last seen position of the player
+    public virtual void Chase()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, lastSeen, movementConfiguration.speed * Time.deltaTime);
+    }
+
     public bool InRangeOfPlayer(float minimumDistance)
     {
         return Vector2.Distance(transform.position, target.position) <= minimumDistance;
+    }
+
+    public bool AtLastSeen()
+    {
+        return Vector2.Distance(transform.position, lastSeen) <= epsilon_distance;
+    }
+
+    public float TimeSinceLastSeen()
+    {
+        return Time.time - lastSeenTime;
     }
 
 }

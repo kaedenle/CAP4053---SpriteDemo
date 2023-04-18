@@ -73,7 +73,8 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
     public virtual void Chase()
     {
         // movementController.MoveTowards(minimumDistance);
-        transform.position = Vector2.MoveTowards(transform.position, target.position, enemyStats.speed * Time.deltaTime);
+        // transform.position = Vector2.MoveTowards(transform.position, target.position, enemyStats.speed * Time.deltaTime);
+        movementController.Chase();
     }
 
     public virtual void ExpressSurprise(BasicEnemy.FSM stateMachine)
@@ -137,6 +138,7 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
     }
 
     /* Conditions */
+    // check whether the player is visible and if so, updates the last seen position of the player
     public virtual bool PlayerVisibile()
     {
         return movementController.FOVCheck();
@@ -145,6 +147,15 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
     public virtual bool InRangeOfPlayer()
     {
         return movementController.InRangeOfPlayer(enemyStats.minimumDistance);
+    }
+
+    // the enemy doesn't know how to continue chasing
+    // either the enemy has reached the last known location of the player
+    // OR the enemy hasn't seen the player for <memory> amount of time
+    public bool NoIdeas()
+    {
+        if(PlayerVisibile()) return false; // has ideas if player is visible
+        return movementController.AtLastSeen() || (movementController.TimeSinceLastSeen() >= enemyStats.memory_time);
     }
 
     /* IUnique Functions */
@@ -219,7 +230,6 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
     /*
     ======= Animation ========
     */
-
     public virtual void MoveAnimation() {}
 }
 

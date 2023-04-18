@@ -8,12 +8,11 @@ public class EnemyStats
 {
     // movement variables
     public float minimumDistance = 1.0F;
-    public float speed = 6.0F;
 
     // reaction times
     public float slowReactionTime = 0.75F;
     public float fastReactionTime = 0.25F;
-    public float memory_time = 1.0F;
+    public float memory_time = 5.0F;
 
     public enum SurpriseReactionType
     {

@@ -23,11 +23,13 @@ namespace BasicEnemy
             time_of_last_state_change = Time.time;
         }
 
+        // execute the current state (technically it could use a safety feature)
         private void Update()
         {
             currentState.Execute(this);
         } 
 
+        // exit current state and enter new state
         public void ChangeState(FSMState newState)
         {
             if(currentState != null)
@@ -38,9 +40,9 @@ namespace BasicEnemy
             currentState.Enter(this);
         }
 
+        // checks if the state is the same since the recorded time_check (i.e. no state changes)
         public bool StateConstant(float time_check)
         {
-            if(GeneralFunctions.IsDebug()) Debug.Log("last change: " + time_of_last_state_change + " time to check: " + time_check);
             return time_of_last_state_change <= time_check;
         }
 
