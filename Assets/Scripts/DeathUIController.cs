@@ -24,6 +24,15 @@ public class DeathUIController : MonoBehaviour
             triggered = true;
         }
     }
+    void OnEnable()
+    {
+        Cursor.visible = true;
+    }
+    
+    void OnDisable()
+    {
+        Cursor.visible = false;
+    }
 
     public void ResetButton()
     {
