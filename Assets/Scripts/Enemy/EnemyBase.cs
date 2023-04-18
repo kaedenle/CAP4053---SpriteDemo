@@ -146,7 +146,7 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
 
     public virtual bool InRangeOfPlayer()
     {
-        return movementController.InRangeOfPlayer(enemyStats.minimumDistance);
+        return movementController.InRangeOfPlayer();
     }
 
     // the enemy doesn't know how to continue chasing
@@ -161,18 +161,13 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
     /* IUnique Functions */
     public virtual void onDeath()
     {
-        // destory FSM (don't want to be doing things while dead)
-        Destroy(fsm);
+        DestroyExtraComponents();
 
-        // drop any attached items
-        foreach (ItemDrop item in gameObject.GetComponents<ItemDrop>())
-        {
-            item.AttemptDrop();
-        }
-
-        // removing health tracker
+         // removing health tracker (skeleton has different behavior)
         HealthTracker healthTracker = GetComponent<HealthTracker>();
         Destroy(healthTracker.bar.gameObject);
+
+        AttemptDrops();
 
         // perform manager & metric updates on this enemy death
         PerformMetricsForDeath();
@@ -225,6 +220,26 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
         expression = Instantiate(express) as GameObject;
         expression.transform.SetParent(Parent.transform);
         expression.name = "Enemy Expression";
+
+        // default expression is none
+        UpdateExpression("");
+    }
+
+    protected void AttemptDrops()
+    {
+        // drop any attached items
+        foreach (ItemDrop item in gameObject.GetComponents<ItemDrop>())
+        {
+            item.AttemptDrop();
+        }
+    }
+
+    protected void DestroyExtraComponents()
+    {
+        // destory FSM (don't want to be doing things while dead)
+        Destroy(fsm);
+        // removing expression
+        Destroy(expression);
     }
 
     /*

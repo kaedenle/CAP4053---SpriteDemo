@@ -6,12 +6,11 @@ using System;
 [Serializable]
 public class EnemyStats
 {
-    // movement variables
-    public float minimumDistance = 1.0F;
-
     // reaction times
     public float slowReactionTime = 0.75F;
     public float fastReactionTime = 0.25F;
+
+    // memory
     public float memory_time = 5.0F;
 
     public enum SurpriseReactionType

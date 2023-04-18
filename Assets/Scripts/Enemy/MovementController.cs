@@ -19,7 +19,6 @@ public class MovementController : MonoBehaviour, IScriptable
 
     // private internal metrics
     private Vector3 looking;
-    private Vector3 lastPos;
     private bool flipLook;
 
     // level or enemy components
@@ -44,25 +43,24 @@ public class MovementController : MonoBehaviour, IScriptable
         lastSeen = transform.position; // default last seen is current position
         lastSeenTime = Time.time;
         LookingForDirection();
-        lastPos = transform.position;
         target = GeneralFunctions.GetPlayer().transform;
 
         enemyController = gameObject.GetComponent<EnemyBase>();
 
         // NavMesh Agent
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = movementConfiguration.speed;
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
 
-        path = new NavMeshPath();
+        if(agent != null)
+        {
+            agent.speed = movementConfiguration.speed;
+            agent.updateRotation = false;
+            agent.updateUpAxis = false;
+
+            path = new NavMeshPath();
+        }
+        else
+            Debug.LogWarning("NavMesh not found");
     }
-
-    void Start()
-    {
-
-    }
-
 
     /* 
     ===================IScriptable Functions==================
@@ -155,7 +153,6 @@ public class MovementController : MonoBehaviour, IScriptable
             transform.localScale = new Vector3(-newX, transform.localScale.y, transform.localScale.z);
             if (!LockFOVToY) flipLook = true;
         }
-        lastPos = transform.position;
     }
 
     private void LookingForDirection()
@@ -226,8 +223,7 @@ public class MovementController : MonoBehaviour, IScriptable
     /*
     ========================== Chase =========================
     */
-
-    public void MoveTowards(float minimumDistance)
+    public void MoveTowards()
     {
         if (agent.enabled)
         {
@@ -252,9 +248,9 @@ public class MovementController : MonoBehaviour, IScriptable
         transform.position = Vector2.MoveTowards(transform.position, lastSeen, movementConfiguration.speed * Time.deltaTime);
     }
 
-    public bool InRangeOfPlayer(float minimumDistance)
+    public bool InRangeOfPlayer()
     {
-        return Vector2.Distance(transform.position, target.position) <= minimumDistance;
+        return Vector2.Distance(transform.position, target.position) <= movementConfiguration.minimumDistance;
     }
 
     public bool AtLastSeen()
