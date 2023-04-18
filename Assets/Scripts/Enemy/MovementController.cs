@@ -24,7 +24,7 @@ public class MovementController : MonoBehaviour, IScriptable
     // level or enemy components
     private EnemyBase enemyController;
     private List<Collider2D> collidersList = new List<Collider2D>();
-    private Transform target;
+    protected Transform target;
     NavMeshAgent agent;
     private NavMeshPath path;
 
@@ -38,7 +38,7 @@ public class MovementController : MonoBehaviour, IScriptable
     /*
     ==================== Setup ======================
     */
-    void Awake()
+    protected void Awake()
     {
         lastSeen = transform.position; // default last seen is current position
         lastSeenTime = Time.time;
@@ -83,7 +83,10 @@ public class MovementController : MonoBehaviour, IScriptable
         this.enabled = flag;
     }
 
-    public void Attack()
+    /*
+    ====================== Attack =====================
+    */
+    public virtual void Attack()
     {
         GetComponent<AttackManager>().InvokeAttack("SlimeAttack");
     }

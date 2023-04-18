@@ -95,7 +95,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6105205938035449267}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.42, y: -1.43, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -239,6 +239,7 @@ MonoBehaviour:
   bar: {fileID: 5894459449886815197, guid: fb1b7fc730420314d876a7daece293d1, type: 3}
   barOffset: {x: 0.1, y: 2.5, z: 0}
   deathFlag: 0
+  DefenseModifier: 0
 --- !u!114 &1865415181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,10 +253,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inHitStun: 0
-  NotFlash: 0
-  default_ani: SlimeIdle
-  NotHitPart: 0
+  NoFlash: 0
+  NoHitParticles: 0
   invin: 0
+  FSMHitstun: 0
+  default_ani: SlimeIdle
 --- !u!114 &7033832474386410872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,11 +308,10 @@ MonoBehaviour:
   - moveData: {fileID: 4900000, guid: ee6df8931df8c534585c8505aa6814c5, type: 3}
     HitSFX: []
   HBList: []
+  attacking: 0
   invulerable: 0
   OffsenseDamageMultiplier: 1
   OffenseKnockbackMultiplier: 1
-  DefenseDamageMultiplier: 1
-  DefenseKnockbackMultiplier: 1
   MultiplierAttack: 0
   framedata:
     framedata: []
@@ -344,10 +345,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14a1793d777ed4c4b88dd8a53c9c20b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0
-  angle: 0
+  movementConfiguration:
+    speed: 6
+    minimumDistance: 1.25
+    smallFOV:
+      radius: 0
+      angle: 0
+    mediumFOV:
+      radius: 0
+      angle: 0
+    largeFOV:
+      radius: 0
+      angle: 0
+  currentFOVType: 0
   LockFOVToY: 0
-  speed: 0
+  defaultLooksLeft: 0
 --- !u!114 &834188646202899586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,10 +372,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eea2d9a01ee97b4a803bfdefb4f299c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 9
-  maxSightAsCamWidthPercent: 25
-  maxBaseSightAngle: 60
-  minimumDistance: 2
+  enemyStats:
+    slowReactionTime: 0.75
+    fastReactionTime: 0.25
+    memory_time: 5
+  expressionOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &5225552735611010838
 MonoBehaviour:
   m_ObjectHideFlags: 0

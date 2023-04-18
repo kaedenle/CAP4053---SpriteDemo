@@ -99,6 +99,15 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
         movementController.Attack();
 
         yield return new WaitUntil(() => movementController.enabled);
+        
+        // make sure shooting isn't occurring
+        MoveAndShootController shooter;
+        if((shooter = GetComponent<MoveAndShootController>()) != null)
+        {
+            yield return new WaitUntil(() => !shooter.shooting);
+        }
+        
+
         stateMachine.TransitionReady = true;
     }
 
