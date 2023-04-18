@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 using System;
+using TMPro;
+
 
 /*
 List of Assumptions
@@ -19,10 +22,13 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
     protected MovementController movementController;
     protected Transform target;
     protected BasicEnemy.FSM fsm;
+    protected GameObject expression;
 
     // inherent configuration variables of the enemy
     public EnemyStats enemyStats;
     private EnemyStats.SurpriseReactionType currentSurpriseReaction; 
+    public Vector3 expressionOffset;
+    
 
     /* Awake, Start, Update */
     protected void Awake()
@@ -38,6 +44,13 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
         // set default enemy configs
         currentSurpriseReaction = EnemyStats.SurpriseReactionType.Slow;
         movementController.UpdateVision(MovementStats.FOVType.Small);
+
+    }
+
+    protected void Start()
+    {
+        // create expression
+        CreateExpression();
     }
     
     protected void Update()
@@ -46,6 +59,7 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
         //{
     //         TurnAround();
     //     }
+        // expression.GetComponent<FollowTarget>().offset = expressionOffset;
     }
 
     /* 
@@ -104,6 +118,11 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
         {
             stateMachine.TimerComplete = true;
         }
+    }
+
+    public void UpdateExpression(string str)
+    {
+        expression.GetComponentInChildren<TMP_Text>().text = str;
     }
 
     /* Stat Update Actions */
@@ -175,6 +194,26 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
     protected void PerformMetricsForDeath()
     {
         PlayerMetricsManager.IncrementKeeperInt("killed");
+    }
+
+    protected void CreateExpression()
+    {
+        GameObject Parent = GameObject.Find("UI Canvas");
+        if(Parent == null)
+        {
+            Debug.LogError("no UI canvas found to put enemy expression under");
+            return;
+        }
+
+        GameObject express = Resources.Load("Prefabs/Expression") as GameObject;
+
+        FollowTarget info = express.GetComponent<FollowTarget>();
+        info.target = this.gameObject;
+        info.offset = expressionOffset;
+
+        expression = Instantiate(express) as GameObject;
+        expression.transform.SetParent(Parent.transform);
+        expression.name = "Enemy Expression";
     }
 
     /*
