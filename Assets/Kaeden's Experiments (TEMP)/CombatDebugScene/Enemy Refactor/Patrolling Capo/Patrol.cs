@@ -39,6 +39,8 @@ public class Patrol : MonoBehaviour
     private CapoScript myScript;
 
     public GameObject[] points;
+    public float RunSpeed;
+    public float WalkSpeed;
 
     // Update is called once per frame
     void Awake()
@@ -59,6 +61,7 @@ public class Patrol : MonoBehaviour
         lastPos = transform.position;
         anim = GetComponentInChildren<Animator>();
         initFlag = true;
+        agent.speed = WalkSpeed;
     }
     private float Round2Digits(float num)
     {
@@ -148,7 +151,7 @@ public class Patrol : MonoBehaviour
         if (rememberTimer < 0)
         {
             seesPlayer = false;
-            agent.speed = 3.5f;
+            agent.speed = WalkSpeed;
         }
     }
     public bool PlayerInRange()
@@ -175,7 +178,7 @@ public class Patrol : MonoBehaviour
                     if (path.status == NavMeshPathStatus.PathComplete && !attacking)
                     {
                         anim.SetFloat("movement", 2);
-                        agent.isStopped = false;
+                        if(seesPlayer) agent.isStopped = false;
                         //agent.updatePosition = true;
                         agent.SetDestination(new Vector3(target.position.x, target.position.y, target.position.z));
                         if(FOVCheck()) ResetMemory();
@@ -191,6 +194,14 @@ public class Patrol : MonoBehaviour
                 }
             }
         }
+    }
+    public void ForceLookPlayer()
+    {
+        trigger = true;
+        agent.SetDestination(new Vector3(target.position.x, target.position.y, target.position.z));
+        agent.isStopped = true;
+        ResetMemory();
+        anim.Play("Appear");
     }
     public bool LookAtPlayer()
     {
@@ -218,7 +229,12 @@ public class Patrol : MonoBehaviour
         //eject if you've seen player
         if (!seesPlayer) flag = LookAtPlayer();
         if (flag) return;
-        if (points.Length == 0) return;
+        if (points.Length == 0)
+        {
+            agent.SetDestination(new Vector3(transform.position.x, transform.position.y, transform.position.z));
+            anim.SetFloat("movement", 0);
+            return;
+        }
 
         agent.CalculatePath(new Vector2(points[pointIndex].transform.position.x, points[pointIndex].transform.position.y), pathToPoint);
         if (pathToPoint.status == NavMeshPathStatus.PathComplete)
@@ -245,7 +261,7 @@ public class Patrol : MonoBehaviour
     {
         seesPlayer = true;
         trigger = false;
-        agent.speed = 16;
+        agent.speed = RunSpeed;
     }
 
     //enable and disable script

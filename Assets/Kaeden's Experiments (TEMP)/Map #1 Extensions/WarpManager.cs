@@ -9,20 +9,65 @@ public class WarpManager : MonoBehaviour
     private GameObject player;
     public GameObject[] warps;
     private bool check = false;
+    private GameObject EnemyStore;
+    public static IDictionary<string, List<EnemyStore>> EnemyList = new Dictionary<string, List<EnemyStore>>();
     public void SetWarpNum(int num)
     {
         WarpNumber = num;
     }
+    public void SaveEnemies(object sender, System.EventArgs e)
+    {
+        if (!EnemyList.ContainsKey(SceneManager.GetActiveScene().name)) EnemyList.Add(SceneManager.GetActiveScene().name, new List<EnemyStore>());
+        else EnemyList[SceneManager.GetActiveScene().name].Clear();
+        EnemyStore = GameObject.Find("-- Enemies --");
+        if (EnemyStore == null) return;
+        foreach(Transform child in EnemyStore.transform)
+        {
+            CapoScript myScript = child.gameObject.GetComponent<CapoScript>();
+            if (myScript == null || !child.gameObject.activeSelf) continue;
+            EnemyList[SceneManager.GetActiveScene().name].Add(new EnemyStore(child.gameObject, child.gameObject, child.gameObject.transform.position, true, child.gameObject.GetComponent<HealthTracker>().healthSystem.getHealth(), myScript.SpawnID));
+        }
+    }
+    public void ReloadEnemies(Scene scene, LoadSceneMode mode)
+    {
+        if (!EnemyList.ContainsKey(SceneManager.GetActiveScene().name)) return;
+        PatrolEnemyManager.Awaken();
+        EnemyStore = GameObject.Find("-- Enemies --");
+        if (EnemyStore == null) return;
+        foreach (EnemyStore es in EnemyList[SceneManager.GetActiveScene().name])
+        {
+            //go through all children in enemystore. If find ID match set equal
+            foreach (Transform child in EnemyStore.transform)
+            {
+                CapoScript myScript = child.gameObject.GetComponent<CapoScript>();
+                if (myScript == null || !child.gameObject.activeSelf) continue;
+                if (myScript.SpawnID == es.ID)
+                {
+                    SetValues(child.gameObject, es);
+                    break;
+                }
+            }
+        }
+    }
+    private void SetValues(GameObject entity, EnemyStore data)
+    {
+        //reset health and position as it was
+        entity.GetComponent<HealthTracker>().SetHealth(data.Health);
+        if (!data.ResetPos) entity.transform.position = data.PosStore;
+    }
     void Start()
     {
+        ScenesManager.ChangedScenes += SaveEnemies;
+        SceneManager.sceneLoaded += ReloadEnemies;
         player = GameObject.Find("Player");
         if(WarpNumber != -1)
         {
             GameObject go = warps[WarpNumber];
             player.transform.position = go.transform.position;
-            
         }
+        EnemyStore = GameObject.Find("-- Enemies --");
     }
+    
     void Update()
     {
         if (!check)

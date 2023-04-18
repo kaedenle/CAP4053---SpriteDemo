@@ -33,7 +33,7 @@ public class Spawn : MonoBehaviour
             GameObject enemy = Instantiate(EnemyType, randomPos, Quaternion.identity);
             enemy.transform.SetParent(parent.transform);
 
-            EnemyStore es = new EnemyStore(enemy, EnemyType, randomPos, OriginalPos, EnemyType.GetComponent<HealthTracker>().health);
+            EnemyStore es = new EnemyStore(enemy, EnemyType, randomPos, OriginalPos, EnemyType.GetComponent<HealthTracker>().health, 0);
             if(!RespawnOnLoad) gm.AddEnemy(RespawnOnLoad, es);
             flag = true;
         }

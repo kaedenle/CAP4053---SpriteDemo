@@ -54,7 +54,6 @@ public class GameManager : MonoBehaviour
         SeenScene = SceneManager.GetActiveScene().name;
         SceneID = ScenesManager.GetCurrentScene();
         MaxHealth = ht.health;
-        Debug.Log("first");
     }
     public void FindStuff()
     {

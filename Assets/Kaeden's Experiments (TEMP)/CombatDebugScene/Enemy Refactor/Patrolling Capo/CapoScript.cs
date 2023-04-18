@@ -14,6 +14,7 @@ public class CapoScript : MonoBehaviour, IUnique
     private HealthTracker ht;
     public bool flipped;
     public bool kick;
+    public int SpawnID;
     public void EffectManager(string script)
     {
 
