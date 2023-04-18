@@ -183,13 +183,13 @@ GameObject:
   - component: {fileID: 65955467121674050}
   - component: {fileID: 65955467121674060}
   - component: {fileID: 65955467121674049}
-  - component: {fileID: 65955467121674062}
   - component: {fileID: 65955467121674056}
   - component: {fileID: 65955467121674057}
   - component: {fileID: 65955467121674063}
   - component: {fileID: 65955467121674051}
   - component: {fileID: 65955467121674048}
   - component: {fileID: 65955467121674054}
+  - component: {fileID: 65955467121674062}
   m_Layer: 0
   m_Name: Capo
   m_TagString: Enemy
@@ -356,6 +356,8 @@ MonoBehaviour:
   attackContainer:
   - moveData: {fileID: 4900000, guid: 94544b892123f4e4596c5009a71860b3, type: 3}
     HitSFX: []
+  - moveData: {fileID: 4900000, guid: 843efcd306cb43e42ba260010e67e186, type: 3}
+    HitSFX: []
   HBList: []
   attacking: 0
   invulerable: 0
@@ -382,27 +384,6 @@ MonoBehaviour:
   bufferCancel: -1
   ProjectileOwner: {fileID: 0}
   hitboxParent: {fileID: 0}
---- !u!114 &65955467121674062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 65955467121674102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 609095d291e65b946af8bc40e3eab49e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radius: 10
-  angle: 146
-  target: {fileID: 0}
-  minimumDistance: 2
-  MAX_REMEMBER_TIMER: 3
-  distFromPoint: 2
-  agent: {fileID: 0}
-  seesPlayer: 0
-  points: []
 --- !u!50 &65955467121674056
 Rigidbody2D:
   serializedVersion: 4
@@ -507,6 +488,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flipped: 0
+  kick: 0
+  SpawnID: 0
+--- !u!114 &65955467121674062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65955467121674102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 609095d291e65b946af8bc40e3eab49e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 10
+  angle: 146
+  target: {fileID: 0}
+  minimumDistance: 2
+  MAX_REMEMBER_TIMER: 3
+  distFromPoint: 2
+  agent: {fileID: 0}
+  seesPlayer: 0
+  points: []
+  RunSpeed: 16
+  WalkSpeed: 3.5
 --- !u!1 &65955467604829477
 GameObject:
   m_ObjectHideFlags: 0

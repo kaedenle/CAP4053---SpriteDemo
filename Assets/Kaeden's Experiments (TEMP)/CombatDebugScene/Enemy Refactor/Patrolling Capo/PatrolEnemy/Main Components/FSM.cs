@@ -17,6 +17,7 @@ namespace PatrolEnemy
         public CapoScript myScript { get; set; }
         public Hurtbox hb { get; set; }
         public AttackManager am { get; set; }
+        public HealthTracker ht { get; set; }
 
         private void Awake()
         {
@@ -27,6 +28,7 @@ namespace PatrolEnemy
             myScript = gameObject.GetComponent<CapoScript>();
             hb = gameObject.GetComponent<Hurtbox>();
             am = gameObject.GetComponent<AttackManager>();
+            ht = gameObject.GetComponent<HealthTracker>();
         }
 
         private void Update()

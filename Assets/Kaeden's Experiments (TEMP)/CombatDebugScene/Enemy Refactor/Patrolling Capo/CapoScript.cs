@@ -14,6 +14,10 @@ public class CapoScript : MonoBehaviour, IUnique
     private HealthTracker ht;
     public bool flipped;
     public bool kick;
+    public int SpawnID;
+    private float death_timer;
+    private float MAX_DEATH_TIMER = 3.0f;
+    private SpriteRenderer sr;
     public void EffectManager(string script)
     {
 
@@ -24,7 +28,31 @@ public class CapoScript : MonoBehaviour, IUnique
     }
     public void onDeath()
     {
-        Destroy(ht.bar);
+        anim.SetBool("Death", true);
+        anim.Play("Death");
+    }
+    public void AnimationDeath()
+    {
+        StartCoroutine("Disappear");
+        agent.isStopped = true;
+    }
+    public IEnumerator Disappear()
+    {
+        death_timer = MAX_DEATH_TIMER;
+        HealthTracker healthTracker = GetComponent<HealthTracker>();
+        while (death_timer > 0)
+        {
+            while (EntityManager.IsPaused()) yield return null;
+            Color c = sr.color;
+            c.a = c.a > 0 ? c.a - 0.005f : 0;
+            sr.color = c;
+            death_timer -= Time.deltaTime;
+            if (healthTracker.bar.gameObject != null && healthTracker.TotalDown() == 0) Destroy(healthTracker.bar.gameObject);
+            //wait one frame
+            yield return null;
+        }
+        yield return new WaitForSeconds(0.05F);
+        if (healthTracker.bar.gameObject != null) Destroy(healthTracker.bar);
         Destroy(gameObject);
     }
     public void HitStunAni()
@@ -64,6 +92,7 @@ public class CapoScript : MonoBehaviour, IUnique
         hb = GetComponent<Hurtbox>();
         am = GetComponent<AttackManager>();
         ht = GetComponent<HealthTracker>();
+        sr = GetComponent <SpriteRenderer> ();
     }
 
     // Update is called once per frame

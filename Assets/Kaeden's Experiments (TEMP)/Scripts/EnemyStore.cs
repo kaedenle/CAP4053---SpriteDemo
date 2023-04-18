@@ -11,8 +11,9 @@ public class EnemyStore
     public GameObject entity;
     public GameObject entityType;
     private HealthTracker ht;
+    public int ID;
 
-    public EnemyStore(GameObject entity, GameObject entityType,  Vector3 pos, bool ResetPos, int Health)
+    public EnemyStore(GameObject entity, GameObject entityType,  Vector3 pos, bool ResetPos, int Health, int ID)
     {
         this.entity = entity;
         this.entityType = entityType;
@@ -20,6 +21,7 @@ public class EnemyStore
         this.ResetPos = ResetPos;
         this.Health = Health;
         this.ht = entity?.GetComponent<HealthTracker>();
+        this.ID = ID;
     }
     public void HealthTrackerFinder()
     {
