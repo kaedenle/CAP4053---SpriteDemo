@@ -127,10 +127,18 @@ public class InputManager : MonoBehaviour
         return keycodes.GetValueOrDefault(key, new KeyPair(KeyCode.None, KeyCode.None));
     }
 
+    private static bool GetKeyDown(KeyCode code)
+    {
+        // TODO: deal with exceptions
+        
+
+        return Input.GetKeyDown(code);
+    }
+
     private static bool Pressed(Keys key)
     {
         KeyPair pair = GetKeyCode(key);
-        return Input.GetKeyDown(pair.GetPrimary()) || Input.GetKeyDown(pair.GetSecondary());
+        return GetKeyDown(pair.GetPrimary()) || GetKeyDown(pair.GetSecondary());
     }
 
     public static bool ContinueKeyPressed()
