@@ -21,10 +21,13 @@ public class MoveAndShootController : MovementController
 
     public override void Attack()
     {
-        Debug.Log("pew pew");
-
         shooting = true;
         GetComponent<Animator>().Play("Attack");
+    }
+
+    public void Shooting()
+    {
+        Debug.Log("pew pew");
 
         GameObject obj = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         Vector2 directionToTarget = target.transform.position - transform.position;
@@ -34,7 +37,8 @@ public class MoveAndShootController : MovementController
         {
             angle *= -1;
         }
-        
+
         Quaternion bulletRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
     }
 }
