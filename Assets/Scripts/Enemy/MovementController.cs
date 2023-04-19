@@ -226,16 +226,16 @@ public class MovementController : MonoBehaviour, IScriptable
     /*
     ========================== Chase =========================
     */
-    public void MoveTowards()
+    public void MoveTowards(Vector2 target)
     {
         if (agent.enabled)
         {
-            agent.CalculatePath(target.position, path);
+            agent.CalculatePath(target, path);
             if (path.status == NavMeshPathStatus.PathComplete)
             {
                 agent.isStopped = false;
-                agent.SetDestination(new Vector3(target.position.x, target.position.y, transform.position.z));
-                enemyController.MoveAnimation();
+                agent.SetDestination(new Vector3(target.x, target.y, transform.position.z));
+                // enemyController.MoveAnimation();
             }
             else
             {
@@ -245,10 +245,16 @@ public class MovementController : MonoBehaviour, IScriptable
         
     }
 
+    public virtual void StopMoving()
+    {
+        if(agent != null) agent.isStopped = true;
+    }
+
     // chase the last seen position of the player
     public virtual void Chase()
     {
-        transform.position = Vector2.MoveTowards(transform.position, lastSeen, movementConfiguration.speed * Time.deltaTime);
+        MoveTowards(lastSeen);
+        // transform.position = Vector2.MoveTowards(transform.position, lastSeen, movementConfiguration.speed * Time.deltaTime);
     }
 
     public bool InRangeOfPlayer()

@@ -77,6 +77,11 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
         movementController.Chase();
     }
 
+    public virtual void ForceStop()
+    {
+        movementController.StopMoving();
+    }
+
     public virtual void ExpressSurprise(BasicEnemy.FSM stateMachine)
     {
         // have an exclamation mark pop up over enemy head & make surprise noise
