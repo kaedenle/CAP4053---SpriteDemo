@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class CollapsableEnvironment : MonoBehaviour
 {
+    public int ID;
+    public bool collapsed = false;
     public void Knock()
     {
-        GameObject perform = transform.parent.gameObject;
-        foreach(Transform child in perform.transform)
+        collapsed = true;
+        foreach (Transform child in transform)
         {
             if (child.gameObject.name != "Unfallen" && child.gameObject.name != "Fallen") return;
             if (child.gameObject.name == "Unfallen") child.gameObject.SetActive(false);

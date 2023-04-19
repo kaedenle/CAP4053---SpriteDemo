@@ -6,19 +6,19 @@ using UnityEngine.Playables;
 public class PaperManager : MonoBehaviour
 {
     public PlayableDirector[] Events;
+    public PlayableDirector Complete;
     public IDictionary<string, PlayableDirector> reference = new Dictionary<string, PlayableDirector>();
+    private static bool triggeredFinal = false;
     // Start is called before the first frame update
     void OnEnable()
     {
         InventoryManager.AddedItem += ExecuteEvent;
         InventoryManager.AddedItem += Paper1Enable;
-        InventoryManager.AddedItem += ExecuteAllPages;
     }
     private void OnDisable()
     {
         InventoryManager.AddedItem -= ExecuteEvent;
         InventoryManager.AddedItem -= Paper1Enable;
-        InventoryManager.AddedItem -= ExecuteAllPages;
     }
     void Awake()
     {
@@ -33,10 +33,13 @@ public class PaperManager : MonoBehaviour
         if (!reference.ContainsKey(playing) || (reference[playing] == null) || !reference[playing].gameObject.activeSelf) return;
         reference[playing].Play();
     }
-    public void ExecuteAllPages(object sender, InventoryManager.AllItems e)
+    public void ExecuteAllPages()
     {
-        if (!AntonioManager.IsPage(e)) return;
-        if (AntonioManager.CheckPapers() >= 8) Debug.Log("collected all pages");
+        if (AntonioManager.CheckPapers() >= 8 && !triggeredFinal)
+        {
+            if (Complete != null) Complete.Play();
+            triggeredFinal = true;
+        }
     }
     public void Paper1Enable(object sender, InventoryManager.AllItems e)
     {
@@ -47,6 +50,7 @@ public class PaperManager : MonoBehaviour
             foreach (Transform child in EnemyStore.transform)
                 child.gameObject.SetActive(true);
         }
+        WarpManager.Clear();
     }
     public void ExecuteEvent(object sender, InventoryManager.AllItems e)
     {

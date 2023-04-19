@@ -47,7 +47,8 @@ public class ScenesManager : MonoBehaviour
         Hallway,
         Classroom,
         AntonioHome,
-        TrainStation
+        TrainStation,
+        DormRoom
     }
 
     // loads a scene

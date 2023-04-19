@@ -8,6 +8,7 @@ public class EntityManager : MonoBehaviour
     private static bool _pause = false;
     private static int numPauses = 0;
     private static EntityManager Instance;
+    public static EventHandler PlayerDead;
 
     public enum AllStates
     {
@@ -155,6 +156,7 @@ public class EntityManager : MonoBehaviour
     public static void PlayerDied()
     {
         LevelManager.TriggerPlayerDeath();
+        if (PlayerDead != null) PlayerDead(null, EventArgs.Empty);
     }
 
     public static void EnableState(AllStates state)
