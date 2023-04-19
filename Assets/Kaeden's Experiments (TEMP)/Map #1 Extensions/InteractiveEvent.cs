@@ -1,0 +1,137 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+public class InteractiveEvent : OutlineObject
+{
+    // public variables
+    public bool pauseOnInteract = true;
+    public InteractiveText interactiveText;
+    public string normalAudio;
+    public bool highlightEnds = false;
+    public LockedBehavior lockable;
+
+    // dialogue vars
+    private InteractiveUIController UI;
+    private bool triggered = false;
+    public UnityEvent m_MyEvent;
+
+    new protected void Start()
+    {
+        base.Start();
+
+        UI = FindObjectOfType<InteractiveUIController>();
+
+        interactiveText.SetText( GetText( interactiveText.GetID() ) );
+
+        if(lockable.isLocked)
+        {
+            lockable.SetText(GetText(lockable.GetTextID()));
+        }
+    }
+
+    protected string[][] GetText(string id)
+    {
+        return InteractiveTextDatabase.GetText(id);
+    }
+
+    new protected void OnTriggerEnter2D(Collider2D collider)
+    {
+        if(OutlineEnabled())
+            base.OnTriggerEnter2D(collider);
+    }
+
+    new protected void Update()
+    {
+        base.Update();
+        
+        if(IsTriggered())
+        {
+            
+            TriggerDialogue();
+
+            if(lockable.IsUnlocked())
+                triggered = true;
+
+        }
+
+        if(triggered && !UIActive())
+        {
+            if (m_MyEvent != null) m_MyEvent.Invoke();
+            ActivateBehaviors();
+            triggered = false;
+        }
+        
+    }
+
+    protected virtual void ActivateBehaviors()
+    {
+        if(lockable.IsUnlocked())
+        {
+            SoundEffectManager.PlayAudio(normalAudio);
+        }
+        else
+        {            
+            lockable.PlayAudio();
+        }
+    }
+
+
+    protected void TriggerDialogue()
+    {
+        if(lockable.IsUnlocked())
+        {
+            TriggerDialogue(interactiveText);
+
+        }
+        else
+        {
+            TriggerDialogue(lockable.GetInteractiveText());
+            lockable.PlayAudio();
+        }
+
+        if(!OutlineEnabled())
+            DisableOutline();
+    }
+
+    protected void TriggerDialogue(InteractiveText txt)
+    {
+        if(txt.IsEmpty()) return;
+
+        // don't trigger if dialogue is currently active
+        if(UI.IsActive()) return;
+
+        int index = UIManager.GetInteractiveIndex(txt.GetID());
+
+        if(txt.OutOfBounds(index)) return;
+
+        // pause now if I've made it this far
+        UI.StartInteractive(txt.GetUnit(index), pauseOnInteract);
+
+        index = txt.CalcNextIndex(index);
+
+        UIManager.SetInteractiveIndex(txt.GetID(), index);
+    }
+
+    bool OutlineEnabled()
+    {
+        if(interactiveText.IsEmpty()) return true;
+
+        int index = UIManager.GetInteractiveIndex(interactiveText.GetID());
+
+        return !highlightEnds || index < interactiveText.Length() || !lockable.IsUnlocked();
+    }
+
+    protected bool IsTriggered()
+    {
+        return IsPlayerNear() && InputManager.InteractKeyDown();
+    }
+
+    protected bool UIActive()
+    {
+        if(UI == null) return false;
+
+        return UI.IsActive();
+    }
+}

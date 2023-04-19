@@ -40,7 +40,10 @@ public class InventoryManager : MonoBehaviour
         City_Paper6,
         City_Paper7,
         City_Paper8,
-        Bedroom_Revealed_Safe
+        Bedroom_Revealed_Safe,
+        City_USB,
+        City_Coin,
+        City_Cabinet_USB
     }
 
     private static AllItems[] intangibles =
@@ -66,7 +69,7 @@ public class InventoryManager : MonoBehaviour
 
     public static List<AllItems> _inventoryItems = new List<AllItems>();  // our inventory items
     public static List<AllItems> _usedItems = new List<AllItems>();  // our inventory items
-       
+    public static EventHandler<AllItems> AddedItem;
     // add item to current inventory
     public static void AddItem(AllItems item)
     {
@@ -82,6 +85,7 @@ public class InventoryManager : MonoBehaviour
             // debug statement for figuring out any issues
             Debug.Log("added " + item.ToString() + " to inventory");
             // Debug.Log("added " + item.ToString() + " to inventory, current inventory size is now " + _inventoryItems.Count);
+            if (AddedItem != null) AddedItem(null, item);
         }
     }
 

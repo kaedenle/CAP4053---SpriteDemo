@@ -43,14 +43,19 @@ public class TutorialCutsceneManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Awake()
+    void OnEnable()
     {
         UIManager.DisableHealthUI();
         WeaponUI.DisableWeaponUI();
         NPCDialogue.Talked += Talked;
         Item.PickedUp += PickedUp;
         PriorityDrops.PickedUp += PickedUp;
-        PlayerPrefs.SetInt("In here!", 1);
+    }
+    void OnDisable()
+    {
+        PriorityDrops.PickedUp -= PickedUp;
+        Item.PickedUp -= PickedUp;
+        NPCDialogue.Talked -= Talked;
     }
     private void Start()
     {
@@ -63,6 +68,7 @@ public class TutorialCutsceneManager : MonoBehaviour
         subject = GameObject.Find("Conscious");
         dialouge = subject.GetComponent<NPCDialogue>();
         llf = LevelLoaderBlackScreen.GetComponent<LevelLoaderFinish>();
+        PlayerPrefs.SetInt("In here!", 1);
     }
     public void SetDialouge(NPCReport report)
     {

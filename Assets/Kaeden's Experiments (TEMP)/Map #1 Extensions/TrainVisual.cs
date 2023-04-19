@@ -47,6 +47,6 @@ public class TrainVisual : MonoBehaviour
                 gameObject.transform.position = new Vector3(StartPos, gameObject.transform.position.y, gameObject.transform.position.z);
             }
         }
-        if(Triggered) PlayTrain();
+        if(Triggered && Time.timeScale == 1f) PlayTrain();
     }
 }

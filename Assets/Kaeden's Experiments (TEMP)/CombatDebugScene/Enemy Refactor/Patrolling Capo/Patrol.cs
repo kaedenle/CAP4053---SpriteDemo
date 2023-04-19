@@ -35,7 +35,8 @@ public class Patrol : MonoBehaviour
     private bool trigger = false;
     private Animator anim;
     //0 = up; 1 = right; 2 = down; 3 = left
-    private int direction;
+    [HideInInspector]
+    public int direction;
     private CapoScript myScript;
 
     public GameObject[] points;
@@ -63,6 +64,7 @@ public class Patrol : MonoBehaviour
         initFlag = true;
         agent.speed = WalkSpeed;
     }
+    
     private float Round2Digits(float num)
     {
         return Mathf.Round(num * 10.0f) * 0.1f;
@@ -174,7 +176,7 @@ public class Patrol : MonoBehaviour
             {
                 if (agent.enabled)
                 {
-                    agent.CalculatePath(target.position, path);
+                    agent.CalculatePath(new Vector2(target.position.x, target.position.y), path);
                     if (path.status == NavMeshPathStatus.PathComplete && !attacking)
                     {
                         anim.SetFloat("movement", 2);
@@ -208,7 +210,7 @@ public class Patrol : MonoBehaviour
         bool fov = FOVCheck();
         if(fov)
         {
-            agent.CalculatePath(target.position, path);
+            agent.CalculatePath(new Vector2(target.position.x, target.position.y), path);
             if (path.status == NavMeshPathStatus.PathComplete)
             {
                 trigger = true;
