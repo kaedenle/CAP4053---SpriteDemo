@@ -28,6 +28,10 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
     public EnemyStats enemyStats;
     private EnemyStats.SurpriseReactionType currentSurpriseReaction; 
     public Vector3 expressionOffset;
+    private float hurtMemory = 1.0F;
+
+    // private trackers
+    private float lastDamageTaken = -1e5F;
     
 
     /* Awake, Start, Update */
@@ -168,6 +172,11 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
         return movementController.InRangeOfPlayer();
     }
 
+    public virtual bool BeingAttacked()
+    {
+        return Time.time - lastDamageTaken <= hurtMemory;
+    }
+
     // the enemy doesn't know how to continue chasing
     // either the enemy has reached the last known location of the player
     // OR the enemy hasn't seen the player for <memory> amount of time
@@ -207,10 +216,12 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
 
     /* IDamagable Functions */
     // deals with knockback
-    public void damage(AttackData ad){
+    public void damage(AttackData ad)
+    {
         if(body == null)
             return;
 
+        lastDamageTaken = Time.time;
         body.AddForce(ad.knockback, ForceMode2D.Impulse);
     }
 
