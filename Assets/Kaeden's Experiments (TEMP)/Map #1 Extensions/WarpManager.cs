@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
 public class WarpManager : MonoBehaviour
 {
     public static int WarpNumber = -1;
     private GameObject player;
+    public bool KeepPos;
     public GameObject[] warps;
     private bool check = false;
     private GameObject EnemyStore;
@@ -25,13 +27,14 @@ public class WarpManager : MonoBehaviour
         {
             CapoScript myScript = child.gameObject.GetComponent<CapoScript>();
             if (myScript == null || !child.gameObject.activeSelf) continue;
-            EnemyList[SceneManager.GetActiveScene().name].Add(new EnemyStore(child.gameObject, child.gameObject, child.gameObject.transform.position, true, child.gameObject.GetComponent<HealthTracker>().healthSystem.getHealth(), myScript.SpawnID));
+            EnemyStore temp = new EnemyStore(child.gameObject, child.gameObject, child.gameObject.transform.position, !KeepPos, child.gameObject.GetComponent<HealthTracker>().healthSystem.getHealth(), myScript.SpawnID);
+            EnemyList[SceneManager.GetActiveScene().name].Add(temp);
         }
     }
     public void ReloadEnemies(Scene scene, LoadSceneMode mode)
     {
         if (!EnemyList.ContainsKey(SceneManager.GetActiveScene().name)) return;
-        PatrolEnemyManager.Awaken();
+        Map1ExtensionManager.Awaken();
         EnemyStore = GameObject.Find("-- Enemies --");
         if (EnemyStore == null) return;
         foreach (EnemyStore es in EnemyList[SceneManager.GetActiveScene().name])
@@ -44,6 +47,7 @@ public class WarpManager : MonoBehaviour
                 if (myScript.SpawnID == es.ID)
                 {
                     SetValues(child.gameObject, es);
+                    child.GetComponent<NavMeshAgent>().isStopped = true;
                     break;
                 }
             }

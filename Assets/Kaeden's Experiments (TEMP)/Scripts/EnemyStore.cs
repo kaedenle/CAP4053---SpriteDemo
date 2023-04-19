@@ -12,7 +12,6 @@ public class EnemyStore
     public GameObject entityType;
     private HealthTracker ht;
     public int ID;
-
     public EnemyStore(GameObject entity, GameObject entityType,  Vector3 pos, bool ResetPos, int Health, int ID)
     {
         this.entity = entity;
