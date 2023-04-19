@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour
     private static bool _interact, _attack, _move, _ui, _equip, _swap;
 
     // All input keys for our game
+    public const int NUMBER_OF_KEYS = 11;
     public enum Keys
     {
         Interact,
@@ -405,6 +406,10 @@ public class InputManager : MonoBehaviour
         {KeyCode.Mouse1, "Right Click"}
     };
 
+    public static string GetKeyString(Keys key)
+    {
+        return validCodeToString[keycodes[key].GetPrimary()];
+    }
 }
 
 public class KeyPair

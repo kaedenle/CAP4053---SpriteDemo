@@ -121,7 +121,7 @@ public class InteractiveUIController : MonoBehaviour
             nameField.text = name;
         }
 
-        string sentence = sentences.Dequeue();
+        string sentence = ParseSentence(sentences.Dequeue());
         textField.text = sentence;
         // Debug.Log("sentence: " + sentence);
     }
@@ -170,5 +170,23 @@ public class InteractiveUIController : MonoBehaviour
                 nameBox.SetActive(false);
             }
         }
+    }
+
+    // try to replace any keyphrases
+    string ParseSentence(string sentence)
+    {
+        for(int k = 0; k < InputManager.NUMBER_OF_KEYS; k++)
+        {
+            InputManager.Keys key = (InputManager.Keys) k;
+            string pattern = "%" + key.ToString() + "%";
+            // Debug.Log("checking for pattern: " + pattern);
+
+            if(sentence.Contains(pattern))
+            {
+                sentence = sentence.Replace(pattern, InputManager.GetKeyString(key));
+            }
+        }
+
+        return sentence;
     }
 }

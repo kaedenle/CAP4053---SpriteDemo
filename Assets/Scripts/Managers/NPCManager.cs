@@ -32,7 +32,7 @@ public class NPCManager : MonoBehaviour
         "Mother",
         "Placeholder",
         "Skelly",
-        "You",
+        "Conscience",
         "Dog",
         "Kaleigh Blanchard",
         "Antonio Velucci",
