@@ -16,6 +16,7 @@ public class MovementController : MonoBehaviour, IScriptable
     [SerializeField] public MovementStats.FOVType currentFOVType;
     public bool LockFOVToY;
     public bool defaultLooksLeft;
+    public bool startFlipped = false;
 
     // private internal metrics
     private Vector3 looking;
@@ -42,6 +43,7 @@ public class MovementController : MonoBehaviour, IScriptable
     {
         lastSeen = transform.position; // default last seen is current position
         lastSeenTime = Time.time;
+        flipLook ^= startFlipped;
         LookingForDirection();
         target = GeneralFunctions.GetPlayer().transform;
 

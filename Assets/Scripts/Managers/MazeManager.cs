@@ -168,6 +168,11 @@ public class MazeManager : MonoBehaviour
             decorations[i].SetActive(dec_state[i]);
         }
 
+        // by default, turn off specials
+        foreach(GameObject obj in specials)
+            if(obj != null)
+                obj.SetActive(false);
+
         // set up hints
         hints.SetHints(cur);
 
