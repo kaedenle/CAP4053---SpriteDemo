@@ -24,6 +24,7 @@ public class CapoScript : MonoBehaviour, IUnique
     }
     public bool isAttacking()
     {
+        agent.isStopped = true;
         return anim.GetCurrentAnimatorStateInfo(0).IsName("Attack");
     }
     public void onDeath()
@@ -57,7 +58,9 @@ public class CapoScript : MonoBehaviour, IUnique
     }
     public void HitStunAni()
     {
+        agent.SetDestination(new Vector3(transform.position.x, transform.position.y, transform.position.z));
         agent.isStopped = true;
+        agent.velocity = Vector3.zero;
         am.DestroyPlay();
         anim.Play("Hurt");
         anim.SetBool("Hitstun", true);
