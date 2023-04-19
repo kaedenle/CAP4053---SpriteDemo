@@ -82,6 +82,8 @@ public class KeybindingsMenuManager : MonoBehaviour
     {
         foreach(KeybindingButtonInfo info in buttonInformation)
         {
+            info.InitButton();   // setup the info given the key gameobject (section)
+
             if(!menuKeys.ContainsKey(info.key)) continue;
 
             KeyPair bindings = menuKeys[info.key];
@@ -101,7 +103,13 @@ public class KeybindingsMenuManager : MonoBehaviour
     }
 
     public void AttemptKeyBind(KeyCode key)
-    {
+    { 
+        // get the piped keycode
+        key = InputManager.GetTrueKey(key);
+
+        // check that this is a valid key to even try to bind
+        if(!InputManager.validCodeToString.ContainsKey(key)) return;
+
         Debug.Log("attempting keybind with key " + key);
 
         if(UpdateKeyWithCode(key, bind))
@@ -281,68 +289,52 @@ public class KeybindingsMenuManager : MonoBehaviour
 
     public static string KeyCodeToText(KeyCode code)
     {
-        if(codeToString.ContainsKey(code)) return codeToString[code];
+        if(InputManager.validCodeToString.ContainsKey(code)) return InputManager.validCodeToString[code];
         return code.ToString();
     }
-
-    private static Dictionary<KeyCode, string> codeToString = new Dictionary<KeyCode, string> ()
-    {
-        {KeyCode.UpArrow, "↑"},
-        {KeyCode.DownArrow, "↓"},
-        {KeyCode.LeftArrow, "←"},
-        {KeyCode.RightArrow, "→"},
-        // {KeyCode.Alpha0, "0"},
-        // {KeyCode.Alpha1, "1"},
-        // {KeyCode.Alpha2, "2"},
-        // {KeyCode.Alpha3, "3"},
-        // {KeyCode.Alpha4, "4"},
-        // {KeyCode.Alpha5, "5"},
-        // {KeyCode.Alpha6, "6"},
-        // {KeyCode.Alpha7, "7"},
-        // {KeyCode.Alpha8, "8"},
-        // {KeyCode.Alpha9, "9"},
-        {KeyCode.Mouse0, "L-Click"},
-        {KeyCode.Mouse1, "R-Click"},
-        {KeyCode.Escape, "Esc"},
-        {KeyCode.LeftShift, "Lshift"},
-        {KeyCode.RightShift, "Rshift"}
-    };
 }
 
 [System.Serializable]
 public class KeybindingButtonInfo
 {
     public InputManager.Keys key;
-    public GameObject primaryKeyTextObject;
-    public GameObject secondaryKeyTextObject;
+    public GameObject ParentSection;
+    private GameObject primary, secondary;
+    private TMP_Text primaryText, secondaryText;
 
-    private TMP_Text primaryText;
-    private TMP_Text secondaryText;
+    public void InitButton()
+    {
+        if(ParentSection == null)
+        {
+            Debug.LogError("Key " + key.ToString() + " had no section attached in the keybindings menu");
+            return;
+        }
+
+        primary = GeneralFunctions.GetChildByName(ParentSection, "Primary");
+        secondary = GeneralFunctions.GetChildByName(ParentSection, "Secondary");
+
+        if(primary == null || secondary == null)
+        {
+            Debug.LogError("Key " + key.ToString() + " could not find primary or secondary child gameobject");
+            return;
+        }
+
+        primaryText = primary.GetComponentInChildren<TMP_Text>();
+        secondaryText = secondary.GetComponentInChildren<TMP_Text>();
+    }
 
     public TMP_Text GetPrimaryText()
     {
-        if(primaryKeyTextObject == null) return null;
-        if(primaryText == null)
-        {
-            primaryText = primaryKeyTextObject.GetComponent<TMP_Text>();
-        }
-
         return primaryText;
     }
 
     public TMP_Text GetSecondaryText()
     {
-        if(secondaryKeyTextObject == null) return null;
-        if(secondaryText == null)
-        {
-            secondaryText = secondaryKeyTextObject.GetComponent<TMP_Text>();
-        }
-
         return secondaryText;
     }
 
     public GameObject GetSecondaryObject()
     {
-        return secondaryKeyTextObject;
+        return secondary;
     }
 }

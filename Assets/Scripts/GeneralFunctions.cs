@@ -5,6 +5,11 @@ using UnityEngine;
 public class GeneralFunctions
 {
     private static bool DEBUG = true;
+    public static bool IsDebug()
+    {
+        return DEBUG;
+    }
+
     public static GameObject GetPlayer()
     {
         string target = "Player";
@@ -24,8 +29,14 @@ public class GeneralFunctions
         return player;
     }
 
-    public static bool IsDebug()
+    // gets an immediate child object with name or returns null
+    public static GameObject GetChildByName(GameObject parent, string name)
     {
-        return DEBUG;
+        if(parent == null) return null;
+
+        foreach(Transform child in parent.transform)
+            if(child.gameObject.name.Equals(name))
+                return child.gameObject;
+        return null;
     }
 }
