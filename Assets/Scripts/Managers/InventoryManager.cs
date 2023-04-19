@@ -44,7 +44,10 @@ public class InventoryManager : MonoBehaviour
         City_USB,
         City_Coin,
         City_Cabinet_USB,
-        Last_Note
+        Letter1,
+        Letter2,
+        Letter3,
+        Letter4
     }
 
     private static AllItems[] intangibles =

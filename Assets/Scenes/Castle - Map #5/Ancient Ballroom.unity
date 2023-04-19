@@ -4166,12 +4166,12 @@ MonoBehaviour:
   normalAudio: 
   highlightEnds: 0
   lockable:
-    isLocked: 0
+    isLocked: 1
     lockedInteractiveText:
-      textID: 
+      textID: locked_mind_door
       loopLast: 1
     lockedAudio: 
-    requiredItems: 
+    requiredItems: 25000000260000002700000028000000
 --- !u!61 &81135603
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4544,8 +4544,8 @@ GameObject:
   m_Component:
   - component: {fileID: 92268198}
   - component: {fileID: 92268197}
-  - component: {fileID: 92268196}
   - component: {fileID: 92268195}
+  - component: {fileID: 92268199}
   m_Layer: 0
   m_Name: Note1
   m_TagString: Untagged
@@ -4569,29 +4569,6 @@ CircleCollider2D:
   m_Offset: {x: -0.24414076, y: -0.10305319}
   serializedVersion: 2
   m_Radius: 0.3773454
---- !u!114 &92268196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 92268194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c3b8c955297b3f48b88b1c75e13ea8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineThickness: 0.5
-  dialogue: {fileID: 11400000, guid: d72d4b7df20c42b43a8c390af783048d, type: 2}
-  normalAudio:
-    audioFile: {fileID: 0}
-  highlightEnds: 1
-  lockable:
-    isLocked: 0
-    requiredItems: 
-    lockedText: {fileID: 0}
-    lockedAudio:
-      audioFile: {fileID: 0}
 --- !u!212 &92268197
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4660,6 +4637,34 @@ Transform:
   m_Father: {fileID: 768290633}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 76.53}
+--- !u!114 &92268199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92268194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineThickness: 0.5
+  pauseOnInteract: 1
+  interactiveText:
+    textID: letter1
+    loopLast: 1
+  normalAudio: 
+  highlightEnds: 0
+  lockable:
+    isLocked: 0
+    lockedInteractiveText:
+      textID: 
+      loopLast: 1
+    lockedAudio: 
+    requiredItems: 
+  _itemType: 37
+  repeatable: 1
 --- !u!1 &92307767
 GameObject:
   m_ObjectHideFlags: 0
@@ -4922,8 +4927,8 @@ GameObject:
   m_Component:
   - component: {fileID: 97176094}
   - component: {fileID: 97176097}
-  - component: {fileID: 97176096}
   - component: {fileID: 97176095}
+  - component: {fileID: 97176098}
   m_Layer: 0
   m_Name: Note3
   m_TagString: Untagged
@@ -4963,29 +4968,6 @@ CircleCollider2D:
   m_Offset: {x: -0.1703943, y: -0.15024519}
   serializedVersion: 2
   m_Radius: 0.54277575
---- !u!114 &97176096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 97176093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c3b8c955297b3f48b88b1c75e13ea8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineThickness: 0.5
-  dialogue: {fileID: 11400000, guid: 3c1d2f831ea3dff44b078ce575b93f51, type: 2}
-  normalAudio:
-    audioFile: {fileID: 0}
-  highlightEnds: 1
-  lockable:
-    isLocked: 0
-    requiredItems: 
-    lockedText: {fileID: 0}
-    lockedAudio:
-      audioFile: {fileID: 0}
 --- !u!212 &97176097
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5038,6 +5020,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &97176098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97176093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineThickness: 0.5
+  pauseOnInteract: 1
+  interactiveText:
+    textID: letter3
+    loopLast: 1
+  normalAudio: 
+  highlightEnds: 0
+  lockable:
+    isLocked: 0
+    lockedInteractiveText:
+      textID: 
+      loopLast: 1
+    lockedAudio: 
+    requiredItems: 
+  _itemType: 39
+  repeatable: 1
 --- !u!1 &98119621
 GameObject:
   m_ObjectHideFlags: 0
@@ -16680,8 +16690,8 @@ GameObject:
   m_Component:
   - component: {fileID: 436219393}
   - component: {fileID: 436219392}
-  - component: {fileID: 436219391}
   - component: {fileID: 436219390}
+  - component: {fileID: 436219394}
   m_Layer: 0
   m_Name: Note2
   m_TagString: Untagged
@@ -16705,29 +16715,6 @@ CircleCollider2D:
   m_Offset: {x: -0.25634083, y: -0.04875794}
   serializedVersion: 2
   m_Radius: 0.38699514
---- !u!114 &436219391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 436219389}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c3b8c955297b3f48b88b1c75e13ea8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineThickness: 0.5
-  dialogue: {fileID: 11400000, guid: 144d6d8d70d248f469cdb6557365f82f, type: 2}
-  normalAudio:
-    audioFile: {fileID: 0}
-  highlightEnds: 1
-  lockable:
-    isLocked: 0
-    requiredItems: 
-    lockedText: {fileID: 0}
-    lockedAudio:
-      audioFile: {fileID: 0}
 --- !u!212 &436219392
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16796,6 +16783,34 @@ Transform:
   m_Father: {fileID: 768290633}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 88.168}
+--- !u!114 &436219394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436219389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineThickness: 0.5
+  pauseOnInteract: 1
+  interactiveText:
+    textID: letter2
+    loopLast: 1
+  normalAudio: 
+  highlightEnds: 0
+  lockable:
+    isLocked: 0
+    lockedInteractiveText:
+      textID: 
+      loopLast: 1
+    lockedAudio: 
+    requiredItems: 
+  _itemType: 38
+  repeatable: 1
 --- !u!1 &437333170
 GameObject:
   m_ObjectHideFlags: 0
@@ -19733,8 +19748,8 @@ GameObject:
   m_Component:
   - component: {fileID: 501128098}
   - component: {fileID: 501128101}
-  - component: {fileID: 501128100}
   - component: {fileID: 501128099}
+  - component: {fileID: 501128102}
   m_Layer: 0
   m_Name: Note4
   m_TagString: Untagged
@@ -19774,29 +19789,6 @@ CircleCollider2D:
   m_Offset: {x: -0.11036746, y: 0.22671846}
   serializedVersion: 2
   m_Radius: 0.48194644
---- !u!114 &501128100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 501128097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c3b8c955297b3f48b88b1c75e13ea8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineThickness: 0.5
-  dialogue: {fileID: 11400000, guid: a3dc26eea7c1a4343abb02cb9dc59c1f, type: 2}
-  normalAudio:
-    audioFile: {fileID: 0}
-  highlightEnds: 1
-  lockable:
-    isLocked: 0
-    requiredItems: 
-    lockedText: {fileID: 0}
-    lockedAudio:
-      audioFile: {fileID: 0}
 --- !u!212 &501128101
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19849,6 +19841,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &501128102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501128097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineThickness: 0.5
+  pauseOnInteract: 1
+  interactiveText:
+    textID: letter4
+    loopLast: 1
+  normalAudio: 
+  highlightEnds: 0
+  lockable:
+    isLocked: 0
+    lockedInteractiveText:
+      textID: 
+      loopLast: 1
+    lockedAudio: 
+    requiredItems: 
+  _itemType: 40
+  repeatable: 1
 --- !u!1 &501691002
 GameObject:
   m_ObjectHideFlags: 0
