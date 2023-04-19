@@ -59,10 +59,4 @@ public class Map1ExtensionManager : MonoBehaviour
         SpawnItems();
         AntispawnItems();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
