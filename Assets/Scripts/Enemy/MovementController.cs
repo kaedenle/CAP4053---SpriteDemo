@@ -225,6 +225,12 @@ public class MovementController : MonoBehaviour, IScriptable
         currentFOVType = visionType;
     }
 
+    public void TurnAround()
+    {
+        flipLook = !flipLook;
+        transform.localScale = new Vector3(- transform.localScale.x, transform.localScale.y, transform.localScale.z);
+    }
+
     /*
     ========================== Chase =========================
     */
