@@ -77,6 +77,11 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
         movementController.Chase();
     }
 
+    public virtual void ForceStop()
+    {
+        movementController.StopMoving();
+    }
+
     public virtual void ExpressSurprise(BasicEnemy.FSM stateMachine)
     {
         // have an exclamation mark pop up over enemy head & make surprise noise
@@ -99,6 +104,15 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
         movementController.Attack();
 
         yield return new WaitUntil(() => movementController.enabled);
+        
+        // make sure shooting isn't occurring
+        MoveAndShootController shooter;
+        if((shooter = GetComponent<MoveAndShootController>()) != null)
+        {
+            yield return new WaitUntil(() => !shooter.shooting);
+        }
+        
+
         stateMachine.TransitionReady = true;
     }
 

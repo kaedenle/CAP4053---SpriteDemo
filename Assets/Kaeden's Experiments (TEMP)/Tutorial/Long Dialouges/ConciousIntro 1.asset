@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16901d0883d89f54483208f2dee3729b, type: 3}
   m_Name: ConciousIntro 1
   m_EditorClassIdentifier: 
-  conversation_id: 
+  conversation_id: start_of_dialogue
   conversations:
   - dialogue:
     - speaker: 7
@@ -40,5 +40,8 @@ MonoBehaviour:
     - speaker: 7
       words: Good. Now, let's begin.
     - speaker: 7
-      words: Let's start by equipping your weapon using "Left Shift" or "Spacebar".
+      words: Let's start by equipping your weapon using %Equip% or %Swap%.
+  - dialogue:
+    - speaker: 7
+      words: Let's start by equipping your weapon using '%Equip%' or '%Swap%'.
   loopLast: 1

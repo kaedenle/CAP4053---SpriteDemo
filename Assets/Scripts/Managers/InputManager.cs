@@ -10,6 +10,8 @@ public class InputManager : MonoBehaviour
     // _ui holds whether the user can interact w/ any UI components
     private static bool _interact, _attack, _move, _ui, _equip, _swap;
 
+    // All input keys for our game
+    public const int NUMBER_OF_KEYS = 11;
     public enum Keys
     {
         Interact,
@@ -32,11 +34,11 @@ public class InputManager : MonoBehaviour
     private static Dictionary<Keys, KeyPair> defaultKeyCodes = new Dictionary<Keys, KeyPair>
     {
         {Keys.Interact, new KeyPair(KeyCode.F, KeyCode.E)},
-        {Keys.Hit1, new KeyPair(KeyCode.Mouse0, KeyCode.None)},
-        {Keys.Hit2, new KeyPair(KeyCode.Mouse1, KeyCode.None)},
+        {Keys.Hit1, new KeyPair(KeyCode.Mouse0, KeyCode.Keypad1)},
+        {Keys.Hit2, new KeyPair(KeyCode.Mouse1, KeyCode.Keypad2)},
         {Keys.Pause, new KeyPair(KeyCode.Escape, KeyCode.None)},
         {Keys.Equip, new KeyPair(KeyCode.LeftShift, KeyCode.None)},
-        {Keys.Swap, new KeyPair(KeyCode.Space, KeyCode.None)},
+        {Keys.Swap, new KeyPair(KeyCode.Space, KeyCode.Keypad3)},
         {Keys.Continue, new KeyPair(KeyCode.Space, KeyCode.None)},
         {Keys.Up, new KeyPair(KeyCode.W, KeyCode.UpArrow)},
         {Keys.Down, new KeyPair(KeyCode.S, KeyCode.DownArrow)},
@@ -44,6 +46,7 @@ public class InputManager : MonoBehaviour
         {Keys.Right, new KeyPair(KeyCode.D, KeyCode.RightArrow)}
     };
 
+    // makes sure there are keys setup
     void Awake()
     {
         if(keycodes == null)
@@ -52,6 +55,7 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    // sets the keycodes at the start of the game
     void SetKeyCodes()
     {
         if(!KeyCodesExist())
@@ -60,12 +64,14 @@ public class InputManager : MonoBehaviour
             LoadKeyCodes();
     }
 
+    // resets the keys bindings to the default bindings
     public static void RevertToDefault()
     {
         keycodes = new Dictionary<Keys, KeyPair>(defaultKeyCodes);
         SaveKeyCodes();
     }
 
+    // saves the current key bindings
     public static void SaveKeyCodes()
     {
         foreach (KeyValuePair<Keys, KeyPair> entry in keycodes)
@@ -80,6 +86,7 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    // loads the saved key bindings
     public static void LoadKeyCodes()
     {
         keycodes = new Dictionary<Keys, KeyPair>(defaultKeyCodes);
@@ -101,6 +108,7 @@ public class InputManager : MonoBehaviour
         keycodes = loadedKeyCodes;
     }
 
+    // checks if the key bindings are already saved
     public static bool KeyCodesExist()
     {
         // doing the safest check
@@ -115,6 +123,8 @@ public class InputManager : MonoBehaviour
         return true;
     }
 
+    // TODO: replace this method with something that checks the bindings
+    //       alternatively, lock the Up, Down, Left, Right bindings
     public static float GetAxis(string axisName)
     {
         if(!_move) return 0;
@@ -122,23 +132,33 @@ public class InputManager : MonoBehaviour
         return Input.GetAxis(axisName);
     }
 
+    // returns the keycode pair assciated with a Key
     public static KeyPair GetKeyCode(Keys key)
     {
         return keycodes.GetValueOrDefault(key, new KeyPair(KeyCode.None, KeyCode.None));
     }
 
+    // returns whether a (true) keycode is pressed
     private static bool GetKeyDown(KeyCode code)
     {
         // TODO: deal with exceptions
-        
+        code = GetTrueKey(code); 
 
         return Input.GetKeyDown(code);
+    }
+
+    private static bool Pressed(KeyCode keycode)
+    {
+        foreach(KeyCode code in GetKeysToCheck(keycode))
+            if(GetKeyDown(code))
+                return true;
+        return false;
     }
 
     private static bool Pressed(Keys key)
     {
         KeyPair pair = GetKeyCode(key);
-        return GetKeyDown(pair.GetPrimary()) || GetKeyDown(pair.GetSecondary());
+        return Pressed(pair.GetPrimary()) || Pressed(pair.GetSecondary());
     }
 
     public static bool ContinueKeyPressed()
@@ -232,6 +252,163 @@ public class InputManager : MonoBehaviour
     {
         keycodes = new Dictionary<Keys, KeyPair>(bind);
         SaveKeyCodes();
+    }
+
+    /*
+    ============= Key Piping =============
+    */
+    // all keycodes that need to be piped into a different code
+    private static Dictionary<KeyCode, KeyCode> falseCodes = new Dictionary<KeyCode, KeyCode>
+    {
+        {KeyCode.Alpha0, KeyCode.Keypad0},
+        {KeyCode.Alpha1, KeyCode.Keypad1},
+        {KeyCode.Alpha2, KeyCode.Keypad2},
+        {KeyCode.Alpha3, KeyCode.Keypad3},
+        {KeyCode.Alpha4, KeyCode.Keypad4},
+        {KeyCode.Alpha5, KeyCode.Keypad5},
+        {KeyCode.Alpha6, KeyCode.Keypad6},
+        {KeyCode.Alpha7, KeyCode.Keypad7},
+        {KeyCode.Alpha8, KeyCode.Keypad8},
+        {KeyCode.Alpha9, KeyCode.Keypad9},
+        {KeyCode.KeypadPeriod, KeyCode.Period},
+        {KeyCode.KeypadDivide, KeyCode.Slash},
+        {KeyCode.KeypadMultiply, KeyCode.Asterisk},
+        {KeyCode.KeypadMinus, KeyCode.Minus},
+        {KeyCode.KeypadPlus, KeyCode.Plus},
+        {KeyCode.KeypadEnter, KeyCode.Return},
+        {KeyCode.KeypadEquals, KeyCode.Equals},
+        {KeyCode.RightShift, KeyCode.LeftShift},
+        {KeyCode.RightControl, KeyCode.LeftControl},
+        {KeyCode.RightAlt, KeyCode.LeftAlt}
+    };
+
+    public static KeyCode GetTrueKey(KeyCode code)
+    {
+        if(falseCodes.ContainsKey(code)) return falseCodes[code];
+        return code;
+    }
+
+    public static List<KeyCode> GetKeysToCheck(KeyCode code)
+    {
+        List<KeyCode> ret = new List<KeyCode> {code};
+
+        foreach(KeyValuePair<KeyCode, KeyCode> entry in falseCodes)
+            if(entry.Value == code)
+                ret.Add(entry.Key);
+
+        return ret;
+    }
+
+    public static Dictionary<KeyCode, string> validCodeToString {get; private set;} = new Dictionary<KeyCode, string> ()
+    {
+        {KeyCode.Backspace, "Backspace"},
+        {KeyCode.Delete, "Delete"},
+        {KeyCode.Tab, "Tab"},
+        {KeyCode.Clear, "Clear"},
+        {KeyCode.Return, "Enter"},
+        {KeyCode.Escape, "Esc"},
+        {KeyCode.Space, "Space"},
+        {KeyCode.Keypad0, "0"},
+        {KeyCode.Keypad1, "1"},
+        {KeyCode.Keypad2, "2"},
+        {KeyCode.Keypad3, "3"},
+        {KeyCode.Keypad4, "4"},
+        {KeyCode.Keypad5, "5"},
+        {KeyCode.Keypad6, "6"},
+        {KeyCode.Keypad7, "7"},
+        {KeyCode.Keypad8, "8"},
+        {KeyCode.Keypad9, "9"},
+        {KeyCode.UpArrow, "↑"},
+        {KeyCode.DownArrow, "↓"},
+        {KeyCode.RightArrow, "←"},
+        {KeyCode.LeftArrow, "→"},
+        {KeyCode.F1, "F1"},
+        {KeyCode.F2, "F2"},
+        {KeyCode.F3, "F3"},
+        {KeyCode.F4, "F4"},
+        {KeyCode.F5, "F5"},
+        {KeyCode.F6, "F6"},
+        {KeyCode.F7, "F7"},
+        {KeyCode.F8, "F8"},
+        {KeyCode.F9, "F9"},
+        {KeyCode.F10, "F10"},
+        {KeyCode.F11, "F11"},
+        {KeyCode.F12, "F12"},
+        {KeyCode.F13, "F13"},
+        {KeyCode.F14, "F14"},
+        {KeyCode.F15, "F15"},
+        {KeyCode.Exclaim, "!"},
+        {KeyCode.DoubleQuote, "\""},
+        {KeyCode.Hash, "#"},
+        {KeyCode.Dollar, "$"},
+        {KeyCode.Percent, "%"},
+        {KeyCode.Ampersand, "^"},
+        {KeyCode.Quote, ""},
+        {KeyCode.LeftParen, "("},
+        {KeyCode.RightParen, ")"},
+        {KeyCode.Asterisk, "*"},
+        {KeyCode.Plus, "+"},
+        {KeyCode.Comma, ","},
+        {KeyCode.Minus, "-"},
+        {KeyCode.Period, "."},
+        {KeyCode.Slash, "/"},
+        {KeyCode.Colon, ":"},
+        {KeyCode.Semicolon, ";"},
+        {KeyCode.Less, "<"},
+        {KeyCode.Equals, "="},
+        {KeyCode.Greater, ">"},
+        {KeyCode.Question, "?"},
+        {KeyCode.At, "Alt"},
+        {KeyCode.LeftBracket, "["},
+        {KeyCode.Backslash, "\\"},
+        {KeyCode.RightBracket, "]"},
+        {KeyCode.Caret, "^"},
+        {KeyCode.Underscore, "_"},
+        {KeyCode.BackQuote, "`"},
+        {KeyCode.A, "A"},
+        {KeyCode.B, "B"},
+        {KeyCode.C, "C"},
+        {KeyCode.D, "D"},
+        {KeyCode.E, "E"},
+        {KeyCode.F, "F"},
+        {KeyCode.G, "G"},
+        {KeyCode.H, "H"},
+        {KeyCode.I, "I"},
+        {KeyCode.J, "J"},
+        {KeyCode.K, "K"},
+        {KeyCode.L, "L"},
+        {KeyCode.M, "M"},
+        {KeyCode.N, "N"},
+        {KeyCode.O, "O"},
+        {KeyCode.P, "P"},
+        {KeyCode.Q, "Q"},
+        {KeyCode.R, "R"},
+        {KeyCode.S, "S"},
+        {KeyCode.T, "T"},
+        {KeyCode.U, "U"},
+        {KeyCode.V, "V"},
+        {KeyCode.W, "W"},
+        {KeyCode.X, "X"},
+        {KeyCode.Y, "Y"},
+        {KeyCode.Z, "Z"},
+        {KeyCode.LeftCurlyBracket, "{"},
+        {KeyCode.Pipe, "|"},
+        {KeyCode.RightCurlyBracket, "}"},
+        {KeyCode.Tilde, "~"},
+        {KeyCode.Numlock, "Num Lock"},
+        {KeyCode.CapsLock, "Caps Lock"},
+        {KeyCode.ScrollLock, "Scroll Lock"},
+        {KeyCode.RightShift, "Shift"},
+        {KeyCode.LeftShift, "Shift"},
+        {KeyCode.LeftControl, "Ctrl"},
+        {KeyCode.LeftAlt, "Alt"},
+        {KeyCode.Mouse0, "Left Click"},
+        {KeyCode.Mouse1, "Right Click"}
+    };
+
+    public static string GetKeyString(Keys key)
+    {
+        return validCodeToString[keycodes[key].GetPrimary()];
     }
 }
 

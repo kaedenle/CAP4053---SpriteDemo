@@ -154,7 +154,6 @@ GameObject:
   - component: {fileID: 7392912437748552749}
   - component: {fileID: 7392912437748552746}
   - component: {fileID: -5115069217204034093}
-  - component: {fileID: 7392912437748552744}
   - component: {fileID: 7392912437748552745}
   - component: {fileID: 7392912437748552751}
   - component: {fileID: 7392912437748552750}
@@ -167,6 +166,7 @@ GameObject:
   - component: {fileID: 7131361830329380798}
   - component: {fileID: 1802278144901832157}
   - component: {fileID: 6827750318144100080}
+  - component: {fileID: 1998305447}
   m_Layer: 0
   m_Name: v2MeleeEnemy
   m_TagString: Enemy
@@ -182,7 +182,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7392912437748552742}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.20573, y: 5.6468167, z: -1.004119}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4.9771895, y: 4.9771895, z: 4.9771895}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -290,19 +290,6 @@ MonoBehaviour:
   currentFOVType: 2
   LockFOVToY: 0
   defaultLooksLeft: 0
---- !u!114 &7392912437748552744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7392912437748552742}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2debd88c1ebc61e4da4f4349c60484f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shooting: 0
 --- !u!114 &7392912437748552745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,6 +585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initialState: {fileID: 11400000, guid: a12b43347917c414fb31a7bbf6e49bc8, type: 2}
+  displayState: 0
 --- !u!114 &6827750318144100080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -616,3 +604,25 @@ MonoBehaviour:
     memory_time: 5
   expressionOffset: {x: 0, y: 2, z: 0}
   shooting: 0
+--- !u!195 &1998305447
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7392912437748552742}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.1
+  m_Speed: 3.5
+  m_Acceleration: 100
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 0.1
+  m_BaseOffset: 0.2
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 3

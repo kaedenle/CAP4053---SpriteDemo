@@ -13,7 +13,7 @@ namespace BasicEnemy
         public bool TransitionReady {get; set;} = true;
         public bool TimerComplete {get; set;} = true;
 
-        private bool demo_info = true;
+        public bool displayState = false;
         private float time_of_last_state_change = 0;
 
         private void Awake()
@@ -48,7 +48,7 @@ namespace BasicEnemy
 
         private void OnGUI()
         {
-            if(demo_info)
+            if(displayState)
             {
                 string content = currentState != null ? currentState.stateName : "(no current state)";
                 GUILayout.Label($"<color='white'><size=40>{content}</size></color>");

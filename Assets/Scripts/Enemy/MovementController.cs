@@ -24,7 +24,7 @@ public class MovementController : MonoBehaviour, IScriptable
     // level or enemy components
     private EnemyBase enemyController;
     private List<Collider2D> collidersList = new List<Collider2D>();
-    private Transform target;
+    protected Transform target;
     NavMeshAgent agent;
     private NavMeshPath path;
 
@@ -38,7 +38,7 @@ public class MovementController : MonoBehaviour, IScriptable
     /*
     ==================== Setup ======================
     */
-    void Awake()
+    protected void Awake()
     {
         lastSeen = transform.position; // default last seen is current position
         lastSeenTime = Time.time;
@@ -83,7 +83,10 @@ public class MovementController : MonoBehaviour, IScriptable
         this.enabled = flag;
     }
 
-    public void Attack()
+    /*
+    ====================== Attack =====================
+    */
+    public virtual void Attack()
     {
         GetComponent<AttackManager>().InvokeAttack("SlimeAttack");
     }
@@ -223,16 +226,16 @@ public class MovementController : MonoBehaviour, IScriptable
     /*
     ========================== Chase =========================
     */
-    public void MoveTowards()
+    public void MoveTowards(Vector2 target)
     {
         if (agent.enabled)
         {
-            agent.CalculatePath(target.position, path);
+            agent.CalculatePath(target, path);
             if (path.status == NavMeshPathStatus.PathComplete)
             {
                 agent.isStopped = false;
-                agent.SetDestination(new Vector3(target.position.x, target.position.y, transform.position.z));
-                enemyController.MoveAnimation();
+                agent.SetDestination(new Vector3(target.x, target.y, transform.position.z));
+                // enemyController.MoveAnimation();
             }
             else
             {
@@ -242,10 +245,16 @@ public class MovementController : MonoBehaviour, IScriptable
         
     }
 
+    public virtual void StopMoving()
+    {
+        if(agent != null) agent.isStopped = true;
+    }
+
     // chase the last seen position of the player
     public virtual void Chase()
     {
-        transform.position = Vector2.MoveTowards(transform.position, lastSeen, movementConfiguration.speed * Time.deltaTime);
+        MoveTowards(lastSeen);
+        // transform.position = Vector2.MoveTowards(transform.position, lastSeen, movementConfiguration.speed * Time.deltaTime);
     }
 
     public bool InRangeOfPlayer()
