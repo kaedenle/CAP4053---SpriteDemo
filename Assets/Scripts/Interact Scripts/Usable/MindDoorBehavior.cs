@@ -7,13 +7,13 @@ public class MindDoorBehavior : Interactive
     new void Awake()
     {
         base.Awake();
-        outlineThickness = 7.0F;
+        // outlineThickness = 7.0F;
     }
 
     new void Start()
     {
         base.Start();
-        base.GetOutline().SetFloat("_Outline_Thickness", outlineThickness);
+        // base.GetOutline().SetFloat("_Outline_Thickness", outlineThickness);
     }
 
     protected override void ActivateBehaviors()
