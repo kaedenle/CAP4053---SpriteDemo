@@ -278,9 +278,9 @@ public class GameData : MonoBehaviour
         SaveCurrentData(false);
     }
 
-    public void UpdatePath(Stack<Maze> path)
+    public void UpdatePath(Stack<int> path)
     {
-        data.log.mazePath = new Stack<Maze>(path);
+        data.log.mazePath = new Stack<int>(path);
     }
 
     // data classes
@@ -318,7 +318,7 @@ public class GameData : MonoBehaviour
 
         // Castle Level
         public Maze maze;
-        public Stack<Maze> mazePath;
+        public Stack<int> mazePath;
 
         public LogData()
         {
@@ -327,7 +327,7 @@ public class GameData : MonoBehaviour
             levelManagerObjectState = new Dictionary<string, bool>();
             interactiveStates = new Dictionary<string, int>();
             
-            mazePath = new Stack<Maze>();
+            mazePath = new Stack<int>();
         }
     }
 
