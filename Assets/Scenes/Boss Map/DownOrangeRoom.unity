@@ -563,6 +563,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossID: 1
+  enablesOnDeath:
+  - {fileID: 173592683}
 --- !u!1 &106052257
 GameObject:
   m_ObjectHideFlags: 0
@@ -8898,12 +8900,12 @@ MonoBehaviour:
   normalAudio: 
   highlightEnds: 0
   lockable:
-    isLocked: 0
+    isLocked: 1
     lockedInteractiveText:
-      textID: 
+      textID: locked_miniboss_doors
       loopLast: 1
     lockedAudio: 
-    requiredItems: 
+    requiredItems: 0c000000
   _nextScene: 14
 --- !u!61 &1959596765
 BoxCollider2D:

@@ -5,6 +5,7 @@ using UnityEngine;
 public class MinibossBehavior : MonoBehaviour
 {
     public int bossID;
+    public GameObject[] enablesOnDeath;
     private string eventID;
 
     void Start()
@@ -23,6 +24,10 @@ public class MinibossBehavior : MonoBehaviour
     {
         Debug.Log("death script test succeeded");
         LevelManager.ToggleInteractiveState(eventID);
+
+        foreach(GameObject obj in enablesOnDeath)
+            if(obj != null)
+                obj.SetActive(true);
     }
 
     public void BackEndDeath()
