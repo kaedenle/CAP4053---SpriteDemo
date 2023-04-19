@@ -50,6 +50,8 @@ public class PaperManager : MonoBehaviour
             foreach (Transform child in EnemyStore.transform)
                 child.gameObject.SetActive(true);
         }
+        Map1ExtensionManager.SpawnItems();
+        Map1ExtensionManager.AntispawnItems();
         WarpManager.Clear();
     }
     public void ExecuteEvent(object sender, InventoryManager.AllItems e)
