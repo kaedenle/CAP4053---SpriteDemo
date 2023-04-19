@@ -183,7 +183,7 @@ public class InteractiveUIController : MonoBehaviour
 
             if(sentence.Contains(pattern))
             {
-                sentence = sentence.Replace(pattern, InputManager.GetKeyString(key));
+                sentence = sentence.Replace(pattern, "\"" + InputManager.GetKeyString(key) + "\"");
             }
         }
 
