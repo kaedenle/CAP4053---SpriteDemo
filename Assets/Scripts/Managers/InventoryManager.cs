@@ -43,7 +43,8 @@ public class InventoryManager : MonoBehaviour
         Bedroom_Revealed_Safe,
         City_USB,
         City_Coin,
-        City_Cabinet_USB
+        City_Cabinet_USB,
+        Last_Note
     }
 
     private static AllItems[] intangibles =
