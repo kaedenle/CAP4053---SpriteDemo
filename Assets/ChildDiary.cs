@@ -11,21 +11,22 @@ public class ChildDiary : MonoBehaviour
     public Animator bookClose;
     public GameObject DiaryUI;
 
-    // private void OnTriggerStay2D(Collider2D other) 
+    private void OnTriggerStay2D(Collider2D other) 
+    {
+        if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("Pressed E");
+            DiaryUI.SetActive(true);
+        }
+    }
+
+    // private void OnTriggerEnter2D(Collider2D other) 
     // {
-    //     if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E))
+    //     if (other.CompareTag("Player"))
     //     {
     //         DiaryUI.SetActive(true);
     //     }
     // }
-
-    private void OnTriggerEnter2D(Collider2D other) 
-    {
-        if (other.CompareTag("Player"))
-        {
-            DiaryUI.SetActive(true);
-        }
-    }
     private void OnTriggerExit2D(Collider2D other) 
     {
         if (other.CompareTag("Player"))
