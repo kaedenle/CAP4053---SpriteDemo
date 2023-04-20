@@ -5,13 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class VolumeLoad : MonoBehaviour
 {
-    AudioSource m_MyAudioSource;
     // Start is called before the first frame update
     void Start()
     {
         float savedMusicVolume;
         float savedSoundEffectVolume;
-        m_MyAudioSource = GetComponent<AudioSource>();
 
         if (gameObject.tag == "LevelTheme")
         {

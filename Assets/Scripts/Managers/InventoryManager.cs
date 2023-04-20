@@ -102,6 +102,9 @@ public class InventoryManager : MonoBehaviour
                 if(!HasItem(item) && (item == itemToCount1 || item == itemToCount2 || item == itemToCount3 || item == itemToCount4))
                 {
                     counter++;
+                    LetterUI letterUI = FindObjectOfType<LetterUI>();
+                    if (letterUI != null) 
+                        letterUI.counterIncrement();
                 }
             }
         }
