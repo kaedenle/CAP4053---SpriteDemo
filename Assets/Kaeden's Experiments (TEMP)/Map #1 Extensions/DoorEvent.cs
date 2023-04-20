@@ -14,4 +14,9 @@ public class DoorEvent : Interactive
         m_MyEvent.Invoke();
         ScenesManager.LoadScene(_nextScene);
     }
+    public void ForceNextScene()
+    {
+        m_MyEvent.Invoke();
+        ScenesManager.LoadScene(_nextScene);
+    }
 }

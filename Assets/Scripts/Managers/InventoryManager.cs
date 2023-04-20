@@ -48,7 +48,10 @@ public class InventoryManager : MonoBehaviour
         Letter2,
         Letter3,
         Letter4,
-        ReadChildDiary
+        ReadChildDiary,
+        City_Syringe,
+        City_Gun,
+        City_AlleyKey
     }
 
     private static AllItems[] intangibles =
