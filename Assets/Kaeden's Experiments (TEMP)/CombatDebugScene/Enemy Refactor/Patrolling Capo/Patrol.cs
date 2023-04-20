@@ -35,13 +35,16 @@ public class Patrol : MonoBehaviour
     private bool trigger = false;
     private Animator anim;
     //0 = up; 1 = right; 2 = down; 3 = left
-    [HideInInspector]
+    //[HideInInspector]
     public int direction;
     private CapoScript myScript;
 
     public GameObject[] points;
     public float RunSpeed;
     public float WalkSpeed;
+
+    public FOVViewer fovVisual;
+    private bool chasing;
 
     // Update is called once per frame
     void Awake()
@@ -109,10 +112,11 @@ public class Patrol : MonoBehaviour
     public bool FOVCheck()
     {
         LookingForDirection();
+        if (!chasing) UpdateFOV();
         var contactFilter = new ContactFilter2D();
         bool ret = false;
         //can only hit on entity layer and action layer
-        contactFilter.layerMask = LayerMask.GetMask("Action") | LayerMask.GetMask("Raycast");
+        contactFilter.layerMask = LayerMask.GetMask("Raycast");
         contactFilter.useLayerMask = true;
 
         collidersList.Clear();
@@ -166,8 +170,19 @@ public class Patrol : MonoBehaviour
             
         return false;
     }
+    private void UpdateFOV()
+    {
+        if (fovVisual != null)
+        {
+            fovVisual.SetAimDirection(looking);
+            fovVisual.SetValues(radius, angle);
+            fovVisual.SetOrigin(transform.position);
+            fovVisual.AllowRender();
+        }
+    }
     public void MoveTowards()
     {
+        chasing = true;
         Memory();
         LookingForDirection();
         if (Vector2.Distance(transform.position, target.position) <= 1000f)
@@ -176,6 +191,7 @@ public class Patrol : MonoBehaviour
             {
                 if (agent.enabled)
                 {
+                    bool boo = FOVCheck();
                     agent.CalculatePath(new Vector2(target.position.x, target.position.y), path);
                     if (path.status == NavMeshPathStatus.PathComplete && !attacking)
                     {
@@ -183,7 +199,7 @@ public class Patrol : MonoBehaviour
                         if(seesPlayer) agent.isStopped = false;
                         //agent.updatePosition = true;
                         agent.SetDestination(new Vector3(target.position.x, target.position.y, target.position.z));
-                        if(FOVCheck()) ResetMemory();
+                        if(boo) ResetMemory();
                         //transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
                         //animator.SetFloat("movement", 1);
                     }
@@ -225,7 +241,7 @@ public class Patrol : MonoBehaviour
     }
     public void Patroling()
     {
-
+        chasing = false;
         if (!agent.enabled || trigger) return;
         bool flag = false;
         //eject if you've seen player
@@ -265,6 +281,7 @@ public class Patrol : MonoBehaviour
         trigger = false;
         agent.speed = RunSpeed;
     }
+
 
     //enable and disable script
     /*public void ScriptHandler(bool flag)
