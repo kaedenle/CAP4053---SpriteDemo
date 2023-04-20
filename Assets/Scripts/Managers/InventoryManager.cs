@@ -47,7 +47,8 @@ public class InventoryManager : MonoBehaviour
         Letter1,
         Letter2,
         Letter3,
-        Letter4
+        Letter4,
+        ReadChildDiary
     }
 
     private static AllItems[] intangibles =
@@ -61,7 +62,8 @@ public class InventoryManager : MonoBehaviour
         AllItems.Hub_TalkedToKaleigh,
         AllItems.Hub_TalkedToAntonio,
         AllItems.Hub_TalkedToFinn,
-        AllItems.Bedroom_Revealed_Safe
+        AllItems.Bedroom_Revealed_Safe,
+        AllItems.ReadChildDiary
     };
 
     // temporary solution to dropable heart problem
