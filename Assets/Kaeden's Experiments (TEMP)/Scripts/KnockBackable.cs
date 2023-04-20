@@ -15,7 +15,7 @@ public class KnockBackable : MonoBehaviour, IDamagable
 
         body.AddForce(ad.knockback, ForceMode2D.Impulse);
         //body.velocity = new Vector2(knockback.x, knockback.y);
-        //Debug.Log(gameObject.name + " Took Knockback! " + ad.knockback);
+        Debug.Log(gameObject.name + " Took Knockback! " + ad.knockback);
     }
 
     void FixedUpdate(){

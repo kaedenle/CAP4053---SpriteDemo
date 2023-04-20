@@ -160,7 +160,45 @@ public class InputManager : MonoBehaviour
         KeyPair pair = GetKeyCode(key);
         return Pressed(pair.GetPrimary()) || Pressed(pair.GetSecondary());
     }
+    //-----------------------------------------------------------------------
+    private static bool Hold(KeyCode keycode)
+    {
+        foreach (KeyCode code in GetKeysToCheck(keycode))
+            if (GetKey(code))
+                return true;
+        return false;
+    }
 
+    private static bool Hold(Keys key)
+    {
+        KeyPair pair = GetKeyCode(key);
+        return Hold(pair.GetPrimary()) || Hold(pair.GetSecondary());
+    }
+
+    private static bool GetKey(KeyCode code)
+    {
+        // TODO: deal with exceptions
+        code = GetTrueKey(code);
+
+        return Input.GetKey(code);
+    }
+    public static bool DownKeyHold()
+    {
+        return Hold(Keys.Down);
+    }
+    public static bool UpKeyHold()
+    {
+        return Hold(Keys.Up);
+    }
+    public static bool RightKeyHold()
+    {
+        return Hold(Keys.Right);
+    }
+    public static bool LeftKeyHold()
+    {
+        return Hold(Keys.Left);
+    }
+    //-----------------------------------------------------------------------
     public static bool ContinueKeyPressed()
     {
         return _ui && (Pressed(Keys.Continue) || Pressed(Keys.Interact));
@@ -467,4 +505,6 @@ public class KeyPair
     {
         return secondary == KeyCode.None;
     }
+
+    
 }

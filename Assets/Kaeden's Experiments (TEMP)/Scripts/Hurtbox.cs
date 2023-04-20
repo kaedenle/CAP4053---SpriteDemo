@@ -30,12 +30,15 @@ public class Hurtbox : MonoBehaviour, IDamagable
     private EffectsManager FXM; //used for hitstop
     private Shader HitShader;
     public bool FSMHitstun;
+    public bool TurnOffAgent;
+    private NavMeshAgent agent;
     public string default_ani;
+
     public void damage(AttackData ad)
     {
         //play hit audio if it exists
         //if (audiosrc != null && ad.audio != null) audiosrc.PlayOneShot(ad.audio, 0.5f);
-
+        if (TurnOffAgent && agent != null) agent.enabled = false;
         //Hit particle effect
         if (HitEffect != null && !NoHitParticles)
         {
@@ -169,7 +172,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
         sr = GetComponentsInChildren<SpriteRenderer>();
         FXM = GameObject.Find("EffectsManager")?.GetComponent<EffectsManager>();
         audiosrc = gameObject?.GetComponent<AudioSource>();
-
+        agent = GetComponent<NavMeshAgent>();
         hitstunTimer = -1;
         inHitStun = false;
         
@@ -193,6 +196,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
                 s.ScriptHandler(true);
             inHitStun = false;
             //if(agent != null) agent.enabled = true;
+            if (TurnOffAgent && agent != null) agent.enabled = true;
             //set player's animator hitstun bool to false
             if (tag == "Player") animator.SetBool("Hitstun", false);
         }

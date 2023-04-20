@@ -21,14 +21,23 @@ public class WeaponManager : MonoBehaviour, IScriptable
     private AttackManager am;
     [HideInInspector]
     public int prevWeapon;
+    private int DisplayedWeapon;
 
+    private bool prevFliped = false;
+
+    private IDictionary<InputManager.Keys, int> ComboMappings = new Dictionary<InputManager.Keys, int>
+    {
+        [InputManager.Keys.Down] = 0,
+        [InputManager.Keys.Up] = 2,
+        [InputManager.Keys.Right] = 3,
+        [InputManager.Keys.Left] = 1
+    };
     // Start is called before the first frame update
 
     void Awake()
     {
         weaponID = 0;
         animator = gameObject.GetComponent<Animator>();
-        
         hrtbx = gameObject?.GetComponent<Hurtbox>();
         onhand = gameObject.transform.Find("Right Arm").Find("On-Hand").GetComponent<SpriteRenderer>();
         movementScript = gameObject.GetComponent<Player_Movement>();
@@ -70,13 +79,31 @@ public class WeaponManager : MonoBehaviour, IScriptable
     {
         //set the visual of the weapon from sprite list
         sr.sprite = spriteList[wpnList.index % spriteList.Length];
+        DisplayedWeapon = wpnList.index % spriteList.Length;
     }
-
+    private int KeyPressed()
+    {
+        if (InputManager.DownKeyHold()) return ComboMappings[InputManager.Keys.Down];
+        else if (InputManager.UpKeyHold()) return ComboMappings[InputManager.Keys.Up];
+        else if (InputManager.RightKeyHold()) return ComboMappings[InputManager.Keys.Right];
+        else if (InputManager.LeftKeyHold()) return ComboMappings[InputManager.Keys.Left];
+        return -1;
+    }
+    private void FlipDirections()
+    {
+        if(prevFliped != movementScript.flipped)
+        {
+            int temp = ComboMappings[InputManager.Keys.Left];
+            ComboMappings[InputManager.Keys.Left] = ComboMappings[InputManager.Keys.Right];
+            ComboMappings[InputManager.Keys.Right] = temp;
+            prevFliped = movementScript.flipped;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
+        FlipDirections();
         equiped = animator.GetBool("equiped");
-
         //toggle between not equiped and equiped
         if(InputManager.EquipKeyDown() && animator.GetFloat("attack") == 0){
             if (equiped)
@@ -156,12 +183,11 @@ public class WeaponManager : MonoBehaviour, IScriptable
                 gameObject.GetComponent<AttackManager>().DestroyPlay();
                 gameObject.GetComponent<Player_Movement>().move_flag = false;
             }
-
-
             bool hitStunVar = hrtbx != null ? hrtbx.inHitStun : false;
             //if in hitstun, don't read input (put pausing mechanics in here)
             if (!hitStunVar)
             {
+                
                 //Swing when press left click
                 if (InputManager.Hit1KeyDown() && wpnList.weaponlist[wpnList.index].attack1 != 0)
                 {
@@ -175,12 +201,18 @@ public class WeaponManager : MonoBehaviour, IScriptable
                     //call attack from integer (defined by Attack blend tree in animator)
                     else if (animator.GetFloat("attack") != 0)
                     {
+                        //keyboard shortcuts for combos
+                        int press = KeyPressed();
+                        if(press != -1 && DisplayedWeapon == wpnList.index)
+                        {
+                            wpnList.index = press % spriteList.Length;
+                        }
                         BufferWeaponID = wpnList.index;
                         am.bufferCancel = wpnList.weaponlist[wpnList.index].attack1;
                     }   
                     else
                         am.InvokeAttack(wpnList.weaponlist[wpnList.index].attack1);
-
+                    
                     //damage self by 5 points
                     //gameObject.GetComponent<HealthTracker>().healthSystem.Damage(5);
                 }
@@ -190,6 +222,12 @@ public class WeaponManager : MonoBehaviour, IScriptable
                     //call attack from integer (defined by Attack blend tree in animator)
                     if (animator.GetFloat("attack") != 0)
                     {
+                        //keyboard shortcuts for combos
+                        int press = KeyPressed();
+                        if (press != -1 && DisplayedWeapon == wpnList.index)
+                        {
+                            wpnList.index = press % spriteList.Length;
+                        }
                         BufferWeaponID = wpnList.index;
                         am.bufferCancel = wpnList.weaponlist[wpnList.index].attack2;
                     }
