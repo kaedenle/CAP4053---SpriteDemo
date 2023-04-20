@@ -6,9 +6,11 @@ using System;
 public class NPCDialogue : OutlineObject
 {
     public NPCReport dialogue;
-    public AudioPlayer normalAudio;
+    public string normalAudio;
     public bool highlightEnds = true;
     public LockedDialogueBehavior lockable;
+
+    public bool playAfterDialogue=true;
 
     public static event EventHandler Talked;
     private InteractiveUIController UI;
@@ -43,7 +45,12 @@ public class NPCDialogue : OutlineObject
         triggered = true;
 
         if(lockable.IsUnlocked())
-            normalAudio.PlayAudio();
+        {
+            if(playAfterDialogue)
+            {
+                SoundEffectManager.PlayAudio(normalAudio);
+            }
+        }
         else
             lockable.PlayAudio();
     }
@@ -57,7 +64,14 @@ public class NPCDialogue : OutlineObject
     public void TriggerDialogue()
     {
         if(lockable.IsUnlocked())
+        {
+            if(!playAfterDialogue)
+            {
+                SoundEffectManager.PlayAudio(normalAudio);
+            }
             TriggerDialogue(dialogue);
+            
+        }
         else   
             TriggerDialogue(lockable.GetDialogue());
 

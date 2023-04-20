@@ -2,21 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ProcessTextComponent : MonoBehaviour
 {
     // takes the text mesh text and checks if there are any key words/phrases to replace
     void Start()
     {
-        Text tmp = gameObject.GetComponent<Text>();
-        string txt = tmp.text;
+        Text txt = gameObject.GetComponent<Text>();
+        if(txt != null) txt.text = Process(txt.text);
 
-        if(tmp == null)
-        {
-            Debug.LogError("processor script found no Text to replace");
-            return;
-        }
+        TMP_Text proText = gameObject.GetComponent<TMP_Text>();
+        if(proText != null) proText.text = Process(proText.text);
+    }
 
+    string Process(string txt)
+    {
         for(int k = 0; k < InputManager.NUMBER_OF_KEYS; k++)
         {
             InputManager.Keys key = (InputManager.Keys) k;
@@ -29,6 +30,6 @@ public class ProcessTextComponent : MonoBehaviour
             }
         }
 
-        tmp.text = txt;
+        return txt;
     }
 }

@@ -4172,6 +4172,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 25000000260000002700000028000000
+  playAfterDialogue: 1
 --- !u!61 &81135603
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4655,7 +4656,7 @@ MonoBehaviour:
   interactiveText:
     textID: letter1
     loopLast: 1
-  normalAudio: 
+  normalAudio: Paper
   highlightEnds: 0
   lockable:
     isLocked: 0
@@ -4664,6 +4665,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 0
   _itemType: 37
   repeatable: 0
   destroyOnInteract: 0
@@ -4679,9 +4681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146da34f9950a29488a34bed6d55f74a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letter: 37
   letterCounter: {fileID: 854933840}
-  counter: 0
 --- !u!1 &92307767
 GameObject:
   m_ObjectHideFlags: 0
@@ -5055,7 +5055,7 @@ MonoBehaviour:
   interactiveText:
     textID: letter3
     loopLast: 1
-  normalAudio: 
+  normalAudio: Paper
   highlightEnds: 0
   lockable:
     isLocked: 0
@@ -5064,6 +5064,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 0
   _itemType: 39
   repeatable: 0
   destroyOnInteract: 0
@@ -5079,9 +5080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146da34f9950a29488a34bed6d55f74a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letter: 39
   letterCounter: {fileID: 854933840}
-  counter: 0
 --- !u!1 &98119621
 GameObject:
   m_ObjectHideFlags: 0
@@ -8723,6 +8722,164 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &220516216
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 220516217}
+  - component: {fileID: 220516220}
+  - component: {fileID: 220516219}
+  - component: {fileID: 220516218}
+  m_Layer: 0
+  m_Name: SoundEffectManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &220516217
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220516216}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 615368068}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &220516218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220516216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9930d1a817f8ea40bcc0e6109708b6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &220516219
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220516216}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &220516220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220516216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77f1a8e89888f1a4fbfb74d387e5eb8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volume: 0.5
+  audioSource: {fileID: 0}
+  volumeSlider: {fileID: 0}
+  volumeTextUI: {fileID: 0}
 --- !u!1 &222017169
 GameObject:
   m_ObjectHideFlags: 0
@@ -8829,7 +8986,7 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
-  normalAudio: 
+  normalAudio: Stair_Transition
   highlightEnds: 0
   lockable:
     isLocked: 0
@@ -8838,6 +8995,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
   _nextScene: 22
 --- !u!61 &222017173
 BoxCollider2D:
@@ -16990,7 +17148,7 @@ MonoBehaviour:
   interactiveText:
     textID: letter2
     loopLast: 1
-  normalAudio: 
+  normalAudio: Paper
   highlightEnds: 0
   lockable:
     isLocked: 0
@@ -16999,6 +17157,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 0
   _itemType: 38
   repeatable: 0
   destroyOnInteract: 0
@@ -17014,9 +17173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146da34f9950a29488a34bed6d55f74a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letter: 38
   letterCounter: {fileID: 854933840}
-  counter: 0
 --- !u!1 &437333170
 GameObject:
   m_ObjectHideFlags: 0
@@ -19422,7 +19579,7 @@ MonoBehaviour:
   interactiveText:
     textID: obtain_sunglasses
     loopLast: 1
-  normalAudio: 
+  normalAudio: Item_Pickup
   highlightEnds: 0
   lockable:
     isLocked: 0
@@ -19431,6 +19588,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
   _itemType: 20
   repeatable: 0
   destroyOnInteract: 1
@@ -20066,7 +20224,7 @@ MonoBehaviour:
   interactiveText:
     textID: letter4
     loopLast: 1
-  normalAudio: 
+  normalAudio: Paper
   highlightEnds: 0
   lockable:
     isLocked: 0
@@ -20075,6 +20233,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 0
   _itemType: 40
   repeatable: 0
   destroyOnInteract: 0
@@ -20090,9 +20249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146da34f9950a29488a34bed6d55f74a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letter: 40
   letterCounter: {fileID: 854933840}
-  counter: 0
 --- !u!1 &501691002
 GameObject:
   m_ObjectHideFlags: 0
@@ -20757,7 +20914,7 @@ MonoBehaviour:
   interactiveText:
     textID: sword_in_stone
     loopLast: 0
-  normalAudio: 
+  normalAudio: key_pickup
   highlightEnds: 1
   lockable:
     isLocked: 1
@@ -20766,6 +20923,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 13000000
+  playAfterDialogue: 1
   eventID: sword_in_the_stone
   destroyOnUse: 0
   enables:
@@ -24967,6 +25125,7 @@ Transform:
   - {fileID: 2027540321}
   - {fileID: 1470771237}
   - {fileID: 1044502099}
+  - {fileID: 220516217}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -26892,9 +27051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146da34f9950a29488a34bed6d55f74a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letter: 0
   letterCounter: {fileID: 0}
-  counter: 0
 --- !u!114 &656733843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52662,6 +52819,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
 --- !u!58 &1228547244
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -71559,6 +71717,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
 --- !u!61 &1610390534
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -88342,15 +88501,16 @@ MonoBehaviour:
   interactiveText:
     textID: opening_chest
     loopLast: 1
-  normalAudio: 
+  normalAudio: Chest_Open
   highlightEnds: 0
   lockable:
     isLocked: 1
     lockedInteractiveText:
       textID: locked_chest
       loopLast: 1
-    lockedAudio: 
+    lockedAudio: Door_Locked
     requiredItems: 12000000
+  playAfterDialogue: 1
   eventID: castle_chest
   destroyOnUse: 1
   enables:

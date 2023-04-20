@@ -78,7 +78,7 @@ public class KeybindingsMenuManager : MonoBehaviour
         {
             Event e = Event.current;
             // case out mouse0-mouse6
-            Debug.Log("event: " + e.ToString() + " with keycode " + e.keyCode);
+            if(GeneralFunctions.IsDebug()) Debug.Log("event: " + e.ToString() + " with keycode " + e.keyCode);
 
             if (e.keyCode != KeyCode.None)
             {
@@ -128,7 +128,7 @@ public class KeybindingsMenuManager : MonoBehaviour
         // check that this is a valid key to even try to bind
         if(!InputManager.validCodeToString.ContainsKey(key)) return;
 
-        Debug.Log("attempting keybind with key " + key);
+        if(GeneralFunctions.IsDebug()) Debug.Log("attempting keybind with key " + key);
 
         if(UpdateKeyWithCode(key, bind))
         {
@@ -175,7 +175,7 @@ public class KeybindingsMenuManager : MonoBehaviour
 
         // everything was fine
         pair.AddCode(key);
-        Debug.Log("applying code " + key + " to " + bind);
+        if(GeneralFunctions.IsDebug()) Debug.Log("applying code " + key + " to " + bind);
         return true;
     }
 
