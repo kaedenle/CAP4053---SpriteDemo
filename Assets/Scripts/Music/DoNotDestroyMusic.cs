@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class DoNotDestroyMusic : MonoBehaviour
 {
     AudioSource m_MyAudioSource;
+    private int level;
     // Start is called before the first frame update
     private void Awake() 
     {   
@@ -19,13 +20,15 @@ public class DoNotDestroyMusic : MonoBehaviour
         if(SceneManager.GetActiveScene().name == "Central Hub")
             Destroy(this.gameObject);
 
-        DontDestroyOnLoad(this.gameObject); 
+        DontDestroyOnLoad(this.gameObject);
+        level = GameData.GetInstance().GetLevel();
     }
-    private void Update() 
+    private void Update()
     {
-        if(SceneManager.GetActiveScene().name == "Central Hub")
+        if (SceneManager.GetActiveScene().name == "Central Hub")
             Destroy(this.gameObject);
-            
+        if (ScenesManager.GetCurrentScene() == ScenesManager.AllScenes.Menu)
+            Destroy(this.gameObject);
         if (SceneManager.GetActiveScene().name == "Child Room")
         {
             m_MyAudioSource.Stop();
