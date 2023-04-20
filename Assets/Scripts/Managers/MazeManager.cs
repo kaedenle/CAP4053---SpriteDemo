@@ -27,7 +27,7 @@ public class MazeManager : MonoBehaviour
     // constants
     public const int directions = 3,
               seed = 42_069_420, 
-              pathLenth = 4;  // The length of the maze path (number of rooms traversed until exit) [the lower this goes, the more likely a collision could occur]
+              pathLenth = 5;  // The length of the maze path (number of rooms traversed until exit) [the lower this goes, the more likely a collision could occur]
    
 
     private static System.Random rand;
