@@ -11,6 +11,8 @@ public class Interactive : OutlineObject
     public bool highlightEnds = false;
     public LockedBehavior lockable;
 
+    public bool playAfterDialogue = true;
+
     // dialogue vars
     private InteractiveUIController UI;
     private bool triggered = false;
@@ -63,7 +65,11 @@ public class Interactive : OutlineObject
     {
         if(lockable.IsUnlocked())
         {
-            SoundEffectManager.PlayAudio(normalAudio);
+            if(playAfterDialogue)
+            {
+                SoundEffectManager.PlayAudio(normalAudio);
+
+            }
         }
         else
         {            
@@ -76,6 +82,10 @@ public class Interactive : OutlineObject
     {
         if(lockable.IsUnlocked())
         {
+            if(!playAfterDialogue)
+            {
+                SoundEffectManager.PlayAudio(normalAudio);
+            }
             TriggerDialogue(interactiveText);
 
         }

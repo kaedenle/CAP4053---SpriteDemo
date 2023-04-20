@@ -9,7 +9,7 @@ public class SoundEffectManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+       // DontDestroyOnLoad(this.gameObject);
 
     }
     void Start()
@@ -23,7 +23,7 @@ public class SoundEffectManager : MonoBehaviour
             //Debug.Log("hello");
             //Debug.Log(sfxList[i].ToString());
         }
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
     }
 
     public static void PlayAudio(string name)
