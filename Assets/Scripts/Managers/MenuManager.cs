@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
+    public GameObject LoadButton;
+    public TMP_ColorGradient disabledColor;
+
     // button behavior for New Game
     public void NewGame()
     {
         GameData.GetInstance().ResetData();
-        // GameData.GetInstance().SaveAfterSceneChange();
         ScenesManager.LoadScene( ScenesManager.AllScenes.StartCutScene );
     }
 
@@ -30,16 +33,6 @@ public class MenuManager : MonoBehaviour
 
         // grab the current game
         GameData.GetInstance().RevertToSave();
-
-        // GameState game = GameState.LoadGame();
-        // int state = game.GetState();
-
-        // if(state == 0) 
-        //     ScenesManager.LoadScene(ScenesManager.AllScenes.CentralHub);
-        // else
-        // {
-        //     HubManager.LoadPhase(game.GetLevel());
-        // }
     }
 
     // quit button behavior
@@ -47,5 +40,23 @@ public class MenuManager : MonoBehaviour
     {
         Debug.Log("QUIT");
         Application.Quit();
+    }
+
+    public void DisableButton(GameObject obj)
+    {
+        Button button = obj.GetComponent<Button>();
+        button.interactable = false;
+        button.enabled = false;
+
+        // set transparent color
+        obj.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+
+        if(disabledColor != null) obj.GetComponentInChildren<TMP_Text>().colorGradientPreset = disabledColor;
+    }
+
+    void Start()
+    {
+        if(LoadButton != null && !GameData.GetInstance().HasLoadData())
+            DisableButton(LoadButton);
     }
 }

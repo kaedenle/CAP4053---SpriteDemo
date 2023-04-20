@@ -19,6 +19,7 @@ public class GameData : MonoBehaviour
 
     // constants
     const string saveFileName = "SubliminalGameData.dat";
+    private string saveFilePath;
 
     // actual variables
     bool reverting = false, saving = false;
@@ -27,6 +28,9 @@ public class GameData : MonoBehaviour
     {
         if(Instance == null)
         {
+            saveFilePath = Application.persistentDataPath  + "/" + saveFileName;
+            if(GeneralFunctions.IsDebug()) Debug.Log("Game Save File: " + saveFilePath);
+
             formatter = new BinaryFormatter();
             SceneManager.sceneLoaded += OnSceneLoaded;
 
@@ -102,7 +106,7 @@ public class GameData : MonoBehaviour
         }
 
 
-        FileStream file = File.Create(Application.persistentDataPath  + "/" + saveFileName); 
+        FileStream file = File.Create(saveFilePath); 
         formatter.Serialize(file, data);
 
         file.Close();
@@ -121,7 +125,7 @@ public class GameData : MonoBehaviour
     {
         if (SaveFileExists())
         {
-            FileStream file =  File.Open(Application.persistentDataPath  + "/" + saveFileName, FileMode.Open);
+            FileStream file =  File.Open(saveFilePath, FileMode.Open);
 
             try
             {
