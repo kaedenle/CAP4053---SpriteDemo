@@ -38,7 +38,7 @@ public class MenuManager : MonoBehaviour
     // quit button behavior
     public void Quit()
     {
-        Debug.Log("QUIT");
+        if(GeneralFunctions.IsDebug()) Debug.Log("QUIT");
         Application.Quit();
     }
 

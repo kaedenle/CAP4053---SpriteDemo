@@ -34,7 +34,7 @@ namespace BasicEnemy
 
         public override void Enter(FSM stateMachine)
         {
-            if(GeneralFunctions.IsDebug()) Debug.Log("Entering state " + stateName);
+            if(GeneralFunctions.IsDebug() && stateMachine.displayState) Debug.Log("Entering state " + stateName);
 
             foreach (var action in EnterActions)
                 action.Execute(stateMachine);
@@ -42,7 +42,7 @@ namespace BasicEnemy
 
         public override void Exit(FSM stateMachine)
         {
-            if(GeneralFunctions.IsDebug()) Debug.Log("Exiting state " + stateName);
+            if(GeneralFunctions.IsDebug() && stateMachine.displayState) Debug.Log("Exiting state " + stateName);
 
             foreach (var action in ExitActions)
                 action.Execute(stateMachine);

@@ -9,7 +9,7 @@ namespace BasicEnemy
     {
         public override bool ConditionMet(FSM stateMachine)
         {
-            return( stateMachine.enemyController.InRangeOfPlayer());
+            return( stateMachine.enemyController.InRangeOfPlayer() );
         }
     }
 

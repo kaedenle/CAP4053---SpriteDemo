@@ -160,7 +160,9 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
         currentSurpriseReaction = reactionType;
     }
 
-    /* Conditions */
+    /*
+    ============== Conditions ==============
+    */
     // check whether the player is visible and if so, updates the last seen position of the player
     public virtual bool PlayerVisibile()
     {
