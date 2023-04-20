@@ -29,7 +29,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
 
     private IDictionary<InputManager.Keys, int> ComboMappings = new Dictionary<InputManager.Keys, int>
     {
-        [InputManager.Keys.Down] = 0,
+        [InputManager.Keys.Down] = 2,
         [InputManager.Keys.Up] = 2,
         [InputManager.Keys.Right] = 3,
         [InputManager.Keys.Left] = 1
@@ -252,11 +252,11 @@ public class WeaponManager : MonoBehaviour, IScriptable
                     {
                         //keyboard shortcuts for combos
                         int press = KeyPressed();
-                        if (press != -1 && DisplayedWeapon == wpnList.index && am.CanCancel())
+                        if (press != -1 && DisplayedWeapon == wpnList.index && am.HasHitSomething())
                         {
                             wpnList.index = press % spriteList.Length;
                         }
-                        BufferWeaponID = wpnList.index;
+                        BufferWeaponID = wpnList.index; 
                         am.bufferCancel = wpnList.weaponlist[wpnList.index].attack1;
                     }   
                     else
@@ -273,7 +273,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
                     {
                         //keyboard shortcuts for combos
                         int press = KeyPressed();
-                        if (press != -1 && DisplayedWeapon == wpnList.index && am.CanCancel())
+                        if (press != -1 && DisplayedWeapon == wpnList.index && am.HasHitSomething())
                         {
                             wpnList.index = press % spriteList.Length;
                         }
