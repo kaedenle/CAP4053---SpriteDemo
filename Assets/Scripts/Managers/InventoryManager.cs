@@ -63,7 +63,11 @@ public class InventoryManager : MonoBehaviour
         AllItems.Hub_TalkedToAntonio,
         AllItems.Hub_TalkedToFinn,
         AllItems.Bedroom_Revealed_Safe,
-        AllItems.ReadChildDiary
+        AllItems.ReadChildDiary,
+        AllItems.Letter1,
+        AllItems.Letter2,
+        AllItems.Letter3,
+        AllItems.Letter4
     };
 
     // temporary solution to dropable heart problem
@@ -77,6 +81,11 @@ public class InventoryManager : MonoBehaviour
     public static List<AllItems> _usedItems = new List<AllItems>();  // our inventory items
     public static EventHandler<AllItems> AddedItem;
     // add item to current inventory
+    public static int counter = 0; // Declare counter as a static variable
+    public static AllItems itemToCount1 = AllItems.Letter1;
+    public static AllItems itemToCount2 = AllItems.Letter2;
+    public static AllItems itemToCount3 = AllItems.Letter3;
+    public static AllItems itemToCount4 = AllItems.Letter4;
     public static void AddItem(AllItems item)
     {
         // make sure to only have one of each unique item in inventory
@@ -86,14 +95,18 @@ public class InventoryManager : MonoBehaviour
                 _inventoryItems.Add(item);
 
             if(!_usedItems.Contains(item)) 
+            {
                 _usedItems.Add(item);
 
-            // debug statement for figuring out any issues
-            Debug.Log("added " + item.ToString() + " to inventory");
-            // Debug.Log("added " + item.ToString() + " to inventory, current inventory size is now " + _inventoryItems.Count);
-            if (AddedItem != null) AddedItem(null, item);
+                // Check if the item has not been picked up before and increment the counter
+                if(!HasItem(item) && (item == itemToCount1 || item == itemToCount2 || item == itemToCount3 || item == itemToCount4))
+                {
+                    counter++;
+                }
+            }
         }
     }
+
 
     public static bool IsUnique(AllItems item)
     {
@@ -107,6 +120,7 @@ public class InventoryManager : MonoBehaviour
                 return true;
         return false;
     }
+    
 
     // remove item from current inventory
     public static void RemoveItem(AllItems item)
