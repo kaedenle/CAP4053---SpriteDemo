@@ -64,6 +64,10 @@ public class Map1ExtensionManager : MonoBehaviour
             child.gameObject.SetActive(true);
         }
     }
+    public void SaveGame()
+    {
+        GameData.GetInstance().SaveCurrentData();
+    }
     public void CallItems()
     {
         SpawnItems();
