@@ -23,11 +23,12 @@ public class MovementController : MonoBehaviour, IScriptable
     private bool flipLook;
 
     // level or enemy components
-    private EnemyBase enemyController;
-    private List<Collider2D> collidersList = new List<Collider2D>();
+    protected EnemyBase enemyController;
+    protected Hurtbox hurtbox;
+    protected List<Collider2D> collidersList = new List<Collider2D>();
     protected Transform target;
-    NavMeshAgent agent;
-    private NavMeshPath path;
+    protected NavMeshAgent agent;
+    protected NavMeshPath path;
 
     // tracking variables
     private Vector3 lastSeen;
@@ -46,6 +47,7 @@ public class MovementController : MonoBehaviour, IScriptable
         flipLook ^= startFlipped;
         LookingForDirection();
         target = GeneralFunctions.GetPlayer().transform;
+        hurtbox = gameObject.GetComponent<Hurtbox>();
 
         enemyController = gameObject.GetComponent<EnemyBase>();
 
@@ -236,7 +238,12 @@ public class MovementController : MonoBehaviour, IScriptable
     */
     public void MoveTowards(Vector2 target)
     {
-        if (agent.enabled)
+        if(hurtbox.inHitStun)
+        {
+            agent.isStopped = true;
+        }
+
+        else
         {
             agent.CalculatePath(target, path);
             if (path.status == NavMeshPathStatus.PathComplete)
