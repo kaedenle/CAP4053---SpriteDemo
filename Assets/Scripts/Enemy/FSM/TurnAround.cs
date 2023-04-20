@@ -17,7 +17,7 @@ namespace BasicEnemy
             if(lastTurned == 0 && turnDelay == 0)
             {
                 lastTurned = Time.time;
-                turnDelay = Random.Range(0.3F, 0.75F);
+                turnDelay = Random.Range(0.2F, 0.5F);
             }
 
             if(Time.time - lastTurned >= turnDelay)

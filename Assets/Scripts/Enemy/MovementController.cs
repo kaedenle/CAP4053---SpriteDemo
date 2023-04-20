@@ -231,6 +231,7 @@ public class MovementController : MonoBehaviour, IScriptable
     {
         flipLook = !flipLook;
         transform.localScale = new Vector3(- transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        Debug.Log("TurnAround()");
     }
 
     /*
@@ -250,7 +251,6 @@ public class MovementController : MonoBehaviour, IScriptable
             {
                 agent.isStopped = false;
                 agent.SetDestination(new Vector3(target.x, target.y, transform.position.z));
-                // enemyController.MoveAnimation();
             }
             else
             {
