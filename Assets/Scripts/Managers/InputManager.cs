@@ -141,17 +141,20 @@ public class InputManager : MonoBehaviour
     // returns whether a (true) keycode is pressed
     private static bool GetKeyDown(KeyCode code)
     {
-        // TODO: deal with exceptions
-        code = GetTrueKey(code); 
+        // code = GetTrueKey(code); 
 
         return Input.GetKeyDown(code);
     }
 
     private static bool Pressed(KeyCode keycode)
     {
+        keycode = GetTrueKey(keycode);
         foreach(KeyCode code in GetKeysToCheck(keycode))
             if(GetKeyDown(code))
+            {
+                Debug.Log("pressed code " + code + " with valid codes " + string.Join(", ", GetKeysToCheck(keycode)));
                 return true;
+            }
         return false;
     }
 
