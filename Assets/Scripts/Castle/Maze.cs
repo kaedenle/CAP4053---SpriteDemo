@@ -6,90 +6,72 @@ using System;
 [Serializable]
 public class Maze
 {
-    const int specials = 3;
+    public const int specials = 3;
     const int directions = 3;
 
-    Maze[] children;
+    public Room[] maze;
+    public int current;
 
-    // decorations
-    bool[] decorations;
-
-    // hints
-    bool[] onPath; // on path
-    int banner;
-    int[] mats;
-
-    public Maze(int depth_left)
+    // make maze
+    public Maze(int num_decor, double decor_prob, System.Random rand)
     {
-        // Debug.Log("making maze node with depth " + depth_left);
-        onPath = new bool[specials];
+        current = 0;
 
-        if(depth_left == 0) return;
-
-        children = new Maze[directions];
-
-        for(int i = 0; i < directions; i++)
-            children[i] = new Maze(depth_left - 1);
-    }
-
-    public bool NotSetup()
-    {
-        return decorations == null;
-    }
-
-    public void SetOnPath(int special)
-    {
-        onPath[special] = true;
-    }
-
-    public bool IsOnPath(int special)
-    {
-        return onPath[special];
-    }
-
-    public int GetNextOnPath(int special)
-    {
-        if(!IsOnPath(special) || IsTerminal()) return -1;
-
-        for(int i = 0; i < children.Length; i++)
-            if(children[i].IsOnPath(special))
-                return i;
+        int total = 1;
+        for(int count = 0; count < MazeManager.pathLenth; count++) 
+            total *= directions;
         
-        return -1;
+        maze = new Room[total];
+        for(int i = 0; i < total; i++)  
+            maze[i] = new Room();
+
+        int idx = 1;
+        for(int i = 0; i < total && idx + 2 < total; i++)
+        {
+            maze[i].children = new int[3] {idx, idx + 1, idx + 2};
+            idx += 3;
+        }
+
+        for(int i = 0; i < total; i++)
+        {
+            // Debug.Log("making maze node with depth " + depth_left);
+            maze[i].onPath = new bool[specials];
+            SetupRoom(maze[i], rand, num_decor, decor_prob);
+        }
     }
 
-    public Maze GetNext(int direction)
+    public int GetNextIndex(int direction, Room room)
     {
-        return children[direction];
+        return room.children[direction];
     }
 
-    public bool IsTerminal()
+    public Room GetNext(int direction)
     {
-        return children == null;
+        return GetNext(direction, maze[current]);
     }
 
-    public bool IsSpecial()
+    public Room GetNext(int direction, Room room)
     {
-        return children == null && (IsOnPath(0) || IsOnPath(1) || IsOnPath(2));
+        return maze[room.children[direction]];
     }
 
-    public void SetupRoom(System.Random rand, int num_decor, double decor_prob)
+    public void SetupRoom(Room room, System.Random rand, int num_decor, double decor_prob)
     {
         // set up decorations
-        decorations = new bool[num_decor];
+        room.decorations = new bool[num_decor];
 
-        for(int i = 0; i < decorations.Length; i++)
+        for(int i = 0; i < room.decorations.Length; i++)
             if(rand.NextDouble() < decor_prob)
-                decorations[i] = true;
+                room.decorations[i] = true;
 
         // set up hint type
-        banner = rand.Next(0, directions);
-        mats = MakePermutation(GetBanner(), 0, rand);
+        room.banner = rand.Next(0, directions);
+        room.mats = MakePermutation(room.GetBanner(), 0, rand, room);
     }
 
-    int[] MakePermutation(int goodItem, int special, System.Random rand)
+    int[] MakePermutation(int goodItem, int special, System.Random rand, Room room)
     {
-        if(IsSpecial()) return null;
+        if(room.IsSpecial()) return null;
 
         // get the permutation
         int[] perm = new int[directions];
@@ -100,9 +82,9 @@ public class Maze
         Shuffle(perm, rand);
         
         // set the specific permutation if this needs a specific hint somewhere
-        if(IsOnPath(special))
+        if(room.IsOnPath(special))
         {
-            int dir = (children[0].IsOnPath(special) ? 0 : (children[1].IsOnPath(special) ? 1 : 2));
+            int dir = (GetNext(0, room).IsOnPath(special) ? 0 : (GetNext(1, room).IsOnPath(special) ? 1 : 2));
             // get the correct
             for(int i = 0; i < perm.Length; i++)
                 if(perm[i] == goodItem)
@@ -134,23 +116,29 @@ public class Maze
         array[j] = temp;
     }
 
-    public bool[] GetDecorations()
+    public Room GetDefault()
     {
-        return decorations;
+        return maze[0];
     }
 
-    public int[] GetMats()
+    public int GetNextOnPath(int special)
     {
-        return mats;
+        return GetNextOnPath(special, GetCurrentRoom());
     }
 
-    public void SetDecorations(bool[] decorations)
+    public int GetNextOnPath(int special, Room room)
     {
-        this.decorations = decorations;
+        if(!room.IsOnPath(special) || room.IsTerminal()) return -1;
+
+        for(int i = 0; i < room.children.Length; i++)
+            if(GetNext(i).IsOnPath(special))
+                return i;
+        
+        return -1;
     }
 
-    public int GetBanner()
+    public Room GetCurrentRoom()
     {
-        return banner;
+        return maze[current];
     }
 }

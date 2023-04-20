@@ -17,7 +17,7 @@ public class MazeHints : MonoBehaviour
         bannerDoorDirections = new GameObject[][] {matLeft, matUp, matRight};
     }
 
-    public void SetHints(Maze cur)
+    public void SetHints(Room cur, Maze maze)
     {
         RemoveAll();
 
@@ -27,7 +27,7 @@ public class MazeHints : MonoBehaviour
 
         SetBanner(cur.GetBanner());
         SetMats(cur.GetMats());
-        SetFootprints(cur);
+        SetFootprints(cur, maze);
     }
 
     public void RemoveAll()
@@ -68,7 +68,7 @@ public class MazeHints : MonoBehaviour
         }
     }
 
-    public void SetFootprints(Maze cur)
+    public void SetFootprints(Room cur, Maze maze)
     {
         // don't activate footprints if the player hasn't obtained the sunglasses
         if(!InventoryManager.PickedUp(InventoryManager.AllItems.CastleSunglasses)) return;
@@ -80,7 +80,7 @@ public class MazeHints : MonoBehaviour
 
         if(cur.IsOnPath(footprintSpecial))
         {
-            int idx = cur.GetNextOnPath(footprintSpecial);
+            int idx = maze.GetNextOnPath(footprintSpecial, cur);
             Debug.Log("idx direction: " + idx);
 
             if(footprints[idx] != null)

@@ -189,6 +189,7 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
     /* IUnique Functions */
     public virtual void onDeath()
     {
+        SpecialCaseDeaths();
         DestroyExtraComponents();
 
          // removing health tracker (skeleton has different behavior)
@@ -264,12 +265,18 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
         }
     }
 
-    protected void DestroyExtraComponents()
+    public void DestroyExtraComponents()
     {
         // destory FSM (don't want to be doing things while dead)
         Destroy(fsm);
         // removing expression
         Destroy(expression);
+    }
+
+    protected void SpecialCaseDeaths()
+    {
+        if(gameObject.GetComponent<MinibossBehavior>() != null)
+            gameObject.GetComponent<MinibossBehavior>().onDeath();
     }
 
     /*

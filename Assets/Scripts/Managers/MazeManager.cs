@@ -12,8 +12,6 @@ public class MazeManager : MonoBehaviour
     public int averageNumberOfDecorations = 4;
     public GameObject[] startPosition;
 
-    // The length of the maze path (number of rooms traversed until exit)
-    private static int pathLength = 4;  // the lower this goes, the more likely a collision will happen
 
     // maze hints object
     private MazeHints hints;
@@ -27,23 +25,18 @@ public class MazeManager : MonoBehaviour
     }
 
     // constants
-    const int directions = 3,
-              seed = 42_069_420;
+    public const int directions = 3,
+              seed = 42_069_420, 
+              pathLenth = 5;  // The length of the maze path (number of rooms traversed until exit) [the lower this goes, the more likely a collision could occur]
+   
 
     private static System.Random rand;
     private static Maze maze;
-    private static Stack<Maze> path;
+    private static Stack<int> path;
     private static Stack<Direction> dirPath;
 
     void Awake()
     {
-        if(maze == null) maze = GenerateMaze();
-        if(rand == null) rand = new System.Random(seed);
-        if(path == null) path = new Stack<Maze>();
-
-        if(path.Count <= 0)
-            path.Push(maze);    // start in the first room  
-
         hints = FindObjectOfType<MazeHints>();
 
         if(decorationsContainer != null)
@@ -57,25 +50,15 @@ public class MazeManager : MonoBehaviour
             decorations = new GameObject[0];
     }
 
-    public static bool MazeCreated()
-    {
-        return maze != null;
-    }
-
-    public static void SetMaze(Maze m)
-    {
-        maze = m;
-    }
-
-    public static void SetPath(Stack<Maze> p)
-    {
-        path = new Stack<Maze>(p);
-    }
-
     void Start()
     {
-        SetupRoom(GetCurrentRoom());
+        if(maze == null) maze = GenerateMaze();
+        if(rand == null) rand = new System.Random(seed);
+        if(path == null) path = new Stack<int>();
 
+        if(path.Count <= 0)
+            path.Push(0);    // start in the first room  
+        
         // check if the player went backward
         if(dirPath == null) dirPath = new Stack<Direction>();
         if(dirPath.Count >= 2)
@@ -88,10 +71,13 @@ public class MazeManager : MonoBehaviour
             }
         }
 
+        Debug.Log("in maze room " + GetCurrentRoom() + " is on path: " + GetCurrentRoom().IsOnPath(0) + " which is terminal: " + GetCurrentRoom().IsTerminal() + " and is special: " + GetCurrentRoom().IsSpecial());
+        SetupRoom(GetCurrentRoom());
+
         // add checkpoint: reach a special room
         if(path.Count > 0)
         {
-            Maze cur = GetCurrentRoom();
+            Room cur = GetCurrentRoom();
 
             if(cur.IsTerminal())
             {
@@ -106,9 +92,24 @@ public class MazeManager : MonoBehaviour
         }
     }
 
-    public Maze GetCurrentRoom()
+    public static bool MazeCreated()
     {
-        return path.Peek();
+        return maze != null;
+    }
+
+    public static void SetMaze(Maze m)
+    {
+        maze = m;
+    }
+
+    public static void SetPath(Stack<int> p)
+    {
+        path = new Stack<int>(p);
+    }
+
+    public Room GetCurrentRoom()
+    {
+        return maze.maze[path.Peek()];
     }
 
     public void TakeStairs(Direction dir)
@@ -125,13 +126,14 @@ public class MazeManager : MonoBehaviour
             // do stuff
             dirPath.Push(Direction.Down);
             path.Pop();
+            maze.current = path.Peek();
             RestartRoom();
 
             return;
         }
 
         // go to the next room
-        Maze cur = GetCurrentRoom();
+        Room cur = GetCurrentRoom();
 
         // is the end room
         if(cur.IsTerminal())
@@ -140,7 +142,8 @@ public class MazeManager : MonoBehaviour
             return;
         }
 
-        path.Push(cur.GetNext((int)dir));
+        path.Push(maze.GetNextIndex((int)dir, cur));
+        maze.current = path.Peek();
         dirPath.Push(dir);
         RestartRoom();
     }
@@ -150,11 +153,11 @@ public class MazeManager : MonoBehaviour
         ScenesManager.ReloadScene();
     }
 
-    public void SetupRoom(Maze cur)
+    public void SetupRoom(Room cur, bool notsetup=false)
     {
-        if(cur.NotSetup())
+        if(notsetup)
         {
-            cur.SetupRoom(rand, decorations.Length, averageNumberOfDecorations / (double) decorations.Length);
+            maze.SetupRoom(cur, rand, decorations.Length, averageNumberOfDecorations / (double) decorations.Length);
             GameData.GetInstance().UpdateMaze(maze);
         }
 
@@ -174,7 +177,7 @@ public class MazeManager : MonoBehaviour
                 obj.SetActive(false);
 
         // set up hints
-        hints.SetHints(cur);
+        hints.SetHints(cur, maze);
 
         // set up specials
         // (specials default should be false)
@@ -196,7 +199,7 @@ public class MazeManager : MonoBehaviour
         }
     }
 
-    public int GetSpecialType(Maze cur)
+    public int GetSpecialType(Room cur)
     {
         for(int special = 0; special < specials.Length; special++)
             if(cur.IsOnPath(special) && CastleLevelManager.ObtainedPrereqs(special) && specials[special] != null)
@@ -223,32 +226,36 @@ public class MazeManager : MonoBehaviour
     {
         if(rand == null) rand = new System.Random(seed);
         // make trie maze
-        Maze root = new Maze(pathLength + 1);
-        
+        maze = new Maze(decorations.Length, averageNumberOfDecorations / (double) decorations.Length, rand);
+
         // make the special paths
         for(int special = 0; special < specials.Length; special ++)
         {
-            Maze cur = root;
+            Room cur = maze.GetDefault();
             cur.SetOnPath(special);
 
             while(!cur.IsTerminal())
             {
                 int dir = rand.Next(0, directions);
                 // Debug.Log("dir is " + dir + " for path " + special);
-                cur = cur.GetNext(dir);
+                cur = maze.GetNext(dir, cur);
                 cur.SetOnPath(special);
             }
         }
 
-        return root;
+        for(int i = 0; i < maze.maze.Length; i++)
+            // SetupRoom(maze.maze[i], true);
+            maze.SetupRoom(maze.maze[i], rand, decorations.Length, averageNumberOfDecorations / (double) decorations.Length);
+        
+        return maze;
     }
 
     public static Maze GetMaze()
     {
         return maze;
     }
-    public static Stack<Maze> GetPath()
+    public static Stack<int> GetPath()
     {
-        return new Stack<Maze>(path);
+        return new Stack<int>(path);
     }
 }

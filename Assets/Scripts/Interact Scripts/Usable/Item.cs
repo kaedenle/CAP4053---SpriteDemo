@@ -9,6 +9,7 @@ public class Item : Interactive
     public static event EventHandler<InventoryManager.AllItems> PickedUp;
     [SerializeField] public InventoryManager.AllItems _itemType;
     public bool repeatable;
+    public bool destroyOnInteract = true;
 
     new void Start()
     {
@@ -16,7 +17,8 @@ public class Item : Interactive
 
         if (InventoryManager.PickedUp(_itemType) && !repeatable)
         {
-            Destroy(gameObject);
+            if(destroyOnInteract)
+                Destroy(gameObject);
         }
     }
 
@@ -32,8 +34,9 @@ public class Item : Interactive
 
         if (PickedUp != null) 
             PickedUp(this, _itemType);
-
-        Destroy(gameObject);
+        
+        if(destroyOnInteract)
+            Destroy(gameObject);
     }
 
 }

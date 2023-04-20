@@ -15,6 +15,7 @@ public class SkeletonBase : EnemyBase
     public override void onDeath()
     {
         // same as parent
+        SpecialCaseDeaths();
         DestroyExtraComponents();
         AttemptDrops();
         PerformMetricsForDeath();
