@@ -68,7 +68,6 @@ public class TutorialCutsceneManager : MonoBehaviour
         subject = GameObject.Find("Conscious");
         dialouge = subject.GetComponent<NPCDialogue>();
         llf = LevelLoaderBlackScreen.GetComponent<LevelLoaderFinish>();
-        PlayerPrefs.SetInt("In here!", 1);
     }
     public void SetDialouge(NPCReport report)
     {

@@ -110,6 +110,7 @@ public class InventoryManager : MonoBehaviour
                         letterUI.counterIncrement();
                 }
             }
+            if (AddedItem != null) AddedItem(null, item);
         }
     }
 

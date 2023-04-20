@@ -22,6 +22,8 @@ public class WeaponManager : MonoBehaviour, IScriptable
     [HideInInspector]
     public int prevWeapon;
     private int DisplayedWeapon;
+    public bool weaponDebug;
+    public int debuglevel;
 
     private bool prevFliped = false;
 
@@ -33,7 +35,6 @@ public class WeaponManager : MonoBehaviour, IScriptable
         [InputManager.Keys.Left] = 1
     };
     // Start is called before the first frame update
-
     void Awake()
     {
         weaponID = 0;
@@ -56,6 +57,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
             wpnList.index %= wpnList.weaponlist.Length;
             counter++;
         }
+        WeaponLocks();
     }
     
     //scripts to be disabled/enabled when attacking
@@ -74,7 +76,41 @@ public class WeaponManager : MonoBehaviour, IScriptable
         if (ID == 1)
             this.enabled = false;
     }
-
+    //hard coded weapon access based on level and inventory access
+    public void WeaponLocks()
+    {
+        int level = GameData.GetInstance().GetLevel();
+        if (weaponDebug) level = debuglevel;
+        if (level == 0) Calculate(1);
+        else if (level == 1)
+        {
+            if (InventoryManager.HasItem(InventoryManager.AllItems.City_Gun)) Calculate(7);
+            else Calculate(3);
+        }
+        else Calculate(7);
+    }
+    public void WeaponLocks(int number)
+    {
+        Calculate(number);
+    }
+    
+    private void Calculate(int number)
+    {
+        int length = am.wpnList.weaponlist.Length;
+        for(int i = 0; i < length; i++)
+        {
+            int working = number >> (i);
+            bool result = isKthBitSet(working, 0);
+            am.wpnList.weaponlist[i].active = result;
+        }
+    }
+    private bool isKthBitSet(int n, int k)
+    {
+        if ((n & (1 << k)) > 0)
+            return true;
+        else
+            return false;
+    }
     public void SetSprite()
     {
         //set the visual of the weapon from sprite list
@@ -99,6 +135,17 @@ public class WeaponManager : MonoBehaviour, IScriptable
             prevFliped = movementScript.flipped;
         }
     }
+    private void ManipulateWeapons()
+    {
+        int count = 0;
+        while (wpnList.weaponlist[wpnList.index].active == false)
+        {
+            if (count > spriteList.Length) break;
+            wpnList.index += 1;
+            wpnList.index %= spriteList.Length;
+            count++;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -115,6 +162,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
             else
             {
                 onhand.enabled = true;
+                ManipulateWeapons();
                 PlayerMetricsManager.IncrementKeeperInt("equip");
             }
                 
@@ -134,6 +182,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
                 //set animation to follow weapon's ID
                 animator.SetFloat("weapon", wpnList.weaponlist[wpnList.index].ID);
                 animator.SetBool("equiped", !equiped);
+                ManipulateWeapons();
             }
             //if equiped swap
             if (equiped)
@@ -203,7 +252,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
                     {
                         //keyboard shortcuts for combos
                         int press = KeyPressed();
-                        if(press != -1 && DisplayedWeapon == wpnList.index)
+                        if (press != -1 && DisplayedWeapon == wpnList.index && am.CanCancel())
                         {
                             wpnList.index = press % spriteList.Length;
                         }
@@ -224,7 +273,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
                     {
                         //keyboard shortcuts for combos
                         int press = KeyPressed();
-                        if (press != -1 && DisplayedWeapon == wpnList.index)
+                        if (press != -1 && DisplayedWeapon == wpnList.index && am.CanCancel())
                         {
                             wpnList.index = press % spriteList.Length;
                         }

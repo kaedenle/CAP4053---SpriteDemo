@@ -409,6 +409,10 @@ public class AttackManager : MonoBehaviour
     {
         return alreadyDamaged.Count;
     }
+    public bool CanCancel()
+    {
+        return cancellableFlag;
+    }
     // Update is called once per frame
     void Update()
     {

@@ -51,7 +51,7 @@ public class Map1ExtensionManager : MonoBehaviour
     {
         GameObject DoorStore = GameObject.Find("-- FinalDoor --");
         GameObject Door2Store = GameObject.Find("-- FinalDoorAfter --");
-        if (InventoryManager.HasItem(InventoryManager.AllItems.City_Syringe)) return;
+        if (!InventoryManager.HasItem(InventoryManager.AllItems.City_Syringe)) return;
         if (DoorStore == null || Door2Store == null) return;
         //actual door
         foreach (Transform child in DoorStore.transform)
@@ -74,5 +74,6 @@ public class Map1ExtensionManager : MonoBehaviour
         Awaken();
         SpawnItems();
         AntispawnItems();
+        DoorWay();
     }
 }
