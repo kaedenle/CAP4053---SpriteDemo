@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using TMPro;
+using UnityEngine.UI;
 
 public class KeybindingsMenuManager : MonoBehaviour
 {
@@ -52,6 +53,23 @@ public class KeybindingsMenuManager : MonoBehaviour
 
         menuKeys = new Dictionary<InputManager.Keys, KeyPair>(InputManager.GetBindings());
         LoadText();
+
+        LockMovementKeys();
+    }
+
+    void LockMovementKeys()
+    {
+        foreach(KeybindingButtonInfo binding in buttonInformation)
+        {
+            if(binding.key == InputManager.Keys.Up || binding.key == InputManager.Keys.Down ||
+               binding.key == InputManager.Keys.Left || binding.key == InputManager.Keys.Right)
+            {
+                Button button = binding.ParentSection.GetComponentInChildren<Button>();
+                button.interactable = false;
+                button.enabled = false;
+                button.gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 0); // set transparent color
+            }
+        }
     }
 
     void OnGUI()
