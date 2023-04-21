@@ -110,29 +110,9 @@ public class ScenesManager : MonoBehaviour
                 // do nothing, setting start level as 0 is fine
             }
 
-            else if((int)_currentScene <= (int) AllScenes.MobsterAlleyDemo)
+            else if(sceneToLevel.ContainsKey(_currentScene))
             {
-                data.SetLevel(1);
-            }
-
-            else if((int)_currentScene <= (int) AllScenes.ChildChildRoom)
-            {
-                data.SetLevel(3);
-            }
-
-            else if((int) _currentScene <= (int) AllScenes.Boss_BossRoom)
-            {
-                data.SetLevel(4);
-            }
-
-            else if((int) _currentScene <= (int) AllScenes.CastleMaze)
-            {
-                data.SetLevel(2);
-            }
-
-            else if((int) _currentScene <= (int) AllScenes.TutorialSkyBox)
-            {
-                data.SetLevel(0);
+                data.SetLevel((int) sceneToLevel[_currentScene]);
             }
             
             data.SaveCurrentData();
@@ -150,4 +130,39 @@ public class ScenesManager : MonoBehaviour
     {
         return _demo;
     }
+
+    /*
+    ============= Debug Stuff =============
+    */
+    Dictionary<AllScenes, HubManager.PhaseTag> sceneToLevel = new Dictionary<AllScenes, HubManager.PhaseTag>
+    {
+        {AllScenes.MobsterRoadDemo, HubManager.PhaseTag.Mobster},
+        {AllScenes.MobsterRestaurantDemo, HubManager.PhaseTag.Mobster},
+        {AllScenes.MobsterKitchenDemo, HubManager.PhaseTag.Mobster},
+        {AllScenes.MobsterAlleyDemo, HubManager.PhaseTag.Mobster},
+        {AllScenes.ChildLivingRoom, HubManager.PhaseTag.Child},
+        {AllScenes.ChildParentBedroom, HubManager.PhaseTag.Child},
+        {AllScenes.ChildPlayroom, HubManager.PhaseTag.Child},
+        {AllScenes.ChildForest, HubManager.PhaseTag.Child},
+        {AllScenes.ChildUnderground, HubManager.PhaseTag.Child},
+        {AllScenes.ChildChildRoom, HubManager.PhaseTag.Child},
+        {AllScenes.Boss_Arena, HubManager.PhaseTag.Boss},
+        {AllScenes.Boss_HallwayLeft, HubManager.PhaseTag.Boss},
+        {AllScenes.Boss_HallwayDown, HubManager.PhaseTag.Boss},
+        {AllScenes.Boss_HallwayRight, HubManager.PhaseTag.Boss},
+        {AllScenes.Boss_HallwayUp, HubManager.PhaseTag.Boss},
+        {AllScenes.Boss_LeverLeft, HubManager.PhaseTag.Boss},
+        {AllScenes.Boss_LeverDown, HubManager.PhaseTag.Boss},
+        {AllScenes.Boss_LeverRight, HubManager.PhaseTag.Boss},
+        {AllScenes.Boss_BossRoom, HubManager.PhaseTag.Boss},
+        {AllScenes.CastleArena, HubManager.PhaseTag.Castle},
+        {AllScenes.CastleMaze, HubManager.PhaseTag.Castle},
+        {AllScenes.TutorialSkyBox, HubManager.PhaseTag.Tutorial},
+        {AllScenes.Hallway, HubManager.PhaseTag.Mobster},
+        {AllScenes.Classroom, HubManager.PhaseTag.Mobster},
+        {AllScenes.AntonioHome, HubManager.PhaseTag.Mobster},
+        {AllScenes.TrainStation, HubManager.PhaseTag.Mobster},
+        {AllScenes.DormRoom, HubManager.PhaseTag.Mobster},
+
+    };
 }

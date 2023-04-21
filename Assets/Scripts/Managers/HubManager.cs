@@ -7,8 +7,8 @@ public class HubManager : MonoBehaviour
     public enum PhaseTag
     {
         Tutorial,
-        Mobster,
         Castle,
+        Mobster,
         Child,
         Boss
     }
@@ -17,8 +17,8 @@ public class HubManager : MonoBehaviour
     private static ScenesManager.AllScenes[] mindSceneStarts =
     {
         ScenesManager.AllScenes.TutorialSkyBox,
-        ScenesManager.AllScenes.MobsterRoadDemo,
         ScenesManager.AllScenes.CastleArena,
+        ScenesManager.AllScenes.MobsterRoadDemo,
         ScenesManager.AllScenes.ChildLivingRoom,
         ScenesManager.AllScenes.Boss_Arena
     };

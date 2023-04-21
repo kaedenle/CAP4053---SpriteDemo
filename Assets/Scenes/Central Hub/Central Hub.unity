@@ -998,8 +998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineThickness: 0.5
   dialogue: {fileID: 11400000, guid: 34e8ff06a9b994542af86e27b9acc93b, type: 2}
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 0
   lockable:
     isLocked: 1
@@ -1007,6 +1006,7 @@ MonoBehaviour:
     lockedText: {fileID: 11400000, guid: 19d1a13f7bbe5d549a8b43da4c77adb0, type: 2}
     lockedAudio:
       audioFile: {fileID: 0}
+  playAfterDialogue: 1
   phase: 3
 --- !u!58 &92485182
 CircleCollider2D:
@@ -1500,8 +1500,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1953365290}
-  - {fileID: 322480535}
   - {fileID: 406938323}
+  - {fileID: 322480535}
   - {fileID: 92485179}
   - {fileID: 1762940550}
   m_Father: {fileID: 1012854841}
@@ -3089,7 +3089,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 148052834}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &322480539
 CircleCollider2D:
@@ -3121,8 +3121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineThickness: 0.5
   dialogue: {fileID: 0}
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 0
   lockable:
     isLocked: 1
@@ -3130,7 +3129,8 @@ MonoBehaviour:
     lockedText: {fileID: 11400000, guid: b5b8f0ac9d5dff34c8862efe97d9d3e2, type: 2}
     lockedAudio:
       audioFile: {fileID: 0}
-  phase: 1
+  playAfterDialogue: 1
+  phase: 2
 --- !u!1 &352097187
 GameObject:
   m_ObjectHideFlags: 0
@@ -3250,7 +3250,7 @@ Transform:
   m_Children:
   - {fileID: 779004016}
   m_Father: {fileID: 752783658}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 247.78299}
 --- !u!114 &352918461
 MonoBehaviour:
@@ -3266,8 +3266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineThickness: 0.2
   dialogue: {fileID: 11400000, guid: 605445053ca98f14b9f0484c28b80b2b, type: 2}
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 1
   lockable:
     isLocked: 0
@@ -3275,6 +3274,7 @@ MonoBehaviour:
     lockedText: {fileID: 0}
     lockedAudio:
       audioFile: {fileID: 0}
+  playAfterDialogue: 1
   triggeredEventId: activates_mobster_trigger
   destroyOnTrigger: 0
   gainItem: 1
@@ -3380,7 +3380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05b0e7b714cee5b4cbd62b7a421da97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phase: 1
+  phase: 2
 --- !u!1 &353581718
 GameObject:
   m_ObjectHideFlags: 0
@@ -3966,7 +3966,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 148052834}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &406938324
 CircleCollider2D:
@@ -3998,8 +3998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineThickness: 0.2
   dialogue: {fileID: 0}
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 0
   lockable:
     isLocked: 0
@@ -4007,7 +4006,8 @@ MonoBehaviour:
     lockedText: {fileID: 11400000, guid: 4ce7d40ece61c844f83f8af5f45ebf14, type: 2}
     lockedAudio:
       audioFile: {fileID: 0}
-  phase: 2
+  playAfterDialogue: 1
+  phase: 1
 --- !u!212 &406938326
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6605,9 +6605,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1696234523}
   - {fileID: 352918460}
   - {fileID: 2013922818}
-  - {fileID: 1696234523}
   m_Father: {fileID: 1012854841}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13099,7 +13099,7 @@ Transform:
   m_Children:
   - {fileID: 411856851}
   m_Father: {fileID: 752783658}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1696234524
 MonoBehaviour:
@@ -13113,7 +13113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05b0e7b714cee5b4cbd62b7a421da97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phase: 2
+  phase: 1
 --- !u!114 &1696234525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13128,8 +13128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineThickness: 0.2
   dialogue: {fileID: 11400000, guid: 7557fa59188e2654a88c90a567bfca2b, type: 2}
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 1
   lockable:
     isLocked: 0
@@ -13137,6 +13136,7 @@ MonoBehaviour:
     lockedText: {fileID: 0}
     lockedAudio:
       audioFile: {fileID: 0}
+  playAfterDialogue: 1
   triggeredEventId: activates_castle_trigger
   destroyOnTrigger: 0
   gainItem: 1
@@ -13717,8 +13717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineThickness: 2
   dialogue: {fileID: 11400000, guid: 29fe22ec7feb2754e8b33b6b62e653b2, type: 2}
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 1
   lockable:
     isLocked: 0
@@ -13726,6 +13725,7 @@ MonoBehaviour:
     lockedText: {fileID: 0}
     lockedAudio:
       audioFile: {fileID: 0}
+  playAfterDialogue: 1
   phase: 4
 --- !u!212 &1762940553
 SpriteRenderer:
@@ -16118,8 +16118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineThickness: 2
   dialogue: {fileID: 11400000, guid: 6be97c75a8f75454fa395e38e328e100, type: 2}
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 1
   lockable:
     isLocked: 0
@@ -16127,6 +16126,7 @@ MonoBehaviour:
     lockedText: {fileID: 0}
     lockedAudio:
       audioFile: {fileID: 0}
+  playAfterDialogue: 1
   phase: 0
 --- !u!58 &1953365292
 CircleCollider2D:
@@ -17013,7 +17013,7 @@ Transform:
   m_Children:
   - {fileID: 1400515906}
   m_Father: {fileID: 752783658}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2013922819
 MonoBehaviour:
@@ -17029,8 +17029,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineThickness: 0.2
   dialogue: {fileID: 11400000, guid: 45a7cc5e333fc6a46aefdd57d7e476e8, type: 2}
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 1
   lockable:
     isLocked: 0
@@ -17038,6 +17037,7 @@ MonoBehaviour:
     lockedText: {fileID: 0}
     lockedAudio:
       audioFile: {fileID: 0}
+  playAfterDialogue: 1
   triggeredEventId: activates_child_trigger
   destroyOnTrigger: 0
   gainItem: 1
