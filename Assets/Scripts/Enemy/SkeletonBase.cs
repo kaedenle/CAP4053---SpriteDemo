@@ -5,8 +5,6 @@ using UnityEngine.AI;
 
 public class SkeletonBase : EnemyBase
 {    
-    public bool shooting = false;
-
     private AudioSource audiosrc;
     private Hurtbox hrt;
     private float MAX_DEATH_TIMER = 2.5f;
@@ -68,7 +66,9 @@ public class SkeletonBase : EnemyBase
     {
         animator.Play("Hurt");
         animator.SetBool("Hitstun", true);
-        shooting = false;
+
+        if(gameObject.GetComponent<MoveAndShootController>() != null)
+            gameObject.GetComponent<MoveAndShootController>().shooting = false;
     }
     // Start is called before the first frame update
     new void Awake()

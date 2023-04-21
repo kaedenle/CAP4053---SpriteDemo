@@ -14,6 +14,11 @@ public class MoveAndShootController : MovementController
         bulletPrefab = Resources.Load("Prefabs/Enemies/Fireball") as GameObject;
     }
 
+    void Update()
+    {
+        Debug.Log("shooting = " + shooting);
+    }
+
     public void FinishShoot()
     {
         shooting = false;
