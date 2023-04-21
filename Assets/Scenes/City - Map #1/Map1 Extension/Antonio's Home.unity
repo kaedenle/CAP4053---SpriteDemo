@@ -21159,6 +21159,68 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &517463719
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1260726155}
+    m_Modifications:
+    - target: {fileID: 4804427078569943907, guid: 843f5482b62d43547b1fac0ebd6a65e3, type: 3}
+      propertyPath: m_Name
+      value: CollapseManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4875772373450930137, guid: 843f5482b62d43547b1fac0ebd6a65e3, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4875772373450930137, guid: 843f5482b62d43547b1fac0ebd6a65e3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4875772373450930137, guid: 843f5482b62d43547b1fac0ebd6a65e3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4875772373450930137, guid: 843f5482b62d43547b1fac0ebd6a65e3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4875772373450930137, guid: 843f5482b62d43547b1fac0ebd6a65e3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4875772373450930137, guid: 843f5482b62d43547b1fac0ebd6a65e3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4875772373450930137, guid: 843f5482b62d43547b1fac0ebd6a65e3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4875772373450930137, guid: 843f5482b62d43547b1fac0ebd6a65e3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4875772373450930137, guid: 843f5482b62d43547b1fac0ebd6a65e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4875772373450930137, guid: 843f5482b62d43547b1fac0ebd6a65e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4875772373450930137, guid: 843f5482b62d43547b1fac0ebd6a65e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 843f5482b62d43547b1fac0ebd6a65e3, type: 3}
+--- !u!4 &517463720 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4875772373450930137, guid: 843f5482b62d43547b1fac0ebd6a65e3, type: 3}
+  m_PrefabInstance: {fileID: 517463719}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &523441133
 GameObject:
   m_ObjectHideFlags: 0
@@ -37048,7 +37110,7 @@ MonoBehaviour:
   normalAudio: 
   highlightEnds: 0
   lockable:
-    isLocked: 0
+    isLocked: 1
     lockedInteractiveText:
       textID: city_collapse_chair
       loopLast: 1
@@ -51615,7 +51677,6 @@ GameObject:
   - component: {fileID: 1211519956}
   - component: {fileID: 1211519959}
   - component: {fileID: 1211519958}
-  - component: {fileID: 1211519957}
   m_Layer: 0
   m_Name: Fallen
   m_TagString: Untagged
@@ -51640,20 +51701,6 @@ Transform:
   m_Father: {fileID: 770783664}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -91.459}
---- !u!114 &1211519957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1211519955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94078a7218af9734682e60e33047b77a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ID: 0
-  collapsed: 0
 --- !u!61 &1211519958
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -53343,6 +53390,7 @@ Transform:
   - {fileID: 1793057297}
   - {fileID: 1130413106}
   - {fileID: 2416578137666047235}
+  - {fileID: 517463720}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -62283,7 +62331,6 @@ GameObject:
   - component: {fileID: 1446738998}
   - component: {fileID: 1446738999}
   - component: {fileID: 1446739000}
-  - component: {fileID: 1446739001}
   m_Layer: 0
   m_Name: Fallen
   m_TagString: Untagged
@@ -62386,20 +62433,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.08244862, y: 0.45339257}
   m_EdgeRadius: 0
---- !u!114 &1446739001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1446738997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94078a7218af9734682e60e33047b77a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ID: 0
-  collapsed: 0
 --- !u!1 &1446754546
 GameObject:
   m_ObjectHideFlags: 0
