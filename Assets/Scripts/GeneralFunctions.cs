@@ -39,4 +39,19 @@ public class GeneralFunctions
                 return child.gameObject;
         return null;
     }
+
+    public static Camera GetMainCamera()
+    {
+        return UnityEngine.Camera.main;
+    }
+
+    public static float GetCameraHeight()
+    {
+        return 2f * GetMainCamera().orthographicSize;
+    }
+
+    public static float GetCameraWidth()
+    {
+        return GetCameraHeight() * GetMainCamera().aspect;
+    }
 }

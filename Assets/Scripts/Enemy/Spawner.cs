@@ -13,6 +13,8 @@ public class Spawner : MonoBehaviour
     [Range(0, 20)] public int maxEnemies;
     private int numEnemies;
 
+    [Range(0, 100)] public float minPlayerYDistPercent = 25, minPlayerXDistPercent = 25;
+    private float minYPlayer, minXPlayer;
     public float minimumAcceptablePlayerDistance = 0.5F;
     private int attemptsBeforeAbandom = 5000; // # of random start point generations before the script gives up on the enemy
     
@@ -34,6 +36,11 @@ public class Spawner : MonoBehaviour
     {
         // grab the boxcollider2d bounding box if there is one
         generateBox = gameObject.GetComponent<BoxCollider2D>();
+
+        minXPlayer = GeneralFunctions.GetCameraWidth() * minPlayerXDistPercent / 100.0F;
+        minYPlayer = GeneralFunctions.GetCameraHeight() * minPlayerYDistPercent / 100.0F;
+
+        Debug.Log("min x dist = " + minXPlayer + " min y dist = " + minYPlayer);
 
         if(generateBox != null)
         {
@@ -110,13 +117,20 @@ public class Spawner : MonoBehaviour
         {
             Vector3 start = GetRandomStartPosition();
 
-            if(player == null || Vector3.Distance(player.transform.position, start) >= minimumAcceptablePlayerDistance)
+            // if(player == null || ValidLocation(start)) //Vector3.Distance(player.transform.position, start) >= minimumAcceptablePlayerDistance)
+            if(player == null || ValidLocation(start))
             {
                 return start;
             }
         }
 
         return NULLPOINT;
+    }
+
+    private bool ValidLocation(Vector3 pos)
+    {
+        return System.Math.Abs(pos.x - player.transform.position.x) >= minXPlayer || 
+               System.Math.Abs(pos.y - player.transform.position.y) >= minYPlayer;
     }
 
     private Vector3 GetRandomStartPosition()

@@ -22,7 +22,8 @@ public class WeaponManager : MonoBehaviour, IScriptable
     [HideInInspector]
     public int prevWeapon;
     private int DisplayedWeapon;
-    public bool weaponDebug;
+    public float stop_sign_speed;
+    public bool weaponDebug;'
     public int debuglevel;
 
     private bool prevFliped = false;
@@ -206,7 +207,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
         }
         //change speed if heavy weapon
         if (wpnList.index == 1 && equiped)
-            gameObject.GetComponent<Player_Movement>().speed = 8;
+            gameObject.GetComponent<Player_Movement>().speed = stop_sign_speed;
         else
             gameObject.GetComponent<Player_Movement>().speed = movementScript.MAX_SPEED;
 
