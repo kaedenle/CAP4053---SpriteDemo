@@ -10,7 +10,6 @@ namespace BasicEnemy
     {
         public override void Execute(FSM stateMachine)
         {
-            stateMachine.TransitionReady = false;
             stateMachine.enemyController.Attack(stateMachine);
         }
     }
