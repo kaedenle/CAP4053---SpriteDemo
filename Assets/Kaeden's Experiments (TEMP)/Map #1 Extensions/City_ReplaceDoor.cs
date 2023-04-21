@@ -14,9 +14,8 @@ public class City_ReplaceDoor : MonoBehaviour
     void OnEnable()
     {
         InventoryManager.AddedItem += ExecuteAllPages;
-        ExecuteAllPages(null, InventoryManager.AllItems.City_Paper1);
         sr = GetComponent<SpriteRenderer>();
-
+        ExecuteAllPages(null, InventoryManager.AllItems.City_Paper1);
     }
     private void OnDisable()
     {
