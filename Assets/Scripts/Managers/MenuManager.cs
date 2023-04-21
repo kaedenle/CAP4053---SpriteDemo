@@ -93,11 +93,17 @@ public class MenuManager : MonoBehaviour
 
         if (e.keyCode != KeyCode.None)
         {
-            delayDone = false;
+            string typed = InputManager.GetKeyCodeString(e.keyCode);
+            if(typed.Length > 1) return; // ignore any special keys
+            
+            char letter = typed[0];
+            Debug.Log("letter = " + letter + " and currentString is " + currentString);
+            if(currentString.Length != 0 && currentString[currentString.Length - 1] == letter) return; // repeat letter
+
             StartCoroutine(DelayTyping());
             if(GeneralFunctions.IsDebug()) Debug.Log("event: " + e.ToString() + " with keycode " + e.keyCode);
             
-            currentString += InputManager.GetKeyCodeString(e.keyCode);
+            currentString += typed;
 
             while(currentString.Length > secretKey.Length) 
                 currentString = currentString.Substring(1);
@@ -111,7 +117,8 @@ public class MenuManager : MonoBehaviour
 
     IEnumerator DelayTyping()
     {
-        yield return new WaitForSeconds(0.15F);
+        delayDone = false;
+        yield return new WaitForSeconds(0.05F);
         delayDone = true;
     }
 }
