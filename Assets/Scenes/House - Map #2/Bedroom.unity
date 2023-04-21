@@ -925,8 +925,10 @@ MonoBehaviour:
       loopLast: 0
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
   _itemType: 4
   repeatable: 0
+  destroyOnInteract: 1
 --- !u!212 &165500842
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1462,6 +1464,7 @@ MonoBehaviour:
       loopLast: 0
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
   eventID: 
   stateID: map2_bedroomMat
   enables:
@@ -1886,9 +1889,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.0827086, y: -1.7524856}
+  m_Offset: {x: -1.4962139, y: -2.163032}
   serializedVersion: 2
-  m_Radius: 1.425945
+  m_Radius: 1.2793216
 --- !u!114 &300765496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1915,6 +1918,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
 --- !u!114 &300765497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1929,8 +1933,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineThickness: 0.5
   dialogue: {fileID: 0}
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 1
   lockable:
     isLocked: 0
@@ -1938,6 +1941,7 @@ MonoBehaviour:
     lockedText: {fileID: 0}
     lockedAudio:
       audioFile: {fileID: 0}
+  playAfterDialogue: 1
 --- !u!1001 &303897741
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2582,6 +2586,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 08000000
+  playAfterDialogue: 1
   _nextScene: 10
 --- !u!114 &356749936
 MonoBehaviour:
@@ -2609,6 +2614,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 08000000
+  playAfterDialogue: 1
   eventID: rope_secured
   destroyOnUse: 1
   enables:
@@ -2818,6 +2824,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
 --- !u!58 &388241050
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2831,9 +2838,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.1355979}
+  m_Offset: {x: 0.38048765, y: -0.19901228}
   serializedVersion: 2
-  m_Radius: 1.2022643
+  m_Radius: 1.075435
 --- !u!1 &407761942
 GameObject:
   m_ObjectHideFlags: 0
@@ -3125,8 +3132,10 @@ MonoBehaviour:
       loopLast: 0
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
   _itemType: 7
   repeatable: 0
+  destroyOnInteract: 1
 --- !u!58 &444954589
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3837,6 +3846,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 00000000
+  playAfterDialogue: 1
   eventID: 
   stateID: map2_bedroomMat
   enables:
@@ -4111,6 +4121,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 00000000
+  playAfterDialogue: 1
   eventID: 
   stateID: map2_bedroomMat
   enables:
@@ -5651,6 +5662,7 @@ MonoBehaviour:
       loopLast: 0
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
   eventID: 
   stateID: bedroom_painting
   enables:
@@ -6165,7 +6177,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1129525669}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.3, y: 0.16, z: 0.94536716}
+  m_LocalPosition: {x: 10.3, y: -0.11, z: 0.94536716}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6428,6 +6440,7 @@ MonoBehaviour:
       loopLast: 0
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
   _nextScene: 6
 --- !u!1 &1191988408
 GameObject:
@@ -6640,7 +6653,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.18565011}
+  m_Offset: {x: 0, y: -1.0158434}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -6651,7 +6664,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.266667, y: 6.5046334}
+  m_Size: {x: 4.266667, y: 5.5168085}
   m_EdgeRadius: 0
 --- !u!114 &1192746791
 MonoBehaviour:
@@ -6679,6 +6692,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 00000000
+  playAfterDialogue: 1
   eventID: 
   stateID: bedroom_painting
   enables:
@@ -6800,8 +6814,10 @@ MonoBehaviour:
       loopLast: 0
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
   _itemType: 8
   repeatable: 0
+  destroyOnInteract: 1
 --- !u!58 &1194365158
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -7196,6 +7212,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 08000000
+  playAfterDialogue: 1
   _nextScene: 10
 --- !u!114 &1256701443
 MonoBehaviour:
@@ -7804,7 +7821,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1345316406}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.165511, y: 1.0254753, z: 0.94536716}
+  m_LocalPosition: {x: 9.165511, y: 0.7554753, z: 0.94536716}
   m_LocalScale: {x: 1.1442, y: 1.2198, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7824,7 +7841,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.3200364, y: 0.14009428}
+  m_Offset: {x: -0.091367245, y: 0.14009428}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -7835,7 +7852,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.90674, y: 4.653145}
+  m_Size: {x: 4.449402, y: 4.653145}
   m_EdgeRadius: 0
 --- !u!208 &1345316410
 NavMeshObstacle:
@@ -8909,9 +8926,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1571657780}
   - component: {fileID: 1571657779}
-  - component: {fileID: 1571657781}
   - component: {fileID: 1571657782}
   - component: {fileID: 1571657783}
+  - component: {fileID: 1571657784}
   m_Layer: 0
   m_Name: Patrick Blanchard Painting (interactable)
   m_TagString: Untagged
@@ -8986,22 +9003,6 @@ Transform:
   m_Father: {fileID: 77082589}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &1571657781
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1571657778}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.20669673, y: -4.728579}
-  serializedVersion: 2
-  m_Radius: 1.4808166
 --- !u!114 &1571657782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9028,6 +9029,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
 --- !u!114 &1571657783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9042,8 +9044,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineThickness: 0.5
   dialogue: {fileID: 0}
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 1
   lockable:
     isLocked: 0
@@ -9051,6 +9052,33 @@ MonoBehaviour:
     lockedText: {fileID: 0}
     lockedAudio:
       audioFile: {fileID: 0}
+  playAfterDialogue: 1
+--- !u!61 &1571657784
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571657778}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.38320422, y: -4.7278676}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2.7333333}
+    newSize: {x: 1.7333333, y: 2.4666667}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.7664082, y: 2.0991123}
+  m_EdgeRadius: 0
 --- !u!1 &1571700652
 GameObject:
   m_ObjectHideFlags: 0
@@ -9200,7 +9228,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.14}
+  m_Offset: {x: -0.027186662, y: -0.18367994}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -9211,7 +9239,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.92, y: 0.59}
+  m_Size: {x: 1.1667707, y: 0.6773596}
   m_EdgeRadius: 0
 --- !u!114 &1586579146
 MonoBehaviour:
@@ -9239,6 +9267,7 @@ MonoBehaviour:
       loopLast: 0
     lockedAudio: 
     requiredItems: 0700000000000000
+  playAfterDialogue: 1
   eventID: 
   stateID: map2_bedroomMat
   enables:
@@ -10688,6 +10717,7 @@ MonoBehaviour:
       loopLast: 0
     lockedAudio: 
     requiredItems: 05000000
+  playAfterDialogue: 1
   eventID: 
   stateID: bedroom_safe_closed
   enables:
@@ -11475,6 +11505,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 07000000
+  playAfterDialogue: 1
   eventID: 
   stateID: supply_crate_locked
   enables:
