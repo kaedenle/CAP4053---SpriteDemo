@@ -59,4 +59,13 @@ public class MenuManager : MonoBehaviour
         if(LoadButton != null && !GameData.GetInstance().HasLoadData())
             DisableButton(LoadButton);
     }
+
+    public void LevelSelectButton(int level)
+    {
+        GameData.GetInstance().ResetData();
+        LevelManager.FullReset();
+        GameData.GetInstance().SetLevel(level);
+        GameData.GetInstance().SaveAfterSceneChange();
+        ScenesManager.LoadScene(ScenesManager.AllScenes.CentralHub);
+    }
 }
