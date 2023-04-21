@@ -112,7 +112,6 @@ public class Patrol : MonoBehaviour
     public bool FOVCheck()
     {
         LookingForDirection();
-        if (!chasing) UpdateFOV();
         var contactFilter = new ContactFilter2D();
         bool ret = false;
         //can only hit on entity layer and action layer
@@ -182,6 +181,7 @@ public class Patrol : MonoBehaviour
     }
     public void MoveTowards()
     {
+        UpdateFOV();
         chasing = true;
         Memory();
         LookingForDirection();
@@ -241,6 +241,7 @@ public class Patrol : MonoBehaviour
     }
     public void Patroling()
     {
+        UpdateFOV();
         chasing = false;
         if (!agent.enabled || trigger) return;
         bool flag = false;
