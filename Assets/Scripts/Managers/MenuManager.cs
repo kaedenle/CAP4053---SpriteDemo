@@ -97,11 +97,9 @@ public class MenuManager : MonoBehaviour
             if(typed.Length > 1) return; // ignore any special keys
             
             char letter = typed[0];
-            Debug.Log("letter = " + letter + " and currentString is " + currentString);
             if(currentString.Length != 0 && currentString[currentString.Length - 1] == letter) return; // repeat letter
 
             StartCoroutine(DelayTyping());
-            if(GeneralFunctions.IsDebug()) Debug.Log("event: " + e.ToString() + " with keycode " + e.keyCode);
             
             currentString += typed;
 

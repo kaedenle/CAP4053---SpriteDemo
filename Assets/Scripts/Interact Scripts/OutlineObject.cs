@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OutlineObject : MonoBehaviour
 {
-    public float outlineThickness = 0.5F;
+    public OutlineParam outlineThickness;
     private Material defaultMaterial;
     private Material outlineMaterial;
     private SpriteRenderer sprite_renderer;
@@ -18,6 +18,7 @@ public class OutlineObject : MonoBehaviour
         // get the objects for the outlines
         sprite_renderer = gameObject.GetComponent<SpriteRenderer>();
         defaultMaterial = sprite_renderer.material;
+
     }
 
     public void Start()
@@ -30,9 +31,18 @@ public class OutlineObject : MonoBehaviour
                 outlineMaterial = loader.GetOutline();
         }
 
+        // automatically set offsets
+        float temp_x = transform.localScale.x;
+        float temp_y = transform.localScale.y;
+        outlineMaterial.SetFloat("_Offset_x", 1); 
+        outlineMaterial.SetFloat("_Offset_y", temp_x / temp_y); 
+
+        // try to set outline thickness
+        float thickness = GetThickness();
+        outlineMaterial.SetFloat("_Outline_Thickness", thickness); 
+
         if(outlineMaterial != null) 
         {
-            outlineMaterial.SetFloat("_Outline_Thickness", outlineThickness); 
             MakeOutlineObject();
         }
     }
@@ -50,7 +60,11 @@ public class OutlineObject : MonoBehaviour
         if(collider.tag == "Player")
         {
             near = true;
+            OverrideThickness();
             EnableOutline();
+            
+            // debug stuff
+            PrintSizes();
         }
     }
 
@@ -62,6 +76,58 @@ public class OutlineObject : MonoBehaviour
             DisableOutline();
         }
     }
+
+    public void PrintSizes()
+    {
+        Vector2 sprite_size = GetComponent<SpriteRenderer>().sprite.rect.size;
+        Vector2 local_sprite_size = sprite_size / GetComponent<SpriteRenderer>().sprite.pixelsPerUnit;
+        Vector3 world_size = local_sprite_size;
+        world_size.x *= transform.lossyScale.x;
+        world_size.y *= transform.lossyScale.y;
+
+        //convert to screen space size
+        Vector3 screen_size = 0.5f * world_size / Camera.main.orthographicSize;
+        screen_size.y *= Camera.main.aspect;
+
+        //size in pixels
+        Vector3 in_pixels = new Vector3(screen_size.x * Camera.main.pixelWidth, screen_size.y * Camera.main.pixelHeight, 0) * 0.5f;
+
+        // Debug.Log(string.Format("Sprite Size: {3}, Local Sprite Size: {4}, World size: {0}, Screen size: {1}, Pixel size: {2}",world_size,screen_size,in_pixels,sprite_size, local_sprite_size));
+        
+        float relative_x = sprite_size.x / screen_size.x;
+        Debug.Log("Relative: " + relative_x);
+    }
+
+    public float GetThickness()
+    {
+        // sprite size
+        Vector2 sprite_size = GetComponent<SpriteRenderer>().sprite.rect.size;
+        // local size
+        Vector2 local_sprite_size = sprite_size / GetComponent<SpriteRenderer>().sprite.pixelsPerUnit;
+        // world size
+        Vector3 world_size = local_sprite_size;
+        world_size.x *= transform.lossyScale.x;
+        world_size.y *= transform.lossyScale.y;
+        // screen size
+        Vector3 screen_size = 0.5f * world_size / Camera.main.orthographicSize;
+
+        // relative sizing
+        float relative_x = sprite_size.x / screen_size.x;
+
+        // float coeff = 0.1F;
+        // return (float) (System.Math.Log(coeff * relative_x) / System.Math.Log(6.0));
+        // return (float) (0.0039278326219592 * relative_x + 0.49405587996544);
+        // return (float) (1.00778 * System.Math.Log(2.90195 * relative_x - 0.72459) - 4.82532);
+        // return (float) (32.9421 * System.Math.Log(0.101281 * relative_x - 403.161) - 193.13);
+        return (float) (0.00678712 * System.Math.Pow(relative_x, 0.898786) + 0.714275);
+    }
+
+    public void OverrideThickness()
+    {
+        if(outlineThickness != null)
+            outlineMaterial.SetFloat("_Outline_Thickness", outlineThickness.outlineThickness); 
+    }
+
 
     public void EnableOutline()
     {
