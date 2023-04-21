@@ -32,6 +32,7 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
 
     // private trackers
     private float lastDamageTaken = -1e5F;
+    private bool attackReady = true;
     
 
     /* Awake, Start, Update */
@@ -105,11 +106,17 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
 
     public void Attack(BasicEnemy.FSM stateMachine)
     {
-        StartCoroutine(TriggerAttack(stateMachine));
+        if(attackReady)
+        {
+            StartCoroutine(TriggerAttack(stateMachine));
+            StartCoroutine(ChargeAttack());
+        }
     }
 
     public IEnumerator TriggerAttack(BasicEnemy.FSM stateMachine)
     {
+        stateMachine.TransitionReady = false;
+        
         movementController.Attack();
 
         yield return new WaitUntil(() => movementController.enabled);
@@ -125,6 +132,13 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
         stateMachine.TransitionReady = true;
     }
 
+    IEnumerator ChargeAttack()
+    {
+        attackReady = false;
+        yield return new WaitForSeconds(movementController.movementConfiguration.attackChargeTime);
+        attackReady = true;
+    }
+
     public void Alerted(BasicEnemy.FSM stateMachine)
     {
         // question mark over enemy head
@@ -134,6 +148,8 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
 
     public IEnumerator CompleteTimer(float time_wait, BasicEnemy.FSM stateMachine)
     {
+        stateMachine.TimerComplete = false;
+
         float start_time = Time.time;
         yield return new WaitForSeconds(time_wait);
         
