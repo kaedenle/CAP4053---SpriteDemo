@@ -127,8 +127,6 @@ public class LevelManager : MonoBehaviour
         ResetAllVariables();
 
         // reset from player death
-        // if(!EntityManager.IsPaused())
-        //     EntityManager.Pause(); 
         GameData.GetInstance().SaveAfterSceneChange();
 
         if (level != null)
