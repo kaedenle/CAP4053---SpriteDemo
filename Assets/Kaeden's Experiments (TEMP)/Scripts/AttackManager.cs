@@ -216,6 +216,10 @@ public class AttackManager : MonoBehaviour
     {
         cancellableFlag = true;
     }
+    public void CloseCancellable()
+    {
+        cancellableFlag = false;
+    }
     private void Cancellable()
     {
         //if hit something cancel (only for player)

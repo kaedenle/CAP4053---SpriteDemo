@@ -82,7 +82,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
         int level = GameData.GetInstance().GetLevel();
         if (weaponDebug) level = debuglevel;
         if (level == 0) Calculate(1);
-        else if (level == 1)
+        else if (level == 1 || level == 2)
         {
             if (InventoryManager.HasItem(InventoryManager.AllItems.City_Gun)) Calculate(7);
             else Calculate(3);
@@ -252,7 +252,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
                     {
                         //keyboard shortcuts for combos
                         int press = KeyPressed();
-                        if (press != -1 && DisplayedWeapon == wpnList.index && am.HasHitSomething() && wpnList.weaponlist[press].active)
+                        if (press != -1 && DisplayedWeapon == wpnList.index && am.HasHitSomething() && wpnList.weaponlist[press].active && am.CanCancel())
                         {
                             wpnList.index = press % spriteList.Length;
                         }
@@ -273,7 +273,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
                     {
                         //keyboard shortcuts for combos
                         int press = KeyPressed();
-                        if (press != -1 && DisplayedWeapon == wpnList.index && am.HasHitSomething() && wpnList.weaponlist[press].active)
+                        if (press != -1 && DisplayedWeapon == wpnList.index && am.HasHitSomething() && wpnList.weaponlist[press].active && am.CanCancel())
                         {
                             wpnList.index = press % spriteList.Length;
                         }
