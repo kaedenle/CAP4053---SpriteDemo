@@ -451,6 +451,12 @@ public class InputManager : MonoBehaviour
     {
         return validCodeToString[keycodes[key].GetPrimary()];
     }
+
+    public static string GetKeyCodeString(KeyCode code)
+    {
+        if(!validCodeToString.ContainsKey(code)) return "";
+        return validCodeToString[code];
+    }
 }
 
 public class KeyPair
