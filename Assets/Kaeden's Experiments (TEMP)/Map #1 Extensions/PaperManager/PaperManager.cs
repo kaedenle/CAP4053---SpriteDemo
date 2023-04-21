@@ -9,11 +9,13 @@ public class PaperManager : MonoBehaviour
     public PlayableDirector Complete;
     public IDictionary<string, PlayableDirector> reference = new Dictionary<string, PlayableDirector>();
     private static bool triggeredFinal = false;
+    private GameObject pagecount;
     // Start is called before the first frame update
     void OnEnable()
     {
         InventoryManager.AddedItem += ExecuteEvent;
         InventoryManager.AddedItem += Paper1Enable;
+        pagecount = GameObject.Find("Page Count");
     }
     private void OnDisable()
     {
@@ -53,6 +55,7 @@ public class PaperManager : MonoBehaviour
         Map1ExtensionManager.SpawnItems();
         Map1ExtensionManager.AntispawnItems();
         WarpManager.Clear();
+        if (pagecount != null) pagecount.GetComponent<City_PageCounter>().Activate();
     }
     public void ExecuteEvent(object sender, InventoryManager.AllItems e)
     {
