@@ -23,7 +23,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
     public int prevWeapon;
     private int DisplayedWeapon;
     public float stop_sign_speed;
-    public bool weaponDebug;'
+    public bool weaponDebug;
     public int debuglevel;
 
     private bool prevFliped = false;
