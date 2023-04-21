@@ -218,6 +218,7 @@ public class MazeManager : MonoBehaviour
     {
         CastleLevelManager.SetMazeStatus(status);
         path.Clear();
+        maze.current = 0;
         ScenesManager.LoadScene(ScenesManager.AllScenes.CastleArena);
     }
 
