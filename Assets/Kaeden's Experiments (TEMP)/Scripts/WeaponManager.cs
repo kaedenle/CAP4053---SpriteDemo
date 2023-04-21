@@ -31,7 +31,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
     {
         [InputManager.Keys.Down] = 2,
         [InputManager.Keys.Up] = 2,
-        [InputManager.Keys.Right] = 3,
+        [InputManager.Keys.Right] = 0,
         [InputManager.Keys.Left] = 1
     };
     // Start is called before the first frame update
