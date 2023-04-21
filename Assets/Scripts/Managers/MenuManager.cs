@@ -6,8 +6,11 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
-    public GameObject LoadButton, levelSelectButton;
+    public GameObject LoadButton;
     public TMP_ColorGradient disabledColor;
+
+    public GameObject levelSelectButton;
+    public GameObject mainPage;
 
     // button behavior for New Game
     public void NewGame()
@@ -84,7 +87,7 @@ public class MenuManager : MonoBehaviour
 
     void OnGUI()
     {
-        if(!delayDone) return;
+        if(!delayDone || !mainPage.activeSelf ) return;
 
         Event e = Event.current;
 
@@ -96,8 +99,8 @@ public class MenuManager : MonoBehaviour
             
             currentString += InputManager.GetKeyCodeString(e.keyCode);
 
-            if(currentString.Length > secretKey.Length) 
-                currentString = currentString.Substring(0, secretKey.Length);
+            while(currentString.Length > secretKey.Length) 
+                currentString = currentString.Substring(1);
             
             if(currentString.Equals(secretKey))
                 levelSelectButton.SetActive(true);
@@ -108,7 +111,7 @@ public class MenuManager : MonoBehaviour
 
     IEnumerator DelayTyping()
     {
-        yield return new WaitForSeconds(0.1F);
+        yield return new WaitForSeconds(0.15F);
         delayDone = true;
     }
 }
