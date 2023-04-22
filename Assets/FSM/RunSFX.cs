@@ -10,6 +10,7 @@ public class RunSFX : MonoBehaviour
     void Start()
     {
         audioSource = RunSFXManager.GetSource();
+        //audioSource = GetComponent<AudioSource>();
         //SoundEffectManager.PlayAudio(runSFX);
     }
 
