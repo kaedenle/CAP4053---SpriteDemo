@@ -16,10 +16,9 @@ public class MovementController : MonoBehaviour, IScriptable
     [SerializeField] public MovementStats.FOVType currentFOVType;
     public bool LockFOVToY;
     public bool defaultLooksLeft;
-    public bool startFlipped = false;
 
     // private internal metrics
-    private Vector3 looking;
+    public Vector3 looking {get; private set;}
     private bool flipLook;
 
     // level or enemy components
@@ -44,7 +43,7 @@ public class MovementController : MonoBehaviour, IScriptable
     {
         lastSeen = transform.position; // default last seen is current position
         lastSeenTime = Time.time;
-        flipLook ^= startFlipped;
+        flipLook = transform.localScale.x < 0;  // it's looking in the other direction if it starts backwards
         LookingForDirection();
         target = GeneralFunctions.GetPlayer().transform;
         hurtbox = gameObject.GetComponent<Hurtbox>();
@@ -162,7 +161,7 @@ public class MovementController : MonoBehaviour, IScriptable
         }
     }
 
-    private void LookingForDirection()
+    public void LookingForDirection()
     {
         // GetDirection();
         if (!LockFOVToY && (!flipLook ^ defaultLooksLeft)) looking = Vector3.right;

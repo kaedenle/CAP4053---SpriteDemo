@@ -152,7 +152,6 @@ public class InputManager : MonoBehaviour
         foreach(KeyCode code in GetKeysToCheck(keycode))
             if(GetKeyDown(code))
             {
-                Debug.Log("pressed code " + code + " with valid codes " + string.Join(", ", GetKeysToCheck(keycode)));
                 return true;
             }
         return false;

@@ -1616,7 +1616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49724c29999d01a459234abca7ad45ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: mells_adventure
@@ -3509,7 +3509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -4161,7 +4161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 7
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -4948,9 +4948,12 @@ MonoBehaviour:
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 2
-  minimumAcceptablePlayerDistance: 0.5
+  minPlayerYDistPercent: 25
+  minPlayerXDistPercent: 25
   RespawnOnLoad: 0
-  OriginalPos: 1
+  OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 75
 --- !u!1 &563350497
 GameObject:
   m_ObjectHideFlags: 0
@@ -14169,7 +14172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c3b8c955297b3f48b88b1c75e13ea8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   dialogue: {fileID: 11400000, guid: dbc3c52f6f5da204485596fc321361b1, type: 2}
   normalAudio: 
   highlightEnds: 1

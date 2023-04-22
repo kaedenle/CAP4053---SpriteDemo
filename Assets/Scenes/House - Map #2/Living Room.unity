@@ -1441,7 +1441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: childKeyItem
@@ -1455,8 +1455,10 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
   _itemType: 2
   repeatable: 0
+  destroyOnInteract: 1
 --- !u!58 &360869676
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1811,7 +1813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccad916a9481bc248b959ad85cb88523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: got_fuse
@@ -1825,6 +1827,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 0a000000
+  playAfterDialogue: 1
   eventID: 
   stateID: lightbulb_need_fuse
   enables:
@@ -2719,10 +2722,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c3b8c955297b3f48b88b1c75e13ea8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.2
+  outlineThickness: {fileID: 0}
   dialogue: {fileID: 11400000, guid: 8b1bed15c01e5ae408657b511b0bd889, type: 2}
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 1
   lockable:
     isLocked: 0
@@ -2730,6 +2732,7 @@ MonoBehaviour:
     lockedText: {fileID: 0}
     lockedAudio:
       audioFile: {fileID: 0}
+  playAfterDialogue: 1
 --- !u!58 &679485318
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2804,7 +2807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf92784ed5d3bf4a836824b47e4efcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -2818,6 +2821,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
 --- !u!61 &689081049
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3892,7 +3896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -3906,6 +3910,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
   _nextScene: 8
 --- !u!114 &1018827041
 MonoBehaviour:
@@ -3968,7 +3973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -3982,6 +3987,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
   _nextScene: 11
 --- !u!61 &1025673643
 BoxCollider2D:
@@ -4532,7 +4538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33f58f5d6f1887458ad59a65a67896f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: closed_to_open_fusebox
@@ -4546,6 +4552,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
   eventID: fusebox_closed
   destroyOnUse: 1
   enables:
@@ -4950,7 +4957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -4964,6 +4971,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 02000000
+  playAfterDialogue: 1
   _nextScene: 9
 --- !u!114 &1210283156
 MonoBehaviour:
@@ -4977,7 +4985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03bcfab326687304eba99b4d3d802ac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -4991,6 +4999,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 02000000
+  playAfterDialogue: 1
   _nextScene: 9
 --- !u!1 &1259322659
 GameObject:
@@ -5464,7 +5473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: childBulbItem
@@ -5478,8 +5487,10 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 01000000
+  playAfterDialogue: 1
   _itemType: 3
   repeatable: 0
+  destroyOnInteract: 1
 --- !u!1 &1320306434
 GameObject:
   m_ObjectHideFlags: 0
@@ -5511,7 +5522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33f58f5d6f1887458ad59a65a67896f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: added_fuse
@@ -5525,6 +5536,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 04000000
+  playAfterDialogue: 1
   eventID: fusebox_missing
   destroyOnUse: 1
   enables:
@@ -5803,9 +5815,12 @@ MonoBehaviour:
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 1
-  minimumAcceptablePlayerDistance: 0.5
+  minPlayerYDistPercent: 25
+  minPlayerXDistPercent: 25
   RespawnOnLoad: 0
   OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 80
 --- !u!1 &1352541313
 GameObject:
   m_ObjectHideFlags: 0
@@ -7686,7 +7701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -7700,6 +7715,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
   _nextScene: 7
 --- !u!114 &1785929747
 MonoBehaviour:
@@ -7943,10 +7959,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c78f476abba6247b89c34f3e6f470c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.25
+  outlineThickness: {fileID: 0}
   dialogue: {fileID: 11400000, guid: 05ad801f00c4a534e9be03c9fe1ac598, type: 2}
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 1
   lockable:
     isLocked: 1
@@ -7954,6 +7969,7 @@ MonoBehaviour:
     lockedText: {fileID: 11400000, guid: 55098bf8773ba2d4d9d05cb264705115, type: 2}
     lockedAudio:
       audioFile: {fileID: 0}
+  playAfterDialogue: 1
   triggeredEventId: mom_ghost_1
   destroyOnTrigger: 1
   gainItem: 1
@@ -8291,9 +8307,12 @@ MonoBehaviour:
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 1
-  minimumAcceptablePlayerDistance: 0.5
+  minPlayerYDistPercent: 25
+  minPlayerXDistPercent: 25
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 80
 --- !u!1 &2029176560
 GameObject:
   m_ObjectHideFlags: 0
@@ -8373,10 +8392,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c78f476abba6247b89c34f3e6f470c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.25
+  outlineThickness: {fileID: 0}
   dialogue: {fileID: 11400000, guid: fbe54e6f59c666348afe4cfb594fa2cf, type: 2}
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 1
   lockable:
     isLocked: 1
@@ -8384,6 +8402,7 @@ MonoBehaviour:
     lockedText: {fileID: 11400000, guid: 2e5e2b140a3154c4bac23beb052658d6, type: 2}
     lockedAudio:
       audioFile: {fileID: 0}
+  playAfterDialogue: 1
   triggeredEventId: mom_ghost_2
   destroyOnTrigger: 0
   gainItem: 0
@@ -8573,7 +8592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccad916a9481bc248b959ad85cb88523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: lightbulb_replacement
@@ -8587,6 +8606,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 0300000004000000
+  playAfterDialogue: 1
   eventID: 
   stateID: broken_lightbulb
   enables:
@@ -8724,9 +8744,12 @@ MonoBehaviour:
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 1
-  minimumAcceptablePlayerDistance: 0.5
+  minPlayerYDistPercent: 25
+  minPlayerXDistPercent: 25
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 80
 --- !u!1 &2145336020
 GameObject:
   m_ObjectHideFlags: 0

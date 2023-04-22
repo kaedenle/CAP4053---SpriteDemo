@@ -30,6 +30,8 @@ public class EntityManager : MonoBehaviour
         {
             states = new bool[System.Enum.GetValues(typeof(AllStates)).Length];
             Array.Fill(states, true);
+
+            ScenesManager.ChangedScenes += OnSceneCalled;
         }
     }
 
@@ -100,9 +102,7 @@ public class EntityManager : MonoBehaviour
     }
 
     public static void SceneStartPause()
-    {
-        Debug.Log("SceneStartPause()");
-        
+    {        
         _pause = true;
         numPauses = 1;
         Time.timeScale = 0;
@@ -271,5 +271,65 @@ public class EntityManager : MonoBehaviour
     public static bool isPaused()
     {
         return _pause;
+    }
+
+    /*
+    ============= Enemy Management ==================
+    */
+    private static Dictionary<string, List<Base>> activeEnemies 
+            = new Dictionary<string, List<Base>>();
+    private static GameObject EnemyParent;
+
+    public static void StoreEnemies(List<GameObject> enemies, List<int> types, string spawner)
+    {
+        List<Base> ls = activeEnemies[spawner];
+        // stores 
+        for(int i = 0; i < enemies.Count; i++)
+        {
+            GameObject es = enemies[i];
+            if(es == null) continue; // already dead
+
+            Base enemy = new Base(es, types[i]);
+            ls.Add(enemy);
+        }
+
+        StoreEnemies(ls, spawner);
+    }
+
+    public  static void StoreEnemies(List<Base> enemies, string key)
+    {
+        if(activeEnemies.ContainsKey(key)) activeEnemies[key] = enemies;
+        else activeEnemies.Add(key, enemies);
+    }
+
+    //when game manager respawns entity
+    public void ReloadEnemies(Spawner spawner)
+    {
+        List<Base> spawn = activeEnemies.GetValueOrDefault(spawner.gameObject.name, null);
+
+        if(spawn == null) return; // not found
+
+        if (EnemyParent == null) EnemyParent = GameObject.Find("-- Enemies -- ");
+        if (EnemyParent == null) EnemyParent = new GameObject("-- Enemies --");
+
+        foreach (Base es in spawn)
+        {
+            GameObject enemy = Instantiate(spawner.enemy[es.spawner_index_type], es.pos, Quaternion.identity);
+            enemy.transform.SetParent(EnemyParent.transform);
+            es.SetValues(enemy);
+        }
+    }
+
+    public static List<Base> GetEnemyList(string key)
+    {
+        List<Base> spawn = activeEnemies.GetValueOrDefault(key, null);
+        return spawn;
+    }
+
+    public void OnSceneCalled(object sender, System.EventArgs e)
+    {
+        //Update enemies values
+        foreach(Spawner spawner in FindObjectsOfType(typeof(Spawner)))
+            spawner.TriggerSave();
     }
 }

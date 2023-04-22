@@ -741,9 +741,12 @@ MonoBehaviour:
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 1
-  minimumAcceptablePlayerDistance: 5
+  minPlayerYDistPercent: 25
+  minPlayerXDistPercent: 25
   RespawnOnLoad: 0
   OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 100
 --- !u!1 &91652063
 GameObject:
   m_ObjectHideFlags: 0
@@ -2524,7 +2527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 649274c1b912212489e413044efb3068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: childMirror
@@ -2538,6 +2541,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
 --- !u!58 &435634523
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4206,7 +4210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -4220,6 +4224,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
   _nextScene: 6
 --- !u!114 &719584788
 MonoBehaviour:
@@ -4484,7 +4489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: GrabberItem
@@ -4498,8 +4503,10 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
   _itemType: 1
   repeatable: 0
+  destroyOnInteract: 1
 --- !u!212 &770647310
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4925,10 +4932,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c3b8c955297b3f48b88b1c75e13ea8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   dialogue: {fileID: 11400000, guid: bab6d0bc716dcb94a8fd2311eb580d40, type: 2}
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 1
   lockable:
     isLocked: 0
@@ -4936,6 +4942,7 @@ MonoBehaviour:
     lockedText: {fileID: 0}
     lockedAudio:
       audioFile: {fileID: 0}
+  playAfterDialogue: 1
 --- !u!58 &798243758
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -7696,6 +7703,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1401755773}
+  - component: {fileID: 1401755774}
   m_Layer: 0
   m_Name: -- Spawner --
   m_TagString: Untagged
@@ -7719,6 +7727,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1401755774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401755772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecb4a7ae78524ec4b8f2ff3166bdb00d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  insideMirror: 0
 --- !u!1 &1429897942
 GameObject:
   m_ObjectHideFlags: 0

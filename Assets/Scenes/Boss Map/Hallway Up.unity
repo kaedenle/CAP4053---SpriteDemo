@@ -2058,9 +2058,12 @@ MonoBehaviour:
   SpawnRadius: 0
   minEnemies: 1
   maxEnemies: 3
-  minimumAcceptablePlayerDistance: 0.5
-  RespawnOnLoad: 1
+  minPlayerYDistPercent: 25
+  minPlayerXDistPercent: 25
+  RespawnOnLoad: 0
   OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 80
 --- !u!1 &473209567
 GameObject:
   m_ObjectHideFlags: 0
@@ -2414,7 +2417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -2428,6 +2431,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 000000000000000000000000
+  playAfterDialogue: 1
   _nextScene: 20
 --- !u!61 &692913869
 BoxCollider2D:
@@ -2534,7 +2538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03bcfab326687304eba99b4d3d802ac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -2548,6 +2552,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
   _nextScene: 20
 --- !u!1 &702082321
 GameObject:
@@ -3421,9 +3426,12 @@ MonoBehaviour:
   SpawnRadius: 0
   minEnemies: 1
   maxEnemies: 3
-  minimumAcceptablePlayerDistance: 0.5
-  RespawnOnLoad: 1
+  minPlayerYDistPercent: 25
+  minPlayerXDistPercent: 25
+  RespawnOnLoad: 0
   OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 80
 --- !u!1 &1087813636
 GameObject:
   m_ObjectHideFlags: 0

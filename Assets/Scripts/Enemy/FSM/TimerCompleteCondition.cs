@@ -9,7 +9,7 @@ namespace BasicEnemy
     {
         public override bool ConditionMet(FSM stateMachine)
         {
-            Debug.Log("timer complete: " + stateMachine.TimerComplete);
+            if(stateMachine.displayState) Debug.Log("timer complete: " + stateMachine.TimerComplete);
             return stateMachine.TimerComplete;
         }
     }

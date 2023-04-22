@@ -28,7 +28,7 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
     public EnemyStats enemyStats;
     private EnemyStats.SurpriseReactionType currentSurpriseReaction; 
     public Vector3 expressionOffset;
-    private float hurtMemory = 1.0F;
+    private float hurtMemory = 0.5F;
 
     // private trackers
     private float lastDamageTaken = -1e5F;
@@ -59,12 +59,8 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
     }
     
     protected void Update()
-    {        
-        //if((transform.position.x > target.position.x) ^ (dir < 0))
-        //{
-    //         TurnAround();
-    //     }
-        // expression.GetComponent<FollowTarget>().offset = expressionOffset;
+    {
+
     }
 
     /* 
@@ -116,7 +112,7 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
     public IEnumerator TriggerAttack(BasicEnemy.FSM stateMachine)
     {
         stateMachine.TransitionReady = false;
-        
+
         movementController.Attack();
 
         yield return new WaitUntil(() => movementController.enabled);

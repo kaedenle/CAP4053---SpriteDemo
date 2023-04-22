@@ -62,9 +62,6 @@ public class OutlineObject : MonoBehaviour
             near = true;
             OverrideThickness();
             EnableOutline();
-            
-            // debug stuff
-            PrintSizes();
         }
     }
 
@@ -93,9 +90,7 @@ public class OutlineObject : MonoBehaviour
         Vector3 in_pixels = new Vector3(screen_size.x * Camera.main.pixelWidth, screen_size.y * Camera.main.pixelHeight, 0) * 0.5f;
 
         // Debug.Log(string.Format("Sprite Size: {3}, Local Sprite Size: {4}, World size: {0}, Screen size: {1}, Pixel size: {2}",world_size,screen_size,in_pixels,sprite_size, local_sprite_size));
-        
         float relative_x = sprite_size.x / screen_size.x;
-        Debug.Log("Relative: " + relative_x);
     }
 
     public float GetThickness()
@@ -114,11 +109,6 @@ public class OutlineObject : MonoBehaviour
         // relative sizing
         float relative_x = sprite_size.x / screen_size.x;
 
-        // float coeff = 0.1F;
-        // return (float) (System.Math.Log(coeff * relative_x) / System.Math.Log(6.0));
-        // return (float) (0.0039278326219592 * relative_x + 0.49405587996544);
-        // return (float) (1.00778 * System.Math.Log(2.90195 * relative_x - 0.72459) - 4.82532);
-        // return (float) (32.9421 * System.Math.Log(0.101281 * relative_x - 403.161) - 193.13);
         return (float) (0.00678712 * System.Math.Pow(relative_x, 0.898786) + 0.714275);
     }
 

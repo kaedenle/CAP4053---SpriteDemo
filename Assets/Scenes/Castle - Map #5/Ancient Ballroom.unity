@@ -3055,9 +3055,12 @@ MonoBehaviour:
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 2
-  minimumAcceptablePlayerDistance: 2
+  minPlayerYDistPercent: 25
+  minPlayerXDistPercent: 25
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 75
 --- !u!1 &54989088
 GameObject:
   m_ObjectHideFlags: 0
@@ -4157,7 +4160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf92784ed5d3bf4a836824b47e4efcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -4650,7 +4653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: letter1
@@ -5049,7 +5052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: letter3
@@ -6186,9 +6189,12 @@ MonoBehaviour:
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 2
-  minimumAcceptablePlayerDistance: 2
+  minPlayerYDistPercent: 25
+  minPlayerXDistPercent: 25
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 1
+  probOfLookDirection: 10
 --- !u!1 &122479067
 GameObject:
   m_ObjectHideFlags: 0
@@ -9018,7 +9024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -12328,9 +12334,12 @@ MonoBehaviour:
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 1
-  minimumAcceptablePlayerDistance: 2
+  minPlayerYDistPercent: 25
+  minPlayerXDistPercent: 25
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 1
+  probOfLookDirection: 10
 --- !u!1 &317362234
 GameObject:
   m_ObjectHideFlags: 0
@@ -17179,7 +17188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: letter2
@@ -19610,7 +19619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: obtain_sunglasses
@@ -20255,7 +20264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: letter4
@@ -20945,7 +20954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33f58f5d6f1887458ad59a65a67896f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: sword_in_stone
@@ -21503,9 +21512,12 @@ MonoBehaviour:
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 1
-  minimumAcceptablePlayerDistance: 2
+  minPlayerYDistPercent: 25
+  minPlayerXDistPercent: 25
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 1
+  probOfLookDirection: 100
 --- !u!1 &521374717
 GameObject:
   m_ObjectHideFlags: 0
@@ -26300,9 +26312,12 @@ MonoBehaviour:
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 2
-  minimumAcceptablePlayerDistance: 2
+  minPlayerYDistPercent: 25
+  minPlayerXDistPercent: 25
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 1
+  probOfLookDirection: 10
 --- !u!1 &639447772
 GameObject:
   m_ObjectHideFlags: 0
@@ -32328,9 +32343,12 @@ MonoBehaviour:
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 2
-  minimumAcceptablePlayerDistance: 2
+  minPlayerYDistPercent: 25
+  minPlayerXDistPercent: 25
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 1
+  probOfLookDirection: 90
 --- !u!1 &795784345
 GameObject:
   m_ObjectHideFlags: 0
@@ -42090,9 +42108,12 @@ MonoBehaviour:
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 1
-  minimumAcceptablePlayerDistance: 2
+  minPlayerYDistPercent: 25
+  minPlayerXDistPercent: 25
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 1
+  probOfLookDirection: 90
 --- !u!1 &1001578990
 GameObject:
   m_ObjectHideFlags: 0
@@ -46615,9 +46636,12 @@ MonoBehaviour:
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 1
-  minimumAcceptablePlayerDistance: 2
+  minPlayerYDistPercent: 25
+  minPlayerXDistPercent: 25
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 1
+  probOfLookDirection: 0
 --- !u!1 &1098057334
 GameObject:
   m_ObjectHideFlags: 0
@@ -51308,9 +51332,12 @@ MonoBehaviour:
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 1
-  minimumAcceptablePlayerDistance: 2
+  minPlayerYDistPercent: 25
+  minPlayerXDistPercent: 25
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 1
+  probOfLookDirection: 100
 --- !u!1 &1205406060
 GameObject:
   m_ObjectHideFlags: 0
@@ -52717,7 +52744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49724c29999d01a459234abca7ad45ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: castle_locked_door
@@ -53655,9 +53682,12 @@ MonoBehaviour:
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 6
-  minimumAcceptablePlayerDistance: 2
+  minPlayerYDistPercent: 25
+  minPlayerXDistPercent: 25
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 1
+  probOfLookDirection: 0
 --- !u!1 &1247076260
 GameObject:
   m_ObjectHideFlags: 0
@@ -70489,9 +70519,12 @@ MonoBehaviour:
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 5
-  minimumAcceptablePlayerDistance: 2
+  minPlayerYDistPercent: 25
+  minPlayerXDistPercent: 25
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 65
 --- !u!1 &1594904040
 GameObject:
   m_ObjectHideFlags: 0
@@ -71613,7 +71646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49724c29999d01a459234abca7ad45ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: stairs_down_too_dark
@@ -73945,9 +73978,12 @@ MonoBehaviour:
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 2
-  minimumAcceptablePlayerDistance: 2
+  minPlayerYDistPercent: 25
+  minPlayerXDistPercent: 25
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 1
+  probOfLookDirection: 90
 --- !u!1 &1679763890
 GameObject:
   m_ObjectHideFlags: 0
@@ -80938,9 +80974,12 @@ MonoBehaviour:
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 1
-  minimumAcceptablePlayerDistance: 2
+  minPlayerYDistPercent: 25
+  minPlayerXDistPercent: 25
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 1
+  probOfLookDirection: 0
 --- !u!1 &1816599753
 GameObject:
   m_ObjectHideFlags: 0
@@ -88404,7 +88443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33f58f5d6f1887458ad59a65a67896f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: opening_chest
@@ -94533,9 +94572,12 @@ MonoBehaviour:
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 4
-  minimumAcceptablePlayerDistance: 2
+  minPlayerYDistPercent: 25
+  minPlayerXDistPercent: 25
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 1
+  probOfLookDirection: 100
 --- !u!1 &2124308530
 GameObject:
   m_ObjectHideFlags: 0

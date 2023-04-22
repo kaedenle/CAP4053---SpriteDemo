@@ -1730,7 +1730,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.68149734, y: -12.184458}
+  m_Offset: {x: -0.20328283, y: -12.184458}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1741,7 +1741,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10.893408, y: 6.231083}
+  m_Size: {x: 9.123847, y: 6.231083}
   m_EdgeRadius: 0.57
 --- !u!114 &191822269
 MonoBehaviour:
@@ -1755,7 +1755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 2.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -2399,7 +2399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -7986,7 +7986,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.02}
+  m_Offset: {x: 0, y: -0.045245692}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -7997,7 +7997,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.65, y: 0.98}
+  m_Size: {x: 1.65, y: 1.0304912}
   m_EdgeRadius: 0.47
 --- !u!61 &676393331
 BoxCollider2D:
@@ -8101,7 +8101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -16748,9 +16748,12 @@ MonoBehaviour:
   SpawnRadius: 0
   minEnemies: 3
   maxEnemies: 6
-  minimumAcceptablePlayerDistance: 0.5
+  minPlayerYDistPercent: 25
+  minPlayerXDistPercent: 25
   RespawnOnLoad: 0
-  OriginalPos: 1
+  OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 90
 --- !u!1 &1498422497
 GameObject:
   m_ObjectHideFlags: 0

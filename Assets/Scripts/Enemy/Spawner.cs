@@ -11,41 +11,42 @@ public class Spawner : MonoBehaviour
     public float SpawnRadius = 1.0F;
     [Range(0, 20)] public int minEnemies;
     [Range(0, 20)] public int maxEnemies;
-    private int numEnemies;
-
     [Range(0, 100)] public float minPlayerYDistPercent = 25, minPlayerXDistPercent = 25;
-    private float minYPlayer, minXPlayer;
-    public float minimumAcceptablePlayerDistance = 0.5F;
-    private int attemptsBeforeAbandom = 5000; // # of random start point generations before the script gives up on the enemy
     
-    //should you make new enemies if you walk into the room?
-    public bool RespawnOnLoad;
-    //should you respawn in same position or reset to original?
-    public bool OriginalPos;
-    private bool flag = false;
-    private static GameObject parent;
-    private GameManager gm;
-    private GameObject player;
+    public bool RespawnOnLoad; //should you make new enemies if you walk into the room?
+    public bool OriginalPos; //should you respawn in same position or reset to original?
 
+    [SerializeField] public LookingBehavior lookingBehavior;
+    [Range(0, 100)] public float probOfLookDirection = 100;
+
+    // private internal metrics
+    private int numEnemies;
+    private float minYPlayer, minXPlayer;
+    private int attemptsBeforeAbandom = 5000; // # of random start point generations before the script gives up on the enemy
+
+    // gameobjects and components
+    private static GameObject parent;
+    private GameObject player;
     private BoxCollider2D generateBox;
 
     // default point to represent null
     private Vector3 NULLPOINT = new Vector3(-1e9F, -1e9F, -1e9F);
 
+    private List<Base> enemies;
+    private string spawner_key;
     void Awake()
     {
+        // make sure parent exists
+        if (parent == null) parent = GameObject.Find("-- Enemies -- ");
+        if(parent == null) parent = new GameObject("-- Enemies --");
+
         // grab the boxcollider2d bounding box if there is one
         generateBox = gameObject.GetComponent<BoxCollider2D>();
+        if(generateBox != null)  generateBox.isTrigger = true;  // make sure the bounding box is not a collider
 
+        // calculate the internal parameters
         minXPlayer = GeneralFunctions.GetCameraWidth() * minPlayerXDistPercent / 100.0F;
         minYPlayer = GeneralFunctions.GetCameraHeight() * minPlayerYDistPercent / 100.0F;
-
-        Debug.Log("min x dist = " + minXPlayer + " min y dist = " + minYPlayer);
-
-        if(generateBox != null)
-        {
-            generateBox.isTrigger = true;
-        }
 
         // check if the enemy # range is invalid
         if(minEnemies > maxEnemies)
@@ -53,41 +54,39 @@ public class Spawner : MonoBehaviour
             Debug.Log("(Invalid Error) Spawner enemies range invalid");
             minEnemies = maxEnemies;
         }
-
         numEnemies = Random.Range(minEnemies, maxEnemies + 1);
-
-        // if no enemies are necessary, destroy this
-        if(numEnemies <= 0)
-            Destroy(gameObject);
 
         // find the player
         player = GeneralFunctions.GetPlayer();
+
+        spawner_key = this.gameObject.name + "_" + ScenesManager.GetCurrentScene().ToString();
+        enemies = EntityManager.GetEnemyList(spawner_key);
     }
     
     // Start is called before the first frame update
     void Start()
     {
-        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-        if (gm == null) CreateEnemies();
-        if (gm != null && !gm.VerifyScene(SceneManager.GetActiveScene().name, RespawnOnLoad)) CreateEnemies();
+        if(enemies != null)
+        {
+            foreach(Base enemyBase in enemies)
+                CreateEnemy(enemyBase);
+        }
 
-        // no need for the spawner to continue to take up processing time
-        Destroy(gameObject);
+        else
+        {
+            CreateEnemies();
+        }
     }
+
     private void CreateEnemies()
     {
+        enemies = new List<Base>();
+
         if(enemy == null || enemy.Length == 0)
         {
             Debug.LogError("invalid spawner has no enemies loaded");
             return;
         }
-        
-        if (flag) return;
-        
-        if (parent == null)
-            parent = GameObject.Find("-- Enemies -- ");
-        if(parent == null)
-            parent = new GameObject("-- Enemies --");
         
         for(int i = 0; i < numEnemies; i++)
         {
@@ -95,20 +94,31 @@ public class Spawner : MonoBehaviour
 
             if(randomPos == NULLPOINT) continue; // couldn't find an acceptable player distance
 
-            GameObject EnemyType = enemy[Random.Range(0, enemy.Length)];
+            int enemy_type = Random.Range(0, enemy.Length);
+            GameObject EnemyType = enemy[enemy_type];
             if(EnemyType == null)
             {
                 Debug.LogError("spawner attempted to spawn null enemy type");
                 continue;
             }
-            //make new entity
+            // if(!RespawnOnLoad) EntityManager.AddEnemy(RespawnOnLoad, es);
             GameObject enemyObject = Instantiate(EnemyType, randomPos, Quaternion.identity);
             enemyObject.transform.SetParent(parent.transform);
-
-            EnemyStore es = new EnemyStore(enemyObject, EnemyType, randomPos, OriginalPos, EnemyType.GetComponent<HealthTracker>().health, 0);
-            if(!RespawnOnLoad) gm.AddEnemy(RespawnOnLoad, es);
-            flag = true;
+            SetEnemyDirection(enemyObject);
+            enemies.Add(new Base(enemyObject, enemy_type));
         }
+
+        // update with any direction changes
+        // foreach(Base b in enemies)
+        //     b.UpdateValues(true, false);
+    }
+
+    public void CreateEnemy(Base enemyBase)
+    {
+        //make new entity
+        GameObject enemyObject = Instantiate(enemy[enemyBase.spawner_index_type], enemyBase.pos, Quaternion.identity);
+        enemyObject.transform.SetParent(parent.transform);
+        enemyBase.SetValues(enemyObject);
     }
 
     private Vector3 GetEnemyPosition()
@@ -117,7 +127,6 @@ public class Spawner : MonoBehaviour
         {
             Vector3 start = GetRandomStartPosition();
 
-            // if(player == null || ValidLocation(start)) //Vector3.Distance(player.transform.position, start) >= minimumAcceptablePlayerDistance)
             if(player == null || ValidLocation(start))
             {
                 return start;
@@ -154,11 +163,47 @@ public class Spawner : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = new Color(0, 1, 1, 0.5f);
-        //Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.localScale);
-        //Gizmos.DrawCube(Vector3.zero, transform.localScale);
         Gizmos.DrawWireSphere(transform.position, SpawnRadius);
-        //Handles.Label(transform.position, EnemyType.name);
-        //Gizmos.DrawIcon(transform.position, EnemyType.name, true);
+    }
 
+    public void TriggerSave()
+    {
+        if(RespawnOnLoad) return; // don't save anything
+
+        enemies.RemoveAll(s => s.entity == null); // remove dead enemies
+
+        foreach(Base b in enemies)
+            b.UpdateValues(!OriginalPos);
+
+        enemies.RemoveAll(s => s.health <= 0); // remove dying enemies
+
+        EntityManager.StoreEnemies(enemies, spawner_key);
+    }
+
+    /* ====== start Direction Stuff ======= */
+    public enum LookingBehavior
+    {
+        LookTowardPlayer,
+        LookLeft
+    }
+
+    void SetEnemyDirection(GameObject en)
+    {
+        bool match = Random.Range(0, 99) < probOfLookDirection;
+        bool defLeft = (lookingBehavior == LookingBehavior.LookTowardPlayer ? 
+                                        en.transform.position.x >= player.transform.position.x :
+                                        true);
+        bool lookLeft = (defLeft && match) || (!defLeft && !match);
+        Debug.Log("detected that enemy should look left: " + lookLeft + " defLeft=" + defLeft + " match=" + match);
+        
+        MovementController control = en.GetComponent<MovementController>();
+        control.LookingForDirection();
+        Vector3 looking = control.looking;
+
+        if(looking == Vector3.left ^ lookLeft)
+        {
+            control.TurnAround();
+            Debug.Log("turning the enemy around");
+        }
     }
 }
