@@ -9,7 +9,7 @@ public class SlimeEnemy : EnemyBase
     new void Awake()
     {
         base.Awake();
-        expressionOffset = new Vector3(0.2F, 2.35F, 0);
+        // expressionOffset = new Vector3(0.2F, 2.35F, 0);
     }
 
     public override void HitStunAni()

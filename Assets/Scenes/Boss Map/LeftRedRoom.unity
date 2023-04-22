@@ -8101,8 +8101,16 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -5115069217204034093, guid: e3de54b294fa30f41ab4fc74dd78aaf3, type: 3}
+      propertyPath: movementConfiguration.relativeSpeed
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: -5115069217204034093, guid: e3de54b294fa30f41ab4fc74dd78aaf3, type: 3}
       propertyPath: movementConfiguration.largeFOV.radius
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: -5115069217204034093, guid: e3de54b294fa30f41ab4fc74dd78aaf3, type: 3}
+      propertyPath: movementConfiguration.minimumDistance
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: -5115069217204034093, guid: e3de54b294fa30f41ab4fc74dd78aaf3, type: 3}
       propertyPath: movementConfiguration.smallFOV.radius
@@ -11170,6 +11178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementConfiguration:
     speed: 9
+    relativeSpeed: 1
     minimumDistance: 1.25
     attackChargeTime: 0
     smallFOV:

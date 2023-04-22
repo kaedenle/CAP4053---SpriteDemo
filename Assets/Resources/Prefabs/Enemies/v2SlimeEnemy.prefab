@@ -347,7 +347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 30
   bar: {fileID: 5894459449886815197, guid: fb1b7fc730420314d876a7daece293d1, type: 3}
-  barOffset: {x: 0.1, y: 2.5, z: 0}
+  barOffset: {x: 0.2, y: 2.3, z: 0}
   deathFlag: 0
   DefenseModifier: 0
 --- !u!114 &3213768974601810346
@@ -364,6 +364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementConfiguration:
     speed: 6
+    relativeSpeed: 0.85
     minimumDistance: 1.5
     attackChargeTime: 0
     smallFOV:
@@ -378,7 +379,6 @@ MonoBehaviour:
   currentFOVType: 0
   LockFOVToY: 0
   defaultLooksLeft: 1
-  startFlipped: 0
 --- !u!114 &834188646202899586
 MonoBehaviour:
   m_ObjectHideFlags: 0

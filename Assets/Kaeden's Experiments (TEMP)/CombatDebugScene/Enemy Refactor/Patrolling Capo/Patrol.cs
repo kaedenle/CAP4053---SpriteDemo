@@ -40,8 +40,16 @@ public class Patrol : MonoBehaviour
     private CapoScript myScript;
 
     public GameObject[] points;
-    public float RunSpeed;
+    
+    // absolute speed of the capos before testing relative speeds
+    public float RunSpeed; 
+    // get the relative speed compared to the player (mutliplier)
+    public float relativeRunSpeed = 16f / 12f; // (mob speed over player speed)
+
+    // (the absolute walk speed before testing)
     public float WalkSpeed;
+    // get the relative walk speed compared to the player (represented with a multiplier)
+    public float relativeWalkSpeed = 7f / 12f;
 
     public FOVViewer fovVisual;
     private bool chasing;
@@ -65,7 +73,8 @@ public class Patrol : MonoBehaviour
         lastPos = transform.position;
         anim = GetComponentInChildren<Animator>();
         initFlag = true;
-        agent.speed = WalkSpeed;
+        // agent.speed = WalkSpeed;
+        agent.speed = GameData.GetConfig().GetSpeed(relativeWalkSpeed);
     }
     
     private float Round2Digits(float num)
@@ -156,7 +165,7 @@ public class Patrol : MonoBehaviour
         if (rememberTimer < 0)
         {
             seesPlayer = false;
-            agent.speed = WalkSpeed;
+            agent.speed = GameData.GetConfig().GetSpeed(WalkSpeed);
         }
     }
     public bool PlayerInRange()
@@ -280,7 +289,8 @@ public class Patrol : MonoBehaviour
     {
         seesPlayer = true;
         trigger = false;
-        agent.speed = RunSpeed;
+        // agent.speed = RunSpeed;
+        agent.speed = GameData.GetConfig().GetSpeed(relativeRunSpeed);
     }
 
 

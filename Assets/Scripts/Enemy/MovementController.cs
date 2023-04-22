@@ -55,7 +55,7 @@ public class MovementController : MonoBehaviour, IScriptable
 
         if(agent != null)
         {
-            agent.speed = movementConfiguration.speed;
+            agent.speed = movementConfiguration.GetSpeed();
             agent.updateRotation = false;
             agent.updateUpAxis = false;
 

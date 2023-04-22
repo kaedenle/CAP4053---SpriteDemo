@@ -4446,7 +4446,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 219111939238356992, guid: 91c6a9b95a32f104a9be5f3f5adc6274, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 219111939238356992, guid: 91c6a9b95a32f104a9be5f3f5adc6274, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6881,6 +6881,22 @@ PrefabInstance:
       propertyPath: health
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 1865415172, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
+      propertyPath: barOffset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865415172, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
+      propertyPath: barOffset.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 834188646202899586, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
+      propertyPath: expressionOffset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 834188646202899586, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
+      propertyPath: expressionOffset.y
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 834188646202899586, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
       propertyPath: enemyStats.memory_time
       value: 3
@@ -6919,7 +6935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6105205938035449262, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6105205938035449262, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
       propertyPath: m_LocalScale.x
@@ -10023,6 +10039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementConfiguration:
     speed: 4
+    relativeSpeed: 1
     minimumDistance: 1.25
     attackChargeTime: 0
     smallFOV:

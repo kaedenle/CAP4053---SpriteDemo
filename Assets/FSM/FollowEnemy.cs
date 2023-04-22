@@ -23,6 +23,9 @@ public class FollowEnemy : MonoBehaviour, IScriptable, IAI
         animator = GetComponent<Animator>();
         healthTracker = GetComponent<HealthTracker>();
         target = GameObject.Find("Player").transform;
+
+        // assumption is speed is based on the player's being 12
+        speed = (speed / 12f) * GameData.GetConfig().GetSpeed();
     }
 
     //enable and disable script

@@ -6,4 +6,6 @@ using UnityEngine;
 public class ScenesData : ScriptableObject
 {
     public ScenesManager.AllScenes scene;
+    public int maxActiveEnemies;
+    public int maxTotalEnemies;
 }

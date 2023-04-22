@@ -280,22 +280,6 @@ public class EntityManager : MonoBehaviour
             = new Dictionary<string, List<Base>>();
     private static GameObject EnemyParent;
 
-    public static void StoreEnemies(List<GameObject> enemies, List<int> types, string spawner)
-    {
-        List<Base> ls = activeEnemies[spawner];
-        // stores 
-        for(int i = 0; i < enemies.Count; i++)
-        {
-            GameObject es = enemies[i];
-            if(es == null) continue; // already dead
-
-            Base enemy = new Base(es, types[i]);
-            ls.Add(enemy);
-        }
-
-        StoreEnemies(ls, spawner);
-    }
-
     public  static void StoreEnemies(List<Base> enemies, string key)
     {
         if(activeEnemies.ContainsKey(key)) activeEnemies[key] = enemies;
