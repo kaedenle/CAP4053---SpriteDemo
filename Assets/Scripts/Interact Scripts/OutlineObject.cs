@@ -52,6 +52,12 @@ public class OutlineObject : MonoBehaviour
         if(near && outlineRenderer != null)
         {
             outlineRenderer.sprite = sprite_renderer.sprite;
+
+            // reset the ratios bc why not
+            float temp_x = transform.localScale.x;
+            float temp_y = transform.localScale.y;
+            outlineMaterial.SetFloat("_Offset_x", 1); 
+            outlineMaterial.SetFloat("_Offset_y", temp_x / temp_y); 
         }
     }
 

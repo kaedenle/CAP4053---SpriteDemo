@@ -25,6 +25,7 @@ public class Phase2BossBehavior : StateMachineBehaviour
         if(Vector2.Distance(animator.gameObject.transform.position, player.position) > 6)
         {
             speed = 12;
+            speed = GameData.GetConfig().GetSpeed();    // overriding w/ player's base speed
             //currState = 1;
         }
     }

@@ -22,7 +22,7 @@ public class GameData : MonoBehaviour
     private BinaryFormatter formatter;
 
     // actual variables
-    bool reverting = false, saving = false;
+    bool reverting = false, saving = false, delaySave = false;
 
     void Awake()
     {
@@ -55,7 +55,7 @@ public class GameData : MonoBehaviour
 
     public void SaveAfterSceneChange()
     {
-        saving = true;
+        delaySave = true;
     }
 
     public void SaveCurrentData(bool useCurrentScene = true)
@@ -191,7 +191,7 @@ public class GameData : MonoBehaviour
     {
         if( GeneralFunctions.IsDebug() ) Debug.Log("OnSceneLoaded: " + scene.name + " | " + mode);
 
-        if(saving && reverting)
+        if(delaySave && reverting)
         {
             Debug.LogError("saving and reverting GameData at the same time");
         }
@@ -213,6 +213,16 @@ public class GameData : MonoBehaviour
             reverting = false;
         }
 
+        if(delaySave)
+        {
+            saving = true;
+            delaySave = false;
+        }
+
+    }
+
+    void Update()
+    {
         if(saving)
         {
             SaveCurrentData();
