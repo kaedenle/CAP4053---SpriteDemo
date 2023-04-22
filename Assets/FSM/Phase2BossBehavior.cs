@@ -6,7 +6,8 @@ public class Phase2BossBehavior : StateMachineBehaviour
 {
     public Transform player;
     public int currState;
-    public float speed;
+    public float speed = 5f;
+    public float relativeSpeed = 5f / 12f;
     public float lineOfSightDistance;
     public float minimumDistance;
     public GameObject bulletPrefab;
@@ -14,7 +15,8 @@ public class Phase2BossBehavior : StateMachineBehaviour
     //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        speed = 5;
+        speed = GameData.GetConfig().GetSpeed(relativeSpeed);
+
         am = animator.gameObject.GetComponent<AttackManager>();
         player = GameObject.Find("Player").transform;
 
