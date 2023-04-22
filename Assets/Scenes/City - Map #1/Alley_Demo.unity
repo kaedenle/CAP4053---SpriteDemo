@@ -2580,6 +2580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 360cd83fc3da64341bf4edb4a92d9ce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  configFile: {fileID: 11400000, guid: 373305ed81255b2459260ec1061da780, type: 2}
 --- !u!4 &444419495
 Transform:
   m_ObjectHideFlags: 0
@@ -2923,9 +2924,12 @@ MonoBehaviour:
   SpawnRadius: 2
   minEnemies: 1
   maxEnemies: 1
-  minimumAcceptablePlayerDistance: 2
+  minPlayerYDistPercent: 25
+  minPlayerXDistPercent: 25
   RespawnOnLoad: 0
   OriginalPos: 1
+  lookingBehavior: 0
+  probOfLookDirection: 100
 --- !u!1 &481570557
 GameObject:
   m_ObjectHideFlags: 0
@@ -3162,7 +3166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 7
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -9584,7 +9588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf92784ed5d3bf4a836824b47e4efcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 

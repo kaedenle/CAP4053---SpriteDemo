@@ -911,7 +911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: fuse_obtain
@@ -1450,7 +1450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccad916a9481bc248b959ad85cb88523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 11
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -1904,7 +1904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49724c29999d01a459234abca7ad45ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: whiskey_bottle
@@ -1931,7 +1931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c3b8c955297b3f48b88b1c75e13ea8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   dialogue: {fileID: 0}
   normalAudio: 
   highlightEnds: 1
@@ -2572,7 +2572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: underground_entrance
@@ -2600,7 +2600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33f58f5d6f1887458ad59a65a67896f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: use_rope_on_hole
@@ -2810,7 +2810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49724c29999d01a459234abca7ad45ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: suitcase
@@ -3118,7 +3118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: crowbar_obtained
@@ -3832,7 +3832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccad916a9481bc248b959ad85cb88523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: mat_temp
@@ -4107,7 +4107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccad916a9481bc248b959ad85cb88523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: mat_temp
@@ -4524,6 +4524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 360cd83fc3da64341bf4edb4a92d9ce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  configFile: {fileID: 11400000, guid: 373305ed81255b2459260ec1061da780, type: 2}
 --- !u!4 &656057065
 Transform:
   m_ObjectHideFlags: 0
@@ -5648,7 +5649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccad916a9481bc248b959ad85cb88523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: bedroom_painting
@@ -5773,9 +5774,12 @@ MonoBehaviour:
   SpawnRadius: 0
   minEnemies: 0
   maxEnemies: 1
-  minimumAcceptablePlayerDistance: 0.5
+  minPlayerYDistPercent: 25
+  minPlayerXDistPercent: 25
   RespawnOnLoad: 0
   OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 100
 --- !u!4 &923175914
 Transform:
   m_ObjectHideFlags: 0
@@ -6426,7 +6430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -6678,7 +6682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccad916a9481bc248b959ad85cb88523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: bedroom_painting
@@ -6800,7 +6804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: obtained_rope
@@ -7198,7 +7202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: underground_entrance
@@ -9015,7 +9019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49724c29999d01a459234abca7ad45ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: patrick_painting
@@ -9042,7 +9046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c3b8c955297b3f48b88b1c75e13ea8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   dialogue: {fileID: 0}
   normalAudio: 
   highlightEnds: 1
@@ -9253,7 +9257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccad916a9481bc248b959ad85cb88523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: mat_temp
@@ -10703,7 +10707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccad916a9481bc248b959ad85cb88523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: opened_safe
@@ -11491,7 +11495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccad916a9481bc248b959ad85cb88523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: supply_crate_open

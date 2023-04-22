@@ -442,22 +442,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
     loopLast: 1
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
-    lockedAudio:
-      audioFile: {fileID: 0}
+    lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
   _nextScene: 7
 --- !u!61 &508937300
 BoxCollider2D:
@@ -1267,22 +1266,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
     loopLast: 1
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
-    lockedAudio:
-      audioFile: {fileID: 0}
+    lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
   _nextScene: 8
 --- !u!61 &742213155
 BoxCollider2D:
@@ -2360,6 +2358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 360cd83fc3da64341bf4edb4a92d9ce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  configFile: {fileID: 11400000, guid: 373305ed81255b2459260ec1061da780, type: 2}
 --- !u!4 &1465460833
 Transform:
   m_ObjectHideFlags: 0

@@ -2659,7 +2659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -2673,6 +2673,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
   _nextScene: 9
 --- !u!61 &508937300
 BoxCollider2D:
@@ -4679,7 +4680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33f58f5d6f1887458ad59a65a67896f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: unicorn_plushie
@@ -4693,6 +4694,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
   eventID: pick_up_unicorn
   destroyOnUse: 1
   enables: []
@@ -5076,7 +5078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccad916a9481bc248b959ad85cb88523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -5090,6 +5092,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
   eventID: 
   stateID: child_turn_on_light
   enables:
@@ -6935,6 +6938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 360cd83fc3da64341bf4edb4a92d9ce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  configFile: {fileID: 11400000, guid: 373305ed81255b2459260ec1061da780, type: 2}
 --- !u!4 &1236050249
 Transform:
   m_ObjectHideFlags: 0
@@ -9386,7 +9390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -9400,6 +9404,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 29000000
+  playAfterDialogue: 1
   _nextScene: 6
 --- !u!61 &1714784007
 BoxCollider2D:
@@ -11628,7 +11633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed6c231ea823e4c41ae8c46793898536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -11642,6 +11647,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
   DiaryUI: {fileID: 1593689143}
 --- !u!1 &2059076162
 GameObject:

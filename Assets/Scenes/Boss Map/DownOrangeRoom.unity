@@ -2775,7 +2775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33f58f5d6f1887458ad59a65a67896f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.3
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: used_key
@@ -2789,6 +2789,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 0c000000
+  playAfterDialogue: 1
   eventID: unlock_2
   destroyOnUse: 1
   enables:
@@ -6374,6 +6375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 360cd83fc3da64341bf4edb4a92d9ce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  configFile: {fileID: 11400000, guid: 373305ed81255b2459260ec1061da780, type: 2}
 --- !u!4 &1366817158
 Transform:
   m_ObjectHideFlags: 0
@@ -6387,7 +6389,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1368097862
 GameObject:
@@ -9045,7 +9047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -9059,6 +9061,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 0c000000
+  playAfterDialogue: 1
   _nextScene: 14
 --- !u!61 &1959596765
 BoxCollider2D:
@@ -10021,6 +10024,7 @@ MonoBehaviour:
   movementConfiguration:
     speed: 4
     minimumDistance: 1.25
+    attackChargeTime: 0
     smallFOV:
       radius: 12
       angle: 360
@@ -10033,7 +10037,6 @@ MonoBehaviour:
   currentFOVType: 0
   LockFOVToY: 0
   defaultLooksLeft: 1
-  startFlipped: 0
 --- !u!195 &3256499937201526617
 NavMeshAgent:
   m_ObjectHideFlags: 0

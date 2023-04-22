@@ -1442,6 +1442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 360cd83fc3da64341bf4edb4a92d9ce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  configFile: {fileID: 11400000, guid: 373305ed81255b2459260ec1061da780, type: 2}
 --- !u!4 &268238161
 Transform:
   m_ObjectHideFlags: 0
@@ -4886,7 +4887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -4900,6 +4901,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+  playAfterDialogue: 1
   _nextScene: 7
 --- !u!212 &1079173065
 SpriteRenderer:
@@ -6302,10 +6304,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c78f476abba6247b89c34f3e6f470c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.35
+  outlineThickness: {fileID: 0}
   dialogue: {fileID: 11400000, guid: 75cf458e4cff27f4eac07fee0b5b159d, type: 2}
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 0
   lockable:
     isLocked: 1
@@ -6313,6 +6314,7 @@ MonoBehaviour:
     lockedText: {fileID: 11400000, guid: 44489d2e2c6200644b36616f31a9093e, type: 2}
     lockedAudio:
       audioFile: {fileID: 0}
+  playAfterDialogue: 1
   triggeredEventId: give_stuffy
   destroyOnTrigger: 0
   gainItem: 1
@@ -8856,10 +8858,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c78f476abba6247b89c34f3e6f470c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.35
+  outlineThickness: {fileID: 0}
   dialogue: {fileID: 11400000, guid: 52ef65efd5a946543b730c7e713761dd, type: 2}
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 1
   lockable:
     isLocked: 0
@@ -8867,6 +8868,7 @@ MonoBehaviour:
     lockedText: {fileID: 0}
     lockedAudio:
       audioFile: {fileID: 0}
+  playAfterDialogue: 1
   triggeredEventId: see_child
   destroyOnTrigger: 1
   gainItem: 1

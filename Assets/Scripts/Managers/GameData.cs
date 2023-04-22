@@ -11,15 +11,15 @@ using UnityEngine.SceneManagement;
 // must run before other scripts
 public class GameData : MonoBehaviour
 {
-    private BinaryFormatter formatter;
-
     // this game data
     private static GameData Instance;
     private Data data;
+    public ConfigFile configFile;
 
     // constants
     const string saveFileName = "SubliminalGameData.dat";
     private string saveFilePath;
+    private BinaryFormatter formatter;
 
     // actual variables
     bool reverting = false, saving = false;
@@ -254,6 +254,11 @@ public class GameData : MonoBehaviour
     public static GameData GetInstance()
     {
         return Instance;
+    }
+
+    public static ConfigFile GetConfig()
+    {
+        return GetInstance().configFile;
     }
 
     // assumption: PhaseTag integer is equal to level integer

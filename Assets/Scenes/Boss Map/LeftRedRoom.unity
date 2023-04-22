@@ -2465,7 +2465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33f58f5d6f1887458ad59a65a67896f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.3
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: used_key
@@ -2479,6 +2479,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 0b000000
+  playAfterDialogue: 1
   eventID: unlock_0
   destroyOnUse: 1
   enables:
@@ -7442,6 +7443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 360cd83fc3da64341bf4edb4a92d9ce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  configFile: {fileID: 11400000, guid: 373305ed81255b2459260ec1061da780, type: 2}
 --- !u!4 &1430274692
 Transform:
   m_ObjectHideFlags: 0
@@ -9965,7 +9967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -9979,6 +9981,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 0b000000
+  playAfterDialogue: 1
   _nextScene: 13
 --- !u!61 &1959596765
 BoxCollider2D:
@@ -11168,6 +11171,7 @@ MonoBehaviour:
   movementConfiguration:
     speed: 9
     minimumDistance: 1.25
+    attackChargeTime: 0
     smallFOV:
       radius: 11
       angle: 150
@@ -11180,7 +11184,6 @@ MonoBehaviour:
   currentFOVType: 0
   LockFOVToY: 0
   defaultLooksLeft: 0
-  startFlipped: 0
 --- !u!114 &6402939420603874014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11215,7 +11218,6 @@ MonoBehaviour:
     fastReactionTime: 0.25
     memory_time: 5
   expressionOffset: {x: 0, y: 2, z: 0}
-  shooting: 0
 --- !u!82 &7131361830572714484
 AudioSource:
   m_ObjectHideFlags: 0
