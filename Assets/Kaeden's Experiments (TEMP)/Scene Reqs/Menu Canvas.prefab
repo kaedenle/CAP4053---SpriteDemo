@@ -86,7 +86,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &1554438271625386811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,6 +397,10 @@ PrefabInstance:
 
         a list of combos and how to do them are in this book'
       objectReference: {fileID: 0}
+    - target: {fileID: 379806128947825720, guid: a54911043d5420244a2f17b8d5df41d6, type: 3}
+      propertyPath: PageID
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 698958317487065213, guid: a54911043d5420244a2f17b8d5df41d6, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -440,7 +444,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2938204568499606681, guid: a54911043d5420244a2f17b8d5df41d6, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -9.61
       objectReference: {fileID: 0}
     - target: {fileID: 2938204568499606684, guid: a54911043d5420244a2f17b8d5df41d6, type: 3}
       propertyPath: PageID
@@ -493,6 +497,10 @@ PrefabInstance:
     - target: {fileID: 3774541081106046421, guid: a54911043d5420244a2f17b8d5df41d6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863617411170104980, guid: a54911043d5420244a2f17b8d5df41d6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.82
       objectReference: {fileID: 0}
     - target: {fileID: 4144512279670373742, guid: a54911043d5420244a2f17b8d5df41d6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -714,6 +722,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8850656109506755043, guid: a54911043d5420244a2f17b8d5df41d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5750500544224692353}
+    - target: {fileID: 8850656109506755043, guid: a54911043d5420244a2f17b8d5df41d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetFlip
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850656109506755043, guid: a54911043d5420244a2f17b8d5df41d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a54911043d5420244a2f17b8d5df41d6, type: 3}
 --- !u!1 &361671447220135088 stripped
@@ -726,11 +746,35 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 940123388549518513, guid: a54911043d5420244a2f17b8d5df41d6, type: 3}
   m_PrefabInstance: {fileID: 651518776}
   m_PrefabAsset: {fileID: 0}
+--- !u!225 &3093525447619684896
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940123388042721161}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &4621190186278694492 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4621190186779069796, guid: a54911043d5420244a2f17b8d5df41d6, type: 3}
   m_PrefabInstance: {fileID: 651518776}
   m_PrefabAsset: {fileID: 0}
+--- !u!225 &5119366753861352121
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4621190186278694492}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &4741246704335760686 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4741246703770390038, guid: a54911043d5420244a2f17b8d5df41d6, type: 3}
@@ -757,6 +801,23 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7637378235661601770, guid: a54911043d5420244a2f17b8d5df41d6, type: 3}
   m_PrefabInstance: {fileID: 651518776}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7663694006600912391 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7663694007165889855, guid: a54911043d5420244a2f17b8d5df41d6, type: 3}
+  m_PrefabInstance: {fileID: 651518776}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &972455355016048165
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7663694006600912391}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &8125704473384077015 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8125704472799815151, guid: a54911043d5420244a2f17b8d5df41d6, type: 3}

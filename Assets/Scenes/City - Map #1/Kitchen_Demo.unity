@@ -2189,6 +2189,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
   playAfterDialogue: 1
   _nextScene: 3
 --- !u!58 &555459316
@@ -3393,6 +3394,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1935532483}
+    - target: {fileID: 1554438271625386810, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1554438271625386812, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
       propertyPath: m_Name
       value: Menu Canvas
@@ -3450,9 +3455,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.02, y: 0}
+  m_Offset: {x: -0.25670385, y: 0}
   serializedVersion: 2
-  m_Radius: 0.34
+  m_Radius: 0.6167039
 --- !u!212 &1020108981
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3546,6 +3551,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
   playAfterDialogue: 1
   _itemType: 0
   repeatable: 0

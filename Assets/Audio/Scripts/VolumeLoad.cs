@@ -13,7 +13,7 @@ public class VolumeLoad : MonoBehaviour
         phase = GameData.GetInstance().GetLevel();
         float savedMusicVolume;
         float savedSoundEffectVolume;
-
+        
         if (gameObject.tag == "LevelTheme")
         {
             savedMusicVolume = VolumeManager.instance.volumeValue;
@@ -33,10 +33,10 @@ public class VolumeLoad : MonoBehaviour
     private void Update() {
         if (!EntityManager.MovementEnabled())
         {
-            Music.Pause();
+            if(Music != null) Music.Pause();
         }
         else
-            Music.Play();
+            if(Music != null) Music.Play();
     }
 
     

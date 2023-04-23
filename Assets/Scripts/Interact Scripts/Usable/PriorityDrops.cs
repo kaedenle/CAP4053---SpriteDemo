@@ -30,6 +30,7 @@ public class PriorityDrops : Interactive
             if(!UIActive() && lockable.IsUnlocked())
             {
                 TriggerDialogue();
+                SoundEffectManager.PlayAudio(normalAudio);
             }
             
             Pickup();

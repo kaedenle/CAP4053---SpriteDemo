@@ -244,24 +244,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 4
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
     loopLast: 1
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: 
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
-    lockedAudio:
-      audioFile: {fileID: 0}
+    lockedAudio: 
     requiredItems: 
+    requiredEvents: []
+  playAfterDialogue: 1
   _itemType: 17
   repeatable: 1
+  destroyOnInteract: 1
 --- !u!50 &5166899273208246072
 Rigidbody2D:
   serializedVersion: 4
@@ -311,21 +312,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce995ddc7eb7ae44ba3b0b84c5f5fb9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 4
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
     loopLast: 1
-  normalAudio:
-    audioFile: {fileID: 0}
+  normalAudio: Heal
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
-    lockedAudio:
-      audioFile: {fileID: 0}
+    lockedAudio: 
     requiredItems: 
+    requiredEvents: []
+  playAfterDialogue: 1
   _itemType: 17
   repeatable: 1
