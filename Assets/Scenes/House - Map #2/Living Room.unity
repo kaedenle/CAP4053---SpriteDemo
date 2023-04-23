@@ -253,6 +253,160 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &47916926
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 47916927}
+  - component: {fileID: 47916930}
+  - component: {fileID: 47916929}
+  - component: {fileID: 47916928}
+  m_Layer: 0
+  m_Name: SoundEffectManager
+  m_TagString: SoundEffect
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &47916927
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47916926}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 205638887}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &47916928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47916926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e26ec6b487a0662428ff3a28bdaabe89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &47916929
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47916926}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &47916930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47916926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9930d1a817f8ea40bcc0e6109708b6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &60986423
 GameObject:
   m_ObjectHideFlags: 0
@@ -935,6 +1089,7 @@ Transform:
   - {fileID: 878452457}
   - {fileID: 930042853}
   - {fileID: 599097620}
+  - {fileID: 47916927}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1447,7 +1602,7 @@ MonoBehaviour:
   interactiveText:
     textID: childKeyItem
     loopLast: 1
-  normalAudio: 
+  normalAudio: key_pickup
   highlightEnds: 0
   lockable:
     isLocked: 0
@@ -1819,7 +1974,7 @@ MonoBehaviour:
   interactiveText:
     textID: got_fuse
     loopLast: 0
-  normalAudio: 
+  normalAudio: switch_click
   highlightEnds: 1
   lockable:
     isLocked: 1
@@ -2813,14 +2968,14 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
-  normalAudio: 
+  normalAudio: Mirror_Woosh
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
-    lockedAudio: 
+    lockedAudio: Door_Locked
     requiredItems: 
   playAfterDialogue: 1
 --- !u!61 &689081049
@@ -3902,7 +4057,7 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
-  normalAudio: 
+  normalAudio: Basic_Door
   highlightEnds: 0
   lockable:
     isLocked: 0
@@ -3979,14 +4134,14 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
-  normalAudio: 
+  normalAudio: Basic_Door
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
-    lockedAudio: 
+    lockedAudio: Door_Locked
     requiredItems: 
   playAfterDialogue: 1
   _nextScene: 11
@@ -4544,14 +4699,14 @@ MonoBehaviour:
   interactiveText:
     textID: closed_to_open_fusebox
     loopLast: 0
-  normalAudio: 
+  normalAudio: Fuse_Door
   highlightEnds: 0
   lockable:
     isLocked: 0
     lockedInteractiveText:
       textID: 
       loopLast: 1
-    lockedAudio: 
+    lockedAudio: Door_Locked
     requiredItems: 
   playAfterDialogue: 1
   eventID: fusebox_closed
@@ -4991,14 +5146,14 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
-  normalAudio: 
+  normalAudio: Basic_Door
   highlightEnds: 0
   lockable:
     isLocked: 1
     lockedInteractiveText:
       textID: lockedChildDoor
       loopLast: 1
-    lockedAudio: 
+    lockedAudio: Door_Locked
     requiredItems: 02000000
   playAfterDialogue: 1
   _nextScene: 9
@@ -5057,6 +5212,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1605660390, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
+      propertyPath: m_TagString
+      value: SoundEffect
+      objectReference: {fileID: 0}
     - target: {fileID: 3022009316415555036, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: barOffset.y
       value: 2
@@ -5479,7 +5638,7 @@ MonoBehaviour:
   interactiveText:
     textID: childBulbItem
     loopLast: 1
-  normalAudio: 
+  normalAudio: Item_Pickup
   highlightEnds: 0
   lockable:
     isLocked: 1
@@ -5528,7 +5687,7 @@ MonoBehaviour:
   interactiveText:
     textID: added_fuse
     loopLast: 0
-  normalAudio: 
+  normalAudio: switch_click
   highlightEnds: 0
   lockable:
     isLocked: 1
@@ -7440,6 +7599,23 @@ Transform:
   m_Father: {fileID: 1826998836}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1702910269 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1605660390, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
+  m_PrefabInstance: {fileID: 1259720909}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1702910271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702910269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e26ec6b487a0662428ff3a28bdaabe89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1708774161
 GameObject:
   m_ObjectHideFlags: 0
@@ -7707,7 +7883,7 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
-  normalAudio: 
+  normalAudio: Basic_Door
   highlightEnds: 0
   lockable:
     isLocked: 0
@@ -8598,7 +8774,7 @@ MonoBehaviour:
   interactiveText:
     textID: lightbulb_replacement
     loopLast: 0
-  normalAudio: 
+  normalAudio: Place_Object
   highlightEnds: 0
   lockable:
     isLocked: 1

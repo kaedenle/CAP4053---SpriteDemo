@@ -916,7 +916,7 @@ MonoBehaviour:
   interactiveText:
     textID: fuse_obtain
     loopLast: 0
-  normalAudio: 
+  normalAudio: Item_Pickup
   highlightEnds: 0
   lockable:
     isLocked: 0
@@ -1265,6 +1265,7 @@ Transform:
   - {fileID: 850980139}
   - {fileID: 429301732}
   - {fileID: 1426802948}
+  - {fileID: 644335964}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2573,7 +2574,7 @@ MonoBehaviour:
   interactiveText:
     textID: use_rope_on_hole
     loopLast: 1
-  normalAudio: 
+  normalAudio: Place_Object
   highlightEnds: 0
   lockable:
     isLocked: 1
@@ -3091,7 +3092,7 @@ MonoBehaviour:
   interactiveText:
     textID: crowbar_obtained
     loopLast: 0
-  normalAudio: 
+  normalAudio: Item_Pickup
   highlightEnds: 0
   lockable:
     isLocked: 0
@@ -4335,6 +4336,160 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1554438271625386808, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
   m_PrefabInstance: {fileID: 303897741}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &644335963
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 644335964}
+  - component: {fileID: 644335967}
+  - component: {fileID: 644335966}
+  - component: {fileID: 644335965}
+  m_Layer: 0
+  m_Name: SoundEffectManager
+  m_TagString: SoundEffect
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &644335964
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644335963}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 205638887}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &644335965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644335963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e26ec6b487a0662428ff3a28bdaabe89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &644335966
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644335963}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &644335967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644335963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9930d1a817f8ea40bcc0e6109708b6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &645492808
 GameObject:
   m_ObjectHideFlags: 0
@@ -5576,7 +5731,7 @@ MonoBehaviour:
   interactiveText:
     textID: bedroom_painting
     loopLast: 0
-  normalAudio: 
+  normalAudio: Paper
   highlightEnds: 0
   lockable:
     isLocked: 0
@@ -6371,7 +6526,7 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 0
-  normalAudio: 
+  normalAudio: Basic_Door
   highlightEnds: 0
   lockable:
     isLocked: 0
@@ -6623,7 +6778,7 @@ MonoBehaviour:
   interactiveText:
     textID: bedroom_painting
     loopLast: 0
-  normalAudio: 
+  normalAudio: Paper
   highlightEnds: 0
   lockable:
     isLocked: 1
@@ -6745,7 +6900,7 @@ MonoBehaviour:
   interactiveText:
     textID: obtained_rope
     loopLast: 0
-  normalAudio: 
+  normalAudio: Item_Pickup
   highlightEnds: 0
   lockable:
     isLocked: 0
@@ -7143,7 +7298,7 @@ MonoBehaviour:
   interactiveText:
     textID: underground_entrance
     loopLast: 0
-  normalAudio: 
+  normalAudio: Stair_Transition
   highlightEnds: 0
   lockable:
     isLocked: 1
@@ -10648,14 +10803,14 @@ MonoBehaviour:
   interactiveText:
     textID: opened_safe
     loopLast: 0
-  normalAudio: 
+  normalAudio: Fuse_Door
   highlightEnds: 0
   lockable:
     isLocked: 1
     lockedInteractiveText:
       textID: locked_safe
       loopLast: 0
-    lockedAudio: 
+    lockedAudio: Door_Locked
     requiredItems: 05000000
   playAfterDialogue: 1
   eventID: 
@@ -11435,14 +11590,14 @@ MonoBehaviour:
   interactiveText:
     textID: supply_crate_open
     loopLast: 0
-  normalAudio: 
+  normalAudio: Chest_Open
   highlightEnds: 1
   lockable:
     isLocked: 1
     lockedInteractiveText:
       textID: supply_crate_locked
       loopLast: 1
-    lockedAudio: 
+    lockedAudio: Door_Locked
     requiredItems: 07000000
   playAfterDialogue: 1
   eventID: 
