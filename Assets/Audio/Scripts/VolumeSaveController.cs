@@ -12,6 +12,8 @@ public class VolumeSaveController : MonoBehaviour
     private void Start() 
     {
         LoadValues();
+        VolumeManager.instance.volumeValue = 0.5f;
+        volumeSlider.value = VolumeManager.instance.volumeValue;
     }
 
     public void VolumeSlider(float volume)
