@@ -6765,7 +6765,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.13, y: 0.17}
+    oldSize: {x: 0.15, y: 0.21}
     newSize: {x: 0.11, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -6873,7 +6873,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.13, y: 0.17}
+    oldSize: {x: 0.15, y: 0.21}
     newSize: {x: 0.11, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -13198,7 +13198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: {fileID: 0}
+  outlineThickness: {fileID: 11400000, guid: f35f165b3673d20489e0c6b4e2f2103a, type: 2}
   pauseOnInteract: 1
   interactiveText:
     textID: city_coin
@@ -13234,7 +13234,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.09, y: 0.1}
+    oldSize: {x: 0.11, y: 0.12}
     newSize: {x: 0.09, y: 0.1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -28335,7 +28335,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.13, y: 0.17}
+    oldSize: {x: 0.15, y: 0.21}
     newSize: {x: 0.11, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -37191,7 +37191,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.13, y: 0.17}
+    oldSize: {x: 0.15, y: 0.21}
     newSize: {x: 0.11, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -37269,7 +37269,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.13, y: 0.17}
+    oldSize: {x: 0.15, y: 0.21}
     newSize: {x: 0.11, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -39872,7 +39872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2299a9390dff0284fb7f9db2835fff75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: {fileID: 0}
+  outlineThickness: {fileID: 11400000, guid: 301d7390a2c702a47934fa255633ac22, type: 2}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -51730,7 +51730,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.13, y: 0.17}
+    oldSize: {x: 0.15, y: 0.21}
     newSize: {x: 0.11, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -53403,6 +53403,7 @@ Transform:
   - {fileID: 1130413106}
   - {fileID: 2416578137666047235}
   - {fileID: 517463720}
+  - {fileID: 1856476960}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -62437,7 +62438,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.13, y: 0.17}
+    oldSize: {x: 0.15, y: 0.21}
     newSize: {x: 0.11, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -77763,6 +77764,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1856476959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1856476960}
+  - component: {fileID: 1856476961}
+  m_Layer: 0
+  m_Name: MobsterLevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1856476960
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856476959}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1260726155}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1856476961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856476959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d0a83917f16a9546ac32f20558f1f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1860472468
 GameObject:
   m_ObjectHideFlags: 0
@@ -87931,7 +87976,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.06, y: 2.4103665}
+    oldSize: {x: 2.1399999, y: 2.4703755}
     newSize: {x: 1.89, y: 2.17033}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -90534,7 +90579,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.06, y: 2.4103665}
+    oldSize: {x: 2.1399999, y: 2.4703755}
     newSize: {x: 1.89, y: 2.17033}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

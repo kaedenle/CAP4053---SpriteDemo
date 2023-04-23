@@ -25,6 +25,12 @@ public class ConfigFile : ScriptableObject
         return speed * modifier;
     }
 
+    public float GetPlayerSpeed()
+    {
+        if(GameData.GetInstance().GetDifficulty() == GameData.Difficulty.Easy) return GetSpeed() + 1; // gives slight advantage to player
+        else return GetSpeed();
+    }
+
     public int GetRespawnNumber(int totalEnemies)
     {
         return GetScenesData(ScenesManager.GetCurrentScene()).GetRespawnNumber(totalEnemies);

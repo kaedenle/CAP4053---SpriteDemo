@@ -1899,11 +1899,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &173438465 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7486193443214496424, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
-  m_PrefabInstance: {fileID: 1194446393}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &191858238
 GameObject:
   m_ObjectHideFlags: 0
@@ -4371,6 +4366,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
   playAfterDialogue: 1
   _nextScene: 14
 --- !u!61 &669558399
@@ -5610,6 +5606,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 0e0000000f00000010000000
+    requiredEvents: []
   playAfterDialogue: 1
   eventID: boss_lever_pulled
   destroyOnUse: 1
@@ -6149,6 +6146,52 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &949728952
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 949728954}
+  - component: {fileID: 949728953}
+  m_Layer: 0
+  m_Name: -- Startup Dialogue --
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &949728953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949728952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df03204754864a40909251771f96d4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 11400000, guid: 10b3154110a216b49af755a30b7b8aec, type: 2}
+  pauseWhenTriggered: 1
+--- !u!4 &949728954
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949728952}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.06441933, y: -0.21493396, z: 1.2714709}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &985364233
 GameObject:
   m_ObjectHideFlags: 0
@@ -6835,6 +6878,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 15000000
+    requiredEvents: []
   playAfterDialogue: 1
   _nextScene: 16
 --- !u!61 &1073415318
@@ -7369,7 +7413,7 @@ PrefabInstance:
     - target: {fileID: 5750500544224692353, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
       propertyPath: pages.Array.data[1]
       value: 
-      objectReference: {fileID: 173438465}
+      objectReference: {fileID: 0}
     - target: {fileID: 5750500544224692353, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
       propertyPath: pages.Array.data[2]
       value: 
@@ -8582,6 +8626,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
   playAfterDialogue: 1
   _nextScene: 13
 --- !u!61 &1349579235
@@ -12480,6 +12525,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
   playAfterDialogue: 1
   _nextScene: 15
 --- !u!61 &1959596765

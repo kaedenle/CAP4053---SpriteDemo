@@ -11,6 +11,7 @@ public class MenuManager : MonoBehaviour
 
     public GameObject levelSelectButton;
     public GameObject mainPage;
+    public GameObject mainTheme;
 
     // button behavior for New Game
     public void NewGame()
@@ -43,6 +44,9 @@ public class MenuManager : MonoBehaviour
     {
         // reset all level variables
         LevelManager.FullReset();
+
+        // stop the music
+        mainTheme.GetComponent<AudioSource>().Stop();
 
         // grab the current game
         GameData.GetInstance().RevertToSave();

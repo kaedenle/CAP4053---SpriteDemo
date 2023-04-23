@@ -33,7 +33,8 @@ public class DoNotDestroyMusic : MonoBehaviour
         {
             m_MyAudioSource.Stop();
         }
-
+        if (SceneManager.GetActiveScene().name == "Boss Room")
+            Destroy(this.gameObject);
         else if (SceneManager.GetActiveScene().name == "Living Room" && !m_MyAudioSource.isPlaying)
         {
             m_MyAudioSource.Play();

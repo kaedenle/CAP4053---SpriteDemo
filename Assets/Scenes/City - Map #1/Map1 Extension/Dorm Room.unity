@@ -3195,6 +3195,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &462763101
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 462763102}
+  - component: {fileID: 462763103}
+  m_Layer: 0
+  m_Name: MobsterLevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &462763102
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462763101}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1260726155}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &462763103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462763101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d0a83917f16a9546ac32f20558f1f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &476033637
 GameObject:
   m_ObjectHideFlags: 0
@@ -5277,7 +5321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: {fileID: 0}
+  outlineThickness: {fileID: 11400000, guid: 0a4af3a9b912767418e76c6e6a59be3c, type: 2}
   pauseOnInteract: 1
   interactiveText:
     textID: city_gun
@@ -5291,6 +5335,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
   playAfterDialogue: 1
   _itemType: 43
   repeatable: 0
@@ -5672,6 +5717,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
   playAfterDialogue: 1
   _itemType: 42
   repeatable: 0
@@ -6365,7 +6411,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.18, y: 0.31}
+    oldSize: {x: 0.24, y: 0.37}
     newSize: {x: 0.18, y: 0.31}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -6473,7 +6519,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.18, y: 0.31}
+    oldSize: {x: 0.24, y: 0.37}
     newSize: {x: 0.18, y: 0.31}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -6508,6 +6554,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
   playAfterDialogue: 1
 --- !u!1 &904377472
 GameObject:
@@ -6607,7 +6654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49724c29999d01a459234abca7ad45ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: {fileID: 0}
+  outlineThickness: {fileID: 11400000, guid: 301d7390a2c702a47934fa255633ac22, type: 2}
   pauseOnInteract: 1
   interactiveText:
     textID: city_door_dorm
@@ -6621,6 +6668,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
   playAfterDialogue: 1
 --- !u!61 &904377476
 BoxCollider2D:
@@ -8365,6 +8413,7 @@ Transform:
   - {fileID: 732963659}
   - {fileID: 789519872}
   - {fileID: 1872798427}
+  - {fileID: 462763102}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9844,7 +9893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33f58f5d6f1887458ad59a65a67896f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: {fileID: 0}
+  outlineThickness: {fileID: 11400000, guid: 723ec85963dee00429776ea9f3c750a3, type: 2}
   pauseOnInteract: 1
   interactiveText:
     textID: city_final_trashcan
@@ -9858,6 +9907,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
   playAfterDialogue: 1
   eventID: 
   destroyOnUse: 0
@@ -9881,7 +9931,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.19, y: 0.15}
+    oldSize: {x: 0.64, y: 0.64}
     newSize: {x: 0.19, y: 0.15}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -10282,6 +10332,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 2b0000002a0000002c000000
+    requiredEvents: []
   playAfterDialogue: 1
   _nextScene: 25
   m_MyEvent:
@@ -11892,6 +11943,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
   playAfterDialogue: 1
 --- !u!1 &1711254482
 GameObject:
@@ -12526,6 +12578,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
   playAfterDialogue: 1
 --- !u!1 &1750062009
 GameObject:
@@ -13590,6 +13643,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
   playAfterDialogue: 1
 --- !u!1 &1910121222
 GameObject:
