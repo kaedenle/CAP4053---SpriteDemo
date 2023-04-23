@@ -62,7 +62,7 @@ public class EntityManager : MonoBehaviour
             if(numPauses < 0)
             {
                 numPauses = 0;
-                Debug.LogError("pause count was set to less than zero");
+                Debug.LogWarning("pause count was set to less than zero");
             }
             _pause = false;
             Time.timeScale = 1;
@@ -298,7 +298,11 @@ public class EntityManager : MonoBehaviour
         
         // try to spawn more enemies
         int respawn = GameData.GetConfig().GetRespawnNumber(Instance.active + spawnData.GetKills(ScenesManager.GetCurrentScene()));
-        Debug.Log("trying to respawn " + respawn + " with " + spawners.Count + " spawners");
+        // only add up to max enemies
+        respawn = System.Math.Min(respawn, GameData.GetConfig().GetMaxActive() - active);
+
+        if(GeneralFunctions.IsDebug())
+            Debug.Log("trying to respawn " + respawn + " with " + spawners.Count + " spawners");
 
         for(int loop = 0; loop < 500; loop++)
         {

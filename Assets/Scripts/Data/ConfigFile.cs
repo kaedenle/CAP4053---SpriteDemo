@@ -35,4 +35,14 @@ public class ConfigFile : ScriptableObject
     {
         return GetScenesData(ScenesManager.GetCurrentScene()).GetRespawnNumber(totalEnemies);
     }
+
+    public int GetMaxActive(ScenesManager.AllScenes scene)
+    {
+        return GetScenesData(scene).maxActiveEnemies;
+    }
+
+    public int GetMaxActive()
+    {
+        return GetMaxActive(ScenesManager.GetCurrentScene());
+    }
 }
