@@ -32,6 +32,5 @@ public class RunSFX : MonoBehaviour
            
         }
         if (anim.GetFloat("movement") < 0.001) StopPlay();
-         this.enabled = false;
     }
 }
