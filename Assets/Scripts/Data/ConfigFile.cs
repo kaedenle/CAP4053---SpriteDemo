@@ -12,7 +12,7 @@ public class ConfigFile : ScriptableObject
     public ScenesData GetScenesData(ScenesManager.AllScenes scene)
     {
         foreach(ScenesData sd in scenesData)
-            if(sd.scene == scene)
+            if(sd.ContainsScene(scene))
                 return sd;
         return defaultSceneData;
     }
@@ -20,5 +20,10 @@ public class ConfigFile : ScriptableObject
     public float GetSpeed(float modifier = 1f)
     {
         return baseSpeed * modifier;
+    }
+
+    public int GetRespawnNumber(int totalEnemies)
+    {
+        return GetScenesData(ScenesManager.GetCurrentScene()).GetRespawnNumber(totalEnemies);
     }
 }

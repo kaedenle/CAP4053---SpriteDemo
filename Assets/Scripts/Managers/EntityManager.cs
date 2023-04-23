@@ -5,9 +5,9 @@ using System;
 
 public class EntityManager : MonoBehaviour
 {
+    private static EntityManager Instance;
     private static bool _pause = false;
     private static int numPauses = 0;
-    private static EntityManager Instance;
     public static EventHandler PlayerDead;
 
     public enum AllStates
@@ -276,9 +276,39 @@ public class EntityManager : MonoBehaviour
     /*
     ============= Enemy Management ==================
     */
-    private static Dictionary<string, List<Base>> activeEnemies 
-            = new Dictionary<string, List<Base>>();
+    // assumptions: RespawnOnLoad is NOT used with any sort of scripted respawn behavior
+    // assumptions: all respawn effects happen at once (no first load happens w/ a respawn)
+    private static Dictionary<string, List<Base>> activeEnemies = new Dictionary<string, List<Base>>();
+    static int[] killed = new int[100];
     private static GameObject EnemyParent;
+    int active = 0; // not static
+
+    void Start()
+    {
+        // try to respawn
+        List<Spawner> spawners = new List<Spawner>();
+        
+        foreach(Spawner spawn in FindObjectsOfType(typeof(Spawner)))
+        {
+            if(activeEnemies.ContainsKey(spawn.GetKey()))
+                spawners.Add(spawn);
+        }
+        
+        // try to spawn more enemies
+        int respawn = GameData.GetConfig().GetRespawnNumber(Instance.active + killed[(int) ScenesManager.GetCurrentScene()]);
+        Debug.Log("trying to respawn " + respawn + " with " + spawners.Count + " spawners");
+
+        for(int loop = 0; loop < 500; loop++)
+        {
+            for(int i = 0; i < spawners.Count; i++)
+            {
+                if(respawn <= 0) break;
+                if(spawners[i].CreateEnemy())
+                    respawn--;
+            }
+            if(respawn <= 0) break;
+        }
+    }
 
     public  static void StoreEnemies(List<Base> enemies, string key)
     {
@@ -286,7 +316,7 @@ public class EntityManager : MonoBehaviour
         else activeEnemies.Add(key, enemies);
     }
 
-    //when game manager respawns entity
+    //when EntityManager respawns entity
     public void ReloadEnemies(Spawner spawner)
     {
         List<Base> spawn = activeEnemies.GetValueOrDefault(spawner.gameObject.name, null);
@@ -307,6 +337,7 @@ public class EntityManager : MonoBehaviour
     public static List<Base> GetEnemyList(string key)
     {
         List<Base> spawn = activeEnemies.GetValueOrDefault(key, null);
+        if(spawn != null) GetInstance().active += spawn.Count;
         return spawn;
     }
 
@@ -315,5 +346,15 @@ public class EntityManager : MonoBehaviour
         //Update enemies values
         foreach(Spawner spawner in FindObjectsOfType(typeof(Spawner)))
             spawner.TriggerSave();
+    }
+
+    public static void IncrementKillCount()
+    {
+        killed[(int) ScenesManager.GetCurrentScene() ] ++;
+    }
+
+    public static EntityManager GetInstance()
+    {
+        return Instance;
     }
 }

@@ -61,15 +61,16 @@ public class Spawner : MonoBehaviour
 
         spawner_key = this.gameObject.name + "_" + ScenesManager.GetCurrentScene().ToString();
         enemies = EntityManager.GetEnemyList(spawner_key);
+
     }
-    
-    // Start is called before the first frame update
-    public void Start()
+
+    void Start()
     {
+        // initial spawn of the enemies
         if(enemies != null)
         {
             foreach(Base enemyBase in enemies)
-                CreateEnemy(enemyBase);
+                RecreateEnemy(enemyBase);
         }
 
         else
@@ -78,6 +79,11 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    public string GetKey()
+    {
+        return spawner_key;
+    }
+    
     private void CreateEnemies()
     {
         enemies = new List<Base>();
@@ -90,30 +96,41 @@ public class Spawner : MonoBehaviour
         
         for(int i = 0; i < numEnemies; i++)
         {
-            Vector3 randomPos = GetEnemyPosition();
-
-            if(randomPos == NULLPOINT) continue; // couldn't find an acceptable player distance
-
-            int enemy_type = Random.Range(0, enemy.Length);
-            GameObject EnemyType = enemy[enemy_type];
-            if(EnemyType == null)
-            {
-                Debug.LogError("spawner attempted to spawn null enemy type");
-                continue;
-            }
-            // if(!RespawnOnLoad) EntityManager.AddEnemy(RespawnOnLoad, es);
-            GameObject enemyObject = Instantiate(EnemyType, randomPos, Quaternion.identity);
-            enemyObject.transform.SetParent(parent.transform);
-            SetEnemyDirection(enemyObject);
-            enemies.Add(new Base(enemyObject, enemy_type));
+            CreateEnemy();
         }
-
-        // update with any direction changes
-        // foreach(Base b in enemies)
-        //     b.UpdateValues(true, false);
     }
 
-    public void CreateEnemy(Base enemyBase)
+    // assumes enemies list has been initialized
+    // creates single enemy
+    public bool CreateEnemy()
+    {
+        if(enemies.Count >= maxEnemies) return false; // don't go over the count
+        // get the starting position
+        Vector3 randomPos = GetEnemyPosition();
+        if(randomPos == NULLPOINT) return false; // couldn't find an acceptable player distance
+
+        // get the enemy type
+        int enemy_type = Random.Range(0, enemy.Length);
+        GameObject EnemyType = enemy[enemy_type];
+        if(EnemyType == null)
+        {
+            Debug.LogError("spawner attempted to spawn null enemy type");
+            return false;
+        }
+
+        // make the enemy
+        GameObject enemyObject = Instantiate(EnemyType, randomPos, Quaternion.identity);
+
+        // set enemy configuration
+        enemyObject.transform.SetParent(parent.transform);
+        SetEnemyDirection(enemyObject);
+
+        // store enemy in list
+        enemies.Add(new Base(enemyObject, enemy_type));
+        return true;
+    }
+
+    public void RecreateEnemy(Base enemyBase)
     {
         //make new entity
         GameObject enemyObject = Instantiate(enemy[enemyBase.spawner_index_type], enemyBase.pos, Quaternion.identity);

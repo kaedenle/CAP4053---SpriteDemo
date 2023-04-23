@@ -244,6 +244,7 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
     // metrics update for Kaeden's enemy death metric
     protected void PerformMetricsForDeath()
     {
+        EntityManager.IncrementKillCount();
         PlayerMetricsManager.IncrementKeeperInt("killed");
     }
 
