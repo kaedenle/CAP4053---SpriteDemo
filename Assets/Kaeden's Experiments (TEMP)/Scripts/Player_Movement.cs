@@ -28,7 +28,7 @@ public class Player_Movement : MonoBehaviour, IScriptable
         objs = GameObject.FindGameObjectsWithTag("Player");
         flipped = false;
         move_flag = false;
-        MAX_SPEED = speed = GameData.GetConfig().GetSpeed(); // overriding speed here so that all entities have relative speeds
+        MAX_SPEED = speed = GameData.GetConfig().GetPlayerSpeed(); // overriding speed here so that all entities have relative speeds
         lastFlipped = flipped;
     }
     public Vector3 direction()
