@@ -60,6 +60,7 @@ public class AttackManager : MonoBehaviour
     private bool cancellableFlag = false;
     private IUnique uniqueScript;
     public bool invulerable = false;
+    private int currentWeapon;
 
     //audio
     private AudioClip[] currentAudio;
@@ -227,13 +228,14 @@ public class AttackManager : MonoBehaviour
         //1. DestroyPlay
         //2. InvokeAttack
         if (!cancellableFlag || tag != "Player") return;
-          if (cancellableSet.Contains(bufferCancel))
+         if (cancellableSet.Contains(bufferCancel))
         {
             //prevent bug that swaps you out of cancel
-            if (pwm.BufferWeaponID != pwm.wpnList.index) return;
+            //if (pwm.BufferWeaponID != pwm.wpnList.index) return;
+            if (!HasHitSomething() && currentWeapon == pwm.wpnList.index) return;
             //if (alreadyDamaged.Count == 0) return;
             int tmp = bufferCancel;
-
+            
             pwm.SetSprite();
             DestroyPlay();
             if (hb != null) hb.InvokeFlash(0.05f, Color.white, true, true, 2, 0.05f);
@@ -312,6 +314,7 @@ public class AttackManager : MonoBehaviour
         active = true;
         //currently attacking?
         attacking = true;
+        currentWeapon = wpnList.index;
         ProvisionHitboxes(0);
         //apply function effect (on first frame of attack)
         if((framedata.functCall != null || framedata.functCall == "") && uniqueScript != null)

@@ -253,7 +253,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
                     {
                         //keyboard shortcuts for combos
                         int press = KeyPressed();
-                        if (press != -1 && DisplayedWeapon == wpnList.index && am.HasHitSomething() && wpnList.weaponlist[press].active && am.CanCancel())
+                        if (press != -1 && DisplayedWeapon == wpnList.index && wpnList.weaponlist[press].active && am.CanCancel())
                         {
                             wpnList.index = press % spriteList.Length;
                         }
@@ -274,7 +274,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
                     {
                         //keyboard shortcuts for combos
                         int press = KeyPressed();
-                        if (press != -1 && DisplayedWeapon == wpnList.index && am.HasHitSomething() && wpnList.weaponlist[press].active && am.CanCancel())
+                        if (press != -1 && DisplayedWeapon == wpnList.index && wpnList.weaponlist[press].active && am.CanCancel())
                         {
                             wpnList.index = press % spriteList.Length;
                         }
