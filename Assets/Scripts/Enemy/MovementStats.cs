@@ -9,6 +9,7 @@ public class MovementStats
     public float speed = 6.0F;
     public float relativeSpeed = 1f;
     public float minimumDistance = 1.25F;
+    public float attackStartDelay = 0.2F;
     public float attackChargeTime = 0.0F;
     [SerializeField] public FOV smallFOV;
     [SerializeField] public FOV mediumFOV;

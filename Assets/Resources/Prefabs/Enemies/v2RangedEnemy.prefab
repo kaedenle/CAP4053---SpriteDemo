@@ -564,7 +564,8 @@ MonoBehaviour:
     speed: 5
     relativeSpeed: 1
     minimumDistance: 8
-    attackChargeTime: 0
+    attackStartDelay: 0
+    attackChargeTime: 0.2
     smallFOV:
       radius: 10.5
       angle: 150
@@ -577,6 +578,7 @@ MonoBehaviour:
   currentFOVType: 0
   LockFOVToY: 0
   defaultLooksLeft: 0
+  SecondAttack: 0
   shooting: 0
 --- !u!114 &3278423077174834339
 MonoBehaviour:

@@ -113,6 +113,8 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
     {
         stateMachine.TransitionReady = false;
 
+        yield return new WaitForSeconds(movementController.movementConfiguration.attackStartDelay);
+
         movementController.Attack();
 
         yield return new WaitUntil(() => movementController.enabled);
@@ -123,7 +125,6 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
         {
             yield return new WaitUntil(() => !shooter.shooting);
         }
-        
 
         stateMachine.TransitionReady = true;
     }
