@@ -15,16 +15,26 @@ public class MenuManager : MonoBehaviour
     // button behavior for New Game
     public void NewGame()
     {
+        LevelManager.FullReset();
         GameData.GetInstance().ResetData();
-        ScenesManager.LoadScene( ScenesManager.AllScenes.StartCutScene );
+        GameData.GetInstance().SetScene(ScenesManager.AllScenes.StartCutScene);
+        // ScenesManager.LoadScene( ScenesManager.AllScenes.StartCutScene );
+    }
+
+    public void SelectDifficulty(int difficulty)
+    {
+        GameData.GetInstance().SetDifficulty((GameData.Difficulty) difficulty);
+        StartGame();
     }
 
     // button behavior for Load Game
     public void LoadGame()
     {
         if(GameData.GetInstance().HasLoadData())
+        {
+            GameData.GetInstance().LoadData();
             StartGame();
-        
+        }
         // do nothing if no game saved (or maybe play a fail sound)
     }
 
@@ -80,8 +90,9 @@ public class MenuManager : MonoBehaviour
         GameData.GetInstance().ResetData();
         LevelManager.FullReset();
         GameData.GetInstance().SetLevel(level);
-        GameData.GetInstance().SaveAfterSceneChange();
-        ScenesManager.LoadScene(ScenesManager.AllScenes.CentralHub);
+        GameData.GetInstance().SetScene(ScenesManager.AllScenes.CentralHub);
+        // GameData.GetInstance().SaveAfterSceneChange();
+        // ScenesManager.LoadScene();
     }
 
     private string secretKey = "DEBUG";

@@ -102,8 +102,12 @@ public class ScenesManager : MonoBehaviour
         // if you've inialized the game outside of the menu
         if(firstSceneDebug && _currentScene != AllScenes.Menu)
         {
+            GameData.Difficulty dif = GameData.GetInstance().HasLoadData() ? GameData.GetInstance().GetDifficulty() : GameData.Difficulty.Hard;
+            
             GameData data = GameData.GetInstance();
             data.ResetData();
+            
+            data.SetDifficulty(dif); // default to previous difficulty settings
 
             if(_currentScene == AllScenes.CentralHub)
             {

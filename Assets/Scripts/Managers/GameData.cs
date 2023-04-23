@@ -60,7 +60,6 @@ public class GameData : MonoBehaviour
 
     public void SaveCurrentData(bool useCurrentScene = true)
     {
-        Debug.Log("useCurrentScene=" + useCurrentScene);
         if(ScenesManager.GetCurrentScene() == ScenesManager.AllScenes.Menu || (!useCurrentScene && data.scene == ScenesManager.AllScenes.Menu))
         {
             Debug.LogError("tried to save data while on menu");
@@ -248,9 +247,24 @@ public class GameData : MonoBehaviour
         data.level = val;
     }
 
+    public void SetScene(ScenesManager.AllScenes scene)
+    {
+        data.scene = scene;
+    }
+
+    public void SetDifficulty(Difficulty difficulty)
+    {
+        data.difficulty = difficulty;
+    }
+
     public int GetLevel()
     {
         return data.level;
+    }
+
+    public Difficulty GetDifficulty()
+    {
+        return data.difficulty;
     }
 
     public bool SaveFileExists()
@@ -311,6 +325,7 @@ public class GameData : MonoBehaviour
     {
         public ScenesManager.AllScenes scene;
         public int level;
+        public Difficulty difficulty;
         public bool playVals;
         public int playerWeapon;
         public int playerHealth;
@@ -326,6 +341,7 @@ public class GameData : MonoBehaviour
             level = 0;
             playVals = false;
             log = new LogData();
+            difficulty = Difficulty.Hard;
         }
 
     }
@@ -382,6 +398,7 @@ public class GameData : MonoBehaviour
     public void PrintSaveData(string label)
     {
         Debug.Log("==============" + label + "============");
+        Debug.Log("Difficulty: " + data.difficulty.ToString());
         Debug.Log("Scene: " + data.scene);
         Debug.Log("level: " + data.level);
         Debug.Log("playVals: " + data.playVals);
@@ -397,6 +414,12 @@ public class GameData : MonoBehaviour
         Debug.Log("Inventory: " + data.log.inventory.ToString());
 
         Debug.Log("==================================");
+    }
+
+    public enum Difficulty
+    {
+        Easy,
+        Hard
     }
 }
 
