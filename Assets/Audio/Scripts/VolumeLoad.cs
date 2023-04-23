@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class VolumeLoad : MonoBehaviour
 {
+    private static int phase;
     // Start is called before the first frame update
     void Start()
     {
+        phase = GameData.GetInstance().GetLevel();
         float savedMusicVolume;
         float savedSoundEffectVolume;
 
@@ -20,6 +22,10 @@ public class VolumeLoad : MonoBehaviour
         {
             savedSoundEffectVolume = VolumeManager.instance.soundEffectValue;
             GetComponent<AudioSource>().volume = savedSoundEffectVolume;
+        }
+        else if (phase == 4)
+        {
+            Destroy(this.gameObject);
         }
         
     }
