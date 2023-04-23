@@ -3180,6 +3180,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
   playAfterDialogue: 1
   _nextScene: 2
 --- !u!58 &555826900
@@ -9596,12 +9597,14 @@ MonoBehaviour:
   normalAudio: 
   highlightEnds: 0
   lockable:
-    isLocked: 0
+    isLocked: 1
     lockedInteractiveText:
-      textID: 
+      textID: locked_alley_door
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents:
+    - miniboss 4 death
   playAfterDialogue: 1
 --- !u!61 &1955604437
 BoxCollider2D:
@@ -9638,7 +9641,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8092473522829319397, guid: f8ae81ee937998a4097afc261a09bf0c, type: 3}
       propertyPath: displayState
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1152290889, guid: f8ae81ee937998a4097afc261a09bf0c, type: 3}
       propertyPath: startFlipped
@@ -9674,7 +9677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1152290889, guid: f8ae81ee937998a4097afc261a09bf0c, type: 3}
       propertyPath: movementConfiguration.mediumFOV.radius
-      value: 14
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 6083526909266549715, guid: f8ae81ee937998a4097afc261a09bf0c, type: 3}
       propertyPath: m_Name
@@ -9734,6 +9737,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8ae81ee937998a4097afc261a09bf0c, type: 3}
+--- !u!1 &1984342331 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6083526909266549715, guid: f8ae81ee937998a4097afc261a09bf0c, type: 3}
+  m_PrefabInstance: {fileID: 1984342330}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1984342332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984342331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b151f7d952a223941baf32acced41554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossID: 4
+  enablesOnDeath: []
 --- !u!1 &2052672294
 GameObject:
   m_ObjectHideFlags: 0
