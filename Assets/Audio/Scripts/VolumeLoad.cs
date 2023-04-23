@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class VolumeLoad : MonoBehaviour
 {
+    public AudioSource Music;
     private static int phase;
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,14 @@ public class VolumeLoad : MonoBehaviour
             Destroy(this.gameObject);
         }
         
+    }
+    private void Update() {
+        if (!EntityManager.MovementEnabled())
+        {
+            Music.Pause();
+        }
+        else
+            Music.Play();
     }
 
     
