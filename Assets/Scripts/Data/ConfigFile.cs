@@ -14,6 +14,8 @@ public class ConfigFile : ScriptableObject
         foreach(ScenesData sd in scenesData)
             if(sd.ContainsScene(scene))
                 return sd;
+
+        if( GeneralFunctions.IsDebug() ) Debug.LogWarning("using default scenes data for this scene");
         return defaultSceneData;
     }
 

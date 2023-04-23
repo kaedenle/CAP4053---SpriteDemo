@@ -13,8 +13,11 @@ public class ScenesData : ScriptableObject
 
     public int GetRespawnNumber(int totalSpawned)
     {
-        if(respawnBehavior == null) respawnBehavior = new RespawnRate();
-
+        if(respawnBehavior == null)
+        {
+            respawnBehavior = new RespawnRate();
+            Debug.LogWarning("using default respawn rate for this scene");
+        } 
         return System.Math.Min( respawnBehavior.RespawnNumber(totalSpawned), maxTotalEnemies - totalSpawned );
     }
     

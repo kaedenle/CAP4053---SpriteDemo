@@ -16,7 +16,12 @@ public class ExponentialProbability : RespawnRate
     {
         if(totalSpawned < guarenteedEnemies) return 1;
 
-        if(Random.Range(0, 0.99F) < initialProb * System.Math.Pow(baseProb, totalSpawned - guarenteedEnemies)) return 1;
+        if(Random.Range(0, 0.99F) < GetProbability(totalSpawned) ) return 1;
         else return 0; 
+    }
+
+    public virtual double GetProbability(int totalSpawned)
+    {
+        return initialProb * System.Math.Pow(baseProb, totalSpawned - guarenteedEnemies);
     }
 }
