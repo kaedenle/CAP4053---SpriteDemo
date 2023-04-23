@@ -2307,12 +2307,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 47055252}
-  - component: {fileID: 47055255}
   - component: {fileID: 47055254}
   - component: {fileID: 47055253}
+  - component: {fileID: 47055255}
+  - component: {fileID: 47055256}
   m_Layer: 0
   m_Name: SoundEffectManager
-  m_TagString: Untagged
+  m_TagString: SoundEffect
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2441,6 +2442,19 @@ AudioSource:
     m_PostInfinity: 2
     m_RotationOrder: 4
 --- !u!114 &47055255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47055251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e26ec6b487a0662428ff3a28bdaabe89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Music: {fileID: 0}
+--- !u!114 &47055256
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -23263,7 +23277,7 @@ MonoBehaviour:
   interactiveText:
     textID: city_vent_page
     loopLast: 1
-  normalAudio: 
+  normalAudio: Item_Pickup
   highlightEnds: 1
   lockable:
     isLocked: 0
@@ -32535,7 +32549,7 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
-  normalAudio: 
+  normalAudio: Basic_Door
   highlightEnds: 0
   lockable:
     isLocked: 0
@@ -61371,7 +61385,7 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
-  normalAudio: 
+  normalAudio: Basic_Door
   highlightEnds: 0
   lockable:
     isLocked: 0
@@ -63057,7 +63071,7 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
-  normalAudio: 
+  normalAudio: Basic_Door
   highlightEnds: 0
   lockable:
     isLocked: 0
@@ -63727,7 +63741,7 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
-  normalAudio: 
+  normalAudio: Basic_Door
   highlightEnds: 0
   lockable:
     isLocked: 0
@@ -66549,7 +66563,7 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
-  normalAudio: 
+  normalAudio: Basic_Door
   highlightEnds: 0
   lockable:
     isLocked: 0
@@ -79607,7 +79621,7 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
-  normalAudio: 
+  normalAudio: Basic_Door
   highlightEnds: 0
   lockable:
     isLocked: 0
@@ -88294,7 +88308,7 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
-  normalAudio: 
+  normalAudio: Basic_Door
   highlightEnds: 0
   lockable:
     isLocked: 0
@@ -95326,7 +95340,7 @@ MonoBehaviour:
   interactiveText:
     textID: city_final_door_Unlocked
     loopLast: 1
-  normalAudio: 
+  normalAudio: Basic_Door
   highlightEnds: 0
   lockable:
     isLocked: 1
@@ -98412,7 +98426,7 @@ MonoBehaviour:
   interactiveText:
     textID: 
     loopLast: 1
-  normalAudio: 
+  normalAudio: Basic_Door
   highlightEnds: 0
   lockable:
     isLocked: 0
@@ -99386,6 +99400,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2113581434045321432, guid: af3037e77e7cee8458a2fd1b9b88ec89, type: 3}
+      propertyPath: normalAudio
+      value: Item_Pickup
+      objectReference: {fileID: 0}
     - target: {fileID: 2113581434045321435, guid: af3037e77e7cee8458a2fd1b9b88ec89, type: 3}
       propertyPath: m_Name
       value: Page (1)
