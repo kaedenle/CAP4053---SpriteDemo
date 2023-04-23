@@ -7,7 +7,7 @@ public class ConfigFile : ScriptableObject
 {
     public ScenesData defaultSceneData;
     public ScenesData[] scenesData;
-    public float baseSpeed;
+    public float easyModeSpeed, hardModeSpeed;
 
     public ScenesData GetScenesData(ScenesManager.AllScenes scene)
     {
@@ -21,7 +21,8 @@ public class ConfigFile : ScriptableObject
 
     public float GetSpeed(float modifier = 1f)
     {
-        return baseSpeed * modifier;
+        float speed = GameData.GetInstance().GetDifficulty() == GameData.Difficulty.Easy ? easyModeSpeed : hardModeSpeed;
+        return speed * modifier;
     }
 
     public int GetRespawnNumber(int totalEnemies)
