@@ -116,7 +116,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: (Bat) Attack1 > Switch
+  m_Text: 
 --- !u!1 &625101121607250518
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,7 +323,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: (Bat) Attack1 > Switch
+  m_Text: 
 --- !u!1 &1051390937080688272
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,7 +397,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5.799999, y: 0.6999982}
+  m_AnchoredPosition: {x: 38.4, y: 0.6999982}
   m_SizeDelta: {x: 99.79407, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4897127903170683322
@@ -441,7 +441,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'How To: Combat'
+  m_Text: 'How To: Combo'
 --- !u!1 &1287120305204334428
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,7 +990,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &260677825736219564
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1021,6 +1021,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4512858202478299942}
+  - component: {fileID: 3291600424262486623}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -1050,6 +1051,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0.8, y: -5.8000183}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3291600424262486623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4672960624128545293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5de1bb64ec6b7c845af8660e04ef78c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texts: []
+  reference: 02000000010000000500000001000000
 --- !u!1 &4904716188074446537
 GameObject:
   m_ObjectHideFlags: 0
@@ -1210,11 +1225,11 @@ MonoBehaviour:
 
 
     You can also use a combination of your movement
-    keys + attack to combo between weapons.
+    keys + attack to combo between weapons. This option can be disabled in the menu.
 
 
-    a list of combos and how to do
-    them are in this book'
+    a
+    list of combos and how to do them are in this book'
 --- !u!1 &5628245469044432852
 GameObject:
   m_ObjectHideFlags: 0
@@ -2738,11 +2753,11 @@ MonoBehaviour:
 
 
     You can also use a combination of your movement
-    keys + attack to combo between weapons.
+    keys + attack to combo between weapons. This option can be disabled in the menu.
 
 
-    a list of combos and how to do
-    them are in this book'
+    a
+    list of combos and how to do them are in this book'
 --- !u!1 &8914039582891012055
 GameObject:
   m_ObjectHideFlags: 0

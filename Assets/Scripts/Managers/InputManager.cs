@@ -442,8 +442,8 @@ public class InputManager : MonoBehaviour
         {KeyCode.LeftShift, "Shift"},
         {KeyCode.LeftControl, "Ctrl"},
         {KeyCode.LeftAlt, "Alt"},
-        {KeyCode.Mouse0, "Left Click"},
-        {KeyCode.Mouse1, "Right Click"}
+        {KeyCode.Mouse0, "LeftClk"},
+        {KeyCode.Mouse1, "RightClk"}
     };
 
     public static string GetKeyString(Keys key)

@@ -231,10 +231,7 @@ public class AttackManager : MonoBehaviour
         {
             //prevent bug that swaps you out of cancel
             if (pwm.BufferWeaponID != pwm.wpnList.index) return;
-            if (alreadyDamaged.Count == 0)
-            {
-                return;
-            }
+            //if (alreadyDamaged.Count == 0) return;
             int tmp = bufferCancel;
 
             pwm.SetSprite();
