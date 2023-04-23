@@ -170,6 +170,8 @@ public class GameData : MonoBehaviour
         MazeManager.SetMaze(data.log.maze);
         MazeManager.SetPath(data.log.mazePath);
 
+        EntityManager.SetSpawnData(data.log.spawnData);
+
         reverting = true;
         ScenesManager.LoadScene(data.scene);
 
@@ -279,6 +281,7 @@ public class GameData : MonoBehaviour
         data.log.usedInventory = InventoryManager.GetUsedItems();
         data.log.levelManagerObjectState = LevelManager.GetObjectStates();
         data.log.interactiveStates = UIManager.GetStates();
+        data.log.spawnData = EntityManager.GetSpawnDataCopy();
     }
 
     public List<InventoryManager.AllItems> GetInventory()
@@ -334,6 +337,7 @@ public class GameData : MonoBehaviour
         public List<InventoryManager.AllItems> usedInventory;
         public Dictionary<string, bool> levelManagerObjectState;
         public Dictionary<string, int> interactiveStates;
+        public SpawnData spawnData;
 
         // Castle Level
         public Maze maze;
@@ -347,6 +351,7 @@ public class GameData : MonoBehaviour
             interactiveStates = new Dictionary<string, int>();
             
             mazePath = new Stack<int>();
+            spawnData = new SpawnData();
         }
     }
 

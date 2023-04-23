@@ -33,6 +33,9 @@ public class EntityManager : MonoBehaviour
 
             ScenesManager.ChangedScenes += OnSceneCalled;
         }
+
+        if(spawnData == null)
+            spawnData = new SpawnData();
     }
 
     public static bool IsPaused()
@@ -278,8 +281,7 @@ public class EntityManager : MonoBehaviour
     */
     // assumptions: RespawnOnLoad is NOT used with any sort of scripted respawn behavior
     // assumptions: all respawn effects happen at once (no first load happens w/ a respawn)
-    private static Dictionary<string, List<Base>> activeEnemies = new Dictionary<string, List<Base>>();
-    static int[] killed = new int[100];
+    private static SpawnData spawnData;
     private static GameObject EnemyParent;
     int active = 0; // not static
 
@@ -290,12 +292,12 @@ public class EntityManager : MonoBehaviour
         
         foreach(Spawner spawn in FindObjectsOfType(typeof(Spawner)))
         {
-            if(activeEnemies.ContainsKey(spawn.GetKey()))
+            if(spawnData.ContainsSpawner(spawn.GetKey()))
                 spawners.Add(spawn);
         }
         
         // try to spawn more enemies
-        int respawn = GameData.GetConfig().GetRespawnNumber(Instance.active + killed[(int) ScenesManager.GetCurrentScene()]);
+        int respawn = GameData.GetConfig().GetRespawnNumber(Instance.active + spawnData.GetKills(ScenesManager.GetCurrentScene()));
         Debug.Log("trying to respawn " + respawn + " with " + spawners.Count + " spawners");
 
         for(int loop = 0; loop < 500; loop++)
@@ -312,31 +314,12 @@ public class EntityManager : MonoBehaviour
 
     public  static void StoreEnemies(List<Base> enemies, string key)
     {
-        if(activeEnemies.ContainsKey(key)) activeEnemies[key] = enemies;
-        else activeEnemies.Add(key, enemies);
-    }
-
-    //when EntityManager respawns entity
-    public void ReloadEnemies(Spawner spawner)
-    {
-        List<Base> spawn = activeEnemies.GetValueOrDefault(spawner.gameObject.name, null);
-
-        if(spawn == null) return; // not found
-
-        if (EnemyParent == null) EnemyParent = GameObject.Find("-- Enemies -- ");
-        if (EnemyParent == null) EnemyParent = new GameObject("-- Enemies --");
-
-        foreach (Base es in spawn)
-        {
-            GameObject enemy = Instantiate(spawner.enemy[es.spawner_index_type], es.pos, Quaternion.identity);
-            enemy.transform.SetParent(EnemyParent.transform);
-            es.SetValues(enemy);
-        }
+        spawnData.StoreEnemies(enemies, key);   
     }
 
     public static List<Base> GetEnemyList(string key)
     {
-        List<Base> spawn = activeEnemies.GetValueOrDefault(key, null);
+        List<Base> spawn = spawnData.LoadEnemies(key);
         if(spawn != null) GetInstance().active += spawn.Count;
         return spawn;
     }
@@ -350,11 +333,21 @@ public class EntityManager : MonoBehaviour
 
     public static void IncrementKillCount()
     {
-        killed[(int) ScenesManager.GetCurrentScene() ] ++;
+        spawnData.IncrementKills( ScenesManager.GetCurrentScene() );
     }
 
     public static EntityManager GetInstance()
     {
         return Instance;
+    }
+
+    public static SpawnData GetSpawnDataCopy()
+    {
+        return new SpawnData(spawnData);
+    }
+
+    public static void SetSpawnData(SpawnData data)
+    {
+        spawnData = new SpawnData(data);
     }
 }
