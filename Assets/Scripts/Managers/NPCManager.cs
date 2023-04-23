@@ -24,7 +24,10 @@ public class NPCManager : MonoBehaviour
         Associate,
         AntonioFinancialAdvisor,
         AntonioFriend,
-        AntonioMistress
+        AntonioMistress,
+        Thomas,
+        ThomasBeforeReveal,
+        BossThomas
     }
 
     public static string[] personName =
@@ -47,7 +50,10 @@ public class NPCManager : MonoBehaviour
         "Associate",
         "Financial Advisor",
         "Friend",
-        "Mistress"
+        "Mistress",
+        "Thomas",
+        "Voice From Within",
+        "A Tormented Soul"
     };
 
     public static string GetName(Person person)
