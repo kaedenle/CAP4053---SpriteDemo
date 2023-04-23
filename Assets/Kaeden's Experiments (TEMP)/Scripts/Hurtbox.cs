@@ -125,6 +125,7 @@ public class Hurtbox : MonoBehaviour, IDamagable
     {
         for(int i = 0; i < repeats; i++)
         {
+            if (sr == null || sr.Length == 0) break;
             //flash color
             for (int j = 0; j < sr.Length; j++)
             {
