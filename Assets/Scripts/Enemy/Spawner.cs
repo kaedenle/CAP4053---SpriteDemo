@@ -133,7 +133,7 @@ public class Spawner : MonoBehaviour
     public void RecreateEnemy(Base enemyBase)
     {
         //make new entity
-        GameObject enemyObject = Instantiate(enemy[enemyBase.spawner_index_type], enemyBase.pos, Quaternion.identity);
+        GameObject enemyObject = Instantiate(enemy[enemyBase.spawner_index_type], enemyBase.pos.Get(), Quaternion.identity);
         enemyObject.transform.SetParent(parent.transform);
         enemyBase.SetValues(enemyObject);
     }
