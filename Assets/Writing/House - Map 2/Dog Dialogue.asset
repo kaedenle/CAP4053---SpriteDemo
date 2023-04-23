@@ -10,20 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16901d0883d89f54483208f2dee3729b, type: 3}
-  m_Name: Child_Show Door
+  m_Name: Dog Dialogue
   m_EditorClassIdentifier: 
-  conversation_id: child_unlock_memory
+  conversation_id: dog_meet
   conversations:
   - dialogue:
     - speaker: 0
-      words: I found your stuffy, Kaleigh.
+      words: Oh, hi buddy!
     - speaker: 0
-      words: Can you show me where the memories are now?
-    - speaker: 2
-      words: Go see my mom! She'll show you.
+      words: Kaleigh must've had a dog when she was a kid. What's your name?
+    - speaker: 8
+      words: Ruff arf bark ruff
+    - speaker: 0
+      words: Weirdly expected him to talk. But, I guess I'm in her mind not her dreams.
   - dialogue:
+    - speaker: 8
+      words: Arf arf ruff
     - speaker: 0
-      words: ...Where did you say the memories are?
-    - speaker: 2
-      words: With my mom!
+      words: Hey again buddy.
   loopLast: 1
