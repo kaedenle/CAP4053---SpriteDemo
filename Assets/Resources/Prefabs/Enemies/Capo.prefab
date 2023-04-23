@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 65955467121674048}
   - component: {fileID: 65955467121674054}
   - component: {fileID: 65955467121674062}
+  - component: {fileID: 7282667566460520705}
   m_Layer: 0
   m_Name: Capo
   m_TagString: Enemy
@@ -517,6 +518,24 @@ MonoBehaviour:
   WalkSpeed: 3.5
   relativeWalkSpeed: 0.291667
   fovVisual: {fileID: 0}
+--- !u!114 &7282667566460520705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65955467121674102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8c88aaa53faeea4580bb680ff51c561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - item: {fileID: 8457935506673110615, guid: c0a8f2847cef41a499efd5c1cff126f3, type: 3}
+    percentChance: 100
+    usePlayerHealth: 0
+  deltas: {x: 0, y: 0, z: 0}
+  RandomDirection: 0
 --- !u!1 &65955467604829477
 GameObject:
   m_ObjectHideFlags: 0

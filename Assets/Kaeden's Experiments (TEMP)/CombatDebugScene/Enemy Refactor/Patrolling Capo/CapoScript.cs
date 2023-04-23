@@ -29,6 +29,7 @@ public class CapoScript : MonoBehaviour, IUnique
     }
     public void onDeath()
     {
+        GetComponent<ItemDrop>().AttemptDrop();
         anim.SetBool("Death", true);
         anim.Play("Death");
     }

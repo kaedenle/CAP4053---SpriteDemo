@@ -330,6 +330,13 @@ public class PlayerScript : MonoBehaviour, IUnique
             hb.InvokeFlash(0.15f, new Color(0, 1f, 0), false);
         }
 
+        if (InventoryManager.HasItem(InventoryManager.AllItems.Full_Heart))
+        {
+            InventoryManager.RemoveItem(InventoryManager.AllItems.Full_Heart);
+            GetComponent<HealthTracker>().healthSystem.Heal(100);
+            hb.InvokeFlash(0.15f, new Color(0.77f, 0.71f, 0.33f), true);
+        }
+
         InvinClock();
 
     }

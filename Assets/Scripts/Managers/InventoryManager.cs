@@ -51,7 +51,8 @@ public class InventoryManager : MonoBehaviour
         ReadChildDiary,
         City_Syringe,
         City_Gun,
-        City_AlleyKey
+        City_AlleyKey,
+        Full_Heart
     }
 
     private static AllItems[] intangibles =
@@ -77,7 +78,8 @@ public class InventoryManager : MonoBehaviour
     // may cause issues later on when implementing an inventory UI
     private static AllItems[] repeatables =
     {
-        AllItems.HealingHeart
+        AllItems.HealingHeart,
+        AllItems.Full_Heart
     };
 
     public static List<AllItems> _inventoryItems = new List<AllItems>();  // our inventory items
