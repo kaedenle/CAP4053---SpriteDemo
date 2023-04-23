@@ -81,14 +81,9 @@ public class InventoryManager : MonoBehaviour
     };
 
     public static List<AllItems> _inventoryItems = new List<AllItems>();  // our inventory items
-    public static List<AllItems> _usedItems = new List<AllItems>();  // our inventory items
+    public static List<AllItems> _usedItems = new List<AllItems>();  // all picked up items
     public static EventHandler<AllItems> AddedItem;
     // add item to current inventory
-    public static int counter = 0; // Declare counter as a static variable
-    public static AllItems itemToCount1 = AllItems.Letter1;
-    public static AllItems itemToCount2 = AllItems.Letter2;
-    public static AllItems itemToCount3 = AllItems.Letter3;
-    public static AllItems itemToCount4 = AllItems.Letter4;
     public static void AddItem(AllItems item)
     {
         // make sure to only have one of each unique item in inventory
@@ -100,16 +95,8 @@ public class InventoryManager : MonoBehaviour
             if(!_usedItems.Contains(item)) 
             {
                 _usedItems.Add(item);
-
-                // Check if the item has not been picked up before and increment the counter
-                if(!HasItem(item) && (item == itemToCount1 || item == itemToCount2 || item == itemToCount3 || item == itemToCount4))
-                {
-                    counter++;
-                    LetterUI letterUI = FindObjectOfType<LetterUI>();
-                    if (letterUI != null) 
-                        letterUI.counterIncrement();
-                }
             }
+
             if (AddedItem != null) AddedItem(null, item);
         }
     }

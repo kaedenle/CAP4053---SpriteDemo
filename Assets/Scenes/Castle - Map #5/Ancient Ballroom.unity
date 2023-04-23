@@ -4549,8 +4549,7 @@ GameObject:
   - component: {fileID: 92268198}
   - component: {fileID: 92268197}
   - component: {fileID: 92268195}
-  - component: {fileID: 92268199}
-  - component: {fileID: 92268200}
+  - component: {fileID: 92268201}
   m_Layer: 0
   m_Name: Note1
   m_TagString: Untagged
@@ -4642,7 +4641,7 @@ Transform:
   m_Father: {fileID: 768290633}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 76.53}
---- !u!114 &92268199
+--- !u!114 &92268201
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4651,7 +4650,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 92268194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
+  m_Script: {fileID: 11500000, guid: c5fa39e99cde26948bde474d28bd02bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   outlineThickness: {fileID: 0}
@@ -4672,20 +4671,22 @@ MonoBehaviour:
   playAfterDialogue: 0
   _itemType: 37
   repeatable: 0
-  destroyOnInteract: 0
---- !u!114 &92268200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 92268194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 146da34f9950a29488a34bed6d55f74a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  letterCounter: {fileID: 854933840}
+  destroyOnInteract: 1
+  m_MyEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 116162223}
+        m_TargetAssemblyTypeName: LetterUI, Assembly-CSharp
+        m_MethodName: counterIncrement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &92307767
 GameObject:
   m_ObjectHideFlags: 0
@@ -4949,8 +4950,7 @@ GameObject:
   - component: {fileID: 97176094}
   - component: {fileID: 97176097}
   - component: {fileID: 97176095}
-  - component: {fileID: 97176098}
-  - component: {fileID: 97176099}
+  - component: {fileID: 97176100}
   m_Layer: 0
   m_Name: Note3
   m_TagString: Untagged
@@ -5042,7 +5042,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &97176098
+--- !u!114 &97176100
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5051,7 +5051,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 97176093}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
+  m_Script: {fileID: 11500000, guid: c5fa39e99cde26948bde474d28bd02bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   outlineThickness: {fileID: 0}
@@ -5072,20 +5072,22 @@ MonoBehaviour:
   playAfterDialogue: 0
   _itemType: 39
   repeatable: 0
-  destroyOnInteract: 0
---- !u!114 &97176099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 97176093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 146da34f9950a29488a34bed6d55f74a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  letterCounter: {fileID: 854933840}
+  destroyOnInteract: 1
+  m_MyEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 116162223}
+        m_TargetAssemblyTypeName: LetterUI, Assembly-CSharp
+        m_MethodName: counterIncrement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &98119621
 GameObject:
   m_ObjectHideFlags: 0
@@ -6002,6 +6004,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 116162222}
+  - component: {fileID: 116162223}
   m_Layer: 5
   m_Name: LetterUI
   m_TagString: Untagged
@@ -6032,6 +6035,19 @@ RectTransform:
   m_AnchoredPosition: {x: 1168, y: -1090}
   m_SizeDelta: {x: 26707.195, y: 7857.1426}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &116162223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116162221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 146da34f9950a29488a34bed6d55f74a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  letterCounter: {fileID: 854933840}
 --- !u!1 &117389737
 GameObject:
   m_ObjectHideFlags: 0
@@ -17060,8 +17076,7 @@ GameObject:
   - component: {fileID: 436219393}
   - component: {fileID: 436219392}
   - component: {fileID: 436219390}
-  - component: {fileID: 436219394}
-  - component: {fileID: 436219395}
+  - component: {fileID: 436219396}
   m_Layer: 0
   m_Name: Note2
   m_TagString: Untagged
@@ -17153,7 +17168,7 @@ Transform:
   m_Father: {fileID: 768290633}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 88.168}
---- !u!114 &436219394
+--- !u!114 &436219396
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -17162,7 +17177,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 436219389}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
+  m_Script: {fileID: 11500000, guid: c5fa39e99cde26948bde474d28bd02bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   outlineThickness: {fileID: 0}
@@ -17183,20 +17198,22 @@ MonoBehaviour:
   playAfterDialogue: 0
   _itemType: 38
   repeatable: 0
-  destroyOnInteract: 0
---- !u!114 &436219395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 436219389}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 146da34f9950a29488a34bed6d55f74a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  letterCounter: {fileID: 854933840}
+  destroyOnInteract: 1
+  m_MyEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 116162223}
+        m_TargetAssemblyTypeName: LetterUI, Assembly-CSharp
+        m_MethodName: counterIncrement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &437333170
 GameObject:
   m_ObjectHideFlags: 0
@@ -20255,8 +20272,7 @@ GameObject:
   - component: {fileID: 501128098}
   - component: {fileID: 501128101}
   - component: {fileID: 501128099}
-  - component: {fileID: 501128102}
-  - component: {fileID: 501128103}
+  - component: {fileID: 501128104}
   m_Layer: 0
   m_Name: Note4
   m_TagString: Untagged
@@ -20348,7 +20364,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &501128102
+--- !u!114 &501128104
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20357,7 +20373,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 501128097}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
+  m_Script: {fileID: 11500000, guid: c5fa39e99cde26948bde474d28bd02bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   outlineThickness: {fileID: 0}
@@ -20378,20 +20394,22 @@ MonoBehaviour:
   playAfterDialogue: 0
   _itemType: 40
   repeatable: 0
-  destroyOnInteract: 0
---- !u!114 &501128103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 501128097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 146da34f9950a29488a34bed6d55f74a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  letterCounter: {fileID: 854933840}
+  destroyOnInteract: 1
+  m_MyEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 116162223}
+        m_TargetAssemblyTypeName: LetterUI, Assembly-CSharp
+        m_MethodName: counterIncrement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &501691002
 GameObject:
   m_ObjectHideFlags: 0
