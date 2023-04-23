@@ -254,7 +254,7 @@ public class GameData : MonoBehaviour
 
     public void SetDifficulty(Difficulty difficulty)
     {
-        data.difficulty = difficulty;
+        data.difficulty = (int) difficulty;
     }
 
     public int GetLevel()
@@ -264,7 +264,7 @@ public class GameData : MonoBehaviour
 
     public Difficulty GetDifficulty()
     {
-        return data.difficulty;
+        return (Difficulty) data.difficulty;
     }
 
     public bool SaveFileExists()
@@ -325,7 +325,7 @@ public class GameData : MonoBehaviour
     {
         public ScenesManager.AllScenes scene;
         public int level;
-        public Difficulty difficulty;
+        public int difficulty;
         public bool playVals;
         public int playerWeapon;
         public int playerHealth;
@@ -341,7 +341,7 @@ public class GameData : MonoBehaviour
             level = 0;
             playVals = false;
             log = new LogData();
-            difficulty = Difficulty.Hard;
+            difficulty = (int) Difficulty.Hard;
         }
 
     }
