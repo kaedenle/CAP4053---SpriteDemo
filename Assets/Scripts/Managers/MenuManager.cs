@@ -60,6 +60,9 @@ public class MenuManager : MonoBehaviour
     void Awake()
     {
         levelSelectButton.SetActive(false);
+
+        // always enable mouse on menu
+        Cursor.visible = true;
     }
 
     void Start()
