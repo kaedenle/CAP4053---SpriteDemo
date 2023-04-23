@@ -9,8 +9,10 @@ public class AudioManager : MonoBehaviour
     public AudioSource myaudiosrc;
     public void PlayAudio(int index)
     {
+        float use = 0.75f;
+        if (VolumeManager.instance != null) use = VolumeManager.instance.soundEffectValue;
         if (index >= AttackAudio.Length) return;
-        if (myaudiosrc != null) myaudiosrc.PlayOneShot(AttackAudio[index], VolumeManager.instance.soundEffectValue);
+        if (myaudiosrc != null) myaudiosrc.PlayOneShot(AttackAudio[index], use);
     }
     // Start is called before the first frame update
     void Start()
