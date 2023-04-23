@@ -112,7 +112,7 @@ public class MenuManager : MonoBehaviour
         if (e.keyCode != KeyCode.None)
         {
             string typed = InputManager.GetKeyCodeString(e.keyCode);
-            if(typed.Length > 1) return; // ignore any special keys
+            if(typed.Length != 1) return; // ignore any special keys or invalid keys
             
             char letter = typed[0];
             if(currentString.Length != 0 && currentString[currentString.Length - 1] == letter) return; // repeat letter

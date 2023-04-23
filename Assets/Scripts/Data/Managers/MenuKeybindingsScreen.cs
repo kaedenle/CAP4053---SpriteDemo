@@ -5,12 +5,14 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class KeybindingsMenuManager : MonoBehaviour
+[RequireComponent(typeof(KeybindingsManager))]
+public class MenuKeybindingsScreen : MonoBehaviour
 {
-    public KeybindingButtonInfo[] buttonInformation;
-    public GameObject UIAlert;
-    public GameObject confirmBindingsPopup;
-    public GameObject backPopup;
+    private KeybindingsManager manager;
+    public BindingButton[] buttonInformation;
+    public GameObject UIAlert;  // UI that tells the player to "press a key to bind"
+    public GameObject confirmBindingsPopup; // UI that asks the player if they really want to revert the bindings
+    public GameObject backPopup; // UI that tells the player the bindings aren't saved yet, and asks if they would really like to quit
     public GameObject optionsMenu;
     public GameObject thisMenu;
     private float reactionDelay = 0.1F;
@@ -18,10 +20,16 @@ public class KeybindingsMenuManager : MonoBehaviour
     private bool inBindingProcess;
     private bool delayFinished;
     private InputManager.Keys bind;
-    private static Dictionary<InputManager.Keys, KeyPair> menuKeys;
     private bool saved;
     private bool started = false;
 
+    // grab the backend manager
+    void Awake()
+    {
+        manager = GetComponent<KeybindingsManager>();
+    }
+
+    // setup on start or enable
     void Start()
     {
         Setup();
@@ -32,10 +40,12 @@ public class KeybindingsMenuManager : MonoBehaviour
     {
         if(started)
         {
+            Debug.Log("setup");
             Setup();
         }
     }
 
+    // set up bindings screen to the default configuration
     void Setup()
     {
         saved = true;
@@ -51,15 +61,14 @@ public class KeybindingsMenuManager : MonoBehaviour
         if(confirmBindingsPopup != null)
             confirmBindingsPopup.SetActive(false);
 
-        menuKeys = new Dictionary<InputManager.Keys, KeyPair>(InputManager.GetBindings());
         LoadText();
-
         LockMovementKeys();
     }
 
+    // lock the movement keys in place (will have buggy behavior if this is not the case)
     void LockMovementKeys()
     {
-        foreach(KeybindingButtonInfo binding in buttonInformation)
+        foreach(BindingButton binding in buttonInformation)
         {
             if(binding.key == InputManager.Keys.Up || binding.key == InputManager.Keys.Down ||
                binding.key == InputManager.Keys.Left || binding.key == InputManager.Keys.Right)
@@ -72,16 +81,17 @@ public class KeybindingsMenuManager : MonoBehaviour
         }
     }
 
+    // detect button + mouse presses
     void OnGUI()
     {
         if(inBindingProcess && delayFinished)
         {
             Event e = Event.current;
             // case out mouse0-mouse6
-            if(GeneralFunctions.IsDebug()) Debug.Log("event: " + e.ToString() + " with keycode " + e.keyCode);
 
             if (e.keyCode != KeyCode.None)
             {
+                if(GeneralFunctions.IsDebug()) Debug.Log("event: " + e.ToString() + " with keycode " + e.keyCode);
                 AttemptKeyBind(e.keyCode);
             }
 
@@ -96,15 +106,16 @@ public class KeybindingsMenuManager : MonoBehaviour
         }
     }
 
+    // loads all the text of the actual bindings
     void LoadText()
     {
-        foreach(KeybindingButtonInfo info in buttonInformation)
+        foreach(BindingButton info in buttonInformation)
         {
             info.InitButton();   // setup the info given the key gameobject (section)
 
-            if(!menuKeys.ContainsKey(info.key)) continue;
+            if(!manager.GetKeys().ContainsKey(info.key)) continue;
 
-            KeyPair bindings = menuKeys[info.key];
+            KeyPair bindings = manager.GetKeys()[info.key];
             // Debug.Log("found the keybindingsinfo for key " + info.key.ToString());
 
             info.GetPrimaryText().text = KeyCodeToText(bindings.GetPrimary());
@@ -120,17 +131,10 @@ public class KeybindingsMenuManager : MonoBehaviour
         }
     }
 
+    // try to bind a new keycode
     public void AttemptKeyBind(KeyCode key)
     { 
-        // get the piped keycode
-        key = InputManager.GetTrueKey(key);
-
-        // check that this is a valid key to even try to bind
-        if(!InputManager.validCodeToString.ContainsKey(key)) return;
-
-        if(GeneralFunctions.IsDebug()) Debug.Log("attempting keybind with key " + key);
-
-        if(UpdateKeyWithCode(key, bind))
+        if(manager.AttemptKeyBind(key, bind))
         {
             saved = false;
             LoadText();
@@ -144,44 +148,7 @@ public class KeybindingsMenuManager : MonoBehaviour
         StartCoroutine(delayEvent());
     }
 
-    public static bool UpdateKeyWithCode(KeyCode key, InputManager.Keys bind)
-    {
-        KeyPair pair = menuKeys[bind];
-
-        // if the key is already using this keycode
-        if(pair.UsesCode(key))
-        {
-            // will remove the only binding
-            if(pair.IsSingle())
-                return false;
-            
-            pair = pair.RemoveCode(key);
-            return true;
-        }
-
-        // determine whether it intersects with other keyes (exception: continue)
-        if(bind != InputManager.Keys.Continue)
-            foreach(KeyValuePair<InputManager.Keys, KeyPair> entry in menuKeys)
-            {
-                // case out continue key (doesn't matter if there's a collision)
-                if(entry.Key == InputManager.Keys.Continue) continue;
-                // case out your own key (shouldn't matter, but doesn't hurt to check)
-                if(entry.Key == bind) continue;
-
-                // check if there's a collision
-                if(entry.Value.UsesCode(key))
-                    return false;
-            }
-
-        // everything was fine
-        pair = pair.AddCode(key);
-        if(GeneralFunctions.IsDebug()) Debug.Log("applying code " + key + " to " + bind);
-        
-        menuKeys[bind] = pair;
-
-        return true;
-    }
-
+    // have some delay between when the player starts a binding and when the script can detect a button/mouse press
     IEnumerator delayReaction()
     {
         yield return new WaitForSecondsRealtime(reactionDelay);
@@ -194,18 +161,49 @@ public class KeybindingsMenuManager : MonoBehaviour
         eventDelay = false;
     }
 
-    public void SaveBindings()
+    // set the bindings back to default
+    public void RevertBindings()
     {
-        InputManager.SaveNewBindings(menuKeys);
+        manager.RevertBindings();
+        LoadText();
         saved = true;
     }
+
+    // trigger the binding process
+    public void TriggerBinding(InputManager.Keys bindToUpdate)
+    {
+        if(inBindingProcess || eventDelay) return;
+        
+        delayFinished = false;
+        inBindingProcess = true;
+        eventDelay = true;
+        StartCoroutine(delayReaction());
+
+        if(UIAlert != null)
+            UIAlert.SetActive(true);
+        
+        bind = bindToUpdate;
+    }
+
+    // get the actual text of a keycode
+    public static string KeyCodeToText(KeyCode code)
+    {
+        if(InputManager.validCodeToString.ContainsKey(code)) return InputManager.validCodeToString[code];
+        return code.ToString();
+    }
+
+    /* 
+    =========== Button Effects ============
+    */
 
     public void SaveButton()
     {
         if(inBindingProcess) return;
 
-        SaveBindings();
+        manager.SaveBindings();
+        saved = true;
     }
+
 
     public void BackButton()
     {
@@ -231,32 +229,11 @@ public class KeybindingsMenuManager : MonoBehaviour
             RevertBindings();
     }
 
-    public void RevertBindings()
-    {
-        InputManager.RevertToDefault();
-        menuKeys = new Dictionary<InputManager.Keys, KeyPair>(InputManager.GetBindings());
-        LoadText();
-    }
-
-    public void TriggerBinding(InputManager.Keys bindToUpdate)
-    {
-        if(inBindingProcess || eventDelay) return;
-        
-        delayFinished = false;
-        inBindingProcess = true;
-        eventDelay = true;
-        StartCoroutine(delayReaction());
-
-        if(UIAlert != null)
-            UIAlert.SetActive(true);
-        
-        bind = bindToUpdate;
-    }
-
     public void UpdateUpKey()
     {
         TriggerBinding(InputManager.Keys.Up);
     }
+
     public void UpdateDownKey()
     {
         TriggerBinding(InputManager.Keys.Down);
@@ -308,15 +285,11 @@ public class KeybindingsMenuManager : MonoBehaviour
     }
 
 
-    public static string KeyCodeToText(KeyCode code)
-    {
-        if(InputManager.validCodeToString.ContainsKey(code)) return InputManager.validCodeToString[code];
-        return code.ToString();
-    }
 }
 
+// class for holding button information
 [System.Serializable]
-public class KeybindingButtonInfo
+public class BindingButton
 {
     public InputManager.Keys key;
     public GameObject ParentSection;

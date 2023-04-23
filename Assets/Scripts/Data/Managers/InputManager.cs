@@ -383,7 +383,7 @@ public class InputManager : MonoBehaviour
         {KeyCode.Dollar, "$"},
         {KeyCode.Percent, "%"},
         {KeyCode.Ampersand, "^"},
-        {KeyCode.Quote, ""},
+        {KeyCode.Quote, "\""},
         {KeyCode.LeftParen, "("},
         {KeyCode.RightParen, ")"},
         {KeyCode.Asterisk, "*"},
@@ -442,8 +442,8 @@ public class InputManager : MonoBehaviour
         {KeyCode.LeftShift, "Shift"},
         {KeyCode.LeftControl, "Ctrl"},
         {KeyCode.LeftAlt, "Alt"},
-        {KeyCode.Mouse0, "LeftClk"},
-        {KeyCode.Mouse1, "RightClk"}
+        {KeyCode.Mouse0, "L Click"},
+        {KeyCode.Mouse1, "R Click"}
     };
 
     public static string GetKeyString(Keys key)
@@ -468,6 +468,12 @@ public class KeyPair
         secondary = se;
     }
 
+    public KeyPair(KeyPair cpy)
+    {
+        primary = cpy.primary;
+        secondary = cpy.secondary;
+    }
+
     public KeyCode GetPrimary()
     {
         return primary;
@@ -483,36 +489,46 @@ public class KeyPair
         return primary == code || secondary == code;
     }
 
-    public bool RemoveCode(KeyCode code)
+    public KeyPair RemoveCode(KeyCode code)
     {
-        if(!UsesCode(code)) return false;
-
-        if(code == primary)
+        if(!UsesCode(code))
         {
-            primary = secondary;
+            Debug.LogError("tried to remove KeyCode from a KeyPair that didn't have that code");
+            return null;
         }
 
-        secondary = KeyCode.None;
-        return true;
+        KeyPair ret = new KeyPair(this);
+
+        if(code == ret.primary)
+        {
+            ret.primary = ret.secondary;
+        }
+
+        ret.secondary = KeyCode.None;
+        return ret;
     }
 
-    public bool AddCode(KeyCode code)
+    public KeyPair AddCode(KeyCode code)
     {
-        if(UsesCode(code)) return false;
-
-        if(secondary != KeyCode.None)
+        if(UsesCode(code))
         {
-            primary = secondary;
+            Debug.LogError("tried to add KeyCode from a KeyPair that already had that code");
+            return null;
         }
 
-        secondary = code;
-        return true;
+        KeyPair ret = new KeyPair(this);
+
+        if(ret.secondary != KeyCode.None)
+        {
+            ret.primary = ret.secondary;
+        }
+
+        ret.secondary = code;
+        return ret;
     }
 
     public bool IsSingle()
     {
         return secondary == KeyCode.None;
     }
-
-    
 }

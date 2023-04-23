@@ -840,8 +840,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 620406698}
-        m_TargetAssemblyTypeName: KeybindingsMenuManager, Assembly-CSharp
+      - m_Target: {fileID: 620406700}
+        m_TargetAssemblyTypeName: MenuKeybindingsScreen, Assembly-CSharp
         m_MethodName: UpdatePauseKey
         m_Mode: 1
         m_Arguments:
@@ -1246,8 +1246,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 620406698}
-        m_TargetAssemblyTypeName: KeybindingsMenuManager, Assembly-CSharp
+      - m_Target: {fileID: 620406700}
+        m_TargetAssemblyTypeName: MenuKeybindingsScreen, Assembly-CSharp
         m_MethodName: UpdateInteractKey
         m_Mode: 1
         m_Arguments:
@@ -1923,7 +1923,7 @@ RectTransform:
   m_Children:
   - {fileID: 838670177}
   m_Father: {fileID: 835091296}
-  m_RootOrder: 13
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3556,12 +3556,12 @@ RectTransform:
   m_LocalScale: {x: 2.5851002, y: 2.5851002, z: 2.5851002}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 835091296}
+  m_Father: {fileID: 840430647}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -535, y: -366}
+  m_AnchoredPosition: {x: -535, y: -365.99997}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &245781659
@@ -7909,7 +7909,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 620406697}
-  - component: {fileID: 620406698}
+  - component: {fileID: 620406699}
+  - component: {fileID: 620406700}
   m_Layer: 5
   m_Name: KeybindingsManager
   m_TagString: Untagged
@@ -7930,14 +7931,14 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 835091296}
-  m_RootOrder: 10
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -545, y: 209.76}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &620406698
+--- !u!114 &620406699
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7946,7 +7947,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 620406696}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfe72970e989c7a4881355346895c279, type: 3}
+  m_Script: {fileID: 11500000, guid: c26b0dd0c1b3e0647af5be4ee935c82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &620406700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620406696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edaed6dbd12d049448f33297feb1a3d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buttonInformation:
@@ -8080,7 +8093,7 @@ RectTransform:
   m_Children:
   - {fileID: 180206194}
   m_Father: {fileID: 835091296}
-  m_RootOrder: 9
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -8143,8 +8156,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 620406698}
-        m_TargetAssemblyTypeName: KeybindingsMenuManager, Assembly-CSharp
+      - m_Target: {fileID: 620406700}
+        m_TargetAssemblyTypeName: MenuKeybindingsScreen, Assembly-CSharp
         m_MethodName: RevertButton
         m_Mode: 1
         m_Arguments:
@@ -8484,8 +8497,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 620406698}
-        m_TargetAssemblyTypeName: KeybindingsMenuManager, Assembly-CSharp
+      - m_Target: {fileID: 620406700}
+        m_TargetAssemblyTypeName: MenuKeybindingsScreen, Assembly-CSharp
         m_MethodName: UpdateEquipKey
         m_Mode: 1
         m_Arguments:
@@ -9093,8 +9106,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 620406698}
-        m_TargetAssemblyTypeName: KeybindingsMenuManager, Assembly-CSharp
+      - m_Target: {fileID: 620406700}
+        m_TargetAssemblyTypeName: MenuKeybindingsScreen, Assembly-CSharp
         m_MethodName: UpdateLeftKey
         m_Mode: 1
         m_Arguments:
@@ -9758,7 +9771,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &835091296
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9771,17 +9784,13 @@ RectTransform:
   m_LocalScale: {x: 0.59339, y: 0.59339, z: 0.59339}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1445431336}
-  - {fileID: 864049537}
-  - {fileID: 245781658}
-  - {fileID: 939587540}
-  - {fileID: 1021226958}
-  - {fileID: 1688672367}
+  - {fileID: 840430647}
   - {fileID: 1474771235}
   - {fileID: 2143471573}
   - {fileID: 1398359043}
   - {fileID: 649748529}
   - {fileID: 620406697}
+  - {fileID: 1688672367}
   - {fileID: 1413958677}
   - {fileID: 1716253049}
   - {fileID: 142903394}
@@ -9789,7 +9798,7 @@ RectTransform:
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9922,6 +9931,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 838670176}
   m_CullTransparentMesh: 1
+--- !u!1 &840430646
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 840430647}
+  m_Layer: 5
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &840430647
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840430646}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1445431336}
+  - {fileID: 864049537}
+  - {fileID: 245781658}
+  - {fileID: 939587540}
+  - {fileID: 1021226958}
+  m_Father: {fileID: 835091296}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &844788692
 GameObject:
   m_ObjectHideFlags: 0
@@ -10120,17 +10170,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864049536}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.8156285, y: 3.9467096, z: 3.6927235}
+  m_LocalScale: {x: 2.8156278, y: 3.9467096, z: 3.6927233}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 835091296}
+  m_Father: {fileID: 840430647}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -298.28607, y: -390.97388}
+  m_AnchoredPosition: {x: -298.2861, y: -390.97385}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &864049538
@@ -10758,12 +10808,12 @@ RectTransform:
   m_LocalScale: {x: 7.81463, y: 7.81463, z: 7.81463}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 835091296}
+  m_Father: {fileID: 840430647}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 112.91061, y: -360}
+  m_AnchoredPosition: {x: 112.91054, y: -360.00003}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &939587541
@@ -10926,8 +10976,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 620406698}
-        m_TargetAssemblyTypeName: KeybindingsMenuManager, Assembly-CSharp
+      - m_Target: {fileID: 620406700}
+        m_TargetAssemblyTypeName: MenuKeybindingsScreen, Assembly-CSharp
         m_MethodName: UpdateHit1Key
         m_Mode: 1
         m_Arguments:
@@ -11683,7 +11733,7 @@ RectTransform:
   m_LocalScale: {x: 6.0344, y: 6.0344, z: 6.0343995}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 835091296}
+  m_Father: {fileID: 840430647}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -7.997}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -14316,8 +14366,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 620406698}
-        m_TargetAssemblyTypeName: KeybindingsMenuManager, Assembly-CSharp
+      - m_Target: {fileID: 620406700}
+        m_TargetAssemblyTypeName: MenuKeybindingsScreen, Assembly-CSharp
         m_MethodName: UpdateDownKey
         m_Mode: 1
         m_Arguments:
@@ -16454,8 +16504,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 620406698}
-        m_TargetAssemblyTypeName: KeybindingsMenuManager, Assembly-CSharp
+      - m_Target: {fileID: 620406700}
+        m_TargetAssemblyTypeName: MenuKeybindingsScreen, Assembly-CSharp
         m_MethodName: UpdateRightKey
         m_Mode: 1
         m_Arguments:
@@ -16627,8 +16677,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 620406698}
-        m_TargetAssemblyTypeName: KeybindingsMenuManager, Assembly-CSharp
+      - m_Target: {fileID: 620406700}
+        m_TargetAssemblyTypeName: MenuKeybindingsScreen, Assembly-CSharp
         m_MethodName: UpdateContinueKey
         m_Mode: 1
         m_Arguments:
@@ -16710,7 +16760,7 @@ RectTransform:
   m_Children:
   - {fileID: 135649046}
   m_Father: {fileID: 835091296}
-  m_RootOrder: 8
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -16773,8 +16823,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 620406698}
-        m_TargetAssemblyTypeName: KeybindingsMenuManager, Assembly-CSharp
+      - m_Target: {fileID: 620406700}
+        m_TargetAssemblyTypeName: MenuKeybindingsScreen, Assembly-CSharp
         m_MethodName: SaveButton
         m_Mode: 1
         m_Arguments:
@@ -16989,7 +17039,7 @@ RectTransform:
   m_Children:
   - {fileID: 1038339211}
   m_Father: {fileID: 835091296}
-  m_RootOrder: 11
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -17110,12 +17160,12 @@ RectTransform:
   m_LocalScale: {x: 16.19091, y: 13.295811, z: 7.5437217}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 835091296}
+  m_Father: {fileID: 840430647}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -234.24728}
+  m_AnchoredPosition: {x: 0, y: -234.24731}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1445431337
@@ -17261,7 +17311,7 @@ RectTransform:
   - {fileID: 2141178199}
   - {fileID: 399978847}
   m_Father: {fileID: 835091296}
-  m_RootOrder: 6
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -17487,8 +17537,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 620406698}
-        m_TargetAssemblyTypeName: KeybindingsMenuManager, Assembly-CSharp
+      - m_Target: {fileID: 620406700}
+        m_TargetAssemblyTypeName: MenuKeybindingsScreen, Assembly-CSharp
         m_MethodName: UpdateUpKey
         m_Mode: 1
         m_Arguments:
@@ -17898,8 +17948,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 620406698}
-        m_TargetAssemblyTypeName: KeybindingsMenuManager, Assembly-CSharp
+      - m_Target: {fileID: 620406700}
+        m_TargetAssemblyTypeName: MenuKeybindingsScreen, Assembly-CSharp
         m_MethodName: UpdateHit2Key
         m_Mode: 1
         m_Arguments:
@@ -18559,10 +18609,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 620406698}
-        m_TargetAssemblyTypeName: KeybindingsMenuManager, Assembly-CSharp
+      - m_Target: {fileID: 620406700}
+        m_TargetAssemblyTypeName: MenuKeybindingsScreen, Assembly-CSharp
         m_MethodName: RevertBindings
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1716253047}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -19015,7 +19077,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 835091296}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.51711243}
@@ -19412,7 +19474,7 @@ RectTransform:
   m_Children:
   - {fileID: 14746749}
   m_Father: {fileID: 835091296}
-  m_RootOrder: 12
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -19733,8 +19795,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 620406698}
-        m_TargetAssemblyTypeName: KeybindingsMenuManager, Assembly-CSharp
+      - m_Target: {fileID: 620406700}
+        m_TargetAssemblyTypeName: MenuKeybindingsScreen, Assembly-CSharp
         m_MethodName: UpdateSwapKey
         m_Mode: 1
         m_Arguments:
@@ -24241,7 +24303,7 @@ RectTransform:
   m_Children:
   - {fileID: 111510180}
   m_Father: {fileID: 835091296}
-  m_RootOrder: 7
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -24304,8 +24366,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 620406698}
-        m_TargetAssemblyTypeName: KeybindingsMenuManager, Assembly-CSharp
+      - m_Target: {fileID: 620406700}
+        m_TargetAssemblyTypeName: MenuKeybindingsScreen, Assembly-CSharp
         m_MethodName: BackButton
         m_Mode: 1
         m_Arguments:
