@@ -9,11 +9,8 @@ public class Base
     public int health;
     public int spawner_index_type;
 
-    public GameObject entity;
-
     public Base(GameObject entity, int spawner_index_type)
     {
-        this.entity = entity;
         this.pos = new VectorsAreDumb(entity.transform.position);
         this.locScale = new VectorsAreDumb(entity.transform.localScale);
         this.health = entity.GetComponent<HealthTracker>().health;
@@ -31,13 +28,11 @@ public class Base
 
     public void SetValues(GameObject entity)
     {
-        // this.entity = entity;
-        this.entity = entity;
         entity.GetComponent<HealthTracker>().SetHealth(health);
         entity.transform.localScale = locScale.Get();
     }
 
-    public void UpdateValues(bool recordPosition=true, bool recordHealth=true)
+    public void UpdateValues(GameObject entity, bool recordPosition=true, bool recordHealth=true)
     {
         if(entity == null)
         {

@@ -27,7 +27,7 @@ public class ConfigFile : ScriptableObject
 
     public float GetPlayerSpeed()
     {
-        if(GameData.GetInstance().GetDifficulty() == GameData.Difficulty.Easy) return GetSpeed() + 1; // gives slight advantage to player
+        if(GameData.GetInstance().GetDifficulty() == GameData.Difficulty.Easy) return GetSpeed() + 1.5F; // gives slight advantage to player
         else return GetSpeed();
     }
 

@@ -353,6 +353,7 @@ public class EntityManager : MonoBehaviour
 
     public static SpawnData GetSpawnDataCopy()
     {
+        if(spawnData == null) return null;
         return new SpawnData(spawnData);
     }
 

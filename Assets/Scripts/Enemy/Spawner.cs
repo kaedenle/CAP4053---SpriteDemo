@@ -33,6 +33,7 @@ public class Spawner : MonoBehaviour
     private Vector3 NULLPOINT = new Vector3(-1e9F, -1e9F, -1e9F);
 
     private List<Base> enemies;
+    private List<GameObject> enemyEntities;
     private string spawner_key;
     void Awake()
     {
@@ -61,6 +62,7 @@ public class Spawner : MonoBehaviour
 
         spawner_key = this.gameObject.name + "_" + ScenesManager.GetCurrentScene().ToString();
         enemies = EntityManager.GetEnemyList(spawner_key);
+        enemyEntities = new List<GameObject>();
 
         if(enemies == null) Debug.Log("no enemies stored, making new ones...");
         else Debug.Log("reconstructing from enemy storage...");
@@ -72,7 +74,7 @@ public class Spawner : MonoBehaviour
         if(enemies != null)
         {
             foreach(Base enemyBase in enemies)
-                RecreateEnemy(enemyBase);
+                enemyEntities.Add(RecreateEnemy(enemyBase) );
         }
 
         else
@@ -129,15 +131,17 @@ public class Spawner : MonoBehaviour
 
         // store enemy in list
         enemies.Add(new Base(enemyObject, enemy_type));
+        enemyEntities.Add(enemyObject);
         return true;
     }
 
-    public void RecreateEnemy(Base enemyBase)
+    public GameObject RecreateEnemy(Base enemyBase)
     {
         //make new entity
         GameObject enemyObject = Instantiate(enemy[enemyBase.spawner_index_type], enemyBase.pos.Get(), Quaternion.identity);
         enemyObject.transform.SetParent(parent.transform);
         enemyBase.SetValues(enemyObject);
+        return enemyObject;
     }
 
     private Vector3 GetEnemyPosition()
@@ -189,14 +193,20 @@ public class Spawner : MonoBehaviour
     {
         if(RespawnOnLoad) return; // don't save anything
 
-        Debug.Log("trigged save, raw enemy #s=" + enemies.Count);
-        enemies.RemoveAll(s => s.entity == null || s.health <= 0); // remove dead enemies
-        Debug.Log("after parsing enemy #s=" + enemies.Count);
+        List<Base> saves = new List<Base>();
 
-        foreach(Base b in enemies)
-            b.UpdateValues(!OriginalPos);
+        for(int i = 0; i < enemies.Count; i++)
+        {
+            if(enemyEntities[i] == null) continue; // if dead, skip
 
-        EntityManager.StoreEnemies(enemies, spawner_key);
+            enemies[i].UpdateValues(enemyEntities[i], !OriginalPos); // get updated values
+
+            if(enemies[i].health <= 0) continue; // if dying, skip
+
+            saves.Add(enemies[i]); // add this to the save list
+        }
+
+        EntityManager.StoreEnemies(saves, spawner_key);
     }
 
     /* ====== start Direction Stuff ======= */
