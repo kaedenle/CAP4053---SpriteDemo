@@ -274,6 +274,7 @@ public class AttackManager : MonoBehaviour
 
     public void InvokeAttack(int move)
     {
+        attacking = true;
         ScriptDeactivate(ScriptTypes.Movement);
         animator.SetFloat("attack", move);
     }

@@ -16,6 +16,7 @@ public class MovementController : MonoBehaviour, IScriptable
     [SerializeField] public MovementStats.FOVType currentFOVType;
     public bool LockFOVToY;
     public bool defaultLooksLeft;
+    public bool SecondAttack;
 
     // private internal metrics
     public Vector3 looking {get; private set;}
@@ -91,7 +92,9 @@ public class MovementController : MonoBehaviour, IScriptable
     */
     public virtual void Attack()
     {
-        GetComponent<AttackManager>().InvokeAttack("SlimeAttack");
+        AttackManager am = GetComponent<AttackManager>();
+        if (SecondAttack && am.attackContainer.Length > 1) am.InvokeAttack("SlimeAttack2");
+        else am.InvokeAttack("SlimeAttack");
     }
 
     /*
@@ -238,9 +241,10 @@ public class MovementController : MonoBehaviour, IScriptable
     */
     public void MoveTowards(Vector2 target)
     {
+        if (!agent.enabled) return;
         if(hurtbox.inHitStun)
         {
-            agent.isStopped = true;
+            if(agent.enabled) agent.isStopped = true;
         }
 
         else
