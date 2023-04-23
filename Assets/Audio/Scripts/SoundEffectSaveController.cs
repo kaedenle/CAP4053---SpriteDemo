@@ -12,6 +12,8 @@ public class SoundEffectSaveController : MonoBehaviour
     private void Start() 
     {
         LoadValues();
+        VolumeManager.instance.soundEffectValue = 0.5f;
+        volumeSlider.value = VolumeManager.instance.soundEffectValue;
     }
 
     public void VolumeSlider(float volume)
