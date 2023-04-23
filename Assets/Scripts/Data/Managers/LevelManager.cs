@@ -175,6 +175,7 @@ public class LevelManager : MonoBehaviour
 
     public static Dictionary<string, bool> GetObjectStates()
     {
+        if(objectState == null) return null;
         return new Dictionary<string, bool> ( objectState );
     }
 
