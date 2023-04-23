@@ -10849,6 +10849,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1300422974}
   - component: {fileID: 1300422975}
+  - component: {fileID: 1300422976}
   m_Layer: 0
   m_Name: Finn Intro
   m_TagString: Untagged
@@ -10885,6 +10886,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue: {fileID: 11400000, guid: d97ebdb56d76a8c48981a977f9ebb68f, type: 2}
   pauseWhenTriggered: 1
+--- !u!114 &1300422976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300422973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05b0e7b714cee5b4cbd62b7a421da97e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  phase: 1
 --- !u!1 &1314086609
 GameObject:
   m_ObjectHideFlags: 0
@@ -13367,6 +13381,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1704497152}
   - component: {fileID: 1704497151}
+  - component: {fileID: 1704497153}
   m_Layer: 0
   m_Name: Start Game Dialogue
   m_TagString: Untagged
@@ -13403,6 +13418,19 @@ Transform:
   m_Father: {fileID: 255317769}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1704497153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704497150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05b0e7b714cee5b4cbd62b7a421da97e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  phase: 0
 --- !u!1 &1733083744
 GameObject:
   m_ObjectHideFlags: 0
