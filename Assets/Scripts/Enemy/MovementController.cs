@@ -253,7 +253,7 @@ public class MovementController : MonoBehaviour, IScriptable
             if (path.status == NavMeshPathStatus.PathComplete)
             {
                 agent.isStopped = false;
-                agent.SetDestination(new Vector3(target.x, target.y, transform.position.z));
+                agent.SetDestination(GetTargetDestination(target));
             }
             else
             {
@@ -261,6 +261,11 @@ public class MovementController : MonoBehaviour, IScriptable
             }
         }
         
+    }
+
+    private Vector3 GetTargetDestination(Vector2 target)
+    {
+        return  new Vector3(target.x - ( looking.x * movementConfiguration.minimumDistance / 2) , target.y, transform.position.z);
     }
 
     public virtual void StopMoving()
