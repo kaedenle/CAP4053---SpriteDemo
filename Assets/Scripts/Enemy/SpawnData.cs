@@ -27,12 +27,14 @@ public class SpawnData
 
     public void StoreEnemies(List<Base> enemies, string key)
     {
+        Debug.Log("storing spawn key " + key);
         if(activeEnemies.ContainsKey(key)) activeEnemies[key] = enemies;
         else activeEnemies.Add(key, enemies);
     }
 
     public List<Base> LoadEnemies(string key)
     {
+        Debug.Log("loading spawn key " + key);
         return activeEnemies.GetValueOrDefault(key, null);
     }
 

@@ -62,6 +62,8 @@ public class Spawner : MonoBehaviour
         spawner_key = this.gameObject.name + "_" + ScenesManager.GetCurrentScene().ToString();
         enemies = EntityManager.GetEnemyList(spawner_key);
 
+        if(enemies == null) Debug.Log("no enemies stored, making new ones...");
+        else Debug.Log("reconstructing from enemy storage...");
     }
 
     void Start()
@@ -187,12 +189,12 @@ public class Spawner : MonoBehaviour
     {
         if(RespawnOnLoad) return; // don't save anything
 
-        enemies.RemoveAll(s => s.entity == null); // remove dead enemies
+        Debug.Log("trigged save, raw enemy #s=" + enemies.Count);
+        enemies.RemoveAll(s => s.entity == null || s.health <= 0); // remove dead enemies
+        Debug.Log("after parsing enemy #s=" + enemies.Count);
 
         foreach(Base b in enemies)
             b.UpdateValues(!OriginalPos);
-
-        enemies.RemoveAll(s => s.health <= 0); // remove dying enemies
 
         EntityManager.StoreEnemies(enemies, spawner_key);
     }
@@ -211,7 +213,7 @@ public class Spawner : MonoBehaviour
                                         en.transform.position.x >= player.transform.position.x :
                                         true);
         bool lookLeft = (defLeft && match) || (!defLeft && !match);
-        Debug.Log("detected that enemy should look left: " + lookLeft + " defLeft=" + defLeft + " match=" + match);
+        // Debug.Log("detected that enemy should look left: " + lookLeft + " defLeft=" + defLeft + " match=" + match);
         
         MovementController control = en.GetComponent<MovementController>();
         control.LookingForDirection();
@@ -220,7 +222,7 @@ public class Spawner : MonoBehaviour
         if(looking == Vector3.left ^ lookLeft)
         {
             control.TurnAround();
-            Debug.Log("turning the enemy around");
+            // Debug.Log("turning the enemy around");
         }
     }
 }

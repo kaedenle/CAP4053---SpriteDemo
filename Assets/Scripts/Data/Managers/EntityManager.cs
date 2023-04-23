@@ -34,8 +34,8 @@ public class EntityManager : MonoBehaviour
             ScenesManager.ChangedScenes += OnSceneCalled;
         }
 
-        // if(spawnData == null)
-        //     spawnData = new SpawnData();
+        if(spawnData == null)
+            spawnData = new SpawnData();
     }
 
     public static bool IsPaused()
@@ -281,7 +281,7 @@ public class EntityManager : MonoBehaviour
     */
     // assumptions: RespawnOnLoad is NOT used with any sort of scripted respawn behavior
     // assumptions: all respawn effects happen at once (no first load happens w/ a respawn)
-    private static SpawnData spawnData = new SpawnData();
+    private static SpawnData spawnData;
     private static GameObject EnemyParent;
     int active = 0; // not static
 
@@ -323,6 +323,12 @@ public class EntityManager : MonoBehaviour
 
     public static List<Base> GetEnemyList(string key)
     {
+        if(spawnData == null) 
+        {
+            Debug.LogWarning("spawnData was null");
+            return null;
+        }
+
         List<Base> spawn = spawnData.LoadEnemies(key);
         if(spawn != null) GetInstance().active += spawn.Count;
         return spawn;
