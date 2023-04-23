@@ -1768,7 +1768,6 @@ GameObject:
   m_Component:
   - component: {fileID: 300765494}
   - component: {fileID: 300765493}
-  - component: {fileID: 300765496}
   - component: {fileID: 300765495}
   - component: {fileID: 300765497}
   m_Layer: 0
@@ -1861,33 +1860,6 @@ CircleCollider2D:
   m_Offset: {x: -1.4962139, y: -2.163032}
   serializedVersion: 2
   m_Radius: 1.2793216
---- !u!114 &300765496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 300765492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49724c29999d01a459234abca7ad45ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineThickness: {fileID: 0}
-  pauseOnInteract: 1
-  interactiveText:
-    textID: whiskey_bottle
-    loopLast: 1
-  normalAudio: 
-  highlightEnds: 0
-  lockable:
-    isLocked: 0
-    lockedInteractiveText:
-      textID: 
-      loopLast: 1
-    lockedAudio: 
-    requiredItems: 
-  playAfterDialogue: 1
 --- !u!114 &300765497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1901,7 +1873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineThickness: {fileID: 0}
-  dialogue: {fileID: 0}
+  dialogue: {fileID: 11400000, guid: 7118c6d558e6dfa4b9eaa1f977909f65, type: 2}
   normalAudio: 
   highlightEnds: 1
   lockable:
@@ -9021,7 +8993,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1571657780}
   - component: {fileID: 1571657779}
-  - component: {fileID: 1571657782}
   - component: {fileID: 1571657783}
   - component: {fileID: 1571657784}
   m_Layer: 0
@@ -9098,33 +9069,6 @@ Transform:
   m_Father: {fileID: 77082589}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1571657782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1571657778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49724c29999d01a459234abca7ad45ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineThickness: {fileID: 0}
-  pauseOnInteract: 1
-  interactiveText:
-    textID: patrick_painting
-    loopLast: 1
-  normalAudio: 
-  highlightEnds: 0
-  lockable:
-    isLocked: 0
-    lockedInteractiveText:
-      textID: 
-      loopLast: 1
-    lockedAudio: 
-    requiredItems: 
-  playAfterDialogue: 1
 --- !u!114 &1571657783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9138,7 +9082,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineThickness: {fileID: 0}
-  dialogue: {fileID: 0}
+  dialogue: {fileID: 11400000, guid: 67cf5f4221c47824682be6e14677d25c, type: 2}
   normalAudio: 
   highlightEnds: 1
   lockable:
