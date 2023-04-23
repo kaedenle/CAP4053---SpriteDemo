@@ -89,7 +89,7 @@ public class ScenesManager : MonoBehaviour
         return _prevScene;
     }
 
-        public static AllScenes GetCurrentScene()
+    public static AllScenes GetCurrentScene()
     {
         return _currentScene;
     }
