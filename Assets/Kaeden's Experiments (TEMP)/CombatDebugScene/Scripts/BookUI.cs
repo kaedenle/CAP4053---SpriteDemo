@@ -13,7 +13,7 @@ public class BookUI : MonoBehaviour
     private bool DoneFlag = false;
     private GameObject RightPage;
     private GameObject LeftPage;
-    private int PageIndex;
+    public static int PageIndex;
     private bool RememberPages = true;
 
     public GameObject RightArrow;
