@@ -21,7 +21,7 @@ public class RunSFX : MonoBehaviour
     }
     private void StopPlay()
     {
-        audioSource.Stop();
+        if(audioSource != null) audioSource.Stop();
     }
     // Update is called once per frame
     void Update()
