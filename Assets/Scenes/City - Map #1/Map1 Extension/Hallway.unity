@@ -13628,6 +13628,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 200000001f0000001e0000001d0000001c0000001b0000001a00000019000000
+    requiredEvents: []
   playAfterDialogue: 1
 --- !u!61 &330954979
 BoxCollider2D:
@@ -16977,6 +16978,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
   playAfterDialogue: 1
 --- !u!1 &392307343
 GameObject:
@@ -23112,6 +23114,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
   playAfterDialogue: 1
   eventID: city_page8
   destroyOnUse: 0
@@ -32383,6 +32386,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 19000000
+    requiredEvents: []
   playAfterDialogue: 1
   _nextScene: 26
   m_MyEvent:
@@ -34496,6 +34500,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
   playAfterDialogue: 1
 --- !u!61 &740480070
 BoxCollider2D:
@@ -50973,6 +50978,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 19000000
+    requiredEvents: []
   playAfterDialogue: 1
 --- !u!1 &1113587388
 GameObject:
@@ -56509,6 +56515,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
   playAfterDialogue: 1
 --- !u!61 &1236825750
 BoxCollider2D:
@@ -61161,6 +61168,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
   playAfterDialogue: 1
   _nextScene: 2
   m_MyEvent:
@@ -62846,6 +62854,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 19000000
+    requiredEvents: []
   playAfterDialogue: 1
   _nextScene: 28
   m_MyEvent:
@@ -63515,6 +63524,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 19000000
+    requiredEvents: []
   playAfterDialogue: 1
   _nextScene: 27
   m_MyEvent:
@@ -66336,6 +66346,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 19000000
+    requiredEvents: []
   playAfterDialogue: 1
   _nextScene: 28
   m_MyEvent:
@@ -79393,6 +79404,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 19000000
+    requiredEvents: []
   playAfterDialogue: 1
   _nextScene: 26
   m_MyEvent:
@@ -80211,6 +80223,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
   playAfterDialogue: 1
 --- !u!212 &1701054630
 SpriteRenderer:
@@ -82216,6 +82229,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
   playAfterDialogue: 1
 --- !u!1 &1748669661
 GameObject:
@@ -88077,6 +88091,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 19000000
+    requiredEvents: []
   playAfterDialogue: 1
   _nextScene: 27
   m_MyEvent:
@@ -95108,6 +95123,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 190000001a0000001b0000001c0000001d0000001e0000001f00000020000000
+    requiredEvents: []
   playAfterDialogue: 1
   _nextScene: 29
 --- !u!114 &2062661775
@@ -98193,6 +98209,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 19000000
+    requiredEvents: []
   playAfterDialogue: 1
   _nextScene: 26
   m_MyEvent:
@@ -99347,6 +99364,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 402189307}
     m_Modifications:
+    - target: {fileID: 4895952288014254782, guid: 7a2025a039ad2a549addd15ebc12af9e, type: 3}
+      propertyPath: m_Size.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4895952288014254782, guid: 7a2025a039ad2a549addd15ebc12af9e, type: 3}
+      propertyPath: m_Size.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4895952288014254782, guid: 7a2025a039ad2a549addd15ebc12af9e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 92aa16f9871901440a1fe481b62b5ad0, type: 3}
+    - target: {fileID: 4895952288014254782, guid: 7a2025a039ad2a549addd15ebc12af9e, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4895952288014254782, guid: 7a2025a039ad2a549addd15ebc12af9e, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4895952289166605676, guid: 7a2025a039ad2a549addd15ebc12af9e, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -99519,7 +99556,7 @@ MonoBehaviour:
           m_MethodName: TriggerDialogue
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: d57aebb0fcb91864e8c6d887a269a2ae, type: 2}
+            m_ObjectArgument: {fileID: 11400000, guid: 8b5984fdbc9fe6641bd946b36180affe, type: 2}
             m_ObjectArgumentAssemblyTypeName: NPCReport, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -99533,7 +99570,7 @@ MonoBehaviour:
           m_MethodName: TriggerDialogue
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: bd735d16137838d4a980c87189461357, type: 2}
+            m_ObjectArgument: {fileID: 11400000, guid: 8b5984fdbc9fe6641bd946b36180affe, type: 2}
             m_ObjectArgumentAssemblyTypeName: NPCReport, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -99547,7 +99584,7 @@ MonoBehaviour:
           m_MethodName: TriggerDialogue
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: 4ad8edae647db554d98462921d8eda8c, type: 2}
+            m_ObjectArgument: {fileID: 11400000, guid: 8b5984fdbc9fe6641bd946b36180affe, type: 2}
             m_ObjectArgumentAssemblyTypeName: NPCReport, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -99561,7 +99598,7 @@ MonoBehaviour:
           m_MethodName: TriggerDialogue
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: 0aee65379be530e4c8dce1bc9bd9e11e, type: 2}
+            m_ObjectArgument: {fileID: 11400000, guid: 8b5984fdbc9fe6641bd946b36180affe, type: 2}
             m_ObjectArgumentAssemblyTypeName: NPCReport, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -99575,7 +99612,7 @@ MonoBehaviour:
           m_MethodName: TriggerDialogue
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: 16efd34c8ab3dc14d916e2cb1e7da073, type: 2}
+            m_ObjectArgument: {fileID: 11400000, guid: 8b5984fdbc9fe6641bd946b36180affe, type: 2}
             m_ObjectArgumentAssemblyTypeName: NPCReport, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -99589,7 +99626,7 @@ MonoBehaviour:
           m_MethodName: TriggerDialogue
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: ccea40468b9e9544f92b4e0aa54828c9, type: 2}
+            m_ObjectArgument: {fileID: 11400000, guid: 8b5984fdbc9fe6641bd946b36180affe, type: 2}
             m_ObjectArgumentAssemblyTypeName: NPCReport, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -99603,7 +99640,7 @@ MonoBehaviour:
           m_MethodName: TriggerDialogue
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: 880b3cbcfeb59a242ab4b7a9577da7e2, type: 2}
+            m_ObjectArgument: {fileID: 11400000, guid: 8b5984fdbc9fe6641bd946b36180affe, type: 2}
             m_ObjectArgumentAssemblyTypeName: NPCReport, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -99617,7 +99654,7 @@ MonoBehaviour:
           m_MethodName: TriggerDialogue
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: 880b3cbcfeb59a242ab4b7a9577da7e2, type: 2}
+            m_ObjectArgument: {fileID: 11400000, guid: 8b5984fdbc9fe6641bd946b36180affe, type: 2}
             m_ObjectArgumentAssemblyTypeName: NPCReport, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -99838,15 +99875,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 92aa16f9871901440a1fe481b62b5ad0, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &8784392546622445099
