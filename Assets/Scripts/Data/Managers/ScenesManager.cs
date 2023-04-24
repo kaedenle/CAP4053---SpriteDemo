@@ -108,6 +108,7 @@ public class ScenesManager : MonoBehaviour
             data.ResetData();
             
             data.SetDifficulty(dif); // default to previous difficulty settings
+            data.SetScene(_currentScene); // set current scene as default save scene
 
             if(_currentScene == AllScenes.CentralHub)
             {
@@ -117,6 +118,12 @@ public class ScenesManager : MonoBehaviour
             else if(sceneToLevel.ContainsKey(_currentScene))
             {
                 data.SetLevel((int) sceneToLevel[_currentScene]);
+            }
+
+            else
+            {
+                Debug.LogWarning("Detected scene outside of game");
+                data.SetLevel( 10 );
             }
             
             data.SaveCurrentData();
