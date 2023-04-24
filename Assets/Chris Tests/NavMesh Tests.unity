@@ -3058,9 +3058,10 @@ MonoBehaviour:
   maxEnemies: 2
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  minimumAcceptablePlayerDistance: 0.5
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 100
 --- !u!1 &54989088
 GameObject:
   m_ObjectHideFlags: 0
@@ -4160,7 +4161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf92784ed5d3bf4a836824b47e4efcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -4174,6 +4175,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
   playAfterDialogue: 1
 --- !u!61 &81135603
 BoxCollider2D:
@@ -5859,9 +5861,10 @@ MonoBehaviour:
   maxEnemies: 2
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  minimumAcceptablePlayerDistance: 0.5
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 100
 --- !u!1 &122479067
 GameObject:
   m_ObjectHideFlags: 0
@@ -8422,7 +8425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -8436,6 +8439,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
   playAfterDialogue: 1
   _nextScene: 22
 --- !u!61 &222017173
@@ -11683,9 +11687,10 @@ MonoBehaviour:
   maxEnemies: 1
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  minimumAcceptablePlayerDistance: 0.5
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 100
 --- !u!1 &317362234
 GameObject:
   m_ObjectHideFlags: 0
@@ -14331,7 +14336,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &380244363
 Transform:
   m_ObjectHideFlags: 0
@@ -14366,9 +14371,10 @@ MonoBehaviour:
   maxEnemies: 20
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  minimumAcceptablePlayerDistance: 0.5
   RespawnOnLoad: 0
   OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 100
 --- !u!61 &380244365
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18824,7 +18830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: obtain_sunglasses
@@ -18838,6 +18844,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
   playAfterDialogue: 1
   _itemType: 20
   repeatable: 0
@@ -20011,7 +20018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33f58f5d6f1887458ad59a65a67896f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: sword_in_stone
@@ -20025,6 +20032,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 13000000
+    requiredEvents: []
   playAfterDialogue: 1
   eventID: sword_in_the_stone
   destroyOnUse: 0
@@ -20557,9 +20565,10 @@ MonoBehaviour:
   maxEnemies: 1
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  minimumAcceptablePlayerDistance: 0.5
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 100
 --- !u!1 &521374717
 GameObject:
   m_ObjectHideFlags: 0
@@ -25359,9 +25368,10 @@ MonoBehaviour:
   maxEnemies: 2
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  minimumAcceptablePlayerDistance: 0.5
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 100
 --- !u!1 &639447772
 GameObject:
   m_ObjectHideFlags: 0
@@ -31370,9 +31380,10 @@ MonoBehaviour:
   maxEnemies: 2
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  minimumAcceptablePlayerDistance: 0.5
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 100
 --- !u!1 &795784345
 GameObject:
   m_ObjectHideFlags: 0
@@ -34077,6 +34088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 360cd83fc3da64341bf4edb4a92d9ce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  configFile: {fileID: 11400000, guid: 373305ed81255b2459260ec1061da780, type: 2}
 --- !u!4 &861022970
 Transform:
   m_ObjectHideFlags: 0
@@ -40822,9 +40834,10 @@ MonoBehaviour:
   maxEnemies: 1
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  minimumAcceptablePlayerDistance: 0.5
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 100
 --- !u!1 &1001578990
 GameObject:
   m_ObjectHideFlags: 0
@@ -45303,9 +45316,10 @@ MonoBehaviour:
   maxEnemies: 1
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  minimumAcceptablePlayerDistance: 0.5
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 100
 --- !u!1 &1098057334
 GameObject:
   m_ObjectHideFlags: 0
@@ -49956,9 +49970,10 @@ MonoBehaviour:
   maxEnemies: 1
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  minimumAcceptablePlayerDistance: 0.5
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 100
 --- !u!1 &1205406060
 GameObject:
   m_ObjectHideFlags: 0
@@ -51319,7 +51334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49724c29999d01a459234abca7ad45ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: castle_locked_door
@@ -51333,6 +51348,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
   playAfterDialogue: 1
 --- !u!58 &1228547244
 CircleCollider2D:
@@ -52260,9 +52276,10 @@ MonoBehaviour:
   maxEnemies: 6
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  minimumAcceptablePlayerDistance: 0.5
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 100
 --- !u!1 &1247076260
 GameObject:
   m_ObjectHideFlags: 0
@@ -68894,9 +68911,10 @@ MonoBehaviour:
   maxEnemies: 5
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  minimumAcceptablePlayerDistance: 0.5
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 100
 --- !u!1 &1594904040
 GameObject:
   m_ObjectHideFlags: 0
@@ -70018,7 +70036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49724c29999d01a459234abca7ad45ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: stairs_down_too_dark
@@ -70032,6 +70050,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
   playAfterDialogue: 1
 --- !u!61 &1610390534
 BoxCollider2D:
@@ -72279,9 +72298,10 @@ MonoBehaviour:
   maxEnemies: 2
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  minimumAcceptablePlayerDistance: 0.5
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 100
 --- !u!1 &1679763890
 GameObject:
   m_ObjectHideFlags: 0
@@ -78085,7 +78105,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3213768974601810346, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
       propertyPath: movementConfiguration.minimumDistance
-      value: 1.5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3256499935984755783, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
       propertyPath: m_Height
@@ -78113,7 +78133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6105205938035449262, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.12
+      value: -17.52
       objectReference: {fileID: 0}
     - target: {fileID: 6105205938035449262, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -78153,7 +78173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
@@ -79181,9 +79201,10 @@ MonoBehaviour:
   maxEnemies: 1
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  minimumAcceptablePlayerDistance: 0.5
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 100
 --- !u!1 &1816599753
 GameObject:
   m_ObjectHideFlags: 0
@@ -86413,7 +86434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33f58f5d6f1887458ad59a65a67896f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 0}
   pauseOnInteract: 1
   interactiveText:
     textID: opening_chest
@@ -86427,6 +86448,7 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 12000000
+    requiredEvents: []
   playAfterDialogue: 1
   eventID: castle_chest
   destroyOnUse: 1
@@ -92466,9 +92488,10 @@ MonoBehaviour:
   maxEnemies: 4
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  minimumAcceptablePlayerDistance: 0.5
   RespawnOnLoad: 1
   OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 100
 --- !u!1 &2124308530
 GameObject:
   m_ObjectHideFlags: 0
