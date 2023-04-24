@@ -105,7 +105,7 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
         if(attackReady)
         {
             StartCoroutine(TriggerAttack(stateMachine));
-            StartCoroutine(ChargeAttack());
+            // StartCoroutine(ChargeAttack());
         }
     }
 
@@ -115,26 +115,37 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
 
         yield return new WaitForSeconds(movementController.movementConfiguration.attackStartDelay);
 
-        movementController.Attack();
-
-        yield return new WaitUntil(() => movementController.enabled);
-        
-        // make sure shooting isn't occurring
-        MoveAndShootController shooter;
-        if((shooter = GetComponent<MoveAndShootController>()) != null)
+        // cancel attack if you've been hit or if the player is out of range
+        if(LastDamageTake() <= movementController.movementConfiguration.attackStartDelay + 0.05F)
         {
-            yield return new WaitUntil(() => !shooter.shooting);
+            stateMachine.TransitionReady = true;
         }
 
-        stateMachine.TransitionReady = true;
+        else
+        {
+            movementController.Attack();
+
+            yield return new WaitUntil(() => movementController.enabled);
+            
+            // make sure shooting isn't occurring
+            MoveAndShootController shooter;
+            if((shooter = GetComponent<MoveAndShootController>()) != null)
+            {
+                yield return new WaitUntil(() => !shooter.shooting);
+            }
+
+            stateMachine.TransitionReady = true;
+
+            // charge attack
+            attackReady = false;
+            yield return new WaitForSeconds(movementController.movementConfiguration.attackChargeTime);
+            attackReady = true;
+        }
     }
 
-    IEnumerator ChargeAttack()
-    {
-        attackReady = false;
-        yield return new WaitForSeconds(movementController.movementConfiguration.attackChargeTime);
-        attackReady = true;
-    }
+    // IEnumerator ChargeAttack()
+    // {
+    // }
 
     public void Alerted(BasicEnemy.FSM stateMachine)
     {
@@ -189,7 +200,12 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
 
     public virtual bool BeingAttacked()
     {
-        return Time.time - lastDamageTaken <= hurtMemory;
+        return LastDamageTake() <= hurtMemory;
+    }
+
+    public virtual float LastDamageTake()
+    {
+        return Time.time - lastDamageTaken;
     }
 
     // the enemy doesn't know how to continue chasing
