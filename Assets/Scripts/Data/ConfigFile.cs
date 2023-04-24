@@ -7,7 +7,18 @@ public class ConfigFile : ScriptableObject
 {
     public ScenesData defaultSceneData;
     public ScenesData[] scenesData;
-    public float easyModeSpeed, hardModeSpeed;
+    public float baseSpeed = 12f;
+
+    public float fovStoryMod = 0.6f;
+
+    private Dictionary<Attribute, float> mod = new Dictionary<Attribute, float>
+    {
+        {Attribute.CapoFOVRadius, 0.8f},
+        {Attribute.CapoFOVAngle, 0.85f},
+        {Attribute.CapoWalkSpeed, 0.75f},
+        {Attribute.EntitySpeed, 0.75f},
+        {Attribute.PlayerSpeed, 0.9f}
+    };
 
     public ScenesData GetScenesData(ScenesManager.AllScenes scene)
     {
@@ -19,16 +30,20 @@ public class ConfigFile : ScriptableObject
         return defaultSceneData;
     }
 
+    public float GetModifier(Attribute attribute)
+    {
+        if(GetDifficulty() == GameData.Difficulty.Hard) return 1;
+        return mod[attribute];
+    }
+
     public float GetSpeed(float modifier = 1f)
     {
-        float speed = GameData.GetInstance().GetDifficulty() == GameData.Difficulty.Easy ? easyModeSpeed : hardModeSpeed;
-        return speed * modifier;
+        return baseSpeed * GetModifier(Attribute.EntitySpeed);
     }
 
     public float GetPlayerSpeed()
     {
-        if(GameData.GetInstance().GetDifficulty() == GameData.Difficulty.Easy) return GetSpeed() + 1.5F; // gives slight advantage to player
-        else return GetSpeed();
+        return baseSpeed * GetModifier(Attribute.PlayerSpeed);
     }
 
     public int GetRespawnNumber(int totalEnemies)
@@ -44,5 +59,19 @@ public class ConfigFile : ScriptableObject
     public int GetMaxActive()
     {
         return GetMaxActive(ScenesManager.GetCurrentScene());
+    }
+
+    public GameData.Difficulty GetDifficulty()
+    {
+        return GameData.GetInstance().GetDifficulty();
+    }
+
+    public enum Attribute
+    {
+        CapoFOVRadius,
+        CapoFOVAngle,
+        CapoWalkSpeed,
+        EntitySpeed,
+        PlayerSpeed
     }
 }
