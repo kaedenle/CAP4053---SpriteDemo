@@ -182,7 +182,7 @@ public class GameManager : MonoBehaviour
         else
             CanSpawnEnemies = true;
     }
-    public void OnSceneCalled(object sender, System.EventArgs e)
+    public void OnSceneCalled(object sender, ScenesManager.AllScenes e)
     {
         SceneID = ScenesManager.GetCurrentScene();
         //Update enemies values

@@ -61,8 +61,9 @@ public class Player_Movement : MonoBehaviour, IScriptable
         moveY = isMoveable ? InputManager.GetAxis("Vertical") : 0;
         SetLastLooked();
         
-        if(moveX != 0) flipped = moveX < 0 ? true : false;
-        if (lastFlipped != flipped)
+        if(moveX != 0 && animator.GetFloat("shooting") == 0) flipped = moveX < 0 ? true : false;
+        //prevent flip when shooting
+        if (lastFlipped != flipped )
         {
             foreach (GameObject part in objs)
             {

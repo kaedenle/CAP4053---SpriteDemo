@@ -12,7 +12,7 @@ public class ScenesManager : MonoBehaviour
     const float nextSceneDelay = 1.0F;
 
     private static bool firstSceneDebug = true;
-    public static EventHandler ChangedScenes;
+    public static EventHandler<ScenesManager.AllScenes> ChangedScenes;
 
     // update this enum whenever you add (or remove) a Scene (must be in same order as in building settings)
     // edit these names at your own risk; so many things use these, so you'll have to track them all down if
@@ -57,7 +57,7 @@ public class ScenesManager : MonoBehaviour
         _prevScene = _currentScene;
         _currentScene = scene;
         UIManager.EndScene();
-        if (ChangedScenes != null) ChangedScenes(null, EventArgs.Empty);
+        if (ChangedScenes != null) ChangedScenes(null, scene);
         Instance.StartCoroutine(LoadSceneAfterDelay((int)scene));
     }
 

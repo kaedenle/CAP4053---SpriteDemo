@@ -22,6 +22,7 @@ public class DoNotDestroyMusic : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
         level = GameData.GetInstance().GetLevel();
+        m_MyAudioSource = GetComponent<AudioSource>();
     }
     private void Update()
     {

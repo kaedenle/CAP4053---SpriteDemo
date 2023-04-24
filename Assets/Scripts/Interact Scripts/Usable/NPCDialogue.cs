@@ -81,7 +81,7 @@ public class NPCDialogue : OutlineObject
 
     public void TriggerDialogue(NPCReport conversation)
     {
-        if(conversation == null) return;
+         if(conversation == null) return;
 
         string script_id = conversation.conversation_id;
 

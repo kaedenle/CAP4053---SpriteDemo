@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
-  piercing: 2
+  piercing: 1
 --- !u!114 &6404385847964622524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,16 +126,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponList: {fileID: 0}
-  wpnList:
-    weaponlist: []
-    index: 0
-  hitboxParent: {fileID: 0}
-  HBList: []
-  bufferCancel: -1
-  ProjectileOwner: {fileID: 0}
   attackContainer:
   - moveData: {fileID: 4900000, guid: a7b9be4854fdbb441a4dc1f0179ac6e8, type: 3}
     HitSFX: []
+  HBList: []
+  attacking: 0
+  invulerable: 0
+  OffsenseDamageMultiplier: 1
+  OffenseKnockbackMultiplier: 1
+  MultiplierAttack: 0
   framedata:
     framedata: []
     damage: 0
@@ -150,6 +149,12 @@ MonoBehaviour:
     relativeKnockback: 0
     functCall: 
     ID: 0
+  wpnList:
+    weaponlist: []
+    index: 0
+  bufferCancel: -1
+  ProjectileOwner: {fileID: 0}
+  hitboxParent: {fileID: 0}
 --- !u!50 &-3665376565895842453
 Rigidbody2D:
   serializedVersion: 4

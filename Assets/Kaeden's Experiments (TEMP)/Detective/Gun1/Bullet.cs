@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
         this.ShotFrom = ShotFrom;
         //permenatly set hitbox on bullet
         if (am != null) am.StartPlay(0);
-        Destroy(gameObject, 2);
+        Destroy(gameObject, 0.5f);
 
         shootDirection = new Vector3(1, 0, 0);
         //reverse the shot

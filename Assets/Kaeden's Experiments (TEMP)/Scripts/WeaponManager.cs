@@ -5,6 +5,7 @@ using System;
 
 public class WeaponManager : MonoBehaviour, IScriptable
 {
+    public static bool ShortCutCombos = true;
     public static EventHandler Swapping;
     public Sprite[] spriteList;
     public GameObject WeaponUIInstance;
@@ -253,7 +254,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
                     {
                         //keyboard shortcuts for combos
                         int press = KeyPressed();
-                        if (press != -1 && DisplayedWeapon == wpnList.index && wpnList.weaponlist[press].active && am.CanCancel())
+                        if (press != -1 && DisplayedWeapon == wpnList.index && wpnList.weaponlist[press].active && am.CanCancel() && ShortCutCombos)
                         {
                             wpnList.index = press % spriteList.Length;
                         }
@@ -274,7 +275,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
                     {
                         //keyboard shortcuts for combos
                         int press = KeyPressed();
-                        if (press != -1 && DisplayedWeapon == wpnList.index && wpnList.weaponlist[press].active && am.CanCancel())
+                        if (press != -1 && DisplayedWeapon == wpnList.index && wpnList.weaponlist[press].active && am.CanCancel() && ShortCutCombos)
                         {
                             wpnList.index = press % spriteList.Length;
                         }

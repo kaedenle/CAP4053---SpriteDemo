@@ -334,7 +334,7 @@ public class EntityManager : MonoBehaviour
         return spawn;
     }
 
-    public void OnSceneCalled(object sender, System.EventArgs e)
+    public void OnSceneCalled(object sender, ScenesManager.AllScenes e)
     {
         //Update enemies values
         foreach(Spawner spawner in FindObjectsOfType(typeof(Spawner)))

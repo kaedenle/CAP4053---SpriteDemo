@@ -156,9 +156,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inHitStun: 0
-  NotFlash: 0
+  NoFlash: 0
+  NoHitParticles: 0
+  invin: 0
+  FSMHitstun: 0
   default_ani: Bullet
-  NotHitPart: 0
 --- !u!95 &6412734456593120152
 Animator:
   serializedVersion: 5
@@ -196,6 +198,11 @@ MonoBehaviour:
   - moveData: {fileID: 4900000, guid: 8bdbd72d9c9695d4aa9cb8a66ab0ca35, type: 3}
     HitSFX: []
   HBList: []
+  attacking: 0
+  invulerable: 0
+  OffsenseDamageMultiplier: 1
+  OffenseKnockbackMultiplier: 1
+  MultiplierAttack: 0
   framedata:
     framedata: []
     damage: 0
@@ -223,7 +230,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2939056562520899370}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0

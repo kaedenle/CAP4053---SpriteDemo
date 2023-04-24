@@ -18,7 +18,7 @@ public class WarpManager : MonoBehaviour
     {
         WarpNumber = num;
     }
-    public void SaveEnemies(object sender, System.EventArgs e)
+    public void SaveEnemies(object sender, ScenesManager.AllScenes e)
     {
         if (DeathFlag) return;
         if (!EnemyList.ContainsKey(SceneManager.GetActiveScene().name)) EnemyList.Add(SceneManager.GetActiveScene().name, new Dictionary<int, EnemyStore>());
