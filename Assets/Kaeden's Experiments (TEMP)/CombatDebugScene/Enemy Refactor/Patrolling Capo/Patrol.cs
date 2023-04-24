@@ -57,6 +57,12 @@ public class Patrol : MonoBehaviour
     // Update is called once per frame
     void Awake()
     {
+        radius *= GameData.GetConfig().GetModifier(ConfigFile.Attribute.CapoFOVRadius);  // make capos see less when in story mode
+        angle *= GameData.GetConfig().GetModifier(ConfigFile.Attribute.CapoFOVAngle);
+
+        WalkSpeed = GameData.GetConfig().GetSpeed() * relativeWalkSpeed * GameData.GetConfig().GetModifier(ConfigFile.Attribute.CapoWalkSpeed); // bases walk speed on player speed & game mode
+        RunSpeed = GameData.GetConfig().GetSpeed() * relativeRunSpeed; // bases run speed on player speed
+
         if(!initFlag) init();
     }
     public void init()
@@ -73,8 +79,7 @@ public class Patrol : MonoBehaviour
         lastPos = transform.position;
         anim = GetComponentInChildren<Animator>();
         initFlag = true;
-        // agent.speed = WalkSpeed;
-        agent.speed = GameData.GetConfig().GetSpeed(relativeWalkSpeed);
+        agent.speed = WalkSpeed;
     }
     
     private float Round2Digits(float num)
@@ -165,7 +170,7 @@ public class Patrol : MonoBehaviour
         if (rememberTimer < 0)
         {
             seesPlayer = false;
-            agent.speed = GameData.GetConfig().GetSpeed(WalkSpeed);
+            agent.speed = WalkSpeed;
         }
     }
     public bool PlayerInRange()
@@ -289,8 +294,7 @@ public class Patrol : MonoBehaviour
     {
         seesPlayer = true;
         trigger = false;
-        // agent.speed = RunSpeed;
-        agent.speed = GameData.GetConfig().GetSpeed(relativeRunSpeed);
+        agent.speed = RunSpeed;
     }
 
 

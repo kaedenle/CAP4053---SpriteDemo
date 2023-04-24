@@ -73,23 +73,6 @@ public class MazeManager : MonoBehaviour
 
         Debug.Log("in maze room " + GetCurrentRoom() + " is on path: " + GetCurrentRoom().IsOnPath(0) + " which is terminal: " + GetCurrentRoom().IsTerminal() + " and is special: " + GetCurrentRoom().IsSpecial());
         SetupRoom(GetCurrentRoom());
-
-        // add checkpoint: reach a special room
-        if(path.Count > 0)
-        {
-            Room cur = GetCurrentRoom();
-
-            if(cur.IsTerminal())
-            {
-                int type = GetSpecialType(cur);
-                if(type != -1)
-                    if(!CastleLevelManager.ObtainedPrereqs(type + 1))
-                    {
-                        GameData.GetInstance().UpdatePath(path);
-                        GameData.GetInstance().SaveCurrentData();
-                    }
-            }
-        }
     }
 
     public static bool MazeCreated()
@@ -102,9 +85,9 @@ public class MazeManager : MonoBehaviour
         maze = m;
     }
 
-    public static void SetPath(Stack<int> p)
+    public static void SetPath(Stack<int> newPath)
     {
-        path = new Stack<int>(p);
+        path = new Stack<int> (newPath);
     }
 
     public Room GetCurrentRoom()
@@ -188,7 +171,11 @@ public class MazeManager : MonoBehaviour
             {
                 // Debug.Log("is on path: " + cur.IsOnPath(special).ToString() + " obtained prereqs: " + CastleLevelManager.ObtainedPrereqs(special).ToString() + " is not null: " + (specials[special] != null).ToString());
                 if(cur.IsOnPath(special) && CastleLevelManager.ObtainedPrereqs(special) && specials[special] != null)
+                {
                     specials[special].SetActive(true);
+                    GameData.GetInstance().UpdateMazeIndex(maze.current);
+                    GameData.GetInstance().SaveCurrentData();
+                }
             }
         }
 
@@ -254,9 +241,5 @@ public class MazeManager : MonoBehaviour
     public static Maze GetMaze()
     {
         return maze;
-    }
-    public static Stack<int> GetPath()
-    {
-        return new Stack<int>(path);
     }
 }

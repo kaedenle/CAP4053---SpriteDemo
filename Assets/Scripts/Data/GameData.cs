@@ -68,9 +68,12 @@ public class GameData : MonoBehaviour
 
         if(useCurrentScene)
         {
-            // store level variables
-            data.scene = ScenesManager.GetCurrentScene();
+            // store manager states (puzzle + object states)
             StoreManagerVariables();
+
+            // story level variables
+            data.scene = ScenesManager.GetCurrentScene();
+            data.log.spawnData = EntityManager.GetSpawnDataCopy();
 
             if(data.scene == ScenesManager.AllScenes.CentralHub)
             {
@@ -133,16 +136,16 @@ public class GameData : MonoBehaviour
             catch
             {
                 data = new Data();
-                Debug.LogWarning("data file formatting was out of date or invalid. Resetting data...");
+                if(GeneralFunctions.IsDebug()) Debug.LogWarning("data file formatting was out of date or invalid. Resetting data...");
             }
 
             file.Close();
 
-            Debug.Log("Game data loaded!");
+            if(GeneralFunctions.IsDebug()) Debug.Log("Game data loaded!");
         }
         else
         {
-            Debug.LogWarning("There is no save data!");
+            if(GeneralFunctions.IsDebug()) Debug.LogWarning("There is no save data!");
         }
     }
 
@@ -150,7 +153,7 @@ public class GameData : MonoBehaviour
     {
         if(!HasLoadData())
         {
-            Debug.LogError("trying to load data without any saved data");
+            if(GeneralFunctions.IsDebug()) Debug.LogError("trying to load data without any saved data");
             return;
         }
 
@@ -166,8 +169,14 @@ public class GameData : MonoBehaviour
         UIManager.SetStates(data.log.interactiveStates);
 
         // castle vars
+        if(data.log.maze != null)
+        {
+            data.log.maze.current = data.log.mazeRoom;
+            // var temp = new Stack<int> {data.log.mazeRoom};
+            MazeManager.SetPath(new Stack<int> (new[] {data.log.mazeRoom}));
+        }
         MazeManager.SetMaze(data.log.maze);
-        MazeManager.SetPath(data.log.mazePath);
+        // MazeManager.SetCurrentRoom(data.log.mazeRoom);
 
         EntityManager.SetSpawnData(data.log.spawnData);
 
@@ -288,14 +297,12 @@ public class GameData : MonoBehaviour
     }
 
     // assumption: PhaseTag integer is equal to level integer
-    // assumption: maze will only need last room of maze
     public void StoreManagerVariables()
     {
         data.log.inventory = InventoryManager.GetInventoryItems();
         data.log.usedInventory = InventoryManager.GetUsedItems();
         data.log.levelManagerObjectState = LevelManager.GetObjectStates();
         data.log.interactiveStates = UIManager.GetStates();
-        data.log.spawnData = EntityManager.GetSpawnDataCopy();
     }
 
     public List<InventoryManager.AllItems> GetInventory()
@@ -311,12 +318,13 @@ public class GameData : MonoBehaviour
     public void UpdateMaze(Maze m)
     {
         data.log.maze = m;
+        Debug.Log("updated maze");
         SaveCurrentData(false);
     }
 
-    public void UpdatePath(Stack<int> path)
+    public void UpdateMazeIndex(int room)
     {
-        data.log.mazePath = new Stack<int>(path);
+        data.log.mazeRoom = room;
     }
 
     // data classes
@@ -357,7 +365,7 @@ public class GameData : MonoBehaviour
 
         // Castle Level
         public Maze maze;
-        public Stack<int> mazePath;
+        public int mazeRoom;
 
         public LogData()
         {
@@ -366,7 +374,7 @@ public class GameData : MonoBehaviour
             levelManagerObjectState = new Dictionary<string, bool>();
             interactiveStates = new Dictionary<string, int>();
             
-            mazePath = new Stack<int>();
+            mazeRoom = 0;
             spawnData = new SpawnData();
         }
     }
@@ -388,6 +396,7 @@ public class GameData : MonoBehaviour
         }
 
         Debug.Log("Inventory: " + data.log.inventory.ToString());
+        Debug.Log("Maze Index: " + data.log.mazeRoom);
 
         Debug.Log("==================================");
     }

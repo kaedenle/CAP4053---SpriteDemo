@@ -135,10 +135,10 @@ public class LevelManager : MonoBehaviour
 
     public static void CheckpointButton()
     {
+        ResetAllVariables();
         GameData.GetInstance().RevertAfterDeath();
     }
 
-    public virtual void TriggerReset() { } // used abstractly; kinda sketchy
 
     public static void ReloadScene()
     {
@@ -183,5 +183,16 @@ public class LevelManager : MonoBehaviour
     {
         if(os == null) return;
         objectState = new Dictionary<string, bool> ( os );
+    }
+
+    /*
+    Non Static Methods
+    */
+    public virtual void TriggerReset() { } // used abstractly; kinda sketchy
+    public void PaperSave()
+    {
+        if(GameData.GetInstance().GetDifficulty() == GameData.Difficulty.Hard) return; // don't save any papers on Hard mode
+
+        // update all the manager variables
     }
 }

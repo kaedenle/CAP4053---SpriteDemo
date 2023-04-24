@@ -101,6 +101,7 @@ public class OutlineObject : MonoBehaviour
 
     public float GetThickness()
     {
+        if((sprite_renderer = GetComponent<SpriteRenderer>()) == null) return 0;
         // sprite size
         Vector2 sprite_size = GetComponent<SpriteRenderer>().sprite.rect.size;
         // local size
