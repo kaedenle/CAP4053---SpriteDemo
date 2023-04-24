@@ -3025,7 +3025,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -14.472242, y: -2.9659142}
+  m_Offset: {x: -15.274529, y: -2.9659142}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3036,7 +3036,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 46.151592, y: 6.5785227}
+  m_Size: {x: 44.54702, y: 6.5785227}
   m_EdgeRadius: 0
 --- !u!114 &54190598
 MonoBehaviour:
@@ -3054,10 +3054,10 @@ MonoBehaviour:
   - {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
   SpawnRadius: 0
   minEnemies: 0
-  maxEnemies: 2
+  maxEnemies: 1
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  RespawnOnLoad: 1
+  RespawnOnLoad: 0
   OriginalPos: 0
   lookingBehavior: 0
   probOfLookDirection: 75
@@ -6207,10 +6207,10 @@ MonoBehaviour:
   - {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
   SpawnRadius: 0
   minEnemies: 0
-  maxEnemies: 2
+  maxEnemies: 1
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  RespawnOnLoad: 1
+  RespawnOnLoad: 0
   OriginalPos: 0
   lookingBehavior: 1
   probOfLookDirection: 10
@@ -12329,7 +12329,7 @@ MonoBehaviour:
   maxEnemies: 1
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  RespawnOnLoad: 1
+  RespawnOnLoad: 0
   OriginalPos: 0
   lookingBehavior: 1
   probOfLookDirection: 10
@@ -21630,7 +21630,7 @@ MonoBehaviour:
   maxEnemies: 1
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  RespawnOnLoad: 1
+  RespawnOnLoad: 0
   OriginalPos: 0
   lookingBehavior: 1
   probOfLookDirection: 100
@@ -26528,10 +26528,10 @@ MonoBehaviour:
   - {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
   SpawnRadius: 0
   minEnemies: 0
-  maxEnemies: 2
+  maxEnemies: 1
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  RespawnOnLoad: 1
+  RespawnOnLoad: 0
   OriginalPos: 0
   lookingBehavior: 1
   probOfLookDirection: 10
@@ -32575,10 +32575,10 @@ MonoBehaviour:
   - {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
   SpawnRadius: 0
   minEnemies: 0
-  maxEnemies: 2
+  maxEnemies: 1
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  RespawnOnLoad: 1
+  RespawnOnLoad: 0
   OriginalPos: 0
   lookingBehavior: 1
   probOfLookDirection: 90
@@ -40240,6 +40240,88 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &935875244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 935875245}
+  - component: {fileID: 935875247}
+  - component: {fileID: 935875246}
+  m_Layer: 0
+  m_Name: Spawner (14)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &935875245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935875244}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22.7, y: -0.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1434075509}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &935875246
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935875244}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -53.75949, y: -23.949726}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.0073395, y: 5.6671696}
+  m_EdgeRadius: 0
+--- !u!114 &935875247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935875244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc48eec4d1c47d44e91896ca5df9e23d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy:
+  - {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
+  SpawnRadius: 0
+  minEnemies: 1
+  maxEnemies: 1
+  minPlayerYDistPercent: 25
+  minPlayerXDistPercent: 25
+  RespawnOnLoad: 0
+  OriginalPos: 0
+  lookingBehavior: 0
+  probOfLookDirection: 50
 --- !u!1 &937803281
 GameObject:
   m_ObjectHideFlags: 0
@@ -42453,7 +42535,7 @@ MonoBehaviour:
   maxEnemies: 1
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  RespawnOnLoad: 1
+  RespawnOnLoad: 0
   OriginalPos: 0
   lookingBehavior: 1
   probOfLookDirection: 90
@@ -47109,7 +47191,7 @@ MonoBehaviour:
   maxEnemies: 1
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  RespawnOnLoad: 1
+  RespawnOnLoad: 0
   OriginalPos: 0
   lookingBehavior: 1
   probOfLookDirection: 0
@@ -51744,7 +51826,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1203917553
 Transform:
   m_ObjectHideFlags: 0
@@ -51805,7 +51887,7 @@ MonoBehaviour:
   maxEnemies: 1
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  RespawnOnLoad: 1
+  RespawnOnLoad: 0
   OriginalPos: 0
   lookingBehavior: 1
   probOfLookDirection: 100
@@ -54124,7 +54206,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 4.8133497, y: -14.406522}
+  m_Offset: {x: 4.8133497, y: -9.574838}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -54135,7 +54217,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10.456907, y: 29.721228}
+  m_Size: {x: 10.456907, y: 20.05786}
   m_EdgeRadius: 0
 --- !u!114 &1243463801
 MonoBehaviour:
@@ -54153,13 +54235,13 @@ MonoBehaviour:
   - {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
   SpawnRadius: 0
   minEnemies: 0
-  maxEnemies: 6
+  maxEnemies: 2
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  RespawnOnLoad: 1
+  RespawnOnLoad: 0
   OriginalPos: 0
   lookingBehavior: 1
-  probOfLookDirection: 0
+  probOfLookDirection: 25
 --- !u!1 &1247076260
 GameObject:
   m_ObjectHideFlags: 0
@@ -63841,6 +63923,7 @@ Transform:
   - {fileID: 54190596}
   - {fileID: 309647743}
   - {fileID: 998467844}
+  - {fileID: 935875245}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -71179,7 +71262,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -25.324474, y: -25.454876}
+  m_Offset: {x: -23.734303, y: -25.454876}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -71190,7 +71273,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 67.85606, y: 7.6245174}
+  m_Size: {x: 47.306107, y: 7.6245193}
   m_EdgeRadius: 0
 --- !u!114 &1593702497
 MonoBehaviour:
@@ -71208,10 +71291,10 @@ MonoBehaviour:
   - {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
   SpawnRadius: 0
   minEnemies: 0
-  maxEnemies: 5
+  maxEnemies: 2
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  RespawnOnLoad: 1
+  RespawnOnLoad: 0
   OriginalPos: 0
   lookingBehavior: 0
   probOfLookDirection: 65
@@ -74684,10 +74767,10 @@ MonoBehaviour:
   - {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
   SpawnRadius: 0
   minEnemies: 0
-  maxEnemies: 2
+  maxEnemies: 1
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  RespawnOnLoad: 1
+  RespawnOnLoad: 0
   OriginalPos: 0
   lookingBehavior: 1
   probOfLookDirection: 90
@@ -81622,7 +81705,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1815657181
 Transform:
   m_ObjectHideFlags: 0
@@ -81683,7 +81766,7 @@ MonoBehaviour:
   maxEnemies: 1
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  RespawnOnLoad: 1
+  RespawnOnLoad: 0
   OriginalPos: 0
   lookingBehavior: 1
   probOfLookDirection: 0
@@ -83449,6 +83532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e26ec6b487a0662428ff3a28bdaabe89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Music: {fileID: 0}
 --- !u!114 &1841726229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95452,7 +95536,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 4.813349, y: -14.406522}
+  m_Offset: {x: 4.813349, y: -19.177046}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -95463,7 +95547,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.58041, y: 29.721228}
+  m_Size: {x: 7.58041, y: 20.18018}
   m_EdgeRadius: 0
 --- !u!114 &2123778550
 MonoBehaviour:
@@ -95481,13 +95565,13 @@ MonoBehaviour:
   - {fileID: 6105205938035449267, guid: 2629e4cba3404b24f8c556e5dfef251d, type: 3}
   SpawnRadius: 0
   minEnemies: 0
-  maxEnemies: 4
+  maxEnemies: 3
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
-  RespawnOnLoad: 1
+  RespawnOnLoad: 0
   OriginalPos: 0
   lookingBehavior: 1
-  probOfLookDirection: 100
+  probOfLookDirection: 75
 --- !u!1 &2124308530
 GameObject:
   m_ObjectHideFlags: 0
