@@ -107,12 +107,10 @@ public class GameData : MonoBehaviour
             }
         }
 
-
         FileStream file = File.Create(saveFilePath); 
         formatter.Serialize(file, data);
 
         file.Close();
-        // if( GeneralFunctions.IsDebug() ) Debug.Log("Game data saved!");
         if(GeneralFunctions.IsDebug())
             PrintSaveData("Save Data");
     }
@@ -243,7 +241,7 @@ public class GameData : MonoBehaviour
     public void IncrementLevel()
     {
         data.level ++;
-        Debug.Log("level is now " + data.level);
+        if(GeneralFunctions.IsDebug()) Debug.Log("level is now " + data.level);
     }
 
     public void MindLoad(ScenesManager.AllScenes scene)
@@ -318,7 +316,6 @@ public class GameData : MonoBehaviour
     public void UpdateMaze(Maze m)
     {
         data.log.maze = m;
-        Debug.Log("updated maze");
         SaveCurrentData(false);
     }
 

@@ -71,7 +71,7 @@ public class MazeManager : MonoBehaviour
             }
         }
 
-        Debug.Log("in maze room " + GetCurrentRoom() + " is on path: " + GetCurrentRoom().IsOnPath(0) + " which is terminal: " + GetCurrentRoom().IsTerminal() + " and is special: " + GetCurrentRoom().IsSpecial());
+        // Debug.Log("in maze room " + GetCurrentRoom() + " is on path: " + GetCurrentRoom().IsOnPath(0) + " which is terminal: " + GetCurrentRoom().IsTerminal() + " and is special: " + GetCurrentRoom().IsSpecial());
         SetupRoom(GetCurrentRoom());
     }
 
@@ -235,6 +235,7 @@ public class MazeManager : MonoBehaviour
             // SetupRoom(maze.maze[i], true);
             maze.SetupRoom(maze.maze[i], rand, decorations.Length, averageNumberOfDecorations / (double) decorations.Length);
         
+        GameData.GetInstance().UpdateMaze(maze);
         return maze;
     }
 
