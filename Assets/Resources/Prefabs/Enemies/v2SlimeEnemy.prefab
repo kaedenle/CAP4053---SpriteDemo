@@ -454,8 +454,8 @@ MonoBehaviour:
   movementConfiguration:
     speed: 6
     relativeSpeed: 0.85
-    minimumDistance: 1.5
-    attackStartDelay: 0.3
+    minimumDistance: 1
+    attackStartDelay: 0.25
     attackChargeTime: 0.5
     smallFOV:
       radius: 9.5
@@ -485,8 +485,8 @@ MonoBehaviour:
   enemyStats:
     slowReactionTime: 0.75
     fastReactionTime: 0.25
-    memory_time: 5
-  expressionOffset: {x: 0.3, y: 2, z: 0}
+    memory_time: 7
+  expressionOffset: {x: 0.3, y: 2.3, z: 0}
 --- !u!114 &5225552735611010838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -549,6 +549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBGM: 0
+  giveUpControl: 0
 --- !u!82 &5632240132639397900
 AudioSource:
   m_ObjectHideFlags: 0
