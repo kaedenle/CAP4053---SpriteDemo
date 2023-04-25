@@ -233,7 +233,6 @@ public class MovementController : MonoBehaviour, IScriptable
     {
         flipLook = !flipLook;
         transform.localScale = new Vector3(- transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        Debug.Log("TurnAround()");
     }
 
     /*

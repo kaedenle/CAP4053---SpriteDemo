@@ -10,6 +10,7 @@ public class MenuManager : MonoBehaviour
     public TMP_ColorGradient disabledColor;
 
     public GameObject levelSelectButton;
+    public GameObject creditsButton;
     public GameObject mainPage;
     public GameObject mainTheme;
 
@@ -60,6 +61,11 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void RollCredits()
+    {
+        ScenesManager.LoadScene(ScenesManager.AllScenes.Credits);
+    }
+
     public void DisableButton(GameObject obj)
     {
         Button button = obj.GetComponent<Button>();
@@ -84,6 +90,9 @@ public class MenuManager : MonoBehaviour
     {
         if(LoadButton != null && !GameData.GetInstance().HasLoadData())
             DisableButton(LoadButton);
+
+        if(GameData.GetInstance().CompletedGame())
+            creditsButton.SetActive(false);
     }
 
     /*
