@@ -2182,7 +2182,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.39623654, y: -0.48946834}
+  m_Offset: {x: -0.0540179, y: 0.02699995}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2193,7 +2193,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.4591396, y: 6.927261}
+  m_Size: {x: 1.5586307, y: 1.2328663}
   m_EdgeRadius: 0
 --- !u!1 &393597796
 GameObject:
@@ -4662,7 +4662,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00000059604645, y: 0.26992154}
+  m_Offset: {x: -0.026486158, y: 0.49504876}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4673,7 +4673,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.59806, y: 3.7268233}
+  m_Size: {x: 2.0153775, y: 3.276569}
   m_EdgeRadius: 0
 --- !u!212 &785268576
 SpriteRenderer:
@@ -4911,7 +4911,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.10796428, y: -0.7865975}
+  m_Offset: {x: 0.6733594, y: -0.7865975}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4922,7 +4922,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.5372958, y: 1.3919959}
+  m_Size: {x: 4.252404, y: 1.3919959}
   m_EdgeRadius: 0
 --- !u!114 &798243757
 MonoBehaviour:
@@ -4960,9 +4960,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.6581197, y: -0.8205123}
+  m_Offset: {x: -1.3402932, y: -0.8205123}
   serializedVersion: 2
-  m_Radius: 1.4358978
+  m_Radius: 1.7537243
 --- !u!1 &802767834
 GameObject:
   m_ObjectHideFlags: 0
@@ -5061,7 +5061,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.14600194, y: 0}
+  m_Offset: {x: -0.0923686, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5072,7 +5072,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.8920038, y: 3.5333333}
+  m_Size: {x: 2.3687449, y: 3.5333333}
   m_EdgeRadius: 0
 --- !u!1001 &803207711
 PrefabInstance:
@@ -6981,6 +6981,7 @@ GameObject:
   - component: {fileID: 1262391797}
   - component: {fileID: 1262391796}
   - component: {fileID: 1262391798}
+  - component: {fileID: 1262391799}
   m_Layer: 0
   m_Name: Table
   m_TagString: Untagged
@@ -7013,13 +7014,13 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262391794}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.008787423, y: 0.28119463}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -7030,7 +7031,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 1.6666666}
+  m_Size: {x: 1.9824252, y: 1.0691278}
   m_EdgeRadius: 0
 --- !u!212 &1262391797
 SpriteRenderer:
@@ -7099,6 +7100,22 @@ MonoBehaviour:
   TakeParent: 0
   deltaDown: -100
   dynamic: 0
+--- !u!70 &1262391799
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262391794}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0340207, y: 0.19562072}
+  m_Size: {x: 2.046086, y: 1.1785519}
+  m_Direction: 1
 --- !u!1 &1264927451
 GameObject:
   m_ObjectHideFlags: 0
@@ -7729,7 +7746,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.09407407}
+  m_Offset: {x: 0, y: 0.36484554}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -7740,7 +7757,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.266667, y: 2.0785184}
+  m_Size: {x: 4.266667, y: 1.5369754}
   m_EdgeRadius: 0
 --- !u!212 &1389849509
 SpriteRenderer:
