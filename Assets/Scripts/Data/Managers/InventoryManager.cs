@@ -41,6 +41,7 @@ public class InventoryManager : MonoBehaviour
         City_Paper7,
         City_Paper8,
         Bedroom_Revealed_Safe,
+        Talked_To_Ghost_First_Time,
         City_USB,
         City_Coin,
         City_Cabinet_USB,
