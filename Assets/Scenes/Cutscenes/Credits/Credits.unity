@@ -172,6 +172,25 @@ MonoBehaviour:
   levelSelectButton: {fileID: 0}
   mainPage: {fileID: 0}
   mainTheme: {fileID: 0}
+--- !u!1 &84640362 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4451141590040567097, guid: 96cc40fd6f2c5aa449733efc14fd3fd8, type: 3}
+  m_PrefabInstance: {fileID: 288354979}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &84640363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84640362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d03fed1a8caf2504cac254a60a2f405b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBGM: 1
+  giveUpControl: 0
 --- !u!1 &220933011
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,6 +235,83 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e067bf5ce8c0e2c40a14056c3b5122da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &288354979
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1517836143966934112, guid: 96cc40fd6f2c5aa449733efc14fd3fd8, type: 3}
+      propertyPath: mp.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1517836143966934112, guid: 96cc40fd6f2c5aa449733efc14fd3fd8, type: 3}
+      propertyPath: mp.Array.data[0].music
+      value: 
+      objectReference: {fileID: 8300000, guid: d3324b38c688f6745b4da8a204e094b7, type: 3}
+    - target: {fileID: 1517836143966934112, guid: 96cc40fd6f2c5aa449733efc14fd3fd8, type: 3}
+      propertyPath: mp.Array.data[0].scene
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1517836143966934112, guid: 96cc40fd6f2c5aa449733efc14fd3fd8, type: 3}
+      propertyPath: mp.Array.data[1].music
+      value: 
+      objectReference: {fileID: 8300000, guid: 657123e39bab15a47a22566c88250ba2, type: 3}
+    - target: {fileID: 1517836143966934112, guid: 96cc40fd6f2c5aa449733efc14fd3fd8, type: 3}
+      propertyPath: mp.Array.data[1].scene
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451141590040567097, guid: 96cc40fd6f2c5aa449733efc14fd3fd8, type: 3}
+      propertyPath: m_Name
+      value: BGMMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 7692206545127902943, guid: 96cc40fd6f2c5aa449733efc14fd3fd8, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7692206545127902943, guid: 96cc40fd6f2c5aa449733efc14fd3fd8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 7692206545127902943, guid: 96cc40fd6f2c5aa449733efc14fd3fd8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7692206545127902943, guid: 96cc40fd6f2c5aa449733efc14fd3fd8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.05329299
+      objectReference: {fileID: 0}
+    - target: {fileID: 7692206545127902943, guid: 96cc40fd6f2c5aa449733efc14fd3fd8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7692206545127902943, guid: 96cc40fd6f2c5aa449733efc14fd3fd8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7692206545127902943, guid: 96cc40fd6f2c5aa449733efc14fd3fd8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7692206545127902943, guid: 96cc40fd6f2c5aa449733efc14fd3fd8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7692206545127902943, guid: 96cc40fd6f2c5aa449733efc14fd3fd8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7692206545127902943, guid: 96cc40fd6f2c5aa449733efc14fd3fd8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7692206545127902943, guid: 96cc40fd6f2c5aa449733efc14fd3fd8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 96cc40fd6f2c5aa449733efc14fd3fd8, type: 3}
 --- !u!1 &388864348
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,7 +452,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4261412863
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -517,8 +613,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3966b93995bcff48a7e663f34d20f81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeTime: 40
-  sceneName: Central Hub
+  changeTime: 51
+  sceneName: Menu
 --- !u!4 &660677033
 Transform:
   m_ObjectHideFlags: 0
@@ -809,7 +905,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3

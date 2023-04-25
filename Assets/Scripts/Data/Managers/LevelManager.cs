@@ -95,7 +95,7 @@ public class LevelManager : MonoBehaviour
     public static void EndGame()
     {
         GameData.GetInstance().ResetData();
-        ScenesManager.LoadScene(ScenesManager.AllScenes.Menu);
+        ScenesManager.LoadScene(ScenesManager.AllScenes.Credits);
     }
 
     public static bool IsEndOfLevel()

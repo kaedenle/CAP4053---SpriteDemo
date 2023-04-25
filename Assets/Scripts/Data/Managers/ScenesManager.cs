@@ -48,7 +48,8 @@ public class ScenesManager : MonoBehaviour
         Classroom,
         AntonioHome,
         TrainStation,
-        DormRoom
+        DormRoom,
+        Credits
     }
 
     // loads a scene
