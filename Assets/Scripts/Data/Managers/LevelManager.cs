@@ -94,7 +94,12 @@ public class LevelManager : MonoBehaviour
 
     public static void EndGame()
     {
+        // reset game data
         GameData.GetInstance().ResetData();
+        GameData.GetInstance().SetCompletion();
+        GameData.GetInstance().SaveCurrentData(false);
+
+        // go to credits
         ScenesManager.LoadScene(ScenesManager.AllScenes.Credits);
     }
 

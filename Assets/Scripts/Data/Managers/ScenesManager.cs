@@ -103,12 +103,12 @@ public class ScenesManager : MonoBehaviour
         // if you've inialized the game outside of the menu
         if(firstSceneDebug && _currentScene != AllScenes.Menu)
         {
-            GameData.Difficulty dif = GameData.GetInstance().HasLoadData() ? GameData.GetInstance().GetDifficulty() : GameData.Difficulty.Hard;
+            // GameData.Difficulty dif = GameData.GetInstance().HasLoadData() ? GameData.GetInstance().GetDifficulty() : GameData.Difficulty.Hard;
             
             GameData data = GameData.GetInstance();
             data.ResetData();
             
-            data.SetDifficulty(dif); // default to previous difficulty settings
+            // data.SetDifficulty(dif); // default to previous difficulty settings
             data.SetScene(_currentScene); // set current scene as default save scene
 
             if(_currentScene == AllScenes.CentralHub)
@@ -123,7 +123,7 @@ public class ScenesManager : MonoBehaviour
 
             else
             {
-                Debug.LogWarning("Detected scene outside of game");
+                Debug.LogError("Detected scene outside of game");
                 data.SetLevel( 10 );
             }
             

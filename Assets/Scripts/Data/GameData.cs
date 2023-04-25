@@ -118,7 +118,15 @@ public class GameData : MonoBehaviour
     // doesn't actually save data
     public void ResetData()
     {
+        // keep the difficulty of the game and completion status across data resets
+        int difficulty = (data == null ? 1 : data.difficulty);
+        bool complete = (data == null ? false : data.completion);
+
         data = new Data();
+
+        // set persistent fields
+        data.difficulty = difficulty;
+        data.completion = complete;
     }
 
     public void LoadData()
@@ -264,6 +272,11 @@ public class GameData : MonoBehaviour
         data.difficulty = (int) difficulty;
     }
 
+    public void SetCompletion()
+    {
+        data.completion = true;
+    }
+
     public int GetLevel()
     {
         return data.level;
@@ -313,6 +326,7 @@ public class GameData : MonoBehaviour
         return new List<InventoryManager.AllItems>( data.log.usedInventory );
     }
 
+    /* Manually Updating the GameData */
     public void UpdateMaze(Maze m)
     {
         data.log.maze = m;
@@ -334,6 +348,7 @@ public class GameData : MonoBehaviour
     [System.Serializable]
     class Data
     {
+        public bool completion;
         public ScenesManager.AllScenes scene;
         public int level;
         public int difficulty;
@@ -353,6 +368,7 @@ public class GameData : MonoBehaviour
             playVals = false;
             log = new LogData();
             difficulty = (int) Difficulty.Hard;
+            completion = false;
         }
 
     }
@@ -382,6 +398,7 @@ public class GameData : MonoBehaviour
         }
     }
 
+    // print the save data (used for debugging)
     public void PrintSaveData(string label)
     {
         Debug.Log("==============" + label + "============");
@@ -404,6 +421,7 @@ public class GameData : MonoBehaviour
         Debug.Log("==================================");
     }
 
+    // Game Difficulty enum
     public enum Difficulty
     {
         Easy,
