@@ -11,6 +11,7 @@ public class SpawnData
     public SpawnData() {}
     public SpawnData(SpawnData cpy) 
     {
+        if(cpy == null) return;
         activeEnemies = new Dictionary<string, List<Base>>(cpy.activeEnemies);
         killed = cpy.killed.Clone() as int[];
     }
