@@ -347,7 +347,8 @@ public class EntityManager : MonoBehaviour
             spawner.TriggerSave();
 
         // save player direction
-        playerFlipped = GeneralFunctions.GetPlayer().GetComponent<Player_Movement>().flipped;
+        if(GeneralFunctions.GetPlayer() != null)
+            playerFlipped = GeneralFunctions.GetPlayer().GetComponent<Player_Movement>().flipped;
     }
 
     public static void IncrementKillCount()
