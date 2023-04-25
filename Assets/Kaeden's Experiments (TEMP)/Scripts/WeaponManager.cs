@@ -60,8 +60,16 @@ public class WeaponManager : MonoBehaviour, IScriptable
             counter++;
         }
         WeaponLocks();
+        InventoryManager.AddedItem += CheckWeapons;
     }
-    
+    private void OnDisable()
+    {
+        InventoryManager.AddedItem -= CheckWeapons;
+    }
+    public void CheckWeapons(object o, InventoryManager.AllItems e)
+    {
+        WeaponLocks();
+    }
     //scripts to be disabled/enabled when attacking
     public void ScriptHandler(bool flag)
     {
@@ -81,16 +89,23 @@ public class WeaponManager : MonoBehaviour, IScriptable
     //hard coded weapon access based on level and inventory access
     public void WeaponLocks()
     {
+        bool hasKnife = true;
+        int additive = 0;
+        if (hasKnife) additive = 8;
         int level = GameData.GetInstance().GetLevel();
         if (weaponDebug) level = debuglevel;
-        if (level == 0) Calculate(1);
-        else if (level == 1 || level == 2)
+        if (level == 1)
         {
-            if (InventoryManager.HasItem(InventoryManager.AllItems.City_Gun)) Calculate(7);
+            if (InventoryManager.HasItem(InventoryManager.AllItems.CastleDagger)) Calculate(3 + additive);
             else Calculate(3);
+        }  
+        else if (level == 2)
+        {
+            if (InventoryManager.HasItem(InventoryManager.AllItems.City_Gun)) Calculate(7 + additive);
+            else Calculate(3 + additive);
         }
         else if(level == 10) Calculate(15);
-        else Calculate(7);
+        else Calculate(7 + additive);
     }
     public void WeaponLocks(int number)
     {

@@ -19,6 +19,9 @@ public class FollowWeaponUI : MonoBehaviour
         if(!DontTakePos)
             myRectTransform.position = new Vector3(target.transform.position.x + offset.x, target.transform.position.y + offset.y, target.transform.position.z + offset.z);
         myRectTransform.localScale = new Vector3(myRectTransform.localScale.x / (1.2f / target.transform.localScale.x), myRectTransform.localScale.y / (1.2f / target.transform.localScale.y), myRectTransform.localScale.z);
+        CameraController control = Camera.main.gameObject.transform.parent.GetComponent<CameraController>();
+        FollowX = !control.followPlayerX;
+        FollowY = !control.followPlayerY;
     }
     // Update is called once per frame
     void LateUpdate()

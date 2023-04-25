@@ -49,7 +49,7 @@ public class WarpManager : MonoBehaviour
             if (EnemyList[SceneManager.GetActiveScene().name].ContainsKey(myScript.SpawnID))
             {
                 HealthTracker ht = child.gameObject.GetComponent<HealthTracker>();
-                if (ht != null) ht.bar.SetActive(false);
+                if (ht != null) ht.bar.SetActive(true);
                 //child.gameObject.SetActive(false);
                 SetValues(child.gameObject, EnemyList[SceneManager.GetActiveScene().name][myScript.SpawnID]);
                 child.GetComponent<NavMeshAgent>().isStopped = true;
