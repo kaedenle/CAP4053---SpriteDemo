@@ -122,11 +122,6 @@ public class ScenesManager : MonoBehaviour
         firstSceneDebug = false;
     }
 
-    void Start()
-    {
-        ignorePreviousScene = false;
-    }
-
     /*
     ============= Debug Stuff =============
     */
