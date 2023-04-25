@@ -193,6 +193,14 @@ public class LevelManager : MonoBehaviour
         GameData.GetInstance().SaveCurrentData(false);
     }
 
+    public static void CastlePaperSave(InventoryManager.AllItems letter)
+    {
+        if(GameData.GetInstance().GetDifficulty() == GameData.Difficulty.Hard) return; // don't save papers on Hard mode
+        
+        GameData.GetInstance().AddSingleItem(letter);
+        GameData.GetInstance().SaveCurrentData(false);
+    }
+
     /*
     Non Static Methods
     */
