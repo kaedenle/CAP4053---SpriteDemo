@@ -61,8 +61,6 @@ public class TutorialCutsceneManager : MonoBehaviour
     {
         player = GameObject.Find("Player");
         am = player.GetComponent<AttackManager>();
-        am.wpnList.weaponlist[1].active = false;
-        am.wpnList.weaponlist[2].active = false;
         above = PlayerMetricsManager.GetMetricInt("equip");
         dummy = dummyObject.GetComponent<DummyUnique>();
         subject = GameObject.Find("Conscious");

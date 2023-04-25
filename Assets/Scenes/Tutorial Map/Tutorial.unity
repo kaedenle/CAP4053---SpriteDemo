@@ -818,6 +818,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6601397740101935169, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7909459233713997381, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -829,6 +833,10 @@ PrefabInstance:
     - target: {fileID: 8171216129762620283, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8284044330666096526, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8359617988300844506, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
       propertyPath: m_IsActive
@@ -2685,7 +2693,7 @@ MonoBehaviour:
   - {fileID: 1225360121}
   dialougeList: []
   dummyObject: {fileID: 533731719}
-  Restart: {fileID: 1892757600}
+  Restart: {fileID: 0}
 --- !u!1 &914568782
 GameObject:
   m_ObjectHideFlags: 0
@@ -4605,7 +4613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  followPlayerX: 1
+  followPlayerX: 0
   followPlayerY: 0
   generateBoundary: 0
   forceAspectRatio: 1
@@ -5153,17 +5161,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 35.619747, y: 0.52090216}
   m_EdgeRadius: 0
---- !u!114 &1892757600 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3774541080673173229, guid: a462bf7bb8724a848bb791bcc376594d, type: 3}
-  m_PrefabInstance: {fileID: 381906358}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1899075339
 GameObject:
   m_ObjectHideFlags: 0

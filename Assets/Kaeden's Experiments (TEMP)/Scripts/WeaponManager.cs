@@ -26,6 +26,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
     public float stop_sign_speed;
     public bool weaponDebug;
     public int debuglevel;
+    public bool EnableDagger;
 
     private bool prevFliped = false;
 
@@ -89,12 +90,15 @@ public class WeaponManager : MonoBehaviour, IScriptable
     //hard coded weapon access based on level and inventory access
     public void WeaponLocks()
     {
-        bool hasKnife = true;
         int additive = 0;
-        if (hasKnife) additive = 8;
+        if (EnableDagger) additive = 8;
         int level = GameData.GetInstance().GetLevel();
         if (weaponDebug) level = debuglevel;
-        if (level == 1)
+        if(level == 0)
+        {
+            Calculate(1);
+        }
+        else if (level == 1)
         {
             if (InventoryManager.HasItem(InventoryManager.AllItems.CastleDagger)) Calculate(3 + additive);
             else Calculate(3);
