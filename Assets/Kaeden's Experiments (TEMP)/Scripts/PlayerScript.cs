@@ -23,6 +23,7 @@ public class PlayerScript : MonoBehaviour, IUnique
     //Projectile Variables
     public int MaxAmmo;
     public GameObject bullet;
+    public GameObject knife;
     private int Ammo;
 
     //cancel: "did player press?"
@@ -93,6 +94,17 @@ public class PlayerScript : MonoBehaviour, IUnique
             cancel = false;
         }
         //animator.SetFloat("attack", 0);
+    }
+    public void KnifeThrow()
+    {
+        int turn = animator.GetBool("flipped") ? 1 : -1;
+        GameObject proj = Instantiate(knife, transform.Find("Right Arm").Find("On-Hand").transform.position - new Vector3((-1 * turn), 0, 0), Quaternion.identity);
+        Bullet bulScript = proj?.GetComponent<Bullet>();
+        if (bulScript != null)
+        {
+            proj.GetComponent<AttackManager>().ProjectileOwner = gameObject;
+            bulScript.InitBullet(gameObject);
+        }
     }
     public void Shoot()
     {
