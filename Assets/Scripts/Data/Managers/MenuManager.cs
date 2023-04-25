@@ -11,21 +11,48 @@ public class MenuManager : MonoBehaviour
 
     public GameObject levelSelectButton;
     public GameObject creditsButton;
+    public GameObject areYouSurePopup;
     public GameObject mainPage;
     public GameObject mainTheme;
+
+    private GameData.Difficulty chosen_difficulty;
+    private int chosen_level;
+    ScenesManager.AllScenes chosen_scene;
 
     // button behavior for New Game
     public void NewGame()
     {
-        LevelManager.FullReset();
-        GameData.GetInstance().ResetData();
-        GameData.GetInstance().SetScene(ScenesManager.AllScenes.StartCutScene);
-        // ScenesManager.LoadScene( ScenesManager.AllScenes.StartCutScene );
+        chosen_level = 0;
+        chosen_scene = ScenesManager.AllScenes.StartCutScene;
     }
 
     public void SelectDifficulty(int difficulty)
     {
-        GameData.GetInstance().SetDifficulty((GameData.Difficulty) difficulty);
+        chosen_difficulty = (GameData.Difficulty) difficulty;
+
+        if(GameData.GetInstance().HasLoadData())
+        {
+            areYouSurePopup.SetActive(true);
+        }
+
+        else
+        {
+            ResetAndStart();
+        }
+    }
+
+    // actually start the game
+    public void ResetAndStart()
+    {
+        // reset all level variables
+        LevelManager.FullReset();
+        GameData data = GameData.GetInstance();
+        data.ResetData();
+
+        data.SetDifficulty(chosen_difficulty);
+        data.SetLevel(chosen_level);
+        data.SetScene(chosen_scene);
+
         StartGame();
     }
 
@@ -43,9 +70,6 @@ public class MenuManager : MonoBehaviour
     // starts the game from the menu
     public void StartGame()
     {
-        // reset all level variables
-        LevelManager.FullReset();
-
         // stop the music
         if(mainTheme != null)
             mainTheme.GetComponent<AudioSource>().Stop();
@@ -101,12 +125,13 @@ public class MenuManager : MonoBehaviour
 
     public void LevelSelectButton(int level)
     {
-        GameData.GetInstance().ResetData();
-        LevelManager.FullReset();
-        GameData.GetInstance().SetLevel(level);
-        GameData.GetInstance().SetScene(ScenesManager.AllScenes.CentralHub);
-        // GameData.GetInstance().SaveAfterSceneChange();
-        // ScenesManager.LoadScene();
+        // GameData.GetInstance().ResetData();
+        // LevelManager.FullReset();
+        // GameData.GetInstance().SetLevel(level);
+        // GameData.GetInstance().SetScene(ScenesManager.AllScenes.CentralHub);
+
+        chosen_level = level;
+        chosen_scene = ScenesManager.AllScenes.CentralHub;
     }
 
     private string secretKey = "DEBUG";

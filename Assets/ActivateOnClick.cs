@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ActivateOnClick : MonoBehaviour
 {
-    public GameObject LoadButton;
+    // public GameObject LoadButton;
     public GameObject DifficultySelect;
     public MenuManager CreateNewGame;
     // Update is called once per frame
     public void Activate()
     {
-        if(LoadButton != null && GameData.GetInstance().HasLoadData())
+        if(GameData.GetInstance().HasLoadData())
             this.gameObject.SetActive(true);
         else
         {
