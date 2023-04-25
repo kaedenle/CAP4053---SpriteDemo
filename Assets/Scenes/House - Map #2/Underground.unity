@@ -4983,7 +4983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35814f75618a8e34dbe3ddbd54b4d35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: {fileID: 0}
+  outlineThickness: {fileID: 11400000, guid: 90fa4f870a5754c479683109b09b2215, type: 2}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -6418,6 +6418,9 @@ MonoBehaviour:
   itemGained: 9
   enables:
   - {fileID: 0}
+  m_MyEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!58 &1391365247
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -8972,6 +8975,9 @@ MonoBehaviour:
   itemGained: 9
   enables:
   - {fileID: 1391365242}
+  m_MyEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!58 &1840357217
 CircleCollider2D:
   m_ObjectHideFlags: 0

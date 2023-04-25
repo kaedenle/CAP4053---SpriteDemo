@@ -408,6 +408,7 @@ public class GameData : MonoBehaviour
     public void PrintSaveData(string label)
     {
         Debug.Log("==============" + label + "============");
+        Debug.Log("Completed Game? " + data.completion);
         Debug.Log("Difficulty: " + ( (GameData.Difficulty ) data.difficulty).ToString());
         Debug.Log("Scene: " + data.scene);
         Debug.Log("level: " + data.level);

@@ -11,6 +11,8 @@ public class LevelManager : MonoBehaviour
     private static ScenesManager.AllScenes _startScene;
     private static SubLevelManager level;
 
+
+    public static bool ignorePreviousScene {get; private set;} = false;
     // bool for the cutscene triggering
     private static bool _levelEnding = false;
 
@@ -42,7 +44,7 @@ public class LevelManager : MonoBehaviour
 
     public void Start()
     {
-        // ResetVariables();
+        ignorePreviousScene = false;
     }
 
     public static void SetLevel(SubLevelManager sublevel, ScenesManager.AllScenes start)
@@ -134,6 +136,8 @@ public class LevelManager : MonoBehaviour
         // reset from player death
         GameData.GetInstance().SaveAfterSceneChange();
 
+        ignorePreviousScene = true;
+
         if (level != null)
             ScenesManager.LoadScene(_startScene);
     }
@@ -141,6 +145,8 @@ public class LevelManager : MonoBehaviour
     public static void CheckpointButton()
     {
         ResetAllVariables();
+        ignorePreviousScene = true;
+
         GameData.GetInstance().RevertAfterDeath();
     }
 

@@ -18,7 +18,7 @@ public class SceneSwitch : MonoBehaviour
         if (other.gameObject.tag != playerTag) return;
         
         // sends the next scene or scenes to ScenesManager to load the next appropriate scene
-        if (demoForks) ScenesManager.LoadSceneChoice(nextScene, nextDemoScene);
-        else ScenesManager.LoadScene(nextScene);
+        // if (demoForks) ScenesManager.LoadSceneChoice(nextScene, nextDemoScene);
+        ScenesManager.LoadScene(nextScene);
     } // should probably throw an exception here if the scene info is not valid
 }
