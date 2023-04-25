@@ -768,7 +768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df03204754864a40909251771f96d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 11400000, guid: 3dc990b18d29c9d47bd3d40deaab6274, type: 2}
+  dialogue: {fileID: 11400000, guid: 1e64c805715a2784cac9c81e222f9757, type: 2}
   pauseWhenTriggered: 1
 --- !u!4 &173592685
 Transform:
@@ -8322,6 +8322,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBGM: 0
   giveUpControl: 0
+--- !u!114 &1628899377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628899357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b151f7d952a223941baf32acced41554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossID: 0
+  enablesOnDeath:
+  - {fileID: 173592683}
 --- !u!1 &1666343002
 GameObject:
   m_ObjectHideFlags: 0
@@ -11297,6 +11312,7 @@ MonoBehaviour:
     speed: 9
     relativeSpeed: 1
     minimumDistance: 1.25
+    attackStartDelay: 0.2
     attackChargeTime: 0
     smallFOV:
       radius: 11
