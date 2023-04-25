@@ -31,7 +31,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
 
     private IDictionary<InputManager.Keys, int> ComboMappings = new Dictionary<InputManager.Keys, int>
     {
-        [InputManager.Keys.Down] = 2,
+        [InputManager.Keys.Down] = 3,
         [InputManager.Keys.Up] = 2,
         [InputManager.Keys.Right] = 0,
         [InputManager.Keys.Left] = 1
@@ -253,26 +253,14 @@ public class WeaponManager : MonoBehaviour, IScriptable
                     //call attack from integer (defined by Attack blend tree in animator)
                     else if (animator.GetFloat("attack") != 0)
                     {
-                        bool dagger = false;
-                        //exception for the dagger
-                        if ((animator.GetFloat("attack") == 7 || animator.GetFloat("attack") == 8) && wpnList.weaponlist[wpnList.index].attack1 == 7)
+                        //keyboard shortcuts for combos
+                        int press = KeyPressed();
+                        if (press != -1 && DisplayedWeapon == wpnList.index && wpnList.weaponlist[press].active && am.HasHitSomething() && ShortCutCombos)
                         {
-                            am.bufferCancel = (int)(animator.GetFloat("attack") + 1);
-                            dagger = true;
+                            wpnList.index = press % spriteList.Length;
                         }
-                        if (!dagger)
-                        {
-                            //keyboard shortcuts for combos
-                            int press = KeyPressed();
-                            if (press != -1 && DisplayedWeapon == wpnList.index && wpnList.weaponlist[press].active && am.CanCancel() && ShortCutCombos)
-                            {
-                                wpnList.index = press % spriteList.Length;
-                            }
-                            BufferWeaponID = wpnList.index;
-                            am.bufferCancel = wpnList.weaponlist[wpnList.index].attack1;
-                        }
-                        
-                        
+                        BufferWeaponID = wpnList.index;
+                        am.bufferCancel = wpnList.weaponlist[wpnList.index].attack1;
                     }   
                     else
                         am.InvokeAttack(wpnList.weaponlist[wpnList.index].attack1);
@@ -286,14 +274,22 @@ public class WeaponManager : MonoBehaviour, IScriptable
                     //call attack from integer (defined by Attack blend tree in animator)
                     if (animator.GetFloat("attack") != 0)
                     {
+                        bool dagger = true;
                         //keyboard shortcuts for combos
                         int press = KeyPressed();
                         if (press != -1 && DisplayedWeapon == wpnList.index && wpnList.weaponlist[press].active && am.CanCancel() && ShortCutCombos)
                         {
                             wpnList.index = press % spriteList.Length;
+                            dagger = false;
                         }
                         BufferWeaponID = wpnList.index;
                         am.bufferCancel = wpnList.weaponlist[wpnList.index].attack2;
+                        //exception for the dagger
+                        if ((animator.GetFloat("attack") == 7 || animator.GetFloat("attack") == 8) && wpnList.weaponlist[wpnList.index].attack2 == 7 && dagger)
+                        {
+                            am.bufferCancel = (int)(animator.GetFloat("attack") + 1);
+
+                        }
                     }
                     else
                         am.InvokeAttack(wpnList.weaponlist[wpnList.index].attack2);

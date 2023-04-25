@@ -238,6 +238,7 @@ public class AttackManager : MonoBehaviour
             
             pwm.SetSprite();
             DestroyPlay();
+            cancellableSet.Clear();
             if (hb != null) hb.InvokeFlash(0.05f, Color.white, true, true, 2, 0.05f);
             //disable gun layer if not cancel into it
             if(wpnList.index != 2)
