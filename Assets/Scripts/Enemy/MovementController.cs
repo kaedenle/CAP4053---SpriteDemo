@@ -44,8 +44,7 @@ public class MovementController : MonoBehaviour, IScriptable
     {
         lastSeen = transform.position; // default last seen is current position
         lastSeenTime = Time.time;
-        flipLook = transform.localScale.x < 0;  // it's looking in the other direction if it starts backwards
-        LookingForDirection();
+        SetupDirection();
         target = GeneralFunctions.GetPlayer().transform;
         hurtbox = gameObject.GetComponent<Hurtbox>();
 
@@ -64,6 +63,12 @@ public class MovementController : MonoBehaviour, IScriptable
         }
         else
             Debug.LogWarning("NavMesh not found");
+    }
+
+    public void SetupDirection()
+    {
+        flipLook = transform.localScale.x < 0;  // it's looking in the other direction if it starts backwards
+        LookingForDirection();
     }
 
     /* 
