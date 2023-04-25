@@ -69,9 +69,11 @@ public class Kaeden_BGMMusic : MonoBehaviour
             playing = src.clip;
             src.Stop();
             src.volume = reciever != null ? reciever.GetVolume() : 0.5f;
-            src.PlayOneShot(playing);
-            src.PlayScheduled(AudioSettings.dspTime + playing.length);
-            
+            if (playing != null)
+            {
+                src.PlayOneShot(playing);
+                src.PlayScheduled(AudioSettings.dspTime + playing.length);
+            }
         }
     }
     public void OnNewSceneLoaded(object o, ScenesManager.AllScenes e)
@@ -85,6 +87,10 @@ public class Kaeden_BGMMusic : MonoBehaviour
             StartCoroutine(fading);
         }
         currentScene = ScenesManager.GetCurrentScene();
+    }
+    public void StopPlay()
+    {
+        src.Stop();
     }
     public void Update()
     {
