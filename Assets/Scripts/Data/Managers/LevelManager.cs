@@ -139,7 +139,6 @@ public class LevelManager : MonoBehaviour
         GameData.GetInstance().RevertAfterDeath();
     }
 
-
     public static void ReloadScene()
     {
         SetRespawn();
@@ -185,14 +184,17 @@ public class LevelManager : MonoBehaviour
         objectState = new Dictionary<string, bool> ( os );
     }
 
-    /*
-    Non Static Methods
-    */
-    public virtual void TriggerReset() { } // used abstractly; kinda sketchy
-    public void PaperSave()
+    public static void CityPaperSave()
     {
         if(GameData.GetInstance().GetDifficulty() == GameData.Difficulty.Hard) return; // don't save any papers on Hard mode
 
         // update all the manager variables
+        GameData.GetInstance().StoreManagerVariables();
+        GameData.GetInstance().SaveCurrentData(false);
     }
+
+    /*
+    Non Static Methods
+    */
+    public virtual void TriggerReset() { } // used abstractly; kinda sketchy
 }
