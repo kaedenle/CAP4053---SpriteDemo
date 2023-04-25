@@ -89,6 +89,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
             if (InventoryManager.HasItem(InventoryManager.AllItems.City_Gun)) Calculate(7);
             else Calculate(3);
         }
+        else if(level == 10) Calculate(15);
         else Calculate(7);
     }
     public void WeaponLocks(int number)
@@ -260,6 +261,11 @@ public class WeaponManager : MonoBehaviour, IScriptable
                         }
                         BufferWeaponID = wpnList.index; 
                         am.bufferCancel = wpnList.weaponlist[wpnList.index].attack1;
+                        //exception for the dagger
+                        if ((animator.GetFloat("attack") == 7 || animator.GetFloat("attack") == 8) && wpnList.weaponlist[wpnList.index].attack1 == 7)
+                        {
+                            am.bufferCancel = (int)(animator.GetFloat("attack") + 1);
+                        }
                     }   
                     else
                         am.InvokeAttack(wpnList.weaponlist[wpnList.index].attack1);
