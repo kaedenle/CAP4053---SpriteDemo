@@ -99,6 +99,7 @@ public class LevelManager : MonoBehaviour
         // reset game data
         GameData.GetInstance().ResetData();
         GameData.GetInstance().SetCompletion();
+        GameData.GetInstance().SetScene(ScenesManager.AllScenes.Menu);
         GameData.GetInstance().SaveCurrentData(false);
 
         // go to credits

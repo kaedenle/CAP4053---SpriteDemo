@@ -446,15 +446,35 @@ public class InputManager : MonoBehaviour
         {KeyCode.Mouse1, "R Click"}
     };
 
+    /* Text Parsing */
+
     public static string GetKeyString(Keys key)
     {
         return validCodeToString[keycodes[key].GetPrimary()];
+    }
+
+    public static string GetSecondaryKeyString(Keys key)
+    {
+        KeyPair pair = keycodes[key];
+
+        if(pair.IsSingle())
+        {
+            Debug.LogError("tried to get nonexistent secondary key string of " + key.ToString());
+            return "";
+        }
+
+        return validCodeToString[pair.GetSecondary()];
     }
 
     public static string GetKeyCodeString(KeyCode code)
     {
         if(!validCodeToString.ContainsKey(code)) return "";
         return validCodeToString[code];
+    }
+
+    public static bool HasSecondary(Keys key)
+    {
+        return !keycodes[key].IsSingle();
     }
 }
 

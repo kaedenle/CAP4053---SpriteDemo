@@ -1114,6 +1114,7 @@ GameObject:
   - component: {fileID: 1938817825535199247}
   - component: {fileID: 5840003571096473531}
   - component: {fileID: 4324000689857650888}
+  - component: {fileID: 8590963796990143934}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1182,17 +1183,27 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Your attacks are bound to "Left Click" and "Right CLick".
+  m_Text: 'Your attacks are bound to %Hit1% and %Hit2%.
 
 
-    You can
-    combo by using specific attacks in quick succession.
+    You can combo by using
+    specific attacks in quick succession.
 
 
-    A combo is executed
-    when the player flashes white. YOur next hit will do 2x damage when you combo.
-
-'
+    A combo is executed when the player
+    flashes white. Your next hit will do 2x damage when you combo.'
+--- !u!114 &8590963796990143934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625101121607250518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7bc752c400825a4ea594d088f47d9ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &663123491056077391
 GameObject:
   m_ObjectHideFlags: 0
@@ -2661,7 +2672,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1276311167116315696
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3249,6 +3260,7 @@ GameObject:
   - component: {fileID: 6867042194408833298}
   - component: {fileID: 7554924634269124293}
   - component: {fileID: 6958202879622569654}
+  - component: {fileID: 5747794784964452427}
   m_Layer: 5
   m_Name: Text Shadow
   m_TagString: Untagged
@@ -3317,17 +3329,29 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Your attacks are bound to "Left Click" and "Right CLick".
+  m_Text: 'Your attacks are bound to %Hit1% and %Hit2%.
 
 
-    You can
-    combo by using specific attacks in quick succession.
+    You can combo by using
+    specific attacks in quick succession.
 
 
-    A combo is executed
-    when the player flashes white. YOur next hit will do 2x damage when you combo.
+    A combo is executed when the player
+    flashes white. Your next hit will do 2x damage when you combo.
 
 '
+--- !u!114 &5747794784964452427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287120305204334428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7bc752c400825a4ea594d088f47d9ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1290977143129248681
 GameObject:
   m_ObjectHideFlags: 0
@@ -8043,12 +8067,12 @@ MonoBehaviour:
   m_Text: 'Welcome to the game!
 
 
-    Beat up enemies and solve puzzles to get to
-    the "mind door".
+    Find the memory doors by fighting through mental
+    immune systems and solving puzzles.
 
 
-    Navigate this menu using "A" and "D", by using the arrows
-    at the bottom corners, or by using the book marks'
+    Navigate this menu using "A" and "D",
+    by using the arrows at the bottom corners, or by using the book marks'
 --- !u!1 &4085276077578885353
 GameObject:
   m_ObjectHideFlags: 0
@@ -9704,7 +9728,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9167964087475882124
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11017,6 +11041,7 @@ GameObject:
   - component: {fileID: 5965975542164284515}
   - component: {fileID: 2190732479077273876}
   - component: {fileID: 2644855254700518622}
+  - component: {fileID: 6291197650182599221}
   m_Layer: 5
   m_Name: Text Shadow
   m_TagString: Untagged
@@ -11085,16 +11110,28 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'To combo between weapons press "space" to your desired weapon then attack
-    while in your initial attack.
+  m_Text: 'To combo between weapons press %SwapOption% to your desired weapon then
+    attack while in your initial attack.
 
 
-    You can also use a combination of your movement
-    keys + attack to combo between weapons. This option can be disabled in the menu.
+    You can also use a combination of
+    your movement keys + attack to combo between weapons. This option can be disabled
+    in the menu.
 
 
-    a
-    list of combos and how to do them are in this book'
+    a list of combos and how to do them are in this book'
+--- !u!114 &6291197650182599221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5506347103578733199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7bc752c400825a4ea594d088f47d9ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5514460739140274872
 GameObject:
   m_ObjectHideFlags: 0
@@ -11311,12 +11348,12 @@ MonoBehaviour:
   m_Text: 'Welcome to the game!
 
 
-    Beat up enemies and solve puzzles to get to
-    the "mind door".
+    Find the memory doors by fighting through mental
+    immune systems and solving puzzles.
 
 
-    Navigate this menu using "A" and "D", by using the arrows
-    at the bottom corners, or by using the book marks'
+    Navigate this menu using "A" and "D",
+    by using the arrows at the bottom corners, or by using the book marks'
 --- !u!1 &5658673654737618187
 GameObject:
   m_ObjectHideFlags: 0
@@ -17631,6 +17668,7 @@ GameObject:
   - component: {fileID: 2327210566222821477}
   - component: {fileID: 7642583261626652482}
   - component: {fileID: 316332823649401855}
+  - component: {fileID: 4373356809121995271}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -17699,16 +17737,28 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'To combo between weapons press "space" to your desired weapon then attack
-    while in your initial attack.
+  m_Text: 'To combo between weapons press %SwapOption% to your desired weapon then
+    attack while in your initial attack.
 
 
-    You can also use a combination of your movement
-    keys + attack to combo between weapons. This option can be disabled in the menu.
+    You can also use a combination of
+    your movement keys + attack to combo between weapons. This option can be disabled
+    in the menu.
 
 
-    a
-    list of combos and how to do them are in this book'
+    a list of combos and how to do them are in this book'
+--- !u!114 &4373356809121995271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8404419214088521294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7bc752c400825a4ea594d088f47d9ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8412612457028846089
 GameObject:
   m_ObjectHideFlags: 0

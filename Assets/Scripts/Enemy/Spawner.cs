@@ -218,6 +218,9 @@ public class Spawner : MonoBehaviour
 
     void SetEnemyDirection(GameObject en)
     {
+        // set initial enemy direction
+        en.GetComponent<MovementController>().SetupDirection();
+
         bool match = Random.Range(0, 99) < probOfLookDirection;
         bool defLeft = (lookingBehavior == LookingBehavior.LookTowardPlayer ? 
                                         en.transform.position.x >= player.transform.position.x :

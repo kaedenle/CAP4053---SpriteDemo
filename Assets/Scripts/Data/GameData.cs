@@ -62,8 +62,8 @@ public class GameData : MonoBehaviour
     {
         if(ScenesManager.GetCurrentScene() == ScenesManager.AllScenes.Menu || (!useCurrentScene && data.scene == ScenesManager.AllScenes.Menu))
         {
-            Debug.LogError("tried to save data while on menu");
-            return;
+            Debug.LogWarning("tried to save data while on menu");
+            if(useCurrentScene) return; // absolutely don't use current scene to save on menu
         }
 
         if(useCurrentScene)
