@@ -100,6 +100,7 @@ public class InventoryManager : MonoBehaviour
             }
 
             if (AddedItem != null) AddedItem(null, item);
+            if(GameData.GetInstance().GetLevel() == (int) HubManager.PhaseTag.Mobster) LevelManager.CityPaperSave(); // save pages
         }
     }
 
