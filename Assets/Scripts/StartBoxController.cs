@@ -21,7 +21,7 @@ public class StartBoxController : MonoBehaviour
 
         // Debug.Log("detected previous scene as " + ScenesManager.GetPreviousScene() + " for StartBoxController");
         // move the player to the location of the attached object iff the previous scene was _prevScene
-        if(ScenesManager.GetPreviousScene() == _prevScene)
+        if(ScenesManager.GetPreviousScene() == _prevScene && !LevelManager.ignorePreviousScene)
         {
             player.transform.position = gameObject.transform.position;
         }

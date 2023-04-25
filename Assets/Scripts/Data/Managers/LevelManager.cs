@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
     private static SubLevelManager level;
 
 
-    private static bool ignorePreviousScene = false;
+    public static bool ignorePreviousScene {get; private set;} = false;
     // bool for the cutscene triggering
     private static bool _levelEnding = false;
 
