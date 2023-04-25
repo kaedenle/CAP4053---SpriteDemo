@@ -19,4 +19,9 @@ public class ActivateOnClick : MonoBehaviour
         }
         
     }
+    
+    public void OnDisable()
+    {
+        gameObject.SetActive(false);
+    }
 }
