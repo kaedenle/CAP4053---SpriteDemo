@@ -46467,6 +46467,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1073623867}
   - component: {fileID: 1073623866}
+  - component: {fileID: 1073623868}
   m_Layer: 0
   m_Name: '-- Startup Dialogue -- '
   m_TagString: Untagged
@@ -46486,7 +46487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df03204754864a40909251771f96d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 0}
+  dialogue: {fileID: 11400000, guid: ec608bbf0ea69b14182aa4cd0ccce63e, type: 2}
   pauseWhenTriggered: 1
 --- !u!4 &1073623867
 Transform:
@@ -46503,6 +46504,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1073623868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073623865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05b0e7b714cee5b4cbd62b7a421da97e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  phase: 1
 --- !u!1 &1079227484
 GameObject:
   m_ObjectHideFlags: 0
