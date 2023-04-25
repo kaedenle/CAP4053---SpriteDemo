@@ -152,7 +152,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8457935506673110612}
   - component: {fileID: 8457935506673110613}
-  - component: {fileID: 8457935506673110614}
   - component: {fileID: 5166899273208246072}
   - component: {fileID: 7754863307800598277}
   - component: {fileID: 7877260786756900870}
@@ -232,37 +231,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8457935506673110614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8457935506673110615}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineThickness: {fileID: 0}
-  pauseOnInteract: 1
-  interactiveText:
-    textID: 
-    loopLast: 1
-  normalAudio: 
-  highlightEnds: 0
-  lockable:
-    isLocked: 0
-    lockedInteractiveText:
-      textID: 
-      loopLast: 1
-    lockedAudio: 
-    requiredItems: 
-    requiredEvents: []
-  playAfterDialogue: 1
-  _itemType: 17
-  repeatable: 1
-  destroyOnInteract: 1
 --- !u!50 &5166899273208246072
 Rigidbody2D:
   serializedVersion: 4
@@ -312,7 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce995ddc7eb7ae44ba3b0b84c5f5fb9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: {fileID: 0}
+  outlineThickness: {fileID: 11400000, guid: 3da923b7d27d1d142a6cedc35c191d35, type: 2}
   pauseOnInteract: 1
   interactiveText:
     textID: 
