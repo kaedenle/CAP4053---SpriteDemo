@@ -287,6 +287,12 @@ public class GameData : MonoBehaviour
         return (Difficulty) data.difficulty;
     }
 
+    public bool CompletedGame()
+    {
+        if(data == null) return false;
+        return data.completion;
+    }
+
     public bool SaveFileExists()
     {
         return File.Exists(Application.persistentDataPath  + "/" + saveFileName);
