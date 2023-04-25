@@ -18,19 +18,30 @@ public class Player_Movement : MonoBehaviour, IScriptable
     GameObject[] objs;
 
     public bool move_flag;
-    public bool flipped;
-    private bool lastFlipped;
+    public bool flipped = false;
+    private bool lastFlipped = false;
     private bool isMoveable = true;
 
     void Start(){
         body = GetComponent<Rigidbody2D>(); 
         sr = GetComponent<SpriteRenderer>();
         objs = GameObject.FindGameObjectsWithTag("Player");
-        flipped = false;
+        // flipped = false;
         move_flag = false;
         MAX_SPEED = speed = GameData.GetConfig().GetPlayerSpeed(); // overriding speed here so that all entities have relative speeds
-        lastFlipped = flipped;
+        // lastFlipped = flipped;
     }
+
+    public void TurnAround()
+    {
+        lastFlipped = flipped = !flipped;
+        foreach (GameObject part in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            SpriteRenderer srtemp = part.GetComponent<SpriteRenderer>();
+            if (srtemp != null) srtemp.flipX = flipped;
+        }
+    }
+
     public Vector3 direction()
     {
         return new Vector3(lastNonZeroX, lastNonZeroY, 0) ; 

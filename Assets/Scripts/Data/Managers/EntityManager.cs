@@ -22,6 +22,8 @@ public class EntityManager : MonoBehaviour
 
     private static bool[] states; 
 
+    private static bool playerFlipped;
+
     void Awake()
     {
         Instance = this;
@@ -36,6 +38,10 @@ public class EntityManager : MonoBehaviour
 
         if(spawnData == null)
             spawnData = new SpawnData();
+
+        // load player direction state
+        if(playerFlipped && !LevelManager.ignorePreviousScene)
+            GeneralFunctions.GetPlayer().GetComponent<Player_Movement>().TurnAround();
     }
 
     public static bool IsPaused()
@@ -339,6 +345,9 @@ public class EntityManager : MonoBehaviour
         //Update enemies values
         foreach(Spawner spawner in FindObjectsOfType(typeof(Spawner)))
             spawner.TriggerSave();
+
+        // save player direction
+        playerFlipped = GeneralFunctions.GetPlayer().GetComponent<Player_Movement>().flipped;
     }
 
     public static void IncrementKillCount()

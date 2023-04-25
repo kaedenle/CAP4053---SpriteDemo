@@ -2814,7 +2814,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6197798176421269814, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.61
+      value: 9.75
       objectReference: {fileID: 0}
     - target: {fileID: 6197798176421269814, guid: 26d27fb70ed0a8d40a34822a195f3213, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4171,7 +4171,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 903653531}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -26.6, y: -1.5, z: -5.1679406}
+  m_LocalPosition: {x: -28.8, y: -1.5, z: -5.1679406}
   m_LocalScale: {x: 3.0299306, y: 3.0299306, z: 3.0299306}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4769,6 +4769,7 @@ MonoBehaviour:
   maxEnemies: 2
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
+  minDistToOtherEnemy: 4
   RespawnOnLoad: 1
   OriginalPos: 0
   lookingBehavior: 0
@@ -7267,6 +7268,7 @@ MonoBehaviour:
   maxEnemies: 2
   minPlayerYDistPercent: 25
   minPlayerXDistPercent: 25
+  minDistToOtherEnemy: 4
   RespawnOnLoad: 1
   OriginalPos: 0
   lookingBehavior: 0
