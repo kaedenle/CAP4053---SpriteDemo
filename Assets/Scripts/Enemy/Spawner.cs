@@ -12,6 +12,7 @@ public class Spawner : MonoBehaviour
     [Range(0, 20)] public int minEnemies;
     [Range(0, 20)] public int maxEnemies;
     [Range(0, 100)] public float minPlayerYDistPercent = 25, minPlayerXDistPercent = 25;
+    public float minDistToOtherEnemy = 4.0F;
     
     public bool RespawnOnLoad; //should you make new enemies if you walk into the room?
     public bool OriginalPos; //should you respawn in same position or reset to original?
@@ -161,8 +162,17 @@ public class Spawner : MonoBehaviour
 
     private bool ValidLocation(Vector3 pos)
     {
-        return System.Math.Abs(pos.x - player.transform.position.x) >= minXPlayer || 
-               System.Math.Abs(pos.y - player.transform.position.y) >= minYPlayer;
+        return (System.Math.Abs(pos.x - player.transform.position.x) >= minXPlayer || 
+               System.Math.Abs(pos.y - player.transform.position.y) >= minYPlayer)
+               && !NearOtherEnemy(pos);
+    }
+
+    private bool NearOtherEnemy(Vector3 pos)
+    {
+        foreach(GameObject en in enemyEntities)
+            if(Vector3.Distance(en.transform.position, pos) <= minDistToOtherEnemy)
+                return true;
+        return false;
     }
 
     private Vector3 GetRandomStartPosition()
