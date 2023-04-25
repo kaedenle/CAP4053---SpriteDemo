@@ -324,6 +324,12 @@ public class GameData : MonoBehaviour
         data.log.mazeRoom = room;
     }
 
+    public void AddSingleItem(InventoryManager.AllItems item)
+    {
+        data.log.inventory.Add(item);
+        data.log.usedInventory.Add(item);
+    }
+
     // data classes
     [System.Serializable]
     class Data

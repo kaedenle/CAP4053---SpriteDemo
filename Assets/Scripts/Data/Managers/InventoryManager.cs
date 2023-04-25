@@ -101,6 +101,7 @@ public class InventoryManager : MonoBehaviour
 
             if (AddedItem != null) AddedItem(null, item);
             if(GameData.GetInstance().GetLevel() == (int) HubManager.PhaseTag.Mobster) LevelManager.CityPaperSave(); // save pages
+            if(ScenesManager.GetCurrentScene() == ScenesManager.AllScenes.CastleArena && item.ToString().Contains("Letter")) LevelManager.CastlePaperSave(item); // save castle letters
         }
     }
 
