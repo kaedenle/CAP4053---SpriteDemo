@@ -91,7 +91,7 @@ public class MenuManager : MonoBehaviour
         if(LoadButton != null && !GameData.GetInstance().HasLoadData())
             DisableButton(LoadButton);
 
-        if(GameData.GetInstance().CompletedGame())
+        if(!GameData.GetInstance().CompletedGame())
             creditsButton.SetActive(false);
     }
 

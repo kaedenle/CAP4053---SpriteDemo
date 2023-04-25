@@ -8,7 +8,6 @@ public class ScenesManager : MonoBehaviour
 {
     public static ScenesManager Instance;
     private static ScenesManager.AllScenes _currentScene = AllScenes.Menu, _prevScene = AllScenes.Menu; // need to update these defaults after setting up central room
-    private static bool _demo = false;
     const float nextSceneDelay = 1.0F;
 
     private static bool firstSceneDebug = true;
@@ -75,16 +74,6 @@ public class ScenesManager : MonoBehaviour
         SceneManager.LoadScene( build_idx );
     }
 
-    // loads a scene based on demo boolean
-    public static void LoadSceneChoice(AllScenes full, AllScenes demo)
-    {
-        if (_demo) 
-            LoadScene(demo);
-
-        else
-            LoadScene(full);
-    }
-
     public static AllScenes GetPreviousScene()
     {
         return _prevScene;
@@ -133,14 +122,9 @@ public class ScenesManager : MonoBehaviour
         firstSceneDebug = false;
     }
 
-    public static void setDemo()
+    void Start()
     {
-        _demo = true;
-    }
-
-    public static bool isDemo()
-    {
-        return _demo;
+        ignorePreviousScene = false;
     }
 
     /*
