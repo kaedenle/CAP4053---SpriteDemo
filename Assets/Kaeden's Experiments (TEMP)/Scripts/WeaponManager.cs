@@ -253,19 +253,26 @@ public class WeaponManager : MonoBehaviour, IScriptable
                     //call attack from integer (defined by Attack blend tree in animator)
                     else if (animator.GetFloat("attack") != 0)
                     {
-                        //keyboard shortcuts for combos
-                        int press = KeyPressed();
-                        if (press != -1 && DisplayedWeapon == wpnList.index && wpnList.weaponlist[press].active && am.CanCancel() && ShortCutCombos)
-                        {
-                            wpnList.index = press % spriteList.Length;
-                        }
-                        BufferWeaponID = wpnList.index; 
-                        am.bufferCancel = wpnList.weaponlist[wpnList.index].attack1;
+                        bool dagger = false;
                         //exception for the dagger
                         if ((animator.GetFloat("attack") == 7 || animator.GetFloat("attack") == 8) && wpnList.weaponlist[wpnList.index].attack1 == 7)
                         {
                             am.bufferCancel = (int)(animator.GetFloat("attack") + 1);
+                            dagger = true;
                         }
+                        if (!dagger)
+                        {
+                            //keyboard shortcuts for combos
+                            int press = KeyPressed();
+                            if (press != -1 && DisplayedWeapon == wpnList.index && wpnList.weaponlist[press].active && am.CanCancel() && ShortCutCombos)
+                            {
+                                wpnList.index = press % spriteList.Length;
+                            }
+                            BufferWeaponID = wpnList.index;
+                            am.bufferCancel = wpnList.weaponlist[wpnList.index].attack1;
+                        }
+                        
+                        
                     }   
                     else
                         am.InvokeAttack(wpnList.weaponlist[wpnList.index].attack1);

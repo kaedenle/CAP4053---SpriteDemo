@@ -66,6 +66,10 @@ public class PlayerScript : MonoBehaviour, IUnique
     {
         GetComponent<Player_Movement>().flipped = true;
     }
+    public void TurnAround()
+    {
+        GetComponent<Player_Movement>().flipped = !GetComponent<Player_Movement>().flipped;
+    }
     public void Dequip()
     {
         wm.equiped = false;
@@ -314,7 +318,7 @@ public class PlayerScript : MonoBehaviour, IUnique
         }
 
         //if detect cancel
-        if(cancel && ShootAgain)
+            if(cancel && ShootAgain)
         {
             cancel = false;
             ShootAgain = false;
