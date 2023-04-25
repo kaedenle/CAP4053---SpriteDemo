@@ -198,7 +198,7 @@ public class LevelManager : MonoBehaviour
 
     public static void CityPaperSave()
     {
-        if(GameData.GetInstance().GetDifficulty() == GameData.Difficulty.Hard) return; // don't save any papers on Hard mode
+        // if(GameData.GetInstance().GetDifficulty() == GameData.Difficulty.Hard) return; // don't save any papers on Hard mode
 
         // update all the manager variables
         GameData.GetInstance().StoreManagerVariables();
