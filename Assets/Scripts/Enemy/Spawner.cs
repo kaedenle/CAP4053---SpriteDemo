@@ -141,8 +141,8 @@ public class Spawner : MonoBehaviour
         //make new entity
         GameObject enemyObject = Instantiate(enemy[enemyBase.spawner_index_type], enemyBase.pos.Get(), Quaternion.identity);
         enemyObject.transform.SetParent(parent.transform);
-        enemyObject.GetComponent<MovementController>().SetupDirection(); // re-establish fov
         enemyBase.SetValues(enemyObject);
+        enemyObject.GetComponent<MovementController>().SetupDirection(); // re-establish fov
         return enemyObject;
     }
 

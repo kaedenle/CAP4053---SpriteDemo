@@ -67,7 +67,7 @@ public class MovementController : MonoBehaviour, IScriptable
 
     public void SetupDirection()
     {
-        flipLook = (transform.localScale.x < 0) ^ !defaultLooksLeft;  // it's looking in the other direction if it starts backwards
+        flipLook = (transform.localScale.x < 0);  // it's looking in the other direction if it starts backwards
         LookingForDirection();
     }
 
