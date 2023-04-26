@@ -69,7 +69,7 @@ public class LevelManager : MonoBehaviour
         objectState.Clear();
     }
 
-    static void ResetAllVariables()
+    public static void ResetAllVariables()
     {
         ResetVariables();
         InventoryManager.ResetVariables();

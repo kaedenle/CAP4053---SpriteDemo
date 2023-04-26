@@ -75,6 +75,7 @@ public class MenuManager : MonoBehaviour
             mainTheme.GetComponent<AudioSource>().Stop();
 
         // grab the current game
+        LevelManager.FullReset();
         GameData.GetInstance().RevertToSave();
     }
 
