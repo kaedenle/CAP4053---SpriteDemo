@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 332549735169306054}
   - component: {fileID: 332549735169306055}
   - component: {fileID: 332549735169306053}
-  - component: {fileID: 332549735169306048}
   - component: {fileID: 332549735169306049}
   m_Layer: 0
   m_Name: Red Fuse
@@ -99,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7acae49b1290afc479e1b5ba5267e487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineThickness: 0.5
+  outlineThickness: {fileID: 11400000, guid: 1a2a6366ac9c8a847a040c4499584e97, type: 2}
   pauseOnInteract: 1
   interactiveText:
     textID: 
@@ -113,36 +112,11 @@ MonoBehaviour:
       loopLast: 1
     lockedAudio: 
     requiredItems: 
+    requiredEvents: []
+  playAfterDialogue: 1
   _itemType: 11
   repeatable: 0
---- !u!114 &332549735169306048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 332549735169306050}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 252d88948a8ab80459a143041f323b78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineThickness: 0.5
-  pauseOnInteract: 1
-  interactiveText:
-    textID: 
-    loopLast: 1
-  normalAudio: 
-  highlightEnds: 0
-  lockable:
-    isLocked: 0
-    lockedInteractiveText:
-      textID: 
-      loopLast: 1
-    lockedAudio: 
-    requiredItems: 
-  _itemType: 11
-  repeatable: 0
+  destroyOnInteract: 1
 --- !u!58 &332549735169306049
 CircleCollider2D:
   m_ObjectHideFlags: 0

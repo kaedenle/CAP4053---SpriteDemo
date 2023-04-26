@@ -101,6 +101,7 @@ public class OutlineObject : MonoBehaviour
 
     public float GetThickness()
     {
+        if(outlineThickness != null) return outlineThickness.outlineThickness;
         if((sprite_renderer = GetComponent<SpriteRenderer>()) == null) return 0;
         // sprite size
         Vector2 sprite_size = GetComponent<SpriteRenderer>().sprite.rect.size;
@@ -122,7 +123,9 @@ public class OutlineObject : MonoBehaviour
     public void OverrideThickness()
     {
         if(outlineThickness != null)
+        {
             outlineMaterial.SetFloat("_Outline_Thickness", outlineThickness.outlineThickness); 
+        }
     }
 
 
