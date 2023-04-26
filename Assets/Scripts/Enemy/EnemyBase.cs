@@ -80,6 +80,7 @@ public class EnemyBase : MonoBehaviour, IUnique, IDamagable
 
     public virtual void ForceStop()
     {
+        Idle();
         movementController.StopMoving();
     }
 
