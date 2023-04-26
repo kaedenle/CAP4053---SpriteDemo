@@ -124,7 +124,6 @@ public class OutlineObject : MonoBehaviour
     {
         if(outlineThickness != null)
         {
-            if(outlineThickness.outlineThickness == 20) Debug.Log("outline thickness was set to 20");
             outlineMaterial.SetFloat("_Outline_Thickness", outlineThickness.outlineThickness); 
         }
     }
