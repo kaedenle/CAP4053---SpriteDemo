@@ -243,4 +243,9 @@ public class MazeManager : MonoBehaviour
     {
         return maze;
     }
+
+    public static void ResetMaze()
+    {
+        maze = null;
+    }
 }

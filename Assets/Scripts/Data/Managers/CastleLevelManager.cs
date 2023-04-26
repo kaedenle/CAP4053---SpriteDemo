@@ -26,6 +26,7 @@ public class CastleLevelManager : SubLevelManager
     public static void ResetVariables()
     {
         maze_status = true;
+        MazeManager.ResetMaze();
     }
 
     public static void SetMazeStatus(bool status)
