@@ -278,7 +278,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
                     {
                         //keyboard shortcuts for combos
                         int press = KeyPressed();
-                        if (press != -1 && DisplayedWeapon == wpnList.index && wpnList.weaponlist[press].active && am.HasHitSomething() && ShortCutCombos)
+                        if (press != -1 && DisplayedWeapon == wpnList.index && wpnList.weaponlist[press].active && am.HasHitSomething() && ShortCutCombos && am.CancelExists(wpnList.weaponlist[press].attack1))
                         {
                             wpnList.index = press % spriteList.Length;
                         }
@@ -300,7 +300,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
                         bool dagger = true;
                         //keyboard shortcuts for combos
                         int press = KeyPressed();
-                        if (press != -1 && DisplayedWeapon == wpnList.index && wpnList.weaponlist[press].active && am.CanCancel() && ShortCutCombos)
+                        if (press != -1 && DisplayedWeapon == wpnList.index && wpnList.weaponlist[press].active && am.CanCancel() && ShortCutCombos && am.CancelExists(wpnList.weaponlist[press].attack2))
                         {
                             wpnList.index = press % spriteList.Length;
                             dagger = false;

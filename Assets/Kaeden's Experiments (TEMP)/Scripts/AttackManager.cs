@@ -419,6 +419,10 @@ public class AttackManager : MonoBehaviour
     {
         return cancellableFlag;
     }
+    public bool CancelExists(int move)
+    {
+        return cancellableSet.Contains(move);
+    }
     // Update is called once per frame
     void Update()
     {
