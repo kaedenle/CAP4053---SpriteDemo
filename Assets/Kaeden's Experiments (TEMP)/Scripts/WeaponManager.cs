@@ -26,7 +26,6 @@ public class WeaponManager : MonoBehaviour, IScriptable
     public float stop_sign_speed;
     public bool weaponDebug;
     public int debuglevel;
-    public bool EnableDagger;
 
     private bool prevFliped = false;
 
@@ -91,7 +90,8 @@ public class WeaponManager : MonoBehaviour, IScriptable
     public void WeaponLocks()
     {
         int additive = 0;
-        if (EnableDagger) additive = 8;
+        bool Dagger = true;
+        if (Dagger) additive = 8;
         int level = GameData.GetInstance().GetLevel();
         if (weaponDebug) level = debuglevel;
         if(level == 0)
