@@ -38503,6 +38503,7 @@ GameObject:
   - component: {fileID: 914335163}
   - component: {fileID: 914335162}
   - component: {fileID: 914335164}
+  - component: {fileID: 914335165}
   m_Layer: 0
   m_Name: TX Props Chest_Open
   m_TagString: Untagged
@@ -38603,6 +38604,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.62712365}
   m_EdgeRadius: 0
+--- !u!114 &914335165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914335161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8eaee893abf094085c9fbed34a56a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TakeParent: 0
+  deltaDown: -130
+  dynamic: 0
 --- !u!1 &914773517
 GameObject:
   m_ObjectHideFlags: 0
