@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class WeaponManager : MonoBehaviour, IScriptable
 {
@@ -61,6 +62,8 @@ public class WeaponManager : MonoBehaviour, IScriptable
         }
         WeaponLocks();
         InventoryManager.AddedItem += CheckWeapons;
+        //constantly check if a weapon is avaliable or not
+        ManipulateWeapons();
     }
     private void OnDisable()
     {
@@ -113,7 +116,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
     }
     public void WeaponLocks(int number)
     {
-        Calculate(number);
+        Calculate(number);   
     }
     
     private void Calculate(int number)
@@ -174,6 +177,7 @@ public class WeaponManager : MonoBehaviour, IScriptable
         FlipDirections();
         equiped = animator.GetBool("equiped");
         //toggle between not equiped and equiped
+        
         if(InputManager.EquipKeyDown() && animator.GetFloat("attack") == 0){
             if (equiped)
             {
