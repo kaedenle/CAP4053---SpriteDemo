@@ -22,7 +22,6 @@ public class MinibossBehavior : MonoBehaviour
 
     public void onDeath()
     {
-        Debug.Log("death script test succeeded");
         LevelManager.ToggleInteractiveState(eventID);
 
         foreach(GameObject obj in enablesOnDeath)
