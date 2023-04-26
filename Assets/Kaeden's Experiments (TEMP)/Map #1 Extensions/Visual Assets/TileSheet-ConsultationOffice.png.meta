@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,30 +113,21 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
-    - serializedVersion: 2
-      name: TileSheet-ConsultationOffice_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 263
-        width: 120
-        height: 33
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bbc4a86dc27779e4da240f412532679e
-      internalID: 979754624
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     - serializedVersion: 2
       name: TileSheet-ConsultationOffice_1
       rect:
@@ -2237,6 +2228,39 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: TileSheet-ConsultationOffice_101
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 142
+        width: 39
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 7.5, y: -0.5}
+        - {x: 8.5, y: -0.5}
+        - {x: 8.5, y: 0.5}
+        - {x: 3.5, y: 0.5}
+        - {x: 3.5, y: 10.5}
+        - {x: 17.5, y: 10.5}
+        - {x: 17.5, y: 0.5}
+        - {x: 12.5, y: 0.5}
+        - {x: 12.5, y: -0.5}
+        - {x: 13.5, y: -0.5}
+        - {x: 13.5, y: -2.5}
+        - {x: 7.5, y: -2.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b1931201a26fc045a93c7a863f920d3
+      internalID: 771616811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -2278,6 +2302,7 @@ TextureImporter:
       TileSheet-ConsultationOffice_33: -742916280
       TileSheet-ConsultationOffice_42: -995262988
       TileSheet-ConsultationOffice_51: 522473792
+      TileSheet-ConsultationOffice_101: 771616811
       TileSheet-ConsultationOffice_1: 1342861436
       TileSheet-ConsultationOffice_39: -889751321
       TileSheet-ConsultationOffice_88: -61214912
@@ -2292,6 +2317,7 @@ TextureImporter:
       TileSheet-ConsultationOffice_25: -1994185328
       TileSheet-ConsultationOffice_78: -66269133
       TileSheet-ConsultationOffice_75: -2017125117
+      TileSheet-ConsultationOffice_102: 446366348
       TileSheet-ConsultationOffice_58: -296987735
       TileSheet-ConsultationOffice_85: -762422073
       TileSheet-ConsultationOffice_26: 1372035993
