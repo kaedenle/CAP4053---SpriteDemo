@@ -236,6 +236,17 @@ public class InputManager : MonoBehaviour
     {
         return _equip && Pressed(Keys.Equip);
     }
+
+    public static bool AnyKeyPressed()
+    {
+        foreach(KeyValuePair<Keys, KeyPair> entry in keycodes)
+        {
+            if(Pressed(entry.Key))
+                return true; 
+        }
+
+        return false;
+    }
     // get the booleans here if necessary (they will also be in EntityManager)
     public static bool CanAttack()
     {
