@@ -5561,6 +5561,7 @@ GameObject:
   - component: {fileID: 893319463}
   - component: {fileID: 893319462}
   - component: {fileID: 893319466}
+  - component: {fileID: 893319467}
   m_Layer: 0
   m_Name: Boss Lever_0
   m_TagString: Untagged
@@ -5712,6 +5713,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16648625, y: 0.074755415}
   m_EdgeRadius: 0
+--- !u!114 &893319467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893319461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8eaee893abf094085c9fbed34a56a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TakeParent: 0
+  deltaDown: -105
+  dynamic: 0
 --- !u!1 &901665086
 GameObject:
   m_ObjectHideFlags: 0
