@@ -247,5 +247,7 @@ public class MazeManager : MonoBehaviour
     public static void ResetMaze()
     {
         maze = null;
+        path = null;
+        dirPath = null;
     }
 }
